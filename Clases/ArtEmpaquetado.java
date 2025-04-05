@@ -1,18 +1,19 @@
-public class Empaquetado extends Utileria {
+public class ArtEmpaquetado extends Utileria {
 	private char tipo;//B: para bebidas,F: para fruta,N: no determinado
-	private float capacidad; //para el caso los empaquetados de bebidas (vasos)
-	private String unidades; //la unidad de medida de la capacidad (onzas)
+	private double capacidad; 
+	private String unidades; 
 	private String material; 
 	
-	public Empaquetado (String nombre,String descripcion,char tipo){
-		super(nombre,descripcion);
+	public ArtEmpaquetado (String nombre,String descripcion,
+	double costoUnitario,char tipo){
+		super(nombre,descripcion,costoUnitario);
 		this.capacidad=-1;
 		this.tipo=tipo;
 	}
-	public void setCapacidad (float capacidad){
+	public void setCapacidad (double capacidad){
 		this.capacidad=capacidad;
 	}
-	public float getCapacidad (){
+	public double getCapacidad (){
 		return capacidad;
 	}
 	public void setUnidades(String unidades){
@@ -27,7 +28,7 @@ public class Empaquetado extends Utileria {
 	public String getMaterial (){
 		return material;
 	}
-	public llenarDatosAdicionales(float capacidad,String unidades,String material){
+	public void llenarDatosAdicionales(double capacidad,String unidades,String material){
 		setCapacidad(capacidad);
 		setMaterial(material);
 		setUnidades(unidades);
@@ -36,13 +37,12 @@ public class Empaquetado extends Utileria {
 	public String imprimirDatosReporte(){
 		String cadena="Id: "+getId()+" Nombre: "+getNombre()+" Descripcion: "+getDescripcion()+" Stock: "+
 		getStock()+" Costo: "+getCosto()+" Tipo: ";
-		if (tipo==B){
+		if (tipo=='B'){
 			cadena+=" Para bebidas Capacidad: "+getCapacidad()+" "+getUnidades()+"\n";
 		}
 		else{
-			cadena+=" Para frutas \n";
+			cadena+=" Para frutas Capacidad: "+getCapacidad()+" "+getUnidades()+"\n";;
 		}
+		return cadena;
 	}
-
-	
 }
