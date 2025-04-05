@@ -24,6 +24,9 @@ public abstract class Utileria {
 	public int getStock(){
 		return stock;
 	}
+	public void setStock (int stock){
+		this.stock=stock;
+	}
 	public void setNombre (String nombre){
 		this.nombre=nombre;
 	}
@@ -48,8 +51,12 @@ public abstract class Utileria {
 	public char estaActivo(){
 		return activo;
 	}
+	public void cambiarStock(int cambio){
+		setStock(stock + cambio);
+	}
 	public String imprimirDatosPedido(){
-		String cadena="Id: "+getId()+" "+getNombre()+" S/. "+getCosto;
+		String cadena="Id: "+getId()+" "+getNombre()+" S/. "+getCosto();
+		return cadena;
 	}
 	public abstract String imprimirDatosReporte();
 }
