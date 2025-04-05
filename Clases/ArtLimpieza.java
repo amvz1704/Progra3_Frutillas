@@ -1,5 +1,6 @@
 public class ArtLimpieza extends Utileria{
-	private char tipo; //G: para usos generales del local,A: especializado para limpieza de alimentos
+	private char tipo; //G: para usos generales del local,
+					   //A: especializado para limpieza o entrega de alimentos
 	
 	public ArtLimpieza (String nombre,String descripcion,double costoUnitario,char tipo){
 		super(nombre,descripcion,costoUnitario);
@@ -15,11 +16,12 @@ public class ArtLimpieza extends Utileria{
 	public String imprimirDatosReporte(){
 		String cadena="Id: "+getId()+" Nombre: "+getNombre()+" Descripcion: "+getDescripcion()+" Stock: "+
 		getStock()+" Costo: "+getCosto()+" Tipo: ";
-		if (tipo==G){
+		if (tipo=='G'){
 			cadena+=" Uso general del local \n";
 		}
 		else{
 			cadena+=" Uso para limpieza de alimentos \n";
 		}
+		return cadena;
 	}
 }
