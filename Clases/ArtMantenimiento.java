@@ -15,11 +15,12 @@ public class ArtMantenimiento extends Utileria{
 	public String imprimirDatosReporte(){
 		String cadena="Id: "+getId()+" Nombre: "+getNombre()+" Descripcion: "+getDescripcion()+" Stock: "+
 		getStock()+" Costo: "+getCosto()+" Tipo: ";
-		if (tipo==H){
+		if (tipo=='H'){
 			cadena+=" Herramienta \n";
 		}
 		else{
 			cadena+=" Pieza de repuesto \n";
 		}
+		return cadena;
 	}
 }
