@@ -1,0 +1,5 @@
+class Comprobante_Pago{
+  
+  
+{
+    
