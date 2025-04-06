@@ -19,7 +19,28 @@ public class Local {
         this.direccion = direccion;
         this.telefono = telefono;
         this.activo = true; // Por defecto, el local está activo al crearse
+        this.ordenesVentas = new ArrayList<OrdenVenta>();
+        this.empleados = new ArrayList<Empleado>();
         correlativo++;
+    }
+
+    public Local(Local local){
+        this.idLocal = local.getIdLocal();
+        this.nombre = local.getNombre();
+        this.descripcion = local.getDescripcion();
+        this.direccion = local.getDireccion();
+        this.telefono = local.getTelefono();
+        this.activo = local.getActivo();
+        this.ordenesVentas = new ArrayList<OrdenVenta>(local.getOrdenesVentas());
+        this.empleados = new ArrayList<Empleado>(local.getEmpleados()); 
+    }
+
+    public void agregarOrdenVenta(OrdenVenta orden){
+        ordenesVentas.add(orden);
+    }
+
+    public void agregarEmpleado(Empleado empleado){
+        empleados.add(empleado);
     }
 
     public void generarReporteEmpleados(){
@@ -82,6 +103,14 @@ public class Local {
 
     public void setActivo(boolean activo){
         this.activo = activo;
+    }
+
+    public ArrayList<OrdenVenta> getOrdenesVentas() {
+        return new ArrayList<OrdenVenta>(ordenesVentas);
+    }
+
+    public ArrayList<Empleado> getEmpleados() {
+        return new ArrayList<Empleado>(empleados);
     }
 
 
