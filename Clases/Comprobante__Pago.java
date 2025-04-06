@@ -1,4 +1,7 @@
 public class Comprobante_Pago {
+    
+    // ATRIBUTOS
+    
     private int idComprobante;
     private int numeroArticulos;
     private double subtotal;
@@ -6,6 +9,7 @@ public class Comprobante_Pago {
     private double total;
     private LocalDate fecha;
     
+    // CONSTRUCTORES
     
     public Comprobante_Pago(){
         this.fecha = LocalDate.now();
@@ -17,6 +21,16 @@ public class Comprobante_Pago {
        
                 
     }
+    public Comprobante_Pago(int idComprobante, int numeroArticulos, double subtotal, double montoIGV, double total, LocalDate fecha) {
+        this.idComprobante = idComprobante;
+        this.numeroArticulos = numeroArticulos;
+        this.subtotal = subtotal;
+        this.montoIGV = montoIGV;
+        this.total = total;
+        this.fecha = fecha;
+    }
+    
+    //GETTERS AND SETTERS
     
     public int getIdComprobante() {
         return idComprobante;
@@ -77,12 +91,28 @@ public class Comprobante_Pago {
         this.fecha = fecha;
     }
     
+    //METODOS
+    
     public void calcularTotal(){
         montoIGV = subtotal*0.18;
         total = subtotal + montoIGV;
     }
-    public void calcularArticulos(){
-        
+    
+    public int calcularArticulos(){
+        return numeroArticulos;
+    }
+    
+    @Override
+    public String toString() {
+        return "Comprobante_Pago{" +
+                "idComprobante=" + idComprobante +
+                ", numeroArticulos=" + numeroArticulos +
+                ", subtotal=" + subtotal +
+                ", montoIGV=" + montoIGV +
+                ", total=" + total +
+                ", fecha=" + fecha +
+                '}';
     }
     
 }
+
