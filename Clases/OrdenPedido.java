@@ -58,24 +58,26 @@ public class OrdenPedido {
 	public double getTotal(){
 		return total;
 	}
-	private void setDescripcion(String descripcion){
+	public void setDescripcion(String descripcion){
 		this.descripcion=descripcion;
 	}
-	private String getDescripcion (){
+	public String getDescripcion (){
 		return descripcion;
 	}
+	public LocalDate getFecha(){
+		return fecha;
 	//se haec asumiendo que va a haber un constructor copia
-	private void setProveedor(Proveedor pro){
+	public void setProveedor(Proveedor pro){
 		proveedor=new Proveedor(pro);
 	}
-	private Proveedor getProveedor (){
+	public Proveedor getProveedor (){
 		return new Proveedor(proveedor);
 	}
 	//se hace asumiendo que se va a realizar el constructor copia 
-	private void setLocal (Local local){
+	public void setLocal (Local local){
 		this.local=new Local(local);
 	}
-	private Local getLocal (){
+	public Local getLocal (){
 		return new Local (local);
 	}
 }
