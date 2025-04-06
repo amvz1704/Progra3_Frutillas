@@ -13,6 +13,7 @@ public class OrdenPedido {
 	private double total;
 	private Proveedor proveedor;
 	private Local local;
+	private int cantArticulos;
 	private ArrayList<LineaOrdenPedido> detalle;
 	
 	public OrdenPedido(){
@@ -23,6 +24,7 @@ public class OrdenPedido {
 		this.descuento=0;
 		this.costoLogistico=0;
 		this.total=0;
+		this.cantArticulos=0;
 		this.detalle=new ArrayList<LineaOrdenPedido> ();
 		correlativo++;
 	}
@@ -58,26 +60,33 @@ public class OrdenPedido {
 	public double getTotal(){
 		return total;
 	}
-	public void setDescripcion(String descripcion){
+	private void setDescripcion(String descripcion){
 		this.descripcion=descripcion;
 	}
-	public String getDescripcion (){
+	private String getDescripcion (){
 		return descripcion;
 	}
-	public LocalDate getFecha(){
-		return fecha;
 	//se haec asumiendo que va a haber un constructor copia
-	public void setProveedor(Proveedor pro){
+	private void setProveedor(Proveedor pro){
 		proveedor=new Proveedor(pro);
 	}
-	public Proveedor getProveedor (){
+	private Proveedor getProveedor (){
 		return new Proveedor(proveedor);
 	}
 	//se hace asumiendo que se va a realizar el constructor copia 
-	public void setLocal (Local local){
+	private void setLocal (Local local){
 		this.local=new Local(local);
 	}
-	public Local getLocal (){
+	private Local getLocal (){
 		return new Local (local);
+	}
+	private void agregarDetalle(LineaOrdenPedido det){
+		LineaOrdenPedido nuevaLinea=new LineaOrdenPedido(det);
+		nuevaLinea.setIdLinea(cantArticulos);
+		cantArticulos++;
+		detalle.add(nuevaLinea);
+	}
+	private ArrayList<LineaOrdenPedido> getDetalle (){
+		return new ArrayList<LineaOrdenPedido> (detalle);
 	}
 }
