@@ -81,5 +81,8 @@ public class Comprobante_Pago {
         montoIGV = subtotal*0.18;
         total = subtotal + montoIGV;
     }
+    public void calcularArticulos(){
+        
+    }
     
 }
