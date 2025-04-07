@@ -13,7 +13,7 @@ class OrdenVenta{
 	private estadoVenta estado; 
 	private boolean entregado; 
 	private static int correlativo = 1;
-	private ArrayList <LineaDeOrdenDeVenta> lineasOrdenes;
+	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
 	//Agregar Repartidor
 
 	public OrdenVenta(){
@@ -30,7 +30,7 @@ class OrdenVenta{
 		this.entregado = entregado; 
 		this.estado = estado; 
 		this.fecha = fecha; //el dia pedido debe ser el de entrega
-		this.lineasOrdenes = new ArrayList<LineaDeOrdenDeVenta>();
+		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		this.correlativo++;
 	}
 	

@@ -1,5 +1,5 @@
 
-public class LineaDeOrdenDeVenta {
+public class LineaOrdenDeVenta {
     
     //ATRIBUTOS
     
@@ -10,14 +10,14 @@ public class LineaDeOrdenDeVenta {
 
     // CONSTRUCTORES
     
-    public LineaDeOrdenDeVenta(int idLineaVenta, int cantidad, double subtotal, Producto producto) {
+    public LineaOrdenDeVenta(int idLineaVenta, int cantidad, double subtotal, Producto producto) {
         this.idLineaVenta = idLineaVenta;
         this.cantidad = cantidad;
         this.subtotal = subtotal;
         this.producto = new Producto(producto);
     } 
     
-    public LineaDeOrdenDeVenta(){
+    public LineaOrdenDeVenta(){
         this.idLineaVenta = 0;
         this.cantidad = 0;
         this.subtotal = 0;
