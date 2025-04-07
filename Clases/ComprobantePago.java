@@ -12,8 +12,7 @@ public class ComprobantePago {
     private LocalDate fecha;
     private formaDePago formaPago;
     private static int correlativo = 1;
-    private ArrayList <LineaComprobanteDePago> lineaComprobante;
-    private OrdenVenta orden;
+    //private OrdenVenta orden;
     // CONSTRUCTORES
     
     public ComprobantePago(){
@@ -23,7 +22,6 @@ public class ComprobantePago {
         this.subtotal = 0;
         this.montoIGV = 0;
         this.total  = 0;
-        this.lineaComprobante = new ArrayList<LineaComprobanteDePago>();
     }
     public ComprobantePago(int idComprobante, int numeroArticulos, double subtotal, double montoIGV, double total, LocalDate fecha) {
         this.idComprobante = idComprobante;
@@ -32,7 +30,6 @@ public class ComprobantePago {
         this.montoIGV = montoIGV;
         this.total = total;
         this.fecha = fecha;
-        this.lineaComprobante = new ArrayList<LineaComprobanteDePago>();
     }
     
     //GETTERS AND SETTERS

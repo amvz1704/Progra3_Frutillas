@@ -14,6 +14,7 @@ class OrdenVenta{
 	private boolean entregado; 
 	private static int correlativo = 1;
 	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
+	private ComprobantePago comprobante;
 	//Agregar Repartidor
 
 	public OrdenVenta(){
@@ -31,6 +32,7 @@ class OrdenVenta{
 		this.estado = estado; 
 		this.fecha = fecha; //el dia pedido debe ser el de entrega
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
+		this.comprobante = new ComprobantePago();
 		this.correlativo++;
 	}
 	
