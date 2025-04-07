@@ -1,0 +1,5 @@
+
+
+enum estadoVenta{
+	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR
+}
