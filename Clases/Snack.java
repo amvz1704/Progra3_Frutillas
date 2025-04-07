@@ -1,6 +1,6 @@
 import java.time.*;
 
-class Snack extends Producto{
+public class Snack extends Producto{
 	private String tipo; 
 	private boolean requiereEnvase; 
 	private boolean estaEnvasado; 
@@ -38,6 +38,14 @@ class Snack extends Producto{
 	public void confirmarEnvasado(){
 		//cambia estado
 		this.estaEnvasado = true; 
+	}
+
+	@Override
+	public String toString(){
+		//colocar un mejor formato
+		String cadena =super.toString() +" Es un snack. Envase: " + requiereEnvase; 
+		if(requiereEnvase) cadena = cadena + " tipo: "+ envase; 
+		return cadena; 
 	}
 	
 }
