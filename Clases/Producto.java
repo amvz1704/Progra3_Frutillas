@@ -53,8 +53,14 @@ public class Producto{
 		this.stockMinimo = original.stockMinimo; 
 	}
 	
-	//metodos
+	//metodos --
 	
+	//nuevo agregado
+	@Override
+	public String toString(){
+		//Mejorar el formato
+		return "Producto: " + nombre + " "+ stock + "   s/" + precioUnitario + "  "+ descripcion;
+	}
 	//Futuro trigger
 	void revisarVencimiento(){
 		//NO SE preguntar XD
