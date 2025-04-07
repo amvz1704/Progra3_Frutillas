@@ -30,3 +30,4 @@ public class FormaDePago {
     public void setDescripcion(String descripcion){
         this.descripcion = descripcion;
     }
+}

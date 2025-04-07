@@ -1,6 +1,7 @@
 
 
 import java.util.ArrayList; 
+import java.time.*;
 
 class Bebida extends Producto{
 	private int idBebida; 
@@ -13,19 +14,19 @@ class Bebida extends Producto{
 	//como juntar fruta
 	
 	Bebida(){
-		super.Producto();
+		super();
 		frutasBebida = new ArrayList<Fruta>();
 	}
 	
 	Bebida(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalTime fechaVencimiento, 
+		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo,
 		int idBebida, int tamanioOz, String tipo, 
 		String endulzante, tipoLeche tieneLeche){
 		
-		super.Producto(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalTime fechaVencimiento, 
-		double precioUnitario,int stock, int stockMinimo);
+		super(idProducto, nombre, descripcion, codigoProd,
+		fechaProduccion, fechaVencimiento, 
+		precioUnitario, stock, stockMinimo);
 		this.idBebida = idBebida; 
 		this.tamanioOz = tamanioOz; 
 		this.tipo = tipo; 

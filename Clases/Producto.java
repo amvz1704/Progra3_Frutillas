@@ -1,6 +1,6 @@
 
 
-import java.time; 
+import java.time.*; 
 
 class Producto{
 	private int idProducto; 
@@ -8,7 +8,7 @@ class Producto{
 	private String descripcion;
 	private String codigoProd; 
 	private LocalDate fechaProduccion; 
-	private LocalTime fechaVencimiento; 
+	private LocalDate fechaVencimiento; 
 	private double precioUnitario; 
 	private int stock; 
 	private int stockMinimo; 
@@ -21,7 +21,7 @@ class Producto{
 	}
 	
 	Producto(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalTime fechaVencimiento, 
+		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo){
 			
 		this.idProducto = idProducto;

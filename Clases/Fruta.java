@@ -1,4 +1,4 @@
-
+import java.time.*;
 
 class Fruta extends Producto{
 	private int idFruta; 
@@ -9,20 +9,20 @@ class Fruta extends Producto{
 	private String envase;
 	
 	Fruta(){
-		super.Producto();
-		this.estaEnvasado = 0; 
-		this.estaLimpio = 0;
+		super();
+		this.estaEnvasado = false; 
+		this.estaLimpio = false;
 	}
 	
 	Fruta(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalTime fechaVencimiento, 
+		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo,
 		int idFruta, boolean requiereLimpieza, boolean requiereEnvase,
-		boolean estaLimpio, boolean estaEnvasado, UTL_Empaquetado envase){
+		boolean estaLimpio, boolean estaEnvasado, String envase){
 		
-		super.Producto(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalTime fechaVencimiento, 
-		double precioUnitario,int stock, int stockMinimo);
+		super(idProducto, nombre, descripcion, codigoProd,
+		fechaProduccion, fechaVencimiento, 
+		precioUnitario, stock, stockMinimo);
 		
 		this.idFruta = idFruta; 
 		this.requiereEnvase = requiereEnvase; 
@@ -46,11 +46,11 @@ class Fruta extends Producto{
 	
 	//metodos
 	void confirmarLimpieza(){
-		this.estaLimpio = 1;
+		this.estaLimpio = true;
 	}
 	
 	void confirmarEnvasado(){
-		this.estaEnvasado = 1; 
+		this.estaEnvasado = true; 
 	}
 	
 	

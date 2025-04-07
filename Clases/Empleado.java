@@ -7,7 +7,7 @@ public class Empleado{
     private String apePaterno;
     private String apeMaterno;
     private String email;
-    private int telefono;
+    private String telefono;
     private Date fecha_contrato;
     private double salario; 
     private String usuario_sistema;
@@ -63,11 +63,11 @@ public class Empleado{
         this.email = email;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

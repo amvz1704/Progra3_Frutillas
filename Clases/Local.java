@@ -46,7 +46,7 @@ public class Local {
     public void generarReporteEmpleados(){
         System.out.println("Reporte de empleados del local:");
         for (Empleado empleado : empleados) {
-            empleado.generarReporte();
+            //empleado.generarReporte();
         }
     }
 
@@ -54,7 +54,7 @@ public class Local {
         System.out.println("Reporte de ventas del " + fecha + ":");
         for (OrdenVenta orden : ordenesVentas) {
             if (orden.getFecha().equals(fecha)) {
-                orden.generarReporte();
+                //orden.generarReporte();
             } else {
                 System.out.println("No hay ventas para la fecha especificada.");
             }
@@ -112,5 +112,6 @@ public class Local {
     public ArrayList<Empleado> getEmpleados() {
         return new ArrayList<Empleado>(empleados);
     }
+}
 
 
