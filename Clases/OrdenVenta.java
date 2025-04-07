@@ -3,7 +3,7 @@ import java.time.*;
 import java.util.ArrayList;
 //solo usar set y gets con los realmente usados preguntarle a regina**
 
-class OrdenVenta{
+public class OrdenVenta{
 	
 	private int idOrdenVenta; 
 	private LocalDate fecha; 
