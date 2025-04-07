@@ -1,6 +1,6 @@
 import java.time.*;
 
-class Repartidor extends Empleado{
+public class Repartidor extends Empleado{
 
     public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno,
     String correoElectronico, String telefono, LocalDate fechaContrato,

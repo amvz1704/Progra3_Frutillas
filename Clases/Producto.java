@@ -1,5 +1,7 @@
 
 
+//nueva edicion: agregue mostrar Producto 
+
 import java.time.*; 
 
 public class Producto{
@@ -12,21 +14,19 @@ public class Producto{
 	private double precioUnitario; 
 	private int stock; 
 	private int stockMinimo; 
-	private static int correlativo = 1;
 	
-	//No es necesario creo
 	
-	Producto(){
+	public Producto(){
 		this.stock = 0; 
 		this.stockMinimo = 0; 
 		this.precioUnitario = 0; 
 	}
 	
-
-	Producto(String nombre, String descripcion, String codigoProd,
+	public Producto(int idProducto, String nombre, String descripcion, String codigoProd,
 		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
-		double precioUnitario, int stock, int stockMinimo){
-		
+		double precioUnitario,int stock, int stockMinimo){
+			
+		this.idProducto = idProducto;
 		this.nombre = nombre; 
 		this.descripcion = descripcion; 
 		this.codigoProd = codigoProd; 
@@ -35,8 +35,7 @@ public class Producto{
 		this.precioUnitario = precioUnitario; 
 		this.stock = stock; 
 		this.stockMinimo = stockMinimo; 
-		this.idProducto = correlativo;
-		correlativo++;
+		
 	}
 	
 	//constructor copia
@@ -55,9 +54,16 @@ public class Producto{
 	
 	//metodos
 	
-	//Futuro trigger
-	void revisarVencimiento(){
-		//NO SE preguntar XD
+	public void revisarVencimiento(){
+		System.out.println("Fecha vencimiento: " + fechaVencimiento);
+	}
+	
+	//nuevo agregado
+	@Override
+	public String toString(){
+		
+		//colocar un formato
+		return "Producto: " + nombre + " "+ stock + "   s/" + precioUnitario + "  "+ descripcion;
 	}
 	
 	//conjuntoSettersyGetters

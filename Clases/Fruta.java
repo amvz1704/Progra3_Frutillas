@@ -1,28 +1,31 @@
 import java.time.*;
 
-class Fruta extends Producto{
+//se hizo publico 
+public class Fruta extends Producto{
+	private int idFruta; 
 	private boolean requiereLimpieza; 
 	private boolean requiereEnvase;
 	private boolean estaLimpio;
 	private boolean estaEnvasado; 
 	private String envase;
 	
-	Fruta(){
+	public Fruta(){
 		super();
 		this.estaEnvasado = false; 
 		this.estaLimpio = false;
 	}
 	
-	Fruta(String nombre, String descripcion, String codigoProd,
+	public Fruta(int idProducto, String nombre, String descripcion, String codigoProd,
 		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo,
 		int idFruta, boolean requiereLimpieza, boolean requiereEnvase,
 		boolean estaLimpio, boolean estaEnvasado, String envase){
 		
-		super(nombre, descripcion, codigoProd,
+		super(idProducto, nombre, descripcion, codigoProd,
 		fechaProduccion, fechaVencimiento, 
 		precioUnitario, stock, stockMinimo);
-		 
+		
+		this.idFruta = idFruta; 
 		this.requiereEnvase = requiereEnvase; 
 		this.requiereLimpieza = requiereLimpieza; 
 		this.estaEnvasado = estaEnvasado; 
@@ -31,8 +34,9 @@ class Fruta extends Producto{
 	}
 	
 	//copia
-	Fruta(Fruta original){
+	public Fruta(Fruta original){
 		super(original);
+		this.idFruta = original.idFruta; 
 		this.requiereLimpieza = original.requiereLimpieza; 
 		this.requiereEnvase = original.requiereEnvase;
 		this.estaEnvasado = original.estaEnvasado; 
@@ -41,7 +45,15 @@ class Fruta extends Producto{
 	}
 	
 	
+	
+	
 	//metodos
+	@Override
+	public String toString(){
+		return "Es una fruta que está limpia: "	+ estaLimpio + " y envasada: "+ estaEnvasado; 
+			
+	}
+	
 	void confirmarLimpieza(){
 		this.estaLimpio = true;
 	}
