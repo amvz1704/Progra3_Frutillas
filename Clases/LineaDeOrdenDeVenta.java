@@ -6,19 +6,22 @@ public class LineaDeOrdenDeVenta {
     private int idLineaVenta;
     private int cantidad;
     private double subtotal;
-    
+    private Producto producto;
+
     // CONSTRUCTORES
     
-    public LineaDeOrdenDeVenta(int idLineaVenta, int cantidad, double subtotal) {
+    public LineaDeOrdenDeVenta(int idLineaVenta, int cantidad, double subtotal, Producto producto) {
         this.idLineaVenta = idLineaVenta;
         this.cantidad = cantidad;
         this.subtotal = subtotal;
+        this.producto = new Producto(producto);
     } 
     
     public LineaDeOrdenDeVenta(){
         this.idLineaVenta = 0;
         this.cantidad = 0;
         this.subtotal = 0;
+        this.producto = new Producto();
     }
     
     //GETTERS AND SETTERS
@@ -59,7 +62,8 @@ public class LineaDeOrdenDeVenta {
         this.subtotal = this.cantidad * precioUnitario;
         return this.subtotal;
     }
-     @Override
+
+    @Override
     public String toString() {
         return "LineaDeOrdenVenta{" +
                 "idLineaVenta=" + idLineaVenta +

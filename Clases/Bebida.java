@@ -3,8 +3,7 @@
 import java.util.ArrayList; 
 import java.time.*;
 
-class Bebida extends Producto{
-	private int idBebida; 
+class Bebida extends Producto{ 
 	private int tamanioOz; 
 	private String tipo; 
 	private String endulzante;
@@ -18,16 +17,15 @@ class Bebida extends Producto{
 		frutasBebida = new ArrayList<Fruta>();
 	}
 	
-	Bebida(int idProducto, String nombre, String descripcion, String codigoProd,
+	Bebida(String nombre, String descripcion, String codigoProd,
 		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo,
 		int idBebida, int tamanioOz, String tipo, 
 		String endulzante, tipoLeche tieneLeche){
 		
-		super(idProducto, nombre, descripcion, codigoProd,
+		super(nombre, descripcion, codigoProd,
 		fechaProduccion, fechaVencimiento, 
-		precioUnitario, stock, stockMinimo);
-		this.idBebida = idBebida; 
+		precioUnitario, stock, stockMinimo); 
 		this.tamanioOz = tamanioOz; 
 		this.tipo = tipo; 
 		this.endulzante = endulzante; 
@@ -39,7 +37,6 @@ class Bebida extends Producto{
 	Bebida(Bebida original){
 		
 		super(original);
-		this.idBebida = original.idBebida; 
 		this.tamanioOz = original.tamanioOz; 
 		this.tipo = original.tipo; 
 		this.endulzante = original.endulzante; 
@@ -52,5 +49,7 @@ class Bebida extends Producto{
 		}
 	}
 	
-	
+	public void agregarFruta(Fruta fruta){
+		this.frutasBebida.add(fruta);
+	}
 }

@@ -1,6 +1,6 @@
 
 import java.time.*; 
-
+import java.util.ArrayList;
 //solo usar set y gets con los realmente usados preguntarle a regina**
 
 class OrdenVenta{
@@ -12,21 +12,26 @@ class OrdenVenta{
 	private double montoTotal; 
 	private estadoVenta estado; 
 	private boolean entregado; 
-	
+	private static int correlativo = 1;
+	private ArrayList <LineaDeOrdenDeVenta> lineasOrdenes;
+	//Agregar Repartidor
+
 	public OrdenVenta(){
 		this.estado = estadoVenta.PROCESO; 
 		this.fecha = LocalDate.now(); //el dia pedido debe ser el de entrega
 	}
 	
-	public OrdenVenta(int idOrdenVenta, LocalDate fecha, LocalTime horaFinEntrega,
+	public OrdenVenta(LocalDate fecha, LocalTime horaFinEntrega,
 	String descripcion, double montoTotal, estadoVenta estado, boolean entregado){
-		this.idOrdenVenta = idOrdenVenta; 
+		this.idOrdenVenta = correlativo; 
 		this.horaFinEntrega = horaFinEntrega;
 		this.descripcion = descripcion; 
 		this.montoTotal = montoTotal; 
 		this.entregado = entregado; 
 		this.estado = estado; 
 		this.fecha = fecha; //el dia pedido debe ser el de entrega
+		this.lineasOrdenes = new ArrayList<LineaDeOrdenDeVenta>();
+		this.correlativo++;
 	}
 	
 	//methods 

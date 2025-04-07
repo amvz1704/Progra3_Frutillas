@@ -4,16 +4,33 @@ public class Empleado{
     private int idEmpleado;
     private static int correlativo = 1;
     private String nombre;
-    private String apePaterno;
-    private String apeMaterno;
-    private String email;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private String correoElectronico;
     private String telefono;
-    private LocalDate fecha_contrato;
+    private LocalDate fechaContrato;
     private double salario; 
-    private String usuario_sistema;
-    private String contra_sistem;
+    private String usuarioSistema;
+    private String contraSistema;
     // Este podriamos considerarlo un enum (manana o tarde)
     private String turnoTrabajo;
+
+    public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno,
+    String correoElectronico, String telefono, LocalDate fechaContrato,
+    double salario, String usuarioSistema, String contraSistema){
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.correoElectronico = correoElectronico;
+        this.telefono = telefono;
+        this.fechaContrato = fechaContrato;
+        this.salario = salario;
+        this.usuarioSistema = usuarioSistema;
+        this.contraSistema = contraSistema;
+        this.idEmpleado = correlativo;
+        correlativo++;
+    }
+
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -39,28 +56,28 @@ public class Empleado{
         this.nombre = nombre;
     }
 
-    public String getApePaterno() {
-        return apePaterno;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setApePaterno(String apePaterno) {
-        this.apePaterno = apePaterno;
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
     }
 
-    public String getApeMaterno() {
-        return apeMaterno;
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
     }
 
-    public void setApeMaterno(String apeMaterno) {
-        this.apeMaterno = apeMaterno;
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
     public String getTelefono() {
@@ -71,12 +88,12 @@ public class Empleado{
         this.telefono = telefono;
     }
 
-    public LocalDate getFecha_contrato() {
-        return fecha_contrato;
+    public LocalDate getFechaContrato() {
+        return fechaContrato;
     }
 
-    public void setFecha_contrato(LocalDate fecha_contrato) {
-        this.fecha_contrato = fecha_contrato;
+    public void setFechaContrato(LocalDate fechaContrato) {
+        this.fechaContrato = fechaContrato;
     }
 
     public double getSalario() {
@@ -87,20 +104,20 @@ public class Empleado{
         this.salario = salario;
     }
 
-    public String getUsuario_sistema() {
-        return usuario_sistema;
+    public String getUsuarioSistema() {
+        return usuarioSistema;
     }
 
-    public void setUsuario_sistema(String usuario_sistema) {
-        this.usuario_sistema = usuario_sistema;
+    public void setUsuarioSistema(String usuarioSistema) {
+        this.usuarioSistema = usuarioSistema;
     }
 
-    public String getContra_sistem() {
-        return contra_sistem;
+    public String getContraSistema() {
+        return contraSistema;
     }
 
-    public void setContra_sistem(String contra_sistem) {
-        this.contra_sistem = contra_sistem;
+    public void setContraSistema(String contraSistema) {
+        this.contraSistema = contraSistema;
     }
 
     public String getTurnoTrabajo() {

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Cliente {
     private static int correlativo = 1; // Correlativo para asignar ID a los clientes
     private int idCliente;
@@ -7,6 +9,8 @@ public class Cliente {
     private String telefono;
     private String correoElectronico;
     private boolean activo; // true: activo, false: inactivo
+    // falta inicializar
+    private ArrayList <OrdenVenta> ordenesVentas;
 
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico) {
         this.idCliente = correlativo;
@@ -17,13 +21,19 @@ public class Cliente {
         this.correoElectronico = correoElectronico;
         this.activo = true; // Por defecto, el cliente es activo al crearse
         correlativo++;
+        this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
     
     public void desactivarCliente(){
         setActivo(false);
     }
 
+    public void agregarOrdenVenta(OrdenVenta orden){
+        this.ordenesVentas.add(orden);
+    }
+
     public void realizarCompra() {
+        //Agregar logica de compra
         System.out.println("Realizando compra...");
     }
 

@@ -12,7 +12,9 @@ public class Producto{
 	private double precioUnitario; 
 	private int stock; 
 	private int stockMinimo; 
+	private static int correlativo = 1;
 	
+	//No es necesario creo
 	
 	Producto(){
 		this.stock = 0; 
@@ -20,11 +22,11 @@ public class Producto{
 		this.precioUnitario = 0; 
 	}
 	
-	Producto(int idProducto, String nombre, String descripcion, String codigoProd,
+
+	Producto(String nombre, String descripcion, String codigoProd,
 		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
-		double precioUnitario,int stock, int stockMinimo){
-			
-		this.idProducto = idProducto;
+		double precioUnitario, int stock, int stockMinimo){
+		
 		this.nombre = nombre; 
 		this.descripcion = descripcion; 
 		this.codigoProd = codigoProd; 
@@ -33,7 +35,8 @@ public class Producto{
 		this.precioUnitario = precioUnitario; 
 		this.stock = stock; 
 		this.stockMinimo = stockMinimo; 
-		
+		this.idProducto = correlativo;
+		correlativo++;
 	}
 	
 	//constructor copia
@@ -52,6 +55,7 @@ public class Producto{
 	
 	//metodos
 	
+	//Futuro trigger
 	void revisarVencimiento(){
 		//NO SE preguntar XD
 	}

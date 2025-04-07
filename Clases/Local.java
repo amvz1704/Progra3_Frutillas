@@ -9,6 +9,7 @@ public class Local {
     private String direccion;
     private String telefono;
     private boolean activo;
+    private String idSupervisor;
     private ArrayList<OrdenVenta> ordenesVentas; // Lista de ordenes de venta
     private ArrayList<Empleado> empleados; // Lista de empleados
 
@@ -103,6 +104,14 @@ public class Local {
 
     public void setActivo(boolean activo){
         this.activo = activo;
+    }
+
+    public String getIdSupervisor(){
+        return idSupervisor;
+    }
+
+    public void setIdSupervisor(String idSupervisor){
+        this.idSupervisor = idSupervisor;
     }
 
     public ArrayList<OrdenVenta> getOrdenesVentas() {
