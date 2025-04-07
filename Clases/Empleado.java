@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.*;
 
 public class Empleado{
     private int idEmpleado;
@@ -8,7 +8,7 @@ public class Empleado{
     private String apeMaterno;
     private String email;
     private String telefono;
-    private Date fecha_contrato;
+    private LocalDate fecha_contrato;
     private double salario; 
     private String usuario_sistema;
     private String contra_sistem;
@@ -71,11 +71,11 @@ public class Empleado{
         this.telefono = telefono;
     }
 
-    public Date getFecha_contrato() {
+    public LocalDate getFecha_contrato() {
         return fecha_contrato;
     }
 
-    public void setFecha_contrato(Date fecha_contrato) {
+    public void setFecha_contrato(LocalDate fecha_contrato) {
         this.fecha_contrato = fecha_contrato;
     }
 
