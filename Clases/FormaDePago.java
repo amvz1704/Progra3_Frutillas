@@ -1,3 +1,3 @@
-enum formaDePago{
+public enum formaDePago{
     TARJETA_CREDITO, TARJETA_DEBITO, PLIN, YAPE
 }
