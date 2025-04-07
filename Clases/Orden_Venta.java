@@ -1,5 +1,5 @@
-
-import java.time; 
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 //solo usar set y gets con los realmente usados preguntarle a regina**
 
