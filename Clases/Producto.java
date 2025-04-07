@@ -1,6 +1,7 @@
 
 
-import java.time; 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 class Producto{
 	private int idProducto; 
