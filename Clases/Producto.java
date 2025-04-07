@@ -3,7 +3,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-class Producto{
+public class Producto{
 	private int idProducto; 
 	private String nombre; 
 	private String descripcion;
