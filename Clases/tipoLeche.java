@@ -2,6 +2,6 @@
 
 //en java automaticamente es null un enum
 
-enum tipoLeche{
+public enum tipoLeche{
 	ENTERA, SIN_LACTOSA
 }
