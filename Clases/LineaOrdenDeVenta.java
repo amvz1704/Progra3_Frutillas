@@ -1,8 +1,10 @@
+package com.frutilla.models.Venta;
+
+import com.frutilla.models.Inventario.*;
 
 public class LineaOrdenDeVenta {
     
     //ATRIBUTOS
-    
     private int idLineaVenta;
     private int cantidad;
     private double subtotal;
@@ -28,37 +30,25 @@ public class LineaOrdenDeVenta {
     
     public int getIdLineaVenta() {
         return idLineaVenta;
-    }
-
-    
+    }    
     public void setIdLineaVenta(int idLineaVenta) {
         this.idLineaVenta = idLineaVenta;
     }
-
-    
     public int getCantidad() {
         return cantidad;
     }
-
-    
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
-    
     public double getSubtotal() {
         return subtotal;
     }
-
-    
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
-    
     // METODOS
     
     public double calcularSubtotal(double precioUnitario) {
-
         this.subtotal = this.cantidad * precioUnitario;
         return this.subtotal;
     }
