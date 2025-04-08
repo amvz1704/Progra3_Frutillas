@@ -14,28 +14,40 @@ public class ComprobantePago {
     private LocalDate fecha;
     private FormaDePago formaPago;
     private static int correlativo = 1;
-	private OrdenVenta orden;
+	private int idOrdenVenta;
     // CONSTRUCTORES
     
     public ComprobantePago(){
         this.fecha = LocalDate.now();
-        this.idComprobante = 0;
+        this.idComprobante = correlativo;
         this.numeroArticulos = 0;
         this.subtotal = 0;
         this.montoIGV = 0;
         this.total  = 0;
+	correlativo++;
     }
-    public ComprobantePago(int idComprobante, int numeroArticulos, double subtotal, double montoIGV, double total, LocalDate fecha,
-	OrdenVenta orden) {
-        this.idComprobante = idComprobante;
+    public ComprobantePago(int numeroArticulos, double subtotal, double montoIGV, double total, LocalDate fecha,
+	 int idOrdenVenta) {
+        this.idComprobante = correlativo;
         this.numeroArticulos = numeroArticulos;
-        this.subtotal = subtotal;
+        this.subtotal = subtotal; //se lo pasan ps
         this.montoIGV = montoIGV;
-        this.total = total;
+        this.total = calcularTotal();
         this.fecha = fecha;
-		this.orden=new OrdenVenta(orden);
+	this.idOrdenVenta = idOrdenVenta; //que se relacione con el id
+	correlativo++;
     }
-    
+    //copia Comprobante Pago agregado Nyaane 
+	
+	public ComprobantePago(ComprobantePago original){
+		this.idComprobante = original.idComprobante;
+		this.numeroArticulos = original.numeroArticulos;
+		this.subtotal = original.subtotal;
+		this.montoIGV = original.montoIGV;
+		this.total = original.total;
+		this.fecha = original.fecha;
+	}
+
     //GETTERS AND SETTERS
     
     public int getIdComprobante() {
@@ -98,7 +110,7 @@ public class ComprobantePago {
     //METODOS
     
     public void calcularTotal(){
-        //agregar recorrida y suma de array en subtotal
+        //es suficiente con esto porque el totalse calcula en OrdenVenta al crear comprobante Pago
         montoIGV = subtotal*0.18;
         total = subtotal + montoIGV;
     }
