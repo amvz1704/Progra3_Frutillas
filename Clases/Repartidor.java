@@ -10,7 +10,8 @@ public class Repartidor extends Empleado{
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico,
         telefono, fechaContrato, salario, usuarioSistema, contraSistema);
     }
-	
+
+	//este es el constructor agregado
 	public Repartidor(Repartidor rep){
 		this.setNombre(rep.getNombre());
 		this.setApellidoPaterno(rep.getApellidoPaterno());
@@ -24,15 +25,16 @@ public class Repartidor extends Empleado{
         this.setIdEmpleado(rep.getIdEmpleado());
 		this.setTurnoTrabajo(rep.getTurnoTrabajo());
 	}
-    
-    public void prepararPedido(OrdenVenta orden){
-        //Settear Orden de venta como preparado
-        orden.setEstado(estadoVenta.PROCESO);
-    }
 
-    public void confirmarEntregaCliente(OrdenVenta orden){
-        orden.setEstado(estadoVenta.ENTREGADO);
-        orden.setEntregado(true);
-    }
+	//cambie las funciones 
+	public void prepararPedido(OrdenVenta orden){
+		//inicia a preparar 
+		orden.setEstado(estadoVenta.PROCESO);
+	}
+	
+	public void confirmarEntregaCliente(OrdenVenta orden, boolean cambio){	
+		orden.entregaExitosa(cambio); //esto actualiza la orden como ENTREGADO o CAMBIO
+		orden.setEntregado(true); //en ambos casos es entregado pues :3 
+	}
 }
 
