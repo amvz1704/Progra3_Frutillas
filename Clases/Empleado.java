@@ -1,4 +1,6 @@
+package com.frutilla.models.Empleado;
 import java.time.*;
+import com.frutilla.models.Venta.*;
 
 public class Empleado{
     private int idEmpleado;
@@ -30,7 +32,9 @@ public class Empleado{
         this.idEmpleado = correlativo;
         correlativo++;
     }
-
+	
+	public Empleado(){
+	}
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -89,7 +93,9 @@ public class Empleado{
     }
 
     public LocalDate getFechaContrato() {
-        return fechaContrato;
+		LocalDate copia = LocalDate.of(fechaContrato.getYear(), 
+		fechaContrato.getMonth(), fechaContrato.getDayOfMonth());
+        return copia;
     }
 
     public void setFechaContrato(LocalDate fechaContrato) {
