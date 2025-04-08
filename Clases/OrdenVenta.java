@@ -16,116 +16,128 @@ public class OrdenVenta{
 	private boolean entregado; 
 	private static int correlativo = 1;
 	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
-	private Repartidor repartidor;
-	//Agregar Repartidor
-
-	public OrdenVenta(){
-		this.idOrdenVenta = correlativo; 
-		this.estado = estadoVenta.PROCESO; 
+	
+	
+	//Agregar Repartidor --> no es necesario pues puede ser cualquier repartidor una vez de hace la entrega
+	
+	//constructor forma 2 agregas linea de venta uno por uno a travez de agregarLinea()
+	public OrdenVenta(String descripcion){
+		this.descripcion = descripcion; 
+		this.estado = estadoVenta.FALTA_PAGO; 
 		this.fecha = LocalDate.now(); //el dia pedido debe ser el de entrega
+		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
+		this.entregado = false; 
+		this.montoTotal = 0; 
 	}
 	
-	public OrdenVenta(LocalDate fecha, LocalTime horaFinEntrega,
-	String descripcion, double montoTotal, estadoVenta estado, boolean entregado,Repartidor repartidor){
+	//constructor forma 1 le pasas la lista de las lineas
+	public OrdenVenta(String descripcion, ArrayList <LineaOrdenDeVenta> lista){
 		this.idOrdenVenta = correlativo; 
-		this.horaFinEntrega = horaFinEntrega;
 		this.descripcion = descripcion; 
-		this.montoTotal = montoTotal; 
-		this.entregado = entregado; 
-		this.estado = estado; 
-		this.fecha = fecha; //el dia pedido debe ser el de entrega
+		
+		this.fecha = LocalDate.now();//el dia pedido debe ser el de entrega
+		
+		//una orden de venta crea un comprobante de pago
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
-		this.repartidor=new Repartidor (repartidor);
+		
+		//copia de forma profunda las lineas de orden 
+		for(LineaOrdenDeVenta linea: lista){
+			lineasOrdenes.add(linea); 
+		}
+		this.estado = estado.FALTA_PAGO; 
+		
+		this.entregado = false; //se actualizara despues
 		this.correlativo++;
 	}
 	
-	public OrdenVenta(OrdenVenta ord){
-		this.setIdOrdenVenta(ord.getIdOrdenVenta()); 
-		this.setHoraFinEntrega (ord.getHoraFinEntrega());
-		this.setDescripcion (ord.getDescripcion()); 
-		this.setMontoTotal (ord.getMontoTotal()); 
-		this.setEntregado (ord.isEntregado()); 
-		this.setEstado(ord.getEstado()); 
-		this.setFecha(ord.getFecha()); //el dia pedido debe ser el de entrega
-		this.setLineasOrdenes(ord.getLineasOrdenes());
-		this.setRepartidor(ord.getRepartidor());
+	//forma 2 & forma 1--> methods reemplace crear total por crear un comprobante de pago para una orden de venta!
+	public ComprobantePago crearComprobantePago(){
+		
+		//no se puede crear comprobante si no hay ninguna linea :)
+		if(lineasOrdenes.size() == 0){
+			System.out.println("Aun no se agregaron lineas de venta para crear un comprobante"); 
+			return new ComprobantePago();
+		}
+		
+		int numArticulos = 0; 
+		for(LineaOrdenDeVenta linea: lineasOrdenes){
+			montoTotal += linea.getSubtotal(); 
+			numArticulos += linea.getCantidad(); 
+		}
+		
+		//se asigna por entregar al comprobante de pago
+		this.estado = estado.POR_ENTREGAR; 
+		
+		return new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta);
+		
 	}
 	
-	//setters y getters
-	public void setIdOrdenVenta (int idOrdenVenta){
-		this.idOrdenVenta=idOrdenVenta;
-	}
-	public int getIdOrdenVenta (){
-		return idOrdenVenta;
-	}
-	public void setFecha(LocalDate fecha){
-		this.fecha = fecha; 
-	} 
-	public LocalDate getFecha() {
-		LocalDate copia = LocalDate.of(fecha.getYear(), fecha.getMonth(), 
-		fecha.getDayOfMonth());
-		return copia;
-	}
-	public void setHoraFinEntrega(LocalTime horaFinEntrega) {
-		this.horaFinEntrega = horaFinEntrega;
-	}
-	public LocalTime getHoraFinEntrega() {
-		LocalTime copia = LocalTime.of(horaFinEntrega.getHour(),
-		horaFinEntrega.getMinute(),horaFinEntrega.getSecond(),
-		horaFinEntrega.getNano());
-		return copia;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-	public void setMontoTotal(double montoTotal) {
-		this.montoTotal = montoTotal;
-	}
-	public double getMontoTotal() {
-		return this.montoTotal;
-	}
-	public void setEstado(estadoVenta estado) {
-		this.estado = estado;
-	}
-	public estadoVenta getEstado() {
-		return this.estado;
-	}
-	public void setEntregado(boolean entregado) {
-		this.entregado = entregado;
-	}
-	public boolean isEntregado() {
-		return this.entregado;
-	} 
-	public void setLineasOrdenes(ArrayList<LineaOrdenDeVenta> detalle){
-		this.lineasOrdenes=new ArrayList<LineaOrdenDeVenta> (detalle);
-	}
-	public ArrayList<LineaOrdenDeVenta> getLineasOrdenes(){
-		return new ArrayList<LineaOrdenDeVenta>(lineasOrdenes);
-	}
-	public void setRepartidor(Repartidor rep){
-		this.repartidor=new Repartidor(rep);
-	}
-	public Repartidor getRepartidor(){
-		return new Repartidor(repartidor);
-	}
-	//methods 
+	//tipo 2--> agregar linea de ordenVenta otro metodo de llenar un orden de venta
 	public void agregarLineaOrden(LineaOrdenDeVenta linea){
-		lineasOrdenes.add(linea);
+		lineasOrdenes.add(new LineaOrdenDeVenta(linea));
 	}
-	public void calcularTotal(){
-		
+	
+	//en vez de entregar pedido lo cambie a entrega exitosa que sera editado por un Repartidor
+	public void entregaExitosa(boolean cambio){
+		if(cambio) this.estado = estado.CAMBIO;
+		else this.estado = estado.ENTREGADO;
 	}
-	public void cambiarEstado(){
-		
-	}
-	public void entregarPedido(){
-		
-	}
+	
+	
+	
+	//por implementar
 	public void escogerProducto(){
 		
 	}
+	
+	//setters y getters
+	
+	public void setFecha(LocalDate fecha){
+		this.fecha = fecha; 
+	} 
+	
+	public LocalDate getFecha() {
+		return this.fecha;
+	}
+
+	public void setHoraFinEntrega(LocalTime horaFinEntrega) {
+		this.horaFinEntrega = horaFinEntrega;
+	}
+
+	public LocalTime getHoraFinEntrega() {
+		return this.horaFinEntrega;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setMontoTotal(double montoTotal) {
+		this.montoTotal = montoTotal;
+	}
+
+	public double getMontoTotal() {
+		return this.montoTotal;
+	}
+
+	public void setEstado(estadoVenta estado) {
+		this.estado = estado;
+	}
+
+	public estadoVenta getEstado() {
+		return this.estado;
+	}
+
+	public void setEntregado(boolean entregado) {
+		this.entregado = entregado;
+	}
+
+	public boolean isEntregado() {
+		return this.entregado;
+	} 
 	
 }
