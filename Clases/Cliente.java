@@ -1,4 +1,6 @@
+package com.frutilla.models.Cliente;
 import java.util.ArrayList;
+import com.frutilla.models.Venta.*;
 
 public class Cliente {
     private static int correlativo = 1; // Correlativo para asignar ID a los clientes
@@ -85,6 +87,14 @@ public class Cliente {
         return activo;
     }
 
+    public void setActivo(boolean activo){
+        this.activo = activo;
+    }
+	
+	public ArrayList <OrdenVenta> getOrdenesVentas(){
+		return new ArrayList<OrdenVenta> (ordenesVentas);
+	}
+}
     public void setActivo(boolean activo){
         this.activo = activo;
     }
