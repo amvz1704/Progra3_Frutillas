@@ -12,11 +12,11 @@ public class LineaOrdenDeVenta {
 
     // CONSTRUCTORES
     
-    public LineaOrdenDeVenta(int idLineaVenta, int cantidad, double subtotal, Producto producto) {
+    public LineaOrdenDeVenta(int idLineaVenta, int cantidad, Producto producto) {
         this.idLineaVenta = idLineaVenta;
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
-        this.producto = new Producto(producto);
+        this.producto = new Producto(producto);//crea un nuevo producto no el mismo! 
+        this.subtotal = calcularSubtotal(producto.getPrecioUnitario()); 
     } 
     
     public LineaOrdenDeVenta(){
@@ -25,6 +25,14 @@ public class LineaOrdenDeVenta {
         this.subtotal = 0;
         this.producto = new Producto();
     }
+
+    //agregue constructor copia 
+	public LineaOrdenDeVenta(LineaOrdenDeVenta original) {
+        this.idLineaVenta = original.idLineaVenta;
+        this.cantidad = original.cantidad;
+        this.subtotal = original.subtotal;
+        this.producto = new Producto(original.producto);
+    } 
     
     //GETTERS AND SETTERS
     
