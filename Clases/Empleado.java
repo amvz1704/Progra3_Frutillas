@@ -14,8 +14,8 @@ public class Empleado{
     private double salario; 
     private String usuarioSistema;
     private String contraSistema;
-    // Este podriamos considerarlo un enum (manana o tarde)
-    private String turnoTrabajo;
+    // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
+    private boolean turnoTrabajo;
 
     public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno,
     String correoElectronico, String telefono, LocalDate fechaContrato,
@@ -36,6 +36,16 @@ public class Empleado{
 	public Empleado(){
 	}
 
+	//para asignar turno  -- nuevo agregado
+	public void asignarNoche(){
+		this.turnoTrabajo = true; 
+	} 
+	
+	public void asignarManana(){
+		this.turnoTrabajo = false; 
+	}
+
+	
     public int getIdEmpleado() {
         return idEmpleado;
     }
@@ -126,11 +136,11 @@ public class Empleado{
         this.contraSistema = contraSistema;
     }
 
-    public String getTurnoTrabajo() {
+    public boolean getTurnoTrabajo() {
         return turnoTrabajo;
     }
 
-    public void setTurnoTrabajo(String turnoTrabajo) {
+    public void setTurnoTrabajo(boolean turnoTrabajo) {
         this.turnoTrabajo = turnoTrabajo;
     }
 }
