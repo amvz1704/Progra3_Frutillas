@@ -1,5 +1,4 @@
-
-
+package com.frutilla.models.Inventario;
 import java.time.*;
 
 //faltaba que sea public xd
