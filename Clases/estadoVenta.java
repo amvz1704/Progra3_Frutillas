@@ -1,5 +1,13 @@
 package com.frutilla.models.Venta;
 
+/*
+	ENTREGADO: entrega exitos
+	PROCESO: esta siendo preparado
+	CAMBIO: el pedido al entregarse tuvo que ser cambiado 
+	POR_ENTREGAR: ha sido reservado y pagado 
+	FALTA_PAGO: aun falta confirmacion de comprobante de pago
+*/
+
 public enum estadoVenta{
-	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR
+	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR, FALTA_PAGO
 }
