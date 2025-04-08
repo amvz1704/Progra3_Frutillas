@@ -1,3 +1,4 @@
+package com.frutilla.models.Empleado;
 import java.time.*;
 
 class Supervisor extends Empleado{
@@ -10,7 +11,7 @@ class Supervisor extends Empleado{
     }
 
     public void generarReporteVentas(){
-
+		
     }
     
     public void eliminarEmpleado(Empleado empleado){
