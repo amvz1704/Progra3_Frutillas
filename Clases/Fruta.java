@@ -1,3 +1,4 @@
+package com.frutilla.models.Inventario;
 import java.time.*;
 
 //se hizo publico 
@@ -46,12 +47,11 @@ public class Fruta extends Producto{
 	
 	
 	
-	
 	//metodos
 	@Override
 	public String toString(){
-		return "Es una fruta que está limpia: "	+ estaLimpio + " y envasada: "+ estaEnvasado; 
-			
+		return "Es una fruta que está limpia: "	+ estaLimpio + 
+		" y envasada: "+ estaEnvasado;	
 	}
 	
 	void confirmarLimpieza(){
