@@ -1,5 +1,9 @@
+package com.frutilla.models.Local;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
+import com.frutilla.models.Empleado.*;
+import com.frutilla.models.Venta.*;
 
 public class Local {
     private static int correlativo = 1; // Correlativo para asignar ID a los locales
