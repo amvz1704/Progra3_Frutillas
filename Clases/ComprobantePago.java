@@ -1,3 +1,5 @@
+package com.frutilla.models.Venta;
+
 import java.time.*;
 import java.util.ArrayList;
 
@@ -10,9 +12,9 @@ public class ComprobantePago {
     private double montoIGV;
     private double total;
     private LocalDate fecha;
-    private formaDePago formaPago;
+    private FormaDePago formaPago;
     private static int correlativo = 1;
-    //private OrdenVenta orden;
+	private OrdenVenta orden;
     // CONSTRUCTORES
     
     public ComprobantePago(){
@@ -23,13 +25,15 @@ public class ComprobantePago {
         this.montoIGV = 0;
         this.total  = 0;
     }
-    public ComprobantePago(int idComprobante, int numeroArticulos, double subtotal, double montoIGV, double total, LocalDate fecha) {
+    public ComprobantePago(int idComprobante, int numeroArticulos, double subtotal, double montoIGV, double total, LocalDate fecha,
+	OrdenVenta orden) {
         this.idComprobante = idComprobante;
         this.numeroArticulos = numeroArticulos;
         this.subtotal = subtotal;
         this.montoIGV = montoIGV;
         this.total = total;
         this.fecha = fecha;
+		this.orden=new OrdenVenta(orden);
     }
     
     //GETTERS AND SETTERS
@@ -77,17 +81,15 @@ public class ComprobantePago {
     public double getTotal() {
         return total;
     }
-
-    
     public void setTotal(double total) {
         this.total = total;
     }
-
    
     public LocalDate getFecha() {
-        return fecha;
+		LocalDate copia = LocalDate.of(fecha.getYear(), fecha.getMonth(),
+		fecha.getDayOfMonth());
+        return copia;
     }
-
     
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
@@ -100,11 +102,7 @@ public class ComprobantePago {
         montoIGV = subtotal*0.18;
         total = subtotal + montoIGV;
     }
-    
-    public int calcularArticulos(){
-        return numeroArticulos;
-    }
-    
+
     @Override
     public String toString() {
         return "Comprobante_Pago{" +
