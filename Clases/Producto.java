@@ -1,4 +1,4 @@
-
+package com.frutilla.models.Inventario;
 
 //nueva edicion: agregue mostrar Producto 
 
@@ -39,7 +39,7 @@ public class Producto{
 	}
 	
 	//constructor copia
-	Producto(Producto original){
+	public Producto(Producto original){
 		
 		this.idProducto = original.idProducto;
 		this.nombre = original.nombre; 
@@ -96,7 +96,9 @@ public class Producto{
 	}
 	
 	public LocalDate getFechaProduccion(){
-		return this.fechaProduccion; 
+		LocalDate copia = LocalDate.of(fechaProduccion.getYear(), 
+		fechaProduccion.getMonth(), fechaProduccion.getDayOfMonth());
+		return copia; 
 	}
 	
 	public void setFechaVencimiento(LocalDate fechaVencimiento){
@@ -104,7 +106,9 @@ public class Producto{
 	}
 	
 	public LocalDate getFechaVencimiento(){
-		return this.fechaVencimiento; 
+		LocalDate copia = LocalDate.of(fechaVencimiento.getYear(), 
+		fechaVencimiento.getMonth(), fechaVencimiento.getDayOfMonth());
+		return copia;
 	}
 	
 	public void setPrecioUnitario(double precioUnitario){
