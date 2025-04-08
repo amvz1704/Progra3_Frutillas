@@ -1,5 +1,5 @@
+package com.frutilla.models.Venta;
 
-
-enum estadoVenta{
+public enum estadoVenta{
 	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR
 }
