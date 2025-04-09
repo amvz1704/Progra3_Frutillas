@@ -63,7 +63,7 @@ public class Producto{
 	public String toString(){
 		
 		//colocar un formato
-		return "Producto: " + nombre + " "+ stock + "   s/" + precioUnitario + "  "+ descripcion;
+		return "Producto: " + nombre + ", Stock: "+ stock + ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion;
 	}
 	
 	//conjuntoSettersyGetters

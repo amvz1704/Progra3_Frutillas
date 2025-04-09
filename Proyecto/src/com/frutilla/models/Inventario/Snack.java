@@ -40,8 +40,8 @@ public class Snack extends Producto{
 	public String toString(){
 		
 		//colocar un formato
-		String cadena =super.toString() +" Es un snack. Envase: " + requiereEnvase; 
-		if(requiereEnvase) cadena = cadena + " tipo: "+ envase; 
+		String cadena =super.toString(); 
+		if(requiereEnvase) cadena += ", Envase: " + envase; 
 		return cadena; 
 	}
 	

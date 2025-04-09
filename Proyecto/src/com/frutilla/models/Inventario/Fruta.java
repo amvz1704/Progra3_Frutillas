@@ -50,9 +50,9 @@ public class Fruta extends Producto{
 	//metodos
 	@Override
 	public String toString(){
-		String cadena = " ";
-		cadena = cadena + "Es una fruta que está limpia: "	+ estaLimpio + " y envasada: "+ estaEnvasado; 
-		if(estaEnvasado) cadena = cadena + " tipo envase: " + envase; 
+		String cadena = super.toString();
+		cadena += ", ID:" + idFruta + ", Limpio : "+ estaLimpio + ", Envasado: " + estaEnvasado; 
+		if(estaEnvasado) cadena += ", Envase: " + envase; 
 		
 		return cadena; 
 			

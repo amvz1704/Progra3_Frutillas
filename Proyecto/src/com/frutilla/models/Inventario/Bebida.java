@@ -60,15 +60,14 @@ public class Bebida extends Producto{
 	public String toString(){
 		
 		//colocar un formato
-		String cadena = super.toString() +" Es una bebida. Tipo: " + tipo + " con endulzante: " + endulzante + 
-		"tipo leche: " + tieneLeche;
+		String cadena = super.toString() +", Tipo: " + tipo + ", Endulzante: " + endulzante;
 		
 		if(tieneLeche != null){
-			cadena = cadena + "\n"; 
-			for(Fruta f: frutasBebida){
-				cadena = cadena + f.toString() + "\n"; 
-			}
-			cadena = cadena + "\n"; 
+			cadena += ", Leche: " + tieneLeche;
+		}
+		cadena += "\nFrutas: ";
+		for(Fruta fruta: frutasBebida){
+			cadena += fruta.getNombre() + " ";
 		}
 
 		
