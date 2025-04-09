@@ -12,11 +12,11 @@ public class Principal{
 		//Creamos un local
 		Local local1 = new Local("Sociales","Entre el polideportivo y generales ", "Estudios Generales Letras, Av. Universitaria 1801, San Miguel 15088", "999999999");
 		
-		//Creamos un supervisor (String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema)
-		Supervisor supervisor = new Supervisor("Nayane", "Melendez", "No se su otro apellido", "nayane@gmail.com", "999999999", LocalDate.now() , 2000, "nayane", "1234");
+		//Creamos un supervisor
+		Supervisor sup = new Supervisor("Nayane", "Melendez", "No se su otro apellido", "nayane@gmail.com", "999999999", LocalDate.now() , 2000, "nayane", "1234");
 
 		//Agregamos el supervisor al local
-		local1.agregarEmpleado(supervisor);
+		local1.agregarEmpleado(sup);
 
 		//Creamos un repartidor
 		Repartidor repartidor1 = new Repartidor("Enzo", "Avila", "Mamani", "enzo@gmail.com", "999999999", LocalDate.now(), 1000, "enzo", "1234");
