@@ -1,14 +1,13 @@
 package com.frutilla.models.Empleado;
-import java.time.*;
 import com.frutilla.models.Venta.*;
+import java.time.*;
 
 public class Repartidor extends Empleado{
 
     public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno,
     String correoElectronico, String telefono, LocalDate fechaContrato,
     double salario, String usuarioSistema, String contraSistema){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico,
-        telefono, fechaContrato, salario, usuarioSistema, contraSistema);
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema);
     }
 
 	//este es el constructor agregado

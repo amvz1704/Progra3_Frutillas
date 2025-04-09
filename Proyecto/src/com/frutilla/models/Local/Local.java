@@ -1,6 +1,6 @@
 package com.frutilla.models.Local;
 
-import java.time.LocalTime;
+import java.time.*;
 import java.util.ArrayList;
 import com.frutilla.models.Empleado.*;
 import com.frutilla.models.Venta.*;
@@ -56,7 +56,7 @@ public class Local {
         System.out.println(reporte);
     }
 
-    public void generarReporteVentas(LocalTime fecha){
+    public void generarReporteVentas(LocalDate fecha){
         String reporte = "Reporte de ventas del " + fecha.toString() + ":" + "\n";
         for (OrdenVenta orden : ordenesVentas) {
             if (orden.getFecha().equals(fecha)) {

@@ -26,11 +26,10 @@ public class Cliente {
         this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
     
-    public void solicitarCompra(Producto producto, int cantidad){
-        OrdenVenta orden = new OrdenVenta("Primera Compra");
-        System.out.println("Solicitando compra de " + cantidad + " unidades de " + producto.getNombre());
-
-    }
+    //public void solicitarCompra(Producto producto, int cantidad){
+    //    OrdenVenta orden = new OrdenVenta("Primera Compra");
+    //    System.out.println("Solicitando compra de " + cantidad + " unidades de " + producto.getNombre());
+    //}
 
     public void desactivarCliente(){
         setActivo(false);
