@@ -32,6 +32,8 @@ public class OrdenVenta{
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		this.entregado = false; 
 		this.montoTotal = 0; 
+		this.idOrdenVenta = correlativo;
+		this.correlativo++;
 	}
 	
 	//constructor forma 1 le pasas la lista de las lineas
