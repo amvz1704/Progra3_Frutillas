@@ -19,7 +19,7 @@ public class OrdenVenta{
 	
 	@Override
 	public String toString(){
-		return "Id: " + String.valueOf(idOrdenVenta) + ", Estado: " + estado + "Descripcion: " + descripcion + ", Monto: " + String.valueOf(montoTotal) + "\n";
+		return "Id: " + String.valueOf(idOrdenVenta) + ", Estado: " + estado + ", Descripcion: " + descripcion + ", Monto: " + String.valueOf(montoTotal) + "\n";
 	}
 	
 	//Agregar Repartidor --> no es necesario pues puede ser cualquier repartidor una vez de hace la entrega
