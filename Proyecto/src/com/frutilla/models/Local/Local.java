@@ -3,6 +3,7 @@ package com.frutilla.models.Local;
 import java.time.*;
 import java.util.ArrayList;
 import com.frutilla.models.Empleado.*;
+import com.frutilla.models.Inventario.*;
 import com.frutilla.models.Venta.*;
 
 public class Local {
@@ -13,9 +14,13 @@ public class Local {
     private String direccion;
     private String telefono;
     private boolean activo;
-    private String idSupervisor;
+    private int idSupervisor;
     private ArrayList<OrdenVenta> ordenesVentas; // Lista de ordenes de venta
     private ArrayList<Empleado> empleados; // Lista de empleados
+    private ArrayList<Producto> productos; // Lista de productos
+    private ArrayList<Bebida> bebidas; // Lista de bebidas
+    private ArrayList<Fruta> frutas; // Lista de frutas
+    private ArrayList<Snack> snacks; // Lista de snacks
 
     public Local(String nombre, String descripcion, String direccion, String telefono){
         this.idLocal = correlativo;
@@ -26,6 +31,10 @@ public class Local {
         this.activo = true; // Por defecto, el local está activo al crearse
         this.ordenesVentas = new ArrayList<OrdenVenta>();
         this.empleados = new ArrayList<Empleado>();
+        this.productos = new ArrayList<Producto>();
+        this.bebidas = new ArrayList<Bebida>();
+        this.frutas = new ArrayList<Fruta>();
+        this.snacks = new ArrayList<Snack>();
         correlativo++;
     }
 
@@ -38,6 +47,27 @@ public class Local {
         this.activo = local.getActivo();
         this.ordenesVentas = new ArrayList<OrdenVenta>(local.getOrdenesVentas());
         this.empleados = new ArrayList<Empleado>(local.getEmpleados()); 
+        this.productos = new ArrayList<Producto>(local.getProductos());
+        this.bebidas = new ArrayList<Bebida>(local.getBebidas());
+        this.frutas = new ArrayList<Fruta>(local.getFrutas());
+        this.snacks = new ArrayList<Snack>(local.getSnacks());
+        this.idSupervisor = local.getIdSupervisor();
+    }
+
+    public void agregarProducto(Producto producto){
+        productos.add(producto);
+    }
+
+    public void agregarBebida(Bebida bebida){
+        bebidas.add(bebida);
+    }
+
+    public void agregarFruta(Fruta fruta){
+        frutas.add(fruta);
+    }
+
+    public void agregarSnack(Snack snack){
+        snacks.add(snack);
     }
 
     public void agregarOrdenVenta(OrdenVenta orden){
@@ -45,12 +75,23 @@ public class Local {
     }
 
     public void agregarEmpleado(Empleado empleado){
+        if(empleado instanceof Supervisor){
+            setIdSupervisor(empleado.getIdEmpleado());
+            System.out.println("El empleado es un supervisor, se le asigna el ID del local como ID de supervisor.");
+        }
         empleados.add(empleado);
     }
 
     public void generarReporteEmpleados(){
         String reporte = "Reporte de empleados del local: " + "\n";
         for (Empleado empleado : empleados) {
+            if (empleado instanceof Supervisor) {
+                reporte += "Supervisor: ";
+            } else if (empleado instanceof Repartidor) {
+                reporte += "Repartidor: ";
+            } else {
+                reporte += "Empleado: ";
+            }
             reporte += empleado.toString();
         }
         System.out.println(reporte);
@@ -112,11 +153,11 @@ public class Local {
         this.activo = activo;
     }
 
-    public String getIdSupervisor(){
+    public int getIdSupervisor(){
         return idSupervisor;
     }
 
-    public void setIdSupervisor(String idSupervisor){
+    public void setIdSupervisor(int idSupervisor){
         this.idSupervisor = idSupervisor;
     }
 
@@ -126,6 +167,18 @@ public class Local {
 
     public ArrayList<Empleado> getEmpleados() {
         return new ArrayList<Empleado>(empleados);
+    }
+    public ArrayList<Producto> getProductos() {
+        return new ArrayList<Producto>(productos);
+    }
+    public ArrayList<Bebida> getBebidas() {
+        return new ArrayList<Bebida>(bebidas);
+    }
+    public ArrayList<Fruta> getFrutas() {
+        return new ArrayList<Fruta>(frutas);
+    }
+    public ArrayList<Snack> getSnacks() {
+        return new ArrayList<Snack>(snacks);
     }
 }
 
