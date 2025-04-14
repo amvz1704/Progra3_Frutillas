@@ -16,7 +16,9 @@ public class OrdenVenta{
 	private boolean entregado; 
 	private static int correlativo = 1;
 	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
-	
+	//Agregar Empleado
+	private Empleado empleado;
+
 	@Override
 	public String toString(){
 		return "Id: " + String.valueOf(idOrdenVenta) + ", Estado: " + estado + ", Descripcion: " + descripcion + ", Monto: " + String.valueOf(montoTotal) + "\n";
@@ -33,6 +35,7 @@ public class OrdenVenta{
 		this.entregado = false; 
 		this.montoTotal = 0; 
 		this.idOrdenVenta = correlativo;
+		this.empleado = new Empleado();
 		this.correlativo++;
 	}
 	
@@ -42,7 +45,7 @@ public class OrdenVenta{
 		this.descripcion = descripcion; 
 		
 		this.fecha = LocalDate.now();//el dia pedido debe ser el de entrega
-		
+		this.empleado = new Empleado();
 		//una orden de venta crea un comprobante de pago
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		
