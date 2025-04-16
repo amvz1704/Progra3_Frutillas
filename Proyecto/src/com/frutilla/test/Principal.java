@@ -58,46 +58,62 @@ public class Principal{
 		cliente1.realizarCompra();
 
 		//Creamos orden de venta
-		OrdenVenta orden1 = new OrdenVenta("Primera orden de venta");
+		//OrdenVenta orden1 = new OrdenVenta("Primera orden de venta");
 
 		//Agregamos lineas de orden a la orden de venta
-		orden1.agregarLineaOrden(new LineaOrdenDeVenta(1, 3, producto1));
-		orden1.agregarLineaOrden(new LineaOrdenDeVenta(2, 5, snack1));
-		orden1.agregarLineaOrden(new LineaOrdenDeVenta(3, 1, bebida1));
+		//orden1.agregarLineaOrden(new LineaOrdenDeVenta(1, 3, producto1));
+		//orden1.agregarLineaOrden(new LineaOrdenDeVenta(2, 5, snack1));
+		//orden1.agregarLineaOrden(new LineaOrdenDeVenta(3, 1, bebida1));
 
-		ComprobantePago primerComprobante = orden1.crearComprobantePago(); 
+		//ComprobantePago primerComprobante = orden1.crearComprobantePago(); 
 
-		repartidor1.prepararPedido(orden1);
+		//repartidor1.prepararPedido(orden1);
 
-		repartidor1.confirmarEntregaCliente(orden1, true);
+		//repartidor1.confirmarEntregaCliente(orden1, true);
 
 		//Asignamos la orden de venta al local
-		local1.agregarOrdenVenta(orden1);
+		//local1.agregarOrdenVenta(orden1);
 
 		//Reporte de empleados
-		local1.generarReporteEmpleados();
+		//local1.generarReporteEmpleados();
 		
 		//Reporte de ventas
-		local1.generarReporteVentas(LocalDate.now());
+		//local1.generarReporteVentas(LocalDate.now());
 		
 
 
 		
 
 		//Version 2 de proceso de ventas
-		//Lista de productos que se desea comprar
+		//Lista de productos y cantidad que se desea comprar
 		ArrayList<Producto> listaProductos = new ArrayList<Producto>();
-
-		//Se agregan los productos que se desean comprar
+		ArrayList<Integer> listaCantidad = new ArrayList<>();
+		//Se agregan los productos que se desean comprar y la cantidad
+		boolean sePuedeComprar;
 		listaProductos.add(producto1);
+		listaCantidad.add(1);
+		sePuedeComprar = local1.verificarStock(producto1, 1); //verifica el stock del producto
 		listaProductos.add(snack1);
+		listaCantidad.add(1);
+		sePuedeComprar = local1.verificarStock(snack1, 1); //verifica el stock del producto
 		listaProductos.add(bebida1);
+		listaCantidad.add(1);
+		sePuedeComprar = local1.verificarStock(bebida1, 1); //verifica el stock del producto
 
-		//Cliente solicita compra
-		cliente1.solicitarCompra(bebida1, 1);
-		cliente1.solicitarCompra(snack1, 1);
-		cliente1.solicitarCompra(producto1, 1);
-		
-
+		if(sePuedeComprar){
+			//Cliente solicita compra
+			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
+			if(pago){
+				System.out.println("Compra realizada con exito");
+				for(int i = 0; i < listaProductos.size() ; i++){
+					listaProductos.get(i).actualizarStock(listaCantidad.get(i)); //actualiza el stock de los productos
+					System.out.println("Se ha actualizado el stock de " + listaProductos.get(i).getNombre() + " a " + listaProductos.get(i).getStock() + " unidades");
+					listaProductos.get(i).toString(); //imprime el producto para verificar cambio
+				}
+			}
+		}
+		else{
+			System.out.println("No se puede realizar la compra, stock insuficiente");
+		}
 	}
 }

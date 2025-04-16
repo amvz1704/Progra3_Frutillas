@@ -54,19 +54,101 @@ public class Local {
         this.idSupervisor = local.getIdSupervisor();
     }
 
+    public boolean verificarStock(Producto producto, int cantidad){
+        if(producto instanceof Producto){
+            for(Producto p : productos) {
+                if (p.getCodigoProd() == producto.getCodigoProd()) {
+                    if (p.getStock() >= cantidad) {
+                        return true; // Stock suficiente
+                    } else {
+                        System.out.println("No hay suficiente stock del producto: " + p.getNombre());
+                        return false; // Stock insuficiente
+                    }
+                }
+            }
+        } else if(producto instanceof Bebida){
+            for(Bebida b : bebidas) {
+                if (b.getCodigoProd() == producto.getCodigoProd()) {
+                    if (b.getStock() >= cantidad) {
+                        return true; // Stock suficiente
+                    } else {
+                        System.out.println("No hay suficiente stock de la bebida: "+ b.getNombre());
+                        return false; // Stock insuficiente
+                    }
+                }
+            }
+        } else if(producto instanceof Fruta){
+            for(Fruta f : frutas) {
+                if (f.getCodigoProd() == producto.getCodigoProd()) {
+                    if (f.getStock() >= cantidad) {
+                        return true; // Stock suficiente
+                    } else {
+                        System.out.println("No hay suficiente stock de la fruta: "+ f.getNombre());
+                        return false; // Stock insuficiente
+                    }
+                }
+            }
+        } else if(producto instanceof Snack){
+            for(Snack s : snacks) {
+                if (s.getCodigoProd() == producto.getCodigoProd()) {
+                    if (s.getStock() >= cantidad) {
+                        return true; // Stock suficiente
+                    } else {
+                        System.out.println("No hay suficiente stock del snack: " + s.getNombre());
+                        return false; // Stock insuficiente
+                    }
+                }
+            }
+        }
+        System.out.println("El producto no existe en el local.");
+        return false; // Producto no encontrado
+    }
+
     public void agregarProducto(Producto producto){
+        for(Producto p : productos) {
+            if (p.getCodigoProd() == producto.getCodigoProd()) {
+                System.out.println("El producto ya existe en el local.");
+                p.setStock(producto.getStock() + p.getStock()); // Actualiza el stock del producto existente
+                return;
+            }
+        }
+        // Si no existe se agrega el nuevo producto
         productos.add(producto);
     }
 
     public void agregarBebida(Bebida bebida){
+        for(Bebida b : bebidas) {
+            if (b.getCodigoProd() == bebida.getCodigoProd()) {
+                System.out.println("La bebida ya existe en el local.");
+                b.setStock(bebida.getStock() + b.getStock()); // Actualiza el stock de la bebida existente
+                return;
+            }
+        }
+        // Si no existe se agrega la nueva bebida
         bebidas.add(bebida);
     }
 
     public void agregarFruta(Fruta fruta){
+        for(Fruta f : frutas) {
+            if (f.getCodigoProd() == fruta.getCodigoProd()) {
+                System.out.println("La fruta ya existe en el local.");
+                f.setStock(fruta.getStock() + f.getStock()); // Actualiza el stock de la fruta existente
+                return;
+            }
+        }
+        // Si no existe se agrega la nueva fruta
         frutas.add(fruta);
     }
 
     public void agregarSnack(Snack snack){
+        for(Snack s : snacks) {
+            if (s.getCodigoProd() == snack.getCodigoProd()) {
+                System.out.println("El snack ya existe en el local.");
+                s.setStock(snack.getStock() + s.getStock()); // Actualiza el stock del snack existente
+                return;
+            }
+        }
+        // Si no existe se agrega el nuevo snack
         snacks.add(snack);
     }
 
@@ -107,6 +189,38 @@ public class Local {
             }
         }
         System.out.println(reporte);
+    }
+
+    public int getStockProductos(){
+        return stockProductos;
+    }
+
+    public void setStockProductos(int stockProductos){
+        this.stockProductos = stockProductos;
+    }
+
+    public int getStockBebidas(){
+        return stockBebidas;
+    }
+
+    public void setStockBebidas(int stockBebidas){
+        this.stockBebidas = stockBebidas;
+    }
+
+    public int getStockFrutas(){
+        return stockFrutas;
+    }
+
+    public void setStockFrutas(int stockFrutas){
+        this.stockFrutas = stockFrutas;
+    }
+
+    public int getStockSnacks(){
+        return stockSnacks;
+    }
+
+    public void setStockSnacks(int stockSnacks){
+        this.stockSnacks = stockSnacks;
     }
 
     public int getIdLocal() {

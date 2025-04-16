@@ -9,8 +9,6 @@ public class Producto{
 	private String nombre; 
 	private String descripcion;
 	private String codigoProd; 
-	private LocalDate fechaProduccion; 
-	private LocalDate fechaVencimiento; 
 	private double precioUnitario; 
 	private int stock; 
 	private int stockMinimo; 
@@ -30,8 +28,6 @@ public class Producto{
 		this.nombre = nombre; 
 		this.descripcion = descripcion; 
 		this.codigoProd = codigoProd; 
-		this.fechaProduccion = fechaProduccion; 
-		this.fechaVencimiento = fechaVencimiento;
 		this.precioUnitario = precioUnitario; 
 		this.stock = stock; 
 		this.stockMinimo = stockMinimo; 
@@ -45,18 +41,12 @@ public class Producto{
 		this.nombre = original.nombre; 
 		this.descripcion = original.descripcion; 
 		this.codigoProd = original.codigoProd; 
-		this.fechaProduccion = original.fechaProduccion;  //inmutables?
-		this.fechaVencimiento = original.fechaVencimiento;
 		this.precioUnitario = original.precioUnitario; 
 		this.stock = original.stock; 
 		this.stockMinimo = original.stockMinimo; 
 	}
 	
 	//metodos
-	
-	public void revisarVencimiento(){
-		System.out.println("Fecha vencimiento: " + fechaVencimiento);
-	}
 	
 	//nuevo agregado
 	@Override
@@ -91,26 +81,6 @@ public class Producto{
 		return this.codigoProd;
 	}
 	
-	public void setFechaProduccion(LocalDate fechaProduccion){
-		this.fechaProduccion = fechaProduccion; 
-	}
-	
-	public LocalDate getFechaProduccion(){
-		LocalDate copia = LocalDate.of(fechaProduccion.getYear(), 
-		fechaProduccion.getMonth(), fechaProduccion.getDayOfMonth());
-		return copia; 
-	}
-	
-	public void setFechaVencimiento(LocalDate fechaVencimiento){
-		this.fechaVencimiento = fechaVencimiento; 
-	}
-	
-	public LocalDate getFechaVencimiento(){
-		LocalDate copia = LocalDate.of(fechaVencimiento.getYear(), 
-		fechaVencimiento.getMonth(), fechaVencimiento.getDayOfMonth());
-		return copia;
-	}
-	
 	public void setPrecioUnitario(double precioUnitario){
 		this.precioUnitario = precioUnitario; 
 	}
@@ -127,12 +97,20 @@ public class Producto{
 		return this.stock; 
 	}
 	
-	public void setStockMinimo(int StockMinimo){
-		this.stock = stock; 
+	public void setStockMinimo(int stockMinimo){
+		this.stockMinimo = stockMinimo; 
 	}
 	
 	public int getStockMinimo(){
-		return this.stock; 
+		return this.stockMinimo; 
+	}
+
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public int getIdProducto() {
+		return idProducto;
 	}
 	
 	
