@@ -1,7 +1,6 @@
 package com.frutilla.models.Venta;
 
 import java.time.*;
-import java.util.ArrayList;
 
 public class ComprobantePago {
     

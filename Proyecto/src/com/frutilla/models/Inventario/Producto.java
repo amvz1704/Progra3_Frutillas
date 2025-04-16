@@ -2,8 +2,6 @@ package com.frutilla.models.Inventario;
 
 //nueva edicion: agregue mostrar Producto 
 
-import java.time.*; 
-
 public class Producto{
 	private int idProducto; 
 	private String nombre; 
@@ -21,7 +19,6 @@ public class Producto{
 	}
 	
 	public Producto(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo){
 			
 		this.idProducto = idProducto;
@@ -48,12 +45,16 @@ public class Producto{
 	
 	//metodos
 	
+	public void actualizarStock(int cantidad){// si cantidad es positivo aumenta el stock, si es negativo lo reduce
+		this.stock += cantidad;
+	}
+
 	//nuevo agregado
 	@Override
 	public String toString(){
 		
 		//colocar un formato
-		return "Producto: " + nombre + ", Stock: "+ stock + ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion;
+		return "Producto: " + nombre + ", Codigo: " + codigoProd + ", Stock: "+ stock + ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion;
 	}
 	
 	//conjuntoSettersyGetters
