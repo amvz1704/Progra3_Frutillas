@@ -1,5 +1,5 @@
 //agregar lo hecho en producto
-import java.time.*; 
+import java.time.LocalDate;
 import com.frutilla.models.Venta.*;
 import com.frutilla.models.Cliente.*;
 import com.frutilla.models.Inventario.*;

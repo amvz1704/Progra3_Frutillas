@@ -55,7 +55,7 @@ public class Local {
         }
     }
 
-    public void generarReporteVentas(LocalTime fecha){
+    public void generarReporteVentas(LocalDate fecha){
         System.out.println("Reporte de ventas del " + fecha + ":");
         for (OrdenVenta orden : ordenesVentas) {
             if (orden.getFecha().equals(fecha)) {

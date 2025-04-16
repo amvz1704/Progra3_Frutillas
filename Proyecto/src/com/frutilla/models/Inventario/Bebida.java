@@ -11,20 +11,20 @@ public class Bebida extends Producto{
 	private String tipo; 
 	private String endulzante;
 	private tipoLeche tieneLeche;
-	private ArrayList<Fruta> frutasBebida;
+	private ArrayList<FrutasBebida> frutasBebida;
 	
 	
 	
 	public Bebida(){
 		super();
-		frutasBebida = new ArrayList<Fruta>();
+		frutasBebida = new ArrayList<FrutasBebida>();
 	}
 	
 	public Bebida(int idProducto, String nombre, String descripcion, String codigoProd,
 		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo,
 		int idBebida, int tamanioOz, String tipo, 
-		String endulzante, tipoLeche tieneLeche){
+		String endulzante, tipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
 		
 		super(idProducto, nombre, descripcion, codigoProd,
 		fechaProduccion, fechaVencimiento, 
@@ -34,8 +34,10 @@ public class Bebida extends Producto{
 		this.tipo = tipo; 
 		this.endulzante = endulzante; 
 		this.tieneLeche = tieneLeche; 
-		frutasBebida = new ArrayList<Fruta>();
-		
+		frutasBebida = new ArrayList<FrutasBebida>();
+		for(FrutasBebida f: frutasBebidas){
+			this.frutasBebida.add(f);
+		}
 	}
 	
 	public Bebida(Bebida original){
@@ -46,11 +48,11 @@ public class Bebida extends Producto{
 		this.tipo = original.tipo; 
 		this.endulzante = original.endulzante; 
 		this.tieneLeche = original.tieneLeche; 
-		this.frutasBebida = new ArrayList<Fruta>();
+		this.frutasBebida = new ArrayList<FrutasBebida>();
 		
 		//copiar el arreglo!
-		for(Fruta i: original.frutasBebida){
-			this.frutasBebida.add(new Fruta(i));
+		for(FrutasBebida i: original.frutasBebida){
+			this.frutasBebida.add(i);
 		}
 	}
 	
@@ -66,19 +68,14 @@ public class Bebida extends Producto{
 			cadena += ", Leche: " + tieneLeche;
 		}
 		cadena += "\nFrutas: ";
-		for(Fruta fruta: frutasBebida){
-			cadena += fruta.getNombre() + " ";
+		for(FrutasBebida fruta: frutasBebida){
+			cadena += fruta + " ";
 		}
 
 		
 		
 		return cadena; 
 	}
-	
-	public void agregarFruta(Fruta fruta){
-		
-		frutasBebida.add(fruta); 
-	} 
 	
 	
 }
