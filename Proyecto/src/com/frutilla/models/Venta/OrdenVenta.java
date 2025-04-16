@@ -88,8 +88,8 @@ public class OrdenVenta{
 	
 	//en vez de entregar pedido lo cambie a entrega exitosa que sera editado por un Repartidor
 	public void entregaExitosa(boolean cambio){
-		if(cambio) this.estado = estado.CAMBIO;
-		else this.estado = estado.ENTREGADO;
+		if(cambio) this.estado = estadoVenta.CAMBIO;
+		else this.estado = estadoVenta.ENTREGADO;
 	}
 	
 	

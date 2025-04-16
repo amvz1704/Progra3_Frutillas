@@ -5,6 +5,7 @@ import com.frutilla.models.Cliente.*;
 import com.frutilla.models.Inventario.*;
 import com.frutilla.models.Empleado.*;
 import com.frutilla.models.Local.*;
+import java.util.ArrayList;
 
 public class Principal{
 
@@ -31,7 +32,10 @@ public class Principal{
 		System.out.println(producto1.toString() + "\n");
 
 		//Creamos una bebida
-		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", LocalDate.of(2025,1,2), LocalDate.of(2025,5,4), 7.0, 12, 5, 1, 12, "Tipo 1", "Endulzante 1", tipoLeche.ENTERA);
+		ArrayList<FrutasBebida> frutasbebida1 = new ArrayList<FrutasBebida>();//Arraylist con las frutas que contiene la bebida
+		frutasbebida1.add(FrutasBebida.FRUTA1);
+		frutasbebida1.add(FrutasBebida.FRUTA2);
+		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", LocalDate.of(2025,1,2), LocalDate.of(2025,5,4), 7.0, 12, 5, 1, 12, "Tipo 1", "Endulzante 1", tipoLeche.ENTERA, frutasbebida1);
 		System.out.println(bebida1.toString());
 
 		//Creamos un snack
@@ -48,11 +52,6 @@ public class Principal{
 		Fruta fruta2 = new Fruta(2, "Fruta 2", "Descripcion de la fruta 2", "F002", LocalDate.of(2025,1,2), LocalDate.of(2025,5,4), 4.0, 20, 15, 2, true, true, true, true, "Envase 2");
 
 		System.out.println(fruta2.toString());
-
-		//Agregamos frutas a bebida
-		bebida1.agregarFruta(fruta1);
-		bebida1.agregarFruta(fruta2);
-		System.out.println(bebida1.toString());
 
 		//Creamos un cliente
 		Cliente cliente1 = new Cliente("Junior", "Herrera", "Valverde", "99999999", "junior@gmail.com");
@@ -83,10 +82,21 @@ public class Principal{
 		
 
 
+		
+
+		//Version 2 de proceso de ventas
+		//Lista de productos que se desea comprar
+		ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+
+		//Se agregan los productos que se desean comprar
+		listaProductos.add(producto1);
+		listaProductos.add(snack1);
+		listaProductos.add(bebida1);
+
 		//Cliente solicita compra
-		//cliente1.solicitarCompra(bebida1, 1);
-		//cliente1.solicitarCompra(snack1, 1);
-		//cliente1.solicitarCompra(producto1, 1);
+		cliente1.solicitarCompra(bebida1, 1);
+		cliente1.solicitarCompra(snack1, 1);
+		cliente1.solicitarCompra(producto1, 1);
 		
 
 	}

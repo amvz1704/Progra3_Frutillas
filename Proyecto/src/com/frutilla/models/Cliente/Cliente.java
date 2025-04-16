@@ -1,6 +1,8 @@
 package com.frutilla.models.Cliente;
+
 import java.util.ArrayList;
 import com.frutilla.models.Venta.*;
+import com.frutilla.models.Inventario.*;
 
 public class Cliente {
     private static int correlativo = 1; // Correlativo para asignar ID a los clientes
@@ -26,10 +28,11 @@ public class Cliente {
         this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
     
-    //public void solicitarCompra(Producto producto, int cantidad){
-    //    OrdenVenta orden = new OrdenVenta("Primera Compra");
-    //    System.out.println("Solicitando compra de " + cantidad + " unidades de " + producto.getNombre());
-    //}
+    public void solicitarCompra(Producto producto, int cantidad){
+        // Crear una nueva orden de venta
+        OrdenVenta orden = new OrdenVenta("Primera Compra");
+        System.out.println("Solicitando compra de " + cantidad + " unidades de " + producto.getNombre());
+    }
 
     public void desactivarCliente(){
         setActivo(false);

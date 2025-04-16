@@ -71,8 +71,6 @@ public class Bebida extends Producto{
 		for(FrutasBebida fruta: frutasBebida){
 			cadena += fruta + " ";
 		}
-
-		
 		
 		return cadena; 
 	}
