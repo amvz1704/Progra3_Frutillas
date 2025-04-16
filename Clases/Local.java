@@ -1,6 +1,6 @@
 package com.frutilla.models.Local;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import com.frutilla.models.Empleado.*;
 import com.frutilla.models.Venta.*;
