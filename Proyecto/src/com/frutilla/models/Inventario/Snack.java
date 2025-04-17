@@ -1,5 +1,4 @@
 package com.frutilla.models.Inventario;
-import java.time.*;
 
 //faltaba que sea public xd
 public class Snack extends Producto{
@@ -15,10 +14,8 @@ public class Snack extends Producto{
 		this.estaEnvasado = false; 
 	}
 	
-	public Snack(int idProducto, String nombre, String descripcion, String codigoProd, LocalDate fechaProduccion, LocalDate fechaVencimiento, double precioUnitario,int stock, int stockMinimo, int idSnack, String tipo,String envase, boolean requiereEnvase, boolean estaEnvasado){
-		super(idProducto, nombre, descripcion, codigoProd,
-		fechaProduccion, fechaVencimiento, 
-		precioUnitario, stock, stockMinimo); //arreglar
+	public Snack(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int idSnack, String tipo,String envase, boolean requiereEnvase, boolean estaEnvasado){
+		super(idProducto, nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo); //arreglar
 		
 		this.idSnack = idSnack; 
 		this.tipo = tipo; 

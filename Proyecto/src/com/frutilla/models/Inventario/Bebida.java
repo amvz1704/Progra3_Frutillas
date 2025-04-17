@@ -1,7 +1,6 @@
 package com.frutilla.models.Inventario;
 
 import java.util.ArrayList; 
-import java.time.*;
 
 //se hizo publico y se agrego
 
@@ -20,15 +19,9 @@ public class Bebida extends Producto{
 		frutasBebida = new ArrayList<FrutasBebida>();
 	}
 	
-	public Bebida(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
-		double precioUnitario,int stock, int stockMinimo,
-		int idBebida, int tamanioOz, String tipo, 
-		String endulzante, tipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
+	public Bebida(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int idBebida, int tamanioOz, String tipo, String endulzante, tipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
 		
-		super(idProducto, nombre, descripcion, codigoProd,
-		fechaProduccion, fechaVencimiento, 
-		precioUnitario, stock, stockMinimo);
+		super(idProducto, nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo);
 		this.idBebida = idBebida; 
 		this.tamanioOz = tamanioOz; 
 		this.tipo = tipo; 

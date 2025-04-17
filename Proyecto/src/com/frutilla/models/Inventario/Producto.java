@@ -2,15 +2,11 @@ package com.frutilla.models.Inventario;
 
 //nueva edicion: agregue mostrar Producto 
 
-import java.time.*; 
-
 public class Producto{
 	private int idProducto; 
 	private String nombre; 
 	private String descripcion;
 	private String codigoProd; 
-	private LocalDate fechaProduccion; 
-	private LocalDate fechaVencimiento; 
 	private double precioUnitario; 
 	private int stock; 
 	private int stockMinimo; 
@@ -23,15 +19,12 @@ public class Producto{
 	}
 	
 	public Producto(int idProducto, String nombre, String descripcion, String codigoProd,
-		LocalDate fechaProduccion, LocalDate fechaVencimiento, 
 		double precioUnitario,int stock, int stockMinimo){
 			
 		this.idProducto = idProducto;
 		this.nombre = nombre; 
 		this.descripcion = descripcion; 
 		this.codigoProd = codigoProd; 
-		this.fechaProduccion = fechaProduccion; 
-		this.fechaVencimiento = fechaVencimiento;
 		this.precioUnitario = precioUnitario; 
 		this.stock = stock; 
 		this.stockMinimo = stockMinimo; 
@@ -45,8 +38,6 @@ public class Producto{
 		this.nombre = original.nombre; 
 		this.descripcion = original.descripcion; 
 		this.codigoProd = original.codigoProd; 
-		this.fechaProduccion = original.fechaProduccion;  //inmutables?
-		this.fechaVencimiento = original.fechaVencimiento;
 		this.precioUnitario = original.precioUnitario; 
 		this.stock = original.stock; 
 		this.stockMinimo = original.stockMinimo; 
@@ -54,16 +45,16 @@ public class Producto{
 	
 	//metodos
 	
-	public void revisarVencimiento(){
-		System.out.println("Fecha vencimiento: " + fechaVencimiento);
+	public void actualizarStock(int cantidad){// si cantidad es positivo aumenta el stock, si es negativo lo reduce
+		this.stock += cantidad;
 	}
-	
+
 	//nuevo agregado
 	@Override
 	public String toString(){
 		
 		//colocar un formato
-		return "Producto: " + nombre + ", Stock: "+ stock + ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion;
+		return "Producto: " + nombre + ", Codigo: " + codigoProd + ", Stock: "+ stock + ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion;
 	}
 	
 	//conjuntoSettersyGetters
@@ -91,26 +82,6 @@ public class Producto{
 		return this.codigoProd;
 	}
 	
-	public void setFechaProduccion(LocalDate fechaProduccion){
-		this.fechaProduccion = fechaProduccion; 
-	}
-	
-	public LocalDate getFechaProduccion(){
-		LocalDate copia = LocalDate.of(fechaProduccion.getYear(), 
-		fechaProduccion.getMonth(), fechaProduccion.getDayOfMonth());
-		return copia; 
-	}
-	
-	public void setFechaVencimiento(LocalDate fechaVencimiento){
-		this.fechaVencimiento = fechaVencimiento; 
-	}
-	
-	public LocalDate getFechaVencimiento(){
-		LocalDate copia = LocalDate.of(fechaVencimiento.getYear(), 
-		fechaVencimiento.getMonth(), fechaVencimiento.getDayOfMonth());
-		return copia;
-	}
-	
 	public void setPrecioUnitario(double precioUnitario){
 		this.precioUnitario = precioUnitario; 
 	}
@@ -127,12 +98,20 @@ public class Producto{
 		return this.stock; 
 	}
 	
-	public void setStockMinimo(int StockMinimo){
-		this.stock = stock; 
+	public void setStockMinimo(int stockMinimo){
+		this.stockMinimo = stockMinimo; 
 	}
 	
 	public int getStockMinimo(){
-		return this.stock; 
+		return this.stockMinimo; 
+	}
+
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public int getIdProducto() {
+		return idProducto;
 	}
 	
 	

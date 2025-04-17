@@ -16,6 +16,7 @@ public class OrdenVenta{
 	private boolean entregado; 
 	private static int correlativo = 1;
 	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
+	private ComprobantePago comprobantePago; //se crea al momento de que se realice el pago
 	//Agregar Empleado
 	private Empleado empleado;
 
@@ -36,7 +37,7 @@ public class OrdenVenta{
 		this.montoTotal = 0; 
 		this.idOrdenVenta = correlativo;
 		this.empleado = new Empleado();
-		this.correlativo++;
+		correlativo++;
 	}
 	
 	//constructor forma 1 le pasas la lista de las lineas
@@ -53,19 +54,19 @@ public class OrdenVenta{
 		for(LineaOrdenDeVenta linea: lista){
 			lineasOrdenes.add(linea); 
 		}
-		this.estado = estado.FALTA_PAGO; 
+		this.estado = estadoVenta.FALTA_PAGO; 
 		
 		this.entregado = false; //se actualizara despues
-		this.correlativo++;
+		correlativo++;
 	}
 	
 	//forma 2 & forma 1--> methods reemplace crear total por crear un comprobante de pago para una orden de venta!
-	public ComprobantePago crearComprobantePago(){
+	public void crearComprobantePago(){
 		
 		//no se puede crear comprobante si no hay ninguna linea :)
 		if(lineasOrdenes.size() == 0){
 			System.out.println("Aun no se agregaron lineas de venta para crear un comprobante"); 
-			return new ComprobantePago();
+			this.comprobantePago = new ComprobantePago();
 		}
 		
 		int numArticulos = 0; 
@@ -75,10 +76,9 @@ public class OrdenVenta{
 		}
 		
 		//se asigna por entregar al comprobante de pago
-		this.estado = estado.POR_ENTREGAR; 
-		
-		return new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta);
-		
+		this.estado = estadoVenta.POR_ENTREGAR; 
+		//se crea el comprobante de pago
+		this.comprobantePago = new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta);
 	}
 	
 	//tipo 2--> agregar linea de ordenVenta otro metodo de llenar un orden de venta
@@ -92,15 +92,16 @@ public class OrdenVenta{
 		else this.estado = estadoVenta.ENTREGADO;
 	}
 	
-	
-	
-	//por implementar
-	public void escogerProducto(){
-		
-	}
-	
 	//setters y getters
 	
+	public void setComprobantePago(ComprobantePago comprobantePago) {
+		this.comprobantePago = comprobantePago;
+	}
+
+	public ComprobantePago getComprobantePago() {
+		return new ComprobantePago(this.comprobantePago);
+	}
+
 	public void setFecha(LocalDate fecha){
 		this.fecha = fecha; 
 	} 
