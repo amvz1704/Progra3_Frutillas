@@ -30,7 +30,7 @@ public class Cliente {
     
     public boolean solicitarCompra(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad){
         // Crear una nueva orden de venta
-        OrdenVenta orden = new OrdenVenta("Primera Compra");
+        OrdenVenta orden = new OrdenVenta("Orden de venta Nro" + String.valueOf(ordenesVentas.size() + 1));
         for(int i = 0; i < listaProductos.size(); i++){
             Producto producto = listaProductos.get(i);
             int cantidad = listaCantidad.get(i);
@@ -48,7 +48,9 @@ public class Cliente {
         //Se desea obtener el comprobante de pago
         ComprobantePago comprobante = orden.getComprobantePago();
         //Imprimir el comprobante de pago
-        System.out.println("Comprobante de pago: " + comprobante.toString());
+				System.out.println("Compra realizada con exito" );
+				System.out.println("Compra realizada con exito" );
+        System.out.println("Comprobante de pago: " + comprobante.toString() + "\n");
         return true;
     }
 

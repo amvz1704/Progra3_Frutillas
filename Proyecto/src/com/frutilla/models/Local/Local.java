@@ -75,95 +75,94 @@ public class Local {
         System.out.println(reporte);
     }
 
-    public void actualizarStock(ArrayList<Producto>listaProductos, ArrayList<Integer>listaCantidad){
-        int cantidad;
-        for(Producto pro : listaProductos){
-            cantidad = listaCantidad.get(productos.indexOf(pro)); // Obtiene la cantidad del producto
-            if(pro instanceof Producto){
-                for(Producto p : productos) {
-                    if (p.getCodigoProd().equals(pro.getCodigoProd())) {
-                        p.actualizarStock(cantidad*-1); // Actualiza el stock del producto
-                        System.out.println("Se actualizó el stock del producto: " + p.getNombre());
-                    }
-                }
-            } else if(pro instanceof Bebida){
-                for(Bebida b : bebidas) {
-                    if (b.getCodigoProd().equals(pro.getCodigoProd())) {
-                        b.actualizarStock(cantidad*-1); // Actualiza el stock de la bebida
-                        System.out.println("Se actualizó el stock de la bebida: " + b.getNombre());
-                    }
-                }
-            } else if(pro instanceof Fruta){
-                for(Fruta f : frutas) {
-                    if (f.getCodigoProd().equals(pro.getCodigoProd())) {
-                        f.actualizarStock(cantidad*-1); // Actualiza el stock de la fruta
-                        System.out.println("Se actualizó el stock de la fruta: " + f.getNombre());
-                    }
-                }
-            } else if(pro instanceof Snack){
-                for(Snack s : snacks) {
-                    if (s.getCodigoProd().equals(pro.getCodigoProd())) {
-                        s.actualizarStock(cantidad*-1); // Actualiza el stock del snack
-                        System.out.println("Se actualizó el stock del snack: " + s.getNombre());
-                    }
-                }
-            }
-        }
-    }
+    public void actualizarStock(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad) {
+    for (int i = 0; i < listaProductos.size(); i++) {
+        Producto pro = listaProductos.get(i);
+        int cantidad = listaCantidad.get(i);
 
-    public boolean verificarStock(Producto producto, int cantidad){
-        if(producto instanceof Producto){
-            for(Producto p : productos) {
-                if (p.getCodigoProd().equals(producto.getCodigoProd())) {
-                    if (p.getStock() >= cantidad) {
-                        return true; // Stock suficiente
-                    } else {
-                        System.out.println("No hay suficiente stock del producto: " + p.getNombre());
-                        return false; // Stock insuficiente
-                    }
+        // Verificamos en cada lista según el tipo real del objeto
+        if (pro instanceof Bebida) {
+            for (Bebida b : bebidas) {
+                if (b.getCodigoProd().equals(pro.getCodigoProd())) {
+                    b.actualizarStock(-cantidad);
+                    System.out.println("Se actualizó el stock de la bebida: " + b.getNombre());
+                    break;
                 }
             }
-        } else if(producto instanceof Bebida){
-            for(Bebida b : bebidas) {
-                if (b.getCodigoProd().equals(producto.getCodigoProd())) {
-                    if (b.getStock() >= cantidad) {
-                        return true; // Stock suficiente
-                    } else {
-                        System.out.println("No hay suficiente stock de la bebida: "+ b.getNombre());
-                        return false; // Stock insuficiente
-                    }
+        } else if (pro instanceof Fruta) {
+            for (Fruta f : frutas) {
+                if (f.getCodigoProd().equals(pro.getCodigoProd())) {
+                    f.actualizarStock(-cantidad);
+                    System.out.println("Se actualizó el stock de la fruta: " + f.getNombre());
+                    break;
                 }
             }
-        } else if(producto instanceof Fruta){
-            for(Fruta f : frutas) {
-                if (f.getCodigoProd().equals(producto.getCodigoProd())) {
-                    if (f.getStock() >= cantidad) {
-                        return true; // Stock suficiente
-                    } else {
-                        System.out.println("No hay suficiente stock de la fruta: "+ f.getNombre());
-                        return false; // Stock insuficiente
-                    }
+        } else if (pro instanceof Snack) {
+            for (Snack s : snacks) {
+                if (s.getCodigoProd().equals(pro.getCodigoProd())) {
+                    s.actualizarStock(-cantidad);
+                    System.out.println("Se actualizó el stock del snack: " + s.getNombre());
+                    break;
                 }
             }
-        } else if(producto instanceof Snack){
-            for(Snack s : snacks) {
-                if (s.getCodigoProd().equals(producto.getCodigoProd())) {
-                    if (s.getStock() >= cantidad) {
-                        return true; // Stock suficiente
-                    } else {
-                        System.out.println("No hay suficiente stock del snack: " + s.getNombre());
-                        return false; // Stock insuficiente
-                    }
+        } else {
+            // Producto genérico
+            for (Producto p : productos) {
+                if (p.getCodigoProd().equals(pro.getCodigoProd())) {
+                    p.actualizarStock(-cantidad);
+                    System.out.println("Se actualizó el stock del producto: " + p.getNombre());
+                    break;
                 }
             }
         }
-        System.out.println("El producto no existe en el local.");
-        return false; // Producto no encontrado
     }
+}
+
+    public boolean verificarStock(Producto producto, int cantidad) {
+        String codigo = producto.getCodigoProd();
+    
+        if (producto instanceof Bebida) {
+            for (Bebida b : bebidas) {
+                if (b.getCodigoProd().equals(codigo)) {
+                    if (b.getStock() >= cantidad) return true;
+                    System.out.println("No hay suficiente stock de la bebida: " + b.getNombre());
+                    return false;
+                }
+            }
+        } else if (producto instanceof Fruta) {
+            for (Fruta f : frutas) {
+                if (f.getCodigoProd().equals(codigo)) {
+                    if (f.getStock() >= cantidad) return true;
+                    System.out.println("No hay suficiente stock de la fruta: " + f.getNombre());
+                    return false;
+                }
+            }
+        } else if (producto instanceof Snack) {
+            for (Snack s : snacks) {
+                if (s.getCodigoProd().equals(codigo)) {
+                    if (s.getStock() >= cantidad) return true;
+                    System.out.println("No hay suficiente stock del snack: " + s.getNombre());
+                    return false;
+                }
+            }
+        } else {
+            for (Producto p : productos) {
+                if (p.getCodigoProd().equals(codigo)) {
+                    if (p.getStock() >= cantidad) return true;
+                    System.out.println("No hay suficiente stock del producto: " + p.getNombre());
+                    return false;
+                }
+            }
+        }
+    
+        System.out.println("El producto no existe en el local.");
+        return false;
+    }
+    
 
     public void agregarProducto(Producto producto){
         for(Producto p : productos) {
-            if (p.getCodigoProd().equals(producto.getCodigoProd())) {
+            if (p.getCodigoProd().compareTo(producto.getCodigoProd()) == 0) {
                 System.out.println("El producto ya existe en el local.");
                 p.actualizarStock(producto.getStock());; // Actualiza el stock del producto existente
                 return;
@@ -176,7 +175,7 @@ public class Local {
 
     public void agregarBebida(Bebida bebida){
         for(Bebida b : bebidas) {
-            if (b.getCodigoProd().equals(bebida.getCodigoProd())) {
+            if (b.getCodigoProd().compareTo(bebida.getCodigoProd()) == 0) {
                 System.out.println("La bebida ya existe en el local.");
                 b.actualizarStock(bebida.getStock()); // Actualiza el stock de la bebida existente
                 return;
@@ -189,7 +188,7 @@ public class Local {
 
     public void agregarFruta(Fruta fruta){
         for(Fruta f : frutas) {
-            if (f.getCodigoProd().equals(fruta.getCodigoProd())) {
+            if (f.getCodigoProd().compareTo(fruta.getCodigoProd()) == 0) {
                 System.out.println("La fruta ya existe en el local.");
                 f.actualizarStock(fruta.getStock()); // Actualiza el stock de la fruta existente
                 return;
@@ -202,7 +201,7 @@ public class Local {
 
     public void agregarSnack(Snack snack){
         for(Snack s : snacks) {
-            if (s.getCodigoProd().equals(snack.getCodigoProd())) {
+            if (s.getCodigoProd().compareTo(snack.getCodigoProd()) == 0) {
                 System.out.println("El snack ya existe en el local.");
                 s.actualizarStock(snack.getStock()); // Actualiza el stock del snack existente
                 return;

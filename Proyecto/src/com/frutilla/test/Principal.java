@@ -21,7 +21,6 @@ public class Principal{
 
 		//Agregamos el supervisor al local
 		local1.agregarEmpleado(sup);
-		System.out.println("Se agrego el supervisor al local");
 
 		//Creamos un repartidor
 		Repartidor repartidor1 = new Repartidor("Enzo", "Avila", "Mamani", "enzo@gmail.com", "999999999", LocalDate.now(), 1000, "enzo", "1234");
@@ -29,7 +28,7 @@ public class Principal{
 
 		//Agregamos el empleado al local
 		local1.agregarEmpleado(repartidor1);
-		System.out.println("Se agrego el repartidor al local");
+		System.out.println("Se agrego el repartidor al local"+ "\n");
 
 		//Agregamos productos al local
 		//Creamos un producto
@@ -46,34 +45,44 @@ public class Principal{
 		
 		System.out.println("Se creo una bebida");
 
-		System.out.println(bebida1.toString());
+		System.out.println(bebida1.toString() + "\n");
 
 		//Creamos un snack
 		Snack snack1 = new Snack(1, "Snack 1", "Descripcion del snack 1", "S001", 3.0, 10, 5, 1, "Tipo 1", "Envase 1", true, true);
 
 		System.out.println("Se creo un snack");
 
-		System.out.println(snack1.toString());
+		System.out.println(snack1.toString() + "\n");
+
+		//Creamos otro snack
+		Snack snack2 = new Snack(1, "Snack 2", "Descripcion del snack 2", "S002", 1.5, 2, 1, 2, "Tipo 2", "Envase 2", true, true);
+
+		System.out.println("Se creo otro snack");
+
+		System.out.println(snack2.toString() + "\n");
 
 		//Creamos una fruta
 		Fruta fruta1 = new Fruta(1, "Fruta 1", "Descripcion de la fruta 1", "F001", 2.0, 25, 10, 1, true, true, false, false, "Envase 1");
 
 		System.out.println("Se creo una fruta");
 
-		System.out.println(fruta1.toString());
+		System.out.println(fruta1.toString() + "\n");
 
 		//Creamos otra fruta
 		Fruta fruta2 = new Fruta(2, "Fruta 2", "Descripcion de la fruta 2", "F002", 4.0, 20, 15, 2, true, true, true, true, "Envase 2");
 
 		System.out.println("Se creo otra fruta");
 
-		System.out.println(fruta2.toString());
+		System.out.println(fruta2.toString() + "\n");
 
 		//Agregamos los productos al local
 		local1.agregarProducto(producto1);
 		local1.agregarBebida(bebida1);
 		local1.agregarSnack(snack1);
+		local1.agregarSnack(snack2);
 		local1.agregarFruta(fruta1);
+
+		System.out.println("Se agregaron los productos al local" + "\n");
 
 		//Reporte de productos
 
@@ -115,34 +124,85 @@ public class Principal{
 
 		//Version 2 de proceso de ventas
 		//Lista de productos y cantidad que se desea comprar
+		//Si hay todos los productos en el local
+		System.out.println("\n" + "Prueba 1" + "\n");
 		ArrayList<Producto> listaProductos = new ArrayList<Producto>();
 		ArrayList<Integer> listaCantidad = new ArrayList<>();
 		//Se agregan los productos que se desean comprar y la cantidad
 		boolean sePuedeComprar;
 		listaProductos.add(producto1);
 		listaCantidad.add(1);
-		sePuedeComprar = local1.verificarStock(producto1, 1); //verifica el stock del producto
+		sePuedeComprar = local1.verificarStock(new Producto(producto1), 1); //verifica el stock del producto
 		listaProductos.add(snack1);
 		listaCantidad.add(1);
-		sePuedeComprar = local1.verificarStock(snack1, 1); //verifica el stock del snack
+		sePuedeComprar = local1.verificarStock(new Snack(snack1), 1); //verifica el stock del snack
 		listaProductos.add(bebida1);
 		listaCantidad.add(1);
-		sePuedeComprar = local1.verificarStock(bebida1, 1); //verifica el stock de la bebida
+		sePuedeComprar = local1.verificarStock(new Bebida(bebida1), 1); //verifica el stock de la bebida
 		listaProductos.add(fruta1);
-		sePuedeComprar = local1.verificarStock(fruta1, 1); //verifica el stock de la fruta
-		System.out.println("Se agregaron los productos a la lista de compra y se verifico su stock en el local");
+		listaCantidad.add(1);
+		sePuedeComprar = local1.verificarStock(new Fruta(fruta1), 1); //verifica el stock de la fruta
+		System.out.println("Se agregaron los productos a la lista de compra y se verifico su stock en el local" + "\n");
 
 		System.out.println("Solicitando compra de los productos");
 		if(sePuedeComprar){
 			//Cliente solicita compra
 			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
 			if(pago){
-				System.out.println("Compra realizada con exito");
+				System.out.println("Compra realizada con exito"  + "\n");
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
 		}
 		else{
-			System.out.println("No se puede realizar la compra, stock insuficiente");
+			System.out.println("No se puede realizar la compra, stock insuficiente " + "\n");
 		}
+
+		local1.generarReporteProductos();
+
+		//No se encuentra un producto en el local
+		System.out.println("\n" + "Prueba 2" + "\n");
+
+		listaProductos.add(fruta2);
+		listaCantidad.add(2);
+		sePuedeComprar = local1.verificarStock(new Fruta(fruta2), 2); //verifica el stock de la fruta
+
+		if(sePuedeComprar){
+			//Cliente solicita compra
+			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
+			if(pago){
+				System.out.println("Compra realizada con exito"  + "\n");
+				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
+			}
+		}
+		else{
+			System.out.println("No se puede realizar la compra, stock insuficiente" + "\n");
+		}
+		
+		local1.generarReporteProductos();
+
+		local1.agregarFruta(fruta2); //agregamos la fruta al local
+		System.out.println("Se agrego la fruta al local" + "\n");
+		sePuedeComprar = true; //se puede comprar la fruta ya que se agrego al local
+
+		//No hay stock suficiente de un producto
+		System.out.println("\n" + "Prueba 3" + "\n");
+		
+		listaProductos.add(snack2);
+		listaCantidad.add(3);
+		sePuedeComprar = local1.verificarStock(new Snack(snack1), 3); //verifica el stock del snack
+
+		if(sePuedeComprar){
+			//Cliente solicita compra
+			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
+			if(pago){
+				System.out.println("Compra realizada con exito" + "\n");
+				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
+			}
+		}
+		else{
+			System.out.println("No se puede realizar la compra, stock insuficiente" + "\n");
+		}
+
+		local1.generarReporteProductos();
 	}
 }
