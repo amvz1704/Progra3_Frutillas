@@ -181,7 +181,6 @@ public class Principal{
 		local1.generarReporteProductos();
 
 		local1.agregarFruta(fruta2); //agregamos la fruta al local
-		System.out.println("Se agrego la fruta al local" + "\n");
 		sePuedeComprar = true; //se puede comprar la fruta ya que se agrego al local
 
 		//No hay stock suficiente de un producto
@@ -189,7 +188,7 @@ public class Principal{
 		
 		listaProductos.add(snack2);
 		listaCantidad.add(3);
-		sePuedeComprar = local1.verificarStock(new Snack(snack1), 3); //verifica el stock del snack
+		sePuedeComprar = local1.verificarStock(new Snack(snack2), 3); //verifica el stock del snack
 
 		if(sePuedeComprar){
 			//Cliente solicita compra

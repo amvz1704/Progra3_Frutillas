@@ -37,7 +37,6 @@ public class OrdenVenta{
 		this.montoTotal = 0; 
 		this.idOrdenVenta = correlativo;
 		this.empleado = new Empleado();
-		this.comprobantePago = new ComprobantePago();
 		correlativo++;
 	}
 	

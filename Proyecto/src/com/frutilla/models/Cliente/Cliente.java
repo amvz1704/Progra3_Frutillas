@@ -48,8 +48,6 @@ public class Cliente {
         //Se desea obtener el comprobante de pago
         ComprobantePago comprobante = orden.getComprobantePago();
         //Imprimir el comprobante de pago
-				System.out.println("Compra realizada con exito" );
-				System.out.println("Compra realizada con exito" );
         System.out.println("Comprobante de pago: " + comprobante.toString() + "\n");
         return true;
     }
