@@ -1,6 +1,5 @@
 package com.frutilla.models.Empleado;
 import java.time.*;
-import com.frutilla.models.Venta.*;
 
 public class Empleado{
     private int idEmpleado;
