@@ -27,6 +27,14 @@ public class Cliente {
         correlativo++;
         this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
+
+    public OrdenVenta obtenerUltimaOrden(){
+        if(ordenesVentas.size() > 0){
+            return ordenesVentas.get(ordenesVentas.size() - 1);
+        }else{
+            return null; // No hay ordenes de venta
+        }
+    }
     
     public boolean solicitarCompra(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad){
         // Crear una nueva orden de venta
@@ -118,6 +126,6 @@ public class Cliente {
     }
 	
 	public ArrayList <OrdenVenta> getOrdenesVentas(){
-		return new ArrayList<OrdenVenta> (ordenesVentas);
+		return new ArrayList<OrdenVenta> (ordenesVentas); 
 	}
 }

@@ -95,7 +95,7 @@ public class ComprobantePago {
     public void setTotal(double total) {
         this.total = total;
     }
-   
+
     public LocalDate getFecha() {
 		LocalDate copia = LocalDate.of(fecha.getYear(), fecha.getMonth(),
 		fecha.getDayOfMonth());
@@ -117,12 +117,12 @@ public class ComprobantePago {
     @Override
     public String toString() {
         return "Comprobante_Pago{" +
-                "idComprobante=" + idComprobante +
+                "idComprobante= " + idComprobante +
                 ", numeroArticulos=" + numeroArticulos +
-                ", subtotal=" + subtotal +
-                ", montoIGV=" + montoIGV +
-                ", total=" + total +
-                ", fecha=" + fecha +
+                ", subtotal= s/" + subtotal +
+                ", montoIGV= s/" + montoIGV +
+                ", total= s/" + total +
+                ", fecha= " + fecha +
                 '}';
     }
     

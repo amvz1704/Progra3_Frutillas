@@ -4,6 +4,9 @@ import com.frutilla.models.Cliente.*;
 import com.frutilla.models.Inventario.*;
 import com.frutilla.models.Empleado.*;
 import com.frutilla.models.Local.*;
+import com.frutilla.models.Venta.OrdenVenta;
+import com.frutilla.models.Venta.estadoVenta;
+
 import java.util.ArrayList;
 
 public class Principal{
@@ -41,7 +44,7 @@ public class Principal{
 		ArrayList<FrutasBebida> frutasbebida1 = new ArrayList<FrutasBebida>();//Arraylist con las frutas que contiene la bebida
 		frutasbebida1.add(FrutasBebida.FRUTA1);
 		frutasbebida1.add(FrutasBebida.FRUTA2);
-		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", 7.0, 12, 5, 1, 12, "Tipo 1", "Endulzante 1", tipoLeche.ENTERA, frutasbebida1);
+		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", 7.0, 12, 5, 1, 12, "Tipo 1", "Endulzante 1", TipoLeche.ENTERA, frutasbebida1);
 		
 		System.out.println("Se creo una bebida");
 
@@ -57,7 +60,7 @@ public class Principal{
 		//Creamos otro snack
 		Snack snack2 = new Snack(1, "Snack 2", "Descripcion del snack 2", "S002", 1.5, 2, 1, 2, "Tipo 2", "Envase 2", true, true);
 
-		System.out.println("Se creo otro snack");
+		System.out.println("Se creo un snack");
 
 		System.out.println(snack2.toString() + "\n");
 
@@ -71,16 +74,16 @@ public class Principal{
 		//Creamos otra fruta
 		Fruta fruta2 = new Fruta(2, "Fruta 2", "Descripcion de la fruta 2", "F002", 4.0, 20, 15, 2, true, true, true, true, "Envase 2");
 
-		System.out.println("Se creo otra fruta");
+		System.out.println("Se creo una fruta");
 
 		System.out.println(fruta2.toString() + "\n");
 
 		//Agregamos los productos al local
 		local1.agregarProducto(producto1);
-		local1.agregarBebida(bebida1);
-		local1.agregarSnack(snack1);
-		local1.agregarSnack(snack2);
-		local1.agregarFruta(fruta1);
+		local1.agregarProducto(bebida1);
+		local1.agregarProducto(snack1);
+		local1.agregarProducto(snack2);
+		local1.agregarProducto(fruta1);
 
 		System.out.println("Se agregaron los productos al local" + "\n");
 
@@ -150,6 +153,9 @@ public class Principal{
 			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
+				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
+				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
 		}
@@ -171,6 +177,9 @@ public class Principal{
 			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
+				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
+				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
 		}
@@ -180,7 +189,7 @@ public class Principal{
 		
 		local1.generarReporteProductos();
 
-		local1.agregarFruta(fruta2); //agregamos la fruta al local
+		local1.agregarProducto(fruta2); //agregamos la fruta al local
 		sePuedeComprar = true; //se puede comprar la fruta ya que se agrego al local
 
 		//No hay stock suficiente de un producto
@@ -195,6 +204,9 @@ public class Principal{
 			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
 			if(pago){
 				System.out.println("Compra realizada con exito" + "\n");
+				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
+				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
 		}
@@ -203,5 +215,23 @@ public class Principal{
 		}
 
 		local1.generarReporteProductos();
+		local1.generarReporteVentas(LocalDate.now()); //reporte de ventas del dia de hoy
+
+		System.out.println("Se procesa el pedido");
+		//Repartidor procesa el pedido
+		OrdenVenta orden1 = local1.obtenerOrden(); //obtenemos la primera orden sin procesar
+		repartidor1.prepararPedido(orden1); //prepara el pedido
+		System.out.println("Se cambia el estado de la orden a PROCESO" + "\n");
+		local1.generarReporteVentas(LocalDate.now());
+		System.out.println("Se entrega el pedido al cliente");
+		repartidor1.confirmarEntregaCliente(orden1, false); //confirma la entrega del pedido
+		System.out.println("Se confirma la entrega del pedido" + "\n");
+		//Repartidor confirma la entrega del pedido
+		//Se entrega el pedido al cliente
+		orden1.setEntregado(true); //se entrega el pedido al cliente
+
+		local1.generarReporteVentas(LocalDate.now()); //reporte de ventas del dia de hoy
+		
+
 	}
 }

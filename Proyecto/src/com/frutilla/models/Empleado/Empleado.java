@@ -29,7 +29,7 @@ public class Empleado{
         this.usuarioSistema = usuarioSistema;
         this.contraSistema = contraSistema;
         this.idEmpleado = correlativo;
-	    this.turnoTrabajo = false;
+        this.turnoTrabajo = false;
         correlativo++;
     }
 	
