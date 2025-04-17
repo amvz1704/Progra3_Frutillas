@@ -9,7 +9,7 @@ public class Bebida extends Producto{
 	private int tamanioOz; 
 	private String tipo; 
 	private String endulzante;
-	private tipoLeche tieneLeche;
+	private TipoLeche tieneLeche;
 	private ArrayList<FrutasBebida> frutasBebida;
 	
 	
@@ -19,7 +19,7 @@ public class Bebida extends Producto{
 		frutasBebida = new ArrayList<FrutasBebida>();
 	}
 	
-	public Bebida(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int idBebida, int tamanioOz, String tipo, String endulzante, tipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
+	public Bebida(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int idBebida, int tamanioOz, String tipo, String endulzante, TipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
 		
 		super(idProducto, nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo);
 		this.idBebida = idBebida; 
@@ -44,8 +44,8 @@ public class Bebida extends Producto{
 		this.frutasBebida = new ArrayList<FrutasBebida>();
 		
 		//copiar el arreglo!
-		for(FrutasBebida i: original.frutasBebida){
-			this.frutasBebida.add(i);
+		for(FrutasBebida f: original.frutasBebida){
+			this.frutasBebida.add(f);
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class Bebida extends Producto{
 		if(tieneLeche != null){
 			cadena += ", Leche: " + tieneLeche;
 		}
-		cadena += "\nFrutas: ";
+		cadena += ", Frutas: ";
 		for(FrutasBebida fruta: frutasBebida){
 			cadena += fruta + " ";
 		}

@@ -17,10 +17,7 @@ public class Local {
     private int idSupervisor;
     private ArrayList<OrdenVenta> ordenesVentas; // Lista de ordenes de venta
     private ArrayList<Empleado> empleados; // Lista de empleados
-    private ArrayList<Producto> productos; // Lista de productos
-    private ArrayList<Bebida> bebidas; // Lista de bebidas
-    private ArrayList<Fruta> frutas; // Lista de frutas
-    private ArrayList<Snack> snacks; // Lista de snacks
+    private ArrayList<Producto> productos; // Lista de todos los productos
 
     public Local(String nombre, String descripcion, String direccion, String telefono){
         this.idLocal = correlativo;
@@ -32,9 +29,6 @@ public class Local {
         this.ordenesVentas = new ArrayList<OrdenVenta>();
         this.empleados = new ArrayList<Empleado>();
         this.productos = new ArrayList<Producto>();
-        this.bebidas = new ArrayList<Bebida>();
-        this.frutas = new ArrayList<Fruta>();
-        this.snacks = new ArrayList<Snack>();
         correlativo++;
     }
 
@@ -48,29 +42,23 @@ public class Local {
         this.ordenesVentas = new ArrayList<OrdenVenta>(local.getOrdenesVentas());
         this.empleados = new ArrayList<Empleado>(local.getEmpleados()); 
         this.productos = new ArrayList<Producto>(local.getProductos());
-        this.bebidas = new ArrayList<Bebida>(local.getBebidas());
-        this.frutas = new ArrayList<Fruta>(local.getFrutas());
-        this.snacks = new ArrayList<Snack>(local.getSnacks());
         this.idSupervisor = local.getIdSupervisor();
     }
 
+    public OrdenVenta obtenerOrden(){
+        for(OrdenVenta orden : ordenesVentas) {
+            if(orden.getEstado() == estadoVenta.POR_ENTREGAR) {
+                return orden; // Devuelve la primera orden en estado POR_ENTREGAR
+            }
+        }
+        return null; // No hay ordenes en estado POR_ENTREGAR
+    }
+
     public void generarReporteProductos(){
-        String reporte = "Reporte de productos del local: " + "\n";
+        String reporte = "Reporte de productos del local " + "\n";
         reporte += "Productos: \n";
         for (Producto producto : productos) {
             reporte += producto.toString() + "\n";
-        }
-        reporte += "Bebidas: \n";
-        for (Bebida bebida : bebidas) {
-            reporte += bebida.toString() + "\n";
-        }
-        reporte += "Frutas: \n";
-        for (Fruta fruta : frutas) {
-            reporte += fruta.toString() + "\n";
-        }
-        reporte += "Snacks: \n";
-        for (Snack snack : snacks) {
-            reporte += snack.toString() + "\n";
         }
         System.out.println(reporte);
     }
@@ -79,137 +67,46 @@ public class Local {
     for (int i = 0; i < listaProductos.size(); i++) {
         Producto pro = listaProductos.get(i);
         int cantidad = listaCantidad.get(i);
-
-        // Verificamos en cada lista según el tipo real del objeto
-        if (pro instanceof Bebida) {
-            for (Bebida b : bebidas) {
-                if (b.getCodigoProd().equals(pro.getCodigoProd())) {
-                    b.actualizarStock(-cantidad);
-                    System.out.println("Se actualizó el stock de la bebida: " + b.getNombre());
-                    break;
-                }
-            }
-        } else if (pro instanceof Fruta) {
-            for (Fruta f : frutas) {
-                if (f.getCodigoProd().equals(pro.getCodigoProd())) {
-                    f.actualizarStock(-cantidad);
-                    System.out.println("Se actualizó el stock de la fruta: " + f.getNombre());
-                    break;
-                }
-            }
-        } else if (pro instanceof Snack) {
-            for (Snack s : snacks) {
-                if (s.getCodigoProd().equals(pro.getCodigoProd())) {
-                    s.actualizarStock(-cantidad);
-                    System.out.println("Se actualizó el stock del snack: " + s.getNombre());
-                    break;
-                }
-            }
-        } else {
-            // Producto genérico
-            for (Producto p : productos) {
-                if (p.getCodigoProd().equals(pro.getCodigoProd())) {
-                    p.actualizarStock(-cantidad);
-                    System.out.println("Se actualizó el stock del producto: " + p.getNombre());
-                    break;
-                }
+        // Verifica si el producto existe en la lista de productos
+        for (Producto p : productos) {
+            if (p.getCodigoProd().equals(pro.getCodigoProd())) {
+                p.actualizarStock(-cantidad);
+                System.out.println("Se actualizó el stock del producto: " + p.getNombre());
+                break;
             }
         }
     }
 }
 
     public boolean verificarStock(Producto producto, int cantidad) {
-        String codigo = producto.getCodigoProd();
-    
-        if (producto instanceof Bebida) {
-            for (Bebida b : bebidas) {
-                if (b.getCodigoProd().equals(codigo)) {
-                    if (b.getStock() >= cantidad) return true;
-                    System.out.println("No hay suficiente stock de la bebida: " + b.getNombre());
-                    return false;
+        // Verifica si el producto existe en la lista de productos
+        for (Producto p : productos) {
+            if (p.getCodigoProd().equals(producto.getCodigoProd())) {
+                if (p.getStock() >= cantidad){
+                    System.out.println("Hay suficiente stock del producto: " + p.getNombre());
+                    return true;
                 }
-            }
-        } else if (producto instanceof Fruta) {
-            for (Fruta f : frutas) {
-                if (f.getCodigoProd().equals(codigo)) {
-                    if (f.getStock() >= cantidad) return true;
-                    System.out.println("No hay suficiente stock de la fruta: " + f.getNombre());
-                    return false;
-                }
-            }
-        } else if (producto instanceof Snack) {
-            for (Snack s : snacks) {
-                if (s.getCodigoProd().equals(codigo)) {
-                    if (s.getStock() >= cantidad) return true;
-                    System.out.println("No hay suficiente stock del snack: " + s.getNombre());
-                    return false;
-                }
-            }
-        } else {
-            for (Producto p : productos) {
-                if (p.getCodigoProd().equals(codigo)) {
-                    if (p.getStock() >= cantidad) return true;
-                    System.out.println("No hay suficiente stock del producto: " + p.getNombre());
-                    return false;
-                }
+                System.out.println("No hay suficiente stock del producto: " + p.getNombre());
+                return false;
             }
         }
     
-        System.out.println("El producto no existe en el local.");
+        System.out.println("El producto(" + producto.getNombre() + ") no existe en el local.");
         return false;
     }
     
 
     public void agregarProducto(Producto producto){
         for(Producto p : productos) {
-            if (p.getCodigoProd().compareTo(producto.getCodigoProd()) == 0) {
-                System.out.println("El producto ya existe en el local.");
+            if (p.getCodigoProd().equals(producto.getCodigoProd())) {
+                System.out.println("El producto(" + producto.getNombre() + ") ya existe en el local.");
                 p.actualizarStock(producto.getStock());; // Actualiza el stock del producto existente
                 return;
             }
         }
         // Si no existe se agrega el nuevo producto
         productos.add(producto);
-        System.out.println("Se agrego el producto al local.");
-    }
-
-    public void agregarBebida(Bebida bebida){
-        for(Bebida b : bebidas) {
-            if (b.getCodigoProd().compareTo(bebida.getCodigoProd()) == 0) {
-                System.out.println("La bebida ya existe en el local.");
-                b.actualizarStock(bebida.getStock()); // Actualiza el stock de la bebida existente
-                return;
-            }
-        }
-        // Si no existe se agrega la nueva bebida
-        bebidas.add(bebida);
-        System.out.println("Se agrego la bebida al local.");
-    }
-
-    public void agregarFruta(Fruta fruta){
-        for(Fruta f : frutas) {
-            if (f.getCodigoProd().compareTo(fruta.getCodigoProd()) == 0) {
-                System.out.println("La fruta ya existe en el local.");
-                f.actualizarStock(fruta.getStock()); // Actualiza el stock de la fruta existente
-                return;
-            }
-        }
-        // Si no existe se agrega la nueva fruta
-        frutas.add(fruta);
-        System.out.println("Se agrego la fruta al local.");
-    }
-
-    public void agregarSnack(Snack snack){
-        for(Snack s : snacks) {
-            if (s.getCodigoProd().compareTo(snack.getCodigoProd()) == 0) {
-                System.out.println("El snack ya existe en el local.");
-                s.actualizarStock(snack.getStock()); // Actualiza el stock del snack existente
-                return;
-            }
-        }
-        // Si no existe se agrega el nuevo snack
-        snacks.add(snack);
-        System.out.println("Se agrego el snack al local.");
+        System.out.println("Se agrego el producto(" + producto.getNombre() + ") al local.");
     }
 
     public void agregarOrdenVenta(OrdenVenta orden){
@@ -313,15 +210,7 @@ public class Local {
     public ArrayList<Producto> getProductos() {
         return new ArrayList<Producto>(productos);
     }
-    public ArrayList<Bebida> getBebidas() {
-        return new ArrayList<Bebida>(bebidas);
-    }
-    public ArrayList<Fruta> getFrutas() {
-        return new ArrayList<Fruta>(frutas);
-    }
-    public ArrayList<Snack> getSnacks() {
-        return new ArrayList<Snack>(snacks);
-    }
+
 }
 
 
