@@ -18,7 +18,7 @@ public class OrdenVenta{
 	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
 	private ComprobantePago comprobantePago; //se crea al momento de que se realice el pago
 	//Agregar Empleado
-	private Empleado empleado;
+	private int idEmpleado;
 
 	@Override
 	public String toString(){
@@ -36,7 +36,7 @@ public class OrdenVenta{
 		this.entregado = false; 
 		this.montoTotal = 0; 
 		this.idOrdenVenta = correlativo;
-		this.empleado = new Empleado();
+		this.idEmpleado = -1;
 		correlativo++;
 	}
 	
@@ -46,7 +46,7 @@ public class OrdenVenta{
 		this.descripcion = descripcion; 
 		
 		this.fecha = LocalDate.now();//el dia pedido debe ser el de entrega
-		this.empleado = new Empleado();
+		this.idEmpleado = -1;
 		//una orden de venta crea un comprobante de pago
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		
@@ -93,6 +93,14 @@ public class OrdenVenta{
 	}
 	
 	//setters y getters
+
+	public void setIdEmpleado(int idEmpleado) {
+		this.idEmpleado = idEmpleado;
+	}
+
+	public int getIdEmpleado() {
+		return this.idEmpleado;
+	}
 	
 	public void setComprobantePago(ComprobantePago comprobantePago) {
 		this.comprobantePago = comprobantePago;

@@ -29,6 +29,7 @@ public class Repartidor extends Empleado{
 	public void prepararPedido(OrdenVenta orden){
 		//inicia a preparar 
 		orden.setEstado(estadoVenta.PROCESO);
+		orden.setIdEmpleado(getIdEmpleado());
 	}
 	
 	public void confirmarEntregaCliente(OrdenVenta orden, boolean cambio){	

@@ -13,7 +13,6 @@ public class ComprobantePago {
     private LocalDate fecha;
     private FormaDePago formaPago;
     private static int correlativo = 1;
-	private int idOrdenVenta;
     // CONSTRUCTORES
     
     public ComprobantePago(){
@@ -33,7 +32,6 @@ public class ComprobantePago {
         this.montoIGV = montoIGV;
         calcularTotal();
         this.fecha = fecha;
-		this.idOrdenVenta = idOrdenVenta; //que se relacione con el id
 		correlativo++;
     }
     //copia Comprobante Pago agregado Nyaane 
