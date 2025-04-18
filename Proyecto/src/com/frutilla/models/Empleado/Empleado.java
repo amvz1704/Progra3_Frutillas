@@ -13,8 +13,11 @@ public class Empleado{
     private double salario; 
     private String usuarioSistema;
     private String contraSistema;
+	
     // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
     private boolean turnoTrabajo;
+	private boolean estado;
+	
 
     public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno,
     String correoElectronico, String telefono, LocalDate fechaContrato,
@@ -30,6 +33,7 @@ public class Empleado{
         this.contraSistema = contraSistema;
         this.idEmpleado = correlativo;
         this.turnoTrabajo = false;
+		this.estado = false;
         correlativo++;
     }
 	
@@ -38,7 +42,9 @@ public class Empleado{
 	
 	@Override
 	public String toString(){
-		return "Id: " + String.valueOf(idEmpleado) + ", Nombre: " + nombre + " " + apellidoPaterno + " " + apellidoMaterno + ", Salario: " + String.valueOf(salario) + "\n";
+		return "Id: " + String.valueOf(idEmpleado) + ", Nombre: " + nombre
+		+ " " + apellidoPaterno + " " + apellidoMaterno + ", Salario: " 
+		+ String.valueOf(salario) + "Estado: "+estado+ "\n";
 	}
 
 	//para asignar turno  -- nuevo agregado
@@ -148,4 +154,13 @@ public class Empleado{
     public void setTurnoTrabajo(boolean turnoTrabajo) {
         this.turnoTrabajo = turnoTrabajo;
     }
+	
+	public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+	
 }
