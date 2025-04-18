@@ -10,6 +10,7 @@ public class Producto{
 	private double precioUnitario; 
 	private int stock; 
 	private int stockMinimo; 
+	private TipoEstado tipoEstado;
 	
 	
 	public Producto(){
@@ -28,6 +29,7 @@ public class Producto{
 		this.precioUnitario = precioUnitario; 
 		this.stock = stock; 
 		this.stockMinimo = stockMinimo; 
+		this.tipoEstado = tipoEstado;
 		
 	}
 	
@@ -41,6 +43,7 @@ public class Producto{
 		this.precioUnitario = original.precioUnitario; 
 		this.stock = original.stock; 
 		this.stockMinimo = original.stockMinimo; 
+		this.tipoEstado = tipoEstado;
 	}
 	
 	//metodos
@@ -54,7 +57,9 @@ public class Producto{
 	public String toString(){
 		
 		//colocar un formato
-		return nombre + ", Codigo: " + codigoProd + ", Stock: "+ stock + ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion;
+		return nombre + ", Codigo: " + codigoProd + ", Stock: "+ stock 
+		+ ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion
+		+ "Estado: "+ tipoEstado;
 	}
 	
 	//conjuntoSettersyGetters
@@ -114,5 +119,11 @@ public class Producto{
 		return idProducto;
 	}
 	
-	
+	public TipoEstado getTipoEstado(){
+		return tipoEstado;
+	}
+	public void setTipoEstado(TipoEstado tipoEstado){
+		this.tipoEstado = tipoEstado;
+	}
 }
+
