@@ -12,7 +12,6 @@ public class Producto{
 	private int stockMinimo; 
 	private TipoEstado tipoEstado;
 	
-	
 	public Producto(){
 		this.stock = 0; 
 		this.stockMinimo = 0; 
