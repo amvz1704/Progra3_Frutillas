@@ -8,11 +8,7 @@ public class Supervisor extends Empleado{
     }
     
     public void eliminarEmpleado(Empleado empleado){
-
-    }
-
-    public void agregarEmpleado(Empleado empleado){
-
+        
     }
 
 }
