@@ -2,7 +2,6 @@ package com.frutilla.models.Inventario;
 
 //faltaba que sea public xd
 public class Snack extends Producto{
-	private int idSnack;
 	private String tipo; 
 	private boolean requiereEnvase; 
 	private boolean estaEnvasado; 
@@ -14,10 +13,9 @@ public class Snack extends Producto{
 		this.estaEnvasado = false; 
 	}
 	
-	public Snack(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int idSnack, String tipo,String envase, boolean requiereEnvase, boolean estaEnvasado){
+	public Snack(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, String tipo,String envase, boolean requiereEnvase, boolean estaEnvasado){
 		super(idProducto, nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo); //arreglar
 		
-		this.idSnack = idSnack; 
 		this.tipo = tipo; 
 		this.envase = envase; 
 		this.requiereEnvase = requiereEnvase; 
@@ -26,7 +24,6 @@ public class Snack extends Producto{
 	
 	public Snack(Snack original){
 		super(original);
-		this.idSnack = original.idSnack; 
 		this.tipo = original.tipo; 
 		this.requiereEnvase = original.requiereEnvase; 
 		this.estaEnvasado = original.estaEnvasado; 

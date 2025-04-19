@@ -5,7 +5,6 @@ import java.util.ArrayList;
 //se hizo publico y se agrego
 
 public class Bebida extends Producto{
-	private int idBebida; 
 	private int tamanioOz; 
 	private String tipo; 
 	private String endulzante;
@@ -19,10 +18,9 @@ public class Bebida extends Producto{
 		frutasBebida = new ArrayList<FrutasBebida>();
 	}
 	
-	public Bebida(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int idBebida, int tamanioOz, String tipo, String endulzante, TipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
+	public Bebida(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int tamanioOz, String tipo, String endulzante, TipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
 		
 		super(idProducto, nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo);
-		this.idBebida = idBebida; 
 		this.tamanioOz = tamanioOz; 
 		this.tipo = tipo; 
 		this.endulzante = endulzante; 
@@ -36,7 +34,6 @@ public class Bebida extends Producto{
 	public Bebida(Bebida original){
 		
 		super(original);
-		this.idBebida = original.idBebida; 
 		this.tamanioOz = original.tamanioOz; 
 		this.tipo = original.tipo; 
 		this.endulzante = original.endulzante; 

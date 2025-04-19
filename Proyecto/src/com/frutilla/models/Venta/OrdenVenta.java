@@ -2,7 +2,6 @@ package com.frutilla.models.Venta;
 
 import java.time.*; 
 import java.util.ArrayList;
-import com.frutilla.models.Empleado.*;
 //solo usar set y gets con los realmente usados preguntarle a regina**
 
 public class OrdenVenta{
@@ -61,7 +60,7 @@ public class OrdenVenta{
 	}
 	
 	//forma 2 & forma 1--> methods reemplace crear total por crear un comprobante de pago para una orden de venta!
-	public void crearComprobantePago(){
+	public void crearComprobantePago(FormaDePago formaPago){
 		
 		//no se puede crear comprobante si no hay ninguna linea :)
 		if(lineasOrdenes.size() == 0){
@@ -78,7 +77,7 @@ public class OrdenVenta{
 		//se asigna por entregar al comprobante de pago
 		this.estado = estadoVenta.POR_ENTREGAR; 
 		//se crea el comprobante de pago
-		this.comprobantePago = new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta);
+		this.comprobantePago = new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta, formaPago);
 	}
 	
 	//tipo 2--> agregar linea de ordenVenta otro metodo de llenar un orden de venta

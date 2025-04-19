@@ -4,8 +4,7 @@ import com.frutilla.models.Cliente.*;
 import com.frutilla.models.Inventario.*;
 import com.frutilla.models.Empleado.*;
 import com.frutilla.models.Local.*;
-import com.frutilla.models.Venta.OrdenVenta;
-import com.frutilla.models.Venta.estadoVenta;
+import com.frutilla.models.Venta.*;
 
 import java.util.ArrayList;
 
@@ -44,35 +43,35 @@ public class Principal{
 		ArrayList<FrutasBebida> frutasbebida1 = new ArrayList<FrutasBebida>();//Arraylist con las frutas que contiene la bebida
 		frutasbebida1.add(FrutasBebida.FRUTA1);
 		frutasbebida1.add(FrutasBebida.FRUTA2);
-		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", 7.0, 12, 5, 1, 12, "Tipo 1", "Endulzante 1", TipoLeche.ENTERA, frutasbebida1);
+		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", 7.0, 12, 5, 12, "Tipo 1", "Endulzante 1", TipoLeche.ENTERA, frutasbebida1);
 		
 		System.out.println("Se creo una bebida");
 
 		System.out.println(bebida1.toString() + "\n");
 
 		//Creamos un snack
-		Snack snack1 = new Snack(1, "Snack 1", "Descripcion del snack 1", "S001", 3.0, 10, 5, 1, "Tipo 1", "Envase 1", true, true);
+		Snack snack1 = new Snack(1, "Snack 1", "Descripcion del snack 1", "S001", 3.0, 10, 5, "Tipo 1", "Envase 1", true, true);
 
 		System.out.println("Se creo un snack");
 
 		System.out.println(snack1.toString() + "\n");
 
 		//Creamos otro snack
-		Snack snack2 = new Snack(1, "Snack 2", "Descripcion del snack 2", "S002", 1.5, 2, 1, 2, "Tipo 2", "Envase 2", true, true);
+		Snack snack2 = new Snack(1, "Snack 2", "Descripcion del snack 2", "S002", 1.5, 1, 2, "Tipo 2", "Envase 2", true, true);
 
 		System.out.println("Se creo un snack");
 
 		System.out.println(snack2.toString() + "\n");
 
 		//Creamos una fruta
-		Fruta fruta1 = new Fruta(1, "Fruta 1", "Descripcion de la fruta 1", "F001", 2.0, 25, 10, 1, true, true, false, false, "Envase 1");
+		Fruta fruta1 = new Fruta(1, "Fruta 1", "Descripcion de la fruta 1", "F001", 2.0, 25, 10, true, true, false, false, "Envase 1");
 
 		System.out.println("Se creo una fruta");
 
 		System.out.println(fruta1.toString() + "\n");
 
 		//Creamos otra fruta
-		Fruta fruta2 = new Fruta(2, "Fruta 2", "Descripcion de la fruta 2", "F002", 4.0, 20, 15, 2, true, true, true, true, "Envase 2");
+		Fruta fruta2 = new Fruta(2, "Fruta 2", "Descripcion de la fruta 2", "F002", 4.0, 20, 15, true, true, true, true, "Envase 2");
 
 		System.out.println("Se creo una fruta");
 
@@ -150,7 +149,7 @@ public class Principal{
 		System.out.println("Solicitando compra de los productos");
 		if(sePuedeComprar){
 			//Cliente solicita compra
-			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
+			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad, FormaDePago.TARJETA_CREDITO);
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
@@ -174,7 +173,7 @@ public class Principal{
 
 		if(sePuedeComprar){
 			//Cliente solicita compra
-			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
+			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad, FormaDePago.TARJETA_CREDITO);
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
@@ -201,7 +200,7 @@ public class Principal{
 
 		if(sePuedeComprar){
 			//Cliente solicita compra
-			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad);
+			boolean pago = cliente1.solicitarCompra(listaProductos, listaCantidad, FormaDePago.TARJETA_CREDITO);
 			if(pago){
 				System.out.println("Compra realizada con exito" + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
