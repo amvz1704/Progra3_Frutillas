@@ -1,6 +1,7 @@
-package com.frutilla.models.Empleado;
-import com.frutilla.models.Venta.*;
+package com.frutilla.models.rrhh;
 import java.time.*;
+
+import com.frutilla.models.venta.*;
 
 public class Repartidor extends Empleado{
 

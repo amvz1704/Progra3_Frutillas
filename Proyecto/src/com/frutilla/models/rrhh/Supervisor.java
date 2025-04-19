@@ -1,4 +1,4 @@
-package com.frutilla.models.Empleado;
+package com.frutilla.models.rrhh;
 import java.time.*;
 
 public class Supervisor extends Empleado{

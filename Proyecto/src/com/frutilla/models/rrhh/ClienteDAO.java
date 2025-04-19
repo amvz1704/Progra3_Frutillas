@@ -1,4 +1,4 @@
-package com.frutilla.models.Cliente;
+package com.frutilla.models.rrhh;
 
 import com.frutilla.config.DBManager;
 import java.sql.Connection;

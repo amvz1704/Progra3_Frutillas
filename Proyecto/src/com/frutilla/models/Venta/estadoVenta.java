@@ -1,4 +1,4 @@
-package com.frutilla.models.Venta;
+package com.frutilla.models.venta;
 
 /*
 	ENTREGADO: entrega exitos
