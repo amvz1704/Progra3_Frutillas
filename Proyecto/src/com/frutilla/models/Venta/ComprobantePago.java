@@ -25,13 +25,14 @@ public class ComprobantePago {
 		correlativo++;
     }
 	
-    public ComprobantePago(int numeroArticulos, double subtotal, double montoIGV, LocalDate fecha, int idOrdenVenta) {
+    public ComprobantePago(int numeroArticulos, double subtotal, double montoIGV, LocalDate fecha, int idOrdenVenta, FormaDePago formaPago) {
         this.idComprobante = correlativo;
         this.numeroArticulos = numeroArticulos;
         this.subtotal = subtotal; //se lo pasan ps
         this.montoIGV = montoIGV;
         calcularTotal();
         this.fecha = fecha;
+        this.formaPago = formaPago;
 		correlativo++;
     }
     //copia Comprobante Pago agregado Nyaane 
@@ -43,6 +44,7 @@ public class ComprobantePago {
 		this.montoIGV = original.montoIGV;
 		this.total = original.total;
 		this.fecha = original.fecha;
+        this.formaPago = original.formaPago;
 	}
 
     //GETTERS AND SETTERS

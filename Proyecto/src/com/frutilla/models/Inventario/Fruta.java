@@ -2,7 +2,6 @@ package com.frutilla.models.Inventario;
 
 //se hizo publico 
 public class Fruta extends Producto{
-	private int idFruta; 
 	private boolean requiereLimpieza; 
 	private boolean requiereEnvase;
 	private boolean estaLimpio;
@@ -15,12 +14,10 @@ public class Fruta extends Producto{
 		this.estaLimpio = false;
 	}
 	
-	public Fruta(int idProducto, String nombre, String descripcion, String codigoProd,double precioUnitario,int stock, int stockMinimo, int idFruta, boolean requiereLimpieza, boolean requiereEnvase, boolean estaLimpio, boolean estaEnvasado, String envase){
+	public Fruta(int idProducto, String nombre, String descripcion, String codigoProd,double precioUnitario,int stock, int stockMinimo, boolean requiereLimpieza, boolean requiereEnvase, boolean estaLimpio, boolean estaEnvasado, String envase){
 		
 		super(idProducto, nombre, descripcion, codigoProd,
 		precioUnitario, stock, stockMinimo);
-		
-		this.idFruta = idFruta; 
 		this.requiereEnvase = requiereEnvase; 
 		this.requiereLimpieza = requiereLimpieza; 
 		this.estaEnvasado = estaEnvasado; 
@@ -31,7 +28,6 @@ public class Fruta extends Producto{
 	//copia
 	public Fruta(Fruta original){
 		super(original);
-		this.idFruta = original.idFruta; 
 		this.requiereLimpieza = original.requiereLimpieza; 
 		this.requiereEnvase = original.requiereEnvase;
 		this.estaEnvasado = original.estaEnvasado; 
@@ -45,7 +41,7 @@ public class Fruta extends Producto{
 	@Override
 	public String toString(){
 		String cadena = super.toString();
-		cadena += ", ID:" + idFruta + ", Limpio : "+ estaLimpio + ", Envasado: " + estaEnvasado; 
+		cadena += ", Limpio : "+ estaLimpio + ", Envasado: " + estaEnvasado; 
 		if(estaEnvasado) cadena += ", Envase: " + envase; 
 		
 		return cadena; 

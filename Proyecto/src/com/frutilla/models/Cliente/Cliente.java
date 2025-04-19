@@ -36,7 +36,7 @@ public class Cliente {
         }
     }
     
-    public boolean solicitarCompra(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad){
+    public boolean solicitarCompra(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad, FormaDePago formaPago) {
         // Crear una nueva orden de venta
         OrdenVenta orden = new OrdenVenta("Orden de venta Nro" + String.valueOf(ordenesVentas.size() + 1));
         for(int i = 0; i < listaProductos.size(); i++){
@@ -48,9 +48,8 @@ public class Cliente {
             // Agregar la línea de orden a la orden de venta
             orden.agregarLineaOrden(lineaOrden);
         }
-
         //Realiza el pago y se crea el comprobante de pago
-        orden.crearComprobantePago();
+        orden.crearComprobantePago(formaPago);
         // Agregar la orden de venta a la lista de órdenes del cliente
         agregarOrdenVenta(orden);
         //Se desea obtener el comprobante de pago
