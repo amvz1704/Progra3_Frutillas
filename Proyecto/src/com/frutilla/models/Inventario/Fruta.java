@@ -34,7 +34,46 @@ public class Fruta extends Producto{
 		this.estaLimpio = original.estaLimpio; 
 		this.envase = original.envase; 
 	}
+
+	public boolean isRequiereLimpieza() {
+        return requiereLimpieza;
+    	}
+
+	public void setRequiereLimpieza(boolean requiereLimpieza) {
+	this.requiereLimpieza = requiereLimpieza;
+	}
 	
+	public boolean isRequiereEnvase() {
+	return requiereEnvase;
+	}
+	
+	public void setRequiereEnvase(boolean requiereEnvase) {
+	this.requiereEnvase = requiereEnvase;
+	}
+	
+	public boolean isEstaLimpio() {
+	return estaLimpio;
+	}
+	
+	public void setEstaLimpio(boolean estaLimpio) {
+	this.estaLimpio = estaLimpio;
+	}
+	
+	public boolean isEstaEnvasado() {
+	return estaEnvasado;
+	}
+	
+	public void setEstaEnvasado(boolean estaEnvasado) {
+	this.estaEnvasado = estaEnvasado;
+	}
+	
+	public String getEnvase() {
+	return envase;
+	}
+	
+	public void setEnvase(String envase) {
+	this.envase = envase;
+	}
 	
 	
 	//metodos
