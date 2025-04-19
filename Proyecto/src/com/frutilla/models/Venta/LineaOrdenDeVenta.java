@@ -1,6 +1,6 @@
-package com.frutilla.models.Venta;
+package com.frutilla.models.venta;
 
-import com.frutilla.models.Inventario.*;
+import com.frutilla.models.inventario.*;
 
 public class LineaOrdenDeVenta {
     

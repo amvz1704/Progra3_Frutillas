@@ -1,4 +1,4 @@
-package com.frutilla.models.Inventario;
+package com.frutilla.models.inventario;
 
 //faltaba que sea public xd
 public class Snack extends Producto{

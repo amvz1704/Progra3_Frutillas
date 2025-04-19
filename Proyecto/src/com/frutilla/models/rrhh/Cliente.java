@@ -1,8 +1,9 @@
-package com.frutilla.models.Cliente;
+package com.frutilla.models.rrhh;
 
 import java.util.ArrayList;
-import com.frutilla.models.Venta.*;
-import com.frutilla.models.Inventario.*;
+
+import com.frutilla.models.inventario.*;
+import com.frutilla.models.venta.*;
 
 public class Cliente {
     private static int correlativo = 1; // Correlativo para asignar ID a los clientes
@@ -74,6 +75,10 @@ public class Cliente {
 
     public int getIdCliente() {
         return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre(){

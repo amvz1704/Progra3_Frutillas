@@ -1,4 +1,4 @@
-package com.frutilla.models.Inventario;
+package com.frutilla.models.inventario;
 
 //se hizo publico 
 public class Fruta extends Producto{

@@ -1,10 +1,10 @@
 //agregar lo hecho en producto
 import java.time.LocalDate;
-import com.frutilla.models.Cliente.*;
-import com.frutilla.models.Inventario.*;
-import com.frutilla.models.Empleado.*;
+
 import com.frutilla.models.Local.*;
-import com.frutilla.models.Venta.*;
+import com.frutilla.models.inventario.*;
+import com.frutilla.models.rrhh.*;
+import com.frutilla.models.venta.*;
 
 import java.util.ArrayList;
 
