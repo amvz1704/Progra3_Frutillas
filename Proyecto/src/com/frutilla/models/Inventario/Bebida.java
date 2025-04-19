@@ -46,6 +46,46 @@ public class Bebida extends Producto{
 		}
 	}
 	
+	public int getTamanioOz() {
+        return tamanioOz;
+    }
+
+    public void setTamanioOz(int tamanioOz) {
+        this.tamanioOz = tamanioOz;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getEndulzante() {
+        return endulzante;
+    }
+
+    public void setEndulzante(String endulzante) {
+        this.endulzante = endulzante;
+    }
+
+    public TipoLeche getTieneLeche() {
+        return tieneLeche;
+    }
+
+    public void setTieneLeche(TipoLeche tieneLeche) {
+        this.tieneLeche = tieneLeche;
+    }
+
+    public ArrayList<FrutasBebida> getFrutasBebida() {
+        return frutasBebida;
+    }
+
+    public void setFrutasBebida(ArrayList<FrutasBebida> frutasBebida) {
+        this.frutasBebida = frutasBebida;
+    }
+	
 	//como juntar fruta
 	
 	@Override
