@@ -13,7 +13,7 @@ public class ClienteDAO {
     public void insertarCliente(Cliente cliente) {
         // Consulta SQL para insertar un nuevo cliente
         String queryCliente = "INSERT INTO Clientes (nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, activo) VALUES (?, ?, ?, ?, ?, ?)";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){// Obtiene la conexion y prepara la consulta
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(queryCliente)){// Obtiene la conexion y prepara la consulta
             setClienteParameters(ps,cliente);// Establece los parámetros del cliente
             ps.executeUpdate();// Ejecuta la consulta
 
@@ -23,6 +23,9 @@ public class ClienteDAO {
                     cliente.setIdCliente(rs.getInt(1)); // Establece el ID del cliente en el objeto cliente
                 }
             }
+        }
+        catch(SQLException e){
+            System.out.println("Error al insertar el cliente: " + e.getMessage());
         }
     }
 
@@ -37,6 +40,9 @@ public class ClienteDAO {
                 }
             }
         }
+        catch(SQLException e){
+            System.out.println("Error al obtener el cliente: " + e.getMessage());
+        }
         return null;
     }
 
@@ -46,6 +52,9 @@ public class ClienteDAO {
             setClienteParameters(ps, cliente);
             ps.setInt(7, cliente.getIdCliente());// Establece el ID del cliente en la consulta
             ps.executeUpdate();// Ejecuta la consulta
+        }
+        catch(SQLException e){
+            System.out.println("Error al actualizar el cliente: " + e.getMessage());
         }
     }
     private Cliente mapCliente(ResultSet rs) throws SQLException{
