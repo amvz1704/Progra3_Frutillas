@@ -1,3 +1,4 @@
+package com.frutilla.models.rrhh;
 
 public abstract class Persona {
     private int idPersona;
@@ -7,7 +8,6 @@ public abstract class Persona {
     private String apellidoMaterno;
     private String correoElectronico;
     private String telefono;
-    private boolean activo;
     //son el usuario y contraseña;
     private String usuarioSistema;
     private String contraSistema;
@@ -15,27 +15,42 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(int idPersona, String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, boolean activo, String usuarioSistema, String contraSistema) {
-        this.idPersona = idPersona;
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, String usuarioSistema, String contraSistema) {
+        this.idPersona = correlativo;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.correoElectronico = correoElectronico;
         this.telefono = telefono;
-        this.activo = activo;
         this.usuarioSistema = usuarioSistema;
         this.contraSistema = contraSistema;
+        correlativo++;
     }
 
-    public boolean isActivo() {
-        return activo;
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + " " + apellidoPaterno + " " + apellidoMaterno + ", Correo: " + correoElectronico + ", Telefono: " + telefono;
     }
+    
+	public void crearUsuario(String usuario, String contrasena) {
+		this.usuarioSistema = usuario;
+		this.contraSistema = contrasena;
+		System.out.println("Usuario creado exitosamente");
+	}	
+	
+	public boolean ingresoSistema(String usuario, String contra) {
+		if (this.usuarioSistema.equals(usuario) && this.contraSistema.equals(contra)) {
+			System.out.println("Bienvenido al sistema, " + nombre + "!");
+			return true;
+		} else {
+			System.out.println("Acceso denegado para " + usuario);
+			return false;
+		}
+	}
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-    
-    
+	public void salirSistema() {
+		System.out.println("El usuario " + usuarioSistema + " ha cerrado sesión.");
+	}
 
     public int getIdPersona() {
         return idPersona;
@@ -107,31 +122,6 @@ public abstract class Persona {
 
     public void setContraSistema(String contraSistema) {
         this.contraSistema = contraSistema;
-    }
-    
-	public void crearUsuario(String usuario, String contrasena) {
-		this.usuarioSistema = usuario;
-		this.contraSistema = contrasena;
-		System.out.println("Usuario creado exitosamente");
-	}	
-    
-	public void desactivarUsuario() {
-		this.activo = false;
-		System.out.println("El usuario " + usuarioSistema + " ha sido desactivado.");
-	}
-	
-	public boolean ingresoSistema(String usuario, String contra) {
-		if (this.activo && this.usuarioSistema.equals(usuario) && this.contraSistema.equals(contra)) {
-			System.out.println("Bienvenido al sistema, " + nombre + "!");
-			return true;
-		} else {
-			System.out.println("Acceso denegado para " + usuario);
-			return false;
-		}
-	}
-
-	public void salirSistema() {
-		System.out.println("El usuario " + usuarioSistema + " ha cerrado sesión.");
-	}
+    }
 	
 }

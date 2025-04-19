@@ -91,7 +91,7 @@ public class Principal{
 		local1.generarReporteProductos();
 
 		//Creamos un cliente
-		Cliente cliente1 = new Cliente("Junior", "Herrera", "Valverde", "99999999", "junior@gmail.com");
+		Cliente cliente1 = new Cliente("Junior", "Herrera", "Valverde", "99999999", "junior@gmail.com", "junior", "1234");
 		System.out.println("Se creo un cliente");
 		
 		cliente1.realizarCompra();
