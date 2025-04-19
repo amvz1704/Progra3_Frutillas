@@ -12,6 +12,10 @@ public class Cliente extends Persona{
     // falta inicializar
     private ArrayList <OrdenVenta> ordenesVentas;
 
+    public Cliente(){
+        this.ordenesVentas = new ArrayList<OrdenVenta>();
+    }
+
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String usuarioSistema, String contraSistema){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
         this.idCliente = correlativo;
