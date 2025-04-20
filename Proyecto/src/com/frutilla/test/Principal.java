@@ -41,8 +41,8 @@ public class Principal{
 
 		//Creamos una bebida
 		ArrayList<FrutasBebida> frutasbebida1 = new ArrayList<FrutasBebida>();//Arraylist con las frutas que contiene la bebida
-		frutasbebida1.add(FrutasBebida.MANGO);
-		frutasbebida1.add(FrutasBebida.PAPAYA);
+		frutasbebida1.add(FrutasBebida.FRUTA1);
+		frutasbebida1.add(FrutasBebida.FRUTA2);
 		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", 7.0, 12, 5, 12, "Tipo 1", "Endulzante 1", TipoLeche.ENTERA, frutasbebida1);
 		
 		System.out.println("Se creo una bebida");
