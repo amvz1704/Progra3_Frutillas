@@ -1,4 +1,4 @@
-package com.frutilla.models.venta;
+package com.frutilla.models.Venta;
 
 import java.time.*; 
 import java.util.ArrayList;
