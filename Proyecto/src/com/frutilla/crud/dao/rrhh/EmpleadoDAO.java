@@ -2,7 +2,7 @@ package com.frutilla.crud.dao.rrhh;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import com.frutilla.models.rrhh.Empleado //Empleado
+import com.frutilla.models.rrhh.Empleado; //Empleado
 
 public interface EmpleadoDAO {
     void insertarEmpleado(Empleado empleado, int idLocal) throws SQLException; 

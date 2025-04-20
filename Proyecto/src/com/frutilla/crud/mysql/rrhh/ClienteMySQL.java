@@ -2,7 +2,7 @@ package com.frutilla.crud.mysql.rrhh;
 
 
 import com.frutilla.crud.dao.rrhh.ClienteDAO; //incluimos el dao correspondiente 
-import com.frutilla.models.rrhh.Cliente //Cliente
+import com.frutilla.models.rrhh.Cliente; //Cliente
 
 import com.frutilla.config.DBManager;
 import java.sql.Connection;
