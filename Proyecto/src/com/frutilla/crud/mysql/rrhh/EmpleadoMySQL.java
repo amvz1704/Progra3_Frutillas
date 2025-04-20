@@ -14,6 +14,14 @@ import java.util.ArrayList;
 import com.frutilla.config.DBManager;
 
 public class EmpleadoMySQL implements EmpleadoDAO{
+	
+	
+	public EmpleadoMySQL(){
+		//xd 
+		
+	}
+	
+	
     public void insertarEmpleado(Empleado empleado, int idLocal) throws SQLException{
         String query = "INSERT INTO Empleado (nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, usuarioSistema, contrasSistema, activo, fechaContrato, salario, turnoTrabajo, tipo, idLocal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta

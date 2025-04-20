@@ -13,6 +13,15 @@ import java.sql.ResultSet;
 
 
 public class ClienteMySQL implements ClienteDAO{
+	
+	//no tenemos atributo conexion porque cada vez 
+	
+	public ClienteMySQL(){
+		
+		
+	}
+	
+	
     public void insertarCliente(Cliente cliente) throws SQLException {
         String query = "INSERT INTO Cliente (nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
