@@ -21,7 +21,8 @@ public class BebidaMySQL implements BebidaDAO{
     public int insertar(Bebida bebida,int idLocal) throws SQLException{
         int result=0;
         ProductoMySQL padre=new ProductoMySQL();
-        padre.insertar(bebida,idLocal);
+        result=padre.insertar(bebida,idLocal);
+        bebida.setIdProducto(result);
         String query="INSERT INTO Bebida (idProducto,tamanioOnz,tipo,endulzante,"
                 + "tipoLeche) VALUES (?,?,?,?,?)";
         try(Connection con=DBManager.getConnection();
