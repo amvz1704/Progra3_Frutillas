@@ -25,7 +25,7 @@ public class FrutillaSoft{
     public static void main(String[] args){
 		
 		try{
-			Connection con = DBManager.getConnection(); // Ajusta a tu método real
+			//Connection con = DBManager.getConnection(); // Ajusta a tu método real
 			
 			EmpleadoDAO primerEmpleado = new EmpleadoMySQL(); 
 			
