@@ -68,7 +68,7 @@ public class SnackMySQL implements SnackDAO{
         ProductoMySQL pro=new ProductoMySQL();
         Producto temp=pro.obtenerProducto(idProducto, idLocal);
         Snack sna=new Snack(temp);
-        String query="SELECT requiereEnvasado, estaEnvasado, envase FROM "
+        String query="SELECT requiereEnvase, estaEnvasado, envase FROM "
                 + " Snack,Producto WHERE Producto.idProducto=Snack.idProducto "
                 + " AND Snack.idProducto=? AND Producto.idLocal = ?";
         try (Connection con=DBManager.getConnection();
@@ -77,7 +77,7 @@ public class SnackMySQL implements SnackDAO{
             ps.setInt(2, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){
-                    sna.setRequiereEnvase(rs.getBoolean("requiereEnvasado"));
+                    sna.setRequiereEnvase(rs.getBoolean("requiereEnvase"));
                     sna.setEstaEnvasado(rs.getBoolean("estaEnvasado"));
                     sna.setEnvase(rs.getString("envase"));
                 }
