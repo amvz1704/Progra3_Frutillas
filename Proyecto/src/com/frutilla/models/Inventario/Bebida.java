@@ -1,4 +1,4 @@
-package com.frutilla.models.inventario;
+package com.frutilla.models.Inventario;
 
 import java.util.ArrayList; 
 
