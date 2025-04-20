@@ -11,8 +11,6 @@ public class Bebida extends Producto{
 	private TipoLeche tieneLeche;
 	private ArrayList<FrutasBebida> frutasBebida;
 	
-	
-	
 	public Bebida(){
 		super();
 		frutasBebida = new ArrayList<FrutasBebida>();
