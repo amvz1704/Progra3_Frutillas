@@ -19,15 +19,17 @@ public class SnackMySQL implements SnackDAO{
     public int insertar(Snack snack,int idLocal) throws SQLException{
          int result=0;
         ProductoMySQL padre=new ProductoMySQL();
-        padre.insertar(snack,idLocal);
-        String query="INSERT INTO Snack (idProducto,requiereEnvase,"
-                + "estaEnvasado,envase)VALUES (?,?,?,?)";
+        result=padre.insertar(snack,idLocal);
+        snack.setIdProducto(result);
+        String query="INSERT INTO Snack (idProducto,tipo,requiereEnvase,"
+                + "estaEnvasado,envase)VALUES (?,?,?,?,?)";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
-            ps.setInt(1,snack.getIdProducto());
-            ps.setBoolean(2,snack.isRequiereEnvase());
-            ps.setBoolean(3,snack.isEstaEnvasado());
-            ps.setString(4,snack.getEnvase());
+            ps.setInt(1, snack.getIdProducto());
+            ps.setString(2,snack.getTipo());
+            ps.setBoolean(3,snack.isRequiereEnvase());
+            ps.setBoolean(4,snack.isEstaEnvasado());
+            ps.setString(5,snack.getEnvase());
             result=ps.executeUpdate();
         }
         return result;

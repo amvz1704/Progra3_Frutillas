@@ -14,7 +14,7 @@ public class DBManager {
     private static String password;
 
     static{
-        String pathFile = "/com/frutilla/config/config.properties";
+        String pathFile = "com/frutilla/config/config.properties";
         try(InputStream input = DBManager.class.getClassLoader().getResourceAsStream(pathFile)){
             if(input == null){
                 System.out.println("No se encuentra el archivo: " + pathFile);
