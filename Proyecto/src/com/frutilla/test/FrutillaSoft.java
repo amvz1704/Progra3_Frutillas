@@ -29,6 +29,9 @@ public class FrutillaSoft{
 			
 			EmpleadoDAO primerEmpleado = new EmpleadoMySQL(); 
 			
+			
+			//tenemos que crear un supervisor
+			
 			//Creamos un repartidor
 			Repartidor repartidor1 = new Repartidor("Enzo", "Avila", "Mamani", "enzo@gmail.com", "999999999", LocalDate.now(), 1000, "enzo", "1234");
 			
