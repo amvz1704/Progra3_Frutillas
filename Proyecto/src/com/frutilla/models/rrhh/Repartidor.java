@@ -33,7 +33,7 @@ public class Repartidor extends Empleado{
 	//cambie las funciones 
 	public void prepararPedido(OrdenVenta orden){
 		//inicia a preparar 
-		orden.setEstado(estadoVenta.PROCESO);
+		orden.setEstado(EstadoVenta.PROCESO);
 		orden.setIdEmpleado(getIdEmpleado());
 	}
 	

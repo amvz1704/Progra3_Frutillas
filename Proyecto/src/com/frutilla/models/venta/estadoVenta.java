@@ -8,6 +8,6 @@ package com.frutilla.models.venta;
 	FALTA_PAGO: aun falta confirmacion de comprobante de pago
 */
 
-public enum estadoVenta{
+public enum EstadoVenta{
 	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR, FALTA_PAGO
 }

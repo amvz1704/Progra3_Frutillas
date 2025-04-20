@@ -49,7 +49,7 @@ public class Local {
 
     public OrdenVenta obtenerOrden(){
         for(OrdenVenta orden : ordenesVentas) {
-            if(orden.getEstado() == estadoVenta.POR_ENTREGAR) {
+            if(orden.getEstado() == EstadoVenta.POR_ENTREGAR) {
                 return orden; // Devuelve la primera orden en estado POR_ENTREGAR
             }
         }

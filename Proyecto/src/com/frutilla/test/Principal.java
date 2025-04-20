@@ -153,7 +153,7 @@ public class Principal{
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
-				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				orden1.setEstado(EstadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
 				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
@@ -177,7 +177,7 @@ public class Principal{
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
-				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				orden1.setEstado(EstadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
 				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
@@ -204,7 +204,7 @@ public class Principal{
 			if(pago){
 				System.out.println("Compra realizada con exito" + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
-				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				orden1.setEstado(EstadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
 				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}

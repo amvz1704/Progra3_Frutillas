@@ -11,7 +11,7 @@ public class OrdenVenta{
 	private LocalTime horaFinEntrega;
 	private String descripcion; 
 	private double montoTotal; 
-	private estadoVenta estado; 
+	private EstadoVenta estado; 
 	private boolean entregado; 
 	private static int correlativo = 1;
 	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
@@ -29,7 +29,7 @@ public class OrdenVenta{
 	//constructor forma 2 agregas linea de venta uno por uno a travez de agregarLinea()
 	public OrdenVenta(String descripcion){
 		this.descripcion = descripcion; 
-		this.estado = estadoVenta.FALTA_PAGO; 
+		this.estado = EstadoVenta.FALTA_PAGO; 
 		this.fecha = LocalDate.now(); //el dia pedido debe ser el de entrega
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		this.entregado = false; 
@@ -53,7 +53,7 @@ public class OrdenVenta{
 		for(LineaOrdenDeVenta linea: lista){
 			lineasOrdenes.add(linea); 
 		}
-		this.estado = estadoVenta.FALTA_PAGO; 
+		this.estado = EstadoVenta.FALTA_PAGO; 
 		
 		this.entregado = false; //se actualizara despues
 		correlativo++;
@@ -75,7 +75,7 @@ public class OrdenVenta{
 		}
 		
 		//se asigna por entregar al comprobante de pago
-		this.estado = estadoVenta.POR_ENTREGAR; 
+		this.estado = EstadoVenta.POR_ENTREGAR; 
 		//se crea el comprobante de pago
 		this.comprobantePago = new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta, formaPago);
 	}
@@ -87,8 +87,8 @@ public class OrdenVenta{
 	
 	//en vez de entregar pedido lo cambie a entrega exitosa que sera editado por un Repartidor
 	public void entregaExitosa(boolean cambio){
-		if(cambio) this.estado = estadoVenta.CAMBIO;
-		else this.estado = estadoVenta.ENTREGADO;
+		if(cambio) this.estado = EstadoVenta.CAMBIO;
+		else this.estado = EstadoVenta.ENTREGADO;
 	}
 	
 	//setters y getters
@@ -141,11 +141,11 @@ public class OrdenVenta{
 		return this.montoTotal;
 	}
 
-	public void setEstado(estadoVenta estado) {
+	public void setEstado(EstadoVenta estado) {
 		this.estado = estado;
 	}
 
-	public estadoVenta getEstado() {
+	public EstadoVenta getEstado() {
 		return this.estado;
 	}
 
