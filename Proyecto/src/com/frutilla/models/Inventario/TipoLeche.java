@@ -1,4 +1,4 @@
-package com.frutilla.models.Inventario;
+package com.frutilla.models.Inventario; 
 
 //en java automaticamente es null un enum
 
