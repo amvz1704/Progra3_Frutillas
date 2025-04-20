@@ -1,4 +1,4 @@
-package com.frutilla.models.rrhh;
+package com.frutilla.crud.dao.rrhh;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
