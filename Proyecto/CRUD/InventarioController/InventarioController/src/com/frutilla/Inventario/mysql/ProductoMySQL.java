@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 public class ProductoMySQL implements ProductoDAO{
     @Override
+    //inserta el producto, devuelve verificacion de insercion y
+    //asigna el id del producto de regreso para tener coincidencia
     public int insertar(Producto producto,int idLocal) throws SQLException{
         int result=0;
         String query="INSERT INTO Producto (nombre,descripcion,codProd,"
@@ -42,7 +44,35 @@ public class ProductoMySQL implements ProductoDAO{
         }
         return result;
     }
+    //ingresa todos los datos del producto y los cambia en caso haya algun cambio
     @Override
+    public int actualizarProducto(Producto producto, int idLocal) 
+            throws SQLException{
+        int result=0;
+        String query="""
+                    UPDATE Producto SET nombre=?,descripcion=?,codProd=?,
+                    precioUnitario=?, stock=?, stockMinimo=?,estado=?
+                    WHERE idProducto=? AND idLocal=?
+                     """;
+        try (Connection con=DBManager.getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
+            ps.setString(1,producto.getNombre());
+            ps.setString(2, producto.getDescripcion());
+            ps.setString(3, producto.getCodigoProd());
+            ps.setDouble(4, producto.getPrecioUnitario());
+            ps.setInt(5, producto.getStock());
+            ps.setInt(6, producto.getStockMinimo());
+            ps.setString(7, producto.getTipoEstado().name());
+            ps.setInt(8, producto.getIdProducto());
+            ps.setInt(9, idLocal);
+            result=ps.executeUpdate();
+        }
+        return result;
+    }
+    @Override
+    //llama al procedure actualizar_stock para hacer la revision de Salida
+    //o Entrada de productos, no estoy segura sí dejarlo pero esta como
+    // por si acaso
     public int actualizarStock (int cant,int idProducto,
             int idLocal) throws SQLException{
         int result=0;
@@ -62,6 +92,7 @@ public class ProductoMySQL implements ProductoDAO{
         }
         return result;
     }
+    //eliminado lógico
     @Override
     public void eliminar(int idProd,int idLocal) throws SQLException{
         TipoEstado desactivado=TipoEstado.AGOTADO;
@@ -77,6 +108,7 @@ public class ProductoMySQL implements ProductoDAO{
                 System.out.println("Se realizo eliminado correctamente");
         }
     }
+    //solo se obtiene un solo producto en base a su id y local
     @Override
     public Producto obtenerProducto(int idProducto,int idLocal) 
             throws SQLException{

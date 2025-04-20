@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public interface FrutaDAO {
     int insertar(Fruta fruta,int idLocal) throws SQLException;
-    int actualizarProcesado (int idProducto,boolean limpieza,boolean envasado,
-    String envase,int idLocal)throws SQLException;
+    int actualizar(Fruta fruta,int idLocal)throws SQLException;
+    void eliminar (int idProducto,int idLocal) throws SQLException;
     Fruta obtenerDatosFruta(int idProducto,int idLocal)throws SQLException;
     ArrayList<Fruta> obtenerTodos(int idLocal) throws SQLException;
 }

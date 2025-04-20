@@ -25,65 +25,72 @@ public class FrutaMySQL implements FrutaDAO{
                 + "estaLimpio,requiereEnvase,estaEnvasado,envase)"
                 + "VALUES (?,?,?,?,?,?)";
         try(Connection con=DBManager.getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            //falta implementar estos gets/sets
-//            ps.setInt(1,fruta.getIdProducto());
-//            ps.setBoolean(2,fruta.getRequiereLimpieza());
-//            ps.setBoolean(3,fruta.isLimpio());
-//            ps.setBoolean(4,fruta.getRequiereEnvase());
-//            ps.setBoolean(5,fruta.isEnvasado());
-//            ps.setString(6,fruta.getEnvase());
+             PreparedStatement ps=con.prepareStatement(query,
+                     PreparedStatement.RETURN_GENERATED_KEYS)){
+            ps.setInt(1,fruta.getIdProducto());
+            ps.setBoolean(2,fruta.isRequiereLimpieza());
+            ps.setBoolean(3,fruta.isEstaLimpio());
+            ps.setBoolean(4,fruta.isRequiereEnvase());
+            ps.setBoolean(5,fruta.isEstaEnvasado());
+            ps.setString(6,fruta.getEnvase());
             result=ps.executeUpdate();
         }
         return result;
     }
     @Override
-    public int actualizarProcesado (int idProducto,boolean limpieza,
-            boolean envasado,String envase,int idLocal)throws SQLException{
+    public int actualizar (Fruta fruta,int idLocal)throws SQLException{
         int result=0;
+        ProductoMySQL padre=new ProductoMySQL();
+        padre.actualizarProducto(fruta, idLocal);
         String query = """
                 UPDATE Fruta JOIN Producto ON 
                 Fruta.idProducto=Producto.idProducto 
-                SET Fruta.estaLimpio=?, Fruta.estaEnvasado=?,
-                Fruta.envase=? WHERE Producto.idLocal=?""";
+                SET Fruta.requiereLimpieza=?,
+                Fruta.requiereEnvasado=?,Fruta.estaLimpio=?, 
+                Fruta.estaEnvasado=?,Fruta.envase=? WHERE 
+                Producto.idProducto=? AND Producto.idLocal=?""";
         try (Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
-            ps.setBoolean(1, limpieza);
-            ps.setBoolean(2, envasado);
-            ps.setString(3, envase);
-            ps.setInt(4, idLocal);
+            ps.setBoolean(1, fruta.isRequiereLimpieza());
+            ps.setBoolean(2, fruta.isRequiereEnvase());
+            ps.setBoolean(3, fruta.isEstaLimpio());
+            ps.setBoolean(4, fruta.isEstaEnvasado());
+            ps.setString(5, fruta.getEnvase());
+            ps.setInt(6, fruta.getIdProducto());
+            ps.setInt(7, idLocal);
             result=ps.executeUpdate();
         }
         return result;
+    }
+    @Override
+    public void eliminar (int idProducto,int idLocal) throws SQLException{
+        ProductoMySQL pro=new ProductoMySQL();
+        pro.eliminar(idProducto, idLocal);
     }
     @Override
     public Fruta obtenerDatosFruta(int idProducto,int idLocal)throws 
             SQLException{
-        Producto temp=new Producto();
         ProductoMySQL pro=new ProductoMySQL();
-        temp=pro.obtenerProducto(idProducto, idLocal);
+        Producto temp=pro.obtenerProducto(idProducto, idLocal);
         //necesitamos implementar un constructor por parametros
-        Fruta fru=new Fruta(/*temp.getIdProducto(),temp.getNombre(),
-        temp.getDescripcion(),temp.getCodigoProd(),temp.getStock(),
-        temp.getStockMinimo()*/);
-        String query="SELECT requiereLimpieza, estaLimpio,"
-                + "requiereEnvasado, estaEnvasado, envase FROM "
-                + " Fruta,Producto WHERE Producto.idProducto=Fruta.idProducto "
+        Fruta fru=new Fruta(temp);
+        String query="SELECT requiereLimpieza, estaLimpio,requiereEnvasado, "
+                + " estaEnvasado, envase FROM Fruta,Producto WHERE "
+                + " Producto.idProducto=Fruta.idProducto "
                 + " AND Fruta.idProducto=? AND Producto.idLocal = ?";
         try (Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idProducto);
             ps.setInt(2, idLocal);
-            ResultSet rs=ps.executeQuery();
-            fru.setIdProducto(idProducto);
-            while(rs.next()){
-//              fru.setRequiereLimpieza(rs.getBoolean("requiereLimpieza"));
-//              fru.setLimpio(rs.getBoolean("estaLimpio"));
-//              fru.setRequiereEnvase(rs.getBoolean("requiereEnvasado"));
-//              fru.setEnvasado(rs.getBoolean("estaEnvasado"));
-//              fru.setEnvase(rs.getString("envase"));
+            try (ResultSet rs = ps.executeQuery()) {
+                while(rs.next()){
+                    fru.setRequiereLimpieza(rs.getBoolean("requiereLimpieza"));
+                    fru.setEstaLimpio(rs.getBoolean("estaLimpio"));
+                    fru.setRequiereEnvase(rs.getBoolean("requiereEnvasado"));
+                    fru.setEstaEnvasado(rs.getBoolean("estaEnvasado"));
+                    fru.setEnvase(rs.getString("envase"));
+                }
             }
-            rs.close();
         }
         return fru;
     }
@@ -100,14 +107,13 @@ public class FrutaMySQL implements FrutaDAO{
             ps.setInt(1, idLocal);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                Fruta fru=new Fruta(/*pro.obtenerProducto
-                (rs.getInt("idProducto"), idLocal);*/);
-//                fru.setIdProducto(rs.getInt("idProducto"));
-//                fru.setRequiereLimpieza(rs.getBoolean("requiereLimpieza"));
-//                fru.setLimpio(rs.getBoolean("estaLimpio"));
-//                fru.setRequiereEnvasado(rs.getBoolean("requiereEnvasado"));
-//                fru.setEnvasado(rs.getBoolean("estaEnvasado"));
-//                fru.setEnvase(rs.getString("envase"));
+                Fruta fru=new Fruta(pro.obtenerProducto
+                (rs.getInt("idProducto"), idLocal));
+                fru.setRequiereLimpieza(rs.getBoolean("requiereLimpieza"));
+                fru.setEstaLimpio(rs.getBoolean("estaLimpio"));
+                fru.setRequiereEnvase(rs.getBoolean("requiereEnvasado"));
+                fru.setEstaEnvasado(rs.getBoolean("estaEnvasado"));
+                fru.setEnvase(rs.getString("envase"));
                 frutas.add(fru);
             }
             rs.close(); 

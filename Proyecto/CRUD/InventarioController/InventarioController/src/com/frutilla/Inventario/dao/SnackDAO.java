@@ -15,8 +15,8 @@ import java.sql.SQLException;
 
 public interface SnackDAO {
      int insertar(Snack snack,int idLocal) throws SQLException;
-     int actualizarEnvasado(int idProducto,boolean envasado,String envase,
-             int idLocal) throws SQLException;
+     int actualizar(Snack snack,int idLocal) throws SQLException;
+     void eliminar (int idProducto,int idLocal) throws SQLException;
      Snack obtenerDatosSnack(int idProducto,int idLocal) throws SQLException;
      ArrayList<Snack> obtenerTodos(int idLocal) throws SQLException;
 }
