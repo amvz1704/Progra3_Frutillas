@@ -93,6 +93,14 @@ public class OrdenVenta{
 	
 	//setters y getters
 
+	public void setIdOrdenVenta(int idOrdenVenta){
+		this.idOrdenVenta=idOrdenVenta;
+	}
+	
+	public int getIdOrdenVenta(){
+		return this.idOrdenVenta;
+	}
+
 	public void setIdEmpleado(int idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}

@@ -6,8 +6,9 @@ package com.frutilla.models.venta;
 	CAMBIO: el pedido al entregarse tuvo que ser cambiado 
 	POR_ENTREGAR: ha sido reservado y pagado 
 	FALTA_PAGO: aun falta confirmacion de comprobante de pago
+	CANCELADO: se cancelo la orden de venta
 */
 
 public enum EstadoVenta{
-	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR, FALTA_PAGO
+	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR, FALTA_PAGO, CANCELADO
 }
