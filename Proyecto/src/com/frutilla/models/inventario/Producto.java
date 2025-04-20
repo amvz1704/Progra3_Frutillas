@@ -19,7 +19,7 @@ public class Producto{
 	}
 	
 	public Producto(String nombre, String descripcion, String codigoProd,
-		double precioUnitario,int stock, int stockMinimo){
+		double precioUnitario,int stock, int stockMinimo, TipoEstado tipoEstado){
 			
 		this.idProducto = -1;
 		this.nombre = nombre; 
