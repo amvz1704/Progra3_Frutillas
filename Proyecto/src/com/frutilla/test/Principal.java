@@ -1,4 +1,5 @@
-//agregar lo hecho en producto
+package com.frutilla.test; 
+
 import java.time.LocalDate;
 
 import com.frutilla.models.inventario.*;

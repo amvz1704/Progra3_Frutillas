@@ -17,13 +17,12 @@ public class EmpleadoMySQL implements EmpleadoDAO{
 	
 	
 	public EmpleadoMySQL(){
-		//xd 
 		
 	}
 	
 	
     public void insertarEmpleado(Empleado empleado, int idLocal) throws SQLException{
-        String query = "INSERT INTO Empleado (nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, usuarioSistema, contrasSistema, activo, fechaContrato, salario, turnoTrabajo, tipo, idLocal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Empleado (nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, usuarioSistema, contrasSistema, activo, fechaContrato, salario, turnoTrabajo, tipo, idLocal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
             setEmpleadoParameters(ps, empleado, idLocal);// Establece los parámetros del empleado
             ps.executeUpdate();// Ejecuta la consulta
@@ -49,7 +48,7 @@ public class EmpleadoMySQL implements EmpleadoDAO{
     }
 
     public void actualizarEmpleado(Empleado empleado, int idLocal) throws SQLException{
-        String query = "UPDATE Empleado SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, correoElectronico = ?, usuarioSistema = ?, contrasSistema = ?, activo = ?, fechaContrato = ?, salario = ?, turnoTrabajo = ?, tipo = ?, idLocal = ? WHERE idEmpleado = ?";
+        String query = "UPDATE Empleado SET nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, correoElectronico = ?, usuarioSistema = ?, contrasSistema = ?, activo = ?, fechaContrato = ?, salario = ?, turnoTrabajo = ?, tipo = ?, idLocal = ? WHERE idEmpleado = ?";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             setEmpleadoParameters(ps, empleado, idLocal);// Establece los parámetros del empleado
             ps.setInt(12, empleado.getIdEmpleado());
@@ -90,7 +89,7 @@ public class EmpleadoMySQL implements EmpleadoDAO{
         }
         
         empleado.setIdEmpleado(rs.getInt("idEmpleado"));
-        empleado.setNombre(rs.getString("nombre"));
+        empleado.setNombre(rs.getString("nombres"));
         empleado.setApellidoPaterno(rs.getString("apellidoPaterno"));
         empleado.setApellidoMaterno(rs.getString("apellidoMaterno"));
         empleado.setCorreoElectronico(rs.getString("correoElectronico"));

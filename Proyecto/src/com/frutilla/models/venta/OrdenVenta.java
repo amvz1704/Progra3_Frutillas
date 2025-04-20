@@ -25,7 +25,9 @@ public class OrdenVenta{
 	}
 	
 	//Agregar Repartidor --> no es necesario pues puede ser cualquier repartidor una vez de hace la entrega
-	
+	public OrdenVenta(){
+		
+	}
 	//constructor forma 2 agregas linea de venta uno por uno a travez de agregarLinea()
 	public OrdenVenta(String descripcion){
 		this.descripcion = descripcion; 
@@ -161,7 +163,7 @@ public class OrdenVenta{
 		this.entregado = entregado;
 	}
 
-	public boolean isEntregado() {
+	public boolean getEntregado() {
 		return this.entregado;
 	} 
 	

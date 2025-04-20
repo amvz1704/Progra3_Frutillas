@@ -4,15 +4,14 @@
  * Consultas: a20200948@pucp.edu.pe
  * Telf: 989299092
  */
- 
+
 package com.frutilla.crud.mysql.venta;
 
 import com.frutilla.models.venta.OrdenVenta;
-import com.frutilla.models.venta.estadoVenta;
+import com.frutilla.models.venta.EstadoVenta;
 import com.frutilla.config.DBManager;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;

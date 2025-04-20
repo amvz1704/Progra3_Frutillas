@@ -17,13 +17,12 @@ public class ClienteMySQL implements ClienteDAO{
 	//no tenemos atributo conexion porque cada vez 
 	
 	public ClienteMySQL(){
-		
-		
+
 	}
 	
 	
     public void insertarCliente(Cliente cliente) throws SQLException {
-        String query = "INSERT INTO Cliente (nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Cliente (nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
             setClienteParameters(ps,cliente);// Establece los parámetros del cliente
             ps.executeUpdate();// Ejecuta la consulta       
@@ -60,7 +59,7 @@ public class ClienteMySQL implements ClienteDAO{
     }
 
     public void actualizarCliente(Cliente cliente) throws SQLException {
-        String query = "UPDATE Cliente SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, correoElectronico = ?, telefono = ?, usuarioSistema = ?, contrasSistema = ?, activo = ? WHERE idCliente = ?";
+        String query = "UPDATE Cliente SET nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, correoElectronico = ?, telefono = ?, usuarioSistema = ?, contrasSistema = ?, activo = ? WHERE idCliente = ?";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             setClienteParameters(ps, cliente);// Establece los parámetros del cliente
             ps.setInt(9, cliente.getIdCliente());
@@ -82,7 +81,7 @@ public class ClienteMySQL implements ClienteDAO{
         Cliente cliente = new Cliente();
 
         //Persona
-        cliente.setNombre(rs.getString("nombre"));
+        cliente.setNombre(rs.getString("nombres"));
         cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
         cliente.setApellidoMaterno(rs.getString("apellidoMaterno"));
         cliente.setCorreoElectronico(rs.getString("correoElectronico"));
