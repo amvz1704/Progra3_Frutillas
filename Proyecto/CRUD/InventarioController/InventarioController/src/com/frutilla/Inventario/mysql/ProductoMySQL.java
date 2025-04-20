@@ -101,7 +101,7 @@ public class ProductoMySQL implements ProductoDAO{
                 + "idLocal = ?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
-            ps.setString(1, desactivado.name());
+            ps.setString(1, desactivado.toString());
             ps.setInt(2, idProd);
             ps.setInt(3, idLocal);
             int result=ps.executeUpdate();

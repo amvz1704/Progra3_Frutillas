@@ -20,9 +20,10 @@ public class FrutaMySQL implements FrutaDAO{
     public int insertar(Fruta fruta,int idLocal) throws SQLException{
         int result=0;
         ProductoMySQL padre=new ProductoMySQL();
-        padre.insertar(fruta,idLocal);
-        String query="INSERT INTO Bebida (idProducto,requiereLimpieza,"
-                + "estaLimpio,requiereEnvase,estaEnvasado,envase)"
+        result=padre.insertar(fruta,idLocal);
+        fruta.setIdProducto(result);
+        String query="INSERT INTO Fruta (idProducto,requiereLimpieza,"
+                + "estaLimpio,requiereEnvasado,estaEnvasado,envase)"
                 + "VALUES (?,?,?,?,?,?)";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query,
@@ -41,7 +42,8 @@ public class FrutaMySQL implements FrutaDAO{
     public int actualizar (Fruta fruta,int idLocal)throws SQLException{
         int result=0;
         ProductoMySQL padre=new ProductoMySQL();
-        padre.actualizarProducto(fruta, idLocal);
+        result=padre.actualizarProducto(fruta, idLocal);
+        fruta.setIdProducto(result);
         String query = """
                 UPDATE Fruta JOIN Producto ON 
                 Fruta.idProducto=Producto.idProducto 
