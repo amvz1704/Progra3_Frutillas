@@ -1,4 +1,7 @@
-package com.frutilla.models.rrhh;
+package com.frutilla.crud.mysql.rrhh;
+
+import com.frutilla.crud.dao.rrhh.EmpleadoDAO; //incluimos el dao correspondiente 
+import com.frutilla.models.rrhh.Empleado //Empleado
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

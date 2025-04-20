@@ -1,7 +1,8 @@
-package com.frutilla.models.rrhh;
+package com.frutilla.crud.dao.rrhh;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import com.frutilla.models.rrhh.Cliente //Cliente
 
 public interface ClienteDAO {
     void insertarCliente(Cliente cliente) throws SQLException; 
