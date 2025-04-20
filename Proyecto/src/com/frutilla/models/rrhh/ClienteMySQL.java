@@ -16,7 +16,7 @@ public class ClienteMySQL implements ClienteDAO{
             ps.executeUpdate();// Ejecuta la consulta       
             try(ResultSet rs = ps.getGeneratedKeys()){// Obtiene las claves generadas por la consulta anterior
                 if (rs.next()) {
-                    cliente.setIdCliente(rs.getInt(1)); // Establece el ID de persona en el objeto cliente
+                    cliente.setIdCliente(rs.getInt(1)); // Establece el ID en el objeto cliente
                 }
             }     
         }

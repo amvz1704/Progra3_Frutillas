@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.frutilla.config.DBManager;
 
@@ -17,7 +16,7 @@ public class EmpleadoMySQL implements EmpleadoDAO{
             ps.executeUpdate();// Ejecuta la consulta
             try(ResultSet rs = ps.getGeneratedKeys()){// Obtiene las claves generadas por la consulta anterior
                 if (rs.next()) {
-                    empleado.setIdEmpleado(rs.getInt(1)); // Establece el ID de persona en el objeto empleado
+                    empleado.setIdEmpleado(rs.getInt(1)); // Establece el ID en el objeto empleado
                 }
             }     
         }
@@ -52,7 +51,7 @@ public class EmpleadoMySQL implements EmpleadoDAO{
         }
     }
     
-    public ArrayList<Empleado> obtenerEmpleado(int idLocal)throws SQLException{
+    public ArrayList<Empleado> obtenerEmpleados(int idLocal)throws SQLException{
         ArrayList<Empleado> empleados = new ArrayList<Empleado>();// Crea una lista para almacenar los empleados
         String query = "SELECT * FROM Empleado WHERE idLocal = ? AND activo = true";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
