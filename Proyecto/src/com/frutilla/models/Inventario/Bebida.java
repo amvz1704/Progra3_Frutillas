@@ -46,6 +46,11 @@ public class Bebida extends Producto{
 		}
 	}
 	
+	public Bebida(Producto producto) {
+		super(producto);  // Llama al constructor copia de Producto
+		frutasBebida = new ArrayList<FrutasBebida>();
+	}
+
 	public int getTamanioOz() {
         return tamanioOz;
     }

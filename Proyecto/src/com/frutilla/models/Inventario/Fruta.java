@@ -35,6 +35,12 @@ public class Fruta extends Producto{
 		this.envase = original.envase; 
 	}
 
+	public Fruta(Producto producto) {
+		super(producto);  // Llama al constructor copia de Producto
+		this.estaLimpio=false;
+		this.estaEnvasado=false; 
+	}
+
 	public boolean isRequiereLimpieza() {
         return requiereLimpieza;
     	}

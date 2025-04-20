@@ -21,6 +21,10 @@ public class Snack extends Producto{
 		this.requiereEnvase = requiereEnvase; 
 		this.estaEnvasado = estaEnvasado; 
 	}
+	public Snack(Producto producto) {
+		super(producto);  // Llama al constructor copia de Producto
+		this.estaEnvasado = false;
+	}
 	
 	public Snack(Snack original){
 		super(original);
