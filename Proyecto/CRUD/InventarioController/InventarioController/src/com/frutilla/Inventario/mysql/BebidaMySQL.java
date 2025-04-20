@@ -9,6 +9,7 @@ import com.frutilla.models.Inventario.Bebida;
 import com.frutilla.models.Inventario.Producto;
 import com.frutilla.models.Inventario.FrutasBebida;
 import com.frutilla.models.Inventario.TipoEstado;
+import com.frutilla.models.Inventario.TipoLeche;
 import com.frutilla.Inventario.dao.BebidaDAO;
 import java.util.ArrayList;
 import java.sql.Connection;
@@ -29,19 +30,32 @@ public class BebidaMySQL implements BebidaDAO{
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1,bebida.getIdProducto());
             //niguno de estos constructores estan en implementados
-            //ps.setInt(2,bebida.getTamanioOnz());
-            //ps.setString(3, bebida.getTipo());
-            //ps.setString(4, bebida.getEndulzante());
-            //ps.setString(5, bebida.getTipoLeche());
+            ps.setInt(2,bebida.getTamanioOz());
+            ps.setString(3, bebida.getTipo());
+            ps.setString(4, bebida.getEndulzante());
+            ps.setString(5, bebida.getTieneLeche().name());
             //ver bien como se va considerar las frutas que estan en la bebida
             result=ps.executeUpdate();
         }
         return result;
     }
     @Override
-    public int actualizar(FrutasBebida f) throws SQLException{
-        //no estoy segura como se va a guardar en la bd por eso no se implementa
+    public int actualizarComplementos(String tipo,TipoLeche leche,
+            String endulzante,int idProducto,int idLocal) throws SQLException{
         int result=0;
+         String query = """
+                UPDATE Bebida JOIN Producto ON 
+                Bebida.idProducto=Producto.idProducto 
+                SET Bebida.tipo=?, Bebida.tipo=?,
+                Bebida.envase=? WHERE Producto.idLocal=?""";
+        try (Connection con=DBManager.getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
+//            ps.setBoolean(1, limpieza);
+//            ps.setBoolean(2, envasado);
+//            ps.setString(3, envase);
+//            ps.setInt(4, idLocal);
+            result=ps.executeUpdate();
+        }
         return result;
     }
     @Override

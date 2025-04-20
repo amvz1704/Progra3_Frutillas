@@ -5,31 +5,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Statement;
 import java.sql.ResultSet;
 
 
-public class ClienteMySQL extends PersonaMySQL implements ClienteDAO{
+public class ClienteMySQL implements ClienteDAO{
     public void insertarCliente(Cliente cliente) throws SQLException {
-        // Consulta SQL para insertar un nuevo cliente
-        String queryPersona = "INSERT INTO Personas (nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        String queryCliente = "INSERT INTO Clientes (activo, idPersona) VALUES (?, ?)";
-        try(Connection con = DBManager.getConnection(); PreparedStatement psP = con.prepareStatement(queryPersona, Statement.RETURN_GENERATED_KEYS); PreparedStatement psC = con.prepareStatement(queryCliente)){// Obtiene la conexion y prepara la consulta
-            setPersonaParameters(psP, cliente);// Establece los parámetros de la persona
-            psP.executeUpdate();// Ejecuta la consulta
-            try(ResultSet rs = psP.getGeneratedKeys()){// Obtiene las claves generadas por la consulta anterior)
+        String query = "INSERT INTO Cliente (nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
+            setClienteParameters(ps,cliente);// Establece los parámetros del cliente
+            ps.executeUpdate();// Ejecuta la consulta       
+            try(ResultSet rs = ps.getGeneratedKeys()){// Obtiene las claves generadas por la consulta anterior
                 if (rs.next()) {
-                    cliente.setIdPersona(rs.getInt(1)); // Establece el ID de persona en el objeto cliente
+                    cliente.setIdCliente(rs.getInt(1)); // Establece el ID en el objeto cliente
                 }
-            }
-            setClienteParameters(psC,cliente);// Establece los parámetros del cliente
-            psC.executeUpdate();// Ejecuta la consulta            
+            }     
         }
     }
 
-    // Ejemplo de método para obtener un cliente por su ID
+    public ArrayList<Cliente> obtenerClientes()throws SQLException{
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();// Crea una lista para almacenar los clientes
+        String query = "SELECT * FROM Cliente WHERE activo = true";// Consulta SQL para obtener todos los clientes activos
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query); ResultSet rs = ps.executeQuery()){
+            while(rs.next()){
+                clientes.add(mapCliente(rs));// Mapea los datos de cada cliente y los agrega a la lista
+            }
+        }
+        return clientes;
+    }
+
     public Cliente obtenerClientePorId(int idCliente) throws SQLException {
-        String query = "SELECT p.idPersona, p.nombre, p.apellidoPaterno, p.apellidoMaterno, p.correoElectronico, p.telefono, p.usuarioSistema, p.contrasSistema, c.idCliente, c.activo FROM Clientes c JOIN Personas p ON c.idPersona = p.idPersona WHERE idCliente = ?";
+        String query = "SELECT * FROM Cliente WHERE idCliente = ?";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1,idCliente);// Establece el ID del cliente en la consulta
             try(ResultSet rs = ps.executeQuery()){
@@ -42,17 +47,36 @@ public class ClienteMySQL extends PersonaMySQL implements ClienteDAO{
     }
 
     public void actualizarCliente(Cliente cliente) throws SQLException {
-        String query = "UPDATE clientes SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, correoElectronico = ?, activo = ? WHERE idCliente = ?";
+        String query = "UPDATE Cliente SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, correoElectronico = ?, telefono = ?, usuarioSistema = ?, contrasSistema = ?, activo = ? WHERE idCliente = ?";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
-            setClienteParameters(ps, cliente);
-            ps.setInt(7, cliente.getIdCliente());// Establece el ID del cliente en la consulta
+            setClienteParameters(ps, cliente);// Establece los parámetros del cliente
+            ps.setInt(9, cliente.getIdCliente());
+            ps.executeUpdate();
+        }
+    }
+
+    public void eliminarCliente(int idCliente) throws SQLException {
+        String query = "UPDATE Cliente SET activo = false WHERE idCliente = ?";
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, idCliente);// Establece el ID del cliente en la consulta
             ps.executeUpdate();// Ejecuta la consulta
         }
     }
+
+    
+
     private Cliente mapCliente(ResultSet rs) throws SQLException{
         Cliente cliente = new Cliente();
 
-        mapPersona(rs, cliente);// Mapea los datos de la persona al objeto cliente
+        //Persona
+        cliente.setNombre(rs.getString("nombre"));
+        cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
+        cliente.setApellidoMaterno(rs.getString("apellidoMaterno"));
+        cliente.setCorreoElectronico(rs.getString("correoElectronico"));
+        cliente.setTelefono(rs.getString("telefono"));
+        cliente.setUsuarioSistema(rs.getString("usuarioSistema"));
+        cliente.setContraSistema(rs.getString("contrasSistema"));
+
 
         //Cliente
         cliente.setIdCliente(rs.getInt("idCliente"));// Establece el ID del cliente en el objeto cliente
@@ -60,10 +84,17 @@ public class ClienteMySQL extends PersonaMySQL implements ClienteDAO{
 
         return cliente;
     }
+
     private void setClienteParameters(PreparedStatement ps,Cliente cliente) throws SQLException {
-        // Establece los parámetros del cliente en la consulta SQL "INSERT INTO Clientes (activo, idPersona) VALUES (?, ?)"
-        ps.setBoolean(1, cliente.getActivo());
-        ps.setInt(2, cliente.getIdPersona());// Establece el ID de persona en la consulta
+        // Establece los parámetros del cliente en la consulta SQL
+        ps.setString(1, cliente.getNombre());
+        ps.setString(2, cliente.getApellidoPaterno());
+        ps.setString(3, cliente.getApellidoMaterno());
+        ps.setString(4, cliente.getCorreoElectronico());
+        ps.setString(5, cliente.getTelefono());
+        ps.setString(6, cliente.getUsuarioSistema());
+        ps.setString(7, cliente.getContraSistema());
+        ps.setBoolean(8, cliente.getActivo());
     }
 
 }

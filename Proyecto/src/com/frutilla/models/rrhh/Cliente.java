@@ -6,7 +6,6 @@ import com.frutilla.models.inventario.*;
 import com.frutilla.models.venta.*;
 
 public class Cliente extends Persona{
-    private static int correlativo = 1; // Correlativo para asignar ID a los clientes
     private int idCliente;
     private boolean activo; // true: activo, false: inactivo
     // falta inicializar
@@ -18,9 +17,8 @@ public class Cliente extends Persona{
 
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String usuarioSistema, String contraSistema){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
-        this.idCliente = correlativo;
+        this.idCliente = -1;
         this.activo = true; // Por defecto, el cliente es activo al crearse
-        correlativo++;
         this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
 
