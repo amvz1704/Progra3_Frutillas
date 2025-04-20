@@ -10,13 +10,15 @@ package com.frutilla.Inventario.dao;
  */
 
 import com.frutilla.models.Inventario.Bebida;
-import com.frutilla.models.Inventario.FrutasBebida;
+import com.frutilla.models.Inventario.TipoLeche;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface BebidaDAO {
     int insertar(Bebida bebida,int idLocal) throws SQLException;
-    int actualizar(FrutasBebida f) throws SQLException; //lo pongo pero no estoy segura que se tenga
+    int actualizarComplementos (String tipo,TipoLeche leche,String endulzante,
+            int idProducto,int idLocal) throws SQLException; 
+    //lo pongo pero no estoy segura que se tenga
     //que hacer
     Bebida obtenerDatosBebida (int idProducto,int idLocal) throws SQLException;
     //no se coloca eliminar porque el eliminado logico se hace a nivel de 

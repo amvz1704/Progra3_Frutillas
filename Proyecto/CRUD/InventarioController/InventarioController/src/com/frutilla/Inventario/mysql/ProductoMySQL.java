@@ -23,7 +23,8 @@ public class ProductoMySQL implements ProductoDAO{
                 + "precioUnitario,stock,stockMinimo,estado,idLocal) VALUES "
                 + "(?,?,?,?,?,?,?,?)";
         try(Connection con=DBManager.getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
+             PreparedStatement ps=con.prepareStatement(query,
+                     PreparedStatement.RETURN_GENERATED_KEYS)){
             ps.setString(1,producto.getNombre());
             ps.setString(2, producto.getDescripcion());
             ps.setString(3, producto.getCodigoProd());
@@ -33,6 +34,11 @@ public class ProductoMySQL implements ProductoDAO{
             ps.setString(7, producto.getTipoEstado().name());
             ps.setInt(8, idLocal); 
             result=ps.executeUpdate();
+            try(ResultSet rs=ps.getGeneratedKeys()){
+                if(rs.next()){
+                    producto.setIdProducto(rs.getInt(1));
+                }
+            }
         }
         return result;
     }
