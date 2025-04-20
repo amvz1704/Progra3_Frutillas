@@ -13,8 +13,8 @@ public class Snack extends Producto{
 		this.estaEnvasado = false; 
 	}
 	
-	public Snack(int idProducto, String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, String tipo,String envase, boolean requiereEnvase, boolean estaEnvasado){
-		super(idProducto, nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo); //arreglar
+	public Snack(String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, String tipo,String envase, boolean requiereEnvase, boolean estaEnvasado){
+		super(nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo); //arreglar
 		
 		this.tipo = tipo; 
 		this.envase = envase; 

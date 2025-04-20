@@ -18,10 +18,10 @@ public class Producto{
 		this.precioUnitario = 0; 
 	}
 	
-	public Producto(int idProducto, String nombre, String descripcion, String codigoProd,
+	public Producto(String nombre, String descripcion, String codigoProd,
 		double precioUnitario,int stock, int stockMinimo){
 			
-		this.idProducto = idProducto;
+		this.idProducto = -1;
 		this.nombre = nombre; 
 		this.descripcion = descripcion; 
 		this.codigoProd = codigoProd; 
