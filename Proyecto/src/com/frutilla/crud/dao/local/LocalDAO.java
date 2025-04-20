@@ -1,5 +1,9 @@
 package com.frutilla.crud.dao.local;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.frutilla.models.local.Local; //incluimos LOCAL 
 
 public interface LocalDAO {
     void crearLocal(Local local) throws SQLException; 
