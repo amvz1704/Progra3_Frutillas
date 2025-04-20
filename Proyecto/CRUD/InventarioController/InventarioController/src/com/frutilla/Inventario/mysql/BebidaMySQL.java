@@ -8,7 +8,7 @@ import com.frutilla.config.DBManager;
 import com.frutilla.models.Inventario.Bebida;
 import com.frutilla.models.Inventario.Producto;
 import com.frutilla.models.Inventario.FrutasBebida;
-import com.frutilla.models.Inventario.TipoLeche;
+import com.frutilla.models.Inventario.TipoEstado;
 import com.frutilla.Inventario.dao.BebidaDAO;
 import java.util.ArrayList;
 import java.sql.Connection;
