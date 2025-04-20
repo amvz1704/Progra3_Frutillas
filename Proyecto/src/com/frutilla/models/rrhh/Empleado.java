@@ -3,24 +3,24 @@ import java.time.*;
 
 public class Empleado extends Persona{
     private int idEmpleado;
-    private static int correlativo = 1;
     private LocalDate fechaContrato;
     private double salario;
     // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
     private boolean turnoTrabajo;
-	private boolean estado;
+	private boolean activo;
+    private char tipo;
 	
 
     public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno,
     String correoElectronico, String telefono, LocalDate fechaContrato,
-    double salario, String usuarioSistema, String contraSistema){
+    double salario, String usuarioSistema, String contraSistema, char tipo){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
         this.fechaContrato = fechaContrato;
         this.salario = salario;
-        this.idEmpleado = correlativo;
+        this.idEmpleado = -1;
         this.turnoTrabajo = false;
-		this.estado = false;
-        correlativo++;
+		this.activo = false;
+        this.tipo = tipo;
     }
 	
 	public Empleado(){
@@ -28,7 +28,7 @@ public class Empleado extends Persona{
 	
 	@Override
 	public String toString(){
-		return "Id: " + String.valueOf(idEmpleado) + ", " + super.toString() + ", Salario: " + String.valueOf(salario) + "Estado: " + estado+ "\n";
+		return "Id: " + String.valueOf(idEmpleado) + ", " + super.toString() + ", Salario: " + String.valueOf(salario) + "Estado: " + activo + "\n";
 	}
 
 	//para asignar turno  -- nuevo agregado
@@ -47,14 +47,6 @@ public class Empleado extends Persona{
 
     public void setIdEmpleado(int idEmpleado) {
         this.idEmpleado = idEmpleado;
-    }
-
-    public static int getCorrelativo() {
-        return correlativo;
-    }
-
-    public static void setCorrelativo(int aCorrelativo) {
-        correlativo = aCorrelativo;
     }
 
     public LocalDate getFechaContrato() {
@@ -83,12 +75,20 @@ public class Empleado extends Persona{
         this.turnoTrabajo = turnoTrabajo;
     }
 	
-	public boolean getEstado() {
-        return estado;
+	public boolean getActivo() {
+        return activo;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public char getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(char tipo) {
+        this.tipo = tipo;
     }
 	
 }

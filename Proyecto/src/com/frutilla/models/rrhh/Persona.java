@@ -1,8 +1,6 @@
 package com.frutilla.models.rrhh;
 
 public abstract class Persona {
-    private int idPersona;
-    private static int correlativo=1;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -16,7 +14,6 @@ public abstract class Persona {
     }
 
     public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, String usuarioSistema, String contraSistema) {
-        this.idPersona = correlativo;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -24,7 +21,6 @@ public abstract class Persona {
         this.telefono = telefono;
         this.usuarioSistema = usuarioSistema;
         this.contraSistema = contraSistema;
-        correlativo++;
     }
 
     @Override
@@ -51,22 +47,6 @@ public abstract class Persona {
 	public void salirSistema() {
 		System.out.println("El usuario " + usuarioSistema + " ha cerrado sesión.");
 	}
-
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
-    }
-
-    public static int getCorrelativo() {
-        return correlativo;
-    }
-
-    public static void setCorrelativo(int correlativo) {
-        Persona.correlativo = correlativo;
-    }
 
     public String getNombre() {
         return nombre;

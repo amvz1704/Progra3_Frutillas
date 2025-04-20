@@ -1,4 +1,4 @@
-package com.frutilla.models.Inventario;
+package com.frutilla.models.inventario;
 
 public enum TipoEstado{
 	DISPONIBLE, AGOTADO
