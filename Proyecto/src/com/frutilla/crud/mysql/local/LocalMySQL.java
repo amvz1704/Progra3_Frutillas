@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 import com.frutilla.models.local.Local; //incluimos LOCAL 
 
+
+import com.frutilla.config.DBManager; //
+
 public class LocalMySQL implements LocalDAO{
 	
 	//creacion de un local en base a un objeto "Local inicializado"

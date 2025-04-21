@@ -28,9 +28,20 @@ public class FrutillaSoft{
 		
 		try{
 			
+		/*B: Todo esto funciona correctamente uwu 
 			LocalDAO primerLocal = new LocalMySQL(); //instanciamos nuestro local
-			//ahora creamos el local 
+			//ahora creamos el objeto local 
+			Local localSociales = new Local("Sociales","Entre el polideportivo y generales ", "Estudios Generales Letras, Av. Universitaria 1801, San Miguel 15088", "999999999");
 			
+			primerLocal.crearLocal(localSociales);
+			
+			
+			//obtener el id del local no necesario pero para asegurarnos que el incremnet esta bien
+			int idLocal_Sociales = localSociales.getIdLocal(); //nota Nayane: solo funciona si las tablas en la BD tiene autoincrement 
+			System.out.println(idLocal_Sociales);
+		/**/	
+			
+		/*A: Todo esto debajo funciona pero por x motivo se demora :'v --> 
 			EmpleadoDAO primerEmpleado = new EmpleadoMySQL(); 
 			EmpleadoDAO segundoEmpleado = new EmpleadoMySQL(); 
 			
@@ -40,9 +51,11 @@ public class FrutillaSoft{
 			//Creamos un repartidor
 			Repartidor repartidor1 = new Repartidor("Enzo", "Avila", "Mamani", "enzo@gmail.com", "999999999", LocalDate.now(), 1000, "enzo", "1234");
 			
-			primerEmpleado.insertarEmpleado(repartidor1, 1);
-			segundoEmpleado.insertarEmpleado(supervisor1, 1); //esto es nuevo estamos agregando un supervisor al local de id 1 owo
-			
+			//Como dijo junior el idLocal lo asignamos al nuevo local creado owo 
+			primerEmpleado.insertarEmpleado(repartidor1, localSociales.getIdLocal());
+			segundoEmpleado.insertarEmpleado(supervisor1, localSociales.getIdLocal(); ); //esto es nuevo estamos agregando un supervisor al local de id 1 owo
+		/*A: Todo esto debajo funcion --> */
+		
 			
 		}
 		catch (SQLException e) {
