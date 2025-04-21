@@ -16,7 +16,7 @@ public interface LocalDAO {
 	
 	//consultas especificas
 	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
-//	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
+	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
 	
 	//podriamos agregar a unas consultas cuando no esten activos o algo asi x
 	
