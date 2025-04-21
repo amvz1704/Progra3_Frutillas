@@ -9,6 +9,7 @@ public abstract class Persona {
     //son el usuario y contraseña;
     private String usuarioSistema;
     private String contraSistema;
+    private boolean activo; // true: activo, false: inactivo
 
     public Persona() {
     }
@@ -21,6 +22,7 @@ public abstract class Persona {
         this.telefono = telefono;
         this.usuarioSistema = usuarioSistema;
         this.contraSistema = contraSistema;
+        this.activo = true; // Por defecto, la persona está activa al crearla
     }
 
     @Override
@@ -102,6 +104,14 @@ public abstract class Persona {
 
     public void setContraSistema(String contraSistema) {
         this.contraSistema = contraSistema;
+    }
+    
+    public boolean getActivo(){
+        return activo;
+    }
+
+    public void setActivo(boolean activo){
+        this.activo = activo;
     }
 	
 }

@@ -22,17 +22,18 @@ public class EmpleadoMySQL implements EmpleadoDAO{
 	
 	
     public void insertarEmpleado(Empleado empleado, int idLocal) throws SQLException{
-        String query = "INSERT INTO Empleado (idEmpleado, nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaContrato, salario, turnoTrabajo, tipo, idLocal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){// Obtiene la conexion y prepara la consulta
+        String query = "INSERT INTO Empleado (idUsuario, nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaContrato, salario, turnoTrabajo, tipo, idLocal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){// Obtiene la conexion y prepara la consulta
             UsuarioMySQL usuarioMySQL = new UsuarioMySQL();// Crea una instancia de UsuarioMySQL
             usuarioMySQL.insertarUsuario(empleado, con);// Inserta el usuario en la base de datos
             setEmpleadoParameters(ps, empleado, idLocal);// Establece los parámetros del empleado    
+            ps.executeUpdate();// Ejecuta la consulta
         }
     }
     
     public Empleado obtenerEmpleadoPorId(int idEmpleado) throws SQLException{
         String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u JOIN Empleado e ON e.idUsuario = u.idUsuario WHERE e.idUsuario = ? AND u.activo = true";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1,idEmpleado);// Establece el ID del empleado en la consulta
             try(ResultSet rs = ps.executeQuery()){
                 if(rs.next()){
@@ -44,8 +45,8 @@ public class EmpleadoMySQL implements EmpleadoDAO{
     }
 
     public void actualizarEmpleado(Empleado empleado, int idLocal) throws SQLException{
-        String query = "UPDATE Empleado SET idEmpleado = ?, nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, correoElectronico = ?, fechaContrato = ?, salario = ?, turnoTrabajo = ?, tipo = ?, idLocal = ? WHERE idEmpleado = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        String query = "UPDATE Empleado SET idUsuario = ?, nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, correoElectronico = ?, fechaContrato = ?, salario = ?, turnoTrabajo = ?, tipo = ?, idLocal = ? WHERE idUsuario = ?";
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             UsuarioMySQL usuarioMySQL = new UsuarioMySQL();// Crea una instancia de UsuarioMySQL
             usuarioMySQL.actualizarUsuario(empleado, con);
             setEmpleadoParameters(ps, empleado, idLocal);// Establece los parámetros del empleado
@@ -55,7 +56,7 @@ public class EmpleadoMySQL implements EmpleadoDAO{
     }
     public void eliminarEmpleado(int idEmpleado) throws SQLException{
         String query = "UPDATE Usuario SET activo = false WHERE idUsuario = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1, idEmpleado);// Establece el ID del empleado en la consulta
             ps.executeUpdate();
         }
@@ -64,7 +65,7 @@ public class EmpleadoMySQL implements EmpleadoDAO{
     public ArrayList<Empleado> obtenerTodos(int idLocal)throws SQLException{
         ArrayList<Empleado> empleados = new ArrayList<Empleado>();// Crea una lista para almacenar los empleados
         String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u JOIN Empleado e ON e.idUsuario = u.idUsuario WHERE e.idLocal = ? AND Usuario.activo = true";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1, idLocal);// Establece el ID del local en la consulta
             try(ResultSet rs = ps.executeQuery()){
                 while(rs.next()){

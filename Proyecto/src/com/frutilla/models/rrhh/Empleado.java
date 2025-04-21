@@ -7,7 +7,6 @@ public class Empleado extends Persona{
     private double salario;
     // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
     private boolean turnoTrabajo;
-	private boolean activo;
     private char tipo;
 	
 
@@ -19,7 +18,6 @@ public class Empleado extends Persona{
         this.salario = salario;
         this.idEmpleado = -1;
         this.turnoTrabajo = false;
-		this.activo = false;
         this.tipo = tipo;
     }
 	
@@ -73,14 +71,6 @@ public class Empleado extends Persona{
 
     public void setTurnoTrabajo(boolean turnoTrabajo) {
         this.turnoTrabajo = turnoTrabajo;
-    }
-	
-	public boolean getActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
     }
 
     public char getTipo() {

@@ -9,5 +9,5 @@ public interface ClienteDAO {
     Cliente obtenerClientePorId(int idCliente) throws SQLException;
     void actualizarCliente(Cliente cliente) throws SQLException;
     void eliminarCliente(int idCliente) throws SQLException;
-    ArrayList<Cliente> obtenerClientes()throws SQLException;
+    ArrayList<Cliente> obtenerTodos()throws SQLException;
 }
