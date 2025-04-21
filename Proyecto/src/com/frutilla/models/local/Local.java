@@ -6,10 +6,11 @@ import com.frutilla.models.inventario.*;
 import com.frutilla.models.rrhh.Empleado;
 import com.frutilla.models.rrhh.Repartidor;
 import com.frutilla.models.rrhh.Supervisor;
-import com.frutilla.models.venta.*;
+
+import com.frutilla.models.venta.*; //version sin ventas
 
 public class Local {
-    private static int correlativo = 1; // Correlativo para asignar ID a los locales
+   
     private int idLocal;
     private String nombre;
     private String descripcion;
@@ -21,8 +22,9 @@ public class Local {
     private ArrayList<Empleado> empleados; // Lista de empleados
     private ArrayList<Producto> productos; // Lista de todos los productos
 
+	//Constructor Local
     public Local(String nombre, String descripcion, String direccion, String telefono){
-        this.idLocal = correlativo;
+        this.idLocal = -1; //sera asignado por la BD 
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.direccion = direccion;
@@ -31,9 +33,9 @@ public class Local {
         this.ordenesVentas = new ArrayList<OrdenVenta>();
         this.empleados = new ArrayList<Empleado>();
         this.productos = new ArrayList<Producto>();
-        correlativo++;
     }
 
+	//Constructor copia Local
     public Local(Local local){
         this.idLocal = local.getIdLocal();
         this.nombre = local.getNombre();
@@ -46,7 +48,9 @@ public class Local {
         this.productos = new ArrayList<Producto>(local.getProductos());
         this.idSupervisor = local.getIdSupervisor();
     }
-
+	
+	
+	//Regresa la primer orden que esta por ser entregada 
     public OrdenVenta obtenerOrden(){
         for(OrdenVenta orden : ordenesVentas) {
             if(orden.getEstado() == EstadoVenta.POR_ENTREGAR) {
@@ -55,7 +59,8 @@ public class Local {
         }
         return null; // No hay ordenes en estado POR_ENTREGAR
     }
-
+	
+	//muestra en la pantalla la lista de productos dentro de un local
     public void generarReporteProductos(){
         String reporte = "Reporte de productos del local " + "\n";
         reporte += "Productos: \n";
@@ -64,7 +69,8 @@ public class Local {
         }
         System.out.println(reporte);
     }
-
+	
+	//dado una lista de productos y una lista de cantidades actualiza el stock 
     public void actualizarStock(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad) {
     for (int i = 0; i < listaProductos.size(); i++) {
         Producto pro = listaProductos.get(i);
@@ -79,7 +85,8 @@ public class Local {
         }
     }
 }
-
+	
+	//verifica si existe el stock necesario para un producto 
     public boolean verificarStock(Producto producto, int cantidad) {
         // Verifica si el producto existe en la lista de productos
         for (Producto p : productos) {
@@ -97,7 +104,7 @@ public class Local {
         return false;
     }
     
-
+	//agrega el producto o el stock de producto
     public void agregarProducto(Producto producto){
         for(Producto p : productos) {
             if (p.getCodigoProd().equals(producto.getCodigoProd())) {
@@ -110,7 +117,10 @@ public class Local {
         productos.add(producto);
         System.out.println("Se agrego el producto(" + producto.getNombre() + ") al local.");
     }
-
+	
+	
+	//Agregando ordenes de venta y empleados 
+	
     public void agregarOrdenVenta(OrdenVenta orden){
         ordenesVentas.add(orden);
     }
@@ -148,6 +158,11 @@ public class Local {
             }
         }
         System.out.println(reporte);
+    }
+	
+	//cambio nuevo agregar el setIdLocal -- 20/04 19:00
+	public void setIdLocal(int idLocal){
+        this.idLocal = idLocal;
     }
 
     public int getIdLocal() {
