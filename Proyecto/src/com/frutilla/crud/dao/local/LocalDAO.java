@@ -3,8 +3,10 @@ package com.frutilla.crud.dao.local;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+//incluyendo models de todos uwu
 import com.frutilla.models.local.Local; //incluimos LOCAL 
 import com.frutilla.models.rrhh.Empleado;
+import com.frutilla.models.inventario.Producto;
 
 public interface LocalDAO {
 	
@@ -16,8 +18,8 @@ public interface LocalDAO {
 	ArrayList<Local> obtenerTodosLocales() throws SQLException;
 	
 //consultas especificas decido mantenerlo con encontrarEmpleados y Productos
-	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
-	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
+	public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
+	public ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
 	
 	//podriamos agregar a unas consultas cuando no esten activos o algo asi x
 	
@@ -29,15 +31,16 @@ public interface LocalDAO {
 	//UPDATEs
 	
 	void actualizarLocal(Local local) throws SQLException; //puedes actualizar varios datos a la vez --> por ejemplo el id de supervisor (si es un empleado tipo supervisor)
-    
-	//asignar un supervisor
-	//agregar un empleado o supervisor
-	//agregar un producto	
 	
-	//eliminar un empleado o supervisor 
-	//eliminar un producto 
-	
-	//generar reportes de:
+	//Otros UPDATES aun no implementados
+		//asignar un supervisor
+		//agregar un empleado o supervisor
+		//agregar un producto	
+		
+		//eliminar un empleado o supervisor 
+		//eliminar un producto 
+		
+		//generar reportes de:
 	
 	void eliminarLocalPorId(int idLocal) throws SQLException;
 	

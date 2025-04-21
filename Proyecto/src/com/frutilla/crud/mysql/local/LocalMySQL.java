@@ -3,9 +3,9 @@ package com.frutilla.crud.mysql.local;
 
 import com.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
 import com.frutilla.crud.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
-import com.frutilla.crud.mySQL.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
+import com.frutilla.crud.mysql.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
 import com.frutilla.crud.dao.inventario.ProductoDAO; 
-import com.frutilla.crud.mySQL.inventario.ProductoMySQL; 
+import com.frutilla.crud.mysql.inventario.ProductoMySQL; 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,7 +58,7 @@ public class LocalMySQL implements LocalDAO{
 	}
 	
 	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
-	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
+	public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 		
 		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
 		
@@ -67,7 +67,7 @@ public class LocalMySQL implements LocalDAO{
 	}
 	
 	//Devuelve una lista de producto de un local por id --> llama a ProductosDAOSQL 
-	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
+	public ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
 		
 		ProductoDAO interfazProducto = new ProductoMySQL(); 
 		
@@ -128,18 +128,5 @@ public class LocalMySQL implements LocalDAO{
             ps.executeUpdate();// Ejecuta la consulta
         }
     }
-    /* se necesita el encontrarEmpleado de Empleado MySQL pero es metodo privado
-    
-    public ArrayList<Empleado> obtenerEmpleados(int idLocal) throws SQLException{   
-        ArrayList<Empleado> empleados = new ArrayList<>();
-        String query = "SELECT * FROM Empleado WHERE idLocal = ?";
-        EmpleadoDAO emp = new EmpleadoMySQL();
-        try(Connection con=DBManager.getConnection();PreparedStatement ps=con.prepareStatement(query); ResultSet rs=ps.executeQuery()){
-			while(rs.next()){
-				empleados.add(emp.encontrarEmpleado(rs));
-			}  
-        }
-        return empleados;
-    }
-     */
+	
 }
