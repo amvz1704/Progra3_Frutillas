@@ -8,11 +8,11 @@ import com.frutilla.models.local.Local; //incluimos LOCAL
 public interface LocalDAO {
 	
     void crearLocal(Local local) throws SQLException; 
+		
+    Local obtenerLocalPorId(int idLocal) throws SQLException;
 	
-//    Local obtenerLocalPorId(int idLocal) throws SQLException;
-	
-	//obtener una lista de locales de frutilla 
-//	ArrayList<Local> obtenerTodos() throws SQLException;
+	//obtener una lista de locales de frutilla desde una instancia 
+	ArrayList<Local> obtenerTodosLocales() throws SQLException;
 	
 	//consultas especificas
 //	ArrayList<Local> encontrarActivos() throws SQLException;

@@ -31,6 +31,51 @@ public class LocalMySQL implements LocalDAO{
 	}
 	
 	
+	public ArrayList<Local> obtenerTodosLocales() throws SQLException{
+		ArrayList<Local> locales=new ArrayList<Local>();
+		
+        String query="SELECT * FROM Local WHERE activo = true"; //Consulta SQL para obtener todos los locales activos
+        try(Connection con=DBManager.getConnection();
+            PreparedStatement ps=con.prepareStatement(query);
+			ResultSet rs=ps.executeQuery()){
+            
+				while(rs.next()){
+					locales.add(encontrarLocal(rs));
+				}  
+        }
+		
+        return locales;
+		
+		
+	}
+	
+	
+	
+	public Local obtenerLocalPorId(int idLocal) throws SQLException{
+        String query = "SELECT * FROM Local WHERE idLocal = ?";
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1,idLocal);// Establece el ID del local en la consulta
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    return encontrarLocal(rs);
+                }
+            }
+        }
+        return null;
+    }
+	
+	
+	private Local encontrarLocal(ResultSet rs) throws SQLException{
+        
+        Local local = new Local(rs.getString("nombre"), rs.getString("descripcion"), rs.getString("direccion"), rs.getString("telefono"));
+        
+        local.setIdLocal(rs.getInt("idLocal"));
+		local.setActivo(rs.getBoolean("activo"));
+        
+
+        return local;
+    }
+	
 	private void setLocalParameters(PreparedStatement ps,Local local) throws SQLException {
         // Establece los parámetros del empleado en la consulta SQL
         ps.setString(1, local.getNombre());
