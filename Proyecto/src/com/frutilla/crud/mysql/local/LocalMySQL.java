@@ -17,7 +17,7 @@ import com.frutilla.config.DBManager; //
 public class LocalMySQL implements LocalDAO{
 	
 	//creacion de un local en base a un objeto "Local inicializado"
-	public void crearLocal(Local local) throws SQLException{
+	public void insertarLocal(Local local) throws SQLException{
 		String query = "INSERT INTO Local (nombre, descripcion, direccion, activo, telefono) VALUES (?, ?, ?, ?, ?)";
 		try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
 			setLocalParameters(ps, local);// Establece los parámetros del local

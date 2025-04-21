@@ -10,13 +10,11 @@ public class ComprobantePagoMySQL implements ComprobantePagoDAO {
 
     // Método para insertar un nuevo comprobante de pago
     @Override
-    public int insertar(ComprobantePago comprobantePago) throws SQLException {
-        int result = 0;
-        String query = "INSERT INTO ComprobantePago(numeroArticulos, subtotal, montoIGV, total, fecha, formaDePago) " +
-                       "VALUES(?, ?, ?, ?, ?, ?)";
+    public void insertarComprobante(ComprobantePago comprobantePago) throws SQLException {
+        String query = "INSERT INTO ComprobantePago(numeroArticulos, subtotal, montoIGV, total, fecha, formaDePago) VALUES(?, ?, ?, ?, ?, ?)";
 
         
-        try (Connection con = DBManager.getConnection();  // Se conecta a la base de datos
+        try (Connection con = DBManager.getInstance().getConnection();  // Se conecta a la base de datos
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) { 
 
             // Insertar datos en la base de datos
@@ -28,7 +26,7 @@ public class ComprobantePagoMySQL implements ComprobantePagoDAO {
             ps.setString(6, comprobantePago.getFormaDePago());
 
             // Ejecuta la inserción en la base de datos
-            result = ps.executeUpdate();
+            ps.executeUpdate();
 
             // Traer el último idComprobante generado (autoincremental)
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -127,10 +125,19 @@ public class ComprobantePagoMySQL implements ComprobantePagoDAO {
                 comprobante.setMontoIGV(rs.getDouble("montoIGV"));
                 comprobante.setTotal(rs.getDouble("total"));
                 comprobante.setFecha(rs.getDate("fecha").toLocalDate());
-                comprobante.setFormaDePago(rs.getString("formaDePago"));
+                comprobante.setFormaPago(rs.getString("formaDePago"));
                 comprobantes.add(comprobante);
             }
         }
         return comprobantes;
+    }
+
+    private void setComprobanteParameters(PreparedStatement ps, ComprobantePago comprobantePago) throws SQLException {
+        ps.setInt(1, comprobantePago.getNumeroArticulos());
+        ps.setDouble(2, comprobantePago.getSubtotal());
+        ps.setDouble(3, comprobantePago.getMontoIGV());
+        ps.setDouble(4, comprobantePago.getTotal());
+        ps.setDate(5, Date.valueOf(comprobantePago.getFecha()));
+        ps.setString(6, comprobantePago.getFormaPago().toString());
     }
 }

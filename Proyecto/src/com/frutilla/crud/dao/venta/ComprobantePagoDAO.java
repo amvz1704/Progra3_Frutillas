@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface ComprobantePagoDAO {
 
     // Método para insertar un nuevo comprobante de pago
-    int insertar(ComprobantePago comprobantePago) throws SQLException;
+    void insertarComprobante(ComprobantePago comprobantePago) throws SQLException;
 
     // Método para modificar un comprobante de pago
     int modificar(ComprobantePago comprobantePago) throws SQLException;
