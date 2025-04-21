@@ -9,21 +9,25 @@ public interface LocalDAO {
 	
     void crearLocal(Local local) throws SQLException; 
 	
-    Local obtenerLocalPorId(int idLocal) throws SQLException;
+//    Local obtenerLocalPorId(int idLocal) throws SQLException;
+	
 	//obtener una lista de locales de frutilla 
-	ArrayList<Local> obtenerTodos() throws SQLException;
+//	ArrayList<Local> obtenerTodos() throws SQLException;
 	
 	//consultas especificas
-	ArrayList<Local> encontrarActivos() throws SQLException;
+//	ArrayList<Local> encontrarActivos() throws SQLException;
+//	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
+//	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
 	
-	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
-	ArrayList<OrdenVenta> encontrarOrdenes(int idLocal) throws SQLException; 
-	ArrayList<OrdenVenta> encontrarOrdenesPorFecha(int idLocal, LocalDate fecha) throws SQLException; 
-	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
+	
+	//Implementar cuando esté terminado Ventas
+//	ArrayList<OrdenVenta> encontrarOrdenes(int idLocal) throws SQLException; 
+//	ArrayList<OrdenVenta> encontrarOrdenesPorFecha(int idLocal, LocalDate fecha) throws SQLException; 
+	
 	
 	//UPDATEs
 	
-    void actualizarLocal(Local local) throws SQLException; //puedes actualizar varios datos a la vez --> por ejemplo el id de supervisor (si es un empleado tipo supervisor)
+//void actualizarLocal(Local local) throws SQLException; //puedes actualizar varios datos a la vez --> por ejemplo el id de supervisor (si es un empleado tipo supervisor)
     
 	//asignar un supervisor
 	//agregar un empleado o supervisor
@@ -34,7 +38,7 @@ public interface LocalDAO {
 	
 	//generar reportes de:
 	
-	void eliminarLocalPorId(int idLocal) throws SQLException;
+//void eliminarLocalPorId(int idLocal) throws SQLException;
 	
 	//falta agregar uwu 
 }

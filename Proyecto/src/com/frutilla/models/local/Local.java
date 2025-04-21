@@ -159,6 +159,11 @@ public class Local {
         }
         System.out.println(reporte);
     }
+	
+	//cambio nuevo agregar el setIdLocal -- 20/04 19:00
+	public void setIdLocal(int idLocal){
+        this.idLocal = idLocal;
+    }
 
     public int getIdLocal() {
         return idLocal;
