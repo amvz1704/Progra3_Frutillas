@@ -2,6 +2,8 @@ package com.frutilla.crud.mysql.local;
 
 
 import com.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
+import com.frutilla.crus.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
+import com.frutilla.crus.dao.mySQL.EmpleadoMy;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +13,9 @@ import java.util.ArrayList;
 
 import com.frutilla.models.local.Local; //incluimos LOCAL 
 
+import com.frutilla.config.DBManager; //El manager 
 
-import com.frutilla.config.DBManager; //
+
 
 public class LocalMySQL implements LocalDAO{
 	
@@ -45,6 +48,13 @@ public class LocalMySQL implements LocalDAO{
         }
 		
         return locales;
+		
+		
+	}
+	
+	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
+	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
+		
 		
 		
 	}
