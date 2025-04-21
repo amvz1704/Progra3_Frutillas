@@ -94,8 +94,9 @@ public class FrutillaSoft{
 			primerEmpleado.insertarEmpleado(repartidor2, localB.getIdLocal()); 
 			
 		/*A: Todo esto debajo funcion --> */
+		// Ya funciona eliminarLocal y actualizarLocal
 		
-			
+
 		}
 		catch (SQLException e) {
             e.printStackTrace();
