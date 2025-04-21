@@ -10,9 +10,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.frutilla.models.local.Local; //incluimos LOCAL 
-
-
+import com.frutilla.models.rrhh.Empleado;
 import com.frutilla.config.DBManager; //
+import com.frutilla.crud.mysql.rrhh.EmpleadoMySQL;
+import com.frutilla.crud.dao.rrhh.EmpleadoDAO;
+
+import java.util.ArrayList;
 
 public class LocalMySQL implements LocalDAO{
 	
@@ -85,4 +88,35 @@ public class LocalMySQL implements LocalDAO{
         ps.setString(5, local.getTelefono());
     }
 	
+    public void actualizarLocal(Local local) throws SQLException{
+        String query = "UPDATE Local SET nombre = ?, descripcion = ?, direccion = ?, activo = ?, telefono = ? WHERE idLocal = ?";
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+            setLocalParameters(ps, local);// Establece los parámetros del local
+            //ps.setInt(6, local.getIdSupervisor());
+            ps.setInt(6, local.getIdLocal());
+            ps.executeUpdate();
+        }
+    }
+
+    public void eliminarLocalPorId(int idLocal) throws SQLException{
+        String query = "UPDATE Local SET activo = false WHERE idLocal = ?";
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, idLocal);// Establece el ID del local en la consulta
+            ps.executeUpdate();// Ejecuta la consulta
+        }
+    }
+    /* se necesita el encontrarEmpleado de Empleado MySQL pero es metodo privado
+    
+    public ArrayList<Empleado> obtenerEmpleados(int idLocal) throws SQLException{   
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        String query = "SELECT * FROM Empleado WHERE idLocal = ?";
+        EmpleadoDAO emp = new EmpleadoMySQL();
+        try(Connection con=DBManager.getConnection();PreparedStatement ps=con.prepareStatement(query); ResultSet rs=ps.executeQuery()){
+			while(rs.next()){
+				empleados.add(emp.encontrarEmpleado(rs));
+			}  
+        }
+        return empleados;
+    }
+     */
 }
