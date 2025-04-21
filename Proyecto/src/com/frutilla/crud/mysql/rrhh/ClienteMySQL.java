@@ -22,15 +22,12 @@ public class ClienteMySQL implements ClienteDAO{
 	
 	
     public void insertarCliente(Cliente cliente) throws SQLException {
-        String query = "INSERT INTO Cliente (nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Cliente (idCliente, nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
+            int id = insertarUsuario();
+            cliente.setIdCliente(id);// Establece el ID en el objeto cliente
             setClienteParameters(ps,cliente);// Establece los parámetros del cliente
-            ps.executeUpdate();// Ejecuta la consulta       
-            try(ResultSet rs = ps.getGeneratedKeys()){// Obtiene las claves generadas por la consulta anterior
-                if (rs.next()) {
-                    cliente.setIdCliente(rs.getInt(1)); // Establece el ID en el objeto cliente
-                }
-            }     
+            ps.executeUpdate();// Ejecuta la consulta
         }
     }
 
@@ -99,14 +96,15 @@ public class ClienteMySQL implements ClienteDAO{
 
     private void setClienteParameters(PreparedStatement ps,Cliente cliente) throws SQLException {
         // Establece los parámetros del cliente en la consulta SQL
-        ps.setString(1, cliente.getNombre());
-        ps.setString(2, cliente.getApellidoPaterno());
-        ps.setString(3, cliente.getApellidoMaterno());
-        ps.setString(4, cliente.getCorreoElectronico());
-        ps.setString(5, cliente.getTelefono());
-        ps.setString(6, cliente.getUsuarioSistema());
-        ps.setString(7, cliente.getContraSistema());
-        ps.setBoolean(8, cliente.getActivo());
+        ps.setInt(1, cliente.getIdCliente());
+        ps.setString(2, cliente.getNombre());
+        ps.setString(3, cliente.getApellidoPaterno());
+        ps.setString(4, cliente.getApellidoMaterno());
+        ps.setString(5, cliente.getCorreoElectronico());
+        ps.setString(6, cliente.getTelefono());
+        ps.setString(7, cliente.getUsuarioSistema());
+        ps.setString(8, cliente.getContraSistema());
+        ps.setBoolean(9, cliente.getActivo());
     }
 
 }
