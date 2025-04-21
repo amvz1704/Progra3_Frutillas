@@ -12,14 +12,14 @@ public interface LocalDAO {
 		
     Local obtenerLocalPorId(int idLocal) throws SQLException;
 	
-	//obtener una lista de locales de frutilla desde una instancia 
+	//obtener una lista de locales de frutilla que estan activos
 	ArrayList<Local> obtenerTodosLocales() throws SQLException;
 	
-	//consultas especificas
-//	ArrayList<Local> encontrarActivos() throws SQLException;
-	ArrayList<Empleado> obtenerEmpleados(int idLocal) throws SQLException; 
-//	ArrayList<Producto> obtenerProductos(int idLocal) throws SQLException; 
+//consultas especificas decido mantenerlo con encontrarEmpleados y Productos
+	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
+	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
 	
+	//podriamos agregar a unas consultas cuando no esten activos o algo asi x
 	
 	//Implementar cuando esté terminado Ventas
 //	ArrayList<OrdenVenta> obtenerOrdenes(int idLocal) throws SQLException; 
