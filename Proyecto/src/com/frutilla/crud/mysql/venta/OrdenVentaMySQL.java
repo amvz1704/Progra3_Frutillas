@@ -24,10 +24,8 @@ public class OrdenVentaMySQL {
     public int insertarOrdenVenta(OrdenVenta ordenVenta,int idLocal,int idEmpleado,
                 int idCliente,int idComprobante) throws SQLException{
         int result=0;
-        String query="INSERT INTO OrdenVenta(descripcion,montoTotal,entregado,estadoVenta,"
-                + "idLocal,idEmpleado,idCliente,idComprobante)"
-                + "values(?,?,?,?,?,?,?,?) ";
-        try(Connection con = DBManager.getConnection(); //conecta a la base de datos
+        String query="INSERT INTO OrdenVenta(descripcion,montoTotal,entregado,estadoVenta,idLocal,idEmpleado,idCliente,idComprobante values(?,?,?,?,?,?,?,?) ";
+        try(Connection con = DBManager.getInstance().getConnection(); //conecta a la base de datos
                 PreparedStatement ps = con.prepareStatement(query);){
             //inserta datos
             ps.setString(1,ordenVenta.getDescripcion());
@@ -56,7 +54,7 @@ public class OrdenVentaMySQL {
         int result = 0;
         String query = "UPDATE OrdenVenta SET entregado = ?, estadoVenta = ? WHERE idOrdenVenta = ?";
 
-        try (Connection con = DBManager.getConnection();
+        try (Connection con = DBManager.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(query)) {
             
             //En este caso se permite actualizar si ya se entrego, y cambiar el estado de la orden
@@ -71,14 +69,16 @@ public class OrdenVentaMySQL {
     }
     
     public OrdenVenta obtenerOrdenPorId(int idOrdenVenta) throws SQLException{
-        OrdenVenta orden = new OrdenVenta();
+        OrdenVenta orden = null;//si no encuentra el id devuelve null
+        
         String query = "SELECT idOrdenVenta, descripcion, montoTotal, entregado, estadoVenta "
                         + " FROM OrdenVenta WHERE idOrdenVenta = ?";
-        try(Connection con = DBManager.getConnection();
+        try(Connection con = DBManager.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1,idOrdenVenta);
             try(ResultSet rs = ps.executeQuery() ){
                 if(rs.next()){
+                    orden = new OrdenVenta();
                     orden.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
                     orden.setDescripcion(rs.getString("descripcion"));
                     orden.setMontoTotal(rs.getDouble("montoTotal"));
@@ -94,14 +94,14 @@ public class OrdenVentaMySQL {
     //metodo para eliminar en OrdenVenta
     public int eliminarOrdenVenta(int idOrdenVenta) throws SQLException {
         int result = 0;
-        //De manera logica, la ordenVenta pasa a ser CANCELADA en estado venta.
+        //De manera logica, la ordenVenta pasa a ser ENTREGADO en estado venta.
         String query = "UPDATE OrdenVenta SET estadoVenta = ? WHERE idOrdenVenta = ?";
 
-        try (Connection con = DBManager.getConnection();
+        try (Connection con = DBManager.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
 
-            // Asignar el valor del estado CANCELADO 
-            ps.setString(1, EstadoVenta.CANCELADO.name());  
+            // Asignar el valor del estado ENTREGADO 
+            ps.setString(1, EstadoVenta.ENTREGADO.name());  
             ps.setInt(2, idOrdenVenta);
 
             // Ejecuta la actualización
@@ -115,10 +115,9 @@ public class OrdenVentaMySQL {
     public ArrayList<OrdenVenta> obtenerTodos(int idLocal) throws SQLException {
         ArrayList<OrdenVenta> ordenesVentas = new ArrayList<>();//creamos la nueva lista
         
-        String query = "SELECT idOrdenVenta, descripcion, montoTotal, entregado, estadoVenta "
-                + " FROM OrdenVenta WHERE idLocal = ?";
+        String query = "SELECT idOrdenVenta, descripcion, montoTotal, entregado, estadoVenta FROM OrdenVenta WHERE idLocal = ?";
 
-        try (Connection con = DBManager.getConnection();
+        try (Connection con = DBManager.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
             
             ps.setInt(1, idLocal);

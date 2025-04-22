@@ -14,30 +14,24 @@ import java.sql.ResultSet;
 
 public class ClienteMySQL implements ClienteDAO{
 	
-	//no tenemos atributo conexion porque cada vez 
-	
 	public ClienteMySQL(){
-
 	}
 	
 	
     public void insertarCliente(Cliente cliente) throws SQLException {
-        String query = "INSERT INTO Cliente (nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
+        String query = "INSERT INTO Cliente (idUsuario, nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono) VALUES (?, ?, ?, ?, ?, ?)";
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){// Obtiene la conexion y prepara la consulta
+            UsuarioMySQL usuarioMySQL = new UsuarioMySQL();// Crea una instancia de UsuarioMySQL
+            usuarioMySQL.insertarUsuario(cliente, con);
             setClienteParameters(ps,cliente);// Establece los parámetros del cliente
-            ps.executeUpdate();// Ejecuta la consulta       
-            try(ResultSet rs = ps.getGeneratedKeys()){// Obtiene las claves generadas por la consulta anterior
-                if (rs.next()) {
-                    cliente.setIdCliente(rs.getInt(1)); // Establece el ID en el objeto cliente
-                }
-            }     
+            ps.executeUpdate();// Ejecuta la consulta
         }
     }
 
-    public ArrayList<Cliente> obtenerClientes()throws SQLException{
+    public ArrayList<Cliente> obtenerTodos()throws SQLException{
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();// Crea una lista para almacenar los clientes
-        String query = "SELECT * FROM Cliente WHERE activo = true";// Consulta SQL para obtener todos los clientes activos
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query); ResultSet rs = ps.executeQuery()){
+        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, c.nombres, c.apellidoPaterno, c.apellidoMaterno, c.correoElectronico, c.telefono FROM Usuario u JOIN Cliente c ON c.idUsuario = u.idUsuario WHERE Usuario.activo = true";// Consulta SQL para obtener todos los clientes activos
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query); ResultSet rs = ps.executeQuery()){
             while(rs.next()){
                 clientes.add(mapCliente(rs));// Mapea los datos de cada cliente y los agrega a la lista
             }
@@ -46,8 +40,8 @@ public class ClienteMySQL implements ClienteDAO{
     }
 
     public Cliente obtenerClientePorId(int idCliente) throws SQLException {
-        String query = "SELECT * FROM Cliente WHERE idCliente = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, c.nombres, c.apellidoPaterno, c.apellidoMaterno, c.correoElectronico, c.telefono FROM Usuario u JOIN Cliente c ON c.idUsuario = u.idUsuario WHERE idUsuario = ? AND u.activo = true";// Consulta SQL para obtener un cliente por su ID
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1,idCliente);// Establece el ID del cliente en la consulta
             try(ResultSet rs = ps.executeQuery()){
                 if(rs.next()){
@@ -59,8 +53,10 @@ public class ClienteMySQL implements ClienteDAO{
     }
 
     public void actualizarCliente(Cliente cliente) throws SQLException {
-        String query = "UPDATE Cliente SET nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, correoElectronico = ?, telefono = ?, usuarioSistema = ?, contrasSistema = ?, activo = ? WHERE idCliente = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        String query = "UPDATE Cliente SET idUsuario = ?, nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, correoElectronico = ?, telefono = ?  WHERE idUsuario = ?";
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+            UsuarioMySQL usuarioMySQL = new UsuarioMySQL();// Crea una instancia de UsuarioMySQL
+            usuarioMySQL.actualizarUsuario(cliente, con);// Actualiza el usuario en la base de datos
             setClienteParameters(ps, cliente);// Establece los parámetros del cliente
             ps.setInt(9, cliente.getIdCliente());
             ps.executeUpdate();
@@ -69,7 +65,7 @@ public class ClienteMySQL implements ClienteDAO{
 
     public void eliminarCliente(int idCliente) throws SQLException {
         String query = "UPDATE Cliente SET activo = false WHERE idCliente = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1, idCliente);// Establece el ID del cliente en la consulta
             ps.executeUpdate();// Ejecuta la consulta
         }
@@ -88,25 +84,27 @@ public class ClienteMySQL implements ClienteDAO{
         cliente.setTelefono(rs.getString("telefono"));
         cliente.setUsuarioSistema(rs.getString("usuarioSistema"));
         cliente.setContraSistema(rs.getString("contrasSistema"));
+        cliente.setActivo(rs.getBoolean("activo"));// Establece el estado activo del cliente en el objeto persona
 
 
         //Cliente
         cliente.setIdCliente(rs.getInt("idCliente"));// Establece el ID del cliente en el objeto cliente
-        cliente.setActivo(rs.getBoolean("activo"));// Establece el estado activo del cliente en el objeto cliente
+        
 
         return cliente;
     }
 
     private void setClienteParameters(PreparedStatement ps,Cliente cliente) throws SQLException {
         // Establece los parámetros del cliente en la consulta SQL
-        ps.setString(1, cliente.getNombre());
-        ps.setString(2, cliente.getApellidoPaterno());
-        ps.setString(3, cliente.getApellidoMaterno());
-        ps.setString(4, cliente.getCorreoElectronico());
-        ps.setString(5, cliente.getTelefono());
-        ps.setString(6, cliente.getUsuarioSistema());
-        ps.setString(7, cliente.getContraSistema());
-        ps.setBoolean(8, cliente.getActivo());
+        ps.setInt(1, cliente.getIdCliente());
+        ps.setString(2, cliente.getNombre());
+        ps.setString(3, cliente.getApellidoPaterno());
+        ps.setString(4, cliente.getApellidoMaterno());
+        ps.setString(5, cliente.getCorreoElectronico());
+        ps.setString(6, cliente.getTelefono());
+        ps.setString(7, cliente.getUsuarioSistema());
+        ps.setString(8, cliente.getContraSistema());
+        ps.setBoolean(9, cliente.getActivo());
     }
 
 }

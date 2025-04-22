@@ -5,18 +5,19 @@
 package com.frutilla.Inventario.dao;
 
 /**
- *
+ * 
  * @author Regina 
  */
+
 
 import com.frutilla.models.Inventario.Bebida;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface BebidaDAO {
-    int insertar(Bebida bebida,int idLocal) throws SQLException;
-    int actualizar(Bebida bebida,int idLocal) throws SQLException;
-    Bebida obtenerDatosBebida (int idProducto,int idLocal) throws SQLException;
-    void eliminar (int idProducto,int idLocal) throws SQLException;
+    int insertarBebida(Bebida bebida) throws SQLException;
+    int actualizarBebida(Bebida bebida) throws SQLException;
+    Bebida obtenerBebidaPorId (int idProducto) throws SQLException;
+    void eliminarBebida (int idProducto,int idLocal) throws SQLException;
     ArrayList<Bebida> obtenerTodos(int idLocal) throws SQLException;
 }

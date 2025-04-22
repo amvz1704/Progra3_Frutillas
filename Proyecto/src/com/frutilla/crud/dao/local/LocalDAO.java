@@ -10,7 +10,7 @@ import com.frutilla.models.inventario.Producto;
 
 public interface LocalDAO {
 	
-    void crearLocal(Local local) throws SQLException; 
+    void insertarLocal(Local local) throws SQLException; 
 		
     Local obtenerLocalPorId(int idLocal) throws SQLException;
 	

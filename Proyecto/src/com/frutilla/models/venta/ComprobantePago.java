@@ -105,6 +105,14 @@ public class ComprobantePago {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
+    public FormaDePago getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(FormaDePago formaPago) {
+        this.formaPago = formaPago;
+    }
     
     //METODOS
     

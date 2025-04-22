@@ -28,9 +28,9 @@ import com.frutilla.config.DBManager; //El manager
 	
 	
 	//creacion de un local en base a un objeto "Local inicializado"
-	public void crearLocal(Local local) throws SQLException{
+	public void insertarLocal(Local local) throws SQLException{
 		String query = "INSERT INTO Local (nombre, descripcion, direccion, activo, telefono) VALUES (?, ?, ?, ?, ?)";
-		try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
+		try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS )){// Obtiene la conexion y prepara la consulta
 			setLocalParameters(ps, local);// Establece los parámetros del local
 			ps.executeUpdate();// Ejecuta la consulta
 			try(ResultSet rs = ps.getGeneratedKeys()){// Obtiene las claves generadas por la consulta anterior
@@ -55,12 +55,12 @@ import com.frutilla.config.DBManager; //El manager
 		ArrayList<Local> locales = new ArrayList<Local>();
 		
         String query="SELECT * FROM Local WHERE activo = true"; //Consulta SQL para obtener todos los locales activos
-        try(Connection con=DBManager.getConnection();
+        try(Connection con=DBManager.getInstance().getConnection();
             PreparedStatement ps=con.prepareStatement(query);
 			ResultSet rs=ps.executeQuery()){
             
 				while(rs.next()){
-					locales.add(encontrarLocal(rs));
+					locales.add(mapLocal(rs));
 				}  
         }
 		
@@ -136,11 +136,11 @@ import com.frutilla.config.DBManager; //El manager
 	
 	public Local obtenerLocalPorId(int idLocal) throws SQLException{
         String query = "SELECT * FROM Local WHERE idLocal = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1,idLocal);// Establece el ID del local en la consulta
             try(ResultSet rs = ps.executeQuery()){
                 if(rs.next()){
-                    return encontrarLocal(rs);
+                    return mapLocal(rs);
                 }
             }
         }
@@ -148,7 +148,7 @@ import com.frutilla.config.DBManager; //El manager
     }
 	
 	
-	private Local encontrarLocal(ResultSet rs) throws SQLException{
+	private Local mapLocal(ResultSet rs) throws SQLException{
         
         Local local = new Local(rs.getString("nombre"), rs.getString("descripcion"), rs.getString("direccion"), rs.getString("telefono"));
         
