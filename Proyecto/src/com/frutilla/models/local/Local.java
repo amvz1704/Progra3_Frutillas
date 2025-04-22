@@ -15,8 +15,8 @@ public class Local {
     private String nombre;
     private String descripcion;
     private String direccion;
-    private String telefono;
     private boolean activo;
+    private String telefono;
     private int idSupervisor;
     private ArrayList<OrdenVenta> ordenesVentas; // Lista de ordenes de venta
     private ArrayList<Empleado> empleados; // Lista de empleados

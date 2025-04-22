@@ -2,6 +2,10 @@ package com.frutilla.crud.mysql.local;
 
 
 import com.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
+import com.frutilla.crud.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
+import com.frutilla.crud.mysql.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
+import com.frutilla.crud.dao.inventario.ProductoDAO; 
+import com.frutilla.crud.mysql.inventario.ProductoMySQL; 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,12 +13,19 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//importado de frutilla.models
 import com.frutilla.models.local.Local; //incluimos LOCAL 
+import com.frutilla.models.rrhh.Empleado; //incluimos Empleado 
+import com.frutilla.models.inventario.Producto; //incluimos Producto 
 
 
-import com.frutilla.config.DBManager; //
+import com.frutilla.config.DBManager; //El manager 
 
-public class LocalMySQL implements LocalDAO{
+	
+
+	public class LocalMySQL implements LocalDAO{
+	
+	
 	
 	//creacion de un local en base a un objeto "Local inicializado"
 	public void insertarLocal(Local local) throws SQLException{
@@ -30,9 +41,18 @@ public class LocalMySQL implements LocalDAO{
 		}
 	}
 	
+	public void reporteTodosLosLocalesActivos() throws SQLException{
+		ArrayList<Local> locales = obtenerTodosLocales(); //obtenemos todos los locales 
+		
+		System.out.println("Lista de los locales: ");
+		for(Local i: locales){
+			System.out.println("Local actual es: "+ i.getNombre() + " "+ i.getDescripcion() + " ubicado en "+ i.getDireccion());
+		}
+	}
+	
 	
 	public ArrayList<Local> obtenerTodosLocales() throws SQLException{
-		ArrayList<Local> locales=new ArrayList<Local>();
+		ArrayList<Local> locales = new ArrayList<Local>();
 		
         String query="SELECT * FROM Local WHERE activo = true"; //Consulta SQL para obtener todos los locales activos
         try(Connection con=DBManager.getInstance().getConnection();
@@ -49,6 +69,69 @@ public class LocalMySQL implements LocalDAO{
 		
 	}
 	
+	
+	
+	public void reporteTodosLosEmpleados(Local local) throws SQLException{
+		
+		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); //creamos una interfaz de empleados! 
+		
+		//no imprime es porque no esta activo 
+		ArrayList<Empleado> listaEmpleadosLocal = interfazEmpleado.obtenerEmpleados(local.getIdLocal());  
+		
+		
+		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
+		System.out.println("Lista de empleados del local: " + local.getNombre());
+		
+		//No imprime supervisor uwu porque no asigna! 
+		//Empleado localSupervisor = interfazEmpleado.obtenerEmpleadoPorId(local.getIdSupervisor());
+		//System.out.println("Supervisor id: " + local.getIdSupervisor() + " nombre: "  +localSupervisor.getNombre());
+		
+		for(Empleado e: listaEmpleadosLocal){
+			System.out.println(e);
+			
+		}
+		
+		
+		
+	}
+	
+	public void reporteTodosLosProductos(Local local) throws SQLException{
+		
+		ProductoDAO interfazProducto = new ProductoMySQL(); //creamos una interfaz de productos! 
+		
+		ArrayList<Producto> listaProductosLocal = interfazProducto.obtenerTodos(local.getIdLocal());  
+		
+		
+		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
+		System.out.println("Lista de productos del local: " + local.getNombre());
+		
+		System.out.println("Direccion del local: " + local.getDireccion());
+		
+		for(Producto e: listaProductosLocal){
+			System.out.println(e); //sí tiene toString :'v 
+		}
+		
+	}
+
+	
+	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
+	public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
+		
+		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
+		
+		return interfazEmpleado.obtenerEmpleados(idLocal); 
+		
+	}
+	
+	//Devuelve una lista de producto de un local por id --> llama a ProductosDAOSQL 
+	public ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
+		
+		ProductoDAO interfazProducto = new ProductoMySQL(); 
+		
+		return interfazProducto.obtenerTodos(idLocal); 
+		
+		
+	}
 	
 	
 	public Local obtenerLocalPorId(int idLocal) throws SQLException{
@@ -83,6 +166,24 @@ public class LocalMySQL implements LocalDAO{
         ps.setString(3, local.getDireccion());
         ps.setBoolean(4, local.getActivo());
         ps.setString(5, local.getTelefono());
+    }
+	
+    public void actualizarLocal(Local local) throws SQLException{
+        String query = "UPDATE Local SET nombre = ?, descripcion = ?, direccion = ?, activo = ?, telefono = ? WHERE idLocal = ?";
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+            setLocalParameters(ps, local);// Establece los parámetros del local
+            //ps.setInt(6, local.getIdSupervisor());
+            ps.setInt(6, local.getIdLocal());
+            ps.executeUpdate();
+        }
+    }
+
+    public void eliminarLocalPorId(int idLocal) throws SQLException{
+        String query = "UPDATE Local SET activo = false WHERE idLocal = ?";
+        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, idLocal);// Establece el ID del local en la consulta
+            ps.executeUpdate();// Ejecuta la consulta
+        }
     }
 	
 }
