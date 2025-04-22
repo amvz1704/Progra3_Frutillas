@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+
 public class BebidaMySQL implements BebidaDAO{
     @Override
     public int insertarBebida(Bebida bebida) throws SQLException{
@@ -70,9 +71,8 @@ public class BebidaMySQL implements BebidaDAO{
         ProductoMySQL pro=new ProductoMySQL();
         Producto temp=pro.obtenerProductoPorId(idProducto);
         Bebida beb=new Bebida(temp);
-        String query="SELECT tamanioOnz,tipo,endulzante,tieneLeche"
-                + "FROM Bebida,Producto WHERE "
-                + "Producto.idProducto=Bebida.idProducto "
+        String query="SELECT tamanioOnz, tipo, endulzante, tipoLeche FROM Bebida,"
+                + "Producto WHERE Producto.idProducto=Bebida.idProducto "
                 + "AND Bebida.idProducto=?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
@@ -83,7 +83,7 @@ public class BebidaMySQL implements BebidaDAO{
                     beb.setTipo(rs.getString("tipo"));
                     beb.setEndulzante(rs.getString("endulzante"));
                     beb.setTieneLeche(TipoLeche.valueOf(
-                            rs.getString("tieneLeche")));
+                            rs.getString("tipoLeche")));
                 }
             }
         }
@@ -92,16 +92,15 @@ public class BebidaMySQL implements BebidaDAO{
     @Override
     public ArrayList<Bebida> obtenerTodos(int idLocal) throws SQLException{
         ArrayList<Bebida> bebidas= new ArrayList<Bebida> ();
-        ProductoMySQL pro=new ProductoMySQL();
         String query="SELECT Bebida.idProducto FROM Bebida,Inventario WHERE "
-                + "Bebida.idProducto = Inventario.idProducto AND Inventario.idLocal=?";
+                + "Bebida.idProducto = Inventario.idProducto AND "
+                + "Inventario.idLocal=?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){
-                    Bebida beb=new Bebida();
-                    beb=obtenerBebidaPorId(rs.getInt("idProducto"));
+                    Bebida beb=obtenerBebidaPorId(rs.getInt("idProducto"));
                     bebidas.add(beb);
                 }
             }

@@ -9,11 +9,12 @@ import com.frutilla.models.Inventario.Producto;
 import com.frutilla.config.DBManager;
 import com.frutilla.models.Inventario.TipoEstado;
 import java.sql.ResultSet;
-import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+
 
 public class ProductoMySQL implements ProductoDAO{
     @Override
@@ -60,29 +61,6 @@ public class ProductoMySQL implements ProductoDAO{
             ps.setInt(5, producto.getStockMinimo());
             ps.setInt(6, producto.getIdProducto());
             result=ps.executeUpdate();
-        }
-        return result;
-    }
-    @Override
-    //llama al procedure actualizar_stock para hacer la revision de Salida
-    //o Entrada de productos, no estoy segura sí dejarlo pero esta como
-    // por si acaso
-    public int actualizarStock (int cant,int idProducto,
-            int idLocal) throws SQLException{
-        int result=0;
-        String query="{CALL actualizar_stock(?,?,?,?,?)}";
-        try(Connection con=DBManager.getConnection();
-            CallableStatement cs=con.prepareCall(query);){
-            cs.setInt(1, cant);
-            if (cant<0)
-                cs.setString(2,String.valueOf('S'));
-            else
-                cs.setString(2, String.valueOf('E'));
-            cs.setInt(3, idProducto);
-            cs.setInt(4, idLocal);
-            cs.registerOutParameter(5,java.sql.Types.INTEGER);
-            cs.execute();
-            result=cs.getInt(5);
         }
         return result;
     }
@@ -134,8 +112,7 @@ public class ProductoMySQL implements ProductoDAO{
             ps.setInt(1, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){
-                    Producto prod = new Producto();
-                    prod=obtenerProductoPorId(rs.getInt("idProducto"));
+                    Producto prod = obtenerProductoPorId(rs.getInt("idProducto"));
                     productos.add(prod);
                 }
             }
