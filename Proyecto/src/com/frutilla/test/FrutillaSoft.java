@@ -65,7 +65,7 @@ public class FrutillaSoft{
 		
 		/*C: Vamos a probar obtener e imprimir un dato por id FUNCIONA!*/
 		
-			Local pruebaSelect = segundoLocal.obtenerLocalPorId(3); //Elegimos esto 
+			Local pruebaSelect = segundoLocal.obtenerLocalPorId(1); //Elegimos esto 
 			//quiero ver el segundo ps cambiar si se requiere de otro (si elegimos esto entonces todo será insertado a este local específico)
 			
 			//como no hay un toString de local imprimo lo basico! 
