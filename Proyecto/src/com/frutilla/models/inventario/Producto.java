@@ -18,8 +18,7 @@ public class Producto{
 		this.precioUnitario = 0; 
 	}
 	
-	public Producto(String nombre, String descripcion, String codigoProd,
-		double precioUnitario,int stock, int stockMinimo, TipoEstado tipoEstado){
+	public Producto(String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo){
 			
 		this.idProducto = -1;
 		this.nombre = nombre; 
@@ -28,7 +27,10 @@ public class Producto{
 		this.precioUnitario = precioUnitario; 
 		this.stock = stock; 
 		this.stockMinimo = stockMinimo; 
-		this.tipoEstado = tipoEstado;
+		if (stock > 0) {
+			this.tipoEstado = TipoEstado.DISPONIBLE;
+		}
+		else this.tipoEstado = TipoEstado.AGOTADO;
 		
 	}
 	

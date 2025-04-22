@@ -27,7 +27,7 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + " " + apellidoPaterno + " " + apellidoMaterno + ", Correo: " + correoElectronico + ", Telefono: " + telefono;
+        return "Nombre: " + nombre + " " + apellidoPaterno + " " + apellidoMaterno + ", Correo: " + correoElectronico + ", Telefono: " + telefono + ", Activo: " + activo;
     }
     
 	public void crearUsuario(String usuario, String contrasena) {

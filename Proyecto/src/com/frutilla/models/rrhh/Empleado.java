@@ -26,7 +26,7 @@ public class Empleado extends Persona{
 	
 	@Override
 	public String toString(){
-		return "Id: " + String.valueOf(idEmpleado) + ", " + super.toString() + ", Salario: " + String.valueOf(salario) + "Estado: " + activo + "\n";
+		return "Id: " + String.valueOf(idEmpleado) + ", " + super.toString() + ", Salario: " + String.valueOf(salario) + "\n";
 	}
 
 	//para asignar turno  -- nuevo agregado
