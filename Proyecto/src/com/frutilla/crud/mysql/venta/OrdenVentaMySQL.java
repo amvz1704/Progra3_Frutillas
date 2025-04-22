@@ -21,13 +21,18 @@ import java.util.ArrayList;
 public class OrdenVentaMySQL {
     
     //Metodo para insertar una nueva orden de Venta
-    public int insertarOrdenVenta(OrdenVenta ordenVenta,int idLocal,int idEmpleado,
+    public void insertarOrdenVenta(OrdenVenta ordenVenta,int idLocal,int idEmpleado,
                 int idCliente,int idComprobante) throws SQLException{
+<<<<<<< Updated upstream
         int result=0;
         String query="INSERT INTO OrdenVenta(descripcion,montoTotal,entregado,estadoVenta,"
                 + "idLocal,idEmpleado,idCliente,idComprobante)"
                 + "values(?,?,?,?,?,?,?,?) ";
         try(Connection con = DBManager.getConnection(); //conecta a la base de datos
+=======
+        String query="INSERT INTO OrdenVenta(descripcion,montoTotal,entregado,estadoVenta,idLocal,idEmpleado,idCliente,idComprobante values(?,?,?,?,?,?,?,?) ";
+        try(Connection con = DBManager.getInstance().getConnection(); //conecta a la base de datos
+>>>>>>> Stashed changes
                 PreparedStatement ps = con.prepareStatement(query);){
             //inserta datos
             ps.setString(1,ordenVenta.getDescripcion());
@@ -39,7 +44,7 @@ public class OrdenVentaMySQL {
             ps.setInt(7,idCliente);
             ps.setInt(8,idComprobante);
             //ejecuta la insercion 
-            result=ps.executeUpdate();
+            ps.executeUpdate();
             
             //Traer el ultimo idOrdenVenta generado;
             try(ResultSet rs=ps.getGeneratedKeys()){
@@ -48,12 +53,10 @@ public class OrdenVentaMySQL {
                 }
             }
         }
-        return result;
     }
     
     //metodo para actualizar dentro de la tabla OrdenVenta
-    public int actualizarOrdenVenta(OrdenVenta ordenVenta) throws SQLException {
-        int result = 0;
+    public void actualizarOrdenVenta(OrdenVenta ordenVenta) throws SQLException {
         String query = "UPDATE OrdenVenta SET entregado = ?, estadoVenta = ? WHERE idOrdenVenta = ?";
 
         try (Connection con = DBManager.getConnection();
@@ -65,9 +68,8 @@ public class OrdenVentaMySQL {
             //Es necesario el id para saber que linea actualizar
             ps.setInt(3, ordenVenta.getIdOrdenVenta());
 
-            result = ps.executeUpdate();
+            ps.executeUpdate();
         }
-        return result;
     }
     
     public OrdenVenta obtenerOrdenPorId(int idOrdenVenta) throws SQLException{
@@ -92,9 +94,14 @@ public class OrdenVentaMySQL {
     }
     
     //metodo para eliminar en OrdenVenta
+<<<<<<< Updated upstream
     public int eliminarOrdenVenta(int idOrdenVenta) throws SQLException {
         int result = 0;
         //De manera logica, la ordenVenta pasa a ser CANCELADA en estado venta.
+=======
+    public void eliminarOrdenVenta(int idOrdenVenta) throws SQLException {
+        //De manera logica, la ordenVenta pasa a ser ENTREGADO en estado venta.
+>>>>>>> Stashed changes
         String query = "UPDATE OrdenVenta SET estadoVenta = ? WHERE idOrdenVenta = ?";
 
         try (Connection con = DBManager.getConnection();
@@ -105,9 +112,8 @@ public class OrdenVentaMySQL {
             ps.setInt(2, idOrdenVenta);
 
             // Ejecuta la actualización
-            result = ps.executeUpdate();
+            ps.executeUpdate();
         }
-        return result;
     }
     
     //Metodo que permite obtener todas las ordenes en cada local, con el objetivo

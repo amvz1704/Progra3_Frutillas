@@ -16,7 +16,7 @@ public class LineaOrdenDeVenta {
         this.idLineaVenta = idLineaVenta;
         this.cantidad = cantidad;
         this.producto = new Producto(producto);//crea un nuevo producto no el mismo! 
-        this.subtotal = calcularSubtotal(producto.getPrecioUnitario()); 
+        actualizarSubtotal(); 
     } 
     
     public LineaOrdenDeVenta(){
@@ -47,6 +47,7 @@ public class LineaOrdenDeVenta {
     }
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        actualizarSubtotal();
     }
     public double getSubtotal() {
         return subtotal;
@@ -56,9 +57,8 @@ public class LineaOrdenDeVenta {
     }
     // METODOS
     
-    public double calcularSubtotal(double precioUnitario) {
-        this.subtotal = this.cantidad * precioUnitario;
-        return this.subtotal;
+    public void actualizarSubtotal() {
+        this.subtotal = this.cantidad * producto.getPrecioUnitario();
     }
 
     @Override
