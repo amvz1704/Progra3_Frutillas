@@ -33,7 +33,7 @@ public class FrutillaSoft{
 		/*B: Todo esto funciona correctamente uwu 
 			
 			//ahora creamos el objeto local 
-			/*Local localA = new Local("NuevoNuevo","CIA 9no piso", "CENTRO DE INNOVACION PUCP, Av. Universitaria 1801, San Miguel 15088", "995-111-011");
+			Local localA = new Local("NuevoNuevo","CIA 9no piso", "CENTRO DE INNOVACION PUCP, Av. Universitaria 1801, San Miguel 15088", "995-111-011");
 			
 			segundoLocal.crearLocal(localA);
 			
@@ -53,7 +53,7 @@ public class FrutillaSoft{
 		/*B: Todo esto funciona correctamente uwu */	
 		
 		
-		/*C: Vamos a probar obtener e imprimir un dato por id FUNCIONA!
+		/*C: Vamos a probar obtener e imprimir un dato por id FUNCIONA!*/
 		
 			Local imprimir = segundoLocal.obtenerLocalPorId(2); //quiero ver el segundo ps cambiar si se requiere de otro 
 			//como no hay un toString de local imprimo lo basico! 
@@ -61,7 +61,7 @@ public class FrutillaSoft{
 		
 		/*C: Vamos a probar obtener e imprimir un dato por id*/
 		
-		/*D: Probemos que imprime correctamente todos los locales ! SI LO HACE :3
+		/*D: Probemos que imprime correctamente todos los locales ! SI LO HACE :3 */
 			ArrayList<Local> impresionesMasivasLocalesBD = segundoLocal.obtenerTodosLocales(); 
 			
 			System.out.println("Lista de los locales: ");
@@ -74,6 +74,7 @@ public class FrutillaSoft{
 		
 			
 		/*A: Todo esto debajo funciona pero por x motivo se demora :'v supongo porque toma tiempo actualizar uwu--> 
+		
 			EmpleadoDAO primerEmpleado = new EmpleadoMySQL(); 
 			
 			//tenemos que crear un supervisor

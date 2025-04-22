@@ -2,6 +2,10 @@ package com.frutilla.crud.mysql.local;
 
 
 import com.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
+import com.frutilla.crud.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
+import com.frutilla.crud.mySQL.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
+import com.frutilla.crud.dao.inventario.ProductoDAO; 
+import com.frutilla.crud.mySQL.inventario.ProductoMySQL; 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,13 +13,14 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//importado de frutilla.models
 import com.frutilla.models.local.Local; //incluimos LOCAL 
-import com.frutilla.models.rrhh.Empleado;
-import com.frutilla.config.DBManager; //
-import com.frutilla.crud.mysql.rrhh.EmpleadoMySQL;
-import com.frutilla.crud.dao.rrhh.EmpleadoDAO;
+import com.frutilla.models.rrhh.Empleado; //incluimos Empleado 
+import com.frutilla.models.inventario.Producto; //incluimos Producto 
 
-import java.util.ArrayList;
+
+import com.frutilla.config.DBManager; //El manager 
+
 
 public class LocalMySQL implements LocalDAO{
 	
@@ -52,6 +57,24 @@ public class LocalMySQL implements LocalDAO{
 		
 	}
 	
+	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
+	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
+		
+		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
+		
+		return interfazEmpleado.obtenerEmpleados(idLocal); 
+		
+	}
+	
+	//Devuelve una lista de producto de un local por id --> llama a ProductosDAOSQL 
+	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
+		
+		ProductoDAO interfazProducto = new ProductoMySQL(); 
+		
+		return interfazProducto.obtenerTodos(idLocal); 
+		
+		
+	}
 	
 	
 	public Local obtenerLocalPorId(int idLocal) throws SQLException{
