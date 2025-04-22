@@ -61,6 +61,14 @@ public class LineaOrdenDeVenta {
         return this.subtotal;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+    
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
     @Override
     public String toString() {
         return "LineaDeOrdenVenta{" +

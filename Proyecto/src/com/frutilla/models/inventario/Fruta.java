@@ -14,10 +14,10 @@ public class Fruta extends Producto{
 		this.estaLimpio = false;
 	}
 	
-	public Fruta(String nombre, String descripcion, String codigoProd,double precioUnitario,int stock, int stockMinimo, TipoEstado tipoEstado, boolean requiereLimpieza, boolean requiereEnvase, boolean estaLimpio, boolean estaEnvasado, String envase){
+	public Fruta(String nombre, String descripcion, String codigoProd,double precioUnitario,int stock, int stockMinimo, boolean requiereLimpieza, boolean requiereEnvase, boolean estaLimpio, boolean estaEnvasado, String envase){
 		
 		super(nombre, descripcion, codigoProd,
-		precioUnitario, stock, stockMinimo, tipoEstado);
+		precioUnitario, stock, stockMinimo);
 		this.requiereEnvase = requiereEnvase; 
 		this.requiereLimpieza = requiereLimpieza; 
 		this.estaEnvasado = estaEnvasado; 

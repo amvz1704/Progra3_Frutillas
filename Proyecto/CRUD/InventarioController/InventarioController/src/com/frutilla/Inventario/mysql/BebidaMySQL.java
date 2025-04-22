@@ -16,12 +16,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+
 public class BebidaMySQL implements BebidaDAO{
     @Override
-    public int insertar(Bebida bebida,int idLocal) throws SQLException{
+    public int insertarBebida(Bebida bebida) throws SQLException{
         int result=0;
         ProductoMySQL padre=new ProductoMySQL();
-        result=padre.insertar(bebida,idLocal);
+        result=padre.insertarProducto(bebida);
         bebida.setIdProducto(result);
         String query="INSERT INTO Bebida (idProducto,tamanioOnz,tipo,endulzante,"
                 + "tipoLeche) VALUES (?,?,?,?,?)";
@@ -38,16 +39,16 @@ public class BebidaMySQL implements BebidaDAO{
         return result;
     }
     @Override
-    public int actualizar(Bebida bebida,int idLocal) throws SQLException{
+    public int actualizarBebida(Bebida bebida) throws SQLException{
         int result=0;
         ProductoMySQL padre= new ProductoMySQL();
-        padre.actualizarProducto(bebida, idLocal);
+        padre.actualizarProducto(bebida);
          String query = """
                 UPDATE Bebida JOIN Producto ON 
                 Bebida.idProducto=Producto.idProducto 
                 SET Bebida.tipo=?, Bebida.tamanioOnz=?,
                 Bebida.endulzante=?, Bebida.tipoLeche=?
-                WHERE Producto.idProducto=? AND Producto.idLocal=?""";
+                WHERE Producto.idProducto=?""";
         try (Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setString(1, bebida.getTipo());
@@ -55,37 +56,34 @@ public class BebidaMySQL implements BebidaDAO{
             ps.setString(3, bebida.getEndulzante());
             ps.setString(4, bebida.getTieneLeche().name());
             ps.setInt(5, bebida.getIdProducto());
-            ps.setInt(6, idLocal);
             result=ps.executeUpdate();
         }
         return result;
     }
     @Override
-    public void eliminar (int idProducto,int idLocal) throws SQLException{
+    public void eliminarBebida (int idProducto,int idLocal) throws SQLException{
         ProductoMySQL pro=new ProductoMySQL();
-        pro.eliminar(idProducto, idLocal);
+        pro.eliminarProducto(idProducto, idLocal);
     }
     @Override
-    public Bebida obtenerDatosBebida (int idProducto,int idLocal) throws 
+    public Bebida obtenerBebidaPorId (int idProducto) throws 
             SQLException{
         ProductoMySQL pro=new ProductoMySQL();
-        Producto temp=pro.obtenerProducto(idProducto, idLocal);
+        Producto temp=pro.obtenerProductoPorId(idProducto);
         Bebida beb=new Bebida(temp);
-        String query="SELECT tamanioOnz,tipo,endulzante,tieneLeche"
-                + "FROM Bebida,Producto WHERE "
-                + "Producto.idProducto=Bebida.idProducto "
-                + "AND Bebida.idProducto=? AND Producto.idLocal = ?";
+        String query="SELECT tamanioOnz, tipo, endulzante, tipoLeche FROM Bebida,"
+                + "Producto WHERE Producto.idProducto=Bebida.idProducto "
+                + "AND Bebida.idProducto=?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1,idProducto);
-            ps.setInt(2, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){
                     beb.setTamanioOz(rs.getInt("tamanioOnz"));
                     beb.setTipo(rs.getString("tipo"));
                     beb.setEndulzante(rs.getString("endulzante"));
                     beb.setTieneLeche(TipoLeche.valueOf(
-                            rs.getString("tieneLeche")));
+                            rs.getString("tipoLeche")));
                 }
             }
         }
@@ -94,24 +92,18 @@ public class BebidaMySQL implements BebidaDAO{
     @Override
     public ArrayList<Bebida> obtenerTodos(int idLocal) throws SQLException{
         ArrayList<Bebida> bebidas= new ArrayList<Bebida> ();
-        ProductoMySQL pro=new ProductoMySQL();
-        String query="SELECT idProducto,tamanioOnz,tipo,endulzante,tieneLeche"
-                + "FROM Bebida,Producto WHERE Bebida.idProducto = "
-                + "Producto.idProducto AND Producto.idLocal=?";
+        String query="SELECT Bebida.idProducto FROM Bebida,Inventario WHERE "
+                + "Bebida.idProducto = Inventario.idProducto AND "
+                + "Inventario.idLocal=?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idLocal);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                Bebida beb=new Bebida(
-                        pro.obtenerProducto(rs.getInt("idProducto"), idLocal));
-                beb.setTamanioOz(rs.getInt("tamanioOnz"));
-                beb.setTipo(rs.getString("tipo"));
-                beb.setEndulzante(rs.getString("endulzante"));
-                beb.setTieneLeche(TipoLeche.valueOf(rs.getString("tieneLeche")));
-                bebidas.add(beb);
+            try (ResultSet rs = ps.executeQuery()) {
+                while(rs.next()){
+                    Bebida beb=obtenerBebidaPorId(rs.getInt("idProducto"));
+                    bebidas.add(beb);
+                }
             }
-            rs.close();  
         }
         return bebidas;
     }

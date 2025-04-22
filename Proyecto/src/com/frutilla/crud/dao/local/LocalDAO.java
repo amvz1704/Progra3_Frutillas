@@ -7,7 +7,7 @@ import com.frutilla.models.local.Local; //incluimos LOCAL
 
 public interface LocalDAO {
 	
-    void crearLocal(Local local) throws SQLException; 
+    void insertarLocal(Local local) throws SQLException; 
 		
     Local obtenerLocalPorId(int idLocal) throws SQLException;
 	
