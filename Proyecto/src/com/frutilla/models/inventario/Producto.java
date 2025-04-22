@@ -44,7 +44,7 @@ public class Producto{
 		this.precioUnitario = original.precioUnitario; 
 		this.stock = original.stock; 
 		this.stockMinimo = original.stockMinimo; 
-		this.tipoEstado = tipoEstado;
+		this.tipoEstado = original.tipoEstado;
 	}
 	
 	//metodos
