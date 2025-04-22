@@ -11,15 +11,12 @@ public interface ComprobantePagoDAO {
     void insertarComprobante(ComprobantePago comprobantePago) throws SQLException;
 
     // Método para modificar un comprobante de pago
-    int modificar(ComprobantePago comprobantePago) throws SQLException;
-
-    // Método para eliminar un comprobante de pago
-    int eliminar(int idComprobante) throws SQLException;
+    void actualizarComprobante(ComprobantePago comprobantePago) throws SQLException;
 
     // Método para obtener todos los comprobantes de pago
     ArrayList<ComprobantePago> obtenerTodos() throws SQLException;
     
     // Método para obtener un comprobante de pago por su ID
-    ComprobantePago obtenerPorId(int idComprobante) throws SQLException;
+    ComprobantePago obtenerComprobantePorId(int idComprobante) throws SQLException;
 }
 

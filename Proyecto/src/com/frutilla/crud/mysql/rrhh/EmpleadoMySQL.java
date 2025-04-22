@@ -15,11 +15,9 @@ import com.frutilla.config.DBManager;
 
 public class EmpleadoMySQL implements EmpleadoDAO{
 	
-	
 	public EmpleadoMySQL(){
 		
 	}
-	
 	
     public void insertarEmpleado(Empleado empleado, int idLocal) throws SQLException{
         String query = "INSERT INTO Empleado (idUsuario, nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaContrato, salario, turnoTrabajo, tipo, idLocal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
