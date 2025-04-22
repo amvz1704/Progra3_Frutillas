@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+
 public class ProductoMySQL implements ProductoDAO{
     @Override
     //inserta el producto, devuelve verificacion de insercion y

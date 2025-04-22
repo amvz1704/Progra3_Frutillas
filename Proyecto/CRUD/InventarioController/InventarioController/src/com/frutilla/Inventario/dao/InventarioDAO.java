@@ -6,7 +6,7 @@ package com.frutilla.Inventario.dao;
 
 import com.frutilla.models.Inventario.Producto;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 public interface InventarioDAO {
     //inserta un producto en el inventario de un local particular
@@ -19,3 +19,4 @@ public interface InventarioDAO {
     //particular
     ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException;
 }
+

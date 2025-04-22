@@ -8,6 +8,7 @@ import com.frutilla.models.Inventario.Fruta;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public interface FrutaDAO {
     int insertarFruta(Fruta fruta) throws SQLException;
     int actualizarFruta(Fruta fruta)throws SQLException;
@@ -15,3 +16,4 @@ public interface FrutaDAO {
     Fruta obtenerFrutaPorId(int idProducto)throws SQLException;
     ArrayList<Fruta> obtenerTodos(int idLocal) throws SQLException;
 }
+

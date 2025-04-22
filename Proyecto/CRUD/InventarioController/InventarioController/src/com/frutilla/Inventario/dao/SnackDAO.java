@@ -4,14 +4,9 @@
  */
 package com.frutilla.Inventario.dao;
 
-/**
- *
- * @author Desktop
- */
 import com.frutilla.models.Inventario.Snack;
 import java.util.ArrayList;
 import java.sql.SQLException;
-
 
 public interface SnackDAO {
      int insertarSnack(Snack snack) throws SQLException;

@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+
 public class FrutaMySQL implements FrutaDAO{
     @Override
     public int insertarFruta(Fruta fruta) throws SQLException{

@@ -4,10 +4,6 @@
  */
 package com.frutilla.Inventario.dao;
 
-/**
- *
- * @author Regina Sanchez
- */
 import com.frutilla.models.Inventario.Producto;
 import java.sql.SQLException;
 import java.util.ArrayList;
