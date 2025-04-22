@@ -1,4 +1,4 @@
-package com.frutilla.models.local;
+package com.frutilla.models.Local;
 
 import java.time.*;
 import java.util.ArrayList;

@@ -14,13 +14,13 @@ import java.util.ArrayList;
 
 public interface ProductoDAO {
     int insertarProducto(Producto producto) throws SQLException;
-    //hay 2 actualiza uno que llama al procedure actualizar_stock para inventario 
-    //y el otro ingresa un producto completo para actualizar todo los parametros
-    int actualizarStock (int cant,int idProducto,int idLocal) 
-            throws SQLException;
     int actualizarProducto(Producto producto) throws SQLException;
     //recordar que este es una eliminación logica
     void eliminarProducto(int idProducto,int idLocal)throws SQLException;
     Producto obtenerProductoPorId(int idProducto)throws SQLException;
+    //este obtener todos se puede usar para sacar una version general
+    //de todo el inventario de un local
     ArrayList<Producto> obtenerTodos(int idLocal)throws SQLException; 
+    //Si necesitas sacar información especifica utilizar el obtener todos de 
+    //InventarioMySQL
 }
