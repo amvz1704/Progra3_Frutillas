@@ -4,19 +4,14 @@
  */
 package com.frutilla.Inventario.dao;
 
-/**
- *
- * @author Desktop
- */
 import com.frutilla.models.Inventario.Snack;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
-
 public interface SnackDAO {
-     int insertar(Snack snack,int idLocal) throws SQLException;
-     int actualizar(Snack snack,int idLocal) throws SQLException;
-     void eliminar (int idProducto,int idLocal) throws SQLException;
-     Snack obtenerDatosSnack(int idProducto,int idLocal) throws SQLException;
+     int insertarSnack(Snack snack) throws SQLException;
+     int actualizarSnack(Snack snack) throws SQLException;
+     void eliminarSnack (int idProducto,int idLocal) throws SQLException;
+     Snack obtenerSnackPorId(int idProducto) throws SQLException;
      ArrayList<Snack> obtenerTodos(int idLocal) throws SQLException;
 }

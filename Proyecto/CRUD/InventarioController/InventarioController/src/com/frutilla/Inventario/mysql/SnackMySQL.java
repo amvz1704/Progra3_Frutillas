@@ -14,12 +14,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+
 public class SnackMySQL implements SnackDAO{
     @Override
-    public int insertar(Snack snack,int idLocal) throws SQLException{
+    public int insertarSnack(Snack snack) throws SQLException{
          int result=0;
         ProductoMySQL padre=new ProductoMySQL();
-        result=padre.insertar(snack,idLocal);
+        result=padre.insertarProducto(snack);
         snack.setIdProducto(result);
         String query="INSERT INTO Snack (idProducto,tipo,requiereEnvase,"
                 + "estaEnvasado,envase)VALUES (?,?,?,?,?)";
@@ -35,16 +37,16 @@ public class SnackMySQL implements SnackDAO{
         return result;
     }
     @Override
-    public int actualizar(Snack snack,int idLocal) throws SQLException{
+    public int actualizarSnack(Snack snack) throws SQLException{
         int result=0;
         ProductoMySQL pro=new ProductoMySQL();
-        pro.actualizarProducto(snack, idLocal);
+        pro.actualizarProducto(snack);
         String query = """
                 UPDATE Snack JOIN Producto ON 
                 Snack.idProducto=Producto.idProducto
                 SET Snack.tipo=?,Snack.requiereEnvase=?,
-                Snack.estaEnvasado=?,Snack.envase=? WHERE Producto.idProducto=?
-                AND Producto.idLocal=?""";
+                Snack.estaEnvasado=?,Snack.envase=? WHERE 
+                Producto.idProducto=?""";
         try (Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setString(1, snack.getTipo());
@@ -52,31 +54,29 @@ public class SnackMySQL implements SnackDAO{
             ps.setBoolean(3, snack.isEstaEnvasado());
             ps.setString(4, snack.getEnvase());
             ps.setInt(5, snack.getIdProducto());
-            ps.setInt(6, idLocal);
             result=ps.executeUpdate();
         }
         return result;
     }
     @Override
-    public void eliminar (int idProducto,int idLocal) throws SQLException{
+    public void eliminarSnack(int idProducto,int idLocal) throws SQLException{
         ProductoMySQL pro=new ProductoMySQL();
-        pro.eliminar(idProducto, idLocal);
+        pro.eliminarProducto(idProducto, idLocal);
     }
     @Override
-    public Snack obtenerDatosSnack(int idProducto,int idLocal)
-            throws SQLException{
+    public Snack obtenerSnackPorId(int idProducto) throws SQLException{
         ProductoMySQL pro=new ProductoMySQL();
-        Producto temp=pro.obtenerProducto(idProducto, idLocal);
+        Producto temp=pro.obtenerProductoPorId(idProducto);
         Snack sna=new Snack(temp);
-        String query="SELECT requiereEnvase, estaEnvasado, envase FROM "
+        String query="SELECT tipo,requiereEnvase, estaEnvasado, envase FROM "
                 + " Snack,Producto WHERE Producto.idProducto=Snack.idProducto "
-                + " AND Snack.idProducto=? AND Producto.idLocal = ?";
+                + " AND Snack.idProducto=?";
         try (Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idProducto);
-            ps.setInt(2, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){
+                    sna.setTipo(rs.getString("tipo"));
                     sna.setRequiereEnvase(rs.getBoolean("requiereEnvase"));
                     sna.setEstaEnvasado(rs.getBoolean("estaEnvasado"));
                     sna.setEnvase(rs.getString("envase"));
@@ -88,21 +88,15 @@ public class SnackMySQL implements SnackDAO{
     @Override
     public ArrayList<Snack> obtenerTodos(int idLocal) throws SQLException{
         ArrayList<Snack> snacks= new ArrayList<Snack> ();
-        ProductoMySQL pro=new ProductoMySQL();
-        String query="SELECT idProducto,requiereEnvasado,"
-                + "estaEnvasado,envase FROM Fruta,Producto WHERE "
-                + "Fruta.idProducto = Producto.idProducto AND "
-                + "Producto.idLocal = ?";
+        String query="SELECT Inventario.idProducto FROM Snack,Inventario WHERE "
+                + "Snack.idProducto = Inventario.idProducto AND "
+                + "Inventario.idLocal = ?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){
-                    Snack sna=new Snack(pro.obtenerProducto
-                        (rs.getInt("idProducto"), idLocal));
-                    sna.setRequiereEnvase(rs.getBoolean("requiereEnvasado"));
-                    sna.setEstaEnvasado(rs.getBoolean("estaEnvasado"));
-                    sna.setEnvase(rs.getString("envase"));
+                    Snack sna=obtenerSnackPorId(rs.getInt("idProducto"));
                     snacks.add(sna);
                 }
             }

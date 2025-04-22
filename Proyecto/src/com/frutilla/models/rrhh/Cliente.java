@@ -7,7 +7,6 @@ import com.frutilla.models.venta.*;
 
 public class Cliente extends Persona{
     private int idCliente;
-    private boolean activo; // true: activo, false: inactivo
     // falta inicializar
     private ArrayList <OrdenVenta> ordenesVentas;
 
@@ -18,7 +17,6 @@ public class Cliente extends Persona{
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String usuarioSistema, String contraSistema){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
         this.idCliente = -1;
-        this.activo = true; // Por defecto, el cliente es activo al crearse
         this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
 
@@ -72,14 +70,6 @@ public class Cliente extends Persona{
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-    
-    public boolean getActivo(){
-        return activo;
-    }
-
-    public void setActivo(boolean activo){
-        this.activo = activo;
     }
 	
 	public ArrayList <OrdenVenta> getOrdenesVentas(){

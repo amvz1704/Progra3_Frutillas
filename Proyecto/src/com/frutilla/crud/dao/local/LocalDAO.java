@@ -8,7 +8,7 @@ import com.frutilla.models.rrhh.Empleado;
 
 public interface LocalDAO {
 	
-    void crearLocal(Local local) throws SQLException; 
+    void insertarLocal(Local local) throws SQLException; 
 		
     Local obtenerLocalPorId(int idLocal) throws SQLException;
 	

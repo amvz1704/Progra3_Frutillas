@@ -44,13 +44,20 @@ public class LineaOrdenDeVentaMySQL{
     }
 
     //metodo para actualizar dentro de la tabla LineaOrdenVenta
+<<<<<<< HEAD
     public void actualizarLineaOrdenVenta(LineaOrdenDeVenta lVenta)throws SQLException{
 
         String query="UPDATE LineaOrdenVenta SET cantidad = ?, subtotal = ?, IdProducto = ? WHERE idLineaOrdenVenta = ?";
+=======
+    public int actualizarLineaOrdenVenta(LineaOrdenDeVenta lVenta)throws SQLException{
+        int result=0;
+        String query="UPDATE LineaOrdenVenta SET cantidad = ? WHERE idLineaOrdenVenta = ?";
+>>>>>>> origin/main
 
         try (Connection con = DBManager.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1,lVenta.getCantidad());
+<<<<<<< HEAD
             lVenta.actualizarSubtotal();
             ps.setInt(2, lVenta.getSubtotal());
             ps.setInt(3, lVenta.getProducto().getIdProducto());
@@ -58,12 +65,23 @@ public class LineaOrdenDeVentaMySQL{
             
             ps.executeUpdate();
         }
+=======
+            ps.setInt(2,lVenta.getIdLineaVenta());
+
+            result = ps.executeUpdate();
+        }
+        return result;
+>>>>>>> origin/main
     }
 
     public ArrayList<LineaOrdenDeVenta> obtenerLineasPorOrden(int idOrdenVenta)throws SQLException{
         ArrayList<LineaOrdenDeVenta> lineasDeVentas = new ArrayList<>();
 
+<<<<<<< HEAD
         String query="SELECT * FROM LineaOrdenVenta WHERE idOrdenVenta=?";
+=======
+        String query="SELECT *FROM LineaOrdenVenta WHERE idOrdenVenta=?";
+>>>>>>> origin/main
 
         try(Connection con = DBManager.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(query)){
@@ -74,7 +92,11 @@ public class LineaOrdenDeVentaMySQL{
             while(rs.next()){
                 LineaOrdenDeVenta lineaOrdenVenta = new LineaOrdenDeVenta();
                 lineaOrdenVenta.setIdLineaVenta(rs.getInt("idLineaOrdenVenta"));
+<<<<<<< HEAD
                 lineaOrdenVenta.setCantidad(rs.getInt("cantidad"));
+=======
+                lineaOrdenVenta.setCantidad(rs.getInt("cantidad"))
+>>>>>>> origin/main
                 lineaOrdenVenta.setSubtotal(rs.getDouble("subTotal"));
                 Producto producto = productoMySQL.obtenerProductoPorId(rs.getInt("idProducto"));
                 lineaOrdenVenta.setProducto(producto);
