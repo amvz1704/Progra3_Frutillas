@@ -21,8 +21,11 @@ import com.frutilla.models.inventario.Producto; //incluimos Producto
 
 import com.frutilla.config.DBManager; //El manager 
 
+	
 
-public class LocalMySQL implements LocalDAO{
+	public class LocalMySQL implements LocalDAO{
+	
+	
 	
 	//creacion de un local en base a un objeto "Local inicializado"
 	public void crearLocal(Local local) throws SQLException{
@@ -38,9 +41,18 @@ public class LocalMySQL implements LocalDAO{
 		}
 	}
 	
+	public void reporteTodosLosLocalesActivos() throws SQLException{
+		ArrayList<Local> locales = obtenerTodosLocales(); //obtenemos todos los locales 
+		
+		System.out.println("Lista de los locales: ");
+		for(Local i: locales){
+			System.out.println("Local actual es: "+ i.getNombre() + " "+ i.getDescripcion() + " ubicado en "+ i.getDireccion());
+		}
+	}
+	
 	
 	public ArrayList<Local> obtenerTodosLocales() throws SQLException{
-		ArrayList<Local> locales=new ArrayList<Local>();
+		ArrayList<Local> locales = new ArrayList<Local>();
 		
         String query="SELECT * FROM Local WHERE activo = true"; //Consulta SQL para obtener todos los locales activos
         try(Connection con=DBManager.getConnection();
@@ -56,6 +68,51 @@ public class LocalMySQL implements LocalDAO{
 		
 		
 	}
+	
+	
+	
+	public void reporteTodosLosEmpleados(Local local) throws SQLException{
+		
+		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); //creamos una interfaz de empleados! 
+		
+		//no imprime es porque no esta activo 
+		ArrayList<Empleado> listaEmpleadosLocal = interfazEmpleado.obtenerEmpleados(local.getIdLocal());  
+		
+		
+		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
+		System.out.println("Lista de empleados del local: " + local.getNombre());
+		
+		//No imprime supervisor uwu porque no asigna! 
+		//Empleado localSupervisor = interfazEmpleado.obtenerEmpleadoPorId(local.getIdSupervisor());
+		//System.out.println("Supervisor id: " + local.getIdSupervisor() + " nombre: "  +localSupervisor.getNombre());
+		
+		for(Empleado e: listaEmpleadosLocal){
+			System.out.println(e);
+			
+		}
+		
+		
+		
+	}
+	
+	public void reporteTodosLosProductos(Local local) throws SQLException{
+		
+		ProductoDAO interfazProducto = new ProductoMySQL(); //creamos una interfaz de productos! 
+		
+		ArrayList<Producto> listaProductosLocal = interfazProducto.obtenerTodos(local.getIdLocal());  
+		
+		
+		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
+		System.out.println("Lista de productos del local: " + local.getNombre());
+		
+		System.out.println("Direccion del local: " + local.getDireccion());
+		
+		for(Producto e: listaProductosLocal){
+			System.out.println(e); //sí tiene toString :'v 
+		}
+		
+	}
+
 	
 	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
 	public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{

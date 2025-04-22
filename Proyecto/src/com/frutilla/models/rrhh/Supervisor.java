@@ -10,9 +10,18 @@ public class Supervisor extends Empleado{
     public Supervisor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'S');
     }
+	
+	//Esto deberia afecta a
     
-    public void eliminarEmpleado(Empleado empleado){
-        
+    public Empleado empleado eliminarEmpleado(Empleado repartidor){
+		
+        repartidor.setActivo(false);
+		return repartidor; 
+    }
+	
+	public pubEmpleado empleado activarEmpleado(Empleado repartidor){
+        repartidor.setActivo(true);
+		return repartidor;
     }
 
 }
