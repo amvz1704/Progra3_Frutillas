@@ -17,11 +17,13 @@ import java.util.ArrayList;
 
 public class ProductoMySQL implements ProductoDAO{
     @Override
-    public int insertar(Producto producto,int idLocal) throws SQLException{
+    //inserta el producto, devuelve verificacion de insercion y
+    //asigna el id del producto de regreso para tener coincidencia
+    public int insertarProducto(Producto producto) throws SQLException{
         int result=0;
         String query="INSERT INTO Producto (nombre,descripcion,codProd,"
-                + "precioUnitario,stock,stockMinimo,estado,idLocal) VALUES "
-                + "(?,?,?,?,?,?,?,?)";
+                + "precioUnitario,stockMinimo) VALUES "
+                + "(?,?,?,?,?)";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query,
                      PreparedStatement.RETURN_GENERATED_KEYS)){
@@ -29,20 +31,42 @@ public class ProductoMySQL implements ProductoDAO{
             ps.setString(2, producto.getDescripcion());
             ps.setString(3, producto.getCodigoProd());
             ps.setDouble(4, producto.getPrecioUnitario());
-            ps.setInt(5, producto.getStock());
-            ps.setInt(6, producto.getStockMinimo());
-            ps.setString(7, producto.getTipoEstado().name());
-            ps.setInt(8, idLocal); 
-            result=ps.executeUpdate();
+            ps.setInt(5, producto.getStockMinimo()); 
+            ps.executeUpdate();
             try(ResultSet rs=ps.getGeneratedKeys()){
                 if(rs.next()){
-                    producto.setIdProducto(rs.getInt(1));
+                   result = rs.getInt(1);
+                   producto.setIdProducto(rs.getInt(1));
                 }
             }
         }
         return result;
     }
+    //ingresa todos los datos del producto y los cambia en caso haya algun cambio
     @Override
+    public int actualizarProducto(Producto producto) 
+            throws SQLException{
+        int result=0;
+        String query="""
+                    UPDATE Producto SET nombre=?,descripcion=?,codProd=?,
+                    precioUnitario=?, stockMinimo=?
+                    WHERE idProducto=? """;
+        try (Connection con=DBManager.getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
+            ps.setString(1,producto.getNombre());
+            ps.setString(2, producto.getDescripcion());
+            ps.setString(3, producto.getCodigoProd());
+            ps.setDouble(4, producto.getPrecioUnitario());
+            ps.setInt(5, producto.getStockMinimo());
+            ps.setInt(6, producto.getIdProducto());
+            result=ps.executeUpdate();
+        }
+        return result;
+    }
+    @Override
+    //llama al procedure actualizar_stock para hacer la revision de Salida
+    //o Entrada de productos, no estoy segura sí dejarlo pero esta como
+    // por si acaso
     public int actualizarStock (int cant,int idProducto,
             int idLocal) throws SQLException{
         int result=0;
@@ -62,14 +86,15 @@ public class ProductoMySQL implements ProductoDAO{
         }
         return result;
     }
+    //eliminado lógico
     @Override
-    public void eliminar(int idProd,int idLocal) throws SQLException{
+    public void eliminarProducto(int idProd,int idLocal) throws SQLException{
         TipoEstado desactivado=TipoEstado.AGOTADO;
-        String query="UPDATE Producto SET estado = ? WHERE idProducto = ? AND "
+        String query="UPDATE Inventario SET estado = ? WHERE idProducto = ? AND "
                 + "idLocal = ?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
-            ps.setString(1, desactivado.name());
+            ps.setString(1, desactivado.toString());
             ps.setInt(2, idProd);
             ps.setInt(3, idLocal);
             int result=ps.executeUpdate();
@@ -77,25 +102,24 @@ public class ProductoMySQL implements ProductoDAO{
                 System.out.println("Se realizo eliminado correctamente");
         }
     }
+    //solo se obtiene un solo producto en base a su id y local
     @Override
-    public Producto obtenerProducto(int idProducto,int idLocal) 
+    public Producto obtenerProductoPorId(int idProducto) 
             throws SQLException{
         Producto prod=new Producto();
         String query="SELECT nombre,descripcion,codProd,precioUnitario,"
-                + "stock,estado FROM Producto WHERE idProducto = ? "
-                + "AND idLocal = ?";
+                + "stockMinimo FROM Producto WHERE idProducto = ? ";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1,idProducto);
-            ps.setInt(2, idLocal);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 prod.setIdProducto(idProducto);
                 prod.setNombre(rs.getString("nombre"));
                 prod.setDescripcion(rs.getString("descripcion"));
                 prod.setCodigoProd(rs.getString("codProd"));
-                prod.setStock(rs.getInt("stock"));
-                prod.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                prod.setPrecioUnitario(rs.getDouble("precioUnitario"));
+                prod.setStock(rs.getInt("stockMinimo"));
             }
             rs.close();  
         }
@@ -104,23 +128,17 @@ public class ProductoMySQL implements ProductoDAO{
     @Override
     public ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException{
         ArrayList<Producto> productos=new ArrayList<Producto>();
-        String query="SELECT idProducto,nombre,descripcion,codProd,precioUnitario,"
-                + "stock,estado FROM Producto WHERE idLocal = ?";
+        String query="SELECT idProducto FROM Inventario WHERE idLocal = ?";
         try(Connection con=DBManager.getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idLocal);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                Producto prod = new Producto();
-                prod.setIdProducto(rs.getInt("idProducto"));
-                prod.setNombre(rs.getString("nombre"));
-                prod.setDescripcion(rs.getString("descripcion"));
-                prod.setCodigoProd(rs.getString("codProd"));
-                prod.setStock(rs.getInt("stock"));
-                prod.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
-                productos.add(prod);
+            try (ResultSet rs = ps.executeQuery()) {
+                while(rs.next()){
+                    Producto prod = new Producto();
+                    prod=obtenerProductoPorId(rs.getInt("idProducto"));
+                    productos.add(prod);
+                }
             }
-            rs.close();  
         }
         return productos;
     }

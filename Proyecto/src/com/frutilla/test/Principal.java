@@ -1,8 +1,9 @@
-//agregar lo hecho en producto
+package com.frutilla.test; 
+
 import java.time.LocalDate;
 
-import com.frutilla.models.Local.*;
 import com.frutilla.models.inventario.*;
+import com.frutilla.models.local.*;
 import com.frutilla.models.rrhh.*;
 import com.frutilla.models.venta.*;
 
@@ -34,44 +35,44 @@ public class Principal{
 
 		//Agregamos productos al local
 		//Creamos un producto
-		Producto producto1 = new Producto(1, "Producto 1", "Descripcion del producto 1", "P001", 5.50, 150, 20);
+		Producto producto1 = new Producto("Producto 1", "Descripcion del producto 1", "P001", 5.50, 150, 20);
 		System.out.println("Se creo un producto");
 
 		System.out.println(producto1.toString() + "\n");
 
-		//Creamos una bebida
+		//Creamos una bebida  String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, TipoEstado tipoEstado, int tamanioOz, String tipo, String endulzante, TipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebida
 		ArrayList<FrutasBebida> frutasbebida1 = new ArrayList<FrutasBebida>();//Arraylist con las frutas que contiene la bebida
 		frutasbebida1.add(FrutasBebida.MANGO);
 		frutasbebida1.add(FrutasBebida.PAPAYA);
-		Bebida bebida1 = new Bebida(1, "Bebida 1","Descripcion de la bebida 1", "B001", 7.0, 12, 5, 12, "Tipo 1", "Endulzante 1", TipoLeche.ENTERA, frutasbebida1);
+		Bebida bebida1 = new Bebida("Bebida 1","Descripcion de la bebida 1", "B001", 7.0, 12, 5, 12, "Tipo 1", "Endulzante 1", TipoLeche.ENTERA, frutasbebida1);
 		
 		System.out.println("Se creo una bebida");
 
 		System.out.println(bebida1.toString() + "\n");
 
 		//Creamos un snack
-		Snack snack1 = new Snack(1, "Snack 1", "Descripcion del snack 1", "S001", 3.0, 10, 5, "Tipo 1", "Envase 1", true, true);
+		Snack snack1 = new Snack("Snack 1", "Descripcion del snack 1", "S001", 3.0, 10, 5, "Tipo 1", "Envase 1", true, true);
 
 		System.out.println("Se creo un snack");
 
 		System.out.println(snack1.toString() + "\n");
 
 		//Creamos otro snack
-		Snack snack2 = new Snack(1, "Snack 2", "Descripcion del snack 2", "S002", 1.5, 1, 2, "Tipo 2", "Envase 2", true, true);
+		Snack snack2 = new Snack("Snack 2", "Descripcion del snack 2", "S002", 1.5, 1, 2, "Tipo 2", "Envase 2", true, true);
 
 		System.out.println("Se creo un snack");
 
 		System.out.println(snack2.toString() + "\n");
 
 		//Creamos una fruta
-		Fruta fruta1 = new Fruta(1, "Fruta 1", "Descripcion de la fruta 1", "F001", 2.0, 25, 10, true, true, false, false, "Envase 1");
+		Fruta fruta1 = new Fruta("Fruta 1", "Descripcion de la fruta 1", "F001", 2.0, 25, 10, true, true, false, false, "Envase 1");
 
 		System.out.println("Se creo una fruta");
 
 		System.out.println(fruta1.toString() + "\n");
 
 		//Creamos otra fruta
-		Fruta fruta2 = new Fruta(2, "Fruta 2", "Descripcion de la fruta 2", "F002", 4.0, 20, 15, true, true, true, true, "Envase 2");
+		Fruta fruta2 = new Fruta("Fruta 2", "Descripcion de la fruta 2", "F002", 4.0, 20, 15, true, true, true, true, "Envase 2");
 
 		System.out.println("Se creo una fruta");
 
@@ -153,7 +154,7 @@ public class Principal{
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
-				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				orden1.setEstado(EstadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
 				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
@@ -177,7 +178,7 @@ public class Principal{
 			if(pago){
 				System.out.println("Compra realizada con exito"  + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
-				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				orden1.setEstado(EstadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
 				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}
@@ -204,7 +205,7 @@ public class Principal{
 			if(pago){
 				System.out.println("Compra realizada con exito" + "\n");
 				OrdenVenta orden1 = cliente1.obtenerUltimaOrden(); //obtenemos la ultima orden de venta
-				orden1.setEstado(estadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
+				orden1.setEstado(EstadoVenta.POR_ENTREGAR); //cambia el estado de la orden a proceso
 				local1.agregarOrdenVenta(orden1); //agregamos la orden de venta al local
 				local1.actualizarStock(listaProductos, listaCantidad); //actualiza el stock de los productos
 			}

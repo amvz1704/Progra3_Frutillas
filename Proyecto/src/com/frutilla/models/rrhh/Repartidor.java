@@ -8,8 +8,12 @@ public class Repartidor extends Empleado{
     public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno,
     String correoElectronico, String telefono, LocalDate fechaContrato,
     double salario, String usuarioSistema, String contraSistema){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema);
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'R');
     }
+
+	public Repartidor(){
+		super();
+	}
 
 	//este es el constructor agregado
 	public Repartidor(Repartidor rep){
@@ -29,7 +33,7 @@ public class Repartidor extends Empleado{
 	//cambie las funciones 
 	public void prepararPedido(OrdenVenta orden){
 		//inicia a preparar 
-		orden.setEstado(estadoVenta.PROCESO);
+		orden.setEstado(EstadoVenta.PROCESO);
 		orden.setIdEmpleado(getIdEmpleado());
 	}
 	
