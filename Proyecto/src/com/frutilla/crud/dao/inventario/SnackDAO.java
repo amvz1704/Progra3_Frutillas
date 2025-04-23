@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 
 public interface SnackDAO {
-     int insertarSnack(Snack snack) throws SQLException;
-     int actualizarSnack(Snack snack) throws SQLException;
+     void insertarSnack(Snack snack) throws SQLException;
+     void actualizarSnack(Snack snack) throws SQLException;
      void eliminarSnack (int idProducto,int idLocal) throws SQLException;
      Snack obtenerSnackPorId(int idProducto) throws SQLException;
      ArrayList<Snack> obtenerTodos(int idLocal) throws SQLException;

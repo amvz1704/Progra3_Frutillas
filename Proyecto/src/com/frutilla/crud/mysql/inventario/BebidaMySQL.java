@@ -19,46 +19,43 @@ import java.sql.SQLException;
 
 public class BebidaMySQL implements BebidaDAO{
     @Override
-    public int insertarBebida(Bebida bebida) throws SQLException{
-        int result=0;
+    public void insertarBebida(Bebida bebida) throws SQLException{
+        int id = 0;
         ProductoMySQL padre=new ProductoMySQL();
-        result=padre.insertarProducto(bebida);
-        bebida.setIdProducto(result);
+        id=padre.insertarProductoDevolverID(bebida);
+        bebida.setIdProducto(id);
         String query="INSERT INTO Bebida (idProducto,tamanioOnz,tipo,endulzante,"
                 + "tipoLeche) VALUES (?,?,?,?,?)";
-        try(Connection con=DBManager.getInstance().getConnection();
-            PreparedStatement ps=con.prepareStatement(query,
-                    PreparedStatement.RETURN_GENERATED_KEYS)){
+        try(Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps=con.prepareStatement(query,
+                     PreparedStatement.RETURN_GENERATED_KEYS)){
             ps.setInt(1,bebida.getIdProducto());
             ps.setInt(2,bebida.getTamanioOz());
             ps.setString(3, bebida.getTipo());
             ps.setString(4, bebida.getEndulzante());
             ps.setString(5, bebida.getTieneLeche().name());
-            result=ps.executeUpdate();
+            ps.executeUpdate();
         }
-        return result;
     }
     @Override
-    public int actualizarBebida(Bebida bebida) throws SQLException{
-        int result=0;
+    public void actualizarBebida(Bebida bebida) throws SQLException{
         ProductoMySQL padre= new ProductoMySQL();
         padre.actualizarProducto(bebida);
-        String query = """
+         String query = """
                 UPDATE Bebida JOIN Producto ON 
                 Bebida.idProducto=Producto.idProducto 
                 SET Bebida.tipo=?, Bebida.tamanioOnz=?,
                 Bebida.endulzante=?, Bebida.tipoLeche=?
                 WHERE Producto.idProducto=?""";
         try (Connection con=DBManager.getInstance().getConnection();
-            PreparedStatement ps=con.prepareStatement(query)){
+             PreparedStatement ps=con.prepareStatement(query)){
             ps.setString(1, bebida.getTipo());
             ps.setInt(2, bebida.getTamanioOz());
             ps.setString(3, bebida.getEndulzante());
             ps.setString(4, bebida.getTieneLeche().name());
             ps.setInt(5, bebida.getIdProducto());
-            result=ps.executeUpdate();
+            ps.executeUpdate();
         }
-        return result;
     }
     @Override
     public void eliminarBebida (int idProducto,int idLocal) throws SQLException{
@@ -74,7 +71,7 @@ public class BebidaMySQL implements BebidaDAO{
         String query="SELECT tamanioOnz, tipo, endulzante, tipoLeche FROM Bebida,"
                 + "Producto WHERE Producto.idProducto=Bebida.idProducto "
                 + "AND Bebida.idProducto=?";
-        try(Connection con=DBManager.getInstance().getConnection();
+        try(Connection con = DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1,idProducto);
             try (ResultSet rs = ps.executeQuery()) {

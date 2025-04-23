@@ -32,7 +32,8 @@ public class OrdenVenta{
 	public OrdenVenta(String descripcion){
 		this.descripcion = descripcion; 
 		this.estado = EstadoVenta.FALTA_PAGO; 
-		this.fecha = LocalDate.now(); //el dia pedido debe ser el de entrega
+		this.fecha = LocalDate.now();
+		this.horaFinEntrega = LocalTime.now(); //el dia pedido debe ser el de entrega
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		this.entregado = false; 
 		this.montoTotal = 0; 
@@ -157,6 +158,10 @@ public class OrdenVenta{
 
 	public EstadoVenta getEstado() {
 		return this.estado;
+	}
+
+	public ArrayList<LineaOrdenDeVenta> getLineasOrdenes(){
+		return new ArrayList<LineaOrdenDeVenta>(this.lineasOrdenes);
 	}
 
 	public void setEntregado(boolean entregado) {

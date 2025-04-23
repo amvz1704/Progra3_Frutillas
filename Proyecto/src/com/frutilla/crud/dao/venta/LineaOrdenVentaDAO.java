@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface LineaOrdenVentaDAO {
-    int insertarLineaVenta(LineaOrdenDeVenta lVenta, int idOrdenVenta, int idProducto) throws SQLException;
-    int actualizarLineaOrdenVenta(LineaOrdenDeVenta lVenta) throws SQLException;
+    void insertarLineaVenta(LineaOrdenDeVenta lVenta, int idOrdenVenta, int idProducto) throws SQLException;
+    void actualizarLineaOrdenVenta(LineaOrdenDeVenta lVenta) throws SQLException;
     ArrayList<LineaOrdenDeVenta> obtenerLineasPorOrden(int idOrdenVenta) throws SQLException;
 }

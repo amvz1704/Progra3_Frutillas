@@ -19,4 +19,3 @@ public interface ComprobantePagoDAO {
     // Método para obtener un comprobante de pago por su ID
     ComprobantePago obtenerComprobantePorId(int idComprobante) throws SQLException;
 }
-

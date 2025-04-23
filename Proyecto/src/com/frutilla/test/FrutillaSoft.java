@@ -43,22 +43,23 @@ public class FrutillaSoft{
 			//ahora creamos el objeto local 
 			Local localA = new Local("NuevoNuevo","CIA 9no piso", "CENTRO DE INNOVACION PUCP, Av. Universitaria 1801, San Miguel 15088", "995-111-011");
 			
-			segundoLocal.crearLocal(localA);
+			segundoLocal.insertarLocal(localA);
 			
 			Local localB = new Local("Sociales","Entre el polideportivo y generales ", "Estudios Generales Letras, Av. Universitaria 1801, San Miguel 15088", "999999999");
 			
-			segundoLocal.crearLocal(localB);
+			segundoLocal.insertarLocal(localB);
 			
 			Local localC = new Local("Polideportivo","Cerca de letras", "EEGGLL PUCP, Av. Universitaria 1801, San Miguel 15088", "995-777-011");
 			
-			segundoLocal.crearLocal(localC);
+			segundoLocal.insertarLocal(localC);
 			
 			
 			//obtener el id del local no necesario pero para asegurarnos que el incremnet esta bien
 			int idLocal_Sociales = localA.getIdLocal(); //nota Nayane: solo funciona si las tablas en la BD tiene autoincrement 
 			System.out.println(idLocal_Sociales);
 			
-		/*B: Todo esto funciona correctamente uwu */	
+		/*B: Todo esto funciona correctamente uwu */
+		
 		
 		
 		
@@ -118,7 +119,7 @@ public class FrutillaSoft{
 		// Ya funciona eliminarLocal y actualizarLocal
 		
 		
-		/*E: CRUD Inventario probando la insercion de los DAOs y MySQLs Codigo INVENTARIO PROBAR LUEGO! 
+		/*E: CRUD Inventario probando la insercion de los DAOs y MySQLs Codigo INVENTARIO PROBAR LUEGO!*/
 		
 		
 		

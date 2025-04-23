@@ -35,7 +35,8 @@ public class Cliente extends Persona{
             Producto producto = listaProductos.get(i);
             int cantidad = listaCantidad.get(i);
             // Crear una nueva línea de orden de venta
-            LineaOrdenDeVenta lineaOrden = new LineaOrdenDeVenta(i + 1, cantidad, producto);
+            // Para despues, revertir el constructor de LineaOrden que reciba el i+1 como id
+            LineaOrdenDeVenta lineaOrden = new LineaOrdenDeVenta( cantidad, producto);
             System.out.println("Solicitando compra de " + cantidad + " unidades de " + producto.getNombre());
             // Agregar la línea de orden a la orden de venta
             orden.agregarLineaOrden(lineaOrden);

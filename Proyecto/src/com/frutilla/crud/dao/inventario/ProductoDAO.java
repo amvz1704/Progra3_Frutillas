@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ProductoDAO {
-    int insertarProducto(Producto producto) throws SQLException;
-    int actualizarProducto(Producto producto) throws SQLException;
+    void insertarProducto(Producto producto) throws SQLException;
+    void actualizarProducto(Producto producto) throws SQLException;
     //recordar que este es una eliminación logica
     void eliminarProducto(int idProducto,int idLocal)throws SQLException;
     Producto obtenerProductoPorId(int idProducto)throws SQLException;
@@ -25,4 +25,3 @@ public interface ProductoDAO {
     //Si necesitas sacar información especifica utilizar el obtener todos de 
     //InventarioMySQL
 }
-
