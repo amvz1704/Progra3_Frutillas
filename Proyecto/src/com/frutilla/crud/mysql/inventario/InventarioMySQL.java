@@ -72,7 +72,7 @@ public class InventarioMySQL implements InventarioDAO{
         String query = "SELECT stock FROM Inventario WHERE "
                 + "idProducto = ? AND idLocal = ?";
         try (Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
+            PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idProducto);
             ps.setInt(2, idLocal);
             try(ResultSet rs=ps.executeQuery()){

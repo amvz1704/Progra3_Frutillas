@@ -107,7 +107,6 @@ public class FrutillaSoft{
 			repartidor2.setActivo(true); 
 			
 			//Como dijo junior el idLocal lo asignamos al nuevo local creado owo  --Side note: Supongo que dependiendo del local en el que se trabaje esto automaticamente hace el get del local
-			 
 			
 			primerEmpleado.insertarEmpleado(repartidor1, pruebaSelect.getIdLocal());
 			primerEmpleado.insertarEmpleado(sup, pruebaSelect.getIdLocal()); //esto es nuevo estamos agregando un supervisor al local de id 1 owo
