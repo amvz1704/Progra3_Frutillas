@@ -79,7 +79,13 @@ public class FrutillaSoft{
 			
 		
 		/*D3: Probemos que imprime correctamente todos los locales ! SI LO HACE :3 */
-			//segundoLocal.reporteTodosLosLocalesActivos(); 
+		
+		ArrayList<Local> locales = obtenerTodosLocales(); //obtenemos todos los locales 
+		
+		System.out.println("Lista de los locales: ");
+		for(Local i: locales){
+			System.out.println("Local actual es: "+ i.getNombre() + " "+ i.getDescripcion() + " ubicado en "+ i.getDireccion());
+		} 
 			
 		
 			
@@ -112,7 +118,7 @@ public class FrutillaSoft{
 		// Ya funciona eliminarLocal y actualizarLocal
 		
 		
-		/*E: CRUD Inventario probando la insercion de los DAOs y MySQLs Codigo INVENTARIO PROBAR LUEGO!
+		/*E: CRUD Inventario probando la insercion de los DAOs y MySQLs Codigo INVENTARIO PROBAR LUEGO! 
 		
 		
 		
@@ -157,19 +163,56 @@ public class FrutillaSoft{
 		Local pruebaLocal1 = segundoLocal.obtenerLocalPorId(1);
 		Local pruebaLocal2 = segundoLocal.obtenerLocalPorId(3);
 		
-		//Sobre el local 1
-			//Empleados 
-			segundoLocal.reporteTodosLosEmpleados(pruebaLocal1); 
-			segundoLocal.reporteTodosLosProductos(pruebaLocal1); 
-			
 		
-		//Sobre el local 2
-			//Empleados
-			segundoLocal.reporteTodosLosEmpleados(pruebaLocal2); 
-			segundoLocal.reporteTodosLosProductos(pruebaLocal2); 
-			
-			//Productos 
-			
+		ArrayList<Empleado> listaEmpleadosLocal = segundoLocal.encontrarEmpleados(pruebaLocal1.getIdLocal());  
+		
+		
+		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
+		System.out.println("Lista de empleados del local: " + pruebaLocal1.getNombre());
+		
+		
+		for(Empleado e: listaEmpleadosLocal){
+			System.out.println(e);
+		}
+		
+		ArrayList<Producto> listaProductosLocal = segundoLocal.encontrarProductos(pruebaLocal1.getIdLocal());  
+		
+		
+		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
+		System.out.println("Lista de productos del local: " + pruebaLocal1.getNombre());
+		
+		System.out.println("Direccion del local: " + pruebaLocal1.getDireccion());
+		
+		for(Producto e: listaProductosLocal){
+			System.out.println(e); //sí tiene toString :'v 
+		}
+		
+		
+		listaEmpleadosLocal = segundoLocal.encontrarEmpleados(pruebaLocal2.getIdLocal());  
+		
+		System.out.println("Lista de empleados del local: " + pruebaLocal2.getNombre());
+		
+		
+		for(Empleado e: listaEmpleadosLocal){
+			System.out.println(e);
+		}
+		
+		
+		
+		
+		
+		
+		listaProductosLocal = segundoLocal.encontrarProductos(pruebaLocal2.getIdLocal());  
+		
+		
+		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
+		System.out.println("Lista de productos del local: " + pruebaLocal2.getNombre());
+		
+		System.out.println("Direccion del local: " + pruebaLocal2.getDireccion());
+		
+		for(Producto e: listaProductosLocal){
+			System.out.println(e); //sí tiene toString :'v 
+		}
 		
 		/*G: CRUD de ventas*/
 		

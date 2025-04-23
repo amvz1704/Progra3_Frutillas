@@ -41,14 +41,6 @@ import com.frutilla.config.DBManager; //El manager
 		}
 	}
 	
-	public void reporteTodosLosLocalesActivos() throws SQLException{
-		ArrayList<Local> locales = obtenerTodosLocales(); //obtenemos todos los locales 
-		
-		System.out.println("Lista de los locales: ");
-		for(Local i: locales){
-			System.out.println("Local actual es: "+ i.getNombre() + " "+ i.getDescripcion() + " ubicado en "+ i.getDireccion());
-		}
-	}
 	
 	
 	public ArrayList<Local> obtenerTodosLocales() throws SQLException{
@@ -71,47 +63,6 @@ import com.frutilla.config.DBManager; //El manager
 	
 	
 	
-	public void reporteTodosLosEmpleados(Local local) throws SQLException{
-		
-		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); //creamos una interfaz de empleados! 
-		
-		//no imprime es porque no esta activo 
-		ArrayList<Empleado> listaEmpleadosLocal = interfazEmpleado.obtenerEmpleados(local.getIdLocal());  
-		
-		
-		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
-		System.out.println("Lista de empleados del local: " + local.getNombre());
-		
-		//No imprime supervisor uwu porque no asigna! 
-		//Empleado localSupervisor = interfazEmpleado.obtenerEmpleadoPorId(local.getIdSupervisor());
-		//System.out.println("Supervisor id: " + local.getIdSupervisor() + " nombre: "  +localSupervisor.getNombre());
-		
-		for(Empleado e: listaEmpleadosLocal){
-			System.out.println(e);
-			
-		}
-		
-		
-		
-	}
-	
-	public void reporteTodosLosProductos(Local local) throws SQLException{
-		
-		ProductoDAO interfazProducto = new ProductoMySQL(); //creamos una interfaz de productos! 
-		
-		ArrayList<Producto> listaProductosLocal = interfazProducto.obtenerTodos(local.getIdLocal());  
-		
-		
-		/*Aquí solo nos encargamos del formato de impresión dejamos el manejo del acceso*/
-		System.out.println("Lista de productos del local: " + local.getNombre());
-		
-		System.out.println("Direccion del local: " + local.getDireccion());
-		
-		for(Producto e: listaProductosLocal){
-			System.out.println(e); //sí tiene toString :'v 
-		}
-		
-	}
 
 	
 	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
