@@ -27,8 +27,8 @@ public class BebidaMySQL implements BebidaDAO{
         String query="INSERT INTO Bebida (idProducto,tamanioOnz,tipo,endulzante,"
                 + "tipoLeche) VALUES (?,?,?,?,?)";
         try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query,
-                     PreparedStatement.RETURN_GENERATED_KEYS)){
+            PreparedStatement ps=con.prepareStatement(query,
+                    PreparedStatement.RETURN_GENERATED_KEYS)){
             ps.setInt(1,bebida.getIdProducto());
             ps.setInt(2,bebida.getTamanioOz());
             ps.setString(3, bebida.getTipo());
@@ -43,14 +43,14 @@ public class BebidaMySQL implements BebidaDAO{
         int result=0;
         ProductoMySQL padre= new ProductoMySQL();
         padre.actualizarProducto(bebida);
-         String query = """
+        String query = """
                 UPDATE Bebida JOIN Producto ON 
                 Bebida.idProducto=Producto.idProducto 
                 SET Bebida.tipo=?, Bebida.tamanioOnz=?,
                 Bebida.endulzante=?, Bebida.tipoLeche=?
                 WHERE Producto.idProducto=?""";
         try (Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
+            PreparedStatement ps=con.prepareStatement(query)){
             ps.setString(1, bebida.getTipo());
             ps.setInt(2, bebida.getTamanioOz());
             ps.setString(3, bebida.getEndulzante());

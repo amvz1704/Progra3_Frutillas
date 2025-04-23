@@ -5,17 +5,17 @@
  * Telf: 989299092
  */
 
- package com.frutilla.crud.mysql.venta;
+package com.frutilla.crud.mysql.venta;
 
- import com.frutilla.models.inventario.Producto;
- import com.frutilla.models.venta.LineaOrdenDeVenta;
- import com.frutilla.crud.mysql.inventario.ProductoMySQL;
- import com.frutilla.config.DBManager;
- import java.sql.Connection;
- import java.sql.SQLException;
- import java.sql.PreparedStatement;
- import java.sql.ResultSet;
- import java.util.ArrayList;
+import com.frutilla.models.inventario.Producto;
+import com.frutilla.models.venta.LineaOrdenDeVenta;
+import com.frutilla.crud.mysql.inventario.ProductoMySQL;
+import com.frutilla.config.DBManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class LineaOrdenDeVentaMySQL{
     //Metodo que permite insertar datos a la tabla LineaOrdenVenta

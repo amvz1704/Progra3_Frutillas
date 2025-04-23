@@ -3,6 +3,7 @@ package com.frutilla.models.local;
 import java.time.*;
 import java.util.ArrayList;
 
+import com.frutilla.crud.mysql.local.LocalMySQL;
 import com.frutilla.crud.mysql.venta.OrdenVentaMySQL;
 import com.frutilla.models.inventario.*;
 import com.frutilla.models.rrhh.Empleado;
@@ -12,7 +13,7 @@ import com.frutilla.models.rrhh.Supervisor;
 import com.frutilla.models.venta.*; //version sin ventas
 
 public class Local {
-   
+
     private int idLocal;
     private String nombre;
     private String descripcion;
@@ -64,6 +65,14 @@ public class Local {
 	
 	//muestra en la pantalla la lista de productos dentro de un local
     public void generarReporteProductos(){
+        LocalMySQL localMySQL = new LocalMySQL();
+        try{
+            this.productos = localMySQL.encontrarProductos(idLocal);
+        }
+        catch(Exception e){
+            System.out.println("Error al obtener los productos: " + e.getMessage());
+            return;
+        }
         String reporte = "Reporte de productos del local " + "\n";
         reporte += "Productos: \n";
         for (Producto producto : productos) {
@@ -136,6 +145,14 @@ public class Local {
     }
 
     public void generarReporteEmpleados(){
+        LocalMySQL localMySQL = new LocalMySQL();
+        try{
+            this.empleados = localMySQL.encontrarEmpleados(idLocal);
+        }
+        catch(Exception e){
+            System.out.println("Error al obtener los empleados: " + e.getMessage());
+            return;
+        }
         String reporte = "Reporte de empleados del local: " + "\n";
         for (Empleado empleado : empleados) {
             if (empleado instanceof Supervisor) {

@@ -1,6 +1,6 @@
 package com.frutilla.crud.mysql.venta;
 
-import com.frutilla.crud.dao.venta.ComprobantePagoDAO;
+import com.frutilla.crud.dao.venta.ComprobantePagoDAO; 
 import com.frutilla.models.venta.ComprobantePago;
 import com.frutilla.models.venta.FormaDePago;
 import com.frutilla.config.DBManager;  // Importando DBManager
@@ -35,7 +35,7 @@ public class ComprobantePagoMySQL implements ComprobantePagoDAO {
     public void actualizarComprobante(ComprobantePago comprobantePago) throws SQLException {
         String query = "UPDATE ComprobantePago SET numeroArticulos = ?, subtotal = ?, montoIGV = ?, total = ?, fecha = ?, formaDePago = ? WHERE idComprobante = ?";
 
-   
+
         try (Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
 
             setComprobanteParameters(ps, comprobantePago);

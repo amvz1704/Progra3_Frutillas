@@ -2,6 +2,7 @@ package com.frutilla.test;
 
 import java.time.LocalDate;
 
+import com.frutilla.crud.mysql.local.LocalMySQL;
 import com.frutilla.models.inventario.*;
 import com.frutilla.models.local.*;
 import com.frutilla.models.rrhh.*;
@@ -12,11 +13,12 @@ import java.util.ArrayList;
 public class Principal{
 
 	public static void main(String[] args){
+
 		//Creamos un local
 		Local local1 = new Local("Sociales","Entre el polideportivo y generales ", "Estudios Generales Letras, Av. Universitaria 1801, San Miguel 15088", "999999999");
 
 		System.out.println("Se creo un local");
-		
+
 		//Creamos un supervisor
 		Supervisor sup = new Supervisor("Nayane", "Melendez", "Saire", "nayane@gmail.com", "999999999", LocalDate.now() , 2000, "nayane", "1234");
 		System.out.println("Se creo un supervisor");

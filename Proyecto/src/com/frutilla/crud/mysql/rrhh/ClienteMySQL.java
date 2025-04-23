@@ -102,9 +102,6 @@ public class ClienteMySQL implements ClienteDAO{
         ps.setString(4, cliente.getApellidoMaterno());
         ps.setString(5, cliente.getCorreoElectronico());
         ps.setString(6, cliente.getTelefono());
-        ps.setString(7, cliente.getUsuarioSistema());
-        ps.setString(8, cliente.getContraSistema());
-        ps.setBoolean(9, cliente.getActivo());
     }
 
 }

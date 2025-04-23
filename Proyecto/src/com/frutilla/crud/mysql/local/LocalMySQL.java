@@ -76,7 +76,7 @@ import com.frutilla.config.DBManager; //El manager
 	//Devuelve una lista de producto de un local por id --> llama a ProductosDAOSQL 
 	public ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
 		
-		ProductoDAO interfazProducto = new ProductoMySQL(); 
+		ProductoMySQL interfazProducto = new ProductoMySQL(); 
 		
 		return interfazProducto.obtenerTodos(idLocal); 
 		

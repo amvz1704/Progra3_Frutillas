@@ -98,7 +98,7 @@ public class OrdenVentaMySQL {
         String query = "UPDATE OrdenVenta SET estadoVenta = ? WHERE idOrdenVenta = ?";
 
         try (Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
+            PreparedStatement ps = con.prepareStatement(query)) {
 
             // Asignar el valor del estado ENTREGADO 
             ps.setString(1, EstadoVenta.ENTREGADO.name());  
@@ -118,7 +118,7 @@ public class OrdenVentaMySQL {
         String query = "SELECT idOrdenVenta, descripcion, montoTotal, entregado, estadoVenta FROM OrdenVenta WHERE idLocal = ?";
 
         try (Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
+            PreparedStatement ps = con.prepareStatement(query)) {
             
             ps.setInt(1, idLocal);
             ResultSet rs = ps.executeQuery();
