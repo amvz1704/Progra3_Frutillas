@@ -40,12 +40,35 @@ import java.sql.SQLException;
 public class Test{
     public static void main(String[] args){
         try{
-            //ClienteDAO cliSQL = new ClienteMySQL();
+            ClienteDAO cliSQL = new ClienteMySQL();
             LocalDAO segundoLocal = new LocalMySQL();
             SnackDAO snackSQL = new SnackMySQL();
             Local localA = new Local("NuevoNuevo","CIA 9no piso", "CENTRO DE INNOVACION PUCP, Av. Universitaria 1801, San Miguel 15088", "995-111-011");
-			
+			Cliente cliente = new Cliente("AAAA", "BBBBB", "CCCC", "0000000", "A@adsadsad", "asdapsd", "paosdoasd");
 			segundoLocal.insertarLocal(localA);
+            cliSQL.insertarCliente(cliente);
+            EmpleadoDAO primerEmpleado = new EmpleadoMySQL(); 
+			
+			//tenemos que crear un supervisor
+			Supervisor supervisor1 = new Supervisor("Naruto", "Uzumaki", "Namikaze", "hokageDeLaHoja@gmail.com", "999999993", LocalDate.now() , 2000, "6toHokage", "sasukei<3u"); 
+			Supervisor sup = new Supervisor("Nayane", "Melendez", "Saire", "nayane@gmail.com", "999999999", LocalDate.now() , 2000, "nayane", "1234");
+			supervisor1.setActivo(true); 
+			sup.setActivo(true); 
+			
+			//Creamos un repartidor
+			Repartidor repartidor1 = new Repartidor("Itachi", "Uchiha", "Mamani", "uchihaKiller@gmail.com", "999999991", LocalDate.now(), 1066, "itachi", "contra1234");
+			Repartidor repartidor2 = new Repartidor("Enzo", "Avila", "Mamani", "enzo@gmail.com", "999999999", LocalDate.now(), 1000, "enzo", "1234");
+			
+			repartidor1.setActivo(true); 
+			repartidor2.setActivo(true); 
+			
+			//Como dijo junior el idLocal lo asignamos al nuevo local creado owo  --Side note: Supongo que dependiendo del local en el que se trabaje esto automaticamente hace el get del local
+			 
+			
+			primerEmpleado.insertarEmpleado(repartidor1, 1);
+			primerEmpleado.insertarEmpleado(sup, 1); //esto es nuevo estamos agregando un supervisor al local de id 1 owo
+			primerEmpleado.insertarEmpleado(supervisor1, 1); 
+			primerEmpleado.insertarEmpleado(repartidor2, 1);
             /*
             Cliente cliente = new Cliente("Pepito", "Sanchez", "Sanchez", "99999999", "a@gmail.com", "hacker", "antihacker");
             cliSQL.insertarCliente(cliente);
@@ -63,7 +86,7 @@ public class Test{
             orden.agregarLineaOrden(lin2);
             orden.crearComprobantePago(FormaDePago.TARJETA_CREDITO);
             comprobanteSQL.insertarComprobante(orden.getComprobantePago());
-            ordenSQL.insertarOrdenVenta(orden, 1, 3, 2, orden.getComprobantePago().getIdComprobante());
+            ordenSQL.insertarOrdenVenta(orden, 1, 3, cliente.getIdCliente(), orden.getComprobantePago().getIdComprobante());
         }
         catch (SQLException e) {
             e.printStackTrace();
