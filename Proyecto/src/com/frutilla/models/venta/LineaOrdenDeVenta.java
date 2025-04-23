@@ -12,8 +12,8 @@ public class LineaOrdenDeVenta {
 
     // CONSTRUCTORES
     
-    public LineaOrdenDeVenta(int idLineaVenta, int cantidad, Producto producto) {
-        this.idLineaVenta = idLineaVenta;
+    
+    public LineaOrdenDeVenta(int cantidad, Producto producto) {
         this.cantidad = cantidad;
         this.producto = new Producto(producto);//crea un nuevo producto no el mismo! 
         actualizarSubtotal(); 

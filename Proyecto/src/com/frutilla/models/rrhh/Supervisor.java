@@ -11,7 +11,7 @@ public class Supervisor extends Empleado{
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'S');
     }
 
-    public generarReporte () {
+    public void generarReporte () {
         
     }
 

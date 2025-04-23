@@ -9,5 +9,5 @@ package com.frutilla.models.venta;
 */
 
 public enum EstadoVenta{
-	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR, FALTA_PAGO
+	ENTREGADO,PROCESO,CAMBIO,POR_ENTREGAR,FALTA_PAGO,CANCELADO
 }

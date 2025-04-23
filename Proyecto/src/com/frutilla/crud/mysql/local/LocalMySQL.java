@@ -3,9 +3,9 @@ package com.frutilla.crud.mysql.local;
 
 import com.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
 import com.frutilla.crud.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
-import com.frutilla.crud.mySQL.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
+import com.frutilla.crud.mysql.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
 import com.frutilla.crud.dao.inventario.ProductoDAO; 
-import com.frutilla.crud.mySQL.inventario.ProductoMySQL; 
+import com.frutilla.crud.mysql.inventario.ProductoMySQL; 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,16 +58,16 @@ public class LocalMySQL implements LocalDAO{
 	}
 	
 	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
-	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
+	public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 		
 		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
 		
-		return interfazEmpleado.obtenerEmpleados(idLocal); 
+		return interfazEmpleado.obtenerTodos(idLocal); 
 		
 	}
 	
 	//Devuelve una lista de producto de un local por id --> llama a ProductosDAOSQL 
-	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
+	public ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
 		
 		ProductoDAO interfazProducto = new ProductoMySQL(); 
 		
@@ -113,7 +113,7 @@ public class LocalMySQL implements LocalDAO{
 	
     public void actualizarLocal(Local local) throws SQLException{
         String query = "UPDATE Local SET nombre = ?, descripcion = ?, direccion = ?, activo = ?, telefono = ? WHERE idLocal = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             setLocalParameters(ps, local);// Establece los parámetros del local
             //ps.setInt(6, local.getIdSupervisor());
             ps.setInt(6, local.getIdLocal());
@@ -123,7 +123,7 @@ public class LocalMySQL implements LocalDAO{
 
     public void eliminarLocalPorId(int idLocal) throws SQLException{
         String query = "UPDATE Local SET activo = false WHERE idLocal = ?";
-        try(Connection con = DBManager.getConnection(); PreparedStatement ps = con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1, idLocal);// Establece el ID del local en la consulta
             ps.executeUpdate();// Ejecuta la consulta
         }

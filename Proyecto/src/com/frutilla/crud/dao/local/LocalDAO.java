@@ -3,6 +3,7 @@ package com.frutilla.crud.dao.local;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.frutilla.models.inventario.Producto;
 import com.frutilla.models.local.Local; //incluimos LOCAL 
 import com.frutilla.models.rrhh.Empleado;
 
