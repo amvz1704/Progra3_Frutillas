@@ -64,7 +64,7 @@ public class ClienteMySQL implements ClienteDAO{
     }
 
     public void eliminarCliente(int idCliente) throws SQLException {
-        String query = "UPDATE Cliente SET activo = false WHERE idCliente = ?";
+        String query = "UPDATE Usuario SET activo = false WHERE idUsuario = ?";
         try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1, idCliente);// Establece el ID del cliente en la consulta
             ps.executeUpdate();// Ejecuta la consulta

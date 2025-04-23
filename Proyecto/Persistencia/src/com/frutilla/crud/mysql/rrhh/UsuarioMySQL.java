@@ -7,9 +7,10 @@ import java.sql.SQLException;
 
 import com.frutilla.models.rrhh.Empleado;
 import com.frutilla.models.rrhh.Persona;
+import com.frutilla.crud.dao.rrhh.UsuarioDAO;
 import com.frutilla.models.rrhh.Cliente;
 
-public class UsuarioMySQL {
+public class UsuarioMySQL implements UsuarioDAO{
     public void insertarUsuario(Persona persona,Connection con){
         String query = "INSERT INTO Usuario (usuarioSistema, contrasSistema, activo) VALUES (?, ?, ?)";
         try(PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)){

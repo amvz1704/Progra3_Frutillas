@@ -81,7 +81,7 @@ public class FrutillaSoft{
 		
 		/*D3: Probemos que imprime correctamente todos los locales ! SI LO HACE :3 */
 		
-		ArrayList<Local> locales = obtenerTodosLocales(); //obtenemos todos los locales 
+		ArrayList<Local> locales = segundoLocal.obtenerTodosLocales(); //obtenemos todos los locales 
 		
 		System.out.println("Lista de los locales: ");
 		for(Local i: locales){
@@ -125,37 +125,37 @@ public class FrutillaSoft{
 		
 		
 		Snack sna1=new Snack("galleta 1", "galleta de salvado", "GAL", 3.5, 
-                10, 5, TipoEstado.DISPONIBLE, "galleta", "empaquetado propio", false, false);
+                10, 5, "galleta", "empaquetado propio", false, false);
         Snack sna2=new Snack("keke 1", "keke de platano", "KEK", 2.5, 
-                11, 3, TipoEstado.DISPONIBLE, "keke", "empaquetado propio", false, false);
+                11, 3, "keke", "empaquetado propio", false, false);
         
         SnackMySQL snaSQL=new SnackMySQL();
 		
-        snaSQL.insertar(sna1, pruebaSelect.getIdLocal());
-        snaSQL.insertar(sna2, pruebaSelect.getIdLocal());
+        snaSQL.insertarSnack(sna1);
+        snaSQL.insertarSnack(sna2);
 		
         sna1.setEstaEnvasado(true);
-        snaSQL.actualizar(sna1, pruebaSelect.getIdLocal());
-        Snack prueba=snaSQL.obtenerDatosSnack(sna1.getIdProducto(), pruebaSelect.getIdLocal());
+        snaSQL.actualizarSnack(sna1);
+        Snack prueba=snaSQL.obtenerSnackPorId(sna1.getIdProducto());
         System.out.println("Producto de prueba: " + prueba);
 		
         ArrayList<FrutasBebida> ejmeok=new ArrayList<>();
-        Bebida beb1=new Bebida("jugo", "jugo de frutas", "JUG", 7.5, 4, 1, TipoEstado.DISPONIBLE, 7,
+        Bebida beb1=new Bebida("jugo", "jugo de frutas", "JUG", 7.5, 4, 1, 7,
                 "jugo", "stevia", TipoLeche.ENTERA, ejmeok);
         
 		
         BebidaMySQL beb=new BebidaMySQL();
-        beb.insertar(beb1, pruebaSelect.getIdLocal());
+        beb.insertarBebida(beb1);
         beb1.setEndulzante("azucar_rubia");
-        beb.actualizar(beb1, pruebaSelect.getIdLocal());
-        beb.eliminar(11, pruebaSelect.getIdLocal());
+        beb.actualizarBebida(beb1);
+        beb.eliminarBebida(beb1.getIdProducto(), pruebaSelect.getIdLocal());
 		
         Fruta fru1=new Fruta("platano", "platano de la isla", "FRU", 2, 
-                3, 1, TipoEstado.DISPONIBLE, true, true, true, true, "no tiene envase");
+                3, 1, true, true, true, true, "no tiene envase");
 				
         fru1.setTipoEstado(TipoEstado.DISPONIBLE);
         FrutaMySQL fru=new FrutaMySQL();
-        fru.insertar(fru1, pruebaSelect.getIdLocal());
+        fru.insertarFruta(fru1);
 		
 		
 		/*F: Generar reportes de productos y empleadoss de un local */
