@@ -19,19 +19,18 @@ import java.util.ArrayList;
 
 public class LineaOrdenDeVentaMySQL{
     //Metodo que permite insertar datos a la tabla LineaOrdenVenta
-    public int insertarLineaVenta(LineaOrdenDeVenta lVenta,int idOrdenVenta,int idProducto) throws SQLException{
-        int result=0;
+    public void insertarLineaVenta(LineaOrdenDeVenta lVenta,int idOrdenVenta,int idProducto) throws SQLException{
         String query= "INSERT INTO LineaOrdenVenta(idOrdenVenta,cantidad,subtotal,IdProducto)"
         + "values(?,?,?,?)";
         
         try(Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query);){
+            PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);){
                 ps.setInt(1,idOrdenVenta);
                 ps.setInt(2,lVenta.getCantidad());
                 ps.setDouble(3,lVenta.getSubtotal());
                 ps.setInt(4,idProducto);
                 
-                result=ps.executeUpdate();//ejecuta la insercion
+                ps.executeUpdate();//ejecuta la insercion
 
                 try(ResultSet rs=ps.getGeneratedKeys()){
                     if(rs.next()){
@@ -39,29 +38,29 @@ public class LineaOrdenDeVentaMySQL{
                     }
                 }
         }
-            
-        return result;
     }
 
     //metodo para actualizar dentro de la tabla LineaOrdenVenta
-    public int actualizarLineaOrdenVenta(LineaOrdenDeVenta lVenta)throws SQLException{
-        int result=0;
-        String query="UPDATE LineaOrdenVenta SET cantidad = ? WHERE idLineaOrdenVenta = ?";
+    public void actualizarLineaOrdenVenta(LineaOrdenDeVenta lVenta)throws SQLException{
+
+        String query="UPDATE LineaOrdenVenta SET cantidad = ?, subtotal = ?, IdProducto = ? WHERE idLineaOrdenVenta = ?";
 
         try (Connection con = DBManager.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1,lVenta.getCantidad());
-            ps.setInt(2,lVenta.getIdLineaVenta());
-
-            result = ps.executeUpdate();
+            lVenta.actualizarSubtotal();
+            ps.setDouble(2, lVenta.getSubtotal());
+            ps.setInt(3, lVenta.getProducto().getIdProducto());
+            ps.setInt(4,lVenta.getIdLineaVenta());
+            
+            ps.executeUpdate();
         }
-        return result;
     }
 
     public ArrayList<LineaOrdenDeVenta> obtenerLineasPorOrden(int idOrdenVenta)throws SQLException{
         ArrayList<LineaOrdenDeVenta> lineasDeVentas = new ArrayList<>();
 
-        String query="SELECT *FROM LineaOrdenVenta WHERE idOrdenVenta=?";
+        String query="SELECT * FROM LineaOrdenVenta WHERE idOrdenVenta=?";
 
         try(Connection con = DBManager.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(query)){

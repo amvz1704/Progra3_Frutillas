@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package com.frutilla.crud.mysql.inventario;
 
 import com.frutilla.config.DBManager;
@@ -15,32 +14,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+
 public class FrutaMySQL implements FrutaDAO{
     @Override
-    public int insertarFruta(Fruta fruta) throws SQLException{
-        int result=0;
+    public void insertarFruta(Fruta fruta) throws SQLException{
+        int id = 0;
         ProductoMySQL padre=new ProductoMySQL();
-        result=padre.insertarProducto(fruta);
-        fruta.setIdProducto(result);
+        id=padre.insertarProductoDevolverID(fruta);
+        fruta.setIdProducto(id);
         String query="INSERT INTO Fruta (idProducto,requiereLimpieza,"
                 + "estaLimpio,requiereEnvasado,estaEnvasado,envase)"
                 + "VALUES (?,?,?,?,?,?)";
-        try(Connection con=DBManager.getInstance().getConnection();
-            PreparedStatement ps=con.prepareStatement(query,
-                    PreparedStatement.RETURN_GENERATED_KEYS)){
+        try(Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps=con.prepareStatement(query,
+                     PreparedStatement.RETURN_GENERATED_KEYS)){
             ps.setInt(1,fruta.getIdProducto());
             ps.setBoolean(2,fruta.isRequiereLimpieza());
             ps.setBoolean(3,fruta.isEstaLimpio());
             ps.setBoolean(4,fruta.isRequiereEnvase());
             ps.setBoolean(5,fruta.isEstaEnvasado());
             ps.setString(6,fruta.getEnvase());
-            result=ps.executeUpdate();
+            ps.executeUpdate();
         }
-        return result;
     }
     @Override
-    public int actualizarFruta (Fruta fruta)throws SQLException{
-        int result=0;
+    public void actualizarFruta (Fruta fruta)throws SQLException{
         ProductoMySQL padre=new ProductoMySQL();
         padre.actualizarProducto(fruta);
         String query = """
@@ -50,17 +49,16 @@ public class FrutaMySQL implements FrutaDAO{
                 Fruta.requiereEnvasado=?,Fruta.estaLimpio=?, 
                 Fruta.estaEnvasado=?,Fruta.envase=? WHERE 
                 Producto.idProducto=? """;
-        try (Connection con=DBManager.getInstance().getConnection();
-            PreparedStatement ps=con.prepareStatement(query)){
+        try (Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
             ps.setBoolean(1, fruta.isRequiereLimpieza());
             ps.setBoolean(2, fruta.isRequiereEnvase());
             ps.setBoolean(3, fruta.isEstaLimpio());
             ps.setBoolean(4, fruta.isEstaEnvasado());
             ps.setString(5, fruta.getEnvase());
             ps.setInt(6, fruta.getIdProducto());
-            result=ps.executeUpdate();
+            ps.executeUpdate();
         }
-        return result;
     }
     @Override
     public void eliminarFruta (int idProducto,int idLocal) throws SQLException{
@@ -77,8 +75,8 @@ public class FrutaMySQL implements FrutaDAO{
                 + " estaEnvasado, envase FROM Fruta,Producto WHERE "
                 + " Producto.idProducto=Fruta.idProducto "
                 + " AND Fruta.idProducto=? ";
-        try (Connection con=DBManager.getInstance().getConnection();
-            PreparedStatement ps=con.prepareStatement(query)){
+        try (Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idProducto);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){
@@ -98,8 +96,8 @@ public class FrutaMySQL implements FrutaDAO{
         String query="SELECT Inventario.idProducto FROM Fruta,Inventario "
                 + "WHERE Fruta.idProducto = Inventario.idProducto "
                 + "AND Inventario.idLocal = ?";
-        try(Connection con=DBManager.getInstance().getConnection();
-            PreparedStatement ps=con.prepareStatement(query)){
+        try(Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while(rs.next()){

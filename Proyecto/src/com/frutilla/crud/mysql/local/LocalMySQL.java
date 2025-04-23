@@ -2,6 +2,7 @@ package com.frutilla.crud.mysql.local;
 
 
 import com.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
+import com.frutilla.crud.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
 import com.frutilla.crud.mysql.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
 import com.frutilla.crud.dao.inventario.ProductoDAO; 
 import com.frutilla.crud.mysql.inventario.ProductoMySQL; 

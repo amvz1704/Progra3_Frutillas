@@ -15,8 +15,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface BebidaDAO {
-    int insertarBebida(Bebida bebida) throws SQLException;
-    int actualizarBebida(Bebida bebida) throws SQLException;
+    void insertarBebida(Bebida bebida) throws SQLException;
+    void actualizarBebida(Bebida bebida) throws SQLException;
     Bebida obtenerBebidaPorId (int idProducto) throws SQLException;
     void eliminarBebida (int idProducto,int idLocal) throws SQLException;
     ArrayList<Bebida> obtenerTodos(int idLocal) throws SQLException;
