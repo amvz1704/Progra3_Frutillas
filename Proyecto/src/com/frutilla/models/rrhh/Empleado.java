@@ -21,7 +21,7 @@ public class Empleado extends Persona{
         this.tipo = tipo;
     }
 	
-	public Empleado(){
+	public Empleado(){ 
 	}
 	
 	@Override

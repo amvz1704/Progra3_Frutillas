@@ -74,7 +74,7 @@ public class LineaOrdenDeVentaMySQL{
                 lineaOrdenVenta.setIdLineaVenta(rs.getInt("idLineaOrdenVenta"));
                 lineaOrdenVenta.setCantidad(rs.getInt("cantidad"))
                 lineaOrdenVenta.setSubtotal(rs.getDouble("subTotal"));
-                Producto producto = productoMySQL.obtenerProductoPorId(rs.getInt("idProducto"));
+                Producto producto = productoMySQL.obtenerProducto(rs.getInt("idProducto"));
                 lineaOrdenVenta.setProducto(producto);
                 lineasDeVentas.add(lineaOrdenVenta);
             }
