@@ -15,20 +15,12 @@ public interface LocalDAO {
     Local obtenerLocalPorId(int idLocal) throws SQLException;
 	
 	//obtener una lista de locales de frutilla que estan activos
-	public void reporteTodosLosLocalesActivos() throws SQLException;
 	
 	ArrayList<Local> obtenerTodosLocales() throws SQLException;
 	
 //consultas especificas decido mantenerlo con encontrarEmpleados y Productos (esto es privado solo para local! )
 	ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
 	ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException; 
-	
-	//generar reportes de:
-		
-	void reporteTodosLosEmpleados(Local local) throws SQLException;
-	void reporteTodosLosProductos(Local local) throws SQLException;
-	
-	
 	
 	
 	//podriamos agregar a unas consultas cuando no esten activos o algo asi x
@@ -44,11 +36,8 @@ public interface LocalDAO {
 	
 	//Otros UPDATES aun no implementados
 		//activar un supervisor
-	
 		//agregar un empleado o supervisor
-		
 		//agregar un producto	
-		
 		//eliminar un empleado o supervisor 
 		//eliminar un producto 
 		
