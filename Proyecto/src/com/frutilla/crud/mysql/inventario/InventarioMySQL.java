@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.frutilla.Inventario.mysql;
+package com.frutilla.crud.mysql.inventario;
 
-import com.frutilla.Inventario.dao.InventarioDAO;
+import com.frutilla.crud.dao.inventario.InventarioDAO;
 import com.frutilla.config.DBManager;
-import com.frutilla.models.Inventario.Producto;
-import com.frutilla.models.Inventario.Fruta;
-import com.frutilla.models.Inventario.Snack;
-import com.frutilla.models.Inventario.Bebida;
+import com.frutilla.models.inventario.Producto;
+import com.frutilla.models.inventario.Fruta;
+import com.frutilla.models.inventario.Snack;
+import com.frutilla.models.inventario.Bebida;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,7 +35,7 @@ public class InventarioMySQL implements InventarioDAO{
             tipo='P';
         String query="INSERT INTO Inventario (idProducto,idLocal,"
                 + "stock,estado,tipo) VALUES (?,?,?,?,?)";
-        try (Connection con=DBManager.getConnection();
+        try (Connection con=DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query);){
             ps.setInt(1, producto.getIdProducto());
             ps.setInt(2, idLocal);
@@ -54,7 +54,7 @@ public class InventarioMySQL implements InventarioDAO{
         //continuamos haciendo el query y actualización de la tabla
         String query = "UPDATE Inventario SET stock=?,estado=? WHERE "
                 + "idProducto=? AND idLocal=?";
-        try(Connection con=DBManager.getConnection();
+        try(Connection con=DBManager.getInstance().getConnection();
             PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, producto.getStock());
             ps.setString(2, producto.getTipoEstado().name());
@@ -71,7 +71,7 @@ public class InventarioMySQL implements InventarioDAO{
         int stock=0;
         String query = "SELECT stock FROM Inventario WHERE "
                 + "idProducto = ? AND idLocal = ?";
-        try (Connection con=DBManager.getConnection();
+        try (Connection con=DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idProducto);
             ps.setInt(2, idLocal);
@@ -99,7 +99,7 @@ public class InventarioMySQL implements InventarioDAO{
         //Buscamos los productos restantes
         String query = "SELECT idProducto FROM Inventario WHERE idLocal=? and "
                 + "tipo=?";
-        try (Connection con=DBManager.getConnection();
+        try (Connection con=DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idLocal);
             ps.setString(2,String.valueOf('P'));

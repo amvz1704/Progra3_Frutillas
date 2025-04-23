@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.frutilla.Inventario.mysql;
+package com.frutilla.crud.mysql.inventario;
 
 import com.frutilla.config.DBManager;
-import com.frutilla.models.Inventario.Bebida;
-import com.frutilla.models.Inventario.Producto;
-import com.frutilla.models.Inventario.TipoLeche;
-import com.frutilla.Inventario.dao.BebidaDAO;
+import com.frutilla.models.inventario.Bebida;
+import com.frutilla.models.inventario.Producto;
+import com.frutilla.models.inventario.TipoLeche;
+import com.frutilla.crud.dao.inventario.BebidaDAO;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +26,7 @@ public class BebidaMySQL implements BebidaDAO{
         bebida.setIdProducto(result);
         String query="INSERT INTO Bebida (idProducto,tamanioOnz,tipo,endulzante,"
                 + "tipoLeche) VALUES (?,?,?,?,?)";
-        try(Connection con=DBManager.getConnection();
+        try(Connection con=DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query,
                      PreparedStatement.RETURN_GENERATED_KEYS)){
             ps.setInt(1,bebida.getIdProducto());
@@ -49,7 +49,7 @@ public class BebidaMySQL implements BebidaDAO{
                 SET Bebida.tipo=?, Bebida.tamanioOnz=?,
                 Bebida.endulzante=?, Bebida.tipoLeche=?
                 WHERE Producto.idProducto=?""";
-        try (Connection con=DBManager.getConnection();
+        try (Connection con=DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setString(1, bebida.getTipo());
             ps.setInt(2, bebida.getTamanioOz());
@@ -74,7 +74,7 @@ public class BebidaMySQL implements BebidaDAO{
         String query="SELECT tamanioOnz, tipo, endulzante, tipoLeche FROM Bebida,"
                 + "Producto WHERE Producto.idProducto=Bebida.idProducto "
                 + "AND Bebida.idProducto=?";
-        try(Connection con=DBManager.getConnection();
+        try(Connection con=DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1,idProducto);
             try (ResultSet rs = ps.executeQuery()) {
@@ -95,7 +95,7 @@ public class BebidaMySQL implements BebidaDAO{
         String query="SELECT Bebida.idProducto FROM Bebida,Inventario WHERE "
                 + "Bebida.idProducto = Inventario.idProducto AND "
                 + "Inventario.idLocal=?";
-        try(Connection con=DBManager.getConnection();
+        try(Connection con=DBManager.getInstance().getConnection();
              PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1, idLocal);
             try (ResultSet rs = ps.executeQuery()) {

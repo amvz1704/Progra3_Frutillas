@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
  
- package com.frutilla.Inventario.mysql;
+ package com.frutilla.crud.mysql.inventario;
 
- import com.frutilla.Inventario.dao.ProductoDAO;
- import com.frutilla.models.Inventario.Producto;
+ import com.frutilla.crud.dao.inventario.ProductoDAO;
+ import com.frutilla.models.inventario.Producto;
  import com.frutilla.config.DBManager;
- import com.frutilla.models.Inventario.TipoEstado;
+ import com.frutilla.models.inventario.TipoEstado;
  import java.sql.ResultSet;
  import java.sql.PreparedStatement;
  import java.sql.Connection;
@@ -26,7 +26,7 @@
          String query="INSERT INTO Producto (nombre,descripcion,codProd,"
                  + "precioUnitario,stockMinimo) VALUES "
                  + "(?,?,?,?,?)";
-         try(Connection con=DBManager.getConnection();
+         try(Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query,
                       PreparedStatement.RETURN_GENERATED_KEYS)){
              ps.setString(1,producto.getNombre());
@@ -53,7 +53,7 @@
                      UPDATE Producto SET nombre=?,descripcion=?,codProd=?,
                      precioUnitario=?, stockMinimo=?
                      WHERE idProducto=? """;
-         try (Connection con=DBManager.getConnection();
+         try (Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query)){
              ps.setString(1,producto.getNombre());
              ps.setString(2, producto.getDescripcion());
@@ -71,7 +71,7 @@
          TipoEstado desactivado=TipoEstado.AGOTADO;
          String query="UPDATE Inventario SET estado = ? WHERE idProducto = ? AND "
                  + "idLocal = ?";
-         try(Connection con=DBManager.getConnection();
+         try(Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query)){
              ps.setString(1, desactivado.toString());
              ps.setInt(2, idProd);
@@ -88,7 +88,7 @@
          Producto prod=new Producto();
          String query="SELECT nombre,descripcion,codProd,precioUnitario,"
                  + "stockMinimo FROM Producto WHERE idProducto = ? ";
-         try(Connection con=DBManager.getConnection();
+         try(Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query)){
              ps.setInt(1,idProducto);
              ResultSet rs=ps.executeQuery();
@@ -108,7 +108,7 @@
      public ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException{
          ArrayList<Producto> productos=new ArrayList<Producto>();
          String query="SELECT idProducto FROM Inventario WHERE idLocal = ?";
-         try(Connection con=DBManager.getConnection();
+         try(Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query)){
              ps.setInt(1, idLocal);
              try (ResultSet rs = ps.executeQuery()) {

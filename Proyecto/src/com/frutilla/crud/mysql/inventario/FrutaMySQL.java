@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
  
- package com.frutilla.Inventario.mysql;
+ package com.frutilla.crud.mysql.inventario;
 
  import com.frutilla.config.DBManager;
- import com.frutilla.Inventario.dao.FrutaDAO;
- import com.frutilla.models.Inventario.Fruta;
- import com.frutilla.models.Inventario.Producto;
+ import com.frutilla.crud.dao.inventario.FrutaDAO;
+ import com.frutilla.models.inventario.Fruta;
+ import com.frutilla.models.inventario.Producto;
  import java.sql.Connection;
  import java.sql.PreparedStatement;
  import java.sql.ResultSet;
@@ -27,7 +27,7 @@
          String query="INSERT INTO Fruta (idProducto,requiereLimpieza,"
                  + "estaLimpio,requiereEnvasado,estaEnvasado,envase)"
                  + "VALUES (?,?,?,?,?,?)";
-         try(Connection con=DBManager.getConnection();
+         try(Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query,
                       PreparedStatement.RETURN_GENERATED_KEYS)){
              ps.setInt(1,fruta.getIdProducto());
@@ -52,7 +52,7 @@
                  Fruta.requiereEnvasado=?,Fruta.estaLimpio=?, 
                  Fruta.estaEnvasado=?,Fruta.envase=? WHERE 
                  Producto.idProducto=? """;
-         try (Connection con=DBManager.getConnection();
+         try (Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query)){
              ps.setBoolean(1, fruta.isRequiereLimpieza());
              ps.setBoolean(2, fruta.isRequiereEnvase());
@@ -79,7 +79,7 @@
                  + " estaEnvasado, envase FROM Fruta,Producto WHERE "
                  + " Producto.idProducto=Fruta.idProducto "
                  + " AND Fruta.idProducto=? ";
-         try (Connection con=DBManager.getConnection();
+         try (Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query)){
              ps.setInt(1, idProducto);
              try (ResultSet rs = ps.executeQuery()) {
@@ -100,7 +100,7 @@
          String query="SELECT Inventario.idProducto FROM Fruta,Inventario "
                  + "WHERE Fruta.idProducto = Inventario.idProducto "
                  + "AND Inventario.idLocal = ?";
-         try(Connection con=DBManager.getConnection();
+         try(Connection con=DBManager.getInstance().getConnection();
               PreparedStatement ps=con.prepareStatement(query)){
              ps.setInt(1, idLocal);
              try (ResultSet rs = ps.executeQuery()) {

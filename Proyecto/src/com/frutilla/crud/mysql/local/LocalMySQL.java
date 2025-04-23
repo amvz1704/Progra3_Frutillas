@@ -2,7 +2,6 @@ package com.frutilla.crud.mysql.local;
 
 
 import com.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
-import com.frutilla.crud.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
 import com.frutilla.crud.mysql.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
 import com.frutilla.crud.dao.inventario.ProductoDAO; 
 import com.frutilla.crud.mysql.inventario.ProductoMySQL; 
@@ -68,9 +67,9 @@ import com.frutilla.config.DBManager; //El manager
 	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
 	public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 		
-		EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
+		EmpleadoMySQL interfazEmpleado = new EmpleadoMySQL(); 
 		
-		return interfazEmpleado.obtenerEmpleados(idLocal); 
+		return interfazEmpleado.obtenerTodos(idLocal); 
 		
 	}
 	

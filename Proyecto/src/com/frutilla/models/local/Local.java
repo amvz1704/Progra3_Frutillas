@@ -1,7 +1,9 @@
-package com.frutilla.models.Local;
+package com.frutilla.models.local;
 
 import java.time.*;
 import java.util.ArrayList;
+
+import com.frutilla.crud.mysql.venta.OrdenVentaMySQL;
 import com.frutilla.models.inventario.*;
 import com.frutilla.models.rrhh.Empleado;
 import com.frutilla.models.rrhh.Repartidor;
@@ -149,6 +151,14 @@ public class Local {
     }
 
     public void generarReporteVentas(LocalDate fecha){
+        OrdenVentaMySQL ordenesVentaMySQL = new OrdenVentaMySQL();
+        try{
+            this.ordenesVentas = ordenesVentaMySQL.obtenerTodos(idLocal);
+        }
+        catch(Exception e){
+            System.out.println("Error al obtener las ordenes de venta: " + e.getMessage());
+            return;
+        }
         String reporte = "Reporte de ventas del " + fecha.toString() + ":" + "\n";
         for (OrdenVenta orden : ordenesVentas) {
             if (orden.getFecha().equals(fecha)) {
