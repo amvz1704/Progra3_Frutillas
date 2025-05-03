@@ -1,3 +1,5 @@
+package com.frutilla.models.notificacion;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 

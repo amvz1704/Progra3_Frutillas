@@ -13,7 +13,7 @@ public class Bebida extends Producto{
 	
 	public Bebida(){
 		super();
-		frutasBebida = new ArrayList<FrutasBebida>();
+		frutasBebida = new ArrayList<>();
 	}
 	
 	public Bebida(String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int tamanioOz, String tipo, String endulzante, TipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
@@ -23,7 +23,7 @@ public class Bebida extends Producto{
 		this.tipo = tipo; 
 		this.endulzante = endulzante; 
 		this.tieneLeche = tieneLeche; 
-		frutasBebida = new ArrayList<FrutasBebida>();
+		frutasBebida = new ArrayList<>();
 		for(FrutasBebida f: frutasBebidas){
 			this.frutasBebida.add(f);
 		}
@@ -36,7 +36,7 @@ public class Bebida extends Producto{
 		this.tipo = original.tipo; 
 		this.endulzante = original.endulzante; 
 		this.tieneLeche = original.tieneLeche; 
-		this.frutasBebida = new ArrayList<FrutasBebida>();
+		this.frutasBebida = new ArrayList<>();
 		
 		//copiar el arreglo!
 		for(FrutasBebida f: original.frutasBebida){
@@ -46,7 +46,7 @@ public class Bebida extends Producto{
 	
 	public Bebida(Producto producto) {
 		super(producto);  // Llama al constructor copia de Producto
-		frutasBebida = new ArrayList<FrutasBebida>();
+		frutasBebida = new ArrayList<>();
 	}
 
 	public int getTamanioOz() {
