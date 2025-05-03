@@ -15,6 +15,7 @@ dist/
 *.lock
 *.bak
 *.swp
+*.lst
 
 # Archivos de sistema operativo
 .DS_Store
