@@ -35,36 +35,36 @@ public class Snack extends Producto{
 	}
 
 	public String getTipo() {
-        return tipo;
-    }
+            return tipo;
+        }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+        public void setTipo(String tipo) {
+            this.tipo = tipo;
+        }
 
-    public boolean isRequiereEnvase() {
-        return requiereEnvase;
-    }
+        public boolean isRequiereEnvase() {
+            return requiereEnvase;
+        }
 
-    public void setRequiereEnvase(boolean requiereEnvase) {
-        this.requiereEnvase = requiereEnvase;
-    }
+        public void setRequiereEnvase(boolean requiereEnvase) {
+            this.requiereEnvase = requiereEnvase;
+        }
 
-    public boolean isEstaEnvasado() {
-        return estaEnvasado;
-    }
+        public boolean isEstaEnvasado() {
+            return estaEnvasado;
+        }
 
-    public void setEstaEnvasado(boolean estaEnvasado) {
-        this.estaEnvasado = estaEnvasado;
-    }
+        public void setEstaEnvasado(boolean estaEnvasado) {
+            this.estaEnvasado = estaEnvasado;
+        }
 
-    public String getEnvase() {
-        return envase;
-    }
+        public String getEnvase() {
+            return envase;
+        }
 
-    public void setEnvase(String envase) {
-        this.envase = envase;
-    }
+        public void setEnvase(String envase) {
+            this.envase = envase;
+        }
 	
 	@Override
 	public String toString(){
@@ -75,7 +75,6 @@ public class Snack extends Producto{
 		return cadena; 
 	}
 	
-	//como se hace? XD
 	public void confirmarEnvasado(){
 		this.estaEnvasado = true; 
 	}
