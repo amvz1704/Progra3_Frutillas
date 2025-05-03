@@ -1,2 +1,42 @@
-/Proyecto/CRUD/InventarioController/InventarioController/dist/
-/Proyecto/src/frutilla/test/FrutillaSoft.java
+# Archivos generados por Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Archivos generados por NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+.nb-gradle/
+*.orig
+
+# Archivos de configuración locales (innecesarios para otros devs)
+*.log
+*.lock
+*.bak
+*.swp
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Archivos de IDE en general
+*.iml
+*.ipr
+*.iws
+.idea/
+*.class
+
+# Eclipse / VSCode (por si abres en otros IDEs)
+.project
+.classpath
+.c9/
+.settings/
+.vscode/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.~*
