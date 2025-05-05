@@ -1,0 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package pe.edu.pucp.frutilla.crud.dao.inventario;
+
+import pe.edu.pucp.frutilla.models.inventario.Fruta;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+
+public interface FrutaDAO {
+    void insertarFruta(Fruta fruta) throws SQLException;
+    void actualizarFruta(Fruta fruta)throws SQLException;
+    void eliminarFruta(int idProducto,int idLocal) throws SQLException;
+    Fruta obtenerFrutaPorId(int idProducto)throws SQLException;
+    ArrayList<Fruta> obtenerTodos(int idLocal) throws SQLException;
+}
