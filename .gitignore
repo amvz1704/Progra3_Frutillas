@@ -44,3 +44,4 @@ desktop.ini
 
 # Los jars generados
 *.jar
+/target/
