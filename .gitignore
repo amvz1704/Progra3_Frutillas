@@ -41,3 +41,6 @@ desktop.ini
 *.tmp
 *.temp
 *.~*
+
+# Los jars generados
+*.jar
