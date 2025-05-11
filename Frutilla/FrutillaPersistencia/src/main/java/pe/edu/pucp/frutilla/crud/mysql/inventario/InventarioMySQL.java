@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class InventarioMySQL implements InventarioDAO{
     @Override
-    @SuppressWarnings("null")
+
     public void insertarInventario(Producto producto,int idLocal) throws SQLException{
         char tipo;
         //revisamos el tipo de producto que esta entrando
@@ -46,7 +46,6 @@ public class InventarioMySQL implements InventarioDAO{
     
     @Override
     public void actualizarInventario(Producto producto,int idLocal) throws SQLException{
-        //continuamos haciendo el query y actualización de la tabla
         String query = "UPDATE Inventario SET stock=?,estado=? WHERE "
                 + "idProducto=? AND idLocal=?";
         try(Connection con=DBManager.getInstance().getConnection();
@@ -82,29 +81,29 @@ public class InventarioMySQL implements InventarioDAO{
         ArrayList<Producto> productos= new ArrayList<>();
         //Recuperamos las frutas
         FrutaMySQL fruSQL=new FrutaMySQL();
-        productos.addAll(fruSQL.obtenerTodos(idLocal));
+        productos.addAll(fruSQL.obtenerTodosPorLocal(idLocal));
         //Recuperamos las bebidas
         BebidaMySQL bebSQL=new BebidaMySQL();
-        productos.addAll(bebSQL.obtenerTodos(idLocal));
+        productos.addAll(bebSQL.obtenerTodosPorLocal(idLocal));
         //Recuperamos los snacks
         SnackMySQL snaSQL=new SnackMySQL();
-        productos.addAll(snaSQL.obtenerTodos(idLocal));
+        productos.addAll(snaSQL.obtenerTodosPorLocal(idLocal));
         //Buscamos los productos restantes
-        String query = "SELECT idProducto FROM Inventario WHERE idLocal=? and "
-                + "tipo=?";
-        try (Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setInt(1, idLocal);
-            ps.setString(2,String.valueOf('P'));
-            try(ResultSet rs=ps.executeQuery()){
-                while(rs.next()){
-                    ProductoMySQL pro=new ProductoMySQL();
-                    Producto producto=
-                            pro.obtenerProductoPorId(rs.getInt("idProducto"));
-                    productos.add(producto);
-                }
-            }
-        }
+        ProductoMySQL proSQl = new ProductoMySQL();
+        productos.addAll(proSQl.obtenerTodosPorLocal(idLocal));
+        //retonamo el arraylist completo;
         return productos;
+    }
+
+    @Override
+    public void eliminarInventario(int idProducto, int idLocal) throws SQLException {
+        String query = "UPDATE Inventario SET estado='AGOTADO' WHERE "
+                + "idProducto=? AND idLocal=?";
+        try(Connection con=DBManager.getInstance().getConnection();
+            PreparedStatement ps=con.prepareStatement(query)){
+            ps.setInt(1,idProducto);
+            ps.setInt(2,idLocal);
+            ps.executeUpdate();
+        }
     }
 }

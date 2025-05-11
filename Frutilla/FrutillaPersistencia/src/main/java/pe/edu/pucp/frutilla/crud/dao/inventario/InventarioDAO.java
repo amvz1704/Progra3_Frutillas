@@ -15,8 +15,10 @@ public interface InventarioDAO {
     void actualizarInventario(Producto producto,int idLocal) throws SQLException;
     //Devuelve el stock del producto particular en un local particular
     int obtenerInventarioPorId(int idProducto,int idLocal) throws SQLException;
-    //Este es para poder jalar todos los productos asociados a un local
-    //particular
+    //eliminación logica del inventario de un local
+    void eliminarInventario (int idProducto,int idLocal) throws SQLException;
+    //Este es para poder jalar todos los productos asociados a un local particular
     ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException;
+    
 }
 
