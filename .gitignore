@@ -45,3 +45,4 @@ desktop.ini
 # Los jars generados
 *.jar
 /target/
+/Frutilla/FrutillaPersistencia/nbproject/
