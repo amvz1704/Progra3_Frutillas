@@ -2,10 +2,16 @@ package pe.edu.pucp.frutilla.crud.mysql.local;
 
 
 import pe.edu.pucp.frutilla.crud.dao.local.LocalDAO; //incluimos la interfaz del local
+
 import pe.edu.pucp.frutilla.crud.dao.rrhh.EmpleadoDAO; //Incluye EmpleadoDAO 
 import pe.edu.pucp.frutilla.crud.mysql.rrhh.EmpleadoMySQL; //incluimos EmpleadoMySQL 
+
 import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO; 
 import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL; 
+
+
+import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
+import pe.edu.pucp.frutilla.crud.mysql.venta.OrdenVentaMySQL; 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +24,11 @@ import java.util.List;
 import pe.edu.pucp.frutilla.models.local.Local; //incluimos LOCAL 
 import pe.edu.pucp.frutilla.models.rrhh.Empleado; //incluimos Empleado 
 import pe.edu.pucp.frutilla.models.inventario.Producto; //incluimos Producto 
+import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
+
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl; 
 import pe.edu.pucp.frutilla.config.DBManager; //El manager 
+
 
 	
 
@@ -86,18 +95,23 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
         entity.setIdLocal(id);
     }
     
-    //Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
+    //Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL //CAMBIAR
+    @Override
     public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
-
-        EmpleadoMySQL interfazEmpleado = new EmpleadoMySQL(); 
-        return interfazEmpleado.listarTodos(idLocal); //debe implementar 
-
+        EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
+        return interfazEmpleado.obtenerTodos(idLocal); //debe implementar JUNIOR*
     }
 
     //Devuelve una lista de producto de un local por id --> llama a ProductosDAOSQL 
+    @Override
     public ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
-        
-        ProductoMySQL interfazProducto = new ProductoMySQL(); 
-        return interfazProducto.obtenerTodos(idLocal); 
+        ProductoDAO interfazProducto = new ProductoMySQL(); 
+        return interfazProducto.obtenerTodosPorLocal(idLocal); 
+    }
+    
+    @Override
+    public ArrayList<OrdenVenta> encontrarVentas(int idLocal) throws SQLException{
+        OrdenVentaMySQL interfazVenta = new OrdenVentaMySQL();  //falta actualizar DAO para que lo implemente
+        return interfazVenta.obtenerTodos(idLocal);
     }
 }
