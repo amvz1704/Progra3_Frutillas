@@ -2,6 +2,7 @@ package pe.edu.pucp.frutilla.crud.mysql.rrhh;
 
 
 import pe.edu.pucp.frutilla.crud.dao.rrhh.ClienteDAO; //incluimos el dao correspondiente 
+import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 import pe.edu.pucp.frutilla.models.rrhh.Cliente; //Cliente
 
 import pe.edu.pucp.frutilla.config.DBManager;
@@ -12,11 +13,51 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 
 
-public class ClienteMySQL implements ClienteDAO{
-	
-	public ClienteMySQL(){
-	}
-	
+public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
+    @Override
+    protected String getInsertQuery() {
+        return "INSERT INTO Cliente (idUsuario, nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono) VALUES (?, ?, ?, ?, ?, ?)";
+    }
+
+    @Override
+    protected String getUpdateQuery() {
+        return "UPDATE Cliente SET idUsuario = ?, nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, correoElectronico = ?, telefono = ? WHERE idUsuario = ?";
+    }
+
+    @Override
+    protected String getDeleteQuery() {
+        return "UPDATE Usuario SET activo = false WHERE idUsuario = ?";
+    }
+
+    @Override
+    protected String getSelectByIdQuery() {
+        return "SELECT * FROM Cliente WHERE idCliente = ?";
+    }
+
+    @Override
+    protected String getSelectAllQuery() {
+        return "SELECT * FROM Cliente";
+    }
+
+    @Override
+    protected void setInsertParameters(PreparedStatement ps, Cliente entity) throws SQLException {
+        ps.setInt(1, entity.getIdCliente());
+        ps.setString(2, entity.getNombre());
+        ps.setString(3, entity.getApellidoPaterno());
+        ps.setString(4, entity.getApellidoMaterno());
+        ps.setString(5, entity.getCorreoElectronico());
+        ps.setString(6, entity.getTelefono());
+    }
+
+    @Override
+    protected void setUpdateParameters(PreparedStatement ps, Cliente entity) throws SQLException {
+        ps.setInt(1, entity.getIdCliente());
+        ps.setString(2, entity.getNombre());
+        ps.setString(3, entity.getApellidoPaterno());
+        ps.setString(4, entity.getApellidoMaterno());
+        ps.setString(5, entity.getCorreoElectronico());
+        ps.setString(6, entity.getTelefono());
+    }
 	
     public void insertarCliente(Cliente cliente) throws SQLException {
         String query = "INSERT INTO Cliente (idUsuario, nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono) VALUES (?, ?, ?, ?, ?, ?)";
