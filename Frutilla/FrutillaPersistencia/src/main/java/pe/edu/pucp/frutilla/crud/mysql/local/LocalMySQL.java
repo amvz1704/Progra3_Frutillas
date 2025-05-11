@@ -18,7 +18,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 //importado de frutilla.models
 import pe.edu.pucp.frutilla.models.local.Local; //incluimos LOCAL 
@@ -27,7 +26,6 @@ import pe.edu.pucp.frutilla.models.inventario.Producto; //incluimos Producto
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl; 
-import pe.edu.pucp.frutilla.config.DBManager; //El manager 
 
 
 	
@@ -37,12 +35,12 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     @Override
     protected String getInsertQuery() {
         // Ajusta los nombres de columna a tu tabla real
-        return "INSERT INTO local (nombre, descripcion, direccion, telefono) VALUES (?, ?, ?, ?)";
+        return "INSERT INTO Local (nombre, descripcion, direccion, telefono) VALUES (?, ?, ?, ?)";
     }
     
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE local SET nombre = ?, descripcion= ?, direccion = ?, telefono = ? WHERE id_local = ?";
+        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, telefono = ? WHERE id_local = ?";
     }
     
     @Override
@@ -52,7 +50,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
   
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT id_local, nombre, direccion, telefono FROM local WHERE id_local = ?";
+        return "SELECT id_local, nombre, direccion, telefono FROM Local WHERE id_local = ?";
     }
 
     @Override
