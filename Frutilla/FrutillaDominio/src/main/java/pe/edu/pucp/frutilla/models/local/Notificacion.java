@@ -1,4 +1,4 @@
-package com.frutilla.models.local;
+package pe.edu.pucp.frutilla.models.local;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
