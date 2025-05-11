@@ -8,5 +8,5 @@ import java.util.ArrayList;
 public interface ComprobantePagoDAO extends BaseDAO<ComprobantePago> {
 
     // Métodos extras
-    
+    ArrayList<ComprobantePago> obtenerTodosPorLocal(int idLocal);
 }
