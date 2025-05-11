@@ -34,7 +34,8 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     @Override
     protected String getUpdateQuery() {
         return "UPDATE local SET nombre = ?, descripcion= ?, direccion = ?, telefono = ? WHERE id_local = ?";
-
+    }
+    
     @Override
     protected String getDeleteQuery() {
         return "UPDATE Local SET activo = false WHERE idLocal = ?";
@@ -89,7 +90,8 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 
         EmpleadoMySQL interfazEmpleado = new EmpleadoMySQL(); 
-        return interfazEmpleado.listarTodos(idLocal); //debe implementar 
+        //return interfazEmpleado.listarTodos(idLocal); //debe implementar 
+        return null;
 
     }
 
@@ -97,6 +99,6 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     public ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException{
         
         ProductoMySQL interfazProducto = new ProductoMySQL(); 
-        return interfazProducto.obtenerTodos(idLocal); 
+        return interfazProducto.obtenerTodosPorLocal(idLocal); 
     }
 }
