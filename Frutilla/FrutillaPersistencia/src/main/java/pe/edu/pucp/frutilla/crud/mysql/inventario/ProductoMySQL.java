@@ -4,140 +4,131 @@
  */
 package pe.edu.pucp.frutilla.crud.mysql.inventario;
 
+import java.sql.Connection;
 import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO;
 import pe.edu.pucp.frutilla.models.inventario.Producto;
 import pe.edu.pucp.frutilla.config.DBManager;
 import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
 
 
-public class ProductoMySQL implements ProductoDAO{
+public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
+
     @Override
-    //inserta el producto, devuelve verificacion de insercion y
-    //asigna el id del producto de regreso para tener coincidencia
-    public void insertarProducto(Producto producto) throws SQLException{
-        String query="INSERT INTO Producto (nombre,descripcion,codProd,"
-                + "precioUnitario,stockMinimo) VALUES "
-                + "(?,?,?,?,?)";
-        try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query,
-                     PreparedStatement.RETURN_GENERATED_KEYS)){
-            ps.setString(1,producto.getNombre());
-            ps.setString(2, producto.getDescripcion());
-            ps.setString(3, producto.getCodigoProd());
-            ps.setDouble(4, producto.getPrecioUnitario());
-            ps.setInt(5, producto.getStockMinimo()); 
-            ps.executeUpdate();
-            try(ResultSet rs=ps.getGeneratedKeys()){
-                if(rs.next()){
-                   //result = rs.getInt(1);
-                   producto.setIdProducto(rs.getInt(1));
+    protected String getInsertQuery() {
+        String cadena = "INSERT INTO producto (nombre,descripcion,codProd,"
+                + "precioUnitario,stockMinimo) VALUES (?,?,?,?,?)";
+        return cadena;
+    }
+
+    @Override
+    protected String getUpdateQuery() {
+        String cadena = "UPDATE producto SET nombre=?,descripcion=?,"
+                + "codProd=?,precioUnitario=?,stockMinimo=? WHERE "
+                + "idProducto=?";
+        return cadena;
+    }
+
+    @Override
+    protected String getDeleteQuery() {
+        String cadena = "DELETE FROM producto WHERE idProducto=?";
+        return cadena;
+    }
+
+    @Override
+    protected String getSelectByIdQuery() {
+        String cadena = "SELECT idProducto,nombre,descripcion,"
+                + "codProd,precioUnitario,stockMinimo FROM producto "
+                + "WHERE idProducto=?";
+        return cadena;
+    }
+
+    @Override
+    protected String getSelectAllQuery() {
+        String cadena = "SELECT idProducto,nombre,descripcion,"
+                + "codProd,precioUnitario,stockMinimo FROM producto";
+        return cadena;
+    }
+
+    @Override
+    protected void setInsertParameters(PreparedStatement ps, Producto entity) throws SQLException {
+        ps.setString(1, entity.getNombre());
+        ps.setString(2, entity.getDescripcion());
+        ps.setString(3, entity.getCodigoProd());
+        ps.setDouble(4, entity.getPrecioUnitario());
+        ps.setInt(5, entity.getStockMinimo());
+    }
+
+    @Override
+    protected void setUpdateParameters(PreparedStatement ps, Producto entity) throws SQLException {
+        setInsertParameters(ps, entity);
+        ps.setInt(6, entity.getIdProducto());
+    }
+
+    @Override
+    protected Producto createFromResultSet(ResultSet rs) throws SQLException {
+        Producto producto = new Producto();
+        producto.setIdProducto(rs.getInt("idProducto"));
+        producto.setNombre(rs.getString("nombre"));
+        producto.setCodigoProd(rs.getString("codProd"));
+        producto.setPrecioUnitario(rs.getDouble("precioUnitario"));
+        producto.setStockMinimo(rs.getInt("stockMinimo"));
+        return producto;
+    }
+
+    @Override
+    protected void setId(Producto entity, Integer id) {
+        entity.setIdProducto(id);
+    }
+
+    @Override
+    public ArrayList<Producto> obtenerPorNombre(String nombre) {
+        ArrayList<Producto> entities = new ArrayList<>();
+        String query = "SELECT idProducto,nombre,descripcion,"
+                + "codProd,precioUnitario,stockMinimo FROM producto "
+                + "WHERE nombre LIKE ? ";
+        try (Connection conn = DBManager.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);) {
+            ps.setString(1, "%" + nombre + "%");
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    entities.add(createFromResultSet(rs));
                 }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar entidades", e);
         }
+        return entities;
     }
 
-    public int insertarProductoDevolverID(Producto producto) throws SQLException{
-        int result=0;
-        String query="INSERT INTO Producto (nombre,descripcion,codProd,"
-                + "precioUnitario,stockMinimo) VALUES "
-                + "(?,?,?,?,?)";
-        try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query,
-                     PreparedStatement.RETURN_GENERATED_KEYS)){
-            ps.setString(1,producto.getNombre());
-            ps.setString(2, producto.getDescripcion());
-            ps.setString(3, producto.getCodigoProd());
-            ps.setDouble(4, producto.getPrecioUnitario());
-            ps.setInt(5, producto.getStockMinimo()); 
-            ps.executeUpdate();
-            try(ResultSet rs=ps.getGeneratedKeys()){
-                if(rs.next()){
-                   result = rs.getInt(1);
-                   producto.setIdProducto(rs.getInt(1));
-                }
-            }
-        }
-        return result;
-    }
-
-    //ingresa todos los datos del producto y los cambia en caso haya algun cambio
     @Override
-    public void actualizarProducto(Producto producto) 
-            throws SQLException{
-        String query="""
-                    UPDATE Producto SET nombre=?,descripcion=?,codProd=?,
-                    precioUnitario=?, stockMinimo=?
-                    WHERE idProducto=? """;
-        try (Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setString(1,producto.getNombre());
-            ps.setString(2, producto.getDescripcion());
-            ps.setString(3, producto.getCodigoProd());
-            ps.setDouble(4, producto.getPrecioUnitario());
-            ps.setInt(5, producto.getStockMinimo());
-            ps.setInt(6, producto.getIdProducto());
-            ps.executeUpdate();
-        }
-    }
-    //eliminado lógico
-    @Override
-    public void eliminarProducto(int idProd,int idLocal) throws SQLException{
-        TipoEstado desactivado=TipoEstado.AGOTADO;
-        String query="UPDATE Inventario SET estado = ? WHERE idProducto = ? AND "
-                + "idLocal = ?";
-        try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setString(1, desactivado.toString());
-            ps.setInt(2, idProd);
-            ps.setInt(3, idLocal);
-            int result=ps.executeUpdate();
-            if (result==1) 
-                System.out.println("Se realizo eliminado correctamente");
-        }
-    }
-    //solo se obtiene un solo producto en base a su id y local
-    @Override
-    public Producto obtenerProductoPorId(int idProducto) 
-            throws SQLException{
-        Producto prod=new Producto();
-        String query="SELECT nombre,descripcion,codProd,precioUnitario,"
-                + "stockMinimo FROM Producto WHERE idProducto = ? ";
-        try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setInt(1,idProducto);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                prod.setIdProducto(idProducto);
-                prod.setNombre(rs.getString("nombre"));
-                prod.setDescripcion(rs.getString("descripcion"));
-                prod.setCodigoProd(rs.getString("codProd"));
-                prod.setPrecioUnitario(rs.getDouble("precioUnitario"));
-                prod.setStock(rs.getInt("stockMinimo"));
-            }
-            rs.close();  
-        }
-        return prod;//colocar bien la revision en caso de pedir un producto
-    }
-    @Override
-    public ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException{
-        ArrayList<Producto> productos=new ArrayList<Producto>();
-        String query="SELECT idProducto FROM Inventario WHERE idLocal = ?";
-        try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
+    public ArrayList<Producto> obtenerTodosPorLocal(int idLocal) {
+        ArrayList<Producto> entities = new ArrayList<>();
+        String query="SELECT p.idProducto,nombre,descripcion,"
+                + "codProd,precioUnitario,stockMinimo,i.stock,"
+                + "i.estado FROM producto p,inventario i WHERE "
+                + "p.idProducto=i.idProducto AND i.idLocal=? AND i.tipo='P'";
+        try (Connection conn = DBManager.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);
-            try (ResultSet rs = ps.executeQuery()) {
-                while(rs.next()){
-                    Producto prod = obtenerProductoPorId(rs.getInt("idProducto"));
-                    productos.add(prod);
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    Producto temp=createFromResultSet(rs);
+                    temp.setStock(rs.getInt("stock"));
+                    temp.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                    entities.add(temp);
                 }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar entidades", e);
         }
-        return productos;
+        return entities;
     }
+
 }

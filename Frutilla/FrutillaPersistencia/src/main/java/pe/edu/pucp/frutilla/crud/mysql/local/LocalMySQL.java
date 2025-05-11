@@ -34,7 +34,6 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     @Override
     protected String getUpdateQuery() {
         return "UPDATE local SET nombre = ?, descripcion= ?, direccion = ?, telefono = ? WHERE id_local = ?";
-    }
 
     @Override
     protected String getDeleteQuery() {

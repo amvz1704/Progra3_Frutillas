@@ -10,14 +10,12 @@ package pe.edu.pucp.frutilla.crud.dao.inventario;
  */
 
 
-import pe.edu.pucp.frutilla.models.inventario.Bebida;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import pe.edu.pucp.frutilla.models.inventario.Bebida;
+import pe.edu.pucp.frutilla.crud.dao.*;
 
-public interface BebidaDAO {
-    void insertarBebida(Bebida bebida) throws SQLException;
-    void actualizarBebida(Bebida bebida) throws SQLException;
-    Bebida obtenerBebidaPorId (int idProducto) throws SQLException;
-    void eliminarBebida (int idProducto,int idLocal) throws SQLException;
-    ArrayList<Bebida> obtenerTodos(int idLocal) throws SQLException;
+
+public interface BebidaDAO extends BaseDAO<Bebida>{
+    //metodos extra
+    ArrayList<Bebida> obtenerTodosPorLocal(int idLocal);
 }

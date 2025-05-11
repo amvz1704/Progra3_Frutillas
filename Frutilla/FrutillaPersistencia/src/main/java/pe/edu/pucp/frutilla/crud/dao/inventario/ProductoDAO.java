@@ -10,18 +10,11 @@ package pe.edu.pucp.frutilla.crud.dao.inventario;
  */
 
 import pe.edu.pucp.frutilla.models.inventario.Producto;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import pe.edu.pucp.frutilla.crud.dao.BaseDAO;
 
-public interface ProductoDAO {
-    void insertarProducto(Producto producto) throws SQLException;
-    void actualizarProducto(Producto producto) throws SQLException;
-    //recordar que este es una eliminación logica
-    void eliminarProducto(int idProducto,int idLocal)throws SQLException;
-    Producto obtenerProductoPorId(int idProducto)throws SQLException;
-    //este obtener todos se puede usar para sacar una version general
-    //de todo el inventario de un local
-    ArrayList<Producto> obtenerTodos(int idLocal)throws SQLException; 
-    //Si necesitas sacar información especifica utilizar el obtener todos de 
-    //InventarioMySQL
+public interface ProductoDAO extends BaseDAO<Producto> {
+    //Metodos extra
+    ArrayList<Producto> obtenerPorNombre(String nombre);
+    ArrayList<Producto> obtenerTodosPorLocal(int idLocal);
 }
