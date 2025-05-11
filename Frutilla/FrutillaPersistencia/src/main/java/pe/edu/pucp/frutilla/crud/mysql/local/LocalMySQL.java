@@ -40,7 +40,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, telefono = ? WHERE id_local = ?";
+        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE id_local = ?";
     }
     
     @Override
@@ -86,6 +86,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
             ps.setString(3, entity.getDireccion());
             ps.setBoolean(4, entity.getActivo());
             ps.setString(5, entity.getTelefono());
+            ps.setInt(6, entity.getIdLocal());
     }
     //
     @Override
