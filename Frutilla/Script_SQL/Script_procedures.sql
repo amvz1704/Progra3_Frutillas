@@ -200,6 +200,7 @@ CREATE PROCEDURE ACTUALIZAR_LINEA_ORDEN_VENTA(
     IN _subtotal DOUBLE,
     IN _idProducto INT
 )
+BEGIN
 	UPDATE lineaordenventa SET cantidad=_cantidad,subtotal=_subtotal,
     idProducto=_idProducto WHERE idOrdenVenta=_idOrdenVenta AND 
     idLineaOrdenVenta=_idLineaOrdenVenta;
