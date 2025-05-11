@@ -7,6 +7,11 @@ import pe.edu.pucp.frutilla.config.DBManager;  // Importando DBManager
 import java.sql.*;
 import java.util.ArrayList;
 
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
+
 public class ComprobantePagoMySQL extends BaseDAOImpl<ComprobantePago> implements ComprobantePagoDAO {
     
     @Override
