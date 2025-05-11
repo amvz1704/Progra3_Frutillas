@@ -96,8 +96,10 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     //Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL //CAMBIAR
     @Override
     public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
-        EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
-        return interfazEmpleado.obtenerTodos(idLocal); //debe implementar JUNIOR*
+
+        EmpleadoMySQL interfazEmpleado = new EmpleadoMySQL(); 
+        //return interfazEmpleado.listarTodos(idLocal); //debe implementar 
+        return null;
     }
 
     //Devuelve una lista de producto de un local por id --> llama a ProductosDAOSQL 
