@@ -4,15 +4,12 @@
  */
 package pe.edu.pucp.frutilla.crud.dao.inventario;
 
-import pe.edu.pucp.frutilla.models.inventario.Fruta;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import pe.edu.pucp.frutilla.models.inventario.Fruta;
+import pe.edu.pucp.frutilla.crud.dao.BaseDAO;
 
 
-public interface FrutaDAO {
-    void insertarFruta(Fruta fruta) throws SQLException;
-    void actualizarFruta(Fruta fruta)throws SQLException;
-    void eliminarFruta(int idProducto,int idLocal) throws SQLException;
-    Fruta obtenerFrutaPorId(int idProducto)throws SQLException;
-    ArrayList<Fruta> obtenerTodos(int idLocal) throws SQLException;
+public interface FrutaDAO extends BaseDAO<Fruta>{
+     //Agregar metodos unicos en caso haya
+    ArrayList<Fruta> obtenerTodosPorLocal(int idLocal);
 }

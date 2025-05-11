@@ -14,95 +14,155 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
+import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 
 
 
-public class BebidaMySQL implements BebidaDAO{
+public class BebidaMySQL extends BaseDAOImpl<Bebida> implements BebidaDAO{
+
     @Override
-    public void insertarBebida(Bebida bebida) throws SQLException{
-        int id = 0;
-        ProductoMySQL padre=new ProductoMySQL();
-        id=padre.insertarProductoDevolverID(bebida);
-        bebida.setIdProducto(id);
-        String query="INSERT INTO Bebida (idProducto,tamanioOnz,tipo,endulzante,"
-                + "tipoLeche) VALUES (?,?,?,?,?)";
-        try(Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query,
-                     PreparedStatement.RETURN_GENERATED_KEYS)){
-            ps.setInt(1,bebida.getIdProducto());
-            ps.setInt(2,bebida.getTamanioOz());
-            ps.setString(3, bebida.getTipo());
-            ps.setString(4, bebida.getEndulzante());
-            ps.setString(5, bebida.getTieneLeche().name());
-            ps.executeUpdate();
-        }
+    protected String getInsertQuery() {
+        String cadena = "INSERT INTO bebida (idProducto,tamanioOnz,tipo,"
+                + "endulzante,tipoLeche) VALUES (?,?,?,?,?)";
+        return cadena;
     }
+
     @Override
-    public void actualizarBebida(Bebida bebida) throws SQLException{
-        ProductoMySQL padre= new ProductoMySQL();
-        padre.actualizarProducto(bebida);
-         String query = """
-                UPDATE Bebida JOIN Producto ON 
-                Bebida.idProducto=Producto.idProducto 
-                SET Bebida.tipo=?, Bebida.tamanioOnz=?,
-                Bebida.endulzante=?, Bebida.tipoLeche=?
-                WHERE Producto.idProducto=?""";
-        try (Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setString(1, bebida.getTipo());
-            ps.setInt(2, bebida.getTamanioOz());
-            ps.setString(3, bebida.getEndulzante());
-            ps.setString(4, bebida.getTieneLeche().name());
-            ps.setInt(5, bebida.getIdProducto());
-            ps.executeUpdate();
-        }
+    protected String getUpdateQuery() {
+        String cadena = "UPDATE bebida SET tamanioOnz=?,tipo=?,"
+                + "endulzante=?,tipoLeche=? WHERE idProducto=?";
+        return cadena;
     }
+
     @Override
-    public void eliminarBebida (int idProducto,int idLocal) throws SQLException{
-        ProductoMySQL pro=new ProductoMySQL();
-        pro.eliminarProducto(idProducto, idLocal);
+    protected String getDeleteQuery() {
+        String cadena = "DELETE FROM bebida WHERE idProducto=?";
+        return cadena;
     }
+
     @Override
-    public Bebida obtenerBebidaPorId (int idProducto) throws 
-            SQLException{
-        ProductoMySQL pro=new ProductoMySQL();
-        Producto temp=pro.obtenerProductoPorId(idProducto);
-        Bebida beb=new Bebida(temp);
-        String query="SELECT tamanioOnz, tipo, endulzante, tipoLeche FROM Bebida,"
-                + "Producto WHERE Producto.idProducto=Bebida.idProducto "
-                + "AND Bebida.idProducto=?";
-        try(Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setInt(1,idProducto);
-            try (ResultSet rs = ps.executeQuery()) {
-                while(rs.next()){
-                    beb.setTamanioOz(rs.getInt("tamanioOnz"));
-                    beb.setTipo(rs.getString("tipo"));
-                    beb.setEndulzante(rs.getString("endulzante"));
-                    beb.setTieneLeche(TipoLeche.valueOf(
-                            rs.getString("tipoLeche")));
-                }
-            }
-        }
+    protected String getSelectByIdQuery() {
+        String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
+                + "p.codProd,p.precioUnitario,p.stockMinimo,b.tamanioOnz,"
+                + "b.tipo,b.endulzante,b.tipoLeche FROM bebida b,"
+                + "producto p WHERE p.idProducto=?";
+        return cadena;
+    }
+
+    @Override
+    protected String getSelectAllQuery() {
+        String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
+                + "p.codProd,p.precioUnitario,p.stockMinimo,b.tamanioOnz,"
+                + "b.tipo,b.endulzante,b.tipoLeche FROM bebida b,"
+                + "producto p";
+        return cadena;
+    }
+
+    @Override
+    protected void setInsertParameters(PreparedStatement ps, Bebida entity) throws SQLException {
+        ps.setInt(1,entity.getIdProducto());
+        ps.setInt(2,entity.getTamanioOz());
+        ps.setString(3, entity.getTipo());
+        ps.setString(4, entity.getEndulzante());
+        ps.setString(5,entity.getTieneLeche().name());
+    }
+
+    @Override
+    protected void setUpdateParameters(PreparedStatement ps, Bebida entity) throws SQLException {
+        ps.setInt(1,entity.getTamanioOz());
+        ps.setString(2, entity.getTipo());
+        ps.setString(3, entity.getEndulzante());
+        ps.setString(4,entity.getTieneLeche().name());
+        ps.setInt(5,entity.getIdProducto());
+    }
+
+    @Override
+    protected Bebida createFromResultSet(ResultSet rs) throws SQLException {
+        ProductoMySQL prodSQL=new ProductoMySQL();
+        Bebida beb = new Bebida(prodSQL.createFromResultSet(rs));
+        beb.setTamanioOz(rs.getInt("tamanioOnz"));
+        beb.setTipo(rs.getString("tipo"));
+        beb.setEndulzante(rs.getString("endulzante"));
+        beb.setTieneLeche(TipoLeche.valueOf(rs.getString("tipoLeche")));
         return beb;
     }
+
     @Override
-    public ArrayList<Bebida> obtenerTodos(int idLocal) throws SQLException{
-        ArrayList<Bebida> bebidas= new ArrayList<Bebida> ();
-        String query="SELECT Bebida.idProducto FROM Bebida,Inventario WHERE "
-                + "Bebida.idProducto = Inventario.idProducto AND "
-                + "Inventario.idLocal=?";
-        try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setInt(1, idLocal);
-            try (ResultSet rs = ps.executeQuery()) {
-                while(rs.next()){
-                    Bebida beb=obtenerBebidaPorId(rs.getInt("idProducto"));
-                    bebidas.add(beb);
-                }
-            }
-        }
-        return bebidas;
+    protected void setId(Bebida entity, Integer id) {
+        entity.setIdProducto(id);
     }
     
+    @Override
+    public void agregar(Bebida entity){
+        ProductoMySQL prodSQL = new ProductoMySQL();
+        try (Connection conn = DBManager.getInstance().getConnection();){
+            conn.setAutoCommit(false);
+            try{
+                prodSQL.agregar(entity);
+                try(PreparedStatement ps = 
+                        conn.prepareStatement(getInsertQuery())) {
+                    setInsertParameters(ps, entity);
+                    ps.executeUpdate();
+                }
+                conn.commit();
+            } catch(SQLException e) {
+                conn.rollback();
+                throw e;
+            } finally{
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al agregar entidad", e);
+        }
+    }
+    
+    @Override
+    public void actualizar(Bebida entity) {
+        ProductoMySQL prodSQL = new ProductoMySQL();
+        try (Connection conn = DBManager.getInstance().getConnection()) {
+            conn.setAutoCommit(false);
+            try {
+                prodSQL.actualizar(entity);
+                try (PreparedStatement ps = conn.prepareStatement(getUpdateQuery())) {
+                    setUpdateParameters(ps, entity);
+                    ps.executeUpdate();
+                }
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar cliente", e);
+        }
+    }
+    
+    @Override
+    public ArrayList<Bebida> obtenerTodosPorLocal(int idLocal) {
+        ArrayList<Bebida> entities = new ArrayList<>();
+        String query="SELECT p.idProducto,p.nombre,p.descripcion,"
+                + "p.codProd,p.precioUnitario,p.stockMinimo,b.tamanioOnz,"
+                + "b.tipo,b.endulzante,b.tipoLeche,i.stock,i.estado FROM "
+                + "bebida b,producto p,inventario i WHERE "
+                + "p.idProducto=i.idProducto AND"
+                + "i.idLocal=? and i.tipo='B'";
+        try (Connection conn = DBManager.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);) {
+            ps.setInt(1, idLocal);
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    Bebida temp=createFromResultSet(rs);
+                    temp.setStock(rs.getInt("stock"));
+                    temp.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                    entities.add(temp);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar entidades", e);
+        }
+        return entities;
+    }
 }

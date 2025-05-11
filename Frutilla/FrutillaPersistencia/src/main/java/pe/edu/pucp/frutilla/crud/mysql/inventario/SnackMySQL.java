@@ -13,91 +13,155 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
+import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 
 
 
-public class SnackMySQL implements SnackDAO{
+public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
+
     @Override
-    public void insertarSnack(Snack snack) throws SQLException{
-        int id = 0;
-        ProductoMySQL padre=new ProductoMySQL();
-        id = padre.insertarProductoDevolverID(snack);
-        snack.setIdProducto(id);
-        String query="INSERT INTO Snack (idProducto,tipo,requiereEnvase,"
-                + "estaEnvasado,envase)VALUES (?,?,?,?,?)";
-        try(Connection con= DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setInt(1, snack.getIdProducto());
-            ps.setString(2,snack.getTipo());
-            ps.setBoolean(3,snack.isRequiereEnvase());
-            ps.setBoolean(4,snack.isEstaEnvasado());
-            ps.setString(5,snack.getEnvase());
-            ps.executeUpdate();
-        }
+    protected String getInsertQuery() {
+        String cadena = "INSERT INTO snack (idProducto,tipo,requireEnvase,"
+                + "envase,estaEnvasado) VALUES (?,?,?,?,?)";
+        return cadena;
     }
+
     @Override
-    public void actualizarSnack(Snack snack) throws SQLException{
-        ProductoMySQL pro=new ProductoMySQL();
-        pro.actualizarProducto(snack);
-        String query = """
-                UPDATE Snack JOIN Producto ON 
-                Snack.idProducto=Producto.idProducto
-                SET Snack.tipo=?,Snack.requiereEnvase=?,
-                Snack.estaEnvasado=?,Snack.envase=? WHERE 
-                Producto.idProducto=?""";
-        try (Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setString(1, snack.getTipo());
-            ps.setBoolean(2, snack.isRequiereEnvase());
-            ps.setBoolean(3, snack.isEstaEnvasado());
-            ps.setString(4, snack.getEnvase());
-            ps.setInt(5, snack.getIdProducto());
-            ps.executeUpdate();
-        }
+    protected String getUpdateQuery() {
+        String cadena = "UPDATE snack SET tipo=?,requiereEnvase=?,"
+                + "envase=?,estaEnvasado=? WHERE idProducto=?";
+        return cadena;
     }
+
     @Override
-    public void eliminarSnack(int idProducto,int idLocal) throws SQLException{
-        ProductoMySQL pro=new ProductoMySQL();
-        pro.eliminarProducto(idProducto, idLocal);
+    protected String getDeleteQuery() {
+        String cadena = "DELETE FROM snack WHERE idProducto=?";
+        return cadena;
     }
+
     @Override
-    public Snack obtenerSnackPorId(int idProducto) throws SQLException{
-        ProductoMySQL pro=new ProductoMySQL();
-        Producto temp=pro.obtenerProductoPorId(idProducto);
-        Snack sna=new Snack(temp);
-        String query="SELECT tipo,requiereEnvase, estaEnvasado, envase FROM "
-                + " Snack,Producto WHERE Producto.idProducto=Snack.idProducto "
-                + " AND Snack.idProducto=?";
-        try (Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
-            ps.setInt(1, idProducto);
-            try (ResultSet rs = ps.executeQuery()) {
-                while(rs.next()){
-                    sna.setTipo(rs.getString("tipo"));
-                    sna.setRequiereEnvase(rs.getBoolean("requiereEnvase"));
-                    sna.setEstaEnvasado(rs.getBoolean("estaEnvasado"));
-                    sna.setEnvase(rs.getString("envase"));
+    protected String getSelectByIdQuery() {
+        String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
+                + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
+                + "s.requiereEnvase,s.envase,s.estaEnvasado FROM snack s,"
+                + "producto p WHERE p.idProducto=?";
+        return cadena;
+    }
+
+    @Override
+    protected String getSelectAllQuery() {
+        String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
+                + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
+                + "s.requiereEnvase,s.envase,s.estaEnvasado FROM snack s,"
+                + "producto p";
+        return cadena;
+    }
+
+    @Override
+    protected void setInsertParameters(PreparedStatement ps, Snack entity) throws SQLException {
+        ps.setInt(1, entity.getIdProducto());
+        ps.setString(2, entity.getTipo());
+        ps.setBoolean(3, entity.isRequiereEnvase());
+        ps.setString(4, entity.getEnvase());
+        ps.setBoolean(5, entity.isEstaEnvasado());
+    }
+
+    @Override
+    protected void setUpdateParameters(PreparedStatement ps, Snack entity) throws SQLException {
+        ps.setString(1, entity.getTipo());
+        ps.setBoolean(2, entity.isRequiereEnvase());
+        ps.setString(3, entity.getEnvase());
+        ps.setBoolean(4, entity.isEstaEnvasado());
+        ps.setInt(5, entity.getIdProducto());
+    }
+
+    @Override
+    protected Snack createFromResultSet(ResultSet rs) throws SQLException {
+        ProductoMySQL prodSQL = new ProductoMySQL();
+        Snack snack=new Snack(prodSQL.createFromResultSet(rs));
+        snack.setTipo(rs.getString("tipo"));
+        snack.setRequiereEnvase(rs.getBoolean("requiereEnvase"));
+        snack.setEnvase(rs.getString("envase"));
+        snack.setEstaEnvasado(rs.getBoolean("estaEnvasado"));
+        return snack;
+    }
+
+    @Override
+    protected void setId(Snack entity, Integer id) {
+        entity.setIdProducto(id);
+    }
+    
+    @Override
+    public void agregar(Snack entity){
+        ProductoMySQL prodSQL = new ProductoMySQL();
+        try (Connection conn = DBManager.getInstance().getConnection();){
+            conn.setAutoCommit(false);
+            try{
+                prodSQL.agregar(entity);
+                try(PreparedStatement ps = 
+                        conn.prepareStatement(getInsertQuery())) {
+                    setInsertParameters(ps, entity);
+                    ps.executeUpdate();
                 }
+                conn.commit();
+            } catch(SQLException e) {
+                conn.rollback();
+                throw e;
+            } finally{
+                conn.setAutoCommit(true);
             }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al agregar entidad", e);
         }
-        return sna;
     }
+    
     @Override
-    public ArrayList<Snack> obtenerTodos(int idLocal) throws SQLException{
-        ArrayList<Snack> snacks= new ArrayList<Snack> ();
-        String query="SELECT Inventario.idProducto FROM Snack,Inventario WHERE "
-                + "Snack.idProducto = Inventario.idProducto AND "
-                + "Inventario.idLocal = ?";
-        try(Connection con=DBManager.getInstance().getConnection();
-             PreparedStatement ps=con.prepareStatement(query)){
+    public void actualizar(Snack entity) {
+        ProductoMySQL prodSQL = new ProductoMySQL();
+        try (Connection conn = DBManager.getInstance().getConnection()) {
+            conn.setAutoCommit(false);
+            try {
+                prodSQL.actualizar(entity);
+                try (PreparedStatement ps = conn.prepareStatement(getUpdateQuery())) {
+                    setUpdateParameters(ps, entity);
+                    ps.executeUpdate();
+                }
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar cliente", e);
+        }
+    }
+    
+    @Override
+    public ArrayList<Snack> obtenerTodosPorLocal(int idLocal) {
+        ArrayList<Snack> entities = new ArrayList<>();
+        String query="SELECT p.idProducto,p.nombre,p.descripcion,"
+                + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
+                + "s.requiereEnvase,s.envase,s.estaEnvasado,"
+                + "i.stock,i.estado FROM snack s,producto p,inventario i "
+                + "WHERE p.idProducto=i.idProducto AND i.idLocal=? and "
+                + "i.tipo='S'";
+        try (Connection conn = DBManager.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);
-            try (ResultSet rs = ps.executeQuery()) {
-                while(rs.next()){
-                    Snack sna=obtenerSnackPorId(rs.getInt("idProducto"));
-                    snacks.add(sna);
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    Snack temp=createFromResultSet(rs);
+                    temp.setStock(rs.getInt("stock"));
+                    temp.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                    entities.add(temp);
                 }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar entidades", e);
         }
-        return snacks;
+        return entities;
     }
 }

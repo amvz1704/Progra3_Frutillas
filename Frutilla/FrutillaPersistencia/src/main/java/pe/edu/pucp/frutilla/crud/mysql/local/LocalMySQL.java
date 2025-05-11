@@ -61,10 +61,6 @@ import pe.edu.pucp.frutilla.config.DBManager; //El manager
 		
 	}
 	
-	
-	
-
-	
 	//Devuelve una lista de empleados de un local por id --> llama a EmpleadoDAOSQL 
 	public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 		
@@ -79,12 +75,11 @@ import pe.edu.pucp.frutilla.config.DBManager; //El manager
 		
 		ProductoMySQL interfazProducto = new ProductoMySQL(); 
 		
-		return interfazProducto.obtenerTodos(idLocal); 
+		return interfazProducto.obtenerTodosPorLocal(idLocal); 
 		
 		
 	}
-	
-	
+
 	public Local obtenerLocalPorId(int idLocal) throws SQLException{
         String query = "SELECT * FROM Local WHERE idLocal = ?";
         try(Connection con = DBManager.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)){
