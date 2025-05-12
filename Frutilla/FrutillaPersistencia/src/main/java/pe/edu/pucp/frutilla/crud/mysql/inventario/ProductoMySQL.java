@@ -94,7 +94,7 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
                 + "codProd,precioUnitario,stockMinimo FROM producto "
                 + "WHERE nombre LIKE ? ";
         try (Connection conn = DBManager.getInstance().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query);) {
+            PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setString(1, "%" + nombre + "%");
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
@@ -115,7 +115,7 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
                 + "i.estado FROM producto p,inventario i WHERE "
                 + "p.idProducto=i.idProducto AND i.idLocal=? AND i.tipo='P'";
         try (Connection conn = DBManager.getInstance().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query);) {
+            PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
