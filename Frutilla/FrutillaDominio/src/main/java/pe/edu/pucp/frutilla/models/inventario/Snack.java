@@ -3,8 +3,8 @@ package pe.edu.pucp.frutilla.models.inventario;
 //faltaba que sea public xd
 public class Snack extends Producto{
 	private String tipo; 
-	private boolean requiereEnvase; 
-	private boolean estaEnvasado; 
+	private Boolean requiereEnvase; 
+	private Boolean estaEnvasado; 
 	private String envase;
 	
 	
@@ -42,19 +42,19 @@ public class Snack extends Producto{
             this.tipo = tipo;
         }
 
-        public boolean isRequiereEnvase() {
+        public Boolean isRequiereEnvase() {
             return requiereEnvase;
         }
 
-        public void setRequiereEnvase(boolean requiereEnvase) {
+        public void setRequiereEnvase(Boolean requiereEnvase) {
             this.requiereEnvase = requiereEnvase;
         }
 
-        public boolean isEstaEnvasado() {
+        public Boolean isEstaEnvasado() {
             return estaEnvasado;
         }
 
-        public void setEstaEnvasado(boolean estaEnvasado) {
+        public void setEstaEnvasado(Boolean estaEnvasado) {
             this.estaEnvasado = estaEnvasado;
         }
 
