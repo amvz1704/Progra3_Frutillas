@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Bebida` (
   `tamanioOnz` INT NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
   `endulzante` VARCHAR(45) NOT NULL,
-  `tipoLeche` ENUM("ENTERA", "SIN_LACTOSA") NOT NULL,
+  `tipoLeche` ENUM("ENTERA", "SIN_LACTOSA") ,
   PRIMARY KEY (`idProducto`),
   CONSTRAINT `fk_Bebida_Producto1`
     FOREIGN KEY (`idProducto`)
