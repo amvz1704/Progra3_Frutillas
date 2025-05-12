@@ -128,5 +128,4 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
             throw new RuntimeException("Error al actualizar entidad", e);
         }
     }
-
 }

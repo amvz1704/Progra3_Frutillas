@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.sql.Date;
 
 import pe.edu.pucp.frutilla.config.DBManager;
@@ -155,4 +156,20 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         }
     }
 
+    public ArrayList<Empleado> listarTodosPorLocal(int idLocal){
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND e.idLocal = ?";
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, idLocal);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    empleados.add(createFromResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar empleados por local", e);
+        }
+        return empleados;
+    }
 }
