@@ -14,6 +14,17 @@ public abstract class Persona {
     public Persona() {
     }
 
+    public Persona(Persona persona) {
+        this.nombre = persona.nombre;
+        this.apellidoPaterno = persona.apellidoPaterno;
+        this.apellidoMaterno = persona.apellidoMaterno;
+        this.correoElectronico = persona.correoElectronico;
+        this.telefono = persona.telefono;
+        this.usuarioSistema = persona.usuarioSistema;
+        this.contraSistema = persona.contraSistema;
+        this.activo = persona.activo; // Copia el estado activo
+    }
+
     public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, String usuarioSistema, String contraSistema) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;

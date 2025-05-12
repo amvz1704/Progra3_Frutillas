@@ -17,6 +17,12 @@ public class Cliente extends Persona{
         this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
 
+    public Cliente(Cliente cliente){
+        super(cliente);
+        this.idCliente = cliente.getIdCliente();
+        this.ordenesVentas = new ArrayList<OrdenVenta>(cliente.ordenesVentas);
+    }
+
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String usuarioSistema, String contraSistema){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
         this.idCliente = -1;
