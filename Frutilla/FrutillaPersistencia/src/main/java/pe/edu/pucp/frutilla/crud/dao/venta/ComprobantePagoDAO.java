@@ -9,5 +9,5 @@ import pe.edu.pucp.frutilla.crud.dao.BaseDAO;
 public interface ComprobantePagoDAO extends BaseDAO<ComprobantePago> {
 
     // Métodos extras
-    ArrayList<ComprobantePago> obtenerTodosPorLocal(int idLocal);
+    
 }

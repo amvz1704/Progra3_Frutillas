@@ -20,123 +20,127 @@ import java.sql.ResultSet;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.time.*; 
+import java.util.List;
+import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
 
-public class OrdenVentaMySQL {
-    
-    //Metodo para insertar una nueva orden de Venta
-    public void insertarOrdenVenta(OrdenVenta ordenVenta,int idLocal,int idEmpleado,
-                int idCliente,int idComprobante) throws SQLException{
-        String query="INSERT INTO OrdenVenta(descripcion,montoTotal,entregado,estadoVenta,idLocal,idEmpleado,idCliente,idComprobante,fecha,horaFinEntrega) values(?,?,?,?,?,?,?,?,?,?) ";
-        try(Connection con = DBManager.getInstance().getConnection(); //conecta a la base de datos
-                PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);){
-            //inserta datos
-            ps.setString(1,ordenVenta.getDescripcion());
-            ps.setDouble(2,ordenVenta.getMontoTotal());
-            ps.setBoolean(3,ordenVenta.getEntregado());
-            ps.setString(4,ordenVenta.getEstado().name());
-            ps.setInt(5,idLocal);
-            ps.setInt(6,idEmpleado);
-            ps.setInt(7,idCliente);
-            ps.setInt(8,idComprobante);
-            ps.setDate(9, Date.valueOf(ordenVenta.getFecha()));
-            ps.setTime(10, Time.valueOf(ordenVenta.getHoraFinEntrega()));
-            //ejecuta la insercion 
-            ps.executeUpdate();
-            
-            //Traer el ultimo idOrdenVenta generado;
-            try(ResultSet rs=ps.getGeneratedKeys()){
-                if(rs.next()){
-                    ordenVenta.setIdOrdenVenta(rs.getInt(1));
-                }
-            }
-            LineaOrdenDeVentaMySQL linSQL = new LineaOrdenDeVentaMySQL();
-            for(LineaOrdenDeVenta lin: ordenVenta.getLineasOrdenes()){
-                linSQL.insertarLineaVenta(lin, ordenVenta.getIdOrdenVenta(), lin.getProducto().getIdProducto());
-            }
-        }
+public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
+
+    @Override
+    protected String getInsertQuery() {
+        return "CALL INSERTAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
-    
-    //metodo para actualizar dentro de la tabla OrdenVenta
-    public void actualizarOrdenVenta(OrdenVenta ordenVenta) throws SQLException {
-        String query = "UPDATE OrdenVenta SET entregado = ?, estadoVenta = ? WHERE idOrdenVenta = ?";
 
+    @Override
+    protected String getUpdateQuery() {
+        return "CALL ACTUALIZAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    }
+
+    @Override
+    protected String getDeleteQuery() {
+        return "CALL ELIMINAR_ORDEN_VENTA(?)";
+    }
+
+    @Override
+    protected String getSelectByIdQuery() {
+        return "CALL ORDEN_VENTA_LISTAR_X_ID(?)";
+    }
+
+    @Override
+    protected String getSelectAllQuery() {
+        return "CALL ORDEN_VENTA_LISTAR()";
+    }
+
+    @Override
+    protected void setInsertParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
+        ps.setDate(1, Date.valueOf(entity.getFecha()));
+        ps.setTime(2, Time.valueOf(entity.getHoraFinEntrega()));
+        ps.setString(3, entity.getDescripcion());
+        ps.setDouble(4, entity.getMontoTotal());
+        ps.setBoolean(5, entity.getEntregado());
+        ps.setString(6, entity.getEstado().name());
+        ps.setInt(7, entity.getIdLocal());
+        ps.setInt(8, entity.getIdCliente());
+        ps.setInt(9, entity.getIdEmpleado());
+    }
+
+    @Override
+    protected void setUpdateParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
+        ps.setInt(1, entity.getIdOrdenVenta());
+        ps.setDate(2, Date.valueOf(entity.getFecha()));
+        ps.setTime(3, Time.valueOf(entity.getHoraFinEntrega()));
+        ps.setString(4, entity.getDescripcion());
+        ps.setDouble(5, entity.getMontoTotal());
+        ps.setBoolean(6, entity.getEntregado());
+        ps.setString(7, entity.getEstado().name());
+        ps.setInt(8, entity.getIdLocal());
+        ps.setInt(9, entity.getIdComprobante());
+        ps.setInt(10, entity.getIdCliente());
+        ps.setInt(11, entity.getIdEmpleado());
+    }
+
+    @Override
+    protected void setId(OrdenVenta entity, Integer id) {
+        entity.setIdOrdenVenta(id);
+    }
+
+    @Override
+    protected OrdenVenta createFromResultSet(ResultSet rs) throws SQLException {
+        OrdenVenta ordenVenta = new OrdenVenta();
+        ordenVenta.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
+        ordenVenta.setDescripcion(rs.getString("descripcion"));
+        ordenVenta.setMontoTotal(rs.getDouble("montoTotal"));
+        ordenVenta.setEntregado(rs.getBoolean("entregado"));
+        ordenVenta.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
+        return ordenVenta;
+    }
+
+    // Métodos adicionales para listar por cliente, empleado, o local
+    public List<OrdenVenta> listarPorCliente(int idCliente) throws SQLException {
+        List<OrdenVenta> ordenes = new ArrayList<>();
+        String query = "CALL ORDEN_VENTA_LISTAR_X_CLIENTE(?)";
         try (Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query)) {
-            
-            //En este caso se permite actualizar si ya se entrego, y cambiar el estado de la orden
-            ps.setBoolean(1, ordenVenta.getEntregado());
-            ps.setString(2, ordenVenta.getEstado().name()); 
-            //Es necesario el id para saber que linea actualizar
-            ps.setInt(3, ordenVenta.getIdOrdenVenta());
+             PreparedStatement ps = con.prepareStatement(query)) {
 
-            ps.executeUpdate();
-        }
-    }
-    
-    public OrdenVenta obtenerOrdenPorId(int idOrdenVenta) throws SQLException{
-        OrdenVenta orden = new OrdenVenta();
-        String query = "SELECT idOrdenVenta, descripcion, montoTotal, entregado, estadoVenta "
-                        + " FROM OrdenVenta WHERE idOrdenVenta = ?";
-        try(Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query)){
-            ps.setInt(1,idOrdenVenta);
-            try(ResultSet rs = ps.executeQuery() ){
-                if(rs.next()){
-                    orden.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
-                    orden.setDescripcion(rs.getString("descripcion"));
-                    orden.setMontoTotal(rs.getDouble("montoTotal"));
-                    orden.setEntregado(rs.getBoolean("entregado"));
-                    orden.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
-                    
-                }
+            ps.setInt(1, idCliente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                OrdenVenta orden = createFromResultSet(rs);
+                ordenes.add(orden);
             }
         }
-        return orden;
+        return ordenes;
     }
-    
-    //metodo para eliminar en OrdenVenta
-    public void eliminarOrdenVenta(int idOrdenVenta) throws SQLException {
-        //De manera logica, la ordenVenta pasa a ser ENTREGADO en estado venta.
-        String query = "UPDATE OrdenVenta SET estadoVenta = ? WHERE idOrdenVenta = ?";
 
+    public List<OrdenVenta> listarPorLocal(int idLocal) throws SQLException {
+        List<OrdenVenta> ordenes = new ArrayList<>();
+        String query = "CALL ORDEN_VENTA_LISTAR_X_LOCAL(?)";
         try (Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
 
-            // Asignar el valor del estado CANCELADO 
-            ps.setString(1, EstadoVenta.CANCELADO.name());  
-            ps.setInt(2, idOrdenVenta);
-
-            // Ejecuta la actualización
-            ps.executeUpdate();
-        }
-    }
-    
-    //Metodo que permite obtener todas las ordenes en cada local, con el objetivo
-    //de mostrar mejor la información.
-    public ArrayList<OrdenVenta> obtenerTodos(int idLocal) throws SQLException {
-        ArrayList<OrdenVenta> ordenesVentas = new ArrayList<>();//creamos la nueva lista
-        
-        String query = "SELECT idOrdenVenta, descripcion, montoTotal, entregado, estadoVenta "
-                + " FROM OrdenVenta WHERE idLocal = ?";
-
-        try (Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query)) {
-            
             ps.setInt(1, idLocal);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                OrdenVenta orden = new OrdenVenta();
-                orden.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
-                orden.setDescripcion(rs.getString("descripcion"));
-                orden.setMontoTotal(rs.getDouble("montoTotal"));
-                orden.setEntregado(rs.getBoolean("entregado"));
-                orden.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
-                ordenesVentas.add(orden);
+                OrdenVenta orden = createFromResultSet(rs);
+                ordenes.add(orden);
             }
         }
-
-        return ordenesVentas;
+        return ordenes;
     }
-    
+
+    public List<OrdenVenta> listarPorEmpleado(int idEmpleado) throws SQLException {
+        List<OrdenVenta> ordenes = new ArrayList<>();
+        String query = "CALL ORDEN_VENTA_LISTAR_X_EMPLEADO(?)";
+        try (Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+
+            ps.setInt(1, idEmpleado);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                OrdenVenta orden = createFromResultSet(rs);
+                ordenes.add(orden);
+            }
+        }
+        return ordenes;
+    }
 }
