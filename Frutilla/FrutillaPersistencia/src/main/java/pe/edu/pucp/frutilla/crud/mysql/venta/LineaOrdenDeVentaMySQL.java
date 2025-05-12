@@ -15,70 +15,89 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.util.List;
+import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
-public class LineaOrdenDeVentaMySQL{
-    //Metodo que permite insertar datos a la tabla LineaOrdenVenta
-    public void insertarLineaVenta(LineaOrdenDeVenta lVenta,int idOrdenVenta,int idProducto) throws SQLException{
-        String query= "INSERT INTO LineaOrdenVenta(idOrdenVenta,cantidad,subtotal,IdProducto)"
-        + "values(?,?,?,?)";
-        
-        try(Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);){
-                ps.setInt(1,idOrdenVenta);
-                ps.setInt(2,lVenta.getCantidad());
-                ps.setDouble(3,lVenta.getSubtotal());
-                ps.setInt(4,idProducto);
-                
-                ps.executeUpdate();//ejecuta la insercion
+public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
 
-                try(ResultSet rs=ps.getGeneratedKeys()){
-                    if(rs.next()){
-                        lVenta.setIdLineaVenta(rs.getInt(1));
-                    }
-                }
-        }
+    @Override
+    protected String getInsertQuery() {
+        return "CALL INSERTAR_LINEA_ORDEN_VENTA(?, ?, ?, ?)";
     }
 
-    //metodo para actualizar dentro de la tabla LineaOrdenVenta
-    public void actualizarLineaOrdenVenta(LineaOrdenDeVenta lVenta)throws SQLException{
+    @Override
+    protected String getUpdateQuery() {
+        return "CALL ACTUALIZAR_LINEA_ORDEN_VENTA(?, ?, ?, ?)";
+    }
 
-        String query="UPDATE LineaOrdenVenta SET cantidad = ?, subtotal = ?, IdProducto = ? WHERE idLineaOrdenVenta = ?";
+    @Override
+    protected String getDeleteQuery() {
+        return "CALL ELIMINAR_LINEA_ORDEN_VENTA(?)";
+    }
+
+    @Override
+    protected String getSelectByIdQuery() {
+        // No se usa individualmente por ID
+        return null;
+    }
+
+    @Override
+    protected String getSelectAllQuery() {
+        // No se usa obtener todos
+        return null;
+    }
+
+    @Override
+    protected void setInsertParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {
+        ps.setInt(1, entity.getOrdenVenta().getIdOrdenVenta());
+        ps.setInt(2, entity.getCantidad());
+        ps.setDouble(3, entity.getSubtotal());
+        ps.setInt(4, entity.getProducto().getIdProducto());
+    }
+
+    @Override
+    protected void setUpdateParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {
+        ps.setInt(1, entity.getIdLineaVenta());
+        ps.setInt(2, entity.getCantidad());
+        ps.setDouble(3, entity.getSubtotal());
+        ps.setInt(4, entity.getProducto().getIdProducto());
+    }
+
+    @Override
+    protected void setId(LineaOrdenDeVenta entity, Integer id) {
+        entity.setIdLineaVenta(id);
+    }
+
+    @Override
+    protected LineaOrdenDeVenta createFromResultSet(ResultSet rs) throws SQLException {
+        LineaOrdenDeVenta linea = new LineaOrdenDeVenta();
+        linea.setIdLineaVenta(rs.getInt("idLineaOrdenVenta"));
+        linea.setCantidad(rs.getInt("cantidad"));
+        linea.setSubtotal(rs.getDouble("subTotal"));
+
+        ProductoMySQL productoDAO = new ProductoMySQL();
+        Producto producto = productoDAO.obtener(rs.getInt("idProducto"));
+        linea.setProducto(producto);
+
+        return linea;
+    }
+
+    // Método personalizado para listar por ID de orden
+    public List<LineaOrdenDeVenta> listarPorOrden(int idOrdenVenta) throws SQLException {
+        List<LineaOrdenDeVenta> lineas = new ArrayList<>();
+        String query = "CALL LISTAR_LINEAS_X_ORDEN(?)";
 
         try (Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setInt(1,lVenta.getCantidad());
-            lVenta.actualizarSubtotal();
-            ps.setDouble(2, lVenta.getSubtotal());
-            ps.setInt(3, lVenta.getProducto().getIdProducto());
-            ps.setInt(4,lVenta.getIdLineaVenta());
-            
-            ps.executeUpdate();
-        }
-    }
+             PreparedStatement ps = con.prepareStatement(query)) {
 
-    public ArrayList<LineaOrdenDeVenta> obtenerLineasPorOrden(int idOrdenVenta)throws SQLException{
-        ArrayList<LineaOrdenDeVenta> lineasDeVentas = new ArrayList<>();
-
-        String query="SELECT * FROM LineaOrdenVenta WHERE idOrdenVenta=?";
-
-        try(Connection con = DBManager.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement(query)){
-            
-            ps.setInt(1,idOrdenVenta);
-            ResultSet rs = ps.executeQuery();
-            ProductoMySQL productoMySQL = new ProductoMySQL();
-            while(rs.next()){
-                LineaOrdenDeVenta lineaOrdenVenta = new LineaOrdenDeVenta();
-                lineaOrdenVenta.setIdLineaVenta(rs.getInt("idLineaOrdenVenta"));
-                lineaOrdenVenta.setCantidad(rs.getInt("cantidad"));
-                lineaOrdenVenta.setSubtotal(rs.getDouble("subTotal"));
-                Producto producto = productoMySQL.obtener(rs.getInt("idProducto"));
-                lineaOrdenVenta.setProducto(producto);
-                lineasDeVentas.add(lineaOrdenVenta);
+            ps.setInt(1, idOrdenVenta);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lineas.add(createFromResultSet(rs));
+                }
             }
         }
-        return lineasDeVentas;
+        return lineas;
     }
 }
 
