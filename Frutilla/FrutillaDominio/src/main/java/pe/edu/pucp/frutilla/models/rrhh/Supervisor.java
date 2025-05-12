@@ -1,6 +1,8 @@
 package pe.edu.pucp.frutilla.models.rrhh;
 import java.time.LocalDate;
 
+//import com.frutilla.crud.mysql.local.LocalMySQL;
+import pe.edu.pucp.frutilla.models.local.Local;
 
 public class Supervisor extends Empleado{
 
@@ -8,12 +10,8 @@ public class Supervisor extends Empleado{
         super();
     }
 
-    public Supervisor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idEmpleado){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'S', idEmpleado);
-    }
-
-    public Supervisor(Supervisor supervisor){
-        super(supervisor);
+    public Supervisor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema){
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'S');
     }
 
 //    public void generarReporte(int idLocal, LocalDate fecha){

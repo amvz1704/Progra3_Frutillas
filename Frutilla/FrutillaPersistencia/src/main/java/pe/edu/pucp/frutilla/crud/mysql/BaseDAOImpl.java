@@ -22,7 +22,7 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
     @Override
     public void agregar(T entity) {
         try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement(getInsertQuery(), Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement ps = conn.prepareStatement(getInsertQuery(), Statement.RETURN_GENERATED_KEYS)) {
             
             setInsertParameters(ps, entity);
             ps.executeUpdate();
@@ -40,7 +40,7 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
     @Override
     public T obtener(Integer id) {
         try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement(getSelectByIdQuery())) {
+             PreparedStatement ps = conn.prepareStatement(getSelectByIdQuery())) {
             
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -58,8 +58,8 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
     public List<T> listarTodos() {
         List<T> entities = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement(getSelectAllQuery());
-            ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(getSelectAllQuery());
+             ResultSet rs = ps.executeQuery()) {
             
             while (rs.next()) {
                 entities.add(createFromResultSet(rs));
@@ -73,7 +73,7 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
     @Override
     public void actualizar(T entity) {
         try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement(getUpdateQuery())) {
+             PreparedStatement ps = conn.prepareStatement(getUpdateQuery())) {
             
             setUpdateParameters(ps, entity);
             ps.executeUpdate();
@@ -85,7 +85,7 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
     @Override
     public void eliminar(Integer id) {
         try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement(getDeleteQuery())) {
+             PreparedStatement ps = conn.prepareStatement(getDeleteQuery())) {
             
             ps.setInt(1, id);
             ps.executeUpdate();
