@@ -47,6 +47,7 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         // No se usa obtener todos
         return null;
     }
+    
 
     @Override
     protected void setInsertParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {
@@ -62,6 +63,15 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         ps.setInt(2, entity.getCantidad());
         ps.setDouble(3, entity.getSubtotal());
         ps.setInt(4, entity.getProducto().getIdProducto());
+    }
+    
+    public void eliminarPorId(int idLineaVenta) throws SQLException {
+        String query = getDeleteQuery();
+        try (Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, idLineaVenta);
+            ps.executeUpdate();
+        }
     }
 
     @Override
