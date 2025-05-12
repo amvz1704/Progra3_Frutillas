@@ -188,9 +188,6 @@ CREATE PROCEDURE INSERTAR_LINEA_ORDEN_VENTA(
 BEGIN
 	INSERT INTO lineaordenventa (idLineaOrdenVenta,idOrdenVenta,cantidad,subtotal,idProducto) 
     VALUES (_idOrdenVenta,_cantidad,_subtotal,_idProducto);
-    
-    UPDATE inventario SET stock=stock-cantidad 
-    WHERE idProducto=_idProducto AND idLocal=_idLocal;
 END$
 
 CREATE PROCEDURE ACTUALIZAR_LINEA_ORDEN_VENTA(
