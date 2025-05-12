@@ -50,7 +50,7 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
 
     @Override
     protected void setInsertParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {
-        ps.setInt(1, entity.getOrdenVenta().getIdOrdenVenta());
+        ps.setInt(1, entity.getIdOrdenVenta());
         ps.setInt(2, entity.getCantidad());
         ps.setDouble(3, entity.getSubtotal());
         ps.setInt(4, entity.getProducto().getIdProducto());
