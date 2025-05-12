@@ -36,7 +36,8 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         return "CALL ELIMINAR_LINEA_ORDEN_VENTA(?)";
     }
 
-    @Override
+    //
+    @Override 
     protected String getSelectByIdQuery() {
         // No se usa individualmente por ID
         return null;
