@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Empleado` (
   `fechaContrato` DATE NOT NULL,
   `salario` DOUBLE NOT NULL,
   `turnoTrabajo` VARCHAR(45) NOT NULL,
-  `tipo` CHAR NOT NULL COMMENT '\\\\\\\"R\\\\\\\": repartidor\\\\n\\\\\\\"S\\\\\\\": supervisor',
+  `tipo` CHAR(1) NOT NULL COMMENT '\\\\\\\"R\\\\\\\": repartidor\\\\n\\\\\\\"S\\\\\\\": supervisor',
   `idLocal` INT NOT NULL,
   INDEX `fk_Empleado_Local1_idx` (`idLocal` ASC) VISIBLE,
   INDEX `fk_Empleado_Usuario1_idx` (`idUsuario` ASC) VISIBLE,
@@ -328,6 +328,7 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Usuario` (
   `usuarioSistema` VARCHAR(45) NOT NULL,
   `contrasSistema` VARCHAR(45) NOT NULL,
   `activo` TINYINT NOT NULL DEFAULT 1,
+  `tipo` CHAR(1) NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `usuarioSistema_UNIQUE` (`usuarioSistema` ASC) VISIBLE)
 ENGINE = InnoDB;

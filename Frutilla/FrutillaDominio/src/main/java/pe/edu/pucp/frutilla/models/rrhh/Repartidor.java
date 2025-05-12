@@ -8,8 +8,8 @@ public class Repartidor extends Empleado{
 
     public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno,
     String correoElectronico, String telefono, LocalDate fechaContrato,
-    double salario, String usuarioSistema, String contraSistema){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'R');
+    double salario, String usuarioSistema, String contraSistema, int idLocal){
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'R', idLocal);
     }
 
 	public Repartidor(){
@@ -18,17 +18,7 @@ public class Repartidor extends Empleado{
 
 	//este es el constructor agregado
 	public Repartidor(Repartidor rep){
-		this.setNombre(rep.getNombre());
-		this.setApellidoPaterno(rep.getApellidoPaterno());
-		this.setApellidoMaterno(rep.getApellidoMaterno());
-        this.setCorreoElectronico(rep.getCorreoElectronico());
-        this.setTelefono(rep.getTelefono());
-        this.setFechaContrato(rep.getFechaContrato());
-        this.setSalario(rep.getSalario());
-        this.setUsuarioSistema(rep.getUsuarioSistema());
-        this.setContraSistema (rep.getContraSistema());
-        this.setIdEmpleado(rep.getIdEmpleado());
-		this.setTurnoTrabajo(rep.getTurnoTrabajo());
+		super(rep);
 	}
 
 	//cambie las funciones 

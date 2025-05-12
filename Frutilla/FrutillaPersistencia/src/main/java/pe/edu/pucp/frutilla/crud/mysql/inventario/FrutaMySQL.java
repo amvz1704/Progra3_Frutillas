@@ -21,9 +21,9 @@ import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
     @Override
     protected String getInsertQuery() {
-       String cadena = "INSERT INTO fruta (idProducto,requiereLimpieza,"
+        String cadena = "INSERT INTO fruta (idProducto,requiereLimpieza,"
                 + "estaLimpio,requiereEnvasado,estaEnvasado,envase) VALUES "
-               + "(?,?,?,?,?,?)";
+                + "(?,?,?,?,?,?)";
         return cadena;
     }
 
@@ -153,7 +153,7 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
                 + "inventario i WHERE p.idProducto=i.idProducto AND"
                 + "i.idLocal=? and i.tipo='F'";
         try (Connection conn = DBManager.getInstance().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query);) {
+            PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
