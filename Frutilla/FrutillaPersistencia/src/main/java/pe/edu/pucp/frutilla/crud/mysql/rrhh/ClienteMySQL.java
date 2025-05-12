@@ -128,15 +128,5 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
             throw new RuntimeException("Error al actualizar entidad", e);
         }
     }
-
-    @Override
-    protected Cliente createFromResultSet(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    protected void setId(Cliente entity, Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
 }
