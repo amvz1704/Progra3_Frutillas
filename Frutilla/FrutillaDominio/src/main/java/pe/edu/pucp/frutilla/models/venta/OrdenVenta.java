@@ -21,24 +21,10 @@ public class OrdenVenta{
 	private ComprobantePago comprobantePago; //se crea al momento de que se realice el pago
 	//Agregar Empleado
 	private int idEmpleado;
-        private int idLocal;
-        private int idCliente;
 
-    public int getIdLocal() {
-        return idLocal;
-    }
-
-    public void setIdLocal(int idLocal) {
-        this.idLocal = idLocal;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
+	private int idLocal;
+	private int idComprobante;
+	private int idCliente;
 
     /**
      *
@@ -112,7 +98,7 @@ public class OrdenVenta{
 			this.comprobantePago = new ComprobantePago();
 		}
 		
-		int numArticulos = 0; 
+		int numArticulos = 0;
 		for(LineaOrdenDeVenta linea: lineasOrdenes){
 			montoTotal += linea.getSubtotal(); 
 			numArticulos += linea.getCantidad(); 
@@ -299,5 +285,31 @@ public class OrdenVenta{
     public boolean getEntregado() {
 		return this.entregado;
 	} 
+
+    public int getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(int idLocal) {
+        this.idLocal = idLocal;
+    }
+
+    public int getIdComprobante() {
+        return idComprobante;
+    }
+
+    public void setIdComprobante(int idComprobante) {
+        this.idComprobante = idComprobante;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+    
+    
 	
 }
