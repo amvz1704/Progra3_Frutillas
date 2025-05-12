@@ -2,10 +2,10 @@ package pe.edu.pucp.frutilla.models.inventario;
 
 //se hizo publico 
 public class Fruta extends Producto{
-	private boolean requiereLimpieza; 
-	private boolean requiereEnvase;
-	private boolean estaLimpio;
-	private boolean estaEnvasado; 
+	private Boolean requiereLimpieza; 
+	private Boolean requiereEnvase;
+	private Boolean estaLimpio;
+	private Boolean estaEnvasado; 
 	private String envase;
 	
 	public Fruta(){
@@ -41,35 +41,35 @@ public class Fruta extends Producto{
 		this.estaEnvasado=false; 
 	}
 
-	public boolean isRequiereLimpieza() {
+	public Boolean isRequiereLimpieza() {
         return requiereLimpieza;
     	}
 
-	public void setRequiereLimpieza(boolean requiereLimpieza) {
+	public void setRequiereLimpieza(Boolean requiereLimpieza) {
 	this.requiereLimpieza = requiereLimpieza;
 	}
 	
-	public boolean isRequiereEnvase() {
+	public Boolean isRequiereEnvase() {
 	return requiereEnvase;
 	}
 	
-	public void setRequiereEnvase(boolean requiereEnvase) {
+	public void setRequiereEnvase(Boolean requiereEnvase) {
 	this.requiereEnvase = requiereEnvase;
 	}
 	
-	public boolean isEstaLimpio() {
+	public Boolean isEstaLimpio() {
 	return estaLimpio;
 	}
 	
-	public void setEstaLimpio(boolean estaLimpio) {
+	public void setEstaLimpio(Boolean estaLimpio) {
 	this.estaLimpio = estaLimpio;
 	}
 	
-	public boolean isEstaEnvasado() {
+	public Boolean isEstaEnvasado() {
 	return estaEnvasado;
 	}
 	
-	public void setEstaEnvasado(boolean estaEnvasado) {
+	public void setEstaEnvasado(Boolean estaEnvasado) {
 	this.estaEnvasado = estaEnvasado;
 	}
 	

@@ -20,15 +20,15 @@ public class ProductoService {
         if(prod==null)
             throw new Exception("EL producto ha ingresado nulo");
         if(prod.getNombre()==null||prod.getNombre().trim().isEmpty())
-            throw new Exception("El nombre del producto no puede ser vacio");
+            throw new Exception("El nombre no puede ser vacio");
         if(prod.getDescripcion()==null||prod.getDescripcion().trim().isEmpty())
-            throw new Exception("La descripcion del producto no puede ser vacio");
+            throw new Exception("La descripcion no puede ser vacia");
         if(prod.getCodigoProd()==null||prod.getCodigoProd().trim().isEmpty())
-            throw new Exception("El codigo del producto no puede ser vacio");
+            throw new Exception("El codigo no puede ser vacio");
         if(prod.getPrecioUnitario()<=0)
-            throw new Exception("El precio del producto no puede menor a 0");
+            throw new Exception("El precio no puede ser menor a 0");
         if(prod.getStockMinimo()<=0)
-            throw new Exception("El stock minimo del producto no puede menor a 0");
+            throw new Exception("El stock minimo no puede ser menor a 0");
         proSQL.agregar(prod);
     }
     
@@ -36,15 +36,15 @@ public class ProductoService {
         if(prod==null)
             throw new Exception("EL producto ha ingresado nulo");
         if(prod.getNombre()==null||prod.getNombre().trim().isEmpty())
-            throw new Exception("El nombre del producto no puede ser vacio");
+            throw new Exception("El nombre no puede ser vacio");
         if(prod.getDescripcion()==null||prod.getDescripcion().trim().isEmpty())
-            throw new Exception("La descripcion del producto no puede ser vacio");
+            throw new Exception("La descripcion no puede ser vacia");
         if(prod.getCodigoProd()==null||prod.getCodigoProd().trim().isEmpty())
-            throw new Exception("El codigo del producto no puede ser vacio");
+            throw new Exception("El codigo no puede ser vacio");
         if(prod.getPrecioUnitario()<=0)
-            throw new Exception("El precio del producto no puede menor a 0");
+            throw new Exception("El precio no puede ser menor a 0");
         if(prod.getStockMinimo()<=0)
-            throw new Exception("El stock minimo del producto no puede menor a 0");
+            throw new Exception("El stock minimo no puede ser menor a 0");
         proSQL.actualizar(prod);
     }
     
@@ -77,4 +77,5 @@ public class ProductoService {
             throw new Exception("El id de local no puede ser menor a 0");
         return proSQL.obtenerTodosPorLocal(idLocal);
     }
+    
 }

@@ -80,7 +80,7 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ps.setBoolean(6, entity.getEntregado());
         ps.setString(7, entity.getEstado().name());
         ps.setInt(8, entity.getIdLocal());
-        ps.setInt(9, entity.getIdComprobante());
+        ps.setInt(9, entity.getComprobantePago().getIdComprobante());
         ps.setInt(10, entity.getIdCliente());
         ps.setInt(11, entity.getIdEmpleado());
     }

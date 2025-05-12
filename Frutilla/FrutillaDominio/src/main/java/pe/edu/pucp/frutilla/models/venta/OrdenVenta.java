@@ -17,11 +17,11 @@ public class OrdenVenta{
 	private double montoTotal; 
 	private EstadoVenta estado; 
 	private boolean entregado; 
-	private static int correlativo = 1;
 	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
 	private ComprobantePago comprobantePago; //se crea al momento de que se realice el pago
 	//Agregar Empleado
 	private int idEmpleado;
+
 	private int idLocal;
 	private int idComprobante;
 	private int idCliente;
@@ -57,9 +57,7 @@ public class OrdenVenta{
 		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		this.entregado = false; 
 		this.montoTotal = 0; 
-		this.idOrdenVenta = correlativo;
 		this.idEmpleado = -1;
-		correlativo++;
 	}
 	
 	//constructor forma 1 le pasas la lista de las lineas
@@ -70,7 +68,6 @@ public class OrdenVenta{
      * @param lista
      */
 	public OrdenVenta(String descripcion, ArrayList <LineaOrdenDeVenta> lista){
-		this.idOrdenVenta = correlativo; 
 		this.descripcion = descripcion; 
 		
 		this.fecha = LocalDate.now();//el dia pedido debe ser el de entrega
@@ -85,7 +82,6 @@ public class OrdenVenta{
 		this.estado = EstadoVenta.FALTA_PAGO; 
 		
 		this.entregado = false; //se actualizara despues
-		correlativo++;
 	}
 	
 	//forma 2 & forma 1--> methods reemplace crear total por crear un comprobante de pago para una orden de venta!

@@ -8,19 +8,31 @@ public class Empleado extends Persona{
     // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
     private boolean turnoTrabajo;
     private char tipo;
+    private int idLocal;
 	
 
-    public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno,
+    public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno, 
     String correoElectronico, String telefono, LocalDate fechaContrato,
-    double salario, String usuarioSistema, String contraSistema, char tipo){
+    double salario, String usuarioSistema, String contraSistema, char tipo, int idLocal){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
         this.fechaContrato = fechaContrato;
         this.salario = salario;
         this.idEmpleado = -1;
         this.turnoTrabajo = false;
         this.tipo = tipo;
+        this.idLocal = idLocal;
     }
-	
+
+    public Empleado(Empleado empleado){
+        super(empleado);
+        this.fechaContrato = empleado.fechaContrato;
+        this.salario = empleado.salario;
+        this.idEmpleado = empleado.idEmpleado;
+        this.turnoTrabajo = empleado.turnoTrabajo;
+        this.tipo = empleado.tipo;
+        this.idLocal = empleado.idLocal;
+    }
+
 	public Empleado(){ 
 	}
 	
@@ -79,6 +91,14 @@ public class Empleado extends Persona{
 
     public void setTipo(char tipo) {
         this.tipo = tipo;
+    }
+
+    public int getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(int idLocal) {
+        this.idLocal = idLocal;
     }
 	
 }
