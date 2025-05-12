@@ -35,11 +35,11 @@ public class OrdenVentaService {
             }
         }
 
-        ordenVentaMySQL.insertar(orden);
+        ordenVentaMySQL.agregar(orden);
 
         for (LineaOrdenDeVenta linea : lineas) {
             linea.setIdOrdenVenta(orden.getIdOrdenVenta());
-            lineaOrdenDeVentaMySQL.insertar(linea);
+            lineaOrdenDeVentaMySQL.agregar(linea);
         }
         
         
@@ -52,7 +52,7 @@ public class OrdenVentaService {
         for (LineaOrdenDeVenta linea : nuevasLineas) {
             if (linea.getIdLineaVenta() == 0) {
                 linea.setIdOrdenVenta(orden.getIdOrdenVenta());
-                lineaOrdenDeVentaMySQL.insertar(linea);
+                lineaOrdenDeVentaMySQL.agregar(linea);
             } else {
                 lineaOrdenDeVentaMySQL.actualizar(linea);
             }
@@ -61,18 +61,11 @@ public class OrdenVentaService {
 
     // Eliminar orden y sus líneas
     public void eliminarOrden(int idOrdenVenta) throws SQLException {
-        lineaOrdenDeVentaMySQL.eliminarPorOrden(idOrdenVenta);
+        lineaOrdenDeVentaMySQL.eliminarPorId(idOrdenVenta);
         ordenVentaMySQL.eliminar(idOrdenVenta);
     }
 
-    // Obtener orden por ID con sus líneas
-    public OrdenVenta obtenerOrdenCompleta(int idOrdenVenta) throws SQLException {
-        OrdenVenta orden = ordenVentaMySQL.obtenerPorId(idOrdenVenta);
-        if (orden != null) {
-            orden.setLineas(lineaOrdenDeVentaMySQL.obtenerLineasPorOrden(idOrdenVenta));
-        }
-        return orden;
-    }
+    
 
     // Listar todas las órdenes
     public List<OrdenVenta> listarTodasLasOrdenes() throws SQLException {
