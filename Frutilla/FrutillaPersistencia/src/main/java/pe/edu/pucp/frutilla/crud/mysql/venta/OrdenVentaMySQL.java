@@ -59,9 +59,9 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ps.setDouble(4, entity.getMontoTotal());
         ps.setBoolean(5, entity.getEntregado());
         ps.setString(6, entity.getEstado().name());
-        ps.setInt(7, entity.getIdLocal());
-        ps.setInt(8, entity.getIdCliente());
-        ps.setInt(9, entity.getIdEmpleado());
+//        ps.setInt(7, entity.getIdLocal());
+//        ps.setInt(8, entity.getIdCliente());
+//        ps.setInt(9, entity.getIdEmpleado());
     }
 
     @Override
@@ -73,10 +73,10 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ps.setDouble(5, entity.getMontoTotal());
         ps.setBoolean(6, entity.getEntregado());
         ps.setString(7, entity.getEstado().name());
-        ps.setInt(8, entity.getIdLocal());
-        ps.setInt(9, entity.getIdComprobante());
-        ps.setInt(10, entity.getIdCliente());
-        ps.setInt(11, entity.getIdEmpleado());
+//        ps.setInt(8, entity.getIdLocal());
+//        ps.setInt(9, entity.getIdComprobante());
+//        ps.setInt(10, entity.getIdCliente());
+//        ps.setInt(11, entity.getIdEmpleado());
     }
 
     @Override

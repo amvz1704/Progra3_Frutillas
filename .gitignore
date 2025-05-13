@@ -47,3 +47,5 @@ desktop.ini
 /Frutilla/*.jar
 /target/
 /Frutilla/FrutillaPersistencia/nbproject/
+/Frutilla/FrutillaLogicaNegocio/target/
+/Frutilla/TESTFrutilla/target/

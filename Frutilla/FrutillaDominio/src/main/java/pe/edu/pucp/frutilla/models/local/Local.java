@@ -53,6 +53,14 @@ public class Local {
         this.idSupervisor = local.getIdSupervisor();
     }
 	
+    
+    @Override
+    public String toString() {
+        return String.format(
+          "Local{id=%d, nombre='%s', descripcion='%s', direccion='%s', telefono='%s', activo=%s}",
+          idLocal, nombre, descripcion, direccion, telefono, activo
+        );
+    }
 	
 	//Regresa la primer orden que esta por ser entregada 
     public OrdenVenta obtenerOrden(){
