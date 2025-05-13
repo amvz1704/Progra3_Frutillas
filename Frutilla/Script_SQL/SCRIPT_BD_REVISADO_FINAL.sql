@@ -216,7 +216,8 @@ DROP TABLE IF EXISTS `frutilla`.`Notificacion` ;
 CREATE TABLE IF NOT EXISTS `frutilla`.`Notificacion` (
   `idNotificacion` INT NOT NULL AUTO_INCREMENT,
   `tipoReceptor` ENUM('CLIENTE', 'SUPERVISOR') NOT NULL,
-  `fechaHora` DATETIME NOT NULL,
+  `fecha` DATE NOT NULL,
+  `hora` TIME NOT NULL,
   `titulo` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NOT NULL,
   `idCliente` INT NULL DEFAULT NULL,
