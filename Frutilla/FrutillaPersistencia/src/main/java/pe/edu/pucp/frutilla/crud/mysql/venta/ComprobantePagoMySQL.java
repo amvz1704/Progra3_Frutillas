@@ -1,6 +1,7 @@
 package pe.edu.pucp.frutilla.crud.mysql.venta;
 
-import pe.edu.pucp.frutilla.crud.dao.venta.ComprobantePagoDAO; 
+import pe.edu.pucp.frutilla.crud.dao.venta.ComprobantePagoDAO;
+import pe.edu.pucp.frutilla.models.local.Notificacion;
 import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
 import pe.edu.pucp.frutilla.models.venta.FormaDePago;
 import pe.edu.pucp.frutilla.config.DBManager;  // Importando DBManager
@@ -8,9 +9,12 @@ import pe.edu.pucp.frutilla.config.DBManager;  // Importando DBManager
 import java.util.ArrayList;
 
 import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
 public class ComprobantePagoMySQL extends BaseDAOImpl<ComprobantePago> implements ComprobantePagoDAO {
@@ -83,4 +87,29 @@ public class ComprobantePagoMySQL extends BaseDAOImpl<ComprobantePago> implement
         comprobantePago.setIdComprobante(id);
     }
   
+    public Notificacion crearNotificacionCompra(ComprobantePago comprobante) {
+        Notificacion notificacion = null;
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT \n" +
+                                        "    ov.fecha,\n" +
+                                        "    ov.horaFinEntrega,\n" +
+                                        "    ov.montoTotal,\n" +
+                                        "    ov.idCliente,\n" +
+                                        "    ov.idEmpleado\n" +
+                                        "FROM \n" +
+                                        "    frutilla.OrdenVenta ov\n" +
+                                        "WHERE \n" +
+                                        "    ov.idComprobante = ?;");
+            ResultSet rs = ps.executeQuery()) {
+            //fecha, LocalTime hora, char tipoReceptor, int idCliente, int idSupervisor
+            ps.setInt(1, comprobante.getIdComprobante());
+            while (rs.next()) {
+                notificacion = new Notificacion('C', rs.getInt("ov.ifCliente"), rs.getInt("ov.idEmpleado"));
+                notificacion.textoCompra(rs.getDouble("ov.montoTotal"), rs.getDate("ov.fecha").toLocalDate(), rs.getTime("ov.horaFinEntrega").toLocalTime());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar noticaciones", e);
+        }
+        return notificacion;
+    }
 }

@@ -1,6 +1,9 @@
 package pe.edu.pucp.frutilla.logica.venta;
 
+import pe.edu.pucp.frutilla.models.local.Notificacion;
 import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
+import pe.edu.pucp.frutilla.crud.dao.venta.ComprobantePagoDAO;
+import pe.edu.pucp.frutilla.crud.mysql.local.NotificacionMySQL;
 import pe.edu.pucp.frutilla.crud.mysql.venta.ComprobantePagoMySQL;
 
 public class ComprobantePagoService {
@@ -27,6 +30,9 @@ public class ComprobantePagoService {
         if(comp.getFormaPago().name()==null||comp.getFormaPago().name().trim().isEmpty())
             throw new Exception("El nombre de la Forma de Pago no puede ser vacio");   
         comprobanteSQL.agregar(comp);
+        Notificacion noti = comprobanteSQL.crearNotificacionCompra(comp);
+        NotificacionMySQL notiSQL = new NotificacionMySQL();
+        notiSQL.agregar(noti);
     }
     
     public void actualizar(ComprobantePago comp) throws Exception{
