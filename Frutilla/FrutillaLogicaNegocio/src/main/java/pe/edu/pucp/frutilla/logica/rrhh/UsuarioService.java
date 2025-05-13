@@ -1,5 +1,7 @@
 package pe.edu.pucp.frutilla.logica.rrhh;
 
+import java.util.List;
+
 import pe.edu.pucp.frutilla.crud.mysql.rrhh.UsuarioMySQL;
 import pe.edu.pucp.frutilla.models.rrhh.Cliente;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
@@ -67,6 +69,10 @@ public class UsuarioService {
             throw new Exception("El id de usuario no es válido");
         }
         return usuarioMySQL.obtener(idUsuario);
+    }
+
+    public List<Persona> listar() throws Exception{
+        return usuarioMySQL.listarTodos();
     }
     
 }

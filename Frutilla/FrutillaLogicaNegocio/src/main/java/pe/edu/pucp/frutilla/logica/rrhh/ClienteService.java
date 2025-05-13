@@ -1,5 +1,7 @@
 package pe.edu.pucp.frutilla.logica.rrhh;
 
+import java.util.List;
+
 import pe.edu.pucp.frutilla.crud.mysql.rrhh.ClienteMySQL;
 import pe.edu.pucp.frutilla.models.rrhh.Cliente;
 
@@ -94,6 +96,10 @@ public class ClienteService {
             throw new Exception("El id del cliente no es válido");
         }
         return clienteMySQL.obtener(idCliente);
+    }
+
+    public List<Cliente> listar() throws Exception{
+        return clienteMySQL.listarTodos();
     }
 
 }
