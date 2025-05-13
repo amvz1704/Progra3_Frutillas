@@ -16,7 +16,10 @@ public class Bebida extends Producto{
 		frutasBebida = new ArrayList<>();
 	}
 	
-	public Bebida(String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, int tamanioOz, String tipo, String endulzante, TipoLeche tieneLeche,ArrayList<FrutasBebida> frutasBebidas){
+	public Bebida(String nombre, String descripcion, String codigoProd, 
+                double precioUnitario,int stock, int stockMinimo, int tamanioOz,
+                String tipo, String endulzante, TipoLeche tieneLeche,
+                ArrayList<FrutasBebida> frutasBebidas){
 		
 		super(nombre, descripcion, codigoProd, precioUnitario, stock, stockMinimo);
 		this.tamanioOz = tamanioOz; 

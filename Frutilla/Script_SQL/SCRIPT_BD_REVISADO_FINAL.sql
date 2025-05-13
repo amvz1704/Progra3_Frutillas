@@ -306,9 +306,9 @@ DROP TABLE IF EXISTS `frutilla`.`Snack` ;
 CREATE TABLE IF NOT EXISTS `frutilla`.`Snack` (
   `idProducto` INT NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
-  `requiereEnvase` TINYINT,
-  `envase` VARCHAR(45) NOT NULL,
-  `estaEnvasado` TINYINT NOT NULL DEFAULT 0,
+  `requiereEnvase` TINYINT DEFAULT 0,
+  `envase` VARCHAR(45) ,
+  `estaEnvasado` TINYINT DEFAULT 0,
   PRIMARY KEY (`idProducto`),
   CONSTRAINT `fk_Snack_Producto1`
     FOREIGN KEY (`idProducto`)

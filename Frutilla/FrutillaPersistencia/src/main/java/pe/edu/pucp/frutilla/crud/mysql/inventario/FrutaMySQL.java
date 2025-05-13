@@ -46,7 +46,8 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,f.requiereLimpieza,"
                 + "f.estaLimpio,f.requiereEnvasado,f.estaEnvasado,"
-                + "f.envase FROM fruta f,producto p WHERE p.idProducto=?";
+                + "f.envase FROM fruta f,producto p WHERE "
+                + "f.idProducto=p.idProducto AND p.idProducto=?";
         return cadena;
     }
 
@@ -55,7 +56,8 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,f.requiereLimpieza,"
                 + "f.estaLimpio,f.requiereEnvasado,f.estaEnvasado,"
-                + "f.envase FROM fruta f,producto p";
+                + "f.envase FROM fruta f,producto p WHERE "
+                + "f.idProducto=p.idProducto";
         return cadena;
     }
 
@@ -150,7 +152,7 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
                 + "p.codProd,p.precioUnitario,p.stockMinimo,f.requiereLimpieza,"
                 + "f.estaLimpio,f.requiereEnvasado,f.estaEnvasado,"
                 + "f.envase,i.stock,i.estado FROM fruta f,producto p,"
-                + "inventario i WHERE p.idProducto=i.idProducto AND"
+                + "inventario i WHERE p.idProducto=i.idProducto AND "
                 + "i.idLocal=? and i.tipo='F'";
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);) {
