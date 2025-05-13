@@ -2,11 +2,19 @@
 package pe.edu.pucp.frutilla.crud.mysql.local;
 
 import pe.edu.pucp.frutilla.models.local.Notificacion;
+
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import pe.edu.pucp.frutilla.config.DBManager;
 import pe.edu.pucp.frutilla.crud.dao.local.NotificacionDAO;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
@@ -28,7 +36,7 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
 
     @Override
     protected String getDeleteQuery() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "DELETE FROM Notificacion WHERE idNotificacion = ?";
     }
 
     @Override
@@ -80,6 +88,58 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
     @Override
     protected void setId(Notificacion entity, Integer id) {
         entity.setIdNotificacion(id);
+    }
+
+    @Override
+    public ArrayList<Notificacion> listarPorCliente(int idCliente) {
+        ArrayList <Notificacion> notificaciones = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Notificacion WHERE idCliente = ?");
+            ResultSet rs = ps.executeQuery()) {
+
+            ps.setInt(1, idCliente);
+            while (rs.next()) {
+                notificaciones.add(createFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar noticaciones", e);
+        }
+        return notificaciones;
+    }
+
+    @Override
+    public ArrayList<Notificacion> listarFecha(LocalDate fecha) {
+        ArrayList <Notificacion> notificaciones = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Notificacion WHERE fecha = ?");
+            ResultSet rs = ps.executeQuery()) {
+
+            ps.setDate(1, Date.valueOf(fecha));
+            while (rs.next()) {
+                notificaciones.add(createFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar noticaciones", e);
+        }
+        return notificaciones;
+    }
+
+    @Override
+    public ArrayList<Notificacion> listarRangoFecha(LocalDate fechaIni, LocalDate fechaFin) {
+        ArrayList <Notificacion> notificaciones = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Notificacion WHERE fecha BETWEEN ? AND ?");
+            ResultSet rs = ps.executeQuery()) {
+
+            ps.setDate(1, Date.valueOf(fechaIni));
+            ps.setDate(2, Date.valueOf(fechaFin));
+            while (rs.next()) {
+                notificaciones.add(createFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar noticaciones", e);
+        }
+        return notificaciones;
     }
     
 }

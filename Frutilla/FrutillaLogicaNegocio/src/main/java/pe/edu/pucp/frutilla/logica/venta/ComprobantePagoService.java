@@ -1,3 +1,4 @@
+package pe.edu.pucp.frutilla.logica.venta;
 
 import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
 import pe.edu.pucp.frutilla.crud.mysql.venta.ComprobantePagoMySQL;

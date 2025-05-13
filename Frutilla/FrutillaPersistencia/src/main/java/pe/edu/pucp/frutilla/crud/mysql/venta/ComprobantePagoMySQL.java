@@ -4,10 +4,11 @@ import pe.edu.pucp.frutilla.crud.dao.venta.ComprobantePagoDAO;
 import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
 import pe.edu.pucp.frutilla.models.venta.FormaDePago;
 import pe.edu.pucp.frutilla.config.DBManager;  // Importando DBManager
-import java.sql.*;
+
 import java.util.ArrayList;
 
 import java.sql.ResultSet;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
