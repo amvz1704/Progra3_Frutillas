@@ -46,7 +46,8 @@ public class BebidaMySQL extends BaseDAOImpl<Bebida> implements BebidaDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,b.tamanioOnz,"
                 + "b.tipo,b.endulzante,b.tipoLeche FROM bebida b,"
-                + "producto p WHERE p.idProducto=?";
+                + "producto p WHERE b.idProducto=p.idProducto AND "
+                + "p.idProducto=?";
         return cadena;
     }
 
@@ -55,7 +56,7 @@ public class BebidaMySQL extends BaseDAOImpl<Bebida> implements BebidaDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,b.tamanioOnz,"
                 + "b.tipo,b.endulzante,b.tipoLeche FROM bebida b,"
-                + "producto p";
+                + "producto p WHERE b.idProducto=p.idProducto";
         return cadena;
     }
 
@@ -84,7 +85,9 @@ public class BebidaMySQL extends BaseDAOImpl<Bebida> implements BebidaDAO{
         beb.setTamanioOz(rs.getInt("tamanioOnz"));
         beb.setTipo(rs.getString("tipo"));
         beb.setEndulzante(rs.getString("endulzante"));
-        beb.setTieneLeche(TipoLeche.valueOf(rs.getString("tipoLeche")));
+        String strTipoLeche=rs.getString("tipoLeche");
+        if(strTipoLeche!=null)
+            beb.setTieneLeche(TipoLeche.valueOf(rs.getString("tipoLeche")));
         return beb;
     }
 
@@ -143,12 +146,12 @@ public class BebidaMySQL extends BaseDAOImpl<Bebida> implements BebidaDAO{
     @Override
     public ArrayList<Bebida> obtenerTodosPorLocal(int idLocal) {
         ArrayList<Bebida> entities = new ArrayList<>();
-        String query="SELECT p.idProducto,p.nombre,p.descripcion,"
-                + "p.codProd,p.precioUnitario,p.stockMinimo,b.tamanioOnz,"
-                + "b.tipo,b.endulzante,b.tipoLeche,i.stock,i.estado FROM "
-                + "bebida b,producto p,inventario i WHERE "
-                + "p.idProducto=i.idProducto AND"
-                + "i.idLocal=? and i.tipo='B'";
+        String query = "SELECT p.idProducto, p.nombre, p.descripcion, "
+            + "p.codProd, p.precioUnitario, p.stockMinimo, b.tamanioOnz, "
+            + "b.tipo, b.endulzante, b.tipoLeche, i.stock, i.estado FROM "
+            + "bebida b, producto p, inventario i WHERE "
+            + "p.idProducto = i.idProducto AND b.idProducto = p.idProducto "
+            + "AND i.idLocal = ? AND i.tipo = 'B'";
         try (Connection conn = DBManager.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);

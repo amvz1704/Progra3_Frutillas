@@ -22,7 +22,7 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
 
     @Override
     protected String getInsertQuery() {
-        String cadena = "INSERT INTO snack (idProducto,tipo,requireEnvase,"
+        String cadena = "INSERT INTO snack (idProducto,tipo,requiereEnvase,"
                 + "envase,estaEnvasado) VALUES (?,?,?,?,?)";
         return cadena;
     }
@@ -45,7 +45,7 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
                 + "s.requiereEnvase,s.envase,s.estaEnvasado FROM snack s,"
-                + "producto p WHERE p.idProducto=?";
+                + "producto p WHERE s.idProducto=p.idProducto AND p.idProducto=?";
         return cadena;
     }
 
@@ -54,7 +54,7 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
                 + "s.requiereEnvase,s.envase,s.estaEnvasado FROM snack s,"
-                + "producto p";
+                + "producto p WHERE s.idProducto=p.idProducto ";
         return cadena;
     }
 
@@ -146,7 +146,7 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
                 + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
                 + "s.requiereEnvase,s.envase,s.estaEnvasado,"
                 + "i.stock,i.estado FROM snack s,producto p,inventario i "
-                + "WHERE p.idProducto=i.idProducto AND i.idLocal=? and "
+                + "WHERE p.idProducto=i.idProducto AND i.idLocal=? AND "
                 + "i.tipo='S'";
         try (Connection conn = DBManager.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);) {
