@@ -25,15 +25,16 @@ import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
 
 public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
-
+    
+    //Uso los metodos sobrecargados de Query
     @Override
     protected String getInsertQuery() {
-        return "CALL INSERTAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return "CALL INSERTAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 
     @Override
     protected String getUpdateQuery() {
-        return "CALL ACTUALIZAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return "CALL ACTUALIZAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 
     @Override
@@ -50,7 +51,11 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     protected String getSelectAllQuery() {
         return "CALL ORDEN_VENTA_LISTAR()";
     }
-
+    //----------------------------------------------------------------------
+    //----------------------------------------------------------------------
+    
+    
+    //Insertar
     @Override
     protected void setInsertParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
         ps.setDate(1, Date.valueOf(entity.getFecha()));
@@ -63,7 +68,8 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ps.setInt(8, entity.getIdCliente());
         ps.setInt(9, entity.getIdEmpleado());
     }
-
+    
+    //Actualizar
     @Override
     protected void setUpdateParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
         ps.setInt(1, entity.getIdOrdenVenta());
@@ -74,16 +80,29 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ps.setBoolean(6, entity.getEntregado());
         ps.setString(7, entity.getEstado().name());
         ps.setInt(8, entity.getIdLocal());
-        ps.setInt(9, entity.getIdComprobante());
+        ps.setInt(9, entity.getComprobantePago().getIdComprobante());
         ps.setInt(10, entity.getIdCliente());
         ps.setInt(11, entity.getIdEmpleado());
     }
-
+    
+    
+    //Eliminar por ID
+    public void eliminarPorId(int idOrdenVenta) throws SQLException {
+        String query = getDeleteQuery();
+        try (Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+                ps.setInt(1, idOrdenVenta);
+                ps.executeUpdate();
+            }
+    }
+    
+    //Asignar el id generado
     @Override
     protected void setId(OrdenVenta entity, Integer id) {
         entity.setIdOrdenVenta(id);
     }
-
+    
+    //Resultado
     @Override
     protected OrdenVenta createFromResultSet(ResultSet rs) throws SQLException {
         OrdenVenta ordenVenta = new OrdenVenta();
@@ -95,7 +114,7 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         return ordenVenta;
     }
 
-    // Métodos adicionales para listar por cliente, empleado, o local
+    // Métodos adicionales para listar por cliente, empleado, local, id , todos
     public List<OrdenVenta> listarPorCliente(int idCliente) throws SQLException {
         List<OrdenVenta> ordenes = new ArrayList<>();
         String query = "CALL ORDEN_VENTA_LISTAR_X_CLIENTE(?)";
@@ -143,4 +162,50 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         }
         return ordenes;
     }
+    
+    public OrdenVenta obtenerPorId(int idOrdenVenta) throws SQLException {
+        OrdenVenta ordenVenta = null;
+        String query = "CALL ORDEN_VENTA_LISTAR_X_ID(?)";
+            try (Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+
+            ps.setInt(1, idOrdenVenta);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    ordenVenta = createFromResultSet(rs);
+                    ordenVenta.setFecha(rs.getDate("fecha").toLocalDate());
+                    ordenVenta.setHoraFinEntrega(rs.getTime("horaFinEntrega").toLocalTime());
+                    ordenVenta.setIdLocal(rs.getInt("idLocal"));
+                    ordenVenta.setIdComprobante(rs.getInt("idComprobante"));
+                    ordenVenta.setIdCliente(rs.getInt("idCliente"));
+                    ordenVenta.setIdEmpleado(rs.getInt("idEmpleado"));
+                }
+            }
+        }
+        return ordenVenta;
+    }   
+    
+    public List<OrdenVenta> listarTodas() throws SQLException {
+        List<OrdenVenta> ordenes = new ArrayList<>();
+        String query = "CALL ORDEN_VENTA_LISTAR()";
+        try (Connection con = DBManager.getInstance().getConnection();
+         PreparedStatement ps = con.prepareStatement(query);
+         ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                OrdenVenta orden = createFromResultSet(rs);
+                orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setHoraFinEntrega(rs.getTime("horaFinEntrega").toLocalTime());
+                orden.setIdLocal(rs.getInt("idLocal"));
+                orden.setIdComprobante(rs.getInt("idComprobante"));
+                orden.setIdCliente(rs.getInt("idCliente"));
+                orden.setIdEmpleado(rs.getInt("idEmpleado"));
+                ordenes.add(orden);
+            }
+        }
+        return ordenes;
+    }
+    
+    
+
 }

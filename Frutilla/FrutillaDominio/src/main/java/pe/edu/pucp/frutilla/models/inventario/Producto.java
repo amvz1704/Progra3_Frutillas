@@ -44,7 +44,13 @@ public class Producto{
 		this.precioUnitario = original.precioUnitario; 
 		this.stock = original.stock; 
 		this.stockMinimo = original.stockMinimo; 
-		this.tipoEstado = original.tipoEstado;
+                if(original.tipoEstado!=null)
+                    this.tipoEstado = original.tipoEstado;
+                else if (stock > 0) {
+			this.tipoEstado = TipoEstado.DISPONIBLE;
+		}
+		else 
+                    this.tipoEstado = TipoEstado.AGOTADO;
 	}
 	
 	//metodos
@@ -60,7 +66,7 @@ public class Producto{
 		//colocar un formato
 		return nombre + ", Codigo: " + codigoProd + ", Stock: "+ stock 
 		+ ", Precio: s/" + precioUnitario + ", Descripcion: "+ descripcion
-		+ "Estado: "+ tipoEstado;
+		+ " Estado: "+ tipoEstado;
 	}
 	
 	//conjuntoSettersyGetters
