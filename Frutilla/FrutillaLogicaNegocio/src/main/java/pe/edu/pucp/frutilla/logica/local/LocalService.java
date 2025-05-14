@@ -146,6 +146,9 @@ public class LocalService {
     public void asignarProductoALocal(int idLocal, int idProducto) throws Exception{
         Local local = localDAO.obtener(idLocal);
         
+        //obtener sus datos de producto tambien 
+        localDAO.ObtenerProductosPorLocal(idLocal, local); 
+        
         if(local == null)
             throw new Exception("El id del Local no es válido");
         

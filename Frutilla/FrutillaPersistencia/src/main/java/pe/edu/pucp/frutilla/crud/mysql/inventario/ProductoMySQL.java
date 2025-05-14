@@ -113,7 +113,7 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
         String query="SELECT p.idProducto,nombre,descripcion,"
                 + "codProd,precioUnitario,stockMinimo,i.stock,"
                 + "i.estado FROM Producto p,Inventario i WHERE "
-                + "p.idProducto=i.idProducto AND i.idLocal=? AND i.tipo='P'";
+                + "p.idProducto=i.idProducto AND i.idLocal=?";
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);
@@ -122,6 +122,7 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
                     Producto temp=createFromResultSet(rs);
                     temp.setStock(rs.getInt("stock"));
                     temp.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                    System.out.println(temp.toString());
                     entities.add(temp);
                 }
             }
