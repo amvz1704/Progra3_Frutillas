@@ -40,36 +40,37 @@ public class Principal {
             // TODO code application logic here
             LocalService probar = new LocalService();
             
+            LocalService localS = new LocalService();
+            EmpleadoService probarEmpleado = new EmpleadoService(); 
+            
             //Ingreso de datos
 //            
             //ingreso de un dato correcto primero Local, luego supervisor, luego Local con el supervisor (pienso que podria automatizarse)
             
-//            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
-//            try {
-//                probar.agregar(ingresar);
-//            } catch (Exception ex) {
-//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            //Actualizar datos
-//            EmpleadoService probarEmpleado = new EmpleadoService(); 
-//            
-//            Supervisor supFrutilla = new Supervisor("Luffy", "Monkey", "D.", "luffy@mail.com", "111",
-//            LocalDate.now(), 2003.45, "nuevo2", "mikuoishi", ingresar.getIdLocal());
-//            probarEmpleado.agregar(supFrutilla);
-//            
-//            //con un local de id Existente actualizamos el local para asignarlo el Supervsor
-//            probar.asignarEmpleadoALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
-//            probar.asignarSupervisorALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
-//            
-//            
-//            //Ingreso de datos null
-//            ingresar = null;
-//            try {
-//                probar.agregar(ingresar);
-//            } catch (Exception ex) {
-//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            
+            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
+            try {
+                probar.agregar(ingresar);
+            } catch (Exception ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //Actualizar datos
+            
+            
+            Supervisor supFrutilla = new Supervisor("Luffy", "Monkey", "D.", "luffy@mail.com", "111",
+            LocalDate.now(), 2003.45, "nuevo2", "mikuoishi", ingresar.getIdLocal());
+            probarEmpleado.agregar(supFrutilla);
+            System.out.println(supFrutilla.getIdEmpleado());
+            
+            
+            //con un local de id Existente actualizamos el local para asignarlo el Supervsor
+            probar.asignarEmpleadoALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
+            
+            probar.asignarSupervisorALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
+            ingresar = probar.obtenerPorId(ingresar.getIdLocal());
+            
+            //Ingreso de datos null
+            
+            probar.actualizar(ingresar);
 //            //Ingreso de datos de nombre no dado
             ingresar = new Local(" ", "aa", "Av. Universitaria", "995777011");
             try {
@@ -82,10 +83,18 @@ public class Principal {
 //            
 //            //con un local no registrado en la base de datos
             Local noingresa = new Local("Polideportivo", "aa", "Av. Universitaria", "995777011");
+            probar.agregar(noingresa);
             noingresa.setIdLocal(143); //seria bueno tener uno por nombre
             
-            probar.actualizar(ingresar);
-//            
+            
+//          
+            ingresar = null;
+            try {
+                probar.agregar(ingresar);
+            } catch (Exception ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
 //            
 //            //con un local registrado pero que no tiene un supervisor con el id asignado 
             Local otro = new Local("Polideportivo 2", "Otro local más", "Av. Universitaria", "995777011");

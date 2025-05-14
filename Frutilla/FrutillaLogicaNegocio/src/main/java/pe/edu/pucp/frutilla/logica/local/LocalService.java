@@ -115,14 +115,18 @@ public class LocalService {
         
         EmpleadoDAO empleadoDAO = new EmpleadoMySQL();
         
-        Empleado emp  = empleadoDAO.obtener(idEmpleado);
+        System.out.println("ID recibido en asignarEmpleadoALocal: " + idEmpleado);
+        Empleado emp = empleadoDAO.obtener(idEmpleado);
+        System.out.println("Empleado encontrado: " + (emp != null));
+        
+
         
         if(emp == null)
             throw new Exception("El id del Empleado no es válido");
         
         local.agregarEmpleado(emp);       // lógica de dominio
         
-        localDAO.actualizar(local);        // llamada a persistencia para actualizar el local 
+        //localDAO.actualizar(local);        // llamada a persistencia para actualizar el local 
       }
     
     public void asignarSupervisorALocal(int idLocal, int idEmpleado) throws Exception{
@@ -133,14 +137,19 @@ public class LocalService {
         
         EmpleadoDAO empleadoDAO = new EmpleadoMySQL();
         
-        Empleado emp  = empleadoDAO.obtener(idEmpleado);
+        System.out.println("ID recibido en asignarSupervisorALocal: " + idEmpleado);
+        Empleado emp = empleadoDAO.obtener(idEmpleado);
+        System.out.println("Empleado encontrado: " + (emp != null));
+        
         
         if(emp == null)
             throw new Exception("El id del Empleado no es válido, falta en la base de Datos");
         
+        local.agregarEmpleado(emp);       // lógica de dominio
         local.setIdSupervisor(idEmpleado);
+        System.out.println(local.getIdSupervisor());
         
-        localDAO.actualizar(local);        // llamada a persistencia para actulizar  
+        //localDAO.actualizar(local);        // llamada a persistencia para actulizar  
       }
     
     public void asignarProductoALocal(int idLocal, int idProducto) throws Exception{
