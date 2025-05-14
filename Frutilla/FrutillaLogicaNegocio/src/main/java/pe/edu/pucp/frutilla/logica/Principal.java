@@ -42,68 +42,68 @@ public class Principal {
             
             //Ingreso de datos
 //            
-//            //ingreso de un dato correcto primero Local, luego supervisor, luego Local con el supervisor (pienso que podria automatizarse)
-//            
-//            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
-//            try {
-//                probar.agregar(ingresar);
-//            } catch (Exception ex) {
-//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            //Actualizar datos
-//            EmpleadoService probarEmpleado = new EmpleadoService(); 
-//            
-//            Supervisor supFrutilla = new Supervisor("Luffy", "Monkey", "D.", "luffy@mail.com", "111",
-//            LocalDate.now(), 2003.45, "nuevo2", "mikuoishi", ingresar.getIdLocal());
-//            probarEmpleado.agregar(supFrutilla);
-//            
-//            //con un local de id Existente actualizamos el local para asignarlo el Supervsor
-//            probar.asignarEmpleadoALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
-//            probar.asignarSupervisorALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
-//            
-//            
-//            //Ingreso de datos null
-//            ingresar = null;
-//            try {
-//                probar.agregar(ingresar);
-//            } catch (Exception ex) {
-//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            //ingreso de un dato correcto primero Local, luego supervisor, luego Local con el supervisor (pienso que podria automatizarse)
+            
+            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
+            try {
+                probar.agregar(ingresar);
+            } catch (Exception ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //Actualizar datos
+            EmpleadoService probarEmpleado = new EmpleadoService(); 
+            
+            Supervisor supFrutilla = new Supervisor("Luffy", "Monkey", "D.", "luffy@mail.com", "111",
+            LocalDate.now(), 2003.45, "nuevo2", "mikuoishi", ingresar.getIdLocal());
+            probarEmpleado.agregar(supFrutilla);
+            
+            //con un local de id Existente actualizamos el local para asignarlo el Supervsor
+            probar.asignarEmpleadoALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
+            probar.asignarSupervisorALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
+            
+            
+            //Ingreso de datos null
+            ingresar = null;
+            try {
+                probar.agregar(ingresar);
+            } catch (Exception ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
 //            
 //            //Ingreso de datos de nombre no dado
-//            ingresar = new Local(" ", "aa", "Av. Universitaria", "995777011");
-//            try {
-//                probar.agregar(ingresar);
-//            } catch (Exception ex) {
-//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            ingresar = new Local(" ", "aa", "Av. Universitaria", "995777011");
+            try {
+                probar.agregar(ingresar);
+            } catch (Exception ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
 //            
 //            
 //            
 //            //con un local no registrado en la base de datos
-//            Local noingresa = new Local("Polideportivo", "aa", "Av. Universitaria", "995777011");
-//            noingresa.setIdLocal(143); //seria bueno tener uno por nombre
-//            
-//            probar.actualizar(ingresar);
+            Local noingresa = new Local("Polideportivo", "aa", "Av. Universitaria", "995777011");
+            noingresa.setIdLocal(143); //seria bueno tener uno por nombre
+            
+            probar.actualizar(ingresar);
 //            
 //            
 //            //con un local registrado pero que no tiene un supervisor con el id asignado 
-//            Local otro = new Local("Polideportivo 2", "Otro local más", "Av. Universitaria", "995777011");
-//            otro.setIdLocal(1);
+            Local otro = new Local("Polideportivo 2", "Otro local más", "Av. Universitaria", "995777011");
+            otro.setIdLocal(1);
 //            
-//            probar.actualizar(otro);
+            probar.actualizar(otro);
 //            
 //            //listar todos los activos 
-//            List<Local> imprimir = probar.listarActivos();
-//            for(Local x: imprimir){
-//                System.out.println(x);
-//            }
+            List<Local> imprimir = probar.listarActivos();
+            for(Local x: imprimir){
+                System.out.println(x);
+            }
             
             //Ahora eliminar algunos locales que en realidad es hacerlo inactivos 
-//            probar.eliminar(11);
-//            probar.eliminar(1);
-//            probar.eliminar(8);
-//            probar.eliminar(9);
+            probar.eliminar(11);
+            probar.eliminar(1);
+            probar.eliminar(8);
+            probar.eliminar(9);
             
             //listar todos los activos 
             List<Local> segundo = probar.listarActivos();
@@ -112,15 +112,15 @@ public class Principal {
             }
             
 //            //Creamos un supervisor
-//		Supervisor sup = new Supervisor("Nayane", "Melendez", "Saire", "nayane@gmail.com", "999999999", LocalDate.now() , 2000, "capibara", "academica", 8);
-//		System.out.println("Se creo un supervisor");
+		Supervisor sup = new Supervisor("Nayane", "Melendez", "Saire", "nayane@gmail.com", "999999999", LocalDate.now() , 2000, "capibara", "academica", 8);
+		System.out.println("Se creo un supervisor");
 //                
 //            //lo subimos a las base de datos
-//            EmpleadoService probarEmpleadoIngreso = new EmpleadoService(); 
-//            probarEmpleadoIngreso.agregar(sup);
+            EmpleadoService probarEmpleadoIngreso = new EmpleadoService(); 
+            probarEmpleadoIngreso.agregar(sup);
 //                
 //            //lo asignamos al local que existe
-//            probar.asignarSupervisorALocal(sup.getIdLocal(), sup.getIdEmpleado());
+            probar.asignarSupervisorALocal(sup.getIdLocal(), sup.getIdEmpleado());
             
             
             //crear un producto (hacer tests)

@@ -11,8 +11,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import pe.edu.pucp.frutilla.crud.mysql.local.LocalMySQL;
 import pe.edu.pucp.frutilla.models.inventario.Fruta;
 import pe.edu.pucp.frutilla.models.inventario.Producto;
+import pe.edu.pucp.frutilla.models.local.Local;
 
 /**
  *
@@ -25,6 +27,10 @@ public class InventarioServiceTest {
     
     @BeforeAll
     public static void setUpClass() {
+        Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
+        LocalMySQL probar = new LocalMySQL();
+        probar.agregar(ingresar);
+
     }
     
     @AfterAll
