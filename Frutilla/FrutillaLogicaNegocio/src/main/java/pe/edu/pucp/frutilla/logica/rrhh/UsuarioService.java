@@ -50,7 +50,7 @@ public class UsuarioService {
         if (persona.getUsuarioSistema() == null || persona.getUsuarioSistema().trim().isEmpty()) {
             throw new Exception("El usuario no puede ser vacío");
         }
-
+        
         if (persona.getContraSistema() == null || persona.getContraSistema().trim().isEmpty()) {
             throw new Exception("La contraseña no puede ser vacía");
         }

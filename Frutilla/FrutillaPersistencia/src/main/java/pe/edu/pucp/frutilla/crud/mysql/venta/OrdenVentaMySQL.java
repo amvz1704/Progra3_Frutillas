@@ -63,9 +63,9 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ps.setDouble(4, entity.getMontoTotal());
         ps.setBoolean(5, entity.getEntregado());
         ps.setString(6, entity.getEstado().name());
-        ps.setInt(7, entity.getIdLocal());
-        ps.setInt(8, entity.getIdCliente());
-        ps.setInt(9, entity.getIdEmpleado());
+//        ps.setInt(7, entity.getIdLocal());
+//        ps.setInt(8, entity.getIdCliente());
+//        ps.setInt(9, entity.getIdEmpleado());
     }
     
     //Actualizar

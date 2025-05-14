@@ -19,4 +19,7 @@ public interface LocalDAO extends BaseDAO<Local>
     ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException; 
     ArrayList<Producto> encontrarProductos(int idLocal) throws SQLException;
     ArrayList<OrdenVenta> encontrarVentas(int idLocal) throws SQLException; //ver si necesitamos agregar fecha
+    public void eliminarEmpleado(int idEmpleado); 
+    public void eliminarProducto(int idProducto); 
+    
 }
