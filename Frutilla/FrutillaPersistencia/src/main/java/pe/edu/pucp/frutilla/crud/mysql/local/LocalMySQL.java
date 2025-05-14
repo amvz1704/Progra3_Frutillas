@@ -10,6 +10,19 @@ import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO;
 import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL; 
 
 
+import pe.edu.pucp.frutilla.crud.dao.inventario.InventarioDAO;
+import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL; 
+
+import pe.edu.pucp.frutilla.crud.dao.inventario.SnackDAO;
+import pe.edu.pucp.frutilla.crud.mysql.inventario.SnackMySQL; 
+
+import pe.edu.pucp.frutilla.crud.dao.inventario.BebidaDAO;
+import pe.edu.pucp.frutilla.crud.mysql.inventario.BebidaMySQL; 
+
+
+import pe.edu.pucp.frutilla.crud.dao.inventario.FrutaDAO;
+import pe.edu.pucp.frutilla.crud.mysql.inventario.FrutaMySQL; 
+
 import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
 import pe.edu.pucp.frutilla.crud.mysql.venta.OrdenVentaMySQL; 
 
@@ -18,15 +31,22 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pe.edu.pucp.frutilla.config.DBManager;
 
 //importado de frutilla.models
 import pe.edu.pucp.frutilla.models.local.Local; //incluimos LOCAL 
 import pe.edu.pucp.frutilla.models.rrhh.Empleado; //incluimos Empleado 
 import pe.edu.pucp.frutilla.models.inventario.Producto; //incluimos Producto 
+import pe.edu.pucp.frutilla.models.inventario.Bebida; //incluimos Producto 
+import pe.edu.pucp.frutilla.models.inventario.Fruta; //incluimos Producto 
+import pe.edu.pucp.frutilla.models.inventario.Snack; //incluimos Producto 
+
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl; 
+import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 
 
 	
@@ -74,15 +94,49 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     public void ObtenerProductosPorLocal(int idLocal, Local local){
         
         try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Inventario WHERE idLocal = ?")) {
+            PreparedStatement ps = conn.prepareStatement("SELECT idProducto, stock, estado, tipo FROM Inventario WHERE idLocal = ?")) {
             
             ps.setInt(1, idLocal);
+            
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    ProductoDAO productoInterfaz = new ProductoMySQL(); 
-                    Produto x = new Producto(); 
-                    Produto x = productoInterfaz.obtener(rs.getInt("idProducto"))); 
-                            
+                    
+                    if(rs.getString("tipo").equals("P")){
+                        ProductoDAO productoInterfaz = new ProductoMySQL(); 
+                        Producto prod = productoInterfaz.obtener(rs.getInt("idProducto"));
+                        prod.setStock(rs.getInt("stock"));
+                        prod.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                        local.agregarProducto(prod);
+                    }
+                    else if(rs.getString("tipo").equals("S")){
+                        SnackDAO productoInterfaz = new SnackMySQL(); 
+                        Snack prod = productoInterfaz.obtener(rs.getInt("idProducto")); 
+                        
+                        prod.setStock(rs.getInt("stock"));
+                        prod.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                        local.agregarProducto(prod);
+                    }
+                    
+                    else if(rs.getString("tipo").equals("B")){
+                        BebidaDAO productoInterfaz = new BebidaMySQL(); 
+                        Bebida prod = productoInterfaz.obtener(rs.getInt("idProducto")); 
+                        
+                        prod.setStock(rs.getInt("stock"));
+                        prod.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                        local.agregarProducto(prod);
+                    }
+                    else if(rs.getString("tipo").equals("F")){
+                        FrutaDAO productoInterfaz = new FrutaMySQL(); 
+                        Fruta prod = productoInterfaz.obtener(rs.getInt("idProducto")); 
+                        
+                        prod.setStock(rs.getInt("stock"));
+                        prod.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                        local.agregarProducto(prod);
+                    }
+                    
+                    
+                    
+                    
                     
                 }
             }
@@ -124,14 +178,22 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
             interfazEmpleado.agregar(copia);
         }
         
+        InventarioDAO interfazDAO = new InventarioMySQL(); 
         //los productos 
         for(Producto e: entity.getProductos()){
             Producto copia = new Producto(e); 
             interfazLocal.eliminarProducto(e.getIdProducto());
             interfazProducto.agregar(copia);
+            try {
+                interfazDAO.insertarInventario(copia, entity.getIdLocal());
+            } catch (SQLException ex) {
+                Logger.getLogger(LocalMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
     }
+    
     
     public void eliminarEmpleado(int idEmpleado){
         
@@ -161,6 +223,15 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement("DELETE FROM Producto WHERE idProducto = ?")){
+            
+            ps.setInt(1, idProducto);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar entidad", e);
+        }
+        
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM Inventario WHERE idProducto = ?")){
             
             ps.setInt(1, idProducto);
             ps.executeUpdate();

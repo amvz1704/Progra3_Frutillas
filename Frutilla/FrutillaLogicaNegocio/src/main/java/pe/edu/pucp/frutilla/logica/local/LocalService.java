@@ -18,6 +18,12 @@ import pe.edu.pucp.frutilla.crud.mysql.local.LocalMySQL;
 import pe.edu.pucp.frutilla.crud.dao.rrhh.EmpleadoDAO; //¿se puede agregar?
 import pe.edu.pucp.frutilla.crud.mysql.rrhh.EmpleadoMySQL;
 
+
+import pe.edu.pucp.frutilla.crud.dao.inventario.InventarioDAO; //¿se puede agregar?
+import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL;
+
+import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
+
 import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO; //¿se puede agregar?
 import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL;
 
@@ -143,26 +149,14 @@ public class LocalService {
         localDAO.actualizar(local);        // llamada a persistencia para actulizar  
       }
     
-    public void asignarProductoALocal(int idLocal, int idProducto) throws Exception{
-        Local local = localDAO.obtener(idLocal);
-        
-        //obtener sus datos de producto tambien 
-        localDAO.ObtenerProductosPorLocal(idLocal, local); 
-        
-        if(local == null)
-            throw new Exception("El id del Local no es válido");
-        
-        ProductoDAO productoDAO = new ProductoMySQL();
-        
-        Producto emp  = productoDAO.obtener(idProducto);
-        
-        if(emp == null)
-            throw new Exception("El id del Producto no es válido");
+    public void asignarProductoALocal(int idLocal, Producto producto) throws Exception{
         
         
-        local.agregarProducto(emp);       // lógica de dominio
         
-        localDAO.actualizar(local);        // llamada a persistencia para actualizar el empleado 
+        InventarioService inventarioC = new InventarioService(); 
+        
+        inventarioC.insertar(producto, idLocal);
+             // llamada a persistencia para actualizar el empleado 
       }
     
     

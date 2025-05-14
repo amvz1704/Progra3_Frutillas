@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import pe.edu.pucp.frutilla.logica.local.LocalService; 
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService; 
 import pe.edu.pucp.frutilla.logica.inventario.ProductoService;
-
+import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
 
 import pe.edu.pucp.frutilla.models.local.Local;
 
@@ -43,7 +43,7 @@ public class Principal {
             //Ingreso de datos
 //            
             //ingreso de un dato correcto primero Local, luego supervisor, luego Local con el supervisor (pienso que podria automatizarse)
-            
+//            
 //            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
 //            try {
 //                probar.agregar(ingresar);
@@ -54,14 +54,14 @@ public class Principal {
 //            EmpleadoService probarEmpleado = new EmpleadoService(); 
 //            
 //            Supervisor supFrutilla = new Supervisor("Luffy", "Monkey", "D.", "luffy@mail.com", "111",
-//            LocalDate.now(), 2003.45, "nuevo2", "mikuoishi", ingresar.getIdLocal());
+//            LocalDate.now(), 2003.45, "nuevo1", "mikuoishi", ingresar.getIdLocal());
 //            probarEmpleado.agregar(supFrutilla);
 //            
 //            //con un local de id Existente actualizamos el local para asignarlo el Supervsor
-//            probar.asignarEmpleadoALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
+//            
 //            probar.asignarSupervisorALocal(ingresar.getIdLocal(), supFrutilla.getIdEmpleado());
 //            
-//            
+////            
 //            //Ingreso de datos null
 //            ingresar = null;
 //            try {
@@ -136,6 +136,7 @@ public class Principal {
 		
             
             //primero agregarlo a la base de datos 
+           
            ProductoService probarProductosIngreso = new ProductoService(); 
             probarProductosIngreso.agregar(producto1);
             probarProductosIngreso.agregar(a);
@@ -146,12 +147,13 @@ public class Principal {
             
             
             //agregar un producto a un local 
-            probar.asignarProductoALocal(1, producto1.getIdProducto());
-            probar.asignarProductoALocal(1, a.getIdProducto());
-            probar.asignarProductoALocal(1, snack2.getIdProducto());
-            probar.asignarProductoALocal(1, fruta1.getIdProducto());
-            probar.asignarProductoALocal(1, fruta2.getIdProducto());
-            probar.asignarProductoALocal(1, bebida1.getIdProducto());
+            probar.asignarProductoALocal(1, producto1);
+            probar.asignarProductoALocal(1, a);
+            probar.asignarProductoALocal(1, snack2);
+            probar.asignarProductoALocal(1, fruta1);
+            probar.asignarProductoALocal(1, fruta2);
+            probar.asignarProductoALocal(1, bebida1);
+            
             
             //crear una orden de venta (hacer tests)
             
