@@ -120,7 +120,7 @@ public class Principal {
 //            probarEmpleadoIngreso.agregar(sup);
 //                
 //            //lo asignamos al local que existe
-//            probar.asignarSupervisorALocal(sup.getIdLocal(), sup.getIdEmpleado());
+//            probar.asignarEmpleadoALocal(sup.getIdLocal(), sup.getIdEmpleado());
             
             
             //crear un producto (hacer tests)
@@ -157,8 +157,6 @@ public class Principal {
             
             //crear una orden de venta (hacer tests)
             
-            
-            //agregar una producto a un local 
             
          
       

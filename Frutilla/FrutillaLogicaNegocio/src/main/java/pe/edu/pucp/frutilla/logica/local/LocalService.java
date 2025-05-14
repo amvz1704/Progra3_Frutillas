@@ -11,6 +11,8 @@ package pe.edu.pucp.frutilla.logica.local;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pe.edu.pucp.frutilla.models.local.Local; 
 import pe.edu.pucp.frutilla.crud.dao.local.LocalDAO;
 import pe.edu.pucp.frutilla.crud.mysql.local.LocalMySQL; 
@@ -23,6 +25,7 @@ import pe.edu.pucp.frutilla.crud.dao.inventario.InventarioDAO; //¿se puede agre
 import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL;
 
 import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
+import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 
 import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO; //¿se puede agregar?
 import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL;
@@ -66,10 +69,10 @@ public class LocalService {
         if(loc.getIdSupervisor()<=0)
             throw new Exception("El id del supervisor no es valido");
         
-        EmpleadoDAO sup= new EmpleadoMySQL();
-        if (sup.obtener( loc.getIdSupervisor()) == null)
-           throw new Exception("No se ha registrado AUN un supervisor para el local de id " + loc.getIdLocal());
-        
+//        EmpleadoDAO sup= new EmpleadoMySQL();
+//        if (sup.obtener( loc.getIdSupervisor()) == null)
+//           throw new Exception("No se ha registrado AUN un supervisor para el local de id " + loc.getIdLocal());
+//        
         
         localDAO.actualizar(loc);
     }
@@ -131,32 +134,12 @@ public class LocalService {
         localDAO.actualizar(local);        // llamada a persistencia para actualizar el local 
       }
     
-    public void asignarSupervisorALocal(int idLocal, int idEmpleado) throws Exception{
-        Local local = localDAO.obtener(idLocal);
-        
-        if(local == null)
-            throw new Exception("El id del Local no es válido");
-        
-        EmpleadoDAO empleadoDAO = new EmpleadoMySQL();
-        
-        Empleado emp  = empleadoDAO.obtener(idEmpleado);
-        
-        if(emp == null)
-            throw new Exception("El id del Empleado no es válido, falta en la base de Datos");
-        
-        local.setIdSupervisor(idEmpleado);
-        
-        localDAO.actualizar(local);        // llamada a persistencia para actulizar  
-      }
-    
     public void asignarProductoALocal(int idLocal, Producto producto) throws Exception{
-        
-        
         
         InventarioService inventarioC = new InventarioService(); 
         
         inventarioC.insertar(producto, idLocal);
-             // llamada a persistencia para actualizar el empleado 
+        
       }
     
     
