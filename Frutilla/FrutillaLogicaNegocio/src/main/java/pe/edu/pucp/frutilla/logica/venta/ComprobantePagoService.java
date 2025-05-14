@@ -30,9 +30,9 @@ public class ComprobantePagoService {
         if(comp.getFormaPago().name()==null||comp.getFormaPago().name().trim().isEmpty())
             throw new Exception("El nombre de la Forma de Pago no puede ser vacio");   
         comprobanteSQL.agregar(comp);
-        Notificacion noti = comprobanteSQL.crearNotificacionCompra(comp);
-        NotificacionMySQL notiSQL = new NotificacionMySQL();
-        notiSQL.agregar(noti);
+//        Notificacion noti = comprobanteSQL.crearNotificacionCompra(comp);
+//        NotificacionMySQL notiSQL = new NotificacionMySQL();
+//        notiSQL.agregar(noti);
     }
     
     public void actualizar(ComprobantePago comp) throws Exception{

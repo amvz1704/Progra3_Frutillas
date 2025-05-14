@@ -8,12 +8,17 @@ public class Supervisor extends Empleado{
         super();
     }
 
-    public Supervisor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idEmpleado){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'S', idEmpleado);
+    public Supervisor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal){
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'S', idLocal);
     }
 
     public Supervisor(Supervisor supervisor){
         super(supervisor);
+    }
+    
+    @Override
+    public String toString(){
+        return super.toString();
     }
 
 //    public void generarReporte(int idLocal, LocalDate fecha){

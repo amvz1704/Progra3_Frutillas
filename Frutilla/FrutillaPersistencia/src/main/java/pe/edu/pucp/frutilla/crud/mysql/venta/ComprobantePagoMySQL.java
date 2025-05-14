@@ -100,12 +100,14 @@ public class ComprobantePagoMySQL extends BaseDAOImpl<ComprobantePago> implement
                                         "    frutilla.OrdenVenta ov\n" +
                                         "WHERE \n" +
                                         "    ov.idComprobante = ?;");
-            ResultSet rs = ps.executeQuery()) {
+            ) {
             //fecha, LocalTime hora, char tipoReceptor, int idCliente, int idSupervisor
             ps.setInt(1, comprobante.getIdComprobante());
-            while (rs.next()) {
-                notificacion = new Notificacion('C', rs.getInt("ov.ifCliente"), rs.getInt("ov.idEmpleado"));
-                notificacion.textoCompra(rs.getDouble("ov.montoTotal"), rs.getDate("ov.fecha").toLocalDate(), rs.getTime("ov.horaFinEntrega").toLocalTime());
+            try(ResultSet rs = ps.executeQuery();){
+                while (rs.next()) {
+                    notificacion = new Notificacion('C', rs.getInt("ov.ifCliente"), rs.getInt("ov.idEmpleado"));
+                    notificacion.textoCompra(rs.getDouble("ov.montoTotal"), rs.getDate("ov.fecha").toLocalDate(), rs.getTime("ov.horaFinEntrega").toLocalTime());
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al listar noticaciones", e);

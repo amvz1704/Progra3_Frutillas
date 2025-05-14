@@ -153,7 +153,7 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
                 + "f.estaLimpio,f.requiereEnvasado,f.estaEnvasado,"
                 + "f.envase,i.stock,i.estado FROM Fruta f,Producto p,"
                 + "Inventario i WHERE p.idProducto=i.idProducto AND "
-                + "i.idLocal=? AND i.tipo='F'";
+                + "i.idLocal=? and i.tipo='F'";
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);

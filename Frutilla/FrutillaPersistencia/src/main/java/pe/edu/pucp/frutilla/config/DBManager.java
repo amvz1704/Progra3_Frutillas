@@ -20,25 +20,25 @@ public class DBManager {
     private static String user;
     private static String password;
 
-//    static{
-//        String pathFile = "com/frutilla/config/config.properties";
-//        try(InputStream input = DBManager.class.getClassLoader().getResourceAsStream(pathFile)){
-//            if(input == null){
-//                System.out.println("No se encuentra el archivo: " + pathFile);
-//            }
-//            Properties prop = new Properties();
-//            prop.load(input);
-//            url = prop.getProperty("db.url");
-//            user = prop.getProperty("db.user");
-//            password = prop.getProperty("db.password");
-//            if(url == null || user == null || password == null){
-//                System.out.println("Faltan propiedades en el archivo: " + pathFile);
-//            }
-//        }
-//        catch(Exception e){
-//            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, e);
-//        }
-//    }
+    static{
+        String pathFile = "db.properties"; //cambie esto para acceder
+        try(InputStream input = DBManager.class.getClassLoader().getResourceAsStream(pathFile)){
+            if(input == null){
+                System.out.println("No se encuentra el archivo: " + pathFile);
+            }
+            Properties prop = new Properties();
+            prop.load(input);
+            url = prop.getProperty("db.url");
+            user = prop.getProperty("db.user");
+            password = prop.getProperty("db.password");
+            if(url == null || user == null || password == null){
+                System.out.println("Faltan propiedades en el archivo: " + pathFile);
+            }
+        }
+        catch(Exception e){
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
     
     // Método para configurar el pool de conexiones
     private void configurar() {
