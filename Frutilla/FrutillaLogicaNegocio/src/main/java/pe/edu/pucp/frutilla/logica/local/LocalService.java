@@ -20,13 +20,14 @@ import pe.edu.pucp.frutilla.crud.mysql.rrhh.EmpleadoMySQL;
 
 import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO; //¿se puede agregar?
 import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL;
+import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
 
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
 import pe.edu.pucp.frutilla.models.inventario.Producto; 
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta; 
 
 public class LocalService {
-    private final LocalDAO localDAO;
+    private final LocalMySQL localDAO;
     
     public LocalService(){
         this.localDAO = new LocalMySQL(); 
@@ -152,26 +153,29 @@ public class LocalService {
         //localDAO.actualizar(local);        // llamada a persistencia para actulizar  
       }
     
-    public void asignarProductoALocal(int idLocal, int idProducto) throws Exception{
-        Local local = localDAO.obtener(idLocal);
+    public void asignarProductoALocal(int idLocal, Producto producto) throws Exception{
+        //Local local = localDAO.obtener(idLocal);
+        InventarioService invS = new InventarioService();
         
         //obtener sus datos de producto tambien 
-        localDAO.ObtenerProductosPorLocal(idLocal, local); 
+        //localDAO.ObtenerProductosPorLocal(idLocal, local); 
         
-        if(local == null)
+        if(idLocal <= 0)
             throw new Exception("El id del Local no es válido");
         
-        ProductoDAO productoDAO = new ProductoMySQL();
+        //ProductoDAO productoDAO = new ProductoMySQL();
         
-        Producto emp  = productoDAO.obtener(idProducto);
+        invS.insertar(producto, idLocal);
         
-        if(emp == null)
-            throw new Exception("El id del Producto no es válido");
+//        Producto emp  = productoDAO.obtener(idProducto);
+//        
+//        if(emp == null)
+//            throw new Exception("El id del Producto no es válido");
         
         
-        local.agregarProducto(emp);       // lógica de dominio
+        //local.agregarProducto(producto);       // lógica de dominio
         
-        localDAO.actualizar(local);        // llamada a persistencia para actualizar el empleado 
+        //localDAO.actualizar(local);        // llamada a persistencia para actualizar el empleado 
       }
     
     

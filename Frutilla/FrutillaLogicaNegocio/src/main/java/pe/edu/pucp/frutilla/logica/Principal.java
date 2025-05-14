@@ -155,12 +155,12 @@ public class Principal {
             
             
             //agregar un producto a un local 
-            probar.asignarProductoALocal(1, producto1.getIdProducto());
-            probar.asignarProductoALocal(1, a.getIdProducto());
-            probar.asignarProductoALocal(1, snack2.getIdProducto());
-            probar.asignarProductoALocal(1, fruta1.getIdProducto());
-            probar.asignarProductoALocal(1, fruta2.getIdProducto());
-            probar.asignarProductoALocal(1, bebida1.getIdProducto());
+//            probar.asignarProductoALocal(1, producto1.getIdProducto());
+//            probar.asignarProductoALocal(1, a.getIdProducto());
+//            probar.asignarProductoALocal(1, snack2.getIdProducto());
+//            probar.asignarProductoALocal(1, fruta1.getIdProducto());
+//            probar.asignarProductoALocal(1, fruta2.getIdProducto());
+//            probar.asignarProductoALocal(1, bebida1.getIdProducto());
             
             //crear una orden de venta (hacer tests)
             

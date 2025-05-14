@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Cliente` (
   `nombres` VARCHAR(70) NOT NULL,
   `apellidoPaterno` VARCHAR(45) NOT NULL,
   `apellidoMaterno` VARCHAR(45) NOT NULL,
-  `correoElectronivo` VARCHAR(80) NOT NULL,
+  `correoElectronico` VARCHAR(80) NOT NULL,
   `telefono` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idUsuario`),
   INDEX `fk_Cliente_Usuario1_idx` (`idUsuario` ASC) VISIBLE,
@@ -171,7 +171,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `frutilla`.`LineaOrdenVenta` ;
 
 CREATE TABLE IF NOT EXISTS `frutilla`.`LineaOrdenVenta` (
-  `idLineaOrdenVenta` INT NOT NULL,
+  `idLineaOrdenVenta` INT NOT NULL auto_increment,
   `idOrdenVenta` INT NOT NULL,
   `cantidad` INT NOT NULL,
   `subtotal` DOUBLE NOT NULL DEFAULT 0.0,
@@ -215,7 +215,7 @@ DROP TABLE IF EXISTS `frutilla`.`Notificacion` ;
 
 CREATE TABLE IF NOT EXISTS `frutilla`.`Notificacion` (
   `idNotificacion` INT NOT NULL AUTO_INCREMENT,
-  `tipoReceptor` ENUM('CLIENTE', 'SUPERVISOR') NOT NULL,
+  `tipoReceptor` ENUM('CLIENTE', 'SUPERVISOR') NULL,
   `fecha` DATE NOT NULL,
   `hora` TIME NOT NULL,
   `titulo` VARCHAR(45) NOT NULL,

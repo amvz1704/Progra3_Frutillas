@@ -20,6 +20,7 @@ import pe.edu.pucp.frutilla.models.local.Local;
 import pe.edu.pucp.frutilla.models.rrhh.Cliente;
 import pe.edu.pucp.frutilla.models.rrhh.Repartidor;
 import pe.edu.pucp.frutilla.models.rrhh.Supervisor;
+import pe.edu.pucp.frutilla.models.venta.FormaDePago;
 import pe.edu.pucp.frutilla.models.venta.LineaOrdenDeVenta;
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 
@@ -104,28 +105,35 @@ public class Principal2 {
         productoS.agregar(fruta2);
         productoS.agregar(bebida1);
         
-        localS.asignarProductoALocal(local1.getIdLocal(), producto1.getIdProducto());
-        localS.asignarProductoALocal(local1.getIdLocal(), snack1.getIdProducto());
-        localS.asignarProductoALocal(local1.getIdLocal(), snack2.getIdProducto());
-        localS.asignarProductoALocal(local1.getIdLocal(), fruta1.getIdProducto());
-        localS.asignarProductoALocal(local1.getIdLocal(), fruta2.getIdProducto());
-        localS.asignarProductoALocal(local1.getIdLocal(), bebida1.getIdProducto());
+        localS.asignarProductoALocal(local1.getIdLocal(), producto1);
+        localS.asignarProductoALocal(local1.getIdLocal(), snack1);
+        localS.asignarProductoALocal(local1.getIdLocal(), snack2);
+        localS.asignarProductoALocal(local1.getIdLocal(), fruta1);
+        localS.asignarProductoALocal(local1.getIdLocal(), fruta2);
+        localS.asignarProductoALocal(local1.getIdLocal(), bebida1);
         
         Cliente cliente1 = new Cliente("Junior", "Herrera", "Valverde", "99999999", "junior@gmail.com", "junior", "1234");
         
         clienteS.agregar(cliente1);
         
         OrdenVenta orden1 = new OrdenVenta("Compra de snacks");
+        orden1.setIdCliente(cliente1.getIdCliente());
+        orden1.setIdLocal(local1.getIdLocal());
         
-        LineaOrdenDeVenta lin1 = new LineaOrdenDeVenta(1, snack1);
-        LineaOrdenDeVenta lin2 = new LineaOrdenDeVenta(2, snack2);
+        LineaOrdenDeVenta lin1 = new LineaOrdenDeVenta(2, snack1);
+        LineaOrdenDeVenta lin2 = new LineaOrdenDeVenta(1, snack2);
         
         ArrayList<LineaOrdenDeVenta> lineas = new ArrayList<>();
         lineas.add(lin1);
         lineas.add(lin2);
         
+        orden1.agregarLineaOrden(lin1);
+        orden1.agregarLineaOrden(lin2);
+        
         ordenS.registrarOrdenConLineas(orden1, lineas);
-        //comprobanteSQL.insertarComprobante(orden.getComprobantePago());
+        
+        orden1.crearComprobantePago(FormaDePago.TARJETA_CREDITO);
+        comprobanteS.agregar(orden1.getComprobantePago());
         //ordenSQL.insertarOrdenVenta(orden, 1, 3, cliente.getIdCliente(), orden.getComprobantePago().getIdComprobante());
      }
     

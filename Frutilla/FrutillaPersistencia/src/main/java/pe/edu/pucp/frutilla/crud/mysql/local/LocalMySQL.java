@@ -79,9 +79,9 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
             ps.setInt(1, idLocal);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-//                    ProductoDAO productoInterfaz = new ProductoMySQL(); 
-//                    Produto x = new Producto(); 
-//                    Produto x = productoInterfaz.obtener(rs.getInt("idProducto"))); 
+                    ProductoDAO productoInterfaz = new ProductoMySQL(); 
+                    Producto x = new Producto(); 
+                    x = productoInterfaz.obtener(rs.getInt("idProducto")); 
                             
                     
                 }
