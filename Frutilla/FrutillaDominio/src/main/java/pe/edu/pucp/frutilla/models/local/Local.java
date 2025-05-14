@@ -261,7 +261,14 @@ public class Local {
         return new ArrayList<Empleado>(empleados);
     }
     public ArrayList<Producto> getProductos() {
-        return new ArrayList<Producto>(productos);
+    
+        ArrayList<Producto> lista = new ArrayList<Producto>();
+        
+        for(Producto a: productos){
+            lista.add(a); 
+        }
+        
+        return new ArrayList<Producto>(lista);
     }
 
 }

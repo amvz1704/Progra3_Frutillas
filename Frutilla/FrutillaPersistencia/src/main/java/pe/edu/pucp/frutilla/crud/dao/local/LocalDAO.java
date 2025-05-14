@@ -22,4 +22,6 @@ public interface LocalDAO extends BaseDAO<Local>
     public void eliminarEmpleado(int idEmpleado); 
     public void eliminarProducto(int idProducto); 
     
+    public void ObtenerProductosPorLocal(int idLocal, Local local); 
+    
 }

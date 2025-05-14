@@ -41,7 +41,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE idlocal = ?";
+        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE idLocal = ?";
     }
     
     @Override
@@ -51,7 +51,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
   
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT * FROM Local WHERE idlocal = ?";
+        return "SELECT idLocal, nombre, descripcion, direccion, telefono, activo FROM Local WHERE idLocal = ?";
     }
 
     @Override
@@ -70,7 +70,28 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     } 
     //creacion de un local en base a un objeto "Local inicializado"
     
-    
+    @Override
+    public void ObtenerProductosPorLocal(int idLocal, Local local){
+        
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Inventario WHERE idLocal = ?")) {
+            
+            ps.setInt(1, idLocal);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ProductoDAO productoInterfaz = new ProductoMySQL(); 
+                    Produto x = new Producto(); 
+                    Produto x = productoInterfaz.obtener(rs.getInt("idProducto"))); 
+                            
+                    
+                }
+            }
+            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener entidad", e);
+        }
+    }
     @Override
     protected Local createFromResultSet(ResultSet rs) throws SQLException{
         Local local = new Local(rs.getString("nombre"), rs.getString("descripcion"),
@@ -155,6 +176,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
     @Override 
     protected void setUpdateParameters(PreparedStatement ps, Local entity) throws SQLException{
+        
             ps.setString(1, entity.getNombre());
             ps.setString(2, entity.getDescripcion());
             ps.setString(3, entity.getDireccion());
