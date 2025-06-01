@@ -52,3 +52,60 @@ desktop.ini
 /Frutilla/FrutillaLogicaNegocio/target/
 /Frutilla/FrutillaLogicaNegocio/nbproject/
 /Frutilla/FrutillaDominio/target/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vssscc
+*.vspscc
+
+# Visual Studio working folder
+.vs/
+
+# ReSharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Auto-generated files
+*.Generated.cs
+
+# NuGet packages
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+
+# Windows image thumbnails
+Thumbs.db
+
+# Web publish settings
+Properties/PublishProfiles/
+
+# IIS Express files
+.vs/config/
+
+# Rider IDE
+.idea/
+
+# Crash reports, debug logs, etc.
+*.log
+
+# Azure WebJobs publish settings
+*.Publish.xml
+
+# File system metadata
+ehthumbs.db
+Desktop.ini
+
+# Local test results
+TestResults/
+*.VisualState.xml
+
+# Entity Framework
+Migrations/*.Designer.cs
