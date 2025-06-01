@@ -34,13 +34,13 @@ public class NotificacionWS {
             throw new WebServiceException("Error al listar notificaciones");
         }
     }
-    
-    @WebMethod(operationName = "listarTodos")
-    public ArrayList<Notificacion> listarPorFecha(Date fecha) {
-        try {
-            return notificacionServ.listarPorFecha(fecha);
-        }catch (Exception e){
-            throw new WebServiceException("Error al listar notificaciones por fechas");
-        }
-    }
+//    
+//    @WebMethod(operationName = "listarTodos")
+//    public ArrayList<Notificacion> listarPorFecha(Date fecha) {
+//        try {
+//            return notificacionServ.listarPorFecha(fecha);
+//        }catch (Exception e){
+//            throw new WebServiceException("Error al listar notificaciones por fechas");
+//        }
+//    }
 }
