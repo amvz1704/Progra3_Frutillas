@@ -38,7 +38,7 @@ public class LocalWS {
     }
     
     @WebMethod(operationName = "obtenerIdLocal")
-    public Local obtenerLocal(@WebParam (name ="idLocal") int idLocal) {
+    public Local obtenerIdLocal(@WebParam (name ="idLocal") int idLocal) {
         try{
             return daoLocal.obtenerPorId(idLocal);
         }catch(Exception ex){ 
