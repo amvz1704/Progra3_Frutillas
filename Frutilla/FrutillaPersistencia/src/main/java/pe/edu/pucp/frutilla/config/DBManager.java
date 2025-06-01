@@ -18,6 +18,7 @@ public class DBManager {
       // 2) Pool de conexiones
     private HikariDataSource dataSource;
     
+<<<<<<< Updated upstream
     // 3) Parámetros de conexión
     private final Properties props = new Properties();
     
@@ -106,6 +107,40 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName())
                   .log(Level.SEVERE, "Error configurando DataSource", ex);
             throw new RuntimeException(ex);
+=======
+    private static String url;
+    private static String user;
+    private static String password;
+
+    
+    // Constructor privado para evitar instanciación externa
+    private DBManager() {
+        String pathFile = "db.properties"; //cambie esto para acceder
+        
+        try(InputStream input = DBManager.class.getClassLoader().getResourceAsStream(pathFile)){
+            if(input == null){
+                System.out.println("No se encuentra el archivo: " + pathFile);
+            }
+            Properties prop = new Properties();
+            prop.load(input);
+            url = prop.getProperty("db.url");
+            user = prop.getProperty("db.user");
+            password = prop.getProperty("db.password");
+            
+        }
+        catch(Exception e){
+            
+            url = "aaa";
+            user = "aaa";
+            password = "aaa";
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    public synchronized static DBManager getInstance(){
+        if(instance == null){
+            instance = new DBManager();
+>>>>>>> Stashed changes
         }
     }
 

@@ -150,7 +150,53 @@ public class Principal {
 //            probarProductosIngreso.agregar(bebida1);
 //            
             
+<<<<<<< Updated upstream
             
+=======
+//            //Creamos un supervisor
+//		Supervisor sup = new Supervisor("Nayane", "Melendez", "Saire", "nayane@gmail.com", "999999999", LocalDate.now() , 2000, "capibara", "academica", 8);
+//		System.out.println("Se creo un supervisor");
+//                
+//            //lo subimos a las base de datos
+//            EmpleadoService probarEmpleadoIngreso = new EmpleadoService(); 
+//            probarEmpleadoIngreso.agregar(sup);
+//                
+//            //lo asignamos al local que existe
+//            probar.asignarEmpleadoALocal(sup.getIdLocal(), sup.getIdEmpleado());
+            
+            
+            //crear un producto (hacer tests)
+            Producto producto1 = new Producto("Producto 1", "Descripcion del producto 1", "P01", 5.50, 150, 20);
+            Snack a = new Snack("Snack 1", "Descripcion del snack 1", "S01", 3.0, 10, 5, "Tipo 1", "Envase 1", true, true);
+            Snack snack2 = new Snack("Snack 2", "Descripcion del snack 2", "S02", 1.5, 1, 2, "Tipo 2", "Envase 2", true, true);
+            Fruta fruta1 = new Fruta("Fruta 1", "Descripcion de la fruta 1", "F01", 2.0, 25, 10, true, true, false, false, "Envase 1");
+            Fruta fruta2 = new Fruta("Fruta 2", "Descripcion de la fruta 2", "F02", 4.0, 20, 15, true, true, true, true, "Envase 2");
+            ArrayList<FrutasBebida> frutasbebida1 = new ArrayList<FrutasBebida>();//Arraylist con las frutas que contiene la bebida
+		frutasbebida1.add(FrutasBebida.MANGO);
+		frutasbebida1.add(FrutasBebida.PAPAYA);
+            Bebida bebida1 = new Bebida("Bebida 1","Descripcion de la bebida 1", "B01", 7.0, 12, 5, 12, "Tipo 1", "Endulzante 1", TipoLeche.ENTERA, frutasbebida1);
+		
+            
+            //primero agregarlo a la base de datos 
+           
+           ProductoService probarProductosIngreso = new ProductoService(); 
+            probarProductosIngreso.agregar(producto1);
+            probarProductosIngreso.agregar(a);
+            probarProductosIngreso.agregar(snack2);
+            probarProductosIngreso.agregar(fruta1);
+            probarProductosIngreso.agregar(fruta2);
+            probarProductosIngreso.agregar(bebida1);
+            
+//            
+//            //agregar un producto a un local 
+//            probar.asignarProductoALocal(1, producto1);
+//            probar.asignarProductoALocal(1, a);
+//            probar.asignarProductoALocal(1, snack2);
+//            probar.asignarProductoALocal(1, fruta1);
+//            probar.asignarProductoALocal(1, fruta2);
+//            probar.asignarProductoALocal(1, bebida1);
+//            
+>>>>>>> Stashed changes
             
             //crear una orden de venta (hacer tests)
             
