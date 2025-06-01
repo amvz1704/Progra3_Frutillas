@@ -1,33 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\",
+  "WorkspaceRootPath": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\localsupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|c:\\users\\desktop\\documents\\github\\progra3_frutillas\\frutillafront\\frutillalocalwebservice\\localwebservice\\localsupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\localsupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\localsupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\localsupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\localsupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\listaempleadossupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\listaempleadossupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\listaempleadossupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\mainlayout.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\mainlayout.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\mainlayout.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\listaempleadossupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\listaempleadossupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\listaempleadossupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\editarlocal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\editarlocal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\editarlocal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|c:\\users\\nams_\\onedrive\\documents\\github\\progra3_frutillas\\frutillafront\\frutillalocalwebservice\\localwebservice\\listaclientessupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\listaclientessupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\listaclientessupervisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -38,77 +38,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:1:0:{e8b06f53-6d01-11d2-aa7d-00c04f990343}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "ListaClientesSupervisor.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaClientesSupervisor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaClientesSupervisor.aspx.cs",
               "RelativeDocumentMoniker": "LocalWebService\\ListaClientesSupervisor.aspx.cs",
-              "ToolTip": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaClientesSupervisor.aspx.cs",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaClientesSupervisor.aspx.cs",
               "RelativeToolTip": "LocalWebService\\ListaClientesSupervisor.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T14:30:48.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T14:30:48.814Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "ListaEmpleadosSupervisor.aspx",
-              "DocumentMoniker": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx",
               "RelativeDocumentMoniker": "LocalWebService\\ListaEmpleadosSupervisor.aspx",
-              "ToolTip": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx",
               "RelativeToolTip": "LocalWebService\\ListaEmpleadosSupervisor.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-01T00:11:49.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T00:11:49.895Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "LocalSupervisor.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx.cs",
               "RelativeDocumentMoniker": "LocalWebService\\LocalSupervisor.aspx.cs",
-              "ToolTip": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx.cs",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx.cs",
               "RelativeToolTip": "LocalWebService\\LocalSupervisor.aspx.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAA+wF4AAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAuwF4AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T22:08:30.351Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T22:08:30.351Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ListaEmpleadosSupervisor.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx.cs",
               "RelativeDocumentMoniker": "LocalWebService\\ListaEmpleadosSupervisor.aspx.cs",
-              "ToolTip": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx.cs",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\ListaEmpleadosSupervisor.aspx.cs",
               "RelativeToolTip": "LocalWebService\\ListaEmpleadosSupervisor.aspx.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAQwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T16:44:42.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T16:44:42.349Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "MainLayout.Master",
-              "DocumentMoniker": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
               "RelativeDocumentMoniker": "LocalWebService\\MainLayout.Master",
-              "ToolTip": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
               "RelativeToolTip": "LocalWebService\\MainLayout.Master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-05-30T16:52:10.947Z",
               "EditorCaption": ""
@@ -117,22 +108,21 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "EditarLocal.aspx",
-              "DocumentMoniker": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\EditarLocal.aspx",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\EditarLocal.aspx",
               "RelativeDocumentMoniker": "LocalWebService\\EditarLocal.aspx",
-              "ToolTip": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\EditarLocal.aspx",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\EditarLocal.aspx",
               "RelativeToolTip": "LocalWebService\\EditarLocal.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-05-30T16:44:51.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T16:44:51.584Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "LocalSupervisor.aspx",
-              "DocumentMoniker": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx",
               "RelativeDocumentMoniker": "LocalWebService\\LocalSupervisor.aspx",
-              "ToolTip": "C:\\Users\\NAMS_\\OneDrive\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx",
               "RelativeToolTip": "LocalWebService\\LocalSupervisor.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
