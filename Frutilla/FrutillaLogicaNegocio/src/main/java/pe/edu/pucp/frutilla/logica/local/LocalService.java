@@ -73,17 +73,7 @@ public class LocalService {
             throw new Exception("El telefono del local no puede ser vacia");
         if(loc.getIdSupervisor()<=0)
             throw new Exception("El id del supervisor no es valido");
-<<<<<<< Updated upstream
-=======
-       
-        //este codigo solo actualiza los DATOS del local, en WS se llamará 
-        //lo necesario para actualizar la dependencia de supervisor e inventario de ser necesario
->>>>>>> Stashed changes
-        
-//        EmpleadoDAO sup= new EmpleadoMySQL();
-//        if (sup.obtener( loc.getIdSupervisor()) == null)
-//           throw new Exception("No se ha registrado AUN un supervisor para el local de id " + loc.getIdLocal());
-//        
+
         
         localDAO.actualizar(loc);
     }
@@ -129,109 +119,8 @@ public class LocalService {
 //    }
 //   
     //Asigancion en masa de productos/locales (futuro) 
-    
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-    //metodos extra de asignacion: No es necesario, 
-    //la tabla local no necesita esa información!
-    
-    /*esto para un Supervisor*/
-    //obtener lista de empleados --> va hacia la vista de empleados con =id{local actual}
-    //obtener productos --> va hacia la pagina de productos con =id{local actual}
-    //obtener ordenes de venta --> va hacia la pagina de ordenes de venta con =id{local actual}
-    
-    /*esto para un Client*/
-    //obtener productos --> va hacia la pagina de productos con =id{local seleccionado}
-    
->>>>>>> Stashed changes
-=======
-    
-    
-    //metodos extra de asignacion 
-    public void asignarEmpleadoALocal(int idLocal, int idEmpleado) throws Exception{
-        Local local = localDAO.obtener(idLocal);
-        
-        if(local == null)
-            throw new Exception("El id del Local no es válido");
-        
-        EmpleadoDAO empleadoDAO = new EmpleadoMySQL();
-        
-        Empleado emp  = empleadoDAO.obtener(idEmpleado);
-        
-        if(emp == null)
-            throw new Exception("El id del Empleado no es válido");
-        
-        local.agregarEmpleado(emp);       // lógica de dominio
-        
-        localDAO.actualizar(local);        // llamada a persistencia para actualizar el local 
-      }
-    
-    public void asignarProductoALocal(int idLocal, Producto producto) throws Exception{
-        
-        InventarioService inventarioC = new InventarioService(); 
-        
-        inventarioC.insertar(producto, idLocal);
-        
-      }
+
     
     
     
-    
-    //hacemos los metodos extra de Local
-    
-    public ArrayList<Empleado> encontrarEmpleados(int idLocal)throws Exception{
-       
-       //Buscar que el local exista en la base de datos
-      Local loc = localDAO.obtener(idLocal);
-      
-      if(loc == null)
-          throw new Exception("El id del Local no se encuentra en la base de datos");
-       
-      List<Empleado> empleados = localDAO.encontrarEmpleados(idLocal);
-      
-      if (empleados.isEmpty()) {
-        // en este contexto significa que no tiene aun empleados
-        throw new Exception("El Local no tiene empleados");
-      }
-      
-       return localDAO.encontrarEmpleados(idLocal);
-   }
-    
-     public ArrayList<Producto> encontrarProductos(int idLocal)throws Exception{
-       
-       //Buscar que el local exista en la base de datos
-      Local loc = localDAO.obtener(idLocal);
-      
-      if(loc == null)
-          throw new Exception("El id del Local no se encuentra en la base de datos");
-      
-      List<Producto> productos = localDAO.encontrarProductos(idLocal);
-      
-      if (productos.isEmpty()) {
-        // en este contexto significa que no tiene aun empleados
-        throw new Exception("El Local no tiene productos");
-      }
-       
-       return localDAO.encontrarProductos(idLocal);
-   }
-     
-      public ArrayList<OrdenVenta> encontrarOrdenVenta(int idLocal)throws Exception{
-       
-       //Buscar que el local exista en la base de datos
-      Local loc = localDAO.obtener(idLocal);
-      
-      if(loc == null)
-          throw new Exception("El id del Local no se encuentra en la base de datos");
-      
-      List<OrdenVenta> ventas = localDAO.encontrarVentas(idLocal);
-      
-      if (ventas.isEmpty()) {
-        // en este contexto significa que no tiene aun empleados
-        throw new Exception("El Local no tiene ventas pipipi");
-      }
-      
-       return localDAO.encontrarVentas(idLocal);
-   }
->>>>>>> parent of 8c2dd85 (cambio en masa XD)
 }
