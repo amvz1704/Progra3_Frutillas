@@ -37,16 +37,16 @@ public class Principal {
     
     public static void main(String[] args) throws Exception {
         
-            // TODO code application logic here
-            LocalService probar = new LocalService();
-             
-            Local obtener = probar.obtenerPorId(2); 
-            
-            System.out.println(obtener);
+//            // TODO code application logic here
+//            LocalService probar = new LocalService();
+////             
+//            Local obtener = probar.obtenerPorId(1); 
+////            
+//            System.out.println(obtener);
             //Ingreso de datos
 //            
             //ingreso de un dato correcto primero Local, luego supervisor, luego Local con el supervisor (pienso que podria automatizarse)
-//            
+////            
 //            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
 //            try {
 //                probar.agregar(ingresar);
