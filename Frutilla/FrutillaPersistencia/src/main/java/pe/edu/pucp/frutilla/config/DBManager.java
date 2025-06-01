@@ -65,17 +65,27 @@ public class DBManager {
     
 // 7) Configuración de HikariCP
     private void configureDataSource() {
-        try {
-            // Registrar driver (por si acaso)
-            Class.forName(props.getProperty("db.driver"));
-             // Prepara HikariConfig
+        
+         try {
+            // 2.1) Registrar el driver (por si acaso)
+            String driverKey = props.getProperty("db.driver");
+            if (driverKey == null) {
+                throw new RuntimeException("db.driver no está definido en db.properties");
+            }
+            Class.forName(driverKey);
+
+            // 2.2) Ahora construyo el HikariConfig con las claves correctas:
             HikariConfig cfg = new HikariConfig();
+
+            // NOTA: si dbType="mysql", las claves en el properties son:
+            //    mysql.jdbcUrl, mysql.username, mysql.password
             String prefix = dbType + ".";  // -> "mysql."
+
             String jdbcUrl   = props.getProperty(prefix + "jdbcUrl");
             String username  = props.getProperty(prefix + "username");
             String password  = props.getProperty(prefix + "password");
-            
-             if (jdbcUrl == null || username == null || password == null) {
+
+            if (jdbcUrl == null || username == null || password == null) {
                 throw new RuntimeException(
                     "Faltan claves obligatorias para el pool: "
                     + prefix + "jdbcUrl, " 
@@ -83,7 +93,7 @@ public class DBManager {
                     + prefix + "password"
                 );
             }
-             
+
             cfg.setJdbcUrl(jdbcUrl);
             cfg.setUsername(username);
             cfg.setPassword(password);
@@ -100,15 +110,15 @@ public class DBManager {
                 cfg.addDataSourceProperty("prepStmtCacheSize",   "250");
                 cfg.addDataSourceProperty("prepStmtCacheSqlLimit","2048");
             }
-            
+
             dataSource = new HikariDataSource(cfg);
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             Logger.getLogger(DBManager.class.getName())
                   .log(Level.SEVERE, "Error configurando DataSource", ex);
             throw new RuntimeException(ex);
         }
-        
- }
+    }
     
   // 8) Método público para obtener conexión
     public Connection getConnection() throws SQLException {
