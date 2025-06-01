@@ -7,28 +7,11 @@ package pe.edu.pucp.frutilla.logica.local;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pe.edu.pucp.frutilla.models.local.Local; 
 import pe.edu.pucp.frutilla.crud.dao.local.LocalDAO;
 import pe.edu.pucp.frutilla.crud.mysql.local.LocalMySQL; 
 
-import pe.edu.pucp.frutilla.crud.dao.rrhh.EmpleadoDAO; //¿se puede agregar?
-import pe.edu.pucp.frutilla.crud.mysql.rrhh.EmpleadoMySQL;
 
-
-import pe.edu.pucp.frutilla.crud.dao.inventario.InventarioDAO; //¿se puede agregar?
-import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL;
-
-import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
-import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
-
-import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO; //¿se puede agregar?
-import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL;
-
-import pe.edu.pucp.frutilla.models.rrhh.Empleado;
-import pe.edu.pucp.frutilla.models.inventario.Producto; 
-import pe.edu.pucp.frutilla.models.venta.OrdenVenta; 
 
 public class LocalService {
     private final LocalDAO localDAO;
