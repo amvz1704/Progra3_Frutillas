@@ -4,11 +4,11 @@ package pe.edu.pucp.frutilla.crud.mysql.local;
 import java.sql.Connection;
 import pe.edu.pucp.frutilla.models.local.Notificacion;
 import java.sql.Date;
-import java.sql.Time;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import pe.edu.pucp.frutilla.config.DBManager;
 import pe.edu.pucp.frutilla.crud.dao.local.NotificacionDAO;
@@ -34,6 +34,7 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
 
     @Override
     protected String getDeleteQuery() {
+        //no es usado
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -49,6 +50,7 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
 
     @Override
     protected void setInsertParameters(PreparedStatement ps, Notificacion entity) throws SQLException {
+        //no va a ser utilizado
         switch (entity.getTipoReceptor()) {
             case 'C':
                 ps.setString(1, "CLIENTE");
@@ -65,6 +67,7 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
 
     @Override
     protected void setUpdateParameters(PreparedStatement ps, Notificacion entity) throws SQLException {
+        //no es utilizado
         setInsertParameters(ps, entity);
         ps.setInt(8, entity.getIdNotificacion());
     }
@@ -105,7 +108,7 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
     }
 
     private String getSelectByFechaQuery() {
-        return "SELECT * FROM Notificacion WHERE fechaHora = ?";
+        return "SELECT * FROM Notificacion WHERE DATE(fechaHora) = ?";
     }
     
 }
