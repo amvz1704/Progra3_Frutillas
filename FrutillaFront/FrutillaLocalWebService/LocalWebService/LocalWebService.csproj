@@ -100,12 +100,28 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\NotificionesWS\configuration91.svcinfo" />
+    <None Include="Connected Services\NotificionesWS\configuration.svcinfo" />
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorFechaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarTodosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.notificacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\NotificionesWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="EditarLocal.aspx" />
     <Content Include="ListaClientesSupervisor.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
     <Content Include="ListaVentasSupervisor.aspx" />
     <Content Include="LocalSupervisor.aspx" />
+    <Content Include="Notificaciones\ListarNotificaciones.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +131,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\LocalWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\NotificionesWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -168,12 +189,23 @@
     <Compile Include="MainLayout.Master.designer.cs">
       <DependentUpon>MainLayout.Master</DependentUpon>
     </Compile>
+    <Compile Include="Notificaciones\ListarNotificaciones.aspx.cs">
+      <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notificaciones\ListarNotificaciones.aspx.designer.cs">
+      <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MainLayout.Master" />
     <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
     <None Include="Connected Services\LocalWS\LocalWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NotificionesWS\NotificacionWS.wsdl" />
+    <None Include="Connected Services\NotificionesWS\NotificacionWS.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -190,6 +222,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\EmpleadoWS\" />
     <WCFMetadataStorage Include="Connected Services\LocalWS\" />
+    <WCFMetadataStorage Include="Connected Services\NotificionesWS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

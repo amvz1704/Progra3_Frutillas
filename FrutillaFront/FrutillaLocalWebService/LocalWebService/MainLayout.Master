@@ -49,7 +49,7 @@
             <NavLink class="nav-link" href="/Pedidos">Pedidos</NavLink>
           </li>
           <li class="nav-item">
-            <NavLink class="nav-link" href="/Notificaciones">Notificaciones</NavLink>
+              <a class="nav-link" href="/Notificaciones/ListarNotificaciones.aspx">Notificaciones</a>
           </li>
           <li class="nav-item">
             <NavLink class="nav-link active" href="/Monitoreo">Monitoreo</NavLink>
