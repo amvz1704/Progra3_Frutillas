@@ -32,7 +32,7 @@ namespace LocalWebService.Notificaciones
                 gvNotificaciones.DataBind();
             } catch (Exception ex)
             {
-                lblError.Text = "Error al cargar notificaciones";
+                lblError.Text = "Error al cargar notificaciones" + ex;
             }
             
         }

@@ -16,7 +16,12 @@
     </div>
     <asp:GridView ID="gvNotificaciones" runat="server" AutoGenerateColumns="false" 
             AllowPaging="true" PageSize="10" OnPageIndexChanging="gvNotificaciones_PageIndexChanging">
-
+        <Columns>
+            <asp:BoundField DataField ="idNotificacion" HeaderText ="Id" />
+            <asp:BoundField DataField ="titulo" HeaderText ="Titulo" />
+            <asp:BoundField DataField ="descripcion" HeaderText ="Descripcion" />
+            
+        </Columns>
     </asp:GridView>
     <asp:Label ID="lblError" runat="server" Text="-"></asp:Label>
 </asp:Content>
