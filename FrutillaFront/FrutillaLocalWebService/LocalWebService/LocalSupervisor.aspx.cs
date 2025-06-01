@@ -12,7 +12,7 @@ namespace LocalWebService
 {
     public partial class LocalSupervisor : System.Web.UI.Page
     {
-        const int LOCAL_ID = 1; //esto dependera del id del empleado que abre la pagina
+        const int LOCAL_ID = 1; //esto dependera del id del empleado --> cambiar con LOGIN
         private LocalWSClient daoLocal = new LocalWSClient();
 
         protected void Page_Load(object sender, EventArgs e)
