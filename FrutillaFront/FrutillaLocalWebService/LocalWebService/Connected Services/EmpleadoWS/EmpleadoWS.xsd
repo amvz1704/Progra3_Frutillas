@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://ws.pucp.edu.pe/" targetNamespace="http://ws.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="Exception" type="tns:Exception" />
-  <xs:element name="actualizarEmpleado" type="tns:actualizarEmpleado" />
-  <xs:element name="actualizarEmpleadoResponse" type="tns:actualizarEmpleadoResponse" />
-  <xs:element name="agregarEmpleado" type="tns:agregarEmpleado" />
-  <xs:element name="agregarEmpleadoResponse" type="tns:agregarEmpleadoResponse" />
-  <xs:element name="eliminarEmpleado" type="tns:eliminarEmpleado" />
-  <xs:element name="eliminarEmpleadoResponse" type="tns:eliminarEmpleadoResponse" />
-  <xs:element name="listarTodos" type="tns:listarTodos" />
-  <xs:element name="listarTodosResponse" type="tns:listarTodosResponse" />
-  <xs:element name="obtenerEmpleado" type="tns:obtenerEmpleado" />
-  <xs:element name="obtenerEmpleadoResponse" type="tns:obtenerEmpleadoResponse" />
-  <xs:complexType name="listarTodos">
+<xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="obtenerEmpleados" type="tns:obtenerEmpleados" />
+  <xs:element name="obtenerEmpleadosResponse" type="tns:obtenerEmpleadosResponse" />
+  <xs:complexType name="obtenerEmpleados">
     <xs:sequence>
       <xs:element name="idLocal" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarTodosResponse">
+  <xs:complexType name="obtenerEmpleadosResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleado" />
     </xs:sequence>
@@ -49,44 +40,5 @@
   </xs:complexType>
   <xs:complexType name="localDate" final="extension restriction">
     <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="Exception">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="message" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="actualizarEmpleado">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="idEmpleado" type="tns:empleado" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="actualizarEmpleadoResponse">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="agregarEmpleado">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="idEmpleado" type="tns:empleado" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="agregarEmpleadoResponse">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="eliminarEmpleado">
-    <xs:sequence>
-      <xs:element name="idEmpleado" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="eliminarEmpleadoResponse">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="obtenerEmpleado">
-    <xs:sequence>
-      <xs:element name="idEmpleado" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerEmpleadoResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:empleado" />
-    </xs:sequence>
   </xs:complexType>
 </xs:schema>

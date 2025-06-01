@@ -10,6 +10,8 @@
         <h2 class="m-0"> Local </h2>
       </div>
     </header>
+
+
       
       <!-- Aquí va tu contenido específico, p. ej. detalles del local -->
         <!-- Blazor 
@@ -18,6 +20,7 @@
       <!-- MVC: @RenderBody() -->
        
          <!-- Contenedor del Local -->
+
       <asp:Panel ID="pnlLocal" runat="server" CssClass="card mb-4 shadow-sm">
         <div class="row g-0">
           <!-- Imagen -->
@@ -43,10 +46,14 @@
                 <strong>Teléfono:</strong>
                 <asp:Label ID="lblTelefono" runat="server" Text="—"></asp:Label>
               </p>
-              <asp:Button ID="btnEditar" runat="server"
-                          CssClass="btn btn-dark btn-sm"
-                          Text="Editar Local"
-                          OnClick="btnEditar_Click" />
+
+              <asp:Button  ID="lnkEditar" runat="server"
+                          CssClass="btn btn-sm btn-outline-primary"
+                            CommandName="EditarModal"
+                            CommandArgument='<%# Eval("Id") %>'
+                            Text="Editar Local">
+                            
+                </asp:Button>
             </div>
           </div>
         </div>
@@ -104,5 +111,61 @@
         </div>
       </div>
     </>
+    
+    <asp:Panel ID="pnlModalEditar" runat="server" CssClass="modal fade" 
+           role="dialog" aria-hidden="true" Style="display: none;" >
+
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- Encabezado del Modal -->
+            <div class="modal-header bg-secondary text-white">
+                <h5 class="modal-title" id="lblTituloModal">Editar Empleado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <!-- Cuerpo del Modal: aquí va tu formulario de edición -->
+            <div class="modal-body">
+                <asp:HiddenField ID="hfIdEmpleado" runat="server" />
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="txtNombreModal" class="form-label">Nombre Completo</label>
+                        <asp:TextBox ID="txtNombreModal" runat="server" CssClass="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="txtTurnoModal" class="form-label">Turno de Trabajo</label>
+                        <asp:TextBox ID="txtTurnoModal" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="ddlTipoModal" class="form-label">Tipo</label>
+                        <asp:DropDownList ID="ddlTipoModal" runat="server" CssClass="form-select">
+                            <asp:ListItem Value="Empleado">Empleado</asp:ListItem>
+                            <asp:ListItem Value="Supervisor">Supervisor</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label for="txtCorreoModal" class="form-label">Correo</label>
+                        <asp:TextBox ID="txtCorreoModal" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+                <!-- Agrega más campos según la información del empleado -->
+            </div>
+
+            <!-- Pie del modal: botones Cancelar / Guardar -->
+            <div class="modal-footer">
+                <asp:Button ID="btnGuardarModal" runat="server" 
+                            CssClass="btn btn-success" Text="Guardar" 
+                            OnClick="btnGuardarModal_Click" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</asp:Panel>
 
 </asp:Content>
+

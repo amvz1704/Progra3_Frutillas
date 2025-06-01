@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="yTxwLrX7TRxjCJeSitfmDeMsyFROtCHML8tm028OYGI=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="Ny0FrPBq+OqIPZRPW01uIa0a4QlzhsPNJ1YAzjxYv30=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="LocalWSPortBinding">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="LocalWSPort" contract="FrutillaWS.LocalWS" bindingType="basicHttpBinding" address="http://localhost:8080/LocalWS/LocalWS" bindingConfiguration="LocalWSPortBinding">
+    <endpoint name="LocalWSPort" contract="LocalWS.LocalWS" bindingType="basicHttpBinding" address="http://localhost:8080/FrutillaWS/LocalWS" bindingConfiguration="LocalWSPortBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8080/LocalWS/LocalWS</serializedValue>
+          <serializedValue>http://localhost:8080/FrutillaWS/LocalWS</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -127,7 +127,7 @@
           <serializedValue>LocalWSPortBinding</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>FrutillaWS.LocalWS</serializedValue>
+          <serializedValue>LocalWS.LocalWS</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

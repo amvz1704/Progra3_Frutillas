@@ -52,7 +52,7 @@ namespace LocalWebService
 
         protected void CargarDatos()
         {
-            GvEmpleados.DataSource = daoEmpleado.listarTodos(LOCAL_ID);
+            GvEmpleados.DataSource = daoEmpleado.obtenerEmpleados(LOCAL_ID);
             GvEmpleados.DataBind();
         }
     }

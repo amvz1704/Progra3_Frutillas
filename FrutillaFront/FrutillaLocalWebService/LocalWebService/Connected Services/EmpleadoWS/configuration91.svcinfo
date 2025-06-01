@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="TpRj4JHgb4UbGvdpTTBAo1Mutsgsd65pXmOGY3l108g=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="JwHVE7Wt1ZRKiZz8pI0B1YWQLUj3xj0xINHnLBSDtVQ=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="EmpleadoWSPortBinding">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="EmpleadoWSPort" contract="EmpleadoWS.EmpleadoWS" bindingType="basicHttpBinding" address="http://localhost:8080/LocalWS/EmpleadoWS" bindingConfiguration="EmpleadoWSPortBinding">
+    <endpoint name="EmpleadoWSPort" contract="EmpleadoWS.EmpleadoWS" bindingType="basicHttpBinding" address="http://localhost:8080/FrutillaWS/EmpleadoWS" bindingConfiguration="EmpleadoWSPortBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8080/LocalWS/EmpleadoWS</serializedValue>
+          <serializedValue>http://localhost:8080/FrutillaWS/EmpleadoWS</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

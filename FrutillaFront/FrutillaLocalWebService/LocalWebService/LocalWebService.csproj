@@ -76,36 +76,27 @@
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.empleado.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.listarTodosResponse.datasource">
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.actualizarEmpleadoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.agregarEmpleadoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.eliminarEmpleadoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Connected Services\FrutillaWS\configuration91.svcinfo" />
-    <None Include="Connected Services\FrutillaWS\configuration.svcinfo" />
+    <None Include="Connected Services\LocalWS\configuration91.svcinfo" />
+    <None Include="Connected Services\LocalWS\configuration.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\FrutillaWS\LocalWebService.FrutillaWS.local.datasource">
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarTodosLocalesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\FrutillaWS\LocalWebService.FrutillaWS.obtenerIdResponse.datasource">
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\FrutillaWS\Reference.svcmap">
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerIdLocalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\LocalWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -123,7 +114,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\FrutillaWS\Reference.cs">
+    <Compile Include="Connected Services\LocalWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -181,8 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MainLayout.Master" />
-    <None Include="Connected Services\FrutillaWS\LocalWS.wsdl" />
-    <None Include="Connected Services\FrutillaWS\LocalWS.xsd">
+    <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
+    <None Include="Connected Services\LocalWS\LocalWS.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -198,7 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\EmpleadoWS\" />
-    <WCFMetadataStorage Include="Connected Services\FrutillaWS\" />
+    <WCFMetadataStorage Include="Connected Services\LocalWS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
