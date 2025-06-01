@@ -8,6 +8,7 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.xml.ws.WebServiceException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,9 +37,13 @@ public class NotificacionWS {
     }
     
     @WebMethod(operationName = "listarPorFecha")
-    public ArrayList<Notificacion> listarPorFecha(Date fecha) {
+    public ArrayList<Notificacion> listarPorFecha(String fecha,int idSupervisor) {
         try {
-            return notificacionServ.listarPorFecha(fecha);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
+            // Convierte el String fecha a Date
+            Date fechaDate = sdf.parse(fecha);
+            return notificacionServ.listarPorFecha(fechaDate,idSupervisor);
         }catch (Exception e){
             throw new WebServiceException("Error al listar notificaciones por fechas");
         }

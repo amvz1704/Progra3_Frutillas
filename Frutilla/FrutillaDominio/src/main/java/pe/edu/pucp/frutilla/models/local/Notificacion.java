@@ -1,12 +1,12 @@
 package pe.edu.pucp.frutilla.models.local;
 
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Notificacion {
 
     private int idNotificacion;
-    private LocalDateTime fecha;
+    private Date fecha;
     private String titulo;
     private String descripcion;
     private char tipoReceptor; // 'C' para Cliente, 'S' para Supervisor
@@ -18,7 +18,7 @@ public class Notificacion {
     }
 
     // Constructor completo
-    public Notificacion(int idNotificacion, LocalDateTime fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
+    public Notificacion(int idNotificacion, Date fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.idNotificacion = idNotificacion;
         this.fecha = fecha;
         this.titulo = titulo;
@@ -29,7 +29,7 @@ public class Notificacion {
     }
 
     // Constructor parcial sin ID general
-    public Notificacion(LocalDateTime fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
+    public Notificacion(Date fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.fecha = fecha;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -47,14 +47,14 @@ public class Notificacion {
         this.idNotificacion = idNotificacion;
     }
 
-    public LocalDateTime getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
+    
     public String getTitulo() {
         return titulo;
     }
@@ -101,10 +101,12 @@ public class Notificacion {
         System.out.println("Título: " + titulo);
         System.out.println("Descripción: " + descripcion);
         System.out.println("Tipo de Receptor: " + tipoReceptor);
-        switch (tipoReceptor) {
-            case 'C' -> System.out.println("ID Cliente: " + idCliente);
-            case 'S' -> System.out.println("ID Supervisor: " + idSupervisor);
-            default -> System.out.println("Tipo de receptor no reconocido.");
+        if (tipoReceptor == 'C') {
+            System.out.println("ID Cliente: " + idCliente);
+        } else if (tipoReceptor == 'S') {
+            System.out.println("ID Supervisor: " + idSupervisor);
+        } else {
+            System.out.println("Tipo de receptor no reconocido.");
         }
         System.out.println("Notificación enviada correctamente.");
     }
