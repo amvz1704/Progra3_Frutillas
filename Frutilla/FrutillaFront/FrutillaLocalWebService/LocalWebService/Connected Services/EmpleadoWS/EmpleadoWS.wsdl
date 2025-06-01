@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="EmpleadoWS" targetNamespace="http://ws.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/LocalWS/EmpleadoWS?xsd=1" namespace="http://ws.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="obtenerEmpleado">
+    <part name="parameters" element="tns:obtenerEmpleado" />
+  </message>
+  <message name="obtenerEmpleadoResponse">
+    <part name="parameters" element="tns:obtenerEmpleadoResponse" />
+  </message>
+  <message name="Exception">
+    <part name="fault" element="tns:Exception" />
+  </message>
+  <message name="listarTodos">
+    <part name="parameters" element="tns:listarTodos" />
+  </message>
+  <message name="listarTodosResponse">
+    <part name="parameters" element="tns:listarTodosResponse" />
+  </message>
+  <message name="agregarEmpleado">
+    <part name="parameters" element="tns:agregarEmpleado" />
+  </message>
+  <message name="agregarEmpleadoResponse">
+    <part name="parameters" element="tns:agregarEmpleadoResponse" />
+  </message>
+  <message name="eliminarEmpleado">
+    <part name="parameters" element="tns:eliminarEmpleado" />
+  </message>
+  <message name="eliminarEmpleadoResponse">
+    <part name="parameters" element="tns:eliminarEmpleadoResponse" />
+  </message>
+  <message name="actualizarEmpleado">
+    <part name="parameters" element="tns:actualizarEmpleado" />
+  </message>
+  <message name="actualizarEmpleadoResponse">
+    <part name="parameters" element="tns:actualizarEmpleadoResponse" />
+  </message>
+  <portType name="EmpleadoWS">
+    <operation name="obtenerEmpleado">
+      <input wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoRequest" message="tns:obtenerEmpleado" />
+      <output wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoResponse" message="tns:obtenerEmpleadoResponse" />
+      <fault wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/obtenerEmpleado/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="listarTodos">
+      <input wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/listarTodosRequest" message="tns:listarTodos" />
+      <output wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/listarTodosResponse" message="tns:listarTodosResponse" />
+      <fault wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/listarTodos/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="agregarEmpleado">
+      <input wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/agregarEmpleadoRequest" message="tns:agregarEmpleado" />
+      <output wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/agregarEmpleadoResponse" message="tns:agregarEmpleadoResponse" />
+      <fault wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/agregarEmpleado/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="eliminarEmpleado">
+      <input wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest" message="tns:eliminarEmpleado" />
+      <output wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse" message="tns:eliminarEmpleadoResponse" />
+      <fault wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/eliminarEmpleado/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="actualizarEmpleado">
+      <input wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/actualizarEmpleadoRequest" message="tns:actualizarEmpleado" />
+      <output wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/actualizarEmpleadoResponse" message="tns:actualizarEmpleadoResponse" />
+      <fault wsam:Action="http://ws.pucp.edu.pe/EmpleadoWS/actualizarEmpleado/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+  </portType>
+  <binding name="EmpleadoWSPortBinding" type="tns:EmpleadoWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="obtenerEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="listarTodos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="agregarEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="eliminarEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="actualizarEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="EmpleadoWS">
+    <port name="EmpleadoWSPort" binding="tns:EmpleadoWSPortBinding">
+      <soap:address location="http://localhost:8080/LocalWS/EmpleadoWS" />
+    </port>
+  </service>
+</definitions>
