@@ -28,7 +28,8 @@ namespace LocalWebService.Notificaciones
         {
             try
             {
-                gvNotificaciones.DataSource = notificacionWSClient.listarTodos().ToList();
+                //cambiar a session idempleados y con la verificacion de supervisor
+                gvNotificaciones.DataSource = notificacionWSClient.listarPorSupervisor(1).ToList();
                 gvNotificaciones.DataBind();
             } catch (Exception ex)
             {
@@ -46,14 +47,16 @@ namespace LocalWebService.Notificaciones
             else
             {
                 DateTime selectedDate = DateTime.Parse(datePicker.Value);
-                gvNotificaciones.DataSource = notificacionWSClient.listarPorFecha(selectedDate.ToShortDateString(),1);
+                string fechaFormateada = selectedDate.ToString("yyyy-MM-dd");
+                gvNotificaciones.DataSource = notificacionWSClient.listarPorFecha(fechaFormateada, 1); //cambiar por id de Session
                 gvNotificaciones.DataBind();
             }
         }
 
         protected void gvNotificaciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvNotificaciones.PageIndex = e.NewPageIndex;
+            CargarNotificaciones();
         }
     }
 }

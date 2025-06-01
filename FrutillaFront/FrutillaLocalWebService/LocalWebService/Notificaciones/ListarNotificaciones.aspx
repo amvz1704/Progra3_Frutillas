@@ -20,7 +20,7 @@
             <asp:BoundField DataField ="idNotificacion" HeaderText ="Id" />
             <asp:BoundField DataField ="titulo" HeaderText ="Titulo" />
             <asp:BoundField DataField ="descripcion" HeaderText ="Descripcion" />
-            
+            <asp:BoundField DataField ="fecha" HeaderText ="Descripcion" DataFormatString="{0:dd/MM/yyyy}" />
         </Columns>
     </asp:GridView>
     <asp:Label ID="lblError" runat="server" Text="-"></asp:Label>

@@ -2,12 +2,17 @@
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="listarPorFecha" type="tns:listarPorFecha" />
   <xs:element name="listarPorFechaResponse" type="tns:listarPorFechaResponse" />
+  <xs:element name="listarPorSupervisor" type="tns:listarPorSupervisor" />
+  <xs:element name="listarPorSupervisorResponse" type="tns:listarPorSupervisorResponse" />
   <xs:element name="listarTodos" type="tns:listarTodos" />
   <xs:element name="listarTodosResponse" type="tns:listarTodosResponse" />
-  <xs:complexType name="listarTodos">
-    <xs:sequence />
+  <xs:complexType name="listarPorFecha">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1" type="xs:int" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarTodosResponse">
+  <xs:complexType name="listarPorFechaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
     </xs:sequence>
@@ -23,13 +28,20 @@
       <xs:element minOccurs="0" name="titulo" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarPorFecha">
+  <xs:complexType name="listarTodos">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:string" />
-      <xs:element name="arg1" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarPorFechaResponse">
+  <xs:complexType name="listarPorSupervisor">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarPorSupervisorResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
     </xs:sequence>

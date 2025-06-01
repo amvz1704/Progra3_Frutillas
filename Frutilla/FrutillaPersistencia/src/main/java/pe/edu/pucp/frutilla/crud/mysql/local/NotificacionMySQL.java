@@ -111,5 +111,26 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
         return "SELECT * FROM Notificacion WHERE DATE(fechaHora) = ? and "
                 + "idEmpleado = ?";
     }
+
+    @Override
+    public ArrayList<Notificacion> listarPorSupervisor(int idSupervisor) {
+        ArrayList<Notificacion> entities = new ArrayList<>();
+         try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(getSelectBySupervisorQuery())) {
+            ps.setInt(1, idSupervisor);
+            try (ResultSet rs = ps.executeQuery()) {
+                 while (rs.next()) {
+                    entities.add(createFromResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener entidad", e);
+        }
+        return entities;
+    }
+
+    private String getSelectBySupervisorQuery() {
+        return "SELECT * FROM Notificacion WHERE idEmpleado = ?";
+    }
     
 }

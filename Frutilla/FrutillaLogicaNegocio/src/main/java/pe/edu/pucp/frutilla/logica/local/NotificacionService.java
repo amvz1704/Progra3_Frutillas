@@ -26,6 +26,14 @@ public class NotificacionService {
         return notificacionDAO.listarTodos();
     }
     
+    public ArrayList<Notificacion> listarPorSupervisor(int idSupervisor) 
+            throws Exception{
+        if(idSupervisor <= 0 ){
+            throw new Exception("El idSupervisor no puede ser negativo o 0");
+        }
+        return notificacionDAO.listarPorSupervisor(idSupervisor);
+    }
+    
     public ArrayList<Notificacion> listarPorFecha(Date fecha,int idSupervisor) throws Exception{
         if (fecha == null) {
             throw new Exception("Las fechas no pueden ser nulas");
