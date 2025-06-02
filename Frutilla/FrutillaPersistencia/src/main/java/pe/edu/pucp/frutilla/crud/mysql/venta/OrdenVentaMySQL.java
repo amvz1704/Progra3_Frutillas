@@ -126,6 +126,42 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         }
     }
     
+    @Override
+    public List<OrdenVenta> listarTodos() {
+        List<OrdenVenta> lista = new ArrayList<>();
+
+        try (Connection conn = DBManager.getInstance().getConnection();
+             CallableStatement cs = conn.prepareCall("{CALL ORDEN_VENTA_LISTAR()}");
+             ResultSet rs = cs.executeQuery()) {
+
+            while (rs.next()) {
+                OrdenVenta orden = new OrdenVenta();
+
+                orden.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
+                orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setHoraFinEntrega(rs.getTime("horaFinEntrega").toLocalTime());
+                orden.setDescripcion(rs.getString("descripcion"));
+                orden.setMontoTotal(rs.getDouble("montoTotal"));
+                orden.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
+                orden.setIdLocal(rs.getInt("idLocal"));
+                orden.setIdComprobante(rs.getInt("idComprobante"));
+                orden.setIdCliente(rs.getInt("idCliente"));
+
+                int idEmpleado = rs.getInt("idEmpleado");
+                if (!rs.wasNull()) {
+                    orden.setIdEmpleado(idEmpleado);
+                }
+
+                lista.add(orden);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar órdenes de venta", e);
+        }
+
+        return lista;
+    }
+    
     
     //Insertar
     @Override
