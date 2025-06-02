@@ -1,6 +1,6 @@
 package pe.edu.pucp.frutilla.models.venta;
 
-import java.time.*;
+import java.time.LocalDate;
 
 public class ComprobantePago {
     
@@ -133,6 +133,9 @@ public class ComprobantePago {
                 ", fecha= " + fecha +
                 '}';
     }
+    
+    
+    
     
 }
 

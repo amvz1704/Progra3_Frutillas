@@ -15,6 +15,11 @@ public class Supervisor extends Empleado{
     public Supervisor(Supervisor supervisor){
         super(supervisor);
     }
+    
+    @Override
+    public String toString(){
+        return super.toString();
+    }
 
 //    public void generarReporte(int idLocal, LocalDate fecha){
 //        LocalMySQL localMySQL = new LocalMySQL();

@@ -77,7 +77,7 @@ public class SnackService {
         return sna;
     }
     
-    public List<Snack> listar(String nombre) throws Exception{
+    public List<Snack> listar() throws Exception{
         return snaSQL.listarTodos();
     }
     

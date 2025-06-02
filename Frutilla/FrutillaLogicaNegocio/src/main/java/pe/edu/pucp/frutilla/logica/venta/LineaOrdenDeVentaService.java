@@ -54,4 +54,3 @@ public class LineaOrdenDeVentaService {
         lineaOrdenVentaMySQL.eliminar(idLinea);
     }
 }
-

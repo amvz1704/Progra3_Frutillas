@@ -106,4 +106,17 @@ public class InventarioMySQL implements InventarioDAO{
             ps.executeUpdate();
         }
     }
+
+    @Override
+    public void actualizarStock(Producto producto, int idLocal) throws SQLException {
+        String query = "UPDATE Inventario SET stock=? WHERE "
+                + "idProducto=? AND idLocal=?";
+        try(Connection con=DBManager.getInstance().getConnection();
+            PreparedStatement ps=con.prepareStatement(query)){
+            ps.setInt(1, producto.getStock());
+            ps.setInt(2,producto.getIdProducto());
+            ps.setInt(3,idLocal);
+            ps.executeUpdate();
+        }
+    }
 }

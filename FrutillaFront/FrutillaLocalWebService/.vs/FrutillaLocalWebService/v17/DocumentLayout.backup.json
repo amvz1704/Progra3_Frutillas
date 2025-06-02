@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\Tecnicas de programacion\\Progra3-Frutilla\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\notificaciones\\listarnotificaciones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\notificaciones\\listarnotificaciones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|c:\\users\\user\\desktop\\tecnicas de programacion\\progra3-frutilla\\progra3_frutillas\\frutillafront\\frutillalocalwebservice\\localwebservice\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\mainlayout.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
@@ -29,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -91,13 +91,26 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MainLayout.Master",
-              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tecnicas de programacion\\Progra3-Frutilla\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
               "RelativeDocumentMoniker": "LocalWebService\\MainLayout.Master",
-              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tecnicas de programacion\\Progra3-Frutilla\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
               "RelativeToolTip": "LocalWebService\\MainLayout.Master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-05-30T16:52:10.947Z",
+              "WhenOpened": "2025-06-02T01:45:37.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainLayout.Master.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tecnicas de programacion\\Progra3-Frutilla\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master.cs",
+              "RelativeDocumentMoniker": "LocalWebService\\MainLayout.Master.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tecnicas de programacion\\Progra3-Frutilla\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master.cs",
+              "RelativeToolTip": "LocalWebService\\MainLayout.Master.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T01:45:42.229Z",
               "EditorCaption": ""
             }
           ]

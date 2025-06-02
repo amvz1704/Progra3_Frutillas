@@ -1,8 +1,10 @@
 package pe.edu.pucp.frutilla.crud.mysql.rrhh;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import pe.edu.pucp.frutilla.config.DBManager;
 
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
 import pe.edu.pucp.frutilla.models.rrhh.Persona;
@@ -29,12 +31,12 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
 
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT * FROM Usuario WHERE idUsuario = ?";
+        return "SELECT idUsuario, usuarioSistema, contrasSistema, activo, tipo FROM Usuario WHERE idUsuario = ?";
     }
 
     @Override
     protected String getSelectAllQuery() {
-        return "SELECT * FROM Usuario";
+        return "SELECT idUsuario, usuarioSistema, contrasSistema, activo, tipo FROM Usuario";
     }
     
     @Override
@@ -80,4 +82,26 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
             ((Cliente) entity).setIdCliente(id);
         }
     }
+    
+    @Override
+    public Persona validarUsuario(String usuarioSistema, String contrasSistema) throws Exception {
+        String query = "SELECT idUsuario, usuarioSistema, contrasSistema, activo, tipo FROM Usuario WHERE usuarioSistema = ? AND contrasSistema = ? AND activo = true";
+
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);) 
+        {
+            ps.setString(1, usuarioSistema);
+            ps.setString(2, contrasSistema);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return createFromResultSet(rs);
+                }
+            }
+        } catch (Exception ex) {
+            throw new Exception("Error al validar usuario", ex);
+        }
+
+        return null;
+    }
+    
 }
