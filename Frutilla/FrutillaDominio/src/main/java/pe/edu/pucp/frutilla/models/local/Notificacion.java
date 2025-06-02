@@ -1,12 +1,13 @@
 package pe.edu.pucp.frutilla.models.local;
 
-
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Notificacion {
 
     private int idNotificacion;
-    private Date fecha;
+    private LocalDate fecha;
+    private LocalTime hora;
     private String titulo;
     private String descripcion;
     private char tipoReceptor; // 'C' para Cliente, 'S' para Supervisor
@@ -18,9 +19,10 @@ public class Notificacion {
     }
 
     // Constructor completo
-    public Notificacion(int idNotificacion, Date fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
+    public Notificacion(int idNotificacion, LocalDate fecha, LocalTime hora, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.idNotificacion = idNotificacion;
         this.fecha = fecha;
+        this.hora = hora;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.tipoReceptor = tipoReceptor;
@@ -29,13 +31,27 @@ public class Notificacion {
     }
 
     // Constructor parcial sin ID general
-    public Notificacion(Date fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
+    public Notificacion(LocalDate fecha, LocalTime hora, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.fecha = fecha;
+        this.hora = hora;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.tipoReceptor = tipoReceptor;
         this.idCliente = idCliente;
         this.idSupervisor = idSupervisor;
+    }
+
+    public Notificacion(char tipoReceptor, int idCliente, int idSupervisor) {
+        this.tipoReceptor = tipoReceptor;
+        this.idCliente = idCliente;
+        this.idSupervisor = idSupervisor;
+    }
+
+    public void textoCompra(double precio, LocalDate fecha, LocalTime hora){
+        this.fecha = fecha;
+        this.hora = hora;
+        this.titulo = "Compra realizada";
+        this.descripcion = "Se realizo una compra por S/. " + precio + " el dia " + fecha + " a las horas " + hora;
     }
 
     // Getters y setters
@@ -47,14 +63,22 @@ public class Notificacion {
         this.idNotificacion = idNotificacion;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-    
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -98,6 +122,7 @@ public class Notificacion {
     public void enviarNotificacion() {
         System.out.println("Enviando notificación:");
         System.out.println("Fecha: " + fecha);
+        System.out.println("Hora: " + hora);
         System.out.println("Título: " + titulo);
         System.out.println("Descripción: " + descripcion);
         System.out.println("Tipo de Receptor: " + tipoReceptor);
