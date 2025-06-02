@@ -41,6 +41,19 @@ public class Notificacion {
         this.idSupervisor = idSupervisor;
     }
 
+    public Notificacion(char tipoReceptor, int idCliente, int idSupervisor) {
+        this.tipoReceptor = tipoReceptor;
+        this.idCliente = idCliente;
+        this.idSupervisor = idSupervisor;
+    }
+
+    public void textoCompra(double precio, LocalDate fecha, LocalTime hora){
+        this.fecha = fecha;
+        this.hora = hora;
+        this.titulo = "Compra realizada";
+        this.descripcion = "Se realizo una compra por S/. " + precio + " el dia " + fecha + " a las horas " + hora;
+    }
+
     // Getters y setters
     public int getIdNotificacion() {
         return idNotificacion;

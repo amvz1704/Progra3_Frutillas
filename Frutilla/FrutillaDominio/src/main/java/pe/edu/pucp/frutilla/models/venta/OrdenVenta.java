@@ -1,6 +1,7 @@
 package pe.edu.pucp.frutilla.models.venta;
 
-import java.time.*; 
+import java.time.LocalDate;
+import java.time.LocalTime; 
 import java.util.ArrayList;
 //solo usar set y gets con los realmente usados preguntarle a regina**
 

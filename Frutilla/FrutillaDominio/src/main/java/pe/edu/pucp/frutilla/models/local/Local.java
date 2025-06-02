@@ -53,6 +53,14 @@ public class Local {
         this.idSupervisor = local.getIdSupervisor();
     }
 	
+    
+    @Override
+    public String toString() {
+        return String.format(
+          "Local{id=%d, nombre='%s', descripcion='%s', direccion='%s', telefono='%s', activo=%s}",
+          idLocal, nombre, descripcion, direccion, telefono, activo
+        );
+    }
 	
 	//Regresa la primer orden que esta por ser entregada 
     public OrdenVenta obtenerOrden(){
@@ -63,42 +71,46 @@ public class Local {
         }
         return null; // No hay ordenes en estado POR_ENTREGAR
     }
-	
-	//muestra en la pantalla la lista de productos dentro de un local
-//    public void generarReporteProductos(){
-//        LocalMySQL localMySQL = new LocalMySQL();
-//        try{
-//            this.productos = localMySQL.encontrarProductos(idLocal);
-//        }
-//        catch(Exception e){
-//            System.out.println("Error al obtener los productos: " + e.getMessage());
-//            return;
-//        }
-//        String reporte = "Reporte de productos del local " + "\n";
-//        reporte += "Productos: \n";
-//        for (Producto producto : productos) {
-//            reporte += producto.toString() + "\n";
-//        }
-//        System.out.println(reporte);
-//    }
-	
 	//dado una lista de productos y una lista de cantidades actualiza el stock 
     public void actualizarStock(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad) {
-    for (int i = 0; i < listaProductos.size(); i++) {
-        Producto pro = listaProductos.get(i);
-        int cantidad = listaCantidad.get(i);
-        // Verifica si el producto existe en la lista de productos
-        for (Producto p : productos) {
-            if (p.getCodigoProd().equals(pro.getCodigoProd())) {
-                p.actualizarStock(-cantidad);
-                System.out.println("Se actualizó el stock del producto: " + p.getNombre());
-                break;
+        for (int i = 0; i < listaProductos.size(); i++) {
+            Producto pro = listaProductos.get(i);
+            int cantidad = listaCantidad.get(i);
+            // Verifica si el producto existe en la lista de productos
+            for (Producto p : productos) {
+                if (p.getCodigoProd().equals(pro.getCodigoProd())) {
+                    p.actualizarStock(-cantidad);
+                    System.out.println("Se actualizó el stock del producto: " + p.getNombre());
+                    break;
+                }
             }
         }
     }
-}
+    
+    /*Metodos para agregar por PRIMERA VEZ una lista de X objetos asociados en el local*/
+    public void setProductos(ArrayList<Producto> lista){
+        this.productos = new ArrayList<>(); 
+        for(Producto a: lista){
+            productos.add(a); 
+        }
+    }
+    
+    public void setEmpleados(ArrayList<Empleado> lista){
+        this.empleados = new ArrayList<>(); 
+        for(Empleado a: lista){
+            empleados.add(a); 
+        }
+    }
+    
+    public void setVentas(ArrayList<OrdenVenta> lista){
+        this.ordenesVentas = new ArrayList<>(); 
+        for(OrdenVenta a: lista){
+            ordenesVentas.add(a); 
+        }
+    }
+    /*Metodos para agregar por PRIMERA VEZ una lista de X objetos asociados al local*/
 	
-	//verifica si existe el stock necesario para un producto 
+    //verifica si existe el stock necesario para un producto 
     public boolean verificarStock(Producto producto, int cantidad) {
         // Verifica si el producto existe en la lista de productos
         for (Producto p : productos) {
@@ -253,7 +265,14 @@ public class Local {
         return new ArrayList<Empleado>(empleados);
     }
     public ArrayList<Producto> getProductos() {
-        return new ArrayList<Producto>(productos);
+    
+        ArrayList<Producto> lista = new ArrayList<Producto>();
+        
+        for(Producto a: productos){
+            lista.add(a); 
+        }
+        
+        return new ArrayList<Producto>(lista);
     }
 
 }

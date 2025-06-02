@@ -1,13 +1,11 @@
 package pe.edu.pucp.frutilla.models.notificacion;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.Date;
 
 public class Notificacion {
 
     private int idNotificacion;
-    private LocalDate fecha;
-    private LocalTime hora;
+    private Date fecha;
     private String titulo;
     private String descripcion;
     private char tipoReceptor; // 'C' para Cliente, 'S' para Supervisor
@@ -19,10 +17,9 @@ public class Notificacion {
     }
 
     // Constructor completo
-    public Notificacion(int idNotificacion, LocalDate fecha, LocalTime hora, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
+    public Notificacion(int idNotificacion, Date fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.idNotificacion = idNotificacion;
         this.fecha = fecha;
-        this.hora = hora;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.tipoReceptor = tipoReceptor;
@@ -31,9 +28,8 @@ public class Notificacion {
     }
 
     // Constructor parcial sin ID general
-    public Notificacion(LocalDate fecha, LocalTime hora, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
+    public Notificacion(Date fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.fecha = fecha;
-        this.hora = hora;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.tipoReceptor = tipoReceptor;
@@ -50,20 +46,12 @@ public class Notificacion {
         this.idNotificacion = idNotificacion;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public LocalTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
     }
 
     public String getTitulo() {
@@ -109,7 +97,6 @@ public class Notificacion {
     public void enviarNotificacion() {
         System.out.println("Enviando notificación:");
         System.out.println("Fecha: " + fecha);
-        System.out.println("Hora: " + hora);
         System.out.println("Título: " + titulo);
         System.out.println("Descripción: " + descripcion);
         System.out.println("Tipo de Receptor: " + tipoReceptor);

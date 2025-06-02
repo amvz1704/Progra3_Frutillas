@@ -1,4 +1,4 @@
-package pe.edu.pucp.frutilla.logica.rrhh;
+    package pe.edu.pucp.frutilla.logica.rrhh;
 
 import pe.edu.pucp.frutilla.crud.mysql.rrhh.UsuarioMySQL;
 import pe.edu.pucp.frutilla.models.rrhh.Cliente;
@@ -48,7 +48,7 @@ public class UsuarioService {
         if (persona.getUsuarioSistema() == null || persona.getUsuarioSistema().trim().isEmpty()) {
             throw new Exception("El usuario no puede ser vacío");
         }
-
+        
         if (persona.getContraSistema() == null || persona.getContraSistema().trim().isEmpty()) {
             throw new Exception("La contraseña no puede ser vacía");
         }
@@ -67,6 +67,18 @@ public class UsuarioService {
             throw new Exception("El id de usuario no es válido");
         }
         return usuarioMySQL.obtener(idUsuario);
+    }
+    
+    public Persona validarUsuario(String usuario, String password) throws Exception{
+        if (usuario == null || usuario.trim().isEmpty()) {
+            throw new Exception("El usuario no puede ser vacío");
+        }
+
+        if (password == null || password.trim().isEmpty()) {
+            throw new Exception("La contraseña no puede ser vacía");
+        }
+
+        return usuarioMySQL.validarUsuario(usuario, password);
     }
     
 }

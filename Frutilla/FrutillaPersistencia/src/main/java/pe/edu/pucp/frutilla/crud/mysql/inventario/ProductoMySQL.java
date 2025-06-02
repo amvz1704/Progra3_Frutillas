@@ -12,6 +12,7 @@ import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
@@ -21,14 +22,14 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
 
     @Override
     protected String getInsertQuery() {
-        String cadena = "INSERT INTO producto (nombre,descripcion,codProd,"
+        String cadena = "INSERT INTO Producto (nombre,descripcion,codProd,"
                 + "precioUnitario,stockMinimo) VALUES (?,?,?,?,?)";
         return cadena;
     }
 
     @Override
     protected String getUpdateQuery() {
-        String cadena = "UPDATE producto SET nombre=?,descripcion=?,"
+        String cadena = "UPDATE Producto SET nombre=?,descripcion=?,"
                 + "codProd=?,precioUnitario=?,stockMinimo=? WHERE "
                 + "idProducto=?";
         return cadena;
@@ -36,14 +37,14 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
 
     @Override
     protected String getDeleteQuery() {
-        String cadena = "DELETE FROM producto WHERE idProducto=?";
+        String cadena = "DELETE FROM Producto WHERE idProducto=?";
         return cadena;
     }
 
     @Override
     protected String getSelectByIdQuery() {
         String cadena = "SELECT idProducto,nombre,descripcion,"
-                + "codProd,precioUnitario,stockMinimo FROM producto "
+                + "codProd,precioUnitario,stockMinimo FROM Producto "
                 + "WHERE idProducto=?";
         return cadena;
     }
@@ -51,10 +52,10 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
     @Override
     protected String getSelectAllQuery() {
         String cadena = "SELECT idProducto,nombre,descripcion,"
-                + "codProd,precioUnitario,stockMinimo FROM producto";
+                + "codProd,precioUnitario,stockMinimo FROM Producto";
         return cadena;
     }
-
+    
     @Override
     protected void setInsertParameters(PreparedStatement ps, Producto entity) throws SQLException {
         ps.setString(1, entity.getNombre());
@@ -73,8 +74,11 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
     @Override
     protected Producto createFromResultSet(ResultSet rs) throws SQLException {
         Producto producto = new Producto();
+        
+                
         producto.setIdProducto(rs.getInt("idProducto"));
         producto.setNombre(rs.getString("nombre"));
+        producto.setDescripcion(rs.getString("descripcion"));
         producto.setCodigoProd(rs.getString("codProd"));
         producto.setPrecioUnitario(rs.getDouble("precioUnitario"));
         producto.setStockMinimo(rs.getInt("stockMinimo"));
@@ -85,12 +89,14 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
     protected void setId(Producto entity, Integer id) {
         entity.setIdProducto(id);
     }
+    
+    
 
     @Override
     public ArrayList<Producto> obtenerPorNombre(String nombre) {
         ArrayList<Producto> entities = new ArrayList<>();
         String query = "SELECT idProducto,nombre,descripcion,"
-                + "codProd,precioUnitario,stockMinimo FROM producto "
+                + "codProd,precioUnitario,stockMinimo FROM Producto "
                 + "WHERE nombre LIKE ? ";
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);) {
@@ -111,8 +117,8 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
         ArrayList<Producto> entities = new ArrayList<>();
         String query="SELECT p.idProducto,nombre,descripcion,"
                 + "codProd,precioUnitario,stockMinimo,i.stock,"
-                + "i.estado FROM producto p,inventario i WHERE "
-                + "p.idProducto=i.idProducto AND i.idLocal=? AND i.tipo='P'";
+                + "i.estado FROM Producto p,Inventario i WHERE "
+                + "p.idProducto=i.idProducto AND i.idLocal=?";
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);) {
             ps.setInt(1, idLocal);
@@ -121,6 +127,7 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
                     Producto temp=createFromResultSet(rs);
                     temp.setStock(rs.getInt("stock"));
                     temp.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                    System.out.println(temp.toString());
                     entities.add(temp);
                 }
             }

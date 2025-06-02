@@ -12,91 +12,131 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
 
+
 public class DBManager {
-    private static DBManager instance;
+// 1) Única instancia
+    private static volatile DBManager INSTANCE;
+    
+      // 2) Pool de conexiones
     private HikariDataSource dataSource;
+     // 3) Parámetros de conexión
+    private final Properties props = new Properties();
     
-    private static String url;
-    private static String user;
-    private static String password;
-
-    static{
-        String pathFile = "com/frutilla/config/config.properties";
-        try(InputStream input = DBManager.class.getClassLoader().getResourceAsStream(pathFile)){
-            if(input == null){
-                System.out.println("No se encuentra el archivo: " + pathFile);
-            }
-            Properties prop = new Properties();
-            prop.load(input);
-            url = prop.getProperty("db.url");
-            user = prop.getProperty("db.user");
-            password = prop.getProperty("db.password");
-            if(url == null || user == null || password == null){
-                System.out.println("Faltan propiedades en el archivo: " + pathFile);
-            }
-        }
-        catch(Exception e){
-            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
+    private String dbType;  // p. ej. "mysql"
     
-    // Método para configurar el pool de conexiones
-    private void configurar() {
-        Properties properties = new Properties();
-        String propertiesFile = "db.properties";
-
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream(propertiesFile)) {
-            if (input == null) {
-                throw new IOException("No se pudo encontrar el archivo de propiedades: " + propertiesFile);
-            }
-            properties.load(input);
-        } catch (IOException e) {
-            throw new RuntimeException("Error al cargar el archivo de propiedades", e);
-        }
-
-        HikariConfig config = new HikariConfig();
-        String dbType = properties.getProperty("db.type").toLowerCase();
-        config.setJdbcUrl(properties.getProperty(dbType + ".jdbcUrl"));
-        config.setUsername(properties.getProperty(dbType + ".username"));
-        config.setPassword(properties.getProperty(dbType + ".password"));
-
-        // Configuración del pool
-        config.setMaximumPoolSize(10);
-        config.setMinimumIdle(5);
-        config.setIdleTimeout(100000); // 2 minutos
-        config.setConnectionTimeout(20000); // 20 segundos
-
-        // Configuraciones específicas según el tipo de base de datos
-        if ("mysql".equals(dbType)) {
-            config.addDataSourceProperty("cachePrepStmts", "true");
-            config.addDataSourceProperty("prepStmtCacheSize", "250");
-            config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        } else if ("postgresql".equals(dbType)) {
-            // Configuraciones específicas para PostgreSQL (si es necesario)
-        }
-        dataSource = new HikariDataSource(config);
-    }
     
     // Constructor privado para evitar instanciación externa
+     // 4) Constructor privado
     private DBManager() {
-        configurar();
+        loadProperties();
+        configureDataSource();
     }
-
-    public synchronized static DBManager getInstance(){
-        if(instance == null){
-            instance = new DBManager();
+    
+     // 5) Punto de acceso al singleton (double-checked locking)
+    public static DBManager getInstance() {
+        if (INSTANCE == null) {
+            synchronized (DBManager.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new DBManager();
+                }
+            }
         }
-        return instance;
+          return INSTANCE;
     }
+    
+ // 6) Carga de db.properties
+    private void loadProperties() {
+        String file = "db.properties";
+        try ( InputStream in = Thread.currentThread()
+                                      .getContextClassLoader()
+                                      .getResourceAsStream(file) ) {
+            if (in == null) {
+                throw new RuntimeException("No se encuentra el archivo: " + file);
+            }
+            props.load(in);
+            dbType = props.getProperty("db.type");
+             if (dbType == null || dbType.isBlank()) {
+                throw new RuntimeException("Falta la clave 'db.type' en db.properties");
+            }
+              } catch (IOException e) {
+                  throw new RuntimeException("Error leyendo " + file, e);
+        }
+         }
+    
+// 7) Configuración de HikariCP
+    private void configureDataSource() {
+        
+         try {
+            // 2.1) Registrar el driver (por si acaso)
+            String driverKey = props.getProperty("db.driver");
+            if (driverKey == null) {
+                throw new RuntimeException("db.driver no está definido en db.properties");
+            }
+            Class.forName(driverKey);
 
-    //Metodo estatico para obtener la conexion a la base de datos
-    public Connection getConnection() throws SQLException{
+            // 2.2) Ahora construyo el HikariConfig con las claves correctas:
+            HikariConfig cfg = new HikariConfig();
+
+            // NOTA: si dbType="mysql", las claves en el properties son:
+            //    mysql.jdbcUrl, mysql.username, mysql.password
+            String prefix = dbType + ".";  // -> "mysql."
+
+            String jdbcUrl   = props.getProperty(prefix + "jdbcUrl");
+            String username  = props.getProperty(prefix + "username");
+            String password  = props.getProperty(prefix + "password");
+
+            if (jdbcUrl == null || username == null || password == null) {
+                throw new RuntimeException(
+                    "Faltan claves obligatorias para el pool: "
+                    + prefix + "jdbcUrl, " 
+                    + prefix + "username, o " 
+                    + prefix + "password"
+                );
+            }
+
+            cfg.setJdbcUrl(jdbcUrl);
+            cfg.setUsername(username);
+            cfg.setPassword(password);
+
+            // 2.3) Ajustes opcionales de pool
+            cfg.setMaximumPoolSize(10);
+            cfg.setMinimumIdle(5);
+            cfg.setIdleTimeout(120_000);
+            cfg.setConnectionTimeout(20_000);
+
+            // 2.4) Propiedades extra para MySQL
+            if ("mysql".equalsIgnoreCase(dbType)) {
+                cfg.addDataSourceProperty("cachePrepStmts",     "true");
+                cfg.addDataSourceProperty("prepStmtCacheSize",   "250");
+                cfg.addDataSourceProperty("prepStmtCacheSqlLimit","2048");
+            }
+
+            dataSource = new HikariDataSource(cfg);
+        }
+        catch (Exception ex) {
+            Logger.getLogger(DBManager.class.getName())
+                  .log(Level.SEVERE, "Error configurando DataSource", ex);
+            throw new RuntimeException(ex);
+        }
+    }
+    
+  // 8) Método público para obtener conexión
+    public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
     
     public void cerrarPool() {
-        if (dataSource != null) {
+         if (dataSource != null && !dataSource.isClosed()) {
+            dataSource.close();
+        }
+
+    }
+    
+    public void shutdown() {
+        if (dataSource != null && !dataSource.isClosed()) {
             dataSource.close();
         }
     }
-}
+
+
+    }

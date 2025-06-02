@@ -25,6 +25,8 @@ public class ProductoService {
             throw new Exception("La descripcion no puede ser vacia");
         if(prod.getCodigoProd()==null||prod.getCodigoProd().trim().isEmpty())
             throw new Exception("El codigo no puede ser vacio");
+        if(prod.getCodigoProd().length() > 3)
+            throw new Exception("El codigo no puede tener longitud mayor a 3");
         if(prod.getPrecioUnitario()<=0)
             throw new Exception("El precio no puede ser menor a 0");
         if(prod.getStockMinimo()<=0)

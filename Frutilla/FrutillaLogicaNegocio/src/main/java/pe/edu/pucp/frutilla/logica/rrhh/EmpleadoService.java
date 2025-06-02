@@ -57,6 +57,8 @@ public class EmpleadoService {
         if (empleado.getIdLocal() <= 0) {
             throw new Exception("El id del local del empleado no puede ser menor o igual a 0");
         }
+        
+        //Agregar que el local debe existir, y si existe, asignarle el id de supervisor 
 
         empleadoMySQL.agregar(empleado);
     }
