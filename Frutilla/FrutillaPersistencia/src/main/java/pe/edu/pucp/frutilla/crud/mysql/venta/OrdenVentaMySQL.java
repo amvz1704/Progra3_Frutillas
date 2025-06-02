@@ -7,7 +7,6 @@
 
 package pe.edu.pucp.frutilla.crud.mysql.venta;
 
-import java.sql.CallableStatement;
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 import pe.edu.pucp.frutilla.models.venta.EstadoVenta;
 import pe.edu.pucp.frutilla.models.venta.LineaOrdenDeVenta;
@@ -19,8 +18,8 @@ import java.time.LocalDateTime;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
-import java.sql.Types;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.time.*; 
 import java.util.List;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
@@ -59,53 +58,16 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     //Insertar
     @Override
     protected void setInsertParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
-        ps.setDate(2, Date.valueOf(entity.getFecha()));
-        ps.setTime(3, Time.valueOf(entity.getHoraFinEntrega()));
-        ps.setString(4, entity.getDescripcion());
-        ps.setDouble(5, entity.getMontoTotal());
-        ps.setBoolean(6, entity.getEntregado());
-        ps.setString(7, entity.getEstado().name());
-        ps.setInt(8, entity.getIdLocal());
-        ps.setInt(9, entity.getIdCliente());
-        ps.setInt(10, entity.getIdEmpleado());
+        ps.setDate(1, Date.valueOf(entity.getFecha()));
+        ps.setTime(2, Time.valueOf(entity.getHoraFinEntrega()));
+        ps.setString(3, entity.getDescripcion());
+        ps.setDouble(4, entity.getMontoTotal());
+        ps.setBoolean(5, entity.getEntregado());
+        ps.setString(6, entity.getEstado().name());
+        ps.setInt(7, entity.getIdLocal());
+        ps.setInt(8, entity.getIdCliente());
+        ps.setInt(9, entity.getIdEmpleado());
     }
-    
-    @Override
-    public void agregar(OrdenVenta entity) {
-        try (Connection conn = DBManager.getInstance().getConnection();
-             CallableStatement cs = conn.prepareCall("{CALL INSERTAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}")) {
-
-            // OUT parameter
-            cs.registerOutParameter(1, Types.INTEGER);
-
-            // IN parameters
-            cs.setDate(2, Date.valueOf(entity.getFecha()));
-            cs.setTime(3, Time.valueOf(entity.getHoraFinEntrega()));
-            cs.setString(4, entity.getDescripcion());
-            cs.setDouble(5, entity.getMontoTotal());
-            cs.setBoolean(6, entity.getEntregado());
-            cs.setString(7, entity.getEstado().name());
-            cs.setInt(8, entity.getIdLocal());
-            cs.setInt(9, entity.getIdCliente());
-
-            // idEmpleado puede ser null
-            if (entity.getIdEmpleado() > 0) {
-                cs.setInt(10, entity.getIdEmpleado());
-            } else {
-                cs.setNull(10, Types.INTEGER);
-            }
-
-            cs.execute();
-
-            // Recuperar id generado
-            int idGenerado = cs.getInt(1);
-            entity.setIdOrdenVenta(idGenerado); // o setId(entity, idGenerado);
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al agregar OrdenVenta", e);
-        }
-    }
-
     
     //Actualizar
     @Override

@@ -18,7 +18,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import pe.edu.pucp.frutilla.config.DBManager;
 
 //importado de frutilla.models
 import pe.edu.pucp.frutilla.models.local.Local; //incluimos LOCAL 
@@ -41,7 +40,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE idLocal = ?";
+        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE id_local = ?";
     }
     
     @Override
@@ -51,12 +50,12 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
   
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT idLocal, nombre, descripcion, direccion, telefono, activo FROM Local WHERE idLocal = ?";
+        return "SELECT id_local, nombre, direccion, telefono FROM Local WHERE id_local = ?";
     }
 
     @Override
     protected String getSelectAllQuery() {
-        return "SELECT idLocal, nombre, descripcion, direccion, telefono, activo FROM Local WHERE activo = true";
+        return "SELECT * FROM Local WHERE activo = true";
     }
     //creacion de un local en base a un objeto "Local inicializado"
     @Override
@@ -71,28 +70,6 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     //creacion de un local en base a un objeto "Local inicializado"
     
     @Override
-    public void ObtenerProductosPorLocal(int idLocal, Local local){
-        
-        try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Inventario WHERE idLocal = ?")) {
-            
-            ps.setInt(1, idLocal);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    ProductoDAO productoInterfaz = new ProductoMySQL(); 
-                    Producto x = new Producto(); 
-                    x = productoInterfaz.obtener(rs.getInt("idProducto")); 
-                            
-                    
-                }
-            }
-            
-            
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al obtener entidad", e);
-        }
-    }
-    @Override
     protected Local createFromResultSet(ResultSet rs) throws SQLException{
         Local local = new Local(rs.getString("nombre"), rs.getString("descripcion"),
                 rs.getString("direccion"), rs.getString("telefono"));
@@ -102,81 +79,8 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
         return local;
     }
     
-    
-    
-    //actualizar requiere una copia de todos los empleados
-    
-    @Override
-    public void actualizar(Local entity) {
-        super.actualizar(entity);
-        
-        //tambien deben actualizarse los empleados a la base de datos
-        EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
-        ProductoDAO interfazProducto = new ProductoMySQL(); 
-        LocalDAO interfazLocal = new LocalMySQL(); 
-        
-        //por ahora se harán inactivos --> pero sí debo eliminar definitivamente porque no deja actualizarLocal 
-        
-        for(Empleado e: entity.getEmpleados()){
-            
-            Empleado copia = new Empleado(e); 
-            interfazLocal.eliminarEmpleado(e.getIdEmpleado()); 
-            interfazEmpleado.agregar(copia);
-        }
-        
-        //los productos 
-        for(Producto e: entity.getProductos()){
-            Producto copia = new Producto(e); 
-            interfazLocal.eliminarProducto(e.getIdProducto());
-            interfazProducto.agregar(copia);
-        }
-        
-    }
-    
-    public void eliminarEmpleado(int idEmpleado){
-        
-        try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM Empleado WHERE idUsuario = ?")){
-            
-            ps.setInt(1, idEmpleado);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al eliminar empleado", e);
-        }
-        
-        //Deberiamos tener un trigger que cuando se elimine un empleado se active a eliminar el usuario de dicho
-    
-        try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM Usuario WHERE idUsuario = ?")){
-            
-            ps.setInt(1, idEmpleado);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al eliminar usuario", e);
-        }
-    
-    }
-    
-    public void eliminarProducto(int idProducto){
-    
-        try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM Producto WHERE idProducto = ?")){
-            
-            ps.setInt(1, idProducto);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al eliminar entidad", e);
-        }
-    
-    }
-    
-    
-    
-    
-    
     @Override 
     protected void setUpdateParameters(PreparedStatement ps, Local entity) throws SQLException{
-        
             ps.setString(1, entity.getNombre());
             ps.setString(2, entity.getDescripcion());
             ps.setString(3, entity.getDireccion());
@@ -194,7 +98,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     @Override
     public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 
-        EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
+        EmpleadoMySQL interfazEmpleado = new EmpleadoMySQL(); 
         return interfazEmpleado.listarTodosPorLocal(idLocal);
     }
 

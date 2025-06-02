@@ -12,6 +12,7 @@ import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
@@ -54,7 +55,7 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
                 + "codProd,precioUnitario,stockMinimo FROM Producto";
         return cadena;
     }
-
+    
     @Override
     protected void setInsertParameters(PreparedStatement ps, Producto entity) throws SQLException {
         ps.setString(1, entity.getNombre());
@@ -73,6 +74,8 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
     @Override
     protected Producto createFromResultSet(ResultSet rs) throws SQLException {
         Producto producto = new Producto();
+        
+                
         producto.setIdProducto(rs.getInt("idProducto"));
         producto.setNombre(rs.getString("nombre"));
         producto.setDescripcion(rs.getString("descripcion"));
@@ -86,6 +89,8 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
     protected void setId(Producto entity, Integer id) {
         entity.setIdProducto(id);
     }
+    
+    
 
     @Override
     public ArrayList<Producto> obtenerPorNombre(String nombre) {

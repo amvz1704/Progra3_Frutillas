@@ -1,4 +1,4 @@
-package pe.edu.pucp.frutilla.logica.rrhh;
+    package pe.edu.pucp.frutilla.logica.rrhh;
 
 import java.util.List;
 
@@ -73,6 +73,18 @@ public class UsuarioService {
 
     public List<Persona> listar() throws Exception{
         return usuarioMySQL.listarTodos();
+    }
+    
+    public Persona validarUsuario(String usuario, String password) throws Exception{
+        if (usuario == null || usuario.trim().isEmpty()) {
+            throw new Exception("El usuario no puede ser vacío");
+        }
+
+        if (password == null || password.trim().isEmpty()) {
+            throw new Exception("La contraseña no puede ser vacía");
+        }
+
+        return usuarioMySQL.validarUsuario(usuario, password);
     }
     
 }
