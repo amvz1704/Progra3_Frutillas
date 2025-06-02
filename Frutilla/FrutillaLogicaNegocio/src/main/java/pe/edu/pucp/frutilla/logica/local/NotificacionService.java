@@ -4,6 +4,7 @@
  */
 package pe.edu.pucp.frutilla.logica.local;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,7 @@ public class NotificacionService {
         return notificacionDAO.listarPorSupervisor(idSupervisor);
     }
     
-    public ArrayList<Notificacion> listarPorFecha(Date fecha,int idSupervisor) throws Exception{
+    public ArrayList<Notificacion> listarPorFecha(LocalDate fecha,int idSupervisor) throws Exception{
         if (fecha == null) {
             throw new Exception("Las fechas no pueden ser nulas");
         }
