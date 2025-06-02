@@ -14,24 +14,31 @@ import java.sql.SQLException;
 import java.util.List;
 import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
 import pe.edu.pucp.frutilla.crud.dao.venta.LineaOrdenVentaDAO;
+import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
+import pe.edu.pucp.frutilla.models.inventario.Producto;
 
 public class OrdenVentaService {
 
     private OrdenVentaMySQL ordenVentaMySQL = new OrdenVentaMySQL();
     private LineaOrdenDeVentaMySQL lineaOrdenDeVentaMySQL = new LineaOrdenDeVentaMySQL();
+    private InventarioService inventarioService = new InventarioService();
 
     // Registrar orden de venta con sus líneas
-    public void registrarOrdenConLineas(OrdenVenta orden, List<LineaOrdenDeVenta> lineas) throws SQLException {
+    public void registrarOrdenConLineas(OrdenVenta orden, List<LineaOrdenDeVenta> lineas) throws SQLException, Exception {
+        //Validaciones
+        if (orden == null) throw new IllegalArgumentException("La orden no puede ser nula.");
+        
         if (lineas == null || lineas.isEmpty()) {
             throw new IllegalArgumentException("La orden debe tener al menos una línea.");
         }
         
         // Validación de stock antes de registrar la orden
         for (LineaOrdenDeVenta linea : lineas) {
+            Producto producto = linea.getProducto();
             int stockDisponible = linea.getProducto().getStock();
             if (linea.getCantidad() > stockDisponible) {
-                throw new IllegalArgumentException("Stock insuficiente para el producto: " +
-                                                   linea.getProducto().getNombre());
+                throw new IllegalArgumentException("No hay stock disponible para el producto: " +
+                        producto.getNombre());
             }
         }
 
@@ -40,6 +47,12 @@ public class OrdenVentaService {
         for (LineaOrdenDeVenta linea : lineas) {
             linea.setIdOrdenVenta(orden.getIdOrdenVenta());
             lineaOrdenDeVentaMySQL.agregar(linea);
+
+            // Actualizar stock
+            Producto producto = linea.getProducto();
+            int stockActual = inventarioService.obtenerStockPorId(producto.getIdProducto(), orden.getIdLocal());
+            producto.setStock(stockActual - linea.getCantidad());
+            inventarioService.actualizar(producto, orden.getIdLocal());
         }
         
         

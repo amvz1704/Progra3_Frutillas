@@ -22,21 +22,21 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
 
     @Override
     protected String getInsertQuery() {
-        String cadena = "INSERT INTO snack (idProducto,tipo,requireEnvase,"
+        String cadena = "INSERT INTO Snack (idProducto,tipo,requiereEnvase,"
                 + "envase,estaEnvasado) VALUES (?,?,?,?,?)";
         return cadena;
     }
 
     @Override
     protected String getUpdateQuery() {
-        String cadena = "UPDATE snack SET tipo=?,requiereEnvase=?,"
+        String cadena = "UPDATE Snack SET tipo=?,requiereEnvase=?,"
                 + "envase=?,estaEnvasado=? WHERE idProducto=?";
         return cadena;
     }
 
     @Override
     protected String getDeleteQuery() {
-        String cadena = "DELETE FROM snack WHERE idProducto=?";
+        String cadena = "DELETE FROM Snack WHERE idProducto=?";
         return cadena;
     }
 
@@ -44,8 +44,8 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
     protected String getSelectByIdQuery() {
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
-                + "s.requiereEnvase,s.envase,s.estaEnvasado FROM snack s,"
-                + "producto p WHERE p.idProducto=?";
+                + "s.requiereEnvase,s.envase,s.estaEnvasado FROM Snack s,"
+                + "Producto p WHERE s.idProducto=p.idProducto AND p.idProducto=?";
         return cadena;
     }
 
@@ -53,8 +53,8 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
     protected String getSelectAllQuery() {
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
-                + "s.requiereEnvase,s.envase,s.estaEnvasado FROM snack s,"
-                + "producto p";
+                + "s.requiereEnvase,s.envase,s.estaEnvasado FROM Snack s,"
+                + "Producto p WHERE s.idProducto=p.idProducto ";
         return cadena;
     }
 
@@ -145,8 +145,8 @@ public class SnackMySQL extends BaseDAOImpl<Snack> implements SnackDAO{
         String query="SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,s.tipo,"
                 + "s.requiereEnvase,s.envase,s.estaEnvasado,"
-                + "i.stock,i.estado FROM snack s,producto p,inventario i "
-                + "WHERE p.idProducto=i.idProducto AND i.idLocal=? and "
+                + "i.stock,i.estado FROM Snack s,Producto p,Inventario i "
+                + "WHERE p.idProducto=i.idProducto AND i.idLocal=? AND "
                 + "i.tipo='S'";
         try (Connection conn = DBManager.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);) {

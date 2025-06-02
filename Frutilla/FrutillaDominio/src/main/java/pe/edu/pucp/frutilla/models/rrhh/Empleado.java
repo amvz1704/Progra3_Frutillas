@@ -1,5 +1,6 @@
 package pe.edu.pucp.frutilla.models.rrhh;
-import java.time.*;
+//import java.time.*;
+import java.time.LocalDate;
 
 public class Empleado extends Persona{
     private int idEmpleado;

@@ -21,7 +21,7 @@ import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
     @Override
     protected String getInsertQuery() {
-        String cadena = "INSERT INTO fruta (idProducto,requiereLimpieza,"
+        String cadena = "INSERT INTO Fruta (idProducto,requiereLimpieza,"
                 + "estaLimpio,requiereEnvasado,estaEnvasado,envase) VALUES "
                 + "(?,?,?,?,?,?)";
         return cadena;
@@ -29,7 +29,7 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
 
     @Override
     protected String getUpdateQuery() {
-        String cadena = "UPDATE fruta SET requiereLimpieza=?,estaLimpio=?,"
+        String cadena = "UPDATE Fruta SET requiereLimpieza=?,estaLimpio=?,"
                 + "requiereEnvasado=?,estaEnvasado=?,envase=? WHERE "
                 + "idProducto=?";
         return cadena;
@@ -37,7 +37,7 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
 
     @Override
     protected String getDeleteQuery() {
-        String cadena = "DELETE FROM fruta WHERE idProducto=?";
+        String cadena = "DELETE FROM Fruta WHERE idProducto=?";
         return cadena;
     }
 
@@ -46,7 +46,8 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,f.requiereLimpieza,"
                 + "f.estaLimpio,f.requiereEnvasado,f.estaEnvasado,"
-                + "f.envase FROM fruta f,producto p WHERE p.idProducto=?";
+                + "f.envase FROM Fruta f,Producto p WHERE "
+                + "f.idProducto=p.idProducto AND p.idProducto=?";
         return cadena;
     }
 
@@ -55,7 +56,8 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
         String cadena = "SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,f.requiereLimpieza,"
                 + "f.estaLimpio,f.requiereEnvasado,f.estaEnvasado,"
-                + "f.envase FROM fruta f,producto p";
+                + "f.envase FROM Fruta f,Producto p WHERE "
+                + "f.idProducto=p.idProducto";
         return cadena;
     }
 
@@ -149,8 +151,8 @@ public class FrutaMySQL extends BaseDAOImpl<Fruta> implements FrutaDAO{
         String query="SELECT p.idProducto,p.nombre,p.descripcion,"
                 + "p.codProd,p.precioUnitario,p.stockMinimo,f.requiereLimpieza,"
                 + "f.estaLimpio,f.requiereEnvasado,f.estaEnvasado,"
-                + "f.envase,i.stock,i.estado FROM fruta f,producto p,"
-                + "inventario i WHERE p.idProducto=i.idProducto AND"
+                + "f.envase,i.stock,i.estado FROM Fruta f,Producto p,"
+                + "Inventario i WHERE p.idProducto=i.idProducto AND "
                 + "i.idLocal=? and i.tipo='F'";
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);) {

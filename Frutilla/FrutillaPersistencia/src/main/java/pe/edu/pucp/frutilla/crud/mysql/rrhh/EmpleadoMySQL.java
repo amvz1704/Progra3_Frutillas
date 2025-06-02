@@ -34,8 +34,15 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
 
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE e.idUsuario = ? AND u.activo = true";
+    return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, " +
+           "e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, " +
+           "e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, " +
+           "e.tipo, e.idLocal " +
+           "FROM Usuario u " +
+           "INNER JOIN Empleado e ON u.idUsuario = e.idUsuario " +
+           "WHERE e.idUsuario = ? AND u.activo = true";
     }
+
 
     @Override
     protected String getSelectAllQuery() {

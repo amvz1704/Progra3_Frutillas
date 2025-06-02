@@ -86,7 +86,7 @@ public class BebidaService {
         return beb;
     }
     
-    public List<Bebida> listar(String nombre) throws Exception{
+    public List<Bebida> listar() throws Exception{
         return bebSQL.listarTodos();
     }
     

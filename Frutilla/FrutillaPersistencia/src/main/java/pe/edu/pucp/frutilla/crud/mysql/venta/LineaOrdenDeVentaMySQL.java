@@ -7,6 +7,7 @@
 
 package pe.edu.pucp.frutilla.crud.mysql.venta;
 
+import java.sql.CallableStatement;
 import pe.edu.pucp.frutilla.models.inventario.Producto;
 import pe.edu.pucp.frutilla.models.venta.LineaOrdenDeVenta;
 import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL;
@@ -57,6 +58,19 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         ps.setDouble(3, entity.getSubtotal());
         ps.setInt(4, entity.getProducto().getIdProducto());
     }
+    
+    @Override
+    public void agregar(LineaOrdenDeVenta entity) {
+    try (Connection conn = DBManager.getInstance().getConnection();
+         CallableStatement cs = conn.prepareCall(getInsertQuery())) {
+
+        setInsertParameters(cs, entity);
+        cs.execute();
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al agregar entidad", e);
+    }
+}
 
     @Override
     protected void setUpdateParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {

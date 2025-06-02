@@ -6,9 +6,7 @@ import java.time.LocalDate;
 
 public class Repartidor extends Empleado{
 
-    public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno,
-    String correoElectronico, String telefono, LocalDate fechaContrato,
-    double salario, String usuarioSistema, String contraSistema, int idLocal){
+    public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'R', idLocal);
     }
 
