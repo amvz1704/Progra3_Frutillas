@@ -7,19 +7,19 @@
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\notificaciones\\listarnotificaciones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\localsupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\localsupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\notificaciones\\listarnotificaciones.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\notificaciones\\listarnotificaciones.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Desktop\\AppData\\Local\\Temp\\d9487269-7406-44e6-8d13-3b806208962f_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Ventas\\ListaVentas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\mainlayout.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\mainlayout.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|c:\\users\\desktop\\documents\\github\\progra3_frutillas\\frutillafront\\frutillalocalwebservice\\localwebservice\\public\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\public\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Desktop\\AppData\\Local\\Temp\\bb573032-2a7c-46fb-bcfe-a97157e146a4_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Areas\\ListaAreas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\localwebservice\\localsupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{F78225BC-8C44-4F44-92BF-CB99C5049A61}|LocalWebService\\LocalWebService.csproj|solutionrelative:localwebservice\\localsupervisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,29 +37,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ListaVentas.aspx",
-              "DocumentMoniker": "C:\\Users\\Desktop\\AppData\\Local\\Temp\\d9487269-7406-44e6-8d13-3b806208962f_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Ventas\\ListaVentas.aspx",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\d9487269-7406-44e6-8d13-3b806208962f_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Ventas\\ListaVentas.aspx",
-              "ToolTip": "C:\\Users\\Desktop\\AppData\\Local\\Temp\\d9487269-7406-44e6-8d13-3b806208962f_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Ventas\\ListaVentas.aspx [Solo lectura]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\d9487269-7406-44e6-8d13-3b806208962f_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Ventas\\ListaVentas.aspx [Solo lectura]",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-01T23:16:17.495Z",
-              "EditorCaption": " [Solo lectura]"
+              "DocumentIndex": 2,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\Public\\css\\site.css",
+              "RelativeDocumentMoniker": "LocalWebService\\Public\\css\\site.css",
+              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\Public\\css\\site.css",
+              "RelativeToolTip": "LocalWebService\\Public\\css\\site.css",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAAAGkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-01T23:57:00.338Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListarNotificaciones.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\Notificaciones\\ListarNotificaciones.aspx.cs",
-              "RelativeDocumentMoniker": "LocalWebService\\Notificaciones\\ListarNotificaciones.aspx.cs",
-              "ToolTip": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\Notificaciones\\ListarNotificaciones.aspx.cs",
-              "RelativeToolTip": "LocalWebService\\Notificaciones\\ListarNotificaciones.aspx.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAA2wB0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T21:54:07.789Z",
-              "EditorCaption": ""
+              "DocumentIndex": 3,
+              "Title": "ListaAreas.aspx",
+              "DocumentMoniker": "C:\\Users\\Desktop\\AppData\\Local\\Temp\\bb573032-2a7c-46fb-bcfe-a97157e146a4_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Areas\\ListaAreas.aspx",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\bb573032-2a7c-46fb-bcfe-a97157e146a4_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Areas\\ListaAreas.aspx",
+              "ToolTip": "C:\\Users\\Desktop\\AppData\\Local\\Temp\\bb573032-2a7c-46fb-bcfe-a97157e146a4_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Areas\\ListaAreas.aspx [Solo lectura]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\bb573032-2a7c-46fb-bcfe-a97157e146a4_TiendaSoft (1).zip.TiendaSoft (1).zip\\TiendaSoft\\TiendaPucpFrontEnd\\TiendaPucpPresentacion\\Areas\\ListaAreas.aspx [Solo lectura]",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-01T23:45:53.49Z",
+              "EditorCaption": " [Solo lectura]"
             },
             {
               "$type": "Document",
@@ -76,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "LocalSupervisor.aspx",
               "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\LocalSupervisor.aspx",
               "RelativeDocumentMoniker": "LocalWebService\\LocalSupervisor.aspx",
@@ -89,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "MainLayout.Master",
               "DocumentMoniker": "C:\\Users\\Desktop\\Documents\\GitHub\\Progra3_Frutillas\\FrutillaFront\\FrutillaLocalWebService\\LocalWebService\\MainLayout.Master",
               "RelativeDocumentMoniker": "LocalWebService\\MainLayout.Master",
