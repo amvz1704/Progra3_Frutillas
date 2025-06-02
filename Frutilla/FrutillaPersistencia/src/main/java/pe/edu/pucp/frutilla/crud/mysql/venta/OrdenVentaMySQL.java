@@ -94,6 +94,39 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     }
     
     
+    @Override
+    public void actualizar(OrdenVenta entity){
+        try (Connection conn = DBManager.getInstance().getConnection();
+             CallableStatement cs = conn.prepareCall("{CALL ACTUALIZAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}")) {
+
+            cs.setInt(1, entity.getIdOrdenVenta()); // ID a actualizar
+            cs.setDate(2, Date.valueOf(entity.getFecha()));
+            cs.setTime(3, Time.valueOf(entity.getHoraFinEntrega()));
+            cs.setString(4, entity.getDescripcion());
+            cs.setDouble(5, entity.getMontoTotal());
+            cs.setBoolean(6, entity.getEntregado());
+            cs.setString(7, entity.getEstado().name());
+            cs.setInt(8, entity.getIdLocal());
+
+            // idComprobante (nuevo parámetro)
+            cs.setInt(9, entity.getIdComprobante()); 
+
+            cs.setInt(10, entity.getIdCliente());
+
+            if (entity.getIdEmpleado() > 0) {
+                cs.setInt(11, entity.getIdEmpleado());
+            } else {
+                cs.setNull(11, Types.INTEGER);
+            }
+
+            cs.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar OrdenVenta", e);
+        }
+    }
+    
+    
     //Insertar
     @Override
     protected void setInsertParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
