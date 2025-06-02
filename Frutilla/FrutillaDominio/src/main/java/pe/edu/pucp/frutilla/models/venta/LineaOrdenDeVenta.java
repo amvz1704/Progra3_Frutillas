@@ -9,6 +9,7 @@ public class LineaOrdenDeVenta {
     private int cantidad;
     private double subtotal;
     private Producto producto;
+    private int idOrdenVenta;
 
     // CONSTRUCTORES
     
@@ -67,6 +68,14 @@ public class LineaOrdenDeVenta {
     
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public int getIdOrdenVenta() {
+        return idOrdenVenta;
+    }
+
+    public void setIdOrdenVenta(int idOrdenVenta) {
+        this.idOrdenVenta = idOrdenVenta;
     }
 
     @Override
