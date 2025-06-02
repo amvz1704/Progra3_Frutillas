@@ -61,16 +61,57 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
     
     @Override
     public void agregar(LineaOrdenDeVenta entity) {
-    try (Connection conn = DBManager.getInstance().getConnection();
-         CallableStatement cs = conn.prepareCall(getInsertQuery())) {
+        try (Connection conn = DBManager.getInstance().getConnection();
+             CallableStatement cs = conn.prepareCall(getInsertQuery())) {
 
-        setInsertParameters(cs, entity);
-        cs.execute();
+            setInsertParameters(cs, entity);
+            cs.execute();
 
-    } catch (SQLException e) {
-        throw new RuntimeException("Error al agregar entidad", e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al agregar entidad", e);
+        }
+    }   
+    @Override
+    public void actualizar(LineaOrdenDeVenta orden) {
+        try (Connection conn = DBManager.getInstance().getConnection();
+             CallableStatement cs = conn.prepareCall(getUpdateQuery())) {
+
+            setUpdateParameters(cs, orden);
+            cs.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar la entidad", e);
+        }
     }
-}
+    
+    @Override
+    public LineaOrdenDeVenta obtener(Integer id) {
+        try (Connection conn = DBManager.getInstance().getConnection();
+            CallableStatement cs = conn.prepareCall(getSelectByIdQuery())) {
+            
+            cs.setInt(1, id);
+            try (ResultSet rs = cs.executeQuery()) {
+                if (rs.next()) {
+                    return createFromResultSet(rs);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener entidad", e);
+        }
+        return null;
+    }
+    
+   @Override
+    public void eliminar(Integer id) {
+        try (Connection conn = DBManager.getInstance().getConnection();
+            CallableStatement cs = conn.prepareCall(getDeleteQuery())) {
+            
+            cs.setInt(1, id);
+            cs.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar entidad", e);
+        }
+    }
 
     @Override
     protected void setUpdateParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {
@@ -114,10 +155,10 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         String query = "CALL LISTAR_LINEAS_X_ORDEN(?)";
 
         try (Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
+             CallableStatement cs = con.prepareCall(query)) {
 
-            ps.setInt(1, idOrdenVenta);
-            try (ResultSet rs = ps.executeQuery()) {
+            cs.setInt(1, idOrdenVenta);
+            try (ResultSet rs = cs.executeQuery()) {
                 while (rs.next()) {
                     lineas.add(createFromResultSet(rs));
                 }
