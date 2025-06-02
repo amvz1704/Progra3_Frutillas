@@ -9,9 +9,12 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.xml.ws.WebServiceException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.text.DateFormatter;
 import pe.edu.pucp.frutilla.logica.local.NotificacionService;
 import pe.edu.pucp.frutilla.models.local.Notificacion;
 
@@ -42,7 +45,8 @@ public class NotificacionWS {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
             // Convierte el String fecha a Date
-            Date fechaDate = sdf.parse(fecha);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaDate =  LocalDate.parse(fecha, formatter);
             return notificacionServ.listarPorFecha(fechaDate,idSupervisor);
         }catch (Exception e){
             throw new WebServiceException("Error al listar notificaciones por fechas");

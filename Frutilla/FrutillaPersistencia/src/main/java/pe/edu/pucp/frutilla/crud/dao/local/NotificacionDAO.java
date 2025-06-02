@@ -5,7 +5,7 @@
 package pe.edu.pucp.frutilla.crud.dao.local;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 import pe.edu.pucp.frutilla.crud.dao.BaseDAO;
 import java.util.ArrayList;
 import pe.edu.pucp.frutilla.models.local.Notificacion; 
@@ -14,6 +14,6 @@ import pe.edu.pucp.frutilla.models.local.Notificacion;
  * @author User
  */
 public interface NotificacionDAO extends BaseDAO<Notificacion>{
-    ArrayList<Notificacion> listarPorFecha(Date fecha, int idSupervisor);
+    ArrayList<Notificacion> listarPorFecha(LocalDate fecha, int idSupervisor);
     ArrayList<Notificacion> listarPorSupervisor(int idSupervisor);
 }
