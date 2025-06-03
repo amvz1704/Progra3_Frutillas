@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
      <!-- 2) Header de sección -->
-    <header class="bg-light py-2 border-bottom">
+    <header class="py-2 border-bottom bg-frutilla">
       <div class="container">
         <h2 class="m-0"> Local > Productos </h2>
       </div>

@@ -66,14 +66,39 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ClienteWS\ClienteWS.wsdl" />
+    <None Include="Connected Services\ClienteWS\ClienteWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.agregarClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.wsdl" />
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ClienteWS\configuration91.svcinfo" />
+    <None Include="Connected Services\ClienteWS\configuration.svcinfo" />
+    <None Include="Connected Services\ClienteWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.empleado.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.actualizarEmpleadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.agregarEmpleadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.eliminarEmpleadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\LocalWS\configuration91.svcinfo" />
@@ -84,13 +109,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarTodosLocalesResponse.datasource">
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerIdLocalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerIdLocalResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\LocalWS\Reference.svcmap">
@@ -123,11 +148,13 @@
     <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.persona.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\UsuarioWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="EditarLocal.aspx" />
     <Content Include="ListaClientesSupervisor.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -170,21 +197,33 @@
     <Content Include="Public\fonts\css\v4-shims.min.css" />
     <Content Include="Public\fonts\css\v5-font-face.css" />
     <Content Include="Public\fonts\css\v5-font-face.min.css" />
+    <Content Include="Public\images\productosImagen.png" />
+    <Content Include="Public\images\frutillaLogo.jpeg" />
+    <Content Include="Public\images\ventasImagen.png" />
+    <Content Include="Public\images\pedidosImagen.png" />
     <Content Include="Public\images\pucp.png" />
+    <Content Include="Public\images\empleadosImagen.png" />
     <Content Include="Public\js\bootstrap.bundle.js" />
     <Content Include="Public\js\bootstrap.bundle.min.js" />
     <Content Include="Public\js\bootstrap.esm.js" />
     <Content Include="Public\js\bootstrap.esm.min.js" />
     <Content Include="Public\js\bootstrap.js" />
     <Content Include="Public\js\bootstrap.min.js" />
+    <None Include="packages.config" />
     <None Include="Public\js\jquery-3.7.1.intellisense.js" />
     <Content Include="Public\js\jquery-3.7.1.js" />
     <Content Include="Public\js\jquery-3.7.1.min.js" />
     <Content Include="Public\js\jquery-3.7.1.slim.js" />
     <Content Include="Public\js\jquery-3.7.1.slim.min.js" />
+    <Content Include="SignIn.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ClienteWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\EmpleadoWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -204,13 +243,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="EditarLocal.aspx.cs">
-      <DependentUpon>EditarLocal.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarLocal.aspx.designer.cs">
-      <DependentUpon>EditarLocal.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaClientesSupervisor.aspx.cs">
       <DependentUpon>ListaClientesSupervisor.aspx</DependentUpon>
@@ -269,6 +301,13 @@
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignIn.aspx.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignIn.aspx.designer.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MainLayout.Master" />
@@ -284,7 +323,6 @@
     <None Include="Connected Services\UsuarioWS\UsuarioWS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
     <Content Include="Public\css\bootstrap-grid.css.map" />
     <Content Include="Public\css\bootstrap-grid.min.css.map" />
     <Content Include="Public\css\bootstrap-grid.rtl.css.map" />
@@ -328,6 +366,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ClienteWS\" />
     <WCFMetadataStorage Include="Connected Services\EmpleadoWS\" />
     <WCFMetadataStorage Include="Connected Services\LocalWS\" />
     <WCFMetadataStorage Include="Connected Services\NotificionesWS\" />

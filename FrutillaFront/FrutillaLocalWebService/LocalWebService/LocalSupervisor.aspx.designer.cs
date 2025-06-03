@@ -69,13 +69,13 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.Label lblTelefono;
 
         /// <summary>
-        /// Control lnkEditar.
+        /// Control btnEditarLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button lnkEditar;
+        protected global::System.Web.UI.WebControls.Button btnEditarLocal;
 
         /// <summary>
         /// Control AdminEmpleados.
@@ -105,66 +105,75 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.Button AdminVentas;
 
         /// <summary>
-        /// Control pnlModalEditar.
+        /// Control lblError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlModalEditar;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
-        /// Control hfIdEmpleado.
+        /// Control pnlModalLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfIdEmpleado;
+        protected global::System.Web.UI.WebControls.Panel pnlModalLocal;
 
         /// <summary>
-        /// Control txtNombreModal.
+        /// Control txtNombreLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreModal;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreLocal;
 
         /// <summary>
-        /// Control txtTurnoModal.
+        /// Control txtTelefonoLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTurnoModal;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoLocal;
 
         /// <summary>
-        /// Control ddlTipoModal.
+        /// Control txtDireccionLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoModal;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionLocal;
 
         /// <summary>
-        /// Control txtCorreoModal.
+        /// Control txtDescripcionLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreoModal;
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionLocal;
 
         /// <summary>
-        /// Control btnGuardarModal.
+        /// Control ddlEstadoLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarModal;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstadoLocal;
+
+        /// <summary>
+        /// Control btnGuardarLocalModal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarLocalModal;
     }
 }

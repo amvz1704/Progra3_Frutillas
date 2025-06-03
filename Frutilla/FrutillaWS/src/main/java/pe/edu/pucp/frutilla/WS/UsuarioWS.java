@@ -26,16 +26,20 @@ public class UsuarioWS {
     }
     
     @WebMethod(operationName = "validarUsuario")
-    public int validarUsuario(String usuario, String password){
+    public Persona validarUsuario(String usuario, String password){
         try{
-            Persona persona = usuarioService.validarUsuario(usuario, password);
-            if(persona instanceof Cliente){
-                return ((Cliente) persona).getIdCliente();
-            }
-            else{
-                return ((Empleado) persona).getIdEmpleado();
-            }
+            return usuarioService.validarUsuario(usuario, password);
         } catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+        }
+        return null;
+    }
+    
+    @WebMethod(operationName = "obtenerIDPorNombreUsuario")
+    public int obtenerIDPorNombreUsuario(String nombreUsuario){
+        try{
+            return usuarioService.obtenerIDPorNombreUsuario(nombreUsuario);
+        }catch(Exception ex){
             System.out.println(ex.getMessage()); 
         }
         return -1;

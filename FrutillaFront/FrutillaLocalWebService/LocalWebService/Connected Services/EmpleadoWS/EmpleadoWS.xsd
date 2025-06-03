@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actualizarEmpleado" type="tns:actualizarEmpleado" />
+  <xs:element name="actualizarEmpleadoResponse" type="tns:actualizarEmpleadoResponse" />
+  <xs:element name="agregarEmpleado" type="tns:agregarEmpleado" />
+  <xs:element name="agregarEmpleadoResponse" type="tns:agregarEmpleadoResponse" />
+  <xs:element name="eliminarEmpleado" type="tns:eliminarEmpleado" />
+  <xs:element name="eliminarEmpleadoResponse" type="tns:eliminarEmpleadoResponse" />
+  <xs:element name="obtenerEmpleadoPorId" type="tns:obtenerEmpleadoPorId" />
+  <xs:element name="obtenerEmpleadoPorIdResponse" type="tns:obtenerEmpleadoPorIdResponse" />
   <xs:element name="obtenerEmpleados" type="tns:obtenerEmpleados" />
   <xs:element name="obtenerEmpleadosResponse" type="tns:obtenerEmpleadosResponse" />
+  <xs:complexType name="obtenerEmpleadoPorId">
+    <xs:sequence>
+      <xs:element name="idEmpleado" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerEmpleadoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:empleado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="empleado">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:persona">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="fechaContrato" type="tns:localDate" />
+          <xs:element name="idLocal" type="xs:int" />
+          <xs:element name="salario" type="xs:double" />
+          <xs:element name="tipo" type="xs:unsignedShort" />
+          <xs:element name="turnoTrabajo" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="persona">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string" />
+      <xs:element minOccurs="0" name="apellidoPaterno" type="xs:string" />
+      <xs:element minOccurs="0" name="contraSistema" type="xs:string" />
+      <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
+      <xs:element name="idUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="telefono" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoUsuario" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="localDate" final="extension restriction">
+    <xs:sequence />
+  </xs:complexType>
   <xs:complexType name="obtenerEmpleados">
     <xs:sequence>
       <xs:element name="idLocal" type="xs:int" />
@@ -12,33 +60,34 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleado" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="empleado">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:persona">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="fechaContrato" type="tns:localDate" />
-          <xs:element name="idEmpleado" type="xs:int" />
-          <xs:element name="idLocal" type="xs:int" />
-          <xs:element name="salario" type="xs:double" />
-          <xs:element name="tipo" type="xs:unsignedShort" />
-          <xs:element name="turnoTrabajo" type="xs:boolean" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="persona" abstract="true">
+  <xs:complexType name="agregarEmpleado">
     <xs:sequence>
-      <xs:element name="activo" type="xs:boolean" />
-      <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string" />
-      <xs:element minOccurs="0" name="apellidoPaterno" type="xs:string" />
-      <xs:element minOccurs="0" name="contraSistema" type="xs:string" />
-      <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
-      <xs:element minOccurs="0" name="nombre" type="xs:string" />
-      <xs:element minOccurs="0" name="telefono" type="xs:string" />
-      <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
+      <xs:element minOccurs="0" name="empleado" type="tns:empleado" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
+  <xs:complexType name="agregarEmpleadoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarEmpleado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="empleado" type="tns:empleado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarEmpleadoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarEmpleado">
+    <xs:sequence>
+      <xs:element name="idEmpleado" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarEmpleadoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
   </xs:complexType>
 </xs:schema>

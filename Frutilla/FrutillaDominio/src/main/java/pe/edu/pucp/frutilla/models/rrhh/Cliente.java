@@ -9,23 +9,21 @@ import java.util.ArrayList;
 
 
 public class Cliente extends Persona{
-    private int idCliente;
     // falta inicializar
     private ArrayList <OrdenVenta> ordenesVentas;
 
     public Cliente(){
         this.ordenesVentas = new ArrayList<OrdenVenta>();
+        this.setTipoUsuario("C");
     }
 
     public Cliente(Cliente cliente){
         super(cliente);
-        this.idCliente = cliente.getIdCliente();
         this.ordenesVentas = new ArrayList<OrdenVenta>(cliente.ordenesVentas);
     }
 
-    public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String usuarioSistema, String contraSistema){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
-        this.idCliente = -1;
+    public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String usuarioSistema, String contraSistema, int idUsuario){
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema, idUsuario, "C");
         this.ordenesVentas = new ArrayList<OrdenVenta>();
     }
 
@@ -73,16 +71,8 @@ public class Cliente extends Persona{
         //Agregar logica de compra
         System.out.println("Realizando compra...");
     }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
 	
-	public ArrayList <OrdenVenta> getOrdenesVentas(){
-		return new ArrayList<OrdenVenta> (ordenesVentas); 
-	}
+    public ArrayList <OrdenVenta> getOrdenesVentas(){
+	return new ArrayList<OrdenVenta> (ordenesVentas); 
+    }
 }

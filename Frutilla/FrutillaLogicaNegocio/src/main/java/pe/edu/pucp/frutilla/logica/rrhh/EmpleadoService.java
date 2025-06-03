@@ -70,7 +70,7 @@ public class EmpleadoService {
             throw new Exception("El empleado no puede ser nulo");
         }
 
-        if (empleado.getIdEmpleado() <= 0) {
+        if (empleado.getIdUsuario()<= 0) {
             throw new Exception("El id del empleado no puede ser menor o igual a 0");
         }
 

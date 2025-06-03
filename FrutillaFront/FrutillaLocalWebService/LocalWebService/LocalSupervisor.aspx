@@ -5,21 +5,11 @@
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
       <!-- 2) Header de sección -->
-    <header class="bg-light py-2 border-bottom">
+    <header class="bg-frutilla py-2 border-bottom">
       <div class="container">
         <h2 class="m-0"> Local </h2>
       </div>
     </header>
-
-
-      
-      <!-- Aquí va tu contenido específico, p. ej. detalles del local -->
-        <!-- Blazor 
-            podemos cargar la información de un local!
-            --> 
-      <!-- MVC: @RenderBody() -->
-       
-         <!-- Contenedor del Local -->
 
       <asp:Panel ID="pnlLocal" runat="server" CssClass="card mb-4 shadow-sm">
         <div class="row g-0">
@@ -47,13 +37,22 @@
                 <asp:Label ID="lblTelefono" runat="server" Text="—"></asp:Label>
               </p>
 
-              <asp:Button  ID="lnkEditar" runat="server"
-                          CssClass="btn btn-sm btn-outline-primary"
-                            CommandName="EditarModal"
-                            CommandArgument='<%# Eval("Id") %>'
-                            Text="Editar Local">
-                            
-                </asp:Button>
+                 <div class="mb-5">
+              
+
+                <%-- 
+                  Opción B: si prefieres usar <asp:Button> y abrir el modal
+                  desde el code-behind, quita los atributos data-bs-* y usa
+                  ScriptManager.RegisterStartupScript en el evento OnClick. 
+                --%>
+                 
+                <asp:Button ID="btnEditarLocal" runat="server"
+                            CssClass="btn btn-primary"
+                            Text="Editar Local"
+                            OnClick="btnEditarLocal_Click" />
+                
+            </div>
+
             </div>
           </div>
         </div>
@@ -63,7 +62,7 @@
 
       <!-- 4) Grid de Cards para los módulos de administración -->
       <h5 class="mt-5 mb-3"> Elige el módulo de administración:</h5>
-      <div class="row g-4">
+      <div class="row g-4 justify-content-center">
         <!-- Empleados -->
         <div class="col-6 col-md-3">
           <div class="card h-100 text-center">
@@ -111,61 +110,85 @@
         </div>
       </div>
     </>
-    
-    <asp:Panel ID="pnlModalEditar" runat="server" CssClass="modal fade" 
-           role="dialog" aria-hidden="true" Style="display: none;" >
 
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <!-- Encabezado del Modal -->
-            <div class="modal-header bg-secondary text-white">
-                <h5 class="modal-title" id="lblTituloModal">Editar Empleado</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
+    <!-- ======================================
+        4) DEFINICIÓN DEL MODAL (inicialmente oculto)
+        ====================================== -->
+     <asp:Label 
+ ID="lblError" 
+ runat="server" 
+ CssClass="text-danger" 
+ Visible="false" />
+    <asp:Panel ID="pnlModalLocal" runat="server" CssClass="modal fade" Style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!-- Encabezado del modal -->
+                <div class="modal-header bg-secondary text-white">
+                    <h5 id="lblTituloModalLocal" class="modal-title">Editar Local</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
 
-            <!-- Cuerpo del Modal: aquí va tu formulario de edición -->
-            <div class="modal-body">
-                <asp:HiddenField ID="hfIdEmpleado" runat="server" />
+                <!-- Cuerpo del modal: formulario de edición -->
+                <div class="modal-body">
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="txtNombreModal" class="form-label">Nombre Completo</label>
-                        <asp:TextBox ID="txtNombreModal" runat="server" CssClass="form-control" />
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="txtNombreLocal" class="form-label">Nombre</label>
+                            <asp:TextBox ID="txtNombreLocal" runat="server" CssClass="form-control" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="txtTelefonoLocal" class="form-label">Teléfono</label>
+                            <asp:TextBox ID="txtTelefonoLocal" runat="server" CssClass="form-control" />
+                        </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="txtTurnoModal" class="form-label">Turno de Trabajo</label>
-                        <asp:TextBox ID="txtTurnoModal" runat="server" CssClass="form-control" />
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="txtDireccionLocal" class="form-label">Dirección</label>
+                            <asp:TextBox ID="txtDireccionLocal" runat="server" 
+                                            CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="txtDescripcionLocal" class="form-label">Descripcion</label>
+                            <asp:TextBox ID="txtDescripcionLocal" runat="server" 
+                                            CssClass="form-control" TextMode="MultiLine" Rows="2" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="ddlEstadoLocal" class="form-label">Estado</label>
+                            <asp:DropDownList ID="ddlEstadoLocal" runat="server" CssClass="form-select">
+                                <asp:ListItem Value="true">Activo</asp:ListItem>
+                                <asp:ListItem Value="false">Inactivo</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="ddlTipoModal" class="form-label">Tipo</label>
-                        <asp:DropDownList ID="ddlTipoModal" runat="server" CssClass="form-select">
-                            <asp:ListItem Value="Empleado">Empleado</asp:ListItem>
-                            <asp:ListItem Value="Supervisor">Supervisor</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div class="col-md-8 mb-3">
-                        <label for="txtCorreoModal" class="form-label">Correo</label>
-                        <asp:TextBox ID="txtCorreoModal" runat="server" CssClass="form-control" />
-                    </div>
+                <!-- Pie del modal: botones Guardar / Cancelar -->
+                <div class="modal-footer">
+                    <asp:Button ID="btnGuardarLocalModal" runat="server"
+                                CssClass="btn btn-success" Text="Guardar"
+                                OnClick="btnGuardarLocalModal_Click" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
                 </div>
-                <!-- Agrega más campos según la información del empleado -->
-            </div>
-
-            <!-- Pie del modal: botones Cancelar / Guardar -->
-            <div class="modal-footer">
-                <asp:Button ID="btnGuardarModal" runat="server" 
-                            CssClass="btn btn-success" Text="Guardar" 
-                            OnClick="btnGuardarModal_Click" />
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cancelar
-                </button>
+               
+                    
             </div>
         </div>
-    </div>
-</asp:Panel>
+
+
+    </asp:Panel>
+    <!-- /FIN DEL MODAL -->
+
+    
+   
 
 </asp:Content>
 
