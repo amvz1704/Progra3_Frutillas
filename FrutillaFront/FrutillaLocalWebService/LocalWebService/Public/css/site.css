@@ -106,3 +106,41 @@ input[type="date"] {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.bg-frutilla {
+    background-color: #F2FFB5;
+    color: #333;
+}
+
+.btn-frutilla {
+    background-color: #6FA257;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-frutilla:hover {
+    background-color: #4F7E38;
+}
+
+.nav-frutilla .nav-link {
+background-color: #F8FBD9; /* Fondo normal */
+color: #333; /* Texto normal */
+border-radius: 50px; /* Pastilla */
+margin: 0 5px;
+transition: 0.3s ease;
+}
+
+/* Al pasar el mouse */
+.nav-frutilla .nav-link:hover {
+    background-color: #cfe4a6; /* Color al hacer hover */
+    color: #000;
+}
+
+/* Enlace activo (el seleccionado) */
+.nav-frutilla .nav-link.active {
+    background-color: #6FA257; /* Fondo del activo */
+    color: white; /* Texto del activo */
+}
