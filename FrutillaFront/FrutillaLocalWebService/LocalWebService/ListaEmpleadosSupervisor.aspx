@@ -18,9 +18,9 @@
         <div class="col-md-6">
             <div class="input-group">
                 <asp:TextBox ID="txtBuscar" runat="server"
-                                CssClass="form-control"
+                                CssClass="form-control input-frutilla"
                                 Placeholder="Buscar Empleado"></asp:TextBox>
-                <button class="btn btn-outline-secondary" type="button" onclick="javascript:buscar_Click()">
+                <button class="btn-frutilla" type="button" onclick="javascript:buscar_Click()">
                     <i class="bi bi-search"></i>
                 </button>
             </div>
@@ -29,7 +29,7 @@
         <!-- Columna intermedia: dropdown de filtros -->
         <div class="col-md-3 text-md-start text-center mt-2 mt-md-0">
             <!-- Ejemplo de dropdown “Filtros” con checkboxes -->
-            <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="form-select" 
+            <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="select-frutilla" 
             DataTextField="Nombre" DataValueField="IdEmpleado" AppendDataBoundItems="true"
                 OnSelectedIndexChanged="DdlEmpleado_SelectedIndexChanged" AutoPostBack="True">
                 <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
@@ -42,7 +42,7 @@
             <!-- Este botón puede, por ejemplo, redirigir a EmpleadoEditar.aspx -->
             <asp:Button ID="btnAgregarEmpleado" runat="server"
                         Text="Agregar Empleado"
-                        CssClass="btn btn-success"
+                        CssClass="btn-frutilla"
                         OnClick="btnAgregarEmpleado_Click" />
         </div>
     </div>

@@ -12,7 +12,6 @@
     </header>
 
     <div class="container">
-        <asp:Label ID="lblRegistro" runat="server" CssClass="text-bg-light"></asp:Label>
         <div style="background-color: #F8FBD9; padding: 15px; border-radius: 5px;">
             <div class="date-filter">
                 <input type="date" id="datePicker" runat="server" />

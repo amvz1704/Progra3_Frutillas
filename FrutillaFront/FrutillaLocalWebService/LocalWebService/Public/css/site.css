@@ -144,3 +144,84 @@ transition: 0.3s ease;
     background-color: #6FA257; /* Fondo del activo */
     color: white; /* Texto del activo */
 }
+
+.navbar-frutilla {
+    background-color: #F8FBD9;
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    font-family: sans-serif;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+    .navbar-frutilla .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: #6FA257;
+        display: flex;
+        align-items: center;
+    }
+
+        .navbar-frutilla .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+    .navbar-frutilla .nav-links {
+        display: flex;
+        gap: 15px;
+    }
+
+        .navbar-custom .nav-links a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+.navbar-frutilla .nav-links a:hover,
+.navbar-frutilla .nav-links a.active {
+    background-color: #6FA257;
+    color: white;
+}
+
+.select-frutilla {
+    background-color: #F8FBD9;
+    color: #333;
+    border: 2px solid #6FA257;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    appearance: none; /* quita el estilo por defecto en algunos navegadores */
+}
+
+    .select-frutilla:focus {
+        border-color: #6FA257;
+        outline: none;
+        box-shadow: 0 0 5px rgba(111, 162, 87, 0.4);
+    }
+
+.input-frutilla {
+    background-color: #F8FBD9;
+    color: #333;
+    border: 2px solid #6FA257;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 16px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+    .input-frutilla::placeholder {
+        color: #999;
+    }
+
+    .input-frutilla:focus {
+        border-color: #6FA257;
+        outline: none;
+        box-shadow: 0 0 5px rgba(111, 162, 87, 0.4);
+    }
