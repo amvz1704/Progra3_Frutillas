@@ -186,6 +186,7 @@
     <Content Include="Public\fonts\css\v4-shims.min.css" />
     <Content Include="Public\fonts\css\v5-font-face.css" />
     <Content Include="Public\fonts\css\v5-font-face.min.css" />
+    <Content Include="Public\images\frutillaLogo.jpeg" />
     <Content Include="Public\images\pucp.png" />
     <Content Include="Public\js\bootstrap.bundle.js" />
     <Content Include="Public\js\bootstrap.bundle.min.js" />

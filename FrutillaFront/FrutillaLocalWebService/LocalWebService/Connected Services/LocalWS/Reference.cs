@@ -16,16 +16,6 @@ namespace LocalWebService.LocalWS {
     public interface LocalWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.LocalWS.obtenerIdLocalResponse obtenerIdLocal(LocalWebService.LocalWS.obtenerIdLocalRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalResponse")]
-        System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerIdLocalResponse> obtenerIdLocalAsync(LocalWebService.LocalWS.obtenerIdLocalRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarTodosLocalesRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/listarTodosLocalesResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
@@ -34,6 +24,16 @@ namespace LocalWebService.LocalWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarTodosLocalesRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/listarTodosLocalesResponse")]
         System.Threading.Tasks.Task<LocalWebService.LocalWS.listarTodosLocalesResponse> listarTodosLocalesAsync(LocalWebService.LocalWS.listarTodosLocalesRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.LocalWS.obtenerIdLocalResponse obtenerIdLocal(LocalWebService.LocalWS.obtenerIdLocalRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalResponse")]
+        System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerIdLocalResponse> obtenerIdLocalAsync(LocalWebService.LocalWS.obtenerIdLocalRequest request);
     }
     
     /// <remarks/>
@@ -190,8 +190,6 @@ namespace LocalWebService.LocalWS {
         
         private localDate fechaContratoField;
         
-        private int idEmpleadoField;
-        
         private int idLocalField;
         
         private double salarioField;
@@ -214,18 +212,6 @@ namespace LocalWebService.LocalWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
-        public int idEmpleado {
-            get {
-                return this.idEmpleadoField;
-            }
-            set {
-                this.idEmpleadoField = value;
-                this.RaisePropertyChanged("idEmpleado");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
         public int idLocal {
             get {
                 return this.idLocalField;
@@ -237,7 +223,7 @@ namespace LocalWebService.LocalWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
         public double salario {
             get {
                 return this.salarioField;
@@ -249,7 +235,7 @@ namespace LocalWebService.LocalWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public ushort tipo {
             get {
                 return this.tipoField;
@@ -261,7 +247,7 @@ namespace LocalWebService.LocalWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public bool turnoTrabajo {
             get {
                 return this.turnoTrabajoField;
@@ -455,7 +441,7 @@ namespace LocalWebService.LocalWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/")]
-    public abstract partial class persona : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class persona : object, System.ComponentModel.INotifyPropertyChanged {
         
         private bool activoField;
         
@@ -467,9 +453,13 @@ namespace LocalWebService.LocalWS {
         
         private string correoElectronicoField;
         
+        private int idUsuarioField;
+        
         private string nombreField;
         
         private string telefonoField;
+        
+        private string tipoUsuarioField;
         
         private string usuarioSistemaField;
         
@@ -535,6 +525,18 @@ namespace LocalWebService.LocalWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        public int idUsuario {
+            get {
+                return this.idUsuarioField;
+            }
+            set {
+                this.idUsuarioField = value;
+                this.RaisePropertyChanged("idUsuario");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public string nombre {
             get {
                 return this.nombreField;
@@ -546,7 +548,7 @@ namespace LocalWebService.LocalWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
         public string telefono {
             get {
                 return this.telefonoField;
@@ -558,7 +560,19 @@ namespace LocalWebService.LocalWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public string tipoUsuario {
+            get {
+                return this.tipoUsuarioField;
+            }
+            set {
+                this.tipoUsuarioField = value;
+                this.RaisePropertyChanged("tipoUsuario");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
         public string usuarioSistema {
             get {
                 return this.usuarioSistemaField;
@@ -576,6 +590,34 @@ namespace LocalWebService.LocalWS {
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosLocales", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosLocalesRequest {
+        
+        public listarTodosLocalesRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosLocalesResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosLocalesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.LocalWS.local[] @return;
+        
+        public listarTodosLocalesResponse() {
+        }
+        
+        public listarTodosLocalesResponse(LocalWebService.LocalWS.local[] @return) {
+            this.@return = @return;
         }
     }
     
@@ -615,34 +657,6 @@ namespace LocalWebService.LocalWS {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosLocales", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosLocalesRequest {
-        
-        public listarTodosLocalesRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosLocalesResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosLocalesResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.LocalWS.local[] @return;
-        
-        public listarTodosLocalesResponse() {
-        }
-        
-        public listarTodosLocalesResponse(LocalWebService.LocalWS.local[] @return) {
-            this.@return = @return;
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface LocalWSChannel : LocalWebService.LocalWS.LocalWS, System.ServiceModel.IClientChannel {
     }
@@ -671,6 +685,27 @@ namespace LocalWebService.LocalWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.LocalWS.listarTodosLocalesResponse LocalWebService.LocalWS.LocalWS.listarTodosLocales(LocalWebService.LocalWS.listarTodosLocalesRequest request) {
+            return base.Channel.listarTodosLocales(request);
+        }
+        
+        public LocalWebService.LocalWS.local[] listarTodosLocales() {
+            LocalWebService.LocalWS.listarTodosLocalesRequest inValue = new LocalWebService.LocalWS.listarTodosLocalesRequest();
+            LocalWebService.LocalWS.listarTodosLocalesResponse retVal = ((LocalWebService.LocalWS.LocalWS)(this)).listarTodosLocales(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.LocalWS.listarTodosLocalesResponse> LocalWebService.LocalWS.LocalWS.listarTodosLocalesAsync(LocalWebService.LocalWS.listarTodosLocalesRequest request) {
+            return base.Channel.listarTodosLocalesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.LocalWS.listarTodosLocalesResponse> listarTodosLocalesAsync() {
+            LocalWebService.LocalWS.listarTodosLocalesRequest inValue = new LocalWebService.LocalWS.listarTodosLocalesRequest();
+            return ((LocalWebService.LocalWS.LocalWS)(this)).listarTodosLocalesAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.LocalWS.obtenerIdLocalResponse LocalWebService.LocalWS.LocalWS.obtenerIdLocal(LocalWebService.LocalWS.obtenerIdLocalRequest request) {
             return base.Channel.obtenerIdLocal(request);
         }
@@ -691,27 +726,6 @@ namespace LocalWebService.LocalWS {
             LocalWebService.LocalWS.obtenerIdLocalRequest inValue = new LocalWebService.LocalWS.obtenerIdLocalRequest();
             inValue.idLocal = idLocal;
             return ((LocalWebService.LocalWS.LocalWS)(this)).obtenerIdLocalAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.LocalWS.listarTodosLocalesResponse LocalWebService.LocalWS.LocalWS.listarTodosLocales(LocalWebService.LocalWS.listarTodosLocalesRequest request) {
-            return base.Channel.listarTodosLocales(request);
-        }
-        
-        public LocalWebService.LocalWS.local[] listarTodosLocales() {
-            LocalWebService.LocalWS.listarTodosLocalesRequest inValue = new LocalWebService.LocalWS.listarTodosLocalesRequest();
-            LocalWebService.LocalWS.listarTodosLocalesResponse retVal = ((LocalWebService.LocalWS.LocalWS)(this)).listarTodosLocales(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.LocalWS.listarTodosLocalesResponse> LocalWebService.LocalWS.LocalWS.listarTodosLocalesAsync(LocalWebService.LocalWS.listarTodosLocalesRequest request) {
-            return base.Channel.listarTodosLocalesAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.LocalWS.listarTodosLocalesResponse> listarTodosLocalesAsync() {
-            LocalWebService.LocalWS.listarTodosLocalesRequest inValue = new LocalWebService.LocalWS.listarTodosLocalesRequest();
-            return ((LocalWebService.LocalWS.LocalWS)(this)).listarTodosLocalesAsync(inValue);
         }
     }
 }
