@@ -1,25 +1,66 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/WebServices/WebService.java to edit this template
- */
+
 package pe.edu.pucp.frutilla.WS;
 
-import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
+import jakarta.xml.ws.WebServiceException;
+import java.util.List;
+import pe.edu.pucp.frutilla.logica.venta.ComprobantePagoService;
+import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
 
-/**
- *
- * @author ADMIN
- */
 @WebService(serviceName = "ComprobanteWS")
 public class ComprobanteWS {
 
-    /**
-     * This is a sample web service operation
-     */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
+    private final ComprobantePagoService comprobanteService;
+    
+    public ComprobanteWS(){
+        comprobanteService = new ComprobantePagoService();
+    }
+    
+    
+    
+    @WebMethod(operationName = "agregarComprobante")
+    public void agregarComprobante(@WebParam(name = "Comprobante") ComprobantePago comp) {
+        try {
+            comprobanteService.agregar(comp);
+        } catch (Exception ex) {
+            throw new WebServiceException("Error al agregar el comprobante: " + ex.getMessage());
+        }
+    }
+    
+    @WebMethod(operationName = "actualizarComprobante")
+    public void actualizarComprobante(@WebParam(name = "Comprobante") ComprobantePago comp) {
+        try {
+            comprobanteService.actualizar(comp);
+        } catch (Exception ex) {
+            throw new WebServiceException("Error al actualizar el comprobante: " + ex.getMessage());
+        }
+    }
+    
+    @WebMethod(operationName = "eliminarComprobante")
+    public void eliminarComprobante(int idComprobante) {
+        try {
+            comprobanteService.eliminar(idComprobante);
+        } catch (Exception ex) {              
+            throw new WebServiceException("Error al eliminar comprobante: " + ex.getMessage());
+        }
+    }
+    
+    @WebMethod(operationName = "obtenerComprobante") 
+    public ComprobantePago obtenerComprobante(@WebParam(name = "idComprobante") int idComprobante) {
+        try {
+            return comprobanteService.obtenerPorId(idComprobante);
+        } catch (Exception ex) {
+            throw new WebServiceException("Error al obtener Comprobante: " + ex.getMessage());
+        }
+    }
+    @WebMethod(operationName = "listarComprobantes")
+    public List<ComprobantePago> listarComprobantes() {
+        try {
+            return comprobanteService.listarComprobantes();
+        } catch (Exception ex) {
+            throw new WebServiceException("Error al listar comprobantes: " + ex.getMessage());
+        }
     }
 }
