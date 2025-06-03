@@ -37,15 +37,9 @@ public class UsuarioService {
             throw new Exception("La persona no puede ser nula");
         }
 
-        if(persona instanceof Empleado){
-            if (((Empleado) persona).getIdEmpleado() <= 0) {
-                throw new Exception("El id del empleado no puede ser menor o igual a 0");
-            }
-        } else if (persona instanceof Cliente) {
-            if (((Cliente) persona).getIdCliente() <= 0) {
-                throw new Exception("El id del cliente no puede ser menor o igual a 0");
-            }
-        }   
+        if (persona.getIdUsuario()<= 0) {
+            throw new Exception("El id del usuario no puede ser menor o igual a 0");
+        }
 
         if (persona.getUsuarioSistema() == null || persona.getUsuarioSistema().trim().isEmpty()) {
             throw new Exception("El usuario no puede ser vacío");
@@ -85,6 +79,13 @@ public class UsuarioService {
         }
 
         return usuarioMySQL.validarUsuario(usuario, password);
+    }
+    
+    public int obtenerIDPorNombreUsuario(String nombreUsuario) throws Exception{
+        if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
+            throw new Exception("El nombre de usuario no puede ser vacío");
+        }
+        return usuarioMySQL.obtenerIDPorNombreUsuario(nombreUsuario.trim());
     }
     
 }

@@ -43,7 +43,7 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
     protected void setInsertParameters(PreparedStatement ps, Persona entity) throws SQLException {
         ps.setString(1, entity.getUsuarioSistema());
         ps.setString(2, entity.getContraSistema());
-        ps.setBoolean(3, entity.getActivo());
+        ps.setBoolean(3, true);
         if(entity instanceof Empleado) {
             ps.setString(4,"E");
         } else {
@@ -63,11 +63,10 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
         Persona persona = null;
         if(rs.getString("tipo").equals("E")) {
             persona = new Empleado();
-            ((Empleado) persona).setIdEmpleado(rs.getInt("idUsuario"));
         } else {
             persona = new Cliente();
-            ((Cliente) persona).setIdCliente(rs.getInt("idUsuario"));
         }
+        persona.setIdUsuario(rs.getInt("idUsuario"));
         persona.setUsuarioSistema(rs.getString("usuarioSistema"));
         persona.setContraSistema(rs.getString("contrasSistema"));
         persona.setActivo(rs.getBoolean("activo"));
@@ -76,11 +75,7 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
 
     @Override
     protected void setId(Persona entity, Integer id) {
-        if(entity instanceof Empleado) {
-            ((Empleado) entity).setIdEmpleado(id);
-        } else {
-            ((Cliente) entity).setIdCliente(id);
-        }
+        entity.setIdUsuario(id);
     }
     
     @Override
@@ -104,4 +99,24 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
         return null;
     }
     
+    @Override
+    public int obtenerIDPorNombreUsuario(String nombreUsuario) throws Exception{
+
+        String query = "SELECT idUsuario FROM Usuario WHERE usuarioSistema = ?";
+        
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);) 
+        {
+            ps.setString(1, nombreUsuario);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("idUsuario");
+                }
+            }
+        } catch (Exception ex) {
+            throw new Exception("Error al validar nombre de usuario", ex);
+        }
+
+        return -1;
+    }
 }
