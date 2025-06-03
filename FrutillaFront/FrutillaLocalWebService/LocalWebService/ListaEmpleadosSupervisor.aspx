@@ -6,8 +6,8 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
      <!-- 2) Header de sección -->
-    
-    <header class="bg-light py-2 border-bottom">
+
+    <header class="py-2 border-bottom bg-frutilla">
       <div class="container">
         <h2 class="m-0"> Local > Empleados </h2>
       </div>
@@ -19,30 +19,35 @@
     <div class="row align-items-center mb-3">
 
         <!-- Columna izquierda: campo de búsqueda -->
-        
 
-        <!-- Columna intermedia: dropdown de filtros FALTA IMPLEMENTAR -->
-        
-
-        <!-- Título + Botón "Agregar Empleado" -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-
-            <div class="col-md-6">
-                <div class="input-group">
-                    <asp:TextBox ID="txtBuscar" runat="server"
-                                    CssClass="form-control"
-                                    Placeholder="Buscar Empleado"></asp:TextBox>
-                    <button class="btn btn-outline-secondary" type="button" onclick="javascript:buscar_Click()">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <asp:TextBox ID="txtBuscar" runat="server"
+                                CssClass="form-control input-frutilla"
+                                Placeholder="Buscar Empleado"></asp:TextBox>
+                <button class="btn-frutilla" type="button" onclick="javascript:buscar_Click()">
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
-            
+        </div>
+
+        <!-- Columna intermedia: dropdown de filtros -->
+        <div class="col-md-3 text-md-start text-center mt-2 mt-md-0">
+            <!-- Ejemplo de dropdown “Filtros” con checkboxes -->
+            <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="select-frutilla" 
+            DataTextField="Nombre" DataValueField="IdEmpleado" AppendDataBoundItems="true"
+                OnSelectedIndexChanged="DdlEmpleado_SelectedIndexChanged" AutoPostBack="True">
+                <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
+            </asp:DropDownList>
+           
+        </div>
+
 
             <asp:Button ID="btnAgregarEmpleado" runat="server"
-                CssClass="btn btn-success"
-                Text="Agregar Empleado"
-                OnClick="btnAgregarEmpleado_Click" />
+
+                        Text="Agregar Empleado"
+                        CssClass="btn-frutilla"
+                        OnClick="btnAgregarEmpleado_Click" />
         </div>
     </div>
    <!-- 1. FIN BARRA SUPERIOR: FIN-->

@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <title>Frutilla - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="/Public/css/site.css" rel="stylesheet" />
     <style>
         body {
             background-color: #F8FBD9;
@@ -27,7 +28,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card shadow p-4">
-                        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                        <ul class="nav nav-frutilla mb-3 justify-content-center" id="pills-tab" role="tablist">
                             <li class="nav-item text-center" role="presentation">
                                 <a class="nav-link active" id="pills-login-tab" data-bs-toggle="pill" href="Login.aspx" role="tab" aria-controls="pills-login" aria-selected="true">Ingresar</a>
                             </li>
@@ -46,7 +47,7 @@
                         <asp:Label ID="lblPassword" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
                         <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
                         <div class="d-grid">
-                            <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
+                            <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn-frutilla" OnClick="btnLogin_Click" />
                         </div>
                     </div>
                 </div>
