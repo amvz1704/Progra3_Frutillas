@@ -46,9 +46,9 @@ public class PedidoWS {
         try {
             return daoLineaOrdenDeVenta.listarPorOrden(idOrden);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.err.println("Error al obtener el detalle del pedido con ID " + idOrden + ": " + ex.getMessage());
+            throw new RuntimeException("No se pudo obtener el detalle del pedido.");
         }
-        return null;
     }
     
 }
