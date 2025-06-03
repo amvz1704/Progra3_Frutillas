@@ -1,50 +1,104 @@
-# Archivos generados por Maven
-/target/
-!.mvn/wrapper/maven-wrapper.jar
-
-# Archivos generados por NetBeans
-nbproject/private/
-build/
-nbbuild/
-dist/
-.nb-gradle/
-*.orig
-
-# Archivos de configuración locales (innecesarios para otros devs)
+####################################
+# GENERALES (aplica a todos los entornos)
+####################################
 *.log
 *.lock
 *.bak
 *.swp
+*.tmp
+*.temp
+*.~*
+*.orig
 *.lst
 
-# Archivos de sistema operativo
+# Archivos de sistema
 .DS_Store
 Thumbs.db
 ehthumbs.db
 desktop.ini
 
-# Archivos de IDE en general
-*.iml
-*.ipr
-*.iws
-.idea/
-*.class
+####################################
+# NETBEANS (Java)
+####################################
+nbproject/private/
+build/
+nbbuild/
+dist/
+.nb-gradle/
 
-# Eclipse / VSCode (por si abres en otros IDEs)
-.project
-.classpath
-.c9/
-.settings/
-.vscode/
-
-# Archivos temporales
-*.tmp
-*.temp
-*.~*
-
-# Los jars generados
-*.jar
-/Frutilla/*.jar
+####################################
+# MAVEN
+####################################
 /target/
+!/mvn/wrapper/maven-wrapper.jar
+.mvn/
+
+####################################
+# JAVA (general)
+####################################
+*.class
+*.jar
+*.war
+*.ear
+*.class
+*.jnilib
+*.hprof
+
+####################################
+# VISUAL STUDIO (.NET)
+####################################
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dbmdl
+*.VC.db
+*.pdb
+*.cache
+*.bak
+*.obj
+*.tlh
+*.tli
+*.ipch
+*.aps
+*.ncb
+
+# Compilación
+bin/
+obj/
+*.exe
+*.dll
+
+# Config local
+*.config
+web.config
+appsettings.json
+
+####################################
+# VISUAL STUDIO CODE / ECLIPSE / OTROS IDEs
+####################################
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+.c9/
+
+####################################
+# CONTROL DE VERSIONES MICROSOFT
+####################################
+*.vspscc
+*.vssscc
+
+####################################
+# CARPETAS ESPECÍFICAS DE TU PROYECTO (Java)
+####################################
+/Frutilla/FrutillaWS/target/
 /Frutilla/FrutillaPersistencia/nbproject/
 /Frutilla/FrutillaLogicaNegocio/target/
+/Frutilla/*.jar
+
