@@ -31,7 +31,7 @@ public class InventarioWS {
     }
     
     @WebMethod(operationName = "listarTodos")
-    public List<Producto> listarTodos(int idLocal){
+    public List<Producto> listarTodos(@WebParam(name = "idLocal")int idLocal){
         try{
             return inventarioService.listar(idLocal);
         }
@@ -60,7 +60,7 @@ public class InventarioWS {
         }
     }
     
-    @WebMethod(operationName = "actualizarProducto")
+    @WebMethod(operationName = "eliminarProducto")
     public void eliminarProducto(int idProducto, int idLocal){
         try{
             inventarioService.eliminar(idProducto, idLocal);
