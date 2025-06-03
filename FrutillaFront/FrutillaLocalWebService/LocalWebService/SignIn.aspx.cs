@@ -48,8 +48,38 @@ namespace LocalWebService
             if (string.IsNullOrEmpty(nombre)) { lblNombre.Text = "Ingrese su nombre"; esValido = false; }
             if (string.IsNullOrEmpty(apPaterno)) { lblApPaterno.Text = "Ingrese su apellido paterno"; esValido = false; }
             if (string.IsNullOrEmpty(apMaterno)) { lblApMaterno.Text = "Ingrese su apellido materno"; esValido = false; }
-            if (string.IsNullOrEmpty(usuario)) { lblUsuario.Text = "Ingrese un nombre de usuario"; esValido = false; }
-            if (string.IsNullOrEmpty(password)) { lblPassword.Text = "Ingrese una contraseña"; esValido = false; }
+            if (string.IsNullOrEmpty(usuario))
+            {
+                lblUsuario.Text = "Ingrese un nombre de usuario";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(usuario, @"^[a-zA-Z0-9_]+$"))
+            {
+                lblUsuario.Text = "Solo se permite una palabra sin espacios, letras, números o guion bajo.";
+                esValido = false;
+            }
+
+            if (string.IsNullOrEmpty(password)) 
+            { 
+                lblPassword.Text = "Ingrese una contraseña"; 
+                esValido = false; 
+            }
+            else if (password.Length < 6)
+            {
+                lblPassword.Text = "La contraseña debe tener al menos 6 caracteres.";
+                esValido = false;
+            }
+            else if (password.Contains(" "))
+            {
+                lblPassword.Text = "La contraseña no debe contener espacios.";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(password, @"^[a-zA-Z0-9]+$"))
+            {
+                lblPassword.Text = "Solo se permiten letras y números.";
+                esValido = false;
+            }
+
 
             if (string.IsNullOrEmpty(correo))
             {
