@@ -28,7 +28,7 @@ public class EmpleadoWS {
     }
     
     @WebMethod(operationName = "obtenerEmpleados")
-    public List<Empleado> obtenerLocal(@WebParam (name ="idLocal") int idLocal) {
+    public List<Empleado> obtenerEmpleados(@WebParam (name ="idLocal") int idLocal) {
         try{
             return daoEmpleado.listarTodosPorLocal(idLocal);
         }catch(Exception ex){ 

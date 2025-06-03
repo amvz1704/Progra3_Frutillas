@@ -50,6 +50,16 @@
   <xs:complexType name="localDate" final="extension restriction">
     <xs:sequence />
   </xs:complexType>
+  <xs:complexType name="obtenerEmpleados">
+    <xs:sequence>
+      <xs:element name="idLocal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerEmpleadosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleado" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="agregarEmpleado">
     <xs:sequence>
       <xs:element minOccurs="0" name="empleado" type="tns:empleado" />
@@ -68,16 +78,6 @@
   <xs:complexType name="actualizarEmpleadoResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerEmpleados">
-    <xs:sequence>
-      <xs:element name="idLocal" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerEmpleadosResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleado" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarEmpleado">

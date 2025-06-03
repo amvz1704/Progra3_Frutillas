@@ -1,5 +1,4 @@
 ﻿
-using LocalWebService.EmpleadoWS;
 using LocalWebService.LocalWS;
 using System;
 using System.Collections.Generic;
@@ -27,9 +26,10 @@ namespace LocalWebService
 
         private void CargarDatosLocal()
         {
-            
+
             // Obtiene el objeto Local
-            local local = daoLocal.obtenerIdLocal(LOCAL_ID);
+            var client = new LocalWSClient();
+            local local = client.obtenerIdLocal(LOCAL_ID);
 
             if (local != null)
             {
