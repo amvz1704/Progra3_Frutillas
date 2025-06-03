@@ -40,8 +40,8 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
     //
     @Override 
     protected String getSelectByIdQuery() {
-        // No se usa individualmente por ID
-        return null;
+        
+        return "CALL LINEA_ORDEN_VENTA_LISTAR_X_ORDEN(?)";
     }
 
     @Override
@@ -140,7 +140,7 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         LineaOrdenDeVenta linea = new LineaOrdenDeVenta();
         linea.setIdLineaVenta(rs.getInt("idLineaOrdenVenta"));
         linea.setCantidad(rs.getInt("cantidad"));
-        linea.setSubtotal(rs.getDouble("subTotal"));
+        linea.setSubtotal(rs.getDouble("subtotal"));
 
         ProductoMySQL productoDAO = new ProductoMySQL();
         Producto producto = productoDAO.obtener(rs.getInt("idProducto"));
