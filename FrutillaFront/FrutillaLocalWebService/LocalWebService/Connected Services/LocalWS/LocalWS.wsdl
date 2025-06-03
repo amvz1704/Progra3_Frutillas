@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/LocalWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="obtenerIdLocal">
-    <part name="parameters" element="tns:obtenerIdLocal" />
+  <message name="obtenerLocal">
+    <part name="parameters" element="tns:obtenerLocal" />
   </message>
-  <message name="obtenerIdLocalResponse">
-    <part name="parameters" element="tns:obtenerIdLocalResponse" />
+  <message name="obtenerLocalResponse">
+    <part name="parameters" element="tns:obtenerLocalResponse" />
   </message>
   <message name="actualizarLoc">
     <part name="parameters" element="tns:actualizarLoc" />
@@ -18,9 +18,9 @@
     <part name="parameters" element="tns:actualizarLocResponse" />
   </message>
   <portType name="LocalWS">
-    <operation name="obtenerIdLocal">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalRequest" message="tns:obtenerIdLocal" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalResponse" message="tns:obtenerIdLocalResponse" />
+    <operation name="obtenerLocal">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalRequest" message="tns:obtenerLocal" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalResponse" message="tns:obtenerLocalResponse" />
     </operation>
     <operation name="actualizarLoc">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocRequest" message="tns:actualizarLoc" />
@@ -29,7 +29,7 @@
   </portType>
   <binding name="LocalWSPortBinding" type="tns:LocalWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="obtenerIdLocal">
+    <operation name="obtenerLocal">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

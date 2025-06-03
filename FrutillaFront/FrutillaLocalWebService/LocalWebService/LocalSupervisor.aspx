@@ -40,11 +40,6 @@
                  <div class="mb-5">
               
 
-                <%-- 
-                  Opción B: si prefieres usar <asp:Button> y abrir el modal
-                  desde el code-behind, quita los atributos data-bs-* y usa
-                  ScriptManager.RegisterStartupScript en el evento OnClick. 
-                --%>
                  
                 <asp:Button ID="btnEditarLocal" runat="server"
                             CssClass="btn btn-primary"

@@ -36,7 +36,7 @@
             <!-- Ejemplo de dropdown “Filtros” con checkboxes -->
             <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="select-frutilla" 
             DataTextField="Nombre" DataValueField="IdEmpleado" AppendDataBoundItems="true"
-                OnSelectedIndexChanged="DdlEmpleado_SelectedIndexChanged" AutoPostBack="True">
+                 AutoPostBack="True">
                 <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
             </asp:DropDownList>
            

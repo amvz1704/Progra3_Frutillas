@@ -26,10 +26,11 @@ public class LocalWS {
         daoLocal = new LocalService();
     }
     
-    @WebMethod(operationName = "obtenerIdLocal")
+    @WebMethod(operationName = "obtenerLocal")
     public Local obtenerLocal(@WebParam (name ="idLocal") int idLocal) {
         try{
-            return daoLocal.obtenerPorId(idLocal);
+            LocalService nuevo = new LocalService(); 
+            return nuevo.obtenerPorId(idLocal);
         }catch(Exception ex){ 
             System.out.println(ex.getMessage()); 
         }
