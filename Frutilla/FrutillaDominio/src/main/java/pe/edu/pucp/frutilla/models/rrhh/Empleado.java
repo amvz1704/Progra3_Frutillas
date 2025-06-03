@@ -3,7 +3,6 @@ package pe.edu.pucp.frutilla.models.rrhh;
 import java.time.LocalDate;
 
 public class Empleado extends Persona{
-    private int idEmpleado;
     private LocalDate fechaContrato;
     private double salario;
     // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
@@ -14,11 +13,10 @@ public class Empleado extends Persona{
 
     public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno, 
     String correoElectronico, String telefono, LocalDate fechaContrato,
-    double salario, String usuarioSistema, String contraSistema, char tipo, int idLocal){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema);
+    double salario, String usuarioSistema, String contraSistema, char tipo, int idLocal, int idUsuario ){
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema, idUsuario, "E");
         this.fechaContrato = fechaContrato;
         this.salario = salario;
-        this.idEmpleado = -1;
         this.turnoTrabajo = false;
         this.tipo = tipo;
         this.idLocal = idLocal;
@@ -28,36 +26,27 @@ public class Empleado extends Persona{
         super(empleado);
         this.fechaContrato = empleado.fechaContrato;
         this.salario = empleado.salario;
-        this.idEmpleado = empleado.idEmpleado;
         this.turnoTrabajo = empleado.turnoTrabajo;
         this.tipo = empleado.tipo;
         this.idLocal = empleado.idLocal;
     }
 
-	public Empleado(){ 
-	}
+    public Empleado(){ 
+        this.setTipoUsuario("E");
+    }
 	
-	@Override
-	public String toString(){
-		return "Id: " + String.valueOf(idEmpleado) + ", " + super.toString() + ", Salario: " + String.valueOf(salario) + "\n";
-	}
-
-	//para asignar turno  -- nuevo agregado
-	public void asignarNoche(){
-		this.turnoTrabajo = true; 
-	} 
-	
-	public void asignarManana(){
-		this.turnoTrabajo = false; 
-	}
-
-	
-    public int getIdEmpleado() {
-        return idEmpleado;
+    @Override
+    public String toString(){
+        return super.toString() + ", Salario: " + String.valueOf(salario) + "\n";
     }
 
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    //para asignar turno  -- nuevo agregado
+    public void asignarNoche(){
+            this.turnoTrabajo = true; 
+    } 
+	
+    public void asignarManana(){
+	this.turnoTrabajo = false; 
     }
 
     public LocalDate getFechaContrato() {

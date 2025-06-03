@@ -57,7 +57,7 @@ public class ClienteService {
             throw new Exception("El cliente no puede ser nulo");
         }
 
-        if (cliente.getIdCliente() <= 0) {
+        if (cliente.getIdUsuario()<= 0) {
             throw new Exception("El id del cliente no puede ser menor o igual a 0");
         }
 
