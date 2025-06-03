@@ -71,8 +71,6 @@ obj/
 *.dll
 
 # Config local
-*.config
-web.config
 appsettings.json
 
 ####################################
