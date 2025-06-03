@@ -115,7 +115,7 @@
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.empleado.datasource">
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\LocalWS\Reference.svcmap">
