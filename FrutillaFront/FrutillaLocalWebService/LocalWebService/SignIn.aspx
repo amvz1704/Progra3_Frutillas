@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Frutilla - Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="/Public/css/site.css" rel="stylesheet" />
     <style>
         body {
             background-color: #F8FBD9;
@@ -27,9 +28,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card shadow p-4">
-                        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                        <ul class="nav nav-frutilla mb-3 justify-content-center" id="pills-tab" role="tablist">
                             <li class="nav-item text-center" role="presentation">
-                                <a class="nav-link" href="Login.aspx">Ingresar</a>
+                                <a class="nav-link " href="Login.aspx">Ingresar</a>
                             </li>
                             <li class="nav-item text-center" role="presentation">
                                 <a class="nav-link active" id="pills-register-tab" data-bs-toggle="pill" href="SignIn.aspx" role="tab" aria-controls="pills-register" aria-selected="true">Registrarse</a>
@@ -72,7 +73,7 @@
                         <asp:Label ID="lblTelefono" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
 
                         <div class="d-grid">
-                            <asp:Button ID="btnSignIn" runat="server" Text="Registrarse" CssClass="btn btn-primary" OnClick="btnSignIn_Click" />
+                            <asp:Button ID="btnSignIn" runat="server" Text="Registrarse" CssClass="btn-frutilla" OnClick="btnSignIn_Click" />
                         </div>
                         <asp:Label ID="lblRegistro" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
                     </div>

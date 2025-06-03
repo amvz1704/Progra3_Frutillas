@@ -89,29 +89,45 @@
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\LocalWS\configuration91.svcinfo" />
-    <None Include="Connected Services\LocalWS\configuration.svcinfo" />
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.actualizarEmpleadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.agregarEmpleadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.eliminarEmpleadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarTodosLocalesResponse.datasource">
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerIdLocalResponse.datasource">
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
+    <None Include="Connected Services\LocalWS\LocalWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NotificionesWS\configuration91.svcinfo" />
+    <None Include="Connected Services\NotificionesWS\configuration.svcinfo" />
+    <None Include="Connected Services\LocalWS\configuration91.svcinfo" />
+    <None Include="Connected Services\LocalWS\configuration.svcinfo" />
     <None Include="Connected Services\LocalWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\NotificionesWS\configuration91.svcinfo" />
-    <None Include="Connected Services\NotificionesWS\configuration.svcinfo" />
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorFechaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -143,7 +159,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="EditarLocal.aspx" />
     <Content Include="ListaClientesSupervisor.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -233,13 +248,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="EditarLocal.aspx.cs">
-      <DependentUpon>EditarLocal.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarLocal.aspx.designer.cs">
-      <DependentUpon>EditarLocal.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ListaClientesSupervisor.aspx.cs">
       <DependentUpon>ListaClientesSupervisor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,10 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MainLayout.Master" />
-    <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
-    <None Include="Connected Services\LocalWS\LocalWS.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\NotificionesWS\NotificacionWS.wsdl" />
     <None Include="Connected Services\NotificionesWS\NotificacionWS.xsd">
       <SubType>Designer</SubType>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="listarTodosLocales" type="tns:listarTodosLocales" />
-  <xs:element name="listarTodosLocalesResponse" type="tns:listarTodosLocalesResponse" />
-  <xs:element name="obtenerIdLocal" type="tns:obtenerIdLocal" />
-  <xs:element name="obtenerIdLocalResponse" type="tns:obtenerIdLocalResponse" />
-  <xs:complexType name="obtenerIdLocal">
+  <xs:element name="actualizarLoc" type="tns:actualizarLoc" />
+  <xs:element name="actualizarLocResponse" type="tns:actualizarLocResponse" />
+  <xs:element name="obtenerLocal" type="tns:obtenerLocal" />
+  <xs:element name="obtenerLocalResponse" type="tns:obtenerLocalResponse" />
+  <xs:complexType name="obtenerLocal">
     <xs:sequence>
       <xs:element name="idLocal" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerIdLocalResponse">
+  <xs:complexType name="obtenerLocalResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:local" />
     </xs:sequence>
@@ -69,12 +69,14 @@
       <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarTodosLocales">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarTodosLocalesResponse">
+  <xs:complexType name="actualizarLoc">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:local" />
+      <xs:element minOccurs="0" name="local" type="tns:local" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarLocResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="tipoEstado">
