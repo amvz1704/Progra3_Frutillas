@@ -101,29 +101,33 @@
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\LocalWS\configuration91.svcinfo" />
-    <None Include="Connected Services\LocalWS\configuration.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerIdLocalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
+    <None Include="Connected Services\LocalWS\LocalWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NotificionesWS\configuration91.svcinfo" />
+    <None Include="Connected Services\NotificionesWS\configuration.svcinfo" />
+    <None Include="Connected Services\LocalWS\configuration91.svcinfo" />
+    <None Include="Connected Services\LocalWS\configuration.svcinfo" />
     <None Include="Connected Services\LocalWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\NotificionesWS\configuration91.svcinfo" />
-    <None Include="Connected Services\NotificionesWS\configuration.svcinfo" />
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorFechaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -311,10 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MainLayout.Master" />
-    <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
-    <None Include="Connected Services\LocalWS\LocalWS.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\NotificionesWS\NotificacionWS.wsdl" />
     <None Include="Connected Services\NotificionesWS\NotificacionWS.xsd">
       <SubType>Designer</SubType>

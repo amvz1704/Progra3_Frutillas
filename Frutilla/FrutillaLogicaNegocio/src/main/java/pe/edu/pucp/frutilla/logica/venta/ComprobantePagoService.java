@@ -1,5 +1,6 @@
 package pe.edu.pucp.frutilla.logica.venta;
 
+import java.util.List;
 import pe.edu.pucp.frutilla.models.local.Notificacion;
 import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
 import pe.edu.pucp.frutilla.crud.dao.venta.ComprobantePagoDAO;
@@ -64,6 +65,10 @@ public class ComprobantePagoService {
             throw new Exception("El id del comprobante de pago no es válido");
         ComprobantePago comp=comprobanteSQL.obtener(idComprobante);
         return comp;
+    }
+    
+    public List<ComprobantePago> listarComprobantes() throws Exception {
+        return comprobanteSQL.listarTodos();
     }
     
 }

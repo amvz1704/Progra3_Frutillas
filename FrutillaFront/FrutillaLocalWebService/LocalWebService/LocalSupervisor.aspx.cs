@@ -21,7 +21,6 @@ namespace LocalWebService
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 CargarDatosLocal();
@@ -31,7 +30,8 @@ namespace LocalWebService
         private void CargarDatosLocal()
         {
             var client = new LocalWSClient();
-            local local = client.obtenerIdLocal(LOCAL_ID);
+            local local = client.obtenerLocal(LOCAL_ID);
+
             if (local != null)
             {
                 // Asigna valores a cada control
@@ -53,7 +53,7 @@ namespace LocalWebService
             // 1. Cargar datos del local en los controles del modal:
 
             var client = new LocalWSClient();
-            local local = client.obtenerIdLocal(LOCAL_ID);
+            local local = client.obtenerLocal(LOCAL_ID);
 
             txtNombreLocal.Text = local.nombre;
             txtDireccionLocal.Text = local.direccion;

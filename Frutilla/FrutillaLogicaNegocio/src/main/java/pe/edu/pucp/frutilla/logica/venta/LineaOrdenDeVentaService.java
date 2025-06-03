@@ -29,9 +29,11 @@ public class LineaOrdenDeVentaService {
     }
     
     // Obtener línea por ID
-    public LineaOrdenDeVenta obtener(int idLinea) {
-        return lineaOrdenVentaMySQL.obtener(idLinea);
+    public LineaOrdenDeVenta obtener(int idOrden) {
+        return lineaOrdenVentaMySQL.obtener(idOrden);
     }
+    
+    
 
     // Listar todas las líneas
     public List<LineaOrdenDeVenta> listarTodas() {
@@ -52,5 +54,10 @@ public class LineaOrdenDeVentaService {
     // Eliminar línea por ID
     public void eliminar(int idLinea) {
         lineaOrdenVentaMySQL.eliminar(idLinea);
+    }
+    
+    //linea por orden
+    public List<LineaOrdenDeVenta> listarPorOrden(int idOrden) throws SQLException {
+        return lineaOrdenVentaMySQL.listarPorOrden(idOrden);
     }
 }

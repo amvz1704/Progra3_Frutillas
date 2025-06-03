@@ -16,16 +16,6 @@ namespace LocalWebService.LocalWS {
     public interface LocalWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.LocalWS.obtenerIdLocalResponse obtenerIdLocal(LocalWebService.LocalWS.obtenerIdLocalRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerIdLocalResponse")]
-        System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerIdLocalResponse> obtenerIdLocalAsync(LocalWebService.LocalWS.obtenerIdLocalRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
@@ -34,6 +24,16 @@ namespace LocalWebService.LocalWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocResponse")]
         System.Threading.Tasks.Task<LocalWebService.LocalWS.actualizarLocResponse> actualizarLocAsync(LocalWebService.LocalWS.actualizarLocRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.LocalWS.obtenerLocalResponse obtenerLocal(LocalWebService.LocalWS.obtenerLocalRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalResponse")]
+        System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerLocalResponse> obtenerLocalAsync(LocalWebService.LocalWS.obtenerLocalRequest request);
     }
     
     /// <remarks/>
@@ -596,42 +596,6 @@ namespace LocalWebService.LocalWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerIdLocal", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerIdLocalRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idLocal;
-        
-        public obtenerIdLocalRequest() {
-        }
-        
-        public obtenerIdLocalRequest(int idLocal) {
-            this.idLocal = idLocal;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerIdLocalResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerIdLocalResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.LocalWS.local @return;
-        
-        public obtenerIdLocalResponse() {
-        }
-        
-        public obtenerIdLocalResponse(LocalWebService.LocalWS.local @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="actualizarLoc", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class actualizarLocRequest {
         
@@ -665,6 +629,42 @@ namespace LocalWebService.LocalWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerLocal", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerLocalRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idLocal;
+        
+        public obtenerLocalRequest() {
+        }
+        
+        public obtenerLocalRequest(int idLocal) {
+            this.idLocal = idLocal;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerLocalResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerLocalResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.LocalWS.local @return;
+        
+        public obtenerLocalResponse() {
+        }
+        
+        public obtenerLocalResponse(LocalWebService.LocalWS.local @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface LocalWSChannel : LocalWebService.LocalWS.LocalWS, System.ServiceModel.IClientChannel {
     }
@@ -693,29 +693,6 @@ namespace LocalWebService.LocalWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.LocalWS.obtenerIdLocalResponse LocalWebService.LocalWS.LocalWS.obtenerIdLocal(LocalWebService.LocalWS.obtenerIdLocalRequest request) {
-            return base.Channel.obtenerIdLocal(request);
-        }
-        
-        public LocalWebService.LocalWS.local obtenerIdLocal(int idLocal) {
-            LocalWebService.LocalWS.obtenerIdLocalRequest inValue = new LocalWebService.LocalWS.obtenerIdLocalRequest();
-            inValue.idLocal = idLocal;
-            LocalWebService.LocalWS.obtenerIdLocalResponse retVal = ((LocalWebService.LocalWS.LocalWS)(this)).obtenerIdLocal(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerIdLocalResponse> LocalWebService.LocalWS.LocalWS.obtenerIdLocalAsync(LocalWebService.LocalWS.obtenerIdLocalRequest request) {
-            return base.Channel.obtenerIdLocalAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerIdLocalResponse> obtenerIdLocalAsync(int idLocal) {
-            LocalWebService.LocalWS.obtenerIdLocalRequest inValue = new LocalWebService.LocalWS.obtenerIdLocalRequest();
-            inValue.idLocal = idLocal;
-            return ((LocalWebService.LocalWS.LocalWS)(this)).obtenerIdLocalAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.LocalWS.actualizarLocResponse LocalWebService.LocalWS.LocalWS.actualizarLoc(LocalWebService.LocalWS.actualizarLocRequest request) {
             return base.Channel.actualizarLoc(request);
         }
@@ -736,6 +713,29 @@ namespace LocalWebService.LocalWS {
             LocalWebService.LocalWS.actualizarLocRequest inValue = new LocalWebService.LocalWS.actualizarLocRequest();
             inValue.local = local;
             return ((LocalWebService.LocalWS.LocalWS)(this)).actualizarLocAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.LocalWS.obtenerLocalResponse LocalWebService.LocalWS.LocalWS.obtenerLocal(LocalWebService.LocalWS.obtenerLocalRequest request) {
+            return base.Channel.obtenerLocal(request);
+        }
+        
+        public LocalWebService.LocalWS.local obtenerLocal(int idLocal) {
+            LocalWebService.LocalWS.obtenerLocalRequest inValue = new LocalWebService.LocalWS.obtenerLocalRequest();
+            inValue.idLocal = idLocal;
+            LocalWebService.LocalWS.obtenerLocalResponse retVal = ((LocalWebService.LocalWS.LocalWS)(this)).obtenerLocal(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerLocalResponse> LocalWebService.LocalWS.LocalWS.obtenerLocalAsync(LocalWebService.LocalWS.obtenerLocalRequest request) {
+            return base.Channel.obtenerLocalAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.LocalWS.obtenerLocalResponse> obtenerLocalAsync(int idLocal) {
+            LocalWebService.LocalWS.obtenerLocalRequest inValue = new LocalWebService.LocalWS.obtenerLocalRequest();
+            inValue.idLocal = idLocal;
+            return ((LocalWebService.LocalWS.LocalWS)(this)).obtenerLocalAsync(inValue);
         }
     }
 }

@@ -2,14 +2,14 @@
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="actualizarLoc" type="tns:actualizarLoc" />
   <xs:element name="actualizarLocResponse" type="tns:actualizarLocResponse" />
-  <xs:element name="obtenerIdLocal" type="tns:obtenerIdLocal" />
-  <xs:element name="obtenerIdLocalResponse" type="tns:obtenerIdLocalResponse" />
-  <xs:complexType name="obtenerIdLocal">
+  <xs:element name="obtenerLocal" type="tns:obtenerLocal" />
+  <xs:element name="obtenerLocalResponse" type="tns:obtenerLocalResponse" />
+  <xs:complexType name="obtenerLocal">
     <xs:sequence>
       <xs:element name="idLocal" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerIdLocalResponse">
+  <xs:complexType name="obtenerLocalResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:local" />
     </xs:sequence>
