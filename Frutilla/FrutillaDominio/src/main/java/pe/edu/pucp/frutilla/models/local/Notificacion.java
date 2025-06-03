@@ -1,12 +1,12 @@
 package pe.edu.pucp.frutilla.models.local;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Notificacion {
 
     private int idNotificacion;
     private LocalDate fecha;
+    private String fechaStr; //usado para poder pasar la info a front
     private String titulo;
     private String descripcion;
     private char tipoReceptor; // 'C' para Cliente, 'S' para Supervisor
@@ -21,6 +21,7 @@ public class Notificacion {
     public Notificacion(int idNotificacion, LocalDate fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.idNotificacion = idNotificacion;
         this.fecha = fecha;
+        this.fechaStr = this.fecha.toString();
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.tipoReceptor = tipoReceptor;
@@ -31,6 +32,7 @@ public class Notificacion {
     // Constructor parcial sin ID general
     public Notificacion(LocalDate fecha, String titulo, String descripcion, char tipoReceptor, int idCliente, int idSupervisor) {
         this.fecha = fecha;
+        this.fechaStr = this.fecha.toString();
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.tipoReceptor = tipoReceptor;
@@ -46,6 +48,7 @@ public class Notificacion {
 
     public void textoCompra(double precio, LocalDate fecha){
         this.fecha = fecha;
+        this.fechaStr = this.fecha.toString();
         this.titulo = "Compra realizada";
         this.descripcion = "Se realizo una compra por S/. " + precio + " el dia " + fecha;
     }
@@ -65,6 +68,15 @@ public class Notificacion {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+        this.fechaStr = this.fecha.toString();
+    }
+
+    public String getFechaStr() {
+        return fechaStr;
+    }
+
+    public void setFechaStr(String fechaStr) {
+        this.fechaStr = fechaStr;
     }
 
 

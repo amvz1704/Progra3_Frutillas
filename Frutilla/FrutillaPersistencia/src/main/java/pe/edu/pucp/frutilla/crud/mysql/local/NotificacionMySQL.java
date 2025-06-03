@@ -3,12 +3,12 @@ package pe.edu.pucp.frutilla.crud.mysql.local;
 
 import java.sql.Connection;
 import pe.edu.pucp.frutilla.models.local.Notificacion;
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import pe.edu.pucp.frutilla.config.DBManager;
 import pe.edu.pucp.frutilla.crud.dao.local.NotificacionDAO;
@@ -78,7 +78,10 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
     protected Notificacion createFromResultSet(ResultSet rs) throws SQLException {
         Notificacion notificacion = new Notificacion();
         notificacion.setIdNotificacion(rs.getInt("idNotificacion"));
-        notificacion.setFecha(rs.getDate("fechaHora").toLocalDate());
+        Timestamp timeSt = rs.getTimestamp("fechaHora");
+        LocalDateTime dateTime = timeSt.toLocalDateTime();
+        notificacion.setFecha(dateTime.toLocalDate());
+        notificacion.setFechaStr(dateTime.toLocalDate().toString());
         notificacion.setTitulo(rs.getString("titulo"));
         notificacion.setDescripcion(rs.getString("descripcion"));
         notificacion.setIdCliente(rs.getInt("idCliente"));
