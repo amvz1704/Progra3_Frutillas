@@ -26,24 +26,25 @@ public class LocalWS {
         daoLocal = new LocalService();
     }
     
-    @WebMethod(operationName = "listarTodosLocales")
-    public List<Local> listarTodosLocales() {
-        List<Local> local = null; 
-        try{
-            return daoLocal.listarActivos();
-        }catch(Exception ex){ 
-            System.out.println(ex.getMessage()); 
-        }
-        return local;
-    }
-    
     @WebMethod(operationName = "obtenerIdLocal")
-    public Local obtenerIdLocal(@WebParam (name ="idLocal") int idLocal) {
+    public Local obtenerLocal(@WebParam (name ="idLocal") int idLocal) {
         try{
             return daoLocal.obtenerPorId(idLocal);
         }catch(Exception ex){ 
             System.out.println(ex.getMessage()); 
         }
         return null;
+    }
+    
+    @WebMethod(operationName = "actualizarLoc")
+    public boolean actualizarLoc(@WebParam (name ="local") Local local) {
+        System.out.println("Llega al servicio con Local: " + local);
+        try{
+            daoLocal.actualizar(local);
+            return true;
+        }catch(Exception ex){ 
+            System.out.println(ex.getMessage()); 
+            return false; 
+        }
     }
 }
