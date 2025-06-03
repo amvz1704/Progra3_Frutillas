@@ -115,16 +115,6 @@
         </asp:TemplateField>
 
 
-        <%--<asp:TemplateField HeaderText="Fecha Contrato" SortExpression="FechaContrato">
-            <ItemTemplate>
-        <%# 
-            // Hacemos cast al tipo concreto localDate y tomamos su Value (que es DateTime)
-            ((LocalWebService.EmpleadoWS.localDate) Eval("FechaContrato"))
-                .Value.ToString("dd/MM/yyyy") 
-        %>
-            </ItemTemplate>
-            <ItemStyle Width="120px" />
-        </asp:TemplateField>--%>
 
 
         <asp:TemplateField HeaderText="Correo" SortExpression="Correo">
@@ -207,8 +197,10 @@
                   <dt class="col-sm-4">Teléfono:</dt>
                   <dd class="col-sm-8"><asp:Label ID="lblVerTelefono" runat="server" /></dd>
 
+                   
+
                   <dt class="col-sm-4">Fecha Contrato:</dt>
-                  <dd class="col-sm-8"><asp:Label ID="lblVerFechaContrato" runat="server" /></dd>
+                  <dd class="col-sm-8"><asp:Label ID="lblVerFechaContrato" runat="server"  TextMode="Date"/></dd>
 
                   <dt class="col-sm-4">Correo:</dt>
                   <dd class="col-sm-8"><asp:Label ID="lblVerCorreo" runat="server" /></dd>

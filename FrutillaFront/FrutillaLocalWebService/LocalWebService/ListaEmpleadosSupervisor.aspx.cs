@@ -8,6 +8,8 @@ using System.Net.Sockets;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using NodaTime;
+using NodaTime.Text;
 
 
 namespace LocalWebService
@@ -177,7 +179,7 @@ namespace LocalWebService
 
                 if (ok)
                 {
-                    lblError.Text = "coRRECTO al obtener detalles los empleados: ";
+                    lblError.Text = "Correcto al obtener detalles los empleados: ";
                 }
                 else
                 {
@@ -195,7 +197,28 @@ namespace LocalWebService
             int idEmp;
             if (!int.TryParse(hfIdEmpleado.Value, out idEmp)) idEmp = 0;
 
-            // Construimos el DTO según tu proxy
+            string textoFecha = txtFechaContrato.Text?.Trim();
+
+            if (string.IsNullOrEmpty(textoFecha))
+            {
+                lblError.Text = "Debe seleccionar una fecha de contrato.";
+                lblError.CssClass = "text-danger";
+                return;
+            }
+
+            var pattern = LocalDatePattern.CreateWithInvariantCulture("uuuu-MM-dd");
+            var parseResult = pattern.Parse(textoFecha);
+
+            if (!parseResult.Success)
+            {
+                lblError.Text = "El formato de la fecha no es válido.";
+                lblError.CssClass = "text-danger";
+                return;
+            }
+            
+
+           
+            // Construimos el DTO según tu 
             var empDto = new EmpleadoWS.empleado
             {
                 idUsuario = idEmp,
@@ -205,7 +228,14 @@ namespace LocalWebService
                 apellidoMaterno = txtApellidoMa.Text.Trim(),
                 salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0,
                 telefono = txtTelefono.Text.Trim(),
-                correoElectronico = txtCorreo.Text.Trim()
+                correoElectronico = txtCorreo.Text.Trim(),
+                turnoTrabajo = true, 
+                tipo = 'R',
+                usuarioSistema = "aa",
+                contraSistema = "aaa",
+                activo = true,
+                tipoUsuario = "Empleado"
+
             };
 
             try
