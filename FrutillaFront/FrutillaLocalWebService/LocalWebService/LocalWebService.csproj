@@ -155,7 +155,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="EditarLocal.aspx" />
     <Content Include="ListaClientesSupervisor.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -244,13 +243,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="EditarLocal.aspx.cs">
-      <DependentUpon>EditarLocal.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarLocal.aspx.designer.cs">
-      <DependentUpon>EditarLocal.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaClientesSupervisor.aspx.cs">
       <DependentUpon>ListaClientesSupervisor.aspx</DependentUpon>

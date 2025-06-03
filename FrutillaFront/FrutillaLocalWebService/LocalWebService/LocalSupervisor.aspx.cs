@@ -12,7 +12,7 @@ namespace LocalWebService
 {
     public partial class LocalSupervisor : System.Web.UI.Page
     {
-        const int LOCAL_ID = 1; //esto dependera del id del empleado --> cambiar con LOGIN
+        const int LOCAL_ID = 2; //esto dependera del id del empleado --> cambiar con LOGIN
         private LocalWSClient daoLocal;
         private String localNombre;
         private String localDescripcion;
@@ -24,10 +24,6 @@ namespace LocalWebService
 
             if (!IsPostBack)
             {
-
-
-
-
                 CargarDatosLocal();
             }
         }
