@@ -2,6 +2,7 @@
 package pe.edu.pucp.frutilla.crud.mysql.local;
 
 import java.sql.Connection;
+import java.sql.Date;
 import pe.edu.pucp.frutilla.models.local.Notificacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -99,8 +100,8 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
         ArrayList<Notificacion> entities = new ArrayList<>();
          try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(getSelectByFechaQuery())) {
-
-            ps.setDate(1, new java.sql.Date(fecha.getYear(),fecha.getMonthValue(),fecha.getDayOfMonth()));
+            
+            ps.setDate(1, java.sql.Date.valueOf(fecha));
             ps.setInt(2, idSupervisor);
             try (ResultSet rs = ps.executeQuery()) {
                  while (rs.next()) {
