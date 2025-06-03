@@ -20,13 +20,17 @@
   <xs:complexType name="notificacion">
     <xs:sequence>
       <xs:element minOccurs="0" name="descripcion" type="xs:string" />
-      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecha" type="tns:localDate" />
+      <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
       <xs:element name="idCliente" type="xs:int" />
       <xs:element name="idNotificacion" type="xs:int" />
       <xs:element name="idSupervisor" type="xs:int" />
       <xs:element name="tipoReceptor" type="xs:unsignedShort" />
       <xs:element minOccurs="0" name="titulo" type="xs:string" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="localDate" final="extension restriction">
+    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="listarTodos">
     <xs:sequence />

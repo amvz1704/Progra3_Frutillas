@@ -52,7 +52,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
     @Override
     protected void setInsertParameters(PreparedStatement ps, Empleado entity) throws SQLException {
 
-        ps.setInt(1, entity.getIdEmpleado());
+        ps.setInt(1, entity.getIdUsuario());
         ps.setString(2, entity.getNombre());
         ps.setString(3, entity.getApellidoPaterno());
         ps.setString(4, entity.getApellidoMaterno());
@@ -68,7 +68,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
     @Override
     protected void setUpdateParameters(PreparedStatement ps, Empleado entity) throws SQLException {
 
-        ps.setInt(1, entity.getIdEmpleado());
+        ps.setInt(1, entity.getIdUsuario());
         ps.setString(2, entity.getNombre());
         ps.setString(3, entity.getApellidoPaterno());
         ps.setString(4, entity.getApellidoMaterno());
@@ -79,7 +79,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         ps.setBoolean(9, entity.getTurnoTrabajo());
         ps.setString(10, String.valueOf(entity.getTipo()));
         ps.setInt(11, entity.getIdLocal());
-        ps.setInt(12, entity.getIdEmpleado());
+        ps.setInt(12, entity.getIdLocal());
     }
 
     @Override
@@ -93,7 +93,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
             empleado = new Repartidor();
         }
         
-        empleado.setIdEmpleado(rs.getInt("idUsuario"));
+        empleado.setIdUsuario(rs.getInt("idUsuario"));
         empleado.setNombre(rs.getString("nombres"));
         empleado.setApellidoPaterno(rs.getString("apellidoPaterno"));
         empleado.setApellidoMaterno(rs.getString("apellidoMaterno"));
@@ -113,7 +113,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
 
     @Override
     protected void setId(Empleado entity, Integer id) {
-        entity.setIdEmpleado(id);
+        entity.setIdUsuario(id);
     }
 
     @Override

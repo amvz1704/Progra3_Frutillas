@@ -1,6 +1,7 @@
 package pe.edu.pucp.frutilla.models.rrhh;
 
-public abstract class Persona {
+public class Persona {
+    private int idUsuario;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -10,6 +11,7 @@ public abstract class Persona {
     private String usuarioSistema;
     private String contraSistema;
     private boolean activo; // true: activo, false: inactivo
+    private String tipoUsuario;
 
     public Persona() {
     }
@@ -23,9 +25,11 @@ public abstract class Persona {
         this.usuarioSistema = persona.usuarioSistema;
         this.contraSistema = persona.contraSistema;
         this.activo = persona.activo; // Copia el estado activo
+        this.idUsuario = persona.idUsuario;
+        this.tipoUsuario = persona.tipoUsuario;
     }
 
-    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, String usuarioSistema, String contraSistema) {
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, String usuarioSistema, String contraSistema, int idUsuario, String tipoUsuario) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -34,33 +38,51 @@ public abstract class Persona {
         this.usuarioSistema = usuarioSistema;
         this.contraSistema = contraSistema;
         this.activo = true; // Por defecto, la persona está activa al crearla
+        this.idUsuario = idUsuario;
+        this.tipoUsuario = tipoUsuario;
     }
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + " " + apellidoPaterno + " " + apellidoMaterno + ", Correo: " + correoElectronico + ", Telefono: " + telefono + ", Activo: " + activo;
+        return "Id: " + idUsuario + ", Nombre: " + nombre + " " + apellidoPaterno + " " + apellidoMaterno + ", Correo: " + correoElectronico + ", Telefono: " + telefono + ", Activo: " + activo;
     }
     
-	public void crearUsuario(String usuario, String contrasena) {
-		this.usuarioSistema = usuario;
-		this.contraSistema = contrasena;
-		System.out.println("Usuario creado exitosamente");
-	}	
+    public void crearUsuario(String usuario, String contrasena) {
+	this.usuarioSistema = usuario;
+	this.contraSistema = contrasena;
+	System.out.println("Usuario creado exitosamente");
+    }	
 	
-	public boolean ingresoSistema(String usuario, String contra) {
-		if (this.usuarioSistema.equals(usuario) && this.contraSistema.equals(contra)) {
-			System.out.println("Bienvenido al sistema, " + nombre + "!");
-			return true;
-		} else {
-			System.out.println("Acceso denegado para " + usuario);
-			return false;
-		}
-	}
+    public boolean ingresoSistema(String usuario, String contra) {
+	if (this.usuarioSistema.equals(usuario) && this.contraSistema.equals(contra)) {
+            System.out.println("Bienvenido al sistema, " + nombre + "!");
+            return true;
+	} else {
+            System.out.println("Acceso denegado para " + usuario);
+            return false;
+        }
+    }
 
-	public void salirSistema() {
-		System.out.println("El usuario " + usuarioSistema + " ha cerrado sesión.");
-	}
+    public void salirSistema() {
+	System.out.println("El usuario " + usuarioSistema + " ha cerrado sesión.");
+    }
+    
+    public String getTipoUsuario(){
+        return tipoUsuario;
+    }
 
+    public void setTipoUsuario(String tipoUsuario){
+        this.tipoUsuario = tipoUsuario;
+    }
+    
+    public int getIdUsuario(){
+        return idUsuario;
+    }
+    
+    public void setIdUsuario(int idUsuario){
+        this.idUsuario = idUsuario;
+    }
+    
     public String getNombre() {
         return nombre;
     }

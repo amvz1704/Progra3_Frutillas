@@ -36,7 +36,7 @@ public class NotificacionService {
     }
     
     public ArrayList<Notificacion> listarPorFecha(LocalDate fecha,int idSupervisor) throws Exception{
-        if (fecha == null) {
+        if (fecha == null || fecha.isAfter(LocalDate.now())) {
             throw new Exception("Las fechas no pueden ser nulas");
         }
         if(idSupervisor <= 0 ){

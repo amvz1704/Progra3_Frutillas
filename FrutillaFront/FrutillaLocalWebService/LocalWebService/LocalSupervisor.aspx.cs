@@ -1,5 +1,4 @@
 ﻿
-using LocalWebService.EmpleadoWS;
 using LocalWebService.LocalWS;
 using System;
 using System.Collections.Generic;
@@ -13,12 +12,16 @@ namespace LocalWebService
 {
     public partial class LocalSupervisor : System.Web.UI.Page
     {
-        const int LOCAL_ID = 1; //esto dependera del id del empleado --> cambiar con LOGIN
+        const int LOCAL_ID = 2; //esto dependera del id del empleado --> cambiar con LOGIN
         private LocalWSClient daoLocal;
+        private String localNombre;
+        private String localDescripcion;
+        private String localTelefono;
+        private String localDireccion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            daoLocal = new LocalWSClient();
+
             if (!IsPostBack)
             {
                 CargarDatosLocal();
@@ -27,79 +30,100 @@ namespace LocalWebService
 
         private void CargarDatosLocal()
         {
-            
-            // Obtiene el objeto Local
-            local local = daoLocal.obtenerIdLocal(LOCAL_ID);
-
+            var client = new LocalWSClient();
+            local local = client.obtenerIdLocal(LOCAL_ID);
             if (local != null)
             {
                 // Asigna valores a cada control
-                lblNombre.Text = local.nombre;
-                lblDireccion.Text = local.direccion;
-                lblDescripcion.Text = local.descripcion;
-                lblTelefono.Text = local.telefono; 
-
-                // Imagen: si tienes una URL o la obtienes como bytes: agregr al final local.ImagenUrl ??  
-                imgLocal.ImageUrl =  "~/images/default-local.png";
-            }
-            else
-            {
-                // Si no existe, podrías ocultar el panel o mostrar un mensaje
-                lblNombre.Text = "No encontrado";
-                // opcional: un Label de error
+                localNombre = local.nombre;
+                localDireccion = local.direccion;
+                localDescripcion = local.descripcion;
+                localTelefono = local.telefono;
 
             }
+
+            lblNombre.Text = localNombre;
+            lblDireccion.Text = localDireccion;
+            lblDescripcion.Text = localDescripcion;
+            lblTelefono.Text = localTelefono;
         }
 
-        protected void btnEditar_Click(object sender, EventArgs e) {
-            // Redirige a la página de edición, pasando el ID
-            //Response.Redirect($"EditarLocal.aspx?id={LOCAL_ID}");
+        protected void btnEditarLocal_Click(object sender, EventArgs e)
+        {
+            // 1. Cargar datos del local en los controles del modal:
+
+            var client = new LocalWSClient();
+            local local = client.obtenerIdLocal(LOCAL_ID);
+
+            txtNombreLocal.Text = local.nombre;
+            txtDireccionLocal.Text = local.direccion;
+            txtTelefonoLocal.Text = local.telefono;
+            txtDescripcionLocal.Text = local.descripcion;
+            ddlEstadoLocal.SelectedValue = "true";
+
+
+            // 2. Inyectar JavaScript para abrir el modal por su ClientID
+            string script = "var myModal = new bootstrap.Modal(document.getElementById('"
+                            + pnlModalLocal.ClientID
+                            + "'), { keyboard: false });"
+                            + "myModal.show();";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowModalLocal", script, true);
         }
 
-        protected void btnGuardarModal_Click(object sender, EventArgs e) {
-            // 1) Leer el ID del HiddenField:
-            int id = int.Parse(hfIdEmpleado.Value);
+        protected void btnGuardarLocalModal_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombreLocal.Text.Trim();
+            string direccion = txtDireccionLocal.Text.Trim();
+            string telefono = txtTelefonoLocal.Text.Trim();
+            string descripcion = txtDescripcionLocal.Text.Trim();
+            bool activo = ddlEstadoLocal.SelectedValue == "true";
 
-            // 2) Crear o actualizar según el id:
-            if (id == 0)
+            local localNuevo = new LocalWS.local
             {
-                // Significa “Nuevo local”: obtén los datos de los campos del modal y agrega
-                var nuevo = new local
+                idLocal = LOCAL_ID,
+                nombre = nombre,
+                direccion = direccion,
+                telefono = telefono,
+                descripcion = descripcion,
+                activo = activo
+
+            };
+
+            try
+            {
+                // Llamar al servicio y obtener la respuesta boolean
+                var client = new LocalWSClient();
+                bool ok = client.actualizarLoc(localNuevo);
+                client.Close();
+
+                if (!ok)
                 {
-                    //Id = EmpleadoRepository.ObtenerTodos().Count > 0
-                    //       ? EmpleadoRepository.ObtenerTodos().Max(x => x.Id) + 1
-                    //       : 1,
-                    //NombreCompleto = txtNombreModal.Text.Trim(),
-                    //TurnoTrabajo = txtTurnoModal.Text.Trim(),
-                    //Tipo = ddlTipoModal.SelectedValue,
-                    //Correo = txtCorreoModal.Text.Trim(),
-                };
-                //daoLocal.ObtenerTodos().Add(nuevo);
+                    // El booleano vino como “false”: hubo un fallo interno en el servicio
+                    lblError.Text = "El servicio NO pudo actualizar el Local. Revise los datos.";
+                    lblError.CssClass = "text-danger";
+                    return;
+                }
+
+                // Éxito: recargar la UI
+                CargarDatosLocal();  // o el método que refresque la lista/tarjeta de locales
+
+                // Cerrar el modal con JavaScript
+                string scriptHide = @"
+                    var modal = bootstrap.Modal.getInstance(
+                        document.getElementById('" + pnlModalLocal.ClientID + @"'));
+                    if(modal) modal.hide();";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "HideModal", scriptHide, true);
             }
-            else
+            catch (Exception ex)
             {
-                //// Edición de uno existente:
-                //var emp = EmpleadoRepository.ObtenerTodos().Find(x => x.Id == id);
-                //if (emp != null)
-                //{
-                //    emp.NombreCompleto = txtNombreModal.Text.Trim();
-                //    emp.TurnoTrabajo = txtTurnoModal.Text.Trim();
-                //    emp.Tipo = ddlTipoModal.SelectedValue;
-                //    emp.Correo = txtCorreoModal.Text.Trim();
-                //}
+                // Aquí atrapamos CommunicationException o FaultException si algo falla
+                lblError.Text = "Error al comunicarse con el servicio: " + ex.Message;
+                lblError.CssClass = "text-danger";
             }
-
-            //// 3) Recargar la grilla principal para reflejar cambios:
-            //CargarGrilla();
-
-            //// 4) Cerrar el modal con JavaScript
-            //string script = "var myModal = bootstrap.Modal.getInstance(document.getElementById('"
-            //                + pnlModalEditar.ClientID + "'));"
-            //              + "myModal.hide();";
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "HideModalEditar", script, true);
         }
 
-        protected void BtnAdminEmpleados(object sender, EventArgs e) {
+        protected void BtnAdminEmpleados(object sender, EventArgs e)
+        {
 
             Response.Redirect($"ListaEmpleadosSupervisor.aspx?id={LOCAL_ID}");
         }

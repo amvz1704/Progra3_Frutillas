@@ -151,7 +151,7 @@ public class Local {
 
     public void agregarEmpleado(Empleado empleado){
         if(empleado instanceof Supervisor){
-            setIdSupervisor(empleado.getIdEmpleado());
+            setIdSupervisor(empleado.getIdUsuario());
             System.out.println("Se agrego el supervisor al local.");
         }
         empleados.add(empleado);

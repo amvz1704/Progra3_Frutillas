@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 public class Repartidor extends Empleado{
 
-    public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal){
-        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'R', idLocal);
+    public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal, int idUsuario){
+        super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'R', idLocal, idUsuario);
     }
 
 	public Repartidor(){
@@ -23,7 +23,7 @@ public class Repartidor extends Empleado{
 	public void prepararPedido(OrdenVenta orden){
 		//inicia a preparar 
 		orden.setEstado(EstadoVenta.PROCESO);
-		orden.setIdEmpleado(getIdEmpleado());
+		orden.setIdEmpleado(getIdUsuario());
 	}
 	
 	public void confirmarEntregaCliente(OrdenVenta orden, boolean cambio){	
