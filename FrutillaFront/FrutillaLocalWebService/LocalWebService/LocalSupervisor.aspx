@@ -5,21 +5,11 @@
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
       <!-- 2) Header de sección -->
-    <header class="bg-light py-2 border-bottom">
+    <header class="bg-frutilla py-2 border-bottom">
       <div class="container">
         <h2 class="m-0"> Local </h2>
       </div>
     </header>
-
-
-      
-      <!-- Aquí va tu contenido específico, p. ej. detalles del local -->
-        <!-- Blazor 
-            podemos cargar la información de un local!
-            --> 
-      <!-- MVC: @RenderBody() -->
-       
-         <!-- Contenedor del Local -->
 
       <asp:Panel ID="pnlLocal" runat="server" CssClass="card mb-4 shadow-sm">
         <div class="row g-0">
@@ -63,7 +53,7 @@
 
       <!-- 4) Grid de Cards para los módulos de administración -->
       <h5 class="mt-5 mb-3"> Elige el módulo de administración:</h5>
-      <div class="row g-4">
+      <div class="row g-4 justify-content-center">
         <!-- Empleados -->
           <div class="col-6 col-md-3">
               <div class="card h-100 text-center">
