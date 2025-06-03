@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="obtenerEmpleadosResponse" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>LocalWebService.EmpleadoWS.obtenerEmpleadosResponse</TypeInfo>
+<GenericObjectDataSource DisplayName="obtenerEmpleadoPorIdResponse" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse</TypeInfo>
 </GenericObjectDataSource>

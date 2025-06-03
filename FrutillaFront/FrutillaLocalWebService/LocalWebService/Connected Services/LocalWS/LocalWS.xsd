@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="listarTodosLocales" type="tns:listarTodosLocales" />
-  <xs:element name="listarTodosLocalesResponse" type="tns:listarTodosLocalesResponse" />
-  <xs:element name="obtenerIdLocal" type="tns:obtenerIdLocal" />
-  <xs:element name="obtenerIdLocalResponse" type="tns:obtenerIdLocalResponse" />
-  <xs:complexType name="obtenerIdLocal">
+  <xs:element name="actualizarLoc" type="tns:actualizarLoc" />
+  <xs:element name="actualizarLocResponse" type="tns:actualizarLocResponse" />
+  <xs:element name="obtenerEmpleados" type="tns:obtenerEmpleados" />
+  <xs:element name="obtenerEmpleadosResponse" type="tns:obtenerEmpleadosResponse" />
+  <xs:element name="obtenerIdLocal" nillable="true" type="tns:obtenerEmpleados" />
+  <xs:element name="obtenerIdLocalResponse" nillable="true" type="tns:obtenerEmpleadosResponse" />
+  <xs:complexType name="obtenerEmpleados">
     <xs:sequence>
       <xs:element name="idLocal" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerIdLocalResponse">
+  <xs:complexType name="obtenerEmpleadosResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:local" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="local">
-    <xs:sequence>
-      <xs:element name="activo" type="xs:boolean" />
-      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
-      <xs:element minOccurs="0" name="direccion" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="empleados" nillable="true" type="tns:empleado" />
-      <xs:element name="idLocal" type="xs:int" />
-      <xs:element name="idSupervisor" type="xs:int" />
-      <xs:element minOccurs="0" name="nombre" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="productos" nillable="true" type="tns:producto" />
-      <xs:element minOccurs="0" name="telefono" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleado" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="empleado">
@@ -57,6 +46,24 @@
   <xs:complexType name="localDate" final="extension restriction">
     <xs:sequence />
   </xs:complexType>
+  <xs:complexType name="actualizarLoc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="local" type="tns:local" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="local">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="direccion" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="empleados" nillable="true" type="tns:empleado" />
+      <xs:element name="idLocal" type="xs:int" />
+      <xs:element name="idSupervisor" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="productos" nillable="true" type="tns:producto" />
+      <xs:element minOccurs="0" name="telefono" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="producto">
     <xs:sequence>
       <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
@@ -69,12 +76,9 @@
       <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarTodosLocales">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarTodosLocalesResponse">
+  <xs:complexType name="actualizarLocResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:local" />
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="tipoEstado">
