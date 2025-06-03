@@ -163,6 +163,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         }
     }
 
+    @Override
     public ArrayList<Empleado> listarTodosPorLocal(int idLocal){
         ArrayList<Empleado> empleados = new ArrayList<>();
         String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND e.idLocal = ? AND u.idUsuario = e.idUsuario";

@@ -93,7 +93,7 @@ public class DBManager {
                     + prefix + "password"
                 );
             }
-
+            cfg.setDriverClassName(driverKey); //agrego
             cfg.setJdbcUrl(jdbcUrl);
             cfg.setUsername(username);
             cfg.setPassword(password);

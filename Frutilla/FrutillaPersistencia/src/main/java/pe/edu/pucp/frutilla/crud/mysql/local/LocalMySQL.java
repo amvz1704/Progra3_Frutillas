@@ -40,7 +40,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE id_local = ?";
+        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE idLocal = ?";
     }
     
     @Override
@@ -50,7 +50,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
   
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT id_local, nombre, direccion, telefono FROM Local WHERE id_local = ?";
+        return "SELECT idLocal, nombre, descripcion, direccion, activo, telefono FROM Local WHERE idLocal = ?";
     }
 
     @Override

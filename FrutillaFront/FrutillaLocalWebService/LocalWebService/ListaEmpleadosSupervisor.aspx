@@ -36,7 +36,7 @@
             <!-- Ejemplo de dropdown “Filtros” con checkboxes -->
             <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="select-frutilla" 
             DataTextField="Nombre" DataValueField="IdEmpleado" AppendDataBoundItems="true"
-                OnSelectedIndexChanged="DdlEmpleado_SelectedIndexChanged" AutoPostBack="True">
+                 AutoPostBack="True">
                 <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
             </asp:DropDownList>
            
@@ -76,7 +76,7 @@
          <asp:TemplateField HeaderText="Id" SortExpression="idEmpleado">
             <HeaderStyle CssClass="text-uppercase" />
             <ItemTemplate>
-                <%# Eval("idEmpleado") %>
+                <%# Eval("idUsuario") %>
             </ItemTemplate>
             <ItemStyle Width="60px" />
         </asp:TemplateField>
@@ -144,7 +144,7 @@
 
                     <asp:LinkButton ID="lnkVer" runat="server"
                         CommandName="VerDetalles"
-                        CommandArgument='<%# Eval("idEmpleado") %>'
+                        CommandArgument='<%# Eval("idUsuario") %>'
                         CssClass="btn btn-outline-primary me-1"
                         ToolTip="Ver Detalles">
                         <i class="bi bi-eye-fill"></i>
@@ -152,7 +152,7 @@
 
                     <asp:LinkButton ID="lnkEditar" runat="server"
                         CommandName="Editar"
-                        CommandArgument='<%# Eval("idEmpleado") %>'
+                        CommandArgument='<%# Eval("idUsuario") %>'
                         CssClass="btn btn-outline-success me-1"
                         ToolTip="Editar">
                         <i class="bi bi-pencil-fill"></i>
@@ -160,7 +160,7 @@
 
                     <asp:LinkButton ID="lnkEliminar" runat="server"
                         CommandName="Eliminar"
-                        CommandArgument='<%# Eval("idEmpleado") %>'
+                        CommandArgument='<%# Eval("idUsuario") %>'
                         CssClass="btn btn-outline-danger"
                         OnClientClick="return confirm('¿Eliminar este empleado?');"
                         ToolTip="Eliminar">
