@@ -60,6 +60,9 @@ desktop.ini
 # Archivos de compilación
 bin/
 obj/
+*.exe
+*.dll
+*.pdb
 
 # Configuración local
 web.config
@@ -72,3 +75,4 @@ appsettings.json
 # Archivos de sistema
 Thumbs.db
 .DS_Store
+
