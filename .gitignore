@@ -48,3 +48,27 @@ desktop.ini
 /target/
 /Frutilla/FrutillaPersistencia/nbproject/
 /Frutilla/FrutillaLogicaNegocio/target/
+
+# Archivos generados por Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de compilación
+bin/
+obj/
+
+# Configuración local
+web.config
+appsettings.json
+
+# Otros archivos de caché
+*.vspscc
+*.vssscc
+
+# Archivos de sistema
+Thumbs.db
+.DS_Store
