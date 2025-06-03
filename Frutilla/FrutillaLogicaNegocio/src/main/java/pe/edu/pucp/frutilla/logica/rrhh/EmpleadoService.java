@@ -1,6 +1,7 @@
 package pe.edu.pucp.frutilla.logica.rrhh;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pe.edu.pucp.frutilla.crud.mysql.rrhh.EmpleadoMySQL;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
@@ -69,7 +70,7 @@ public class EmpleadoService {
             throw new Exception("El empleado no puede ser nulo");
         }
 
-        if (empleado.getIdEmpleado() <= 0) {
+        if (empleado.getIdUsuario()<= 0) {
             throw new Exception("El id del empleado no puede ser menor o igual a 0");
         }
 
@@ -120,6 +121,10 @@ public class EmpleadoService {
             throw new Exception("El id del empleado no puede ser menor o igual a 0");
         }
         return empleadoMySQL.obtener(idEmpleado);
+    }
+
+    public List<Empleado> listar() throws Exception{
+        return empleadoMySQL.listarTodos();
     }
 
     public ArrayList<Empleado> listarTodosPorLocal(int idLocal) throws Exception {

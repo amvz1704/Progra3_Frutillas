@@ -5,6 +5,12 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/UsuarioWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="obtenerIDPorNombreUsuario">
+    <part name="parameters" element="tns:obtenerIDPorNombreUsuario" />
+  </message>
+  <message name="obtenerIDPorNombreUsuarioResponse">
+    <part name="parameters" element="tns:obtenerIDPorNombreUsuarioResponse" />
+  </message>
   <message name="validarUsuario">
     <part name="parameters" element="tns:validarUsuario" />
   </message>
@@ -12,6 +18,10 @@
     <part name="parameters" element="tns:validarUsuarioResponse" />
   </message>
   <portType name="UsuarioWS">
+    <operation name="obtenerIDPorNombreUsuario">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest" message="tns:obtenerIDPorNombreUsuario" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse" message="tns:obtenerIDPorNombreUsuarioResponse" />
+    </operation>
     <operation name="validarUsuario">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarUsuarioRequest" message="tns:validarUsuario" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarUsuarioResponse" message="tns:validarUsuarioResponse" />
@@ -19,6 +29,15 @@
   </portType>
   <binding name="UsuarioWSPortBinding" type="tns:UsuarioWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="obtenerIDPorNombreUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="validarUsuario">
       <soap:operation soapAction="" />
       <input>

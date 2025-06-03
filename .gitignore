@@ -1,105 +1,102 @@
-# Archivos generados por Maven
-/target/
-!.mvn/wrapper/maven-wrapper.jar
-
-# Archivos generados por NetBeans
-nbproject/private/
-build/
-nbbuild/
-dist/
-.nb-gradle/
-*.orig
-
-# Archivos de configuración locales (innecesarios para otros devs)
+####################################
+# GENERALES (aplica a todos los entornos)
+####################################
 *.log
 *.lock
 *.bak
 *.swp
+*.tmp
+*.temp
+*.~*
+*.orig
 *.lst
 
-# Archivos de sistema operativo
+# Archivos de sistema
 .DS_Store
 Thumbs.db
 ehthumbs.db
 desktop.ini
 
-# Archivos de IDE en general
-*.iml
-*.ipr
-*.iws
-.idea/
-*.class
+####################################
+# NETBEANS (Java)
+####################################
+nbproject/private/
+build/
+nbbuild/
+dist/
+.nb-gradle/
 
-# Eclipse / VSCode (por si abres en otros IDEs)
-.project
-.classpath
-.c9/
-.settings/
-.vscode/
-
-# Archivos temporales
-*.tmp
-*.temp
-*.~*
-
-# Los jars generados
-*.jar
-/Frutilla/*.jar
+####################################
+# MAVEN
+####################################
 /target/
-/Frutilla/FrutillaPersistencia/nbproject/
-/Frutilla/FrutillaLogicaNegocio/target/
-/Frutilla/TESTFrutilla/target/
-FrutillaFront/FrutillaLocalWebService/.vs/FrutillaLocalWebService/FileContentIndex/f86a172f-d544-41e3-8d5c-46c0737f8c9a.vsidx
-*.vsidx
-/FrutillaFront/FrutillaLocalWebService/.vs/FrutillaLocalWebService/FileContentIndex
+!/mvn/wrapper/maven-wrapper.jar
+.mvn/
 
-# Carpetas de Visual Studio
+####################################
+# JAVA (general)
+####################################
+*.class
+*.jar
+*.war
+*.ear
+*.class
+*.jnilib
+*.hprof
+
+####################################
+# VISUAL STUDIO (.NET)
+####################################
 .vs/
-*.user
 *.suo
+*.user
 *.userosscache
 *.sln.docstates
+*.dbmdl
+*.VC.db
+*.pdb
+*.cache
+*.bak
+*.obj
+*.tlh
+*.tli
+*.ipch
+*.aps
+*.ncb
 
 # Compilación
 bin/
 obj/
-[Bb]uild/
-[Dd]ebug*/
-[Rr]elease*/
+*.exe
+*.dll
 
-# Roslyn y Temp
-**/roslyn/
-**/TempPE/
+# Config local
+appsettings.json
 
-# Archivos de paquetes NuGet (restaurables)
-packages/
-*.nupkg
-project.lock.json
-project.assets.json
-*.nuget.props
-*.nuget.targets
+####################################
+# VISUAL STUDIO CODE / ECLIPSE / OTROS IDEs
+####################################
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+.c9/
 
-# Configuraciones personales
-*.dbmdl
-*.psess
-*.vsp
+####################################
+# CONTROL DE VERSIONES MICROSOFT
+####################################
 *.vspscc
 *.vssscc
 
-# Web
-*.Publish.xml
-*.publishsettings
+####################################
+# CARPETAS ESPECÍFICAS DE TU PROYECTO (Java)
+####################################
+/Frutilla/FrutillaWS/target/
+/Frutilla/FrutillaPersistencia/nbproject/
+/Frutilla/FrutillaLogicaNegocio/target/
+/Frutilla/*.jar
 
-# Archivos generados por herramientas
-*.cache
-*.log
-
-/Frutilla/FrutillaDominio/target/FrutillaDominio-1.0-SNAPSHOT.jar
-# Archivos de configuración específicos del entorno
-appsettings.*.json
-
-# Otros
-TestResults/
-.idea/
-*.DS_Store
-Thumbs.db

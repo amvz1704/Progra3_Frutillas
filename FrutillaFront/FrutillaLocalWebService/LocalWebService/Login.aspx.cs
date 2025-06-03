@@ -22,30 +22,57 @@ namespace LocalWebService
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text;
-            string password = txtPassword.Text;
+            string usuario = txtUsuario.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-            UsuarioWS.persona persona = usuarioService.validarUsuario(usuario, password);
+            persona persona = usuarioService.validarUsuario(usuario, password);
             if (persona != null)
             {
+
+                string tipo = persona.tipoUsuario;
+                int id = persona.idUsuario;
 
                 FormsAuthenticationTicket tkt;
                 string cookiestr;
                 HttpCookie ck;
                 tkt = new FormsAuthenticationTicket(1, usuario, DateTime.Now,
-                DateTime.Now.AddMinutes(30), true, "datos adicionales del usuario");
+                DateTime.Now.AddMinutes(30), true, tipo + "|" + id);
                 cookiestr = FormsAuthentication.Encrypt(tkt);
                 ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
                 ck.Expires = tkt.Expiration;
                 ck.Path = FormsAuthentication.FormsCookiePath;
                 Response.Cookies.Add(ck);
 
+                string redirectUrl = Request["ReturnUrl"];
+
+                if (redirectUrl == null)
+                {
+                    if (tipo.Equals("E")) redirectUrl = "LocalSupervisor.aspx";
+                    else redirectUrl = "Home.aspx";
+                }
+
+                Response.Redirect(redirectUrl, true);
+
             }
             else
             {
                 lblMensaje.Text = "Usuario o contraseña incorrectos.";
-                Response.Redirect("Login.aspx", true);
             }
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnIrRegistro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnIrRegistro_Click1(object sender, EventArgs e)
+        {
+
         }
     }
 }

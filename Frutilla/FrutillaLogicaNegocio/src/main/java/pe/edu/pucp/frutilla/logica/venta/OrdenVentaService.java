@@ -82,7 +82,7 @@ public class OrdenVentaService {
 
     // Listar todas las órdenes
     public List<OrdenVenta> listarTodasLasOrdenes() throws SQLException {
-        return ordenVentaMySQL.listarTodas();
+        return ordenVentaMySQL.listarTodos();
     }
 
     // Listar órdenes por cliente

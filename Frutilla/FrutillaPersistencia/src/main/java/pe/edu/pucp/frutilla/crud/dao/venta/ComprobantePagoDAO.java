@@ -9,6 +9,4 @@ import java.util.ArrayList;
 import pe.edu.pucp.frutilla.crud.dao.BaseDAO;
 public interface ComprobantePagoDAO extends BaseDAO<ComprobantePago> {
 
-    // Métodos extras
-    public Notificacion crearNotificacionCompra(ComprobantePago comprobante);
 }

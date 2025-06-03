@@ -34,18 +34,25 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
 
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE e.idUsuario = ? AND u.activo = true";
+    return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, " +
+           "e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, " +
+           "e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, " +
+           "e.tipo, e.idLocal " +
+           "FROM Usuario u " +
+           "INNER JOIN Empleado e ON u.idUsuario = e.idUsuario " +
+           "WHERE e.idUsuario = ? AND u.activo = true";
     }
+
 
     @Override
     protected String getSelectAllQuery() {
-        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true";
+        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND u.idUsuario = e.idUsuario";
     }
 
     @Override
     protected void setInsertParameters(PreparedStatement ps, Empleado entity) throws SQLException {
 
-        ps.setInt(1, entity.getIdEmpleado());
+        ps.setInt(1, entity.getIdUsuario());
         ps.setString(2, entity.getNombre());
         ps.setString(3, entity.getApellidoPaterno());
         ps.setString(4, entity.getApellidoMaterno());
@@ -61,7 +68,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
     @Override
     protected void setUpdateParameters(PreparedStatement ps, Empleado entity) throws SQLException {
 
-        ps.setInt(1, entity.getIdEmpleado());
+        ps.setInt(1, entity.getIdUsuario());
         ps.setString(2, entity.getNombre());
         ps.setString(3, entity.getApellidoPaterno());
         ps.setString(4, entity.getApellidoMaterno());
@@ -72,7 +79,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         ps.setBoolean(9, entity.getTurnoTrabajo());
         ps.setString(10, String.valueOf(entity.getTipo()));
         ps.setInt(11, entity.getIdLocal());
-        ps.setInt(12, entity.getIdEmpleado());
+        ps.setInt(12, entity.getIdLocal());
     }
 
     @Override
@@ -86,7 +93,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
             empleado = new Repartidor();
         }
         
-        empleado.setIdEmpleado(rs.getInt("idUsuario"));
+        empleado.setIdUsuario(rs.getInt("idUsuario"));
         empleado.setNombre(rs.getString("nombres"));
         empleado.setApellidoPaterno(rs.getString("apellidoPaterno"));
         empleado.setApellidoMaterno(rs.getString("apellidoMaterno"));
@@ -106,7 +113,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
 
     @Override
     protected void setId(Empleado entity, Integer id) {
-        entity.setIdEmpleado(id);
+        entity.setIdUsuario(id);
     }
 
     @Override
@@ -158,7 +165,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
 
     public ArrayList<Empleado> listarTodosPorLocal(int idLocal){
         ArrayList<Empleado> empleados = new ArrayList<>();
-        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND e.idLocal = ?";
+        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND e.idLocal = ? AND u.idUsuario = e.idUsuario";
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idLocal);

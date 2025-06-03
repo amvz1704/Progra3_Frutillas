@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="obtenerIDPorNombreUsuario" type="tns:obtenerIDPorNombreUsuario" />
+  <xs:element name="obtenerIDPorNombreUsuarioResponse" type="tns:obtenerIDPorNombreUsuarioResponse" />
   <xs:element name="validarUsuario" type="tns:validarUsuario" />
   <xs:element name="validarUsuarioResponse" type="tns:validarUsuarioResponse" />
+  <xs:complexType name="obtenerIDPorNombreUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerIDPorNombreUsuarioResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="validarUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:string" />
@@ -13,15 +25,17 @@
       <xs:element minOccurs="0" name="return" type="tns:persona" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="persona" abstract="true">
+  <xs:complexType name="persona">
     <xs:sequence>
       <xs:element name="activo" type="xs:boolean" />
       <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string" />
       <xs:element minOccurs="0" name="apellidoPaterno" type="xs:string" />
       <xs:element minOccurs="0" name="contraSistema" type="xs:string" />
       <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
+      <xs:element name="idUsuario" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" type="xs:string" />
       <xs:element minOccurs="0" name="telefono" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoUsuario" type="xs:string" />
       <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

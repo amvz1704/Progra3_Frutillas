@@ -10,19 +10,6 @@ import pe.edu.pucp.frutilla.crud.dao.inventario.ProductoDAO;
 import pe.edu.pucp.frutilla.crud.mysql.inventario.ProductoMySQL; 
 
 
-import pe.edu.pucp.frutilla.crud.dao.inventario.InventarioDAO;
-import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL; 
-
-import pe.edu.pucp.frutilla.crud.dao.inventario.SnackDAO;
-import pe.edu.pucp.frutilla.crud.mysql.inventario.SnackMySQL; 
-
-import pe.edu.pucp.frutilla.crud.dao.inventario.BebidaDAO;
-import pe.edu.pucp.frutilla.crud.mysql.inventario.BebidaMySQL; 
-
-
-import pe.edu.pucp.frutilla.crud.dao.inventario.FrutaDAO;
-import pe.edu.pucp.frutilla.crud.mysql.inventario.FrutaMySQL; 
-
 import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
 import pe.edu.pucp.frutilla.crud.mysql.venta.OrdenVentaMySQL; 
 
@@ -31,23 +18,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import pe.edu.pucp.frutilla.config.DBManager;
 
 //importado de frutilla.models
 import pe.edu.pucp.frutilla.models.local.Local; //incluimos LOCAL 
 import pe.edu.pucp.frutilla.models.rrhh.Empleado; //incluimos Empleado 
 import pe.edu.pucp.frutilla.models.inventario.Producto; //incluimos Producto 
-import pe.edu.pucp.frutilla.models.inventario.Bebida; //incluimos Producto 
-import pe.edu.pucp.frutilla.models.inventario.Fruta; //incluimos Producto 
-import pe.edu.pucp.frutilla.models.inventario.Snack; //incluimos Producto 
-
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl; 
-import pe.edu.pucp.frutilla.models.inventario.TipoEstado;
 
 
 	
@@ -62,7 +40,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE idLocal = ?";
+        return "UPDATE Local SET nombre = ?, descripcion= ?, direccion = ?, activo = ?, telefono = ? WHERE id_local = ?";
     }
     
     @Override
@@ -72,12 +50,12 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
   
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT idLocal, nombre, descripcion, direccion, telefono, activo FROM Local WHERE idLocal = ?";
+        return "SELECT id_local, nombre, direccion, telefono FROM Local WHERE id_local = ?";
     }
 
     @Override
     protected String getSelectAllQuery() {
-        return "SELECT idLocal, nombre, descripcion, direccion, telefono, activo FROM Local WHERE activo = true";
+        return "SELECT * FROM Local WHERE activo = true";
     }
     //creacion de un local en base a un objeto "Local inicializado"
     @Override
@@ -101,19 +79,8 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
         return local;
     }
     
-    
-    
-    //actualizar requiere una copia de todos 
-    //los empleados, ordenes de venta y productos? NO,
-    //porque nuestra tabla de local no almacena essos datos.
-    //eso lo tiene que ver negocio y WS
-    
-    
-    //tampoco es necesario, pues la tabla de datos no obtiene l
-    
     @Override 
     protected void setUpdateParameters(PreparedStatement ps, Local entity) throws SQLException{
-        
             ps.setString(1, entity.getNombre());
             ps.setString(2, entity.getDescripcion());
             ps.setString(3, entity.getDireccion());
@@ -131,7 +98,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     @Override
     public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 
-        EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
+        EmpleadoMySQL interfazEmpleado = new EmpleadoMySQL(); 
         return interfazEmpleado.listarTodosPorLocal(idLocal);
     }
 
@@ -143,9 +110,8 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     }
     
     @Override
-    public List<OrdenVenta> encontrarVentas(int idLocal) throws SQLException{
+    public ArrayList<OrdenVenta> encontrarVentas(int idLocal) throws SQLException{
         OrdenVentaMySQL interfazVenta = new OrdenVentaMySQL();  //falta actualizar DAO para que lo implemente
-        return interfazVenta.listarPorLocal(idLocal); //por ahora mientras que no este implementado OrdenVenta
-       // return interfazVenta.obtenerTodosPorLocal(idLocal);
+        return new ArrayList<>(interfazVenta.listarPorLocal(idLocal));
     }
 }

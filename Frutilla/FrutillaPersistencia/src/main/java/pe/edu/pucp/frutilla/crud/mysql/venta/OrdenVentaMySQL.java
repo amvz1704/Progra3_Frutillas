@@ -20,7 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
 import java.sql.Types;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.time.*; 
 import java.util.List;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
@@ -55,20 +56,6 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     //----------------------------------------------------------------------
     //----------------------------------------------------------------------
     
-    
-    //Insertar
-    @Override
-    protected void setInsertParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
-        ps.setDate(2, Date.valueOf(entity.getFecha()));
-        ps.setTime(3, Time.valueOf(entity.getHoraFinEntrega()));
-        ps.setString(4, entity.getDescripcion());
-        ps.setDouble(5, entity.getMontoTotal());
-        ps.setBoolean(6, entity.getEntregado());
-        ps.setString(7, entity.getEstado().name());
-        ps.setInt(8, entity.getIdLocal());
-        ps.setInt(9, entity.getIdCliente());
-        ps.setInt(10, entity.getIdEmpleado());
-    }
     
     @Override
     public void agregar(OrdenVenta entity) {
@@ -105,9 +92,91 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
             throw new RuntimeException("Error al agregar OrdenVenta", e);
         }
     }
-
     
-    //Actualizar
+    
+    @Override
+    public void actualizar(OrdenVenta entity){
+        try (Connection conn = DBManager.getInstance().getConnection();
+             CallableStatement cs = conn.prepareCall("{CALL ACTUALIZAR_ORDEN_VENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}")) {
+
+            cs.setInt(1, entity.getIdOrdenVenta()); // ID a actualizar
+            cs.setDate(2, Date.valueOf(entity.getFecha()));
+            cs.setTime(3, Time.valueOf(entity.getHoraFinEntrega()));
+            cs.setString(4, entity.getDescripcion());
+            cs.setDouble(5, entity.getMontoTotal());
+            cs.setBoolean(6, entity.getEntregado());
+            cs.setString(7, entity.getEstado().name());
+            cs.setInt(8, entity.getIdLocal());
+
+            // idComprobante (nuevo parámetro)
+            cs.setInt(9, entity.getIdComprobante()); 
+
+            cs.setInt(10, entity.getIdCliente());
+
+            if (entity.getIdEmpleado() > 0) {
+                cs.setInt(11, entity.getIdEmpleado());
+            } else {
+                cs.setNull(11, Types.INTEGER);
+            }
+
+            cs.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar OrdenVenta", e);
+        }
+    }
+    
+    @Override
+    public List<OrdenVenta> listarTodos() {
+        List<OrdenVenta> lista = new ArrayList<>();
+
+        try (Connection conn = DBManager.getInstance().getConnection();
+             CallableStatement cs = conn.prepareCall("{CALL ORDEN_VENTA_LISTAR()}");
+             ResultSet rs = cs.executeQuery()) {
+
+            while (rs.next()) {
+                OrdenVenta orden = new OrdenVenta();
+
+                orden.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
+                orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setHoraFinEntrega(rs.getTime("horaFinEntrega").toLocalTime());
+                orden.setDescripcion(rs.getString("descripcion"));
+                orden.setMontoTotal(rs.getDouble("montoTotal"));
+                orden.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
+                orden.setIdLocal(rs.getInt("idLocal"));
+                orden.setIdComprobante(rs.getInt("idComprobante"));
+                orden.setIdCliente(rs.getInt("idCliente"));
+
+                int idEmpleado = rs.getInt("idEmpleado");
+                if (!rs.wasNull()) {
+                    orden.setIdEmpleado(idEmpleado);
+                }
+
+                lista.add(orden);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar órdenes de venta", e);
+        }
+
+        return lista;
+    }
+    
+    
+    //Insertar
+    @Override
+    protected void setInsertParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
+        ps.setDate(1, Date.valueOf(entity.getFecha()));
+        ps.setTime(2, Time.valueOf(entity.getHoraFinEntrega()));
+        ps.setString(3, entity.getDescripcion());
+        ps.setDouble(4, entity.getMontoTotal());
+        ps.setBoolean(5, entity.getEntregado());
+        ps.setString(6, entity.getEstado().name());
+        ps.setInt(7, entity.getIdLocal());
+        ps.setInt(8, entity.getIdCliente());
+        ps.setInt(9, entity.getIdEmpleado());
+    }
+
     @Override
     protected void setUpdateParameters(PreparedStatement ps, OrdenVenta entity) throws SQLException {
         ps.setInt(1, entity.getIdOrdenVenta());
@@ -153,35 +222,48 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     }
 
     // Métodos adicionales para listar por cliente, empleado, local, id , todos
-    public List<OrdenVenta> listarPorCliente(int idCliente) throws SQLException {
+    
+    public List<OrdenVenta> listarPorCliente(int idCliente) {
         List<OrdenVenta> ordenes = new ArrayList<>();
-        String query = "CALL ORDEN_VENTA_LISTAR_X_CLIENTE(?)";
-        try (Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
+        String query = "{CALL ORDEN_VENTA_LISTAR_X_CLIENTE(?)}";
 
-            ps.setInt(1, idCliente);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                OrdenVenta orden = createFromResultSet(rs);
-                ordenes.add(orden);
+        try (Connection con = DBManager.getInstance().getConnection();
+             CallableStatement cs = con.prepareCall(query)) {
+
+            cs.setInt(1, idCliente);
+            try (ResultSet rs = cs.executeQuery()) {
+                while (rs.next()) {
+                    OrdenVenta orden = createFromResultSet(rs);
+                    ordenes.add(orden);
+                }
             }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar órdenes de venta por cliente", e);
         }
+
         return ordenes;
     }
 
-    public List<OrdenVenta> listarPorLocal(int idLocal) throws SQLException {
+    public List<OrdenVenta> listarPorLocal(int idLocal) {
         List<OrdenVenta> ordenes = new ArrayList<>();
-        String query = "CALL ORDEN_VENTA_LISTAR_X_LOCAL(?)";
-        try (Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
+        String query = "{CALL ORDEN_VENTA_LISTAR_X_LOCAL(?)}";
 
-            ps.setInt(1, idLocal);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                OrdenVenta orden = createFromResultSet(rs);
-                ordenes.add(orden);
+        try (Connection con = DBManager.getInstance().getConnection();
+             CallableStatement cs = con.prepareCall(query)) {
+
+            cs.setInt(1, idLocal);
+            try (ResultSet rs = cs.executeQuery()) {
+                while (rs.next()) {
+                    OrdenVenta orden = createFromResultSet(rs);
+                    ordenes.add(orden);
+                }
             }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar órdenes de venta por local", e);
         }
+
         return ordenes;
     }
 
@@ -189,10 +271,10 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         List<OrdenVenta> ordenes = new ArrayList<>();
         String query = "CALL ORDEN_VENTA_LISTAR_X_EMPLEADO(?)";
         try (Connection con = DBManager.getInstance().getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
+             CallableStatement cs = con.prepareCall(query)) {
 
-            ps.setInt(1, idEmpleado);
-            ResultSet rs = ps.executeQuery();
+            cs.setInt(1, idEmpleado);
+            ResultSet rs = cs.executeQuery();
             while (rs.next()) {
                 OrdenVenta orden = createFromResultSet(rs);
                 ordenes.add(orden);

@@ -36,8 +36,6 @@ namespace LocalWebService.EmpleadoWS {
         
         private localDate fechaContratoField;
         
-        private int idEmpleadoField;
-        
         private int idLocalField;
         
         private double salarioField;
@@ -60,18 +58,6 @@ namespace LocalWebService.EmpleadoWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
-        public int idEmpleado {
-            get {
-                return this.idEmpleadoField;
-            }
-            set {
-                this.idEmpleadoField = value;
-                this.RaisePropertyChanged("idEmpleado");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
         public int idLocal {
             get {
                 return this.idLocalField;
@@ -83,7 +69,7 @@ namespace LocalWebService.EmpleadoWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
         public double salario {
             get {
                 return this.salarioField;
@@ -95,7 +81,7 @@ namespace LocalWebService.EmpleadoWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public ushort tipo {
             get {
                 return this.tipoField;
@@ -107,7 +93,7 @@ namespace LocalWebService.EmpleadoWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public bool turnoTrabajo {
             get {
                 return this.turnoTrabajoField;
@@ -144,7 +130,7 @@ namespace LocalWebService.EmpleadoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/")]
-    public abstract partial class persona : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class persona : object, System.ComponentModel.INotifyPropertyChanged {
         
         private bool activoField;
         
@@ -156,9 +142,13 @@ namespace LocalWebService.EmpleadoWS {
         
         private string correoElectronicoField;
         
+        private int idUsuarioField;
+        
         private string nombreField;
         
         private string telefonoField;
+        
+        private string tipoUsuarioField;
         
         private string usuarioSistemaField;
         
@@ -224,6 +214,18 @@ namespace LocalWebService.EmpleadoWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        public int idUsuario {
+            get {
+                return this.idUsuarioField;
+            }
+            set {
+                this.idUsuarioField = value;
+                this.RaisePropertyChanged("idUsuario");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public string nombre {
             get {
                 return this.nombreField;
@@ -235,7 +237,7 @@ namespace LocalWebService.EmpleadoWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
         public string telefono {
             get {
                 return this.telefonoField;
@@ -247,7 +249,19 @@ namespace LocalWebService.EmpleadoWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public string tipoUsuario {
+            get {
+                return this.tipoUsuarioField;
+            }
+            set {
+                this.tipoUsuarioField = value;
+                this.RaisePropertyChanged("tipoUsuario");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
         public string usuarioSistema {
             get {
                 return this.usuarioSistemaField;

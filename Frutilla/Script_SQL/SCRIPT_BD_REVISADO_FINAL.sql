@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Cliente` (
   `nombres` VARCHAR(70) NOT NULL,
   `apellidoPaterno` VARCHAR(45) NOT NULL,
   `apellidoMaterno` VARCHAR(45) NOT NULL,
-  `correoElectronivo` VARCHAR(80) NOT NULL,
+  `correoElectronico` VARCHAR(80) NOT NULL,
   `telefono` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idUsuario`),
   INDEX `fk_Cliente_Usuario1_idx` (`idUsuario` ASC) VISIBLE,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Empleado` (
   `correoElectronico` VARCHAR(80) NOT NULL,
   `fechaContrato` DATE NOT NULL,
   `salario` DOUBLE NOT NULL,
-  `turnoTrabajo` VARCHAR(45) NOT NULL,
+  `turnoTrabajo` VARCHAR(45),
   `tipo` CHAR(1) NOT NULL COMMENT '\\\\\\\"R\\\\\\\": repartidor\\\\n\\\\\\\"S\\\\\\\": supervisor',
   `idLocal` INT NOT NULL,
   INDEX `fk_Empleado_Local1_idx` (`idLocal` ASC) VISIBLE,
@@ -123,11 +123,11 @@ DROP TABLE IF EXISTS `frutilla`.`Fruta` ;
 
 CREATE TABLE IF NOT EXISTS `frutilla`.`Fruta` (
   `idProducto` INT NOT NULL,
-  `requiereLimpieza` TINYINT NOT NULL,
-  `estaLimpio` TINYINT NOT NULL DEFAULT 0,
-  `requiereEnvasado` TINYINT NOT NULL DEFAULT 0,
-  `estaEnvasado` TINYINT NOT NULL DEFAULT 0,
-  `envase` VARCHAR(45) NOT NULL,
+  `requiereLimpieza` TINYINT DEFAULT 0,
+  `estaLimpio` TINYINT DEFAULT 0,
+  `requiereEnvasado` TINYINT DEFAULT 0,
+  `estaEnvasado` TINYINT DEFAULT 0,
+  `envase` VARCHAR(45) ,
   PRIMARY KEY (`idProducto`),
   INDEX `fk_Fruta_Producto1_idx` (`idProducto` ASC) ,
   CONSTRAINT `fk_Fruta_Producto1`
@@ -171,7 +171,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `frutilla`.`LineaOrdenVenta` ;
 
 CREATE TABLE IF NOT EXISTS `frutilla`.`LineaOrdenVenta` (
-  `idLineaOrdenVenta` INT NOT NULL,
+  `idLineaOrdenVenta` INT NOT NULL auto_increment,
   `idOrdenVenta` INT NOT NULL,
   `cantidad` INT NOT NULL,
   `subtotal` DOUBLE NOT NULL DEFAULT 0.0,
@@ -215,8 +215,9 @@ DROP TABLE IF EXISTS `frutilla`.`Notificacion` ;
 
 CREATE TABLE IF NOT EXISTS `frutilla`.`Notificacion` (
   `idNotificacion` INT NOT NULL AUTO_INCREMENT,
-  `tipoReceptor` ENUM('CLIENTE', 'SUPERVISOR') NOT NULL,
-  `fechaHora` DATETIME NOT NULL,
+  `tipoReceptor` ENUM('CLIENTE', 'SUPERVISOR') NULL,
+  `fecha` DATE NOT NULL,
+  `hora` TIME NOT NULL,
   `titulo` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NOT NULL,
   `idCliente` INT NULL DEFAULT NULL,
@@ -306,9 +307,9 @@ DROP TABLE IF EXISTS `frutilla`.`Snack` ;
 CREATE TABLE IF NOT EXISTS `frutilla`.`Snack` (
   `idProducto` INT NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
-  `requiereEnvase` TINYINT NOT NULL,
-  `envase` VARCHAR(45) NOT NULL,
-  `estaEnvasado` TINYINT NOT NULL DEFAULT 0,
+  `requiereEnvase` TINYINT DEFAULT 0,
+  `envase` VARCHAR(45) ,
+  `estaEnvasado` TINYINT DEFAULT 0,
   PRIMARY KEY (`idProducto`),
   CONSTRAINT `fk_Snack_Producto1`
     FOREIGN KEY (`idProducto`)

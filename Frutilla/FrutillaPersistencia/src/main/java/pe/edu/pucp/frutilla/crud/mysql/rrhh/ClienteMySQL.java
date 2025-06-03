@@ -40,7 +40,7 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
 
     @Override
     protected void setInsertParameters(PreparedStatement ps, Cliente entity) throws SQLException {
-        ps.setInt(1, entity.getIdCliente());
+        ps.setInt(1, entity.getIdUsuario());
         ps.setString(2, entity.getNombre());
         ps.setString(3, entity.getApellidoPaterno());
         ps.setString(4, entity.getApellidoMaterno());
@@ -50,13 +50,13 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
 
     @Override
     protected void setUpdateParameters(PreparedStatement ps, Cliente entity) throws SQLException {
-        ps.setInt(1, entity.getIdCliente());
+        ps.setInt(1, entity.getIdUsuario());
         ps.setString(2, entity.getNombre());
         ps.setString(3, entity.getApellidoPaterno());
         ps.setString(4, entity.getApellidoMaterno());
         ps.setString(5, entity.getCorreoElectronico());
         ps.setString(6, entity.getTelefono());
-        ps.setInt(7, entity.getIdCliente());
+        ps.setInt(7, entity.getIdUsuario());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
         
         Cliente cliente = new Cliente();
         
-        cliente.setIdCliente(rs.getInt("idUsuario"));
+        cliente.setIdUsuario(rs.getInt("idUsuario"));
         cliente.setNombre(rs.getString("nombres"));
         cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
         cliente.setApellidoMaterno(rs.getString("apellidoMaterno"));
@@ -79,7 +79,7 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
 
     @Override
     protected void setId(Cliente entity, Integer id){
-        entity.setIdCliente(id);
+        entity.setIdUsuario(id);
     }
 
     @Override
@@ -128,5 +128,4 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
             throw new RuntimeException("Error al actualizar entidad", e);
         }
     }
-    
 }
