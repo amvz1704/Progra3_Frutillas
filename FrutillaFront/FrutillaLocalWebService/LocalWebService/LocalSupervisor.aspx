@@ -65,21 +65,30 @@
       <h5 class="mt-5 mb-3"> Elige el módulo de administración:</h5>
       <div class="row g-4">
         <!-- Empleados -->
-        <div class="col-6 col-md-3">
-          <div class="card h-100 text-center">
-            <img src="~/images/empleados.png" class="card-img-top p-3" alt="Empleados" />
-            <div class="card-body">
-              <h6 class="card-title">Administrar Empleados</h6>
-                <asp:Button ID="AdminEmpleados" OnClick="BtnAdminEmpleados" runat="server" 
-                    Text="Ir" class="btn btn-outline-primary btn-sm mt-2" />
-
-            </div>
+          <div class="col-6 col-md-3">
+              <div class="card h-100 text-center">
+                  <div class="position-relative">
+                      <img src="/Public/images/empleadosImagen.png"
+                          alt="Empleados"
+                          class="position-absolute top-0 end-0 m-2"
+                          style="height: 40px;" />
+                  </div>
+                  <div class="card-body">
+                      <h6 class="card-title">Administrar Empleados</h6>
+                      <asp:Button ID="AdminEmpleados" OnClick="BtnAdminEmpleados" runat="server"
+                          Text="Ir" class="btn btn-outline-primary btn-sm mt-2" />
+                  </div>
+              </div>
           </div>
-        </div>
         <!-- Productos -->
         <div class="col-6 col-md-3">
-          <div class="card h-100 text-center">
-            <img src="~/images/productos.png" class="card-img-top p-3" alt="Productos" />
+            <div class="card h-100 text-center">
+                <div class="position-relative">
+                    <img src="/Public/images/productosImagen.png"
+                        alt="Empleados"
+                        class="position-absolute top-0 end-0 m-2"
+                        style="height: 40px;" />
+                </div>
             <div class="card-body">
               <h6 class="card-title">Administrar Productos</h6>
               <asp:Button ID="AdminProductos" OnClick="BtnAdminProductos" runat="server" 
@@ -90,7 +99,12 @@
         <!-- Ventas -->
         <div class="col-6 col-md-3">
           <div class="card h-100 text-center">
-            <img src="~/images/ventas.png" class="card-img-top p-3" alt="Ventas" />
+              <div class="position-relative">
+                  <img src="/Public/images/ventasImagen.png"
+                      alt="Empleados"
+                      class="position-absolute top-0 end-0 m-2"
+                      style="height: 40px;" />
+              </div>
             <div class="card-body">
               <h6 class="card-title">Administrar Ventas</h6>
               <asp:Button ID="AdminVentas" OnClick="BtnAdminVentas" runat="server" 
@@ -101,7 +115,12 @@
         <!-- Clientes -->
         <div class="col-6 col-md-3">
           <div class="card h-100 text-center">
-            <img src="~/images/clientes.png" class="card-img-top p-3" alt="Clientes" />
+              <div class="position-relative">
+                  <img src="/Public/images/empleadosImagen.png"
+                      alt="Empleados"
+                      class="position-absolute top-0 end-0 m-2"
+                      style="height: 40px;" />
+              </div>
             <div class="card-body">
               <h6 class="card-title">Clientes</h6>
               <NavLink class="btn btn-outline-primary btn-sm mt-2"
