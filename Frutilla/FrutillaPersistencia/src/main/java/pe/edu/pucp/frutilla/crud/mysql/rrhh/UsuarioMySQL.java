@@ -21,7 +21,7 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
 
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE Usuario SET usuarioSistema = ?, contrasSistema = ?, activo = ?, tipo = ? WHERE idUsuario = ?";
+        return "UPDATE Usuario SET usuarioSistema = ?, contrasSistema = ?, activo = ? WHERE idUsuario = ?";
     }
 
     @Override
@@ -56,6 +56,7 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
         ps.setString(1, entity.getUsuarioSistema());
         ps.setString(2, entity.getContraSistema());
         ps.setBoolean(3, entity.getActivo());
+        ps.setInt(4, entity.getIdUsuario());
     }
 
     @Override

@@ -7,7 +7,14 @@ package pe.edu.pucp.frutilla.WS;
 import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
 
@@ -27,6 +34,8 @@ public class EmpleadoWS {
         daoEmpleado = new EmpleadoService(); 
     }
     
+   
+    
     @WebMethod(operationName = "obtenerEmpleados")
     public List<Empleado> obtenerEmpleados(@WebParam (name ="idLocal") int idLocal) {
         try{
@@ -37,8 +46,16 @@ public class EmpleadoWS {
         return null;
     }
     
+
     @WebMethod(operationName = "actualizarEmpleado")
     public boolean actualizarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try { 
+            Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
+            empleado.setFechaContrato(sdf.parse(empleado.getFechatContratoSTRING()));
+        } catch (ParseException ex) {
+            Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
+        }    
         try{
             daoEmpleado.actualizar(empleado);
             return true; 
@@ -47,6 +64,7 @@ public class EmpleadoWS {
             return false; 
         }
     }
+
     
     @WebMethod(operationName = "eliminarEmpleado")
     public boolean eliminarEmpleado(@WebParam (name ="idEmpleado") int idEmpleado) {
@@ -61,6 +79,7 @@ public class EmpleadoWS {
     
     @WebMethod(operationName = "obtenerEmpleadoPorId")
     public Empleado obtenerEmpleadoPorId(@WebParam (name ="idEmpleado") int idEmpleado) {
+        
         try{
             return daoEmpleado.obtener(idEmpleado);
         }catch(Exception ex){ 
@@ -71,6 +90,14 @@ public class EmpleadoWS {
     
     @WebMethod(operationName = "agregarEmpleado")
     public boolean agregarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try { 
+            Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
+            empleado.setFechaContrato(sdf.parse(empleado.getFechatContratoSTRING()));
+        } catch (ParseException ex) {
+            Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        
         try{
             daoEmpleado.agregar(empleado);
             

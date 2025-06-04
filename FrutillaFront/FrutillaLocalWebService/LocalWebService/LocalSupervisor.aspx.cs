@@ -93,7 +93,7 @@ namespace LocalWebService
             {
                 // Llamar al servicio y obtener la respuesta boolean
                 var client = new LocalWSClient();
-                bool ok = client.actualizarLoc(localNuevo);
+                bool ok = client.actualizarLoc(localNuevo); //FALSE xd
                 client.Close();
 
                 if (!ok)

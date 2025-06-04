@@ -43,15 +43,22 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav navbar-frutilla ms-auto" >
-          <li class="nav-item">
-            <NavLink class="nav-link active" href="/">Home</NavLink>   <!-- Blazor -->
-            <!-- MVC: <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>-->
-          </li>
+            <li class="nav-item">
+                <asp:HyperLink ID="hlHome" runat="server"
+                    CssClass="nav-link active"
+                    NavigateUrl="~/LocalSupervisor.aspx"
+                    Text="Home" />
+                <!-- Blazor -->
+                <!-- MVC: <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>-->
+            </li>
           <li class="nav-item">
             <NavLink class="nav-link" href="/Productos">Productos</NavLink>
           </li>
           <li class="nav-item">
-            <NavLink class="nav-link" href="/Pedidos">Pedidos</NavLink>
+              <asp:HyperLink ID="HyperLink1" runat="server"
+                  CssClass="nav-link active"
+                  NavigateUrl="~/ListaPedidos.aspx"
+                  Text="Pedidos" />
           </li>
           <li class="nav-item">
               <a class="nav-link" href="/Notificaciones/ListarNotificaciones.aspx">Notificaciones</a>

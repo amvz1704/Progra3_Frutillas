@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="527a32b3-24ad-4265-a7d1-c36e948d8fc5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="251ac878-b50e-48b3-a82f-37365046267b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:8080/FrutillaWS/EmpleadoWS?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="EmpleadoWS.xsd" MetadataType="Schema" ID="0a1c6945-37cf-48af-86a4-e925d4533255" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/EmpleadoWS?xsd=1" />
-    <MetadataFile FileName="EmpleadoWS.wsdl" MetadataType="Wsdl" ID="2f4f9ebf-a664-4aa6-bc58-4b3d97a1bb68" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/EmpleadoWS?wsdl" />
+    <MetadataFile FileName="EmpleadoWS.xsd" MetadataType="Schema" ID="32ca02e3-5e09-489f-abef-7fed7cc45fee" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/EmpleadoWS?xsd=1" />
+    <MetadataFile FileName="EmpleadoWS.wsdl" MetadataType="Wsdl" ID="0de9e29f-007a-40f7-8b46-6a8ba094100c" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/EmpleadoWS?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

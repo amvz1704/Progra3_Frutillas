@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LocalWebService.NotificionesWS;
 
 
 namespace LocalWebService
@@ -33,7 +34,29 @@ namespace LocalWebService
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
             //codigo para abir el modal que agrega empleado * Por hacer 
+            // Como es "Agregar", ponemos el hidden en 0:
+            hfIdEmpleado.Value = "0";
+
+            // Limpiamos todos los campos del modal:
+            LimpiarCamposModal();
+
+
+            // Inyectamos el script para mostrar el modal:
+            CargarModalCrearEmpleado();
         }
+
+        private void LimpiarCamposModal()
+        {
+            txtNombre.Text = "";
+            txtApellidoPa.Text = "";
+            txtApellidoMa.Text = "";
+            txtTelefono.Text = "";
+            txtSalario.Text = "";
+            txtFechaContrato.Text = "";
+            txtCorreo.Text = "";
+            // HfIdEmpleado ya está en "0".
+        }
+
 
         protected void GvEmpleado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -96,6 +119,8 @@ namespace LocalWebService
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
+                
+
 
                 if (emp != null)
                 {
@@ -106,7 +131,7 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
-                    //faltafecha contrato
+                    lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
 
                     // Ejecutamos JS para mostrar el modal
@@ -128,6 +153,24 @@ namespace LocalWebService
             }
         }
 
+        private void CargarModalCrearEmpleado() {
+            // Mostrar modal
+            string script = @"
+            var myModal = new bootstrap.Modal(
+                 document.getElementById('miModalEditarEmpleado'),
+                 {keyboard: false}
+            );
+            myModal.show();";
+
+            ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowCrearEditarModal",
+                script,
+                true);
+
+        }
+
         private void CargarModalEditarEmpleado(int idEmp)
         {
             try
@@ -135,6 +178,8 @@ namespace LocalWebService
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
+               // var fecha = emp.fechaContrato;
+
 
                 if (emp != null)
                 {
@@ -177,7 +222,7 @@ namespace LocalWebService
 
                 if (ok)
                 {
-                    lblError.Text = "coRRECTO al obtener detalles los empleados: ";
+                    lblError.Text = "Correcto al obtener detalles los empleados: ";
                 }
                 else
                 {
@@ -195,7 +240,14 @@ namespace LocalWebService
             int idEmp;
             if (!int.TryParse(hfIdEmpleado.Value, out idEmp)) idEmp = 0;
 
-            // Construimos el DTO según tu proxy
+            DateTime fechaContrato;
+            string fechaFormateada = "";
+            if (DateTime.TryParse(txtFechaContrato.Text, out fechaContrato))
+            {
+                fechaFormateada = fechaContrato.ToString("yyyy-MM-dd");
+                // Ahora tienes la fecha en formato string tipo yyyy-MM-dd
+            }
+            // Construimos el DTO según tu 
             var empDto = new EmpleadoWS.empleado
             {
                 idUsuario = idEmp,
@@ -205,8 +257,26 @@ namespace LocalWebService
                 apellidoMaterno = txtApellidoMa.Text.Trim(),
                 salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0,
                 telefono = txtTelefono.Text.Trim(),
-                correoElectronico = txtCorreo.Text.Trim()
+                correoElectronico = txtCorreo.Text.Trim(),
+                turnoTrabajo = true, 
+                fechatContratoSTRING = fechaFormateada,
+                tipo = 'R',
+                usuarioSistema = "aa",
+                contraSistema = "aaa",
+                activo = true,
+                tipoUsuario = "Empleado"
+
             };
+
+        //    private localDate fechaContratoField;
+
+        //private int idLocalField;
+
+        //private double salarioField;
+
+        //private ushort tipoField;
+
+        //private bool turnoTrabajoField;
 
             try
             {

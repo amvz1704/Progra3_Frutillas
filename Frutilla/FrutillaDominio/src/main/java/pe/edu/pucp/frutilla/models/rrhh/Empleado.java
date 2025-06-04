@@ -1,9 +1,13 @@
 package pe.edu.pucp.frutilla.models.rrhh;
 //import java.time.*;
-import java.time.LocalDate;
+import java.util.Date; 
+import java.time.LocalDate; 
+import java.time.ZoneId;
 
 public class Empleado extends Persona{
-    private LocalDate fechaContrato;
+    
+    private Date fechaContrato;
+    private String fechatContratoSTRING; 
     private double salario;
     // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
     private boolean turnoTrabajo;
@@ -12,7 +16,7 @@ public class Empleado extends Persona{
 	
 
     public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno, 
-    String correoElectronico, String telefono, LocalDate fechaContrato,
+    String correoElectronico, String telefono, Date fechaContrato,
     double salario, String usuarioSistema, String contraSistema, char tipo, int idLocal, int idUsuario ){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema, idUsuario, "E");
         this.fechaContrato = fechaContrato;
@@ -21,7 +25,8 @@ public class Empleado extends Persona{
         this.tipo = tipo;
         this.idLocal = idLocal;
     }
-
+    
+    
     public Empleado(Empleado empleado){
         super(empleado);
         this.fechaContrato = empleado.fechaContrato;
@@ -50,13 +55,13 @@ public class Empleado extends Persona{
     }
 
     public LocalDate getFechaContrato() {
-		LocalDate copia = LocalDate.of(fechaContrato.getYear(), 
-		fechaContrato.getMonth(), fechaContrato.getDayOfMonth());
+        LocalDate copia = fechaContrato.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
         return copia;
     }
 
-    public void setFechaContrato(LocalDate fechaContrato) {
+    public void setFechaContrato(Date fechaContrato) {
         this.fechaContrato = fechaContrato;
+        this.fechatContratoSTRING = fechaContrato.toString();
     }
 
     public double getSalario() {
@@ -89,6 +94,20 @@ public class Empleado extends Persona{
 
     public void setIdLocal(int idLocal) {
         this.idLocal = idLocal;
+    }
+
+    /*
+     * @return the fechatContratoSTRING
+     */
+    public String getFechatContratoSTRING() {
+        return fechatContratoSTRING;
+    }
+
+    /**
+     * @param fechatContratoSTRING the fechatContratoSTRING to set
+     */
+    public void setFechatContratoSTRING(String fechatContratoSTRING) {
+        this.fechatContratoSTRING = fechatContratoSTRING;
     }
 	
 }
