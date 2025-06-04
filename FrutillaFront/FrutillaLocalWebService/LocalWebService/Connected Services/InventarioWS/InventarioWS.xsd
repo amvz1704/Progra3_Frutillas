@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actualizarProducto" type="tns:actualizarProducto" />
+  <xs:element name="actualizarProductoResponse" type="tns:actualizarProductoResponse" />
+  <xs:element name="eliminarProducto" type="tns:eliminarProducto" />
+  <xs:element name="eliminarProductoResponse" type="tns:eliminarProductoResponse" />
+  <xs:element name="insertarFruta" type="tns:insertarFruta" />
+  <xs:element name="insertarFrutaResponse" type="tns:insertarFrutaResponse" />
+  <xs:element name="listarTodos" type="tns:listarTodos" />
+  <xs:element name="listarTodosResponse" type="tns:listarTodosResponse" />
+  <xs:complexType name="fruta">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:producto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="envase" type="xs:string" />
+          <xs:element minOccurs="0" name="estaEnvasado" type="xs:boolean" />
+          <xs:element minOccurs="0" name="estaLimpio" type="xs:boolean" />
+          <xs:element minOccurs="0" name="requiereEnvase" type="xs:boolean" />
+          <xs:element minOccurs="0" name="requiereLimpieza" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="producto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="precioUnitario" type="xs:double" />
+      <xs:element name="stock" type="xs:int" />
+      <xs:element name="stockMinimo" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bebida">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:producto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="endulzante" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="frutasBebida" nillable="true" type="tns:frutasBebida" />
+          <xs:element name="tamanioOz" type="xs:int" />
+          <xs:element minOccurs="0" name="tieneLeche" type="tns:tipoLeche" />
+          <xs:element minOccurs="0" name="tipo" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="snack">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:producto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="envase" type="xs:string" />
+          <xs:element minOccurs="0" name="estaEnvasado" type="xs:boolean" />
+          <xs:element minOccurs="0" name="requiereEnvase" type="xs:boolean" />
+          <xs:element minOccurs="0" name="tipo" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="actualizarProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:producto" />
+      <xs:element name="arg1" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarProductoResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodos">
+    <xs:sequence>
+      <xs:element name="idLocal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarTodosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarFruta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:fruta" />
+      <xs:element name="arg1" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarFrutaResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="eliminarProducto">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" />
+      <xs:element name="arg1" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarProductoResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:simpleType name="tipoEstado">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DISPONIBLE" />
+      <xs:enumeration value="AGOTADO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="frutasBebida">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PAPAYA" />
+      <xs:enumeration value="MANGO" />
+      <xs:enumeration value="LUCUMA" />
+      <xs:enumeration value="FRESA" />
+      <xs:enumeration value="PINHA" />
+      <xs:enumeration value="PLATANO" />
+      <xs:enumeration value="MANZANA" />
+      <xs:enumeration value="PERA" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoLeche">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ENTERA" />
+      <xs:enumeration value="SIN_LACTOSA" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
