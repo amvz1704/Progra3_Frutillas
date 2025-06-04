@@ -31,7 +31,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:persona">
         <xs:sequence>
-          <xs:element minOccurs="0" name="fechaContrato" type="tns:localDate" />
+          <xs:element minOccurs="0" name="fechatContratoSTRING" type="xs:string" />
           <xs:element name="idLocal" type="xs:int" />
           <xs:element name="salario" type="xs:double" />
           <xs:element name="tipo" type="xs:unsignedShort" />
@@ -53,9 +53,6 @@
       <xs:element minOccurs="0" name="tipoUsuario" type="xs:string" />
       <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="producto">
     <xs:sequence>

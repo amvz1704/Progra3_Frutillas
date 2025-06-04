@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,11 +50,11 @@ public class EmpleadoWS {
     public boolean actualizarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try { 
+            Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
             empleado.setFechaContrato(sdf.parse(empleado.getFechatContratoSTRING()));
         } catch (ParseException ex) {
             Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
+        }    
         try{
             daoEmpleado.actualizar(empleado);
             return true; 
