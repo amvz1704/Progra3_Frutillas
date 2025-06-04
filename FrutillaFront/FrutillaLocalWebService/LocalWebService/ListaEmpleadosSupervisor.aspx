@@ -122,9 +122,6 @@
             <ItemStyle Width="100px" />
         </asp:TemplateField>
 
-
-
-
         <asp:TemplateField HeaderText="Correo" SortExpression="Correo">
             <ItemTemplate>
                 <a href='mailto:<%# Eval("correoElectronico") %>' class="text-decoration-none">

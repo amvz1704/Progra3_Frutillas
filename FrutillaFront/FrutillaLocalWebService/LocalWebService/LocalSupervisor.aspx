@@ -42,7 +42,7 @@
 
                  
                 <asp:Button ID="btnEditarLocal" runat="server"
-                            CssClass="btn btn-primary"
+                            CssClass="btn-frutilla"
                             Text="Editar Local"
                             OnClick="btnEditarLocal_Click" />
                 
@@ -53,57 +53,51 @@
         </div>
       </asp:Panel>
 
-        
 
-      <!-- 4) Grid de Cards para los módulos de administración -->
-      <h5 class="mt-5 mb-3"> Elige el módulo de administración:</h5>
-      <div class="row g-4 justify-content-center">
+
+    <!-- 4) Grid de Cards para los módulos de administración -->
+    <h5 class="mt-5 mb-3">Elige el módulo de administración:</h5>
+    <div class="row g-4 justify-content-center">
         <!-- Empleados -->
         <div class="col-6 col-md-3">
-          <div class="card h-100 text-center">
-            <img src="~/images/empleados.png" class="card-img-top p-3" alt="Empleados" />
-            <div class="card-body">
-              <h6 class="card-title">Administrar Empleados</h6>
-                <asp:Button ID="AdminEmpleados" OnClick="BtnAdminEmpleados" runat="server" 
-                    Text="Ir" class="btn btn-outline-primary btn-sm mt-2" />
-
+            <div class="card h-100 text-center">
+                <div class="position-relative">
+                    <img src="/Public/images/empleadosImagen.png" class="position-absolute top-0 end-0 m-2" alt="Empleados" height="40" />
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Administrar Empleados</h6>
+                    <asp:Button ID="AdminEmpleados" OnClick="BtnAdminEmpleados" runat="server"
+                        Text="Ir" CssClass="btn-frutilla" />
+                </div>
             </div>
-          </div>
         </div>
         <!-- Productos -->
         <div class="col-6 col-md-3">
-          <div class="card h-100 text-center">
-            <img src="~/images/productos.png" class="card-img-top p-3" alt="Productos" />
-            <div class="card-body">
-              <h6 class="card-title">Administrar Productos</h6>
-              <asp:Button ID="AdminProductos" OnClick="BtnAdminProductos" runat="server" 
-                Text="Ir" class="btn btn-outline-primary btn-sm mt-2" />
+            <div class="card h-100 text-center">
+                <div class="position-relative">
+                    <img src="/Public/images/productosImagen.png" class="position-absolute top-0 end-0 m-2" alt="Empleados" height="40" />
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Administrar Productos</h6>
+                    <asp:Button ID="AdminProductos" OnClick="BtnAdminProductos" runat="server"
+                        Text="Ir" CssClass="btn-frutilla" />
+                </div>
             </div>
-          </div>
         </div>
         <!-- Ventas -->
         <div class="col-6 col-md-3">
-          <div class="card h-100 text-center">
-            <img src="~/images/ventas.png" class="card-img-top p-3" alt="Ventas" />
-            <div class="card-body">
-              <h6 class="card-title">Administrar Ventas</h6>
-              <asp:Button ID="AdminVentas" OnClick="BtnAdminVentas" runat="server" 
-                    Text="Ir" class="btn btn-outline-primary btn-sm mt-2" />
+            <div class="card h-100 text-center">
+                <div class="position-relative">
+                    <img src="/Public/images/ventasImagen.png" class="position-absolute top-0 end-0 m-2" alt="Empleados" height="40" />
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Administrar Ventas</h6>
+                    <asp:Button ID="AdminVentas" OnClick="BtnAdminVentas" runat="server"
+                        Text="Ir" CssClass="btn-frutilla" />
+                </div>
             </div>
-          </div>
         </div>
-        <!-- Clientes -->
-        <div class="col-6 col-md-3">
-          <div class="card h-100 text-center">
-            <img src="~/images/clientes.png" class="card-img-top p-3" alt="Clientes" />
-            <div class="card-body">
-              <h6 class="card-title">Clientes</h6>
-              <NavLink class="btn btn-outline-primary btn-sm mt-2"
-                       href="/Monitoreo/Clientes">Ir</NavLink>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
     </>
 
     <!-- ======================================

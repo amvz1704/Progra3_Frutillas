@@ -44,7 +44,10 @@
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav navbar-frutilla ms-auto" >
           <li class="nav-item">
-            <NavLink class="nav-link active" href="/">Home</NavLink>   <!-- Blazor -->
+            <asp:HyperLink ID="hlHome" runat="server" 
+    CssClass="nav-link active" 
+    NavigateUrl="~/LocalSupervisor.aspx" 
+    Text="Home" />   <!-- Blazor -->
             <!-- MVC: <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>-->
           </li>
           <li class="nav-item">
