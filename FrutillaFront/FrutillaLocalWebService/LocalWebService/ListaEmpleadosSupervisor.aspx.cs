@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NodaTime;
 using NodaTime.Text;
+using LocalWebService.NotificionesWS;
 
 
 namespace LocalWebService
@@ -100,18 +101,6 @@ namespace LocalWebService
                 client.Close();
 
 
-                var ld = emp.fechaContrato;    // ld es un LocalWebService.EmpleadoWS.localDate
-                if (ld != null)
-                {
-                    // Construimos un DateTime usando ld.year, ld.month, ld.day
-                    var dt = new DateTime(ld.year, ld.month, ld.day);
-                    lblVerFechaContrato.Text = dt.ToString("dd/MM/yyyy");
-                }
-                else
-                {
-                    lblVerFechaContrato.Text = "Sin fecha";
-                }
-
                 if (emp != null)
                 {
                     // Asignamos valores a los labels del modal
@@ -149,6 +138,8 @@ namespace LocalWebService
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
+                var fecha = emp.fechaContrato;
+
 
                 if (emp != null)
                 {
