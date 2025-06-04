@@ -46,6 +46,7 @@ public class EmpleadoWS {
         return null;
     }
     
+
     @WebMethod(operationName = "actualizarEmpleado")
     public boolean actualizarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,6 +64,7 @@ public class EmpleadoWS {
             return false; 
         }
     }
+
     
     @WebMethod(operationName = "eliminarEmpleado")
     public boolean eliminarEmpleado(@WebParam (name ="idEmpleado") int idEmpleado) {
