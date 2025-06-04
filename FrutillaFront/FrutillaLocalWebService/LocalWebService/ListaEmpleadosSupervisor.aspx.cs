@@ -34,7 +34,29 @@ namespace LocalWebService
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
             //codigo para abir el modal que agrega empleado * Por hacer 
+            // Como es "Agregar", ponemos el hidden en 0:
+            hfIdEmpleado.Value = "0";
+
+            // Limpiamos todos los campos del modal:
+            LimpiarCamposModal();
+
+
+            // Inyectamos el script para mostrar el modal:
+            CargarModalCrearEmpleado();
         }
+
+        private void LimpiarCamposModal()
+        {
+            txtNombre.Text = "";
+            txtApellidoPa.Text = "";
+            txtApellidoMa.Text = "";
+            txtTelefono.Text = "";
+            txtSalario.Text = "";
+            txtFechaContrato.Text = "";
+            txtCorreo.Text = "";
+            // HfIdEmpleado ya está en "0".
+        }
+
 
         protected void GvEmpleado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -97,6 +119,7 @@ namespace LocalWebService
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
+                
 
 
                 if (emp != null)
@@ -128,6 +151,24 @@ namespace LocalWebService
             {
                 lblError.Text = "Error al obtener detalles los empleados: " + ex.Message;
             }
+        }
+
+        private void CargarModalCrearEmpleado() {
+            // Mostrar modal
+            string script = @"
+            var myModal = new bootstrap.Modal(
+                 document.getElementById('miModalEditarEmpleado'),
+                 {keyboard: false}
+            );
+            myModal.show();";
+
+            ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowCrearEditarModal",
+                script,
+                true);
+
         }
 
         private void CargarModalEditarEmpleado(int idEmp)
