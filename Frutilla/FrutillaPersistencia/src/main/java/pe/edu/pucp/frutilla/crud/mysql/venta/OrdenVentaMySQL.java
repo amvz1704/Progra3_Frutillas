@@ -274,11 +274,12 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
              CallableStatement cs = con.prepareCall(query)) {
 
             cs.setInt(1, idEmpleado);
-            ResultSet rs = cs.executeQuery();
-            while (rs.next()) {
-                OrdenVenta orden = createFromResultSet(rs);
-                ordenes.add(orden);
-            }
+            try(ResultSet rs = cs.executeQuery()){
+                while (rs.next()) {
+                    OrdenVenta orden = createFromResultSet(rs);
+                    ordenes.add(orden);
+                }
+            }         
         }
         return ordenes;
     }
