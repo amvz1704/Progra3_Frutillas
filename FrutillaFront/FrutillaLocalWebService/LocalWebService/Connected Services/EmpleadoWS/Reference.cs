@@ -153,6 +153,7 @@ namespace LocalWebService.EmpleadoWS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/")]
     public partial class localDate : object, System.ComponentModel.INotifyPropertyChanged {
         
+
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {

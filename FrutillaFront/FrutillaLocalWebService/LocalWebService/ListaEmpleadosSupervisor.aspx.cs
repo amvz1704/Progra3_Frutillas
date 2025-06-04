@@ -99,6 +99,19 @@ namespace LocalWebService
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
 
+
+                var ld = emp.fechaContrato;    // ld es un LocalWebService.EmpleadoWS.localDate
+                if (ld != null)
+                {
+                    // Construimos un DateTime usando ld.year, ld.month, ld.day
+                    var dt = new DateTime(ld.year, ld.month, ld.day);
+                    lblVerFechaContrato.Text = dt.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    lblVerFechaContrato.Text = "Sin fecha";
+                }
+
                 if (emp != null)
                 {
                     // Asignamos valores a los labels del modal
@@ -108,7 +121,6 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
-                    //faltafecha contrato
                     lblVerCorreo.Text = emp.correoElectronico;
 
                     // Ejecutamos JS para mostrar el modal
