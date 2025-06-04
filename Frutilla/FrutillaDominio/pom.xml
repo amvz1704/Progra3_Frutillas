@@ -13,4 +13,5 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>pe.edu.pucp.frutilla.frutilladominio.FrutillaDominio</exec.mainClass>
     </properties>
+    
 </project>

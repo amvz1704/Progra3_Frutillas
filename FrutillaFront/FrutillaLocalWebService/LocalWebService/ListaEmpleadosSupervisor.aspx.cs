@@ -8,6 +8,9 @@ using System.Net.Sockets;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using NodaTime;
+using NodaTime.Text;
+using LocalWebService.NotificionesWS;
 
 
 namespace LocalWebService
@@ -97,6 +100,7 @@ namespace LocalWebService
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
 
+
                 if (emp != null)
                 {
                     // Asignamos valores a los labels del modal
@@ -106,7 +110,7 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
-                    //faltafecha contrato
+                    lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
 
                     // Ejecutamos JS para mostrar el modal
@@ -135,6 +139,8 @@ namespace LocalWebService
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
+               // var fecha = emp.fechaContrato;
+
 
                 if (emp != null)
                 {
@@ -145,6 +151,14 @@ namespace LocalWebService
                     txtApellidoMa.Text = emp.apellidoMaterno;
                     txtSalario.Text = emp.salario.ToString("N2");
                     txtTelefono.Text = emp.telefono;
+                    string raw = emp.fechatContratoSTRING;
+                    DateTime fechaParsed = DateTime.ParseExact(
+                    raw,
+                    "ddd MMM dd HH:mm:ss 'PET' yyyy",
+                    System.Globalization.CultureInfo.InvariantCulture);
+
+
+                    txtFechaContrato.Text = fechaParsed.ToString("yyyy-MM-dd");
                     txtCorreo.Text = emp.correoElectronico;
 
 
@@ -177,7 +191,7 @@ namespace LocalWebService
 
                 if (ok)
                 {
-                    lblError.Text = "coRRECTO al obtener detalles los empleados: ";
+                    lblError.Text = "Correcto al obtener detalles los empleados: ";
                 }
                 else
                 {
@@ -195,7 +209,9 @@ namespace LocalWebService
             int idEmp;
             if (!int.TryParse(hfIdEmpleado.Value, out idEmp)) idEmp = 0;
 
-            // Construimos el DTO según tu proxy
+            
+           
+            // Construimos el DTO según tu 
             var empDto = new EmpleadoWS.empleado
             {
                 idUsuario = idEmp,
@@ -205,8 +221,26 @@ namespace LocalWebService
                 apellidoMaterno = txtApellidoMa.Text.Trim(),
                 salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0,
                 telefono = txtTelefono.Text.Trim(),
-                correoElectronico = txtCorreo.Text.Trim()
+                correoElectronico = txtCorreo.Text.Trim(),
+                turnoTrabajo = true, 
+                fechatContratoSTRING = lblVerFechaContrato.Text.Trim(),
+                tipo = 'R',
+                usuarioSistema = "aa",
+                contraSistema = "aaa",
+                activo = true,
+                tipoUsuario = "Empleado"
+
             };
+
+        //    private localDate fechaContratoField;
+
+        //private int idLocalField;
+
+        //private double salarioField;
+
+        //private ushort tipoField;
+
+        //private bool turnoTrabajoField;
 
             try
             {

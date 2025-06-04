@@ -12,6 +12,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
+
 
 import pe.edu.pucp.frutilla.config.DBManager;
 
@@ -102,7 +108,8 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         empleado.setUsuarioSistema(rs.getString("usuarioSistema"));
         empleado.setContraSistema(rs.getString("contrasSistema"));
         empleado.setActivo(rs.getBoolean("activo"));
-        empleado.setFechaContrato(rs.getDate("fechaContrato").toLocalDate());
+        LocalDate temporal = rs.getDate("fechaContrato").toLocalDate(); 
+        empleado.setFechaContrato(java.util.Date.from(temporal.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         empleado.setSalario(rs.getDouble("salario"));
         empleado.setTurnoTrabajo(rs.getBoolean("turnoTrabajo"));
         empleado.setTipo(tipo);

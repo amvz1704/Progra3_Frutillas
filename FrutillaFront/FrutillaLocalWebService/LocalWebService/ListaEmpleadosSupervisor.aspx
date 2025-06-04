@@ -20,7 +20,7 @@
 
         <!-- Columna izquierda: campo de búsqueda -->
 
-        <div class="col-md-6">
+        <div class="col-md-5 text-left" >
             <div class="input-group">
                 <asp:TextBox ID="txtBuscar" runat="server"
                                 CssClass="form-control input-frutilla"
@@ -39,17 +39,25 @@
                  AutoPostBack="True">
                 <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
             </asp:DropDownList>
+
+            
            
         </div>
 
+        <div class="col-md-3 text-md-start text-right mt-2 mt-md-0">
 
-            <asp:Button ID="btnAgregarEmpleado" runat="server"
+             <asp:Button ID="btnAgregarEmpleado" runat="server"
 
-                        Text="Agregar Empleado"
-                        CssClass="btn-frutilla"
-                        OnClick="btnAgregarEmpleado_Click" />
-        </div>
-    </div>
+                 Text="Agregar Empleado"
+                 CssClass="btn-frutilla"
+                 OnClick="btnAgregarEmpleado_Click" />
+
+            </div>
+
+   
+            
+       </div>
+    
    <!-- 1. FIN BARRA SUPERIOR: FIN-->
 
         <asp:Label 
@@ -78,7 +86,7 @@
             <ItemTemplate>
                 <%# Eval("idUsuario") %>
             </ItemTemplate>
-            <ItemStyle Width="60px" />
+            <ItemStyle Width="40px" />
         </asp:TemplateField>
 
         <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
@@ -115,16 +123,6 @@
         </asp:TemplateField>
 
 
-        <%--<asp:TemplateField HeaderText="Fecha Contrato" SortExpression="FechaContrato">
-            <ItemTemplate>
-        <%# 
-            // Hacemos cast al tipo concreto localDate y tomamos su Value (que es DateTime)
-            ((LocalWebService.EmpleadoWS.localDate) Eval("FechaContrato"))
-                .Value.ToString("dd/MM/yyyy") 
-        %>
-            </ItemTemplate>
-            <ItemStyle Width="120px" />
-        </asp:TemplateField>--%>
 
 
         <asp:TemplateField HeaderText="Correo" SortExpression="Correo">
@@ -142,33 +140,35 @@
             <ItemTemplate>
                 <div class="d-flex justify-content-center">
 
-                    <asp:LinkButton ID="lnkVer" runat="server"
-                        CommandName="VerDetalles"
-                        CommandArgument='<%# Eval("idUsuario") %>'
-                        CssClass="btn btn-outline-primary me-1"
-                        ToolTip="Ver Detalles">
-                        <i class="bi bi-eye-fill"></i>
-                    </asp:LinkButton>
+                    <div class="d-flex align-left">
+                        <asp:LinkButton ID="lnkVer" runat="server" 
+                            CommandName="VerDetalles"
+                            CommandArgument='<%# Eval("idUsuario") %>'
+                            CssClass="btn-frutilla"
+                            ToolTip="Ver Detalles">
+                            V
+                        </asp:LinkButton>
+                     </div>
 
                     <asp:LinkButton ID="lnkEditar" runat="server"
                         CommandName="Editar"
                         CommandArgument='<%# Eval("idUsuario") %>'
-                        CssClass="btn btn-outline-success me-1"
+                        CssClass="btn-frutilla"
                         ToolTip="Editar">
-                        <i class="bi bi-pencil-fill"></i>
+                        Ed
                     </asp:LinkButton>
 
                     <asp:LinkButton ID="lnkEliminar" runat="server"
                         CommandName="Eliminar"
                         CommandArgument='<%# Eval("idUsuario") %>'
-                        CssClass="btn btn-outline-danger"
+                        CssClass="btn-frutilla"
                         OnClientClick="return confirm('¿Eliminar este empleado?');"
                         ToolTip="Eliminar">
-                        <i class="bi bi-trash-fill"></i>
+                        Del
                     </asp:LinkButton>
                 </div>
             </ItemTemplate>
-            <ItemStyle Width="150px" CssClass="text-center" />
+            <ItemStyle Width="200px" />
         </asp:TemplateField>
 
 </Columns>
@@ -207,8 +207,9 @@
                   <dt class="col-sm-4">Teléfono:</dt>
                   <dd class="col-sm-8"><asp:Label ID="lblVerTelefono" runat="server" /></dd>
 
+
                   <dt class="col-sm-4">Fecha Contrato:</dt>
-                  <dd class="col-sm-8"><asp:Label ID="lblVerFechaContrato" runat="server" /></dd>
+                  <dd class="col-sm-8"><asp:Label ID="lblVerFechaContrato" runat="server"/></dd>
 
                   <dt class="col-sm-4">Correo:</dt>
                   <dd class="col-sm-8"><asp:Label ID="lblVerCorreo" runat="server" /></dd>
