@@ -46,6 +46,7 @@ public class EmpleadoWS {
         return null;
     }
     
+
     @WebMethod(operationName = "actualizarEmpleado")
     public boolean actualizarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,6 +64,7 @@ public class EmpleadoWS {
             return false; 
         }
     }
+
     
     @WebMethod(operationName = "eliminarEmpleado")
     public boolean eliminarEmpleado(@WebParam (name ="idEmpleado") int idEmpleado) {
@@ -77,6 +79,7 @@ public class EmpleadoWS {
     
     @WebMethod(operationName = "obtenerEmpleadoPorId")
     public Empleado obtenerEmpleadoPorId(@WebParam (name ="idEmpleado") int idEmpleado) {
+        
         try{
             return daoEmpleado.obtener(idEmpleado);
         }catch(Exception ex){ 
@@ -87,6 +90,14 @@ public class EmpleadoWS {
     
     @WebMethod(operationName = "agregarEmpleado")
     public boolean agregarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try { 
+            Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
+            empleado.setFechaContrato(sdf.parse(empleado.getFechatContratoSTRING()));
+        } catch (ParseException ex) {
+            Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        
         try{
             daoEmpleado.agregar(empleado);
             

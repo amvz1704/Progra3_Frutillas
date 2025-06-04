@@ -15,15 +15,15 @@ import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 @WebService(serviceName = "PedidoWS")
 public class PedidoWS {
     
-    private  OrdenVentaService daoOrdenVenta; 
-    private  LineaOrdenDeVentaService daoLineaOrdenDeVenta; 
+    private final OrdenVentaService daoOrdenVenta; 
+    private  final LineaOrdenDeVentaService daoLineaOrdenDeVenta; 
     
     public PedidoWS(){
         daoOrdenVenta=new OrdenVentaService();
         daoLineaOrdenDeVenta=new LineaOrdenDeVentaService();
     }
     
-    @WebMethod(operationName = "obtenerPedidos")
+    @WebMethod(operationName = "obtenerPedidosPorEmpleado")
     public List<OrdenVenta> obtenerPedidos(@WebParam (name ="idEmpleado") int idEmpleado) {
         try{
             return daoOrdenVenta.listarOrdenesPorEmpleado(idEmpleado);
@@ -33,7 +33,7 @@ public class PedidoWS {
         return null;
     }
     
-    @WebMethod(operationName = "obtenerDetallePedido")
+    @WebMethod(operationName = "obtenerDetallePedidoPorOrden")
     public List<LineaOrdenDeVenta> obtenerDetallePedido(@WebParam(name = "idOrdenVenta") int idOrden) {
         try {
             return daoLineaOrdenDeVenta.listarPorOrden(idOrden);

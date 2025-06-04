@@ -55,12 +55,12 @@ public class ComprobanteWS {
             throw new WebServiceException("Error al obtener Comprobante: " + ex.getMessage());
         }
     }
-    @WebMethod(operationName = "listarComprobantes")
-    public List<ComprobantePago> listarComprobantes() {
-        try {
-            return comprobanteService.listarComprobantes();
-        } catch (Exception ex) {
-            throw new WebServiceException("Error al listar comprobantes: " + ex.getMessage());
-        }
-    }
+//    @WebMethod(operationName = "listarComprobantes")
+//    public List<ComprobantePago> listarComprobantes() {
+//        try {
+//            return comprobanteService.listarComprobantes();
+//        } catch (Exception ex) {
+//            throw new WebServiceException("Error al listar comprobantes: " + ex.getMessage());
+//        }
+//    }
 }
