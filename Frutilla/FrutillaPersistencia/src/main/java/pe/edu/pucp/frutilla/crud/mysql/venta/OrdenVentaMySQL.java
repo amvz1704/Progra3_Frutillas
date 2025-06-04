@@ -275,10 +275,12 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
             ps.setInt(1, idEmpleado);
             ResultSet rs = ps.executeQuery();
 
+
             while (rs.next()) {
                 OrdenVenta orden = createFromResultSet(rs);
                 ordenes.add(orden);
             }
+
         }
 
         return ordenes;
