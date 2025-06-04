@@ -8,8 +8,6 @@ using System.Net.Sockets;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NodaTime;
-using NodaTime.Text;
 using LocalWebService.NotificionesWS;
 
 
@@ -201,8 +199,13 @@ namespace LocalWebService
             int idEmp;
             if (!int.TryParse(hfIdEmpleado.Value, out idEmp)) idEmp = 0;
 
-            
-           
+            DateTime fechaContrato;
+            string fechaFormateada = "";
+            if (DateTime.TryParse(txtFechaContrato.Text, out fechaContrato))
+            {
+                fechaFormateada = fechaContrato.ToString("yyyy-MM-dd");
+                // Ahora tienes la fecha en formato string tipo yyyy-MM-dd
+            }
             // Construimos el DTO según tu 
             var empDto = new EmpleadoWS.empleado
             {
@@ -215,7 +218,7 @@ namespace LocalWebService
                 telefono = txtTelefono.Text.Trim(),
                 correoElectronico = txtCorreo.Text.Trim(),
                 turnoTrabajo = true, 
-                fechatContratoSTRING = lblVerFechaContrato.Text.Trim(),
+                fechatContratoSTRING = fechaFormateada,
                 tipo = 'R',
                 usuarioSistema = "aa",
                 contraSistema = "aaa",

@@ -60,10 +60,7 @@ public class Empleado extends Persona{
     }
 
     public void setFechaContrato(Date fechaContrato) {
-        
         this.fechaContrato = fechaContrato;
-        this.fechatContratoSTRING = fechaContrato.toString(); 
-        
     }
 
     public double getSalario() {
@@ -98,7 +95,7 @@ public class Empleado extends Persona{
         this.idLocal = idLocal;
     }
 
-    /**
+    /*
      * @return the fechatContratoSTRING
      */
     public String getFechatContratoSTRING() {

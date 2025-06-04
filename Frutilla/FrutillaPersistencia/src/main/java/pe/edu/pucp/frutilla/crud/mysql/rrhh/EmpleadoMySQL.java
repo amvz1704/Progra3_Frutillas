@@ -85,7 +85,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         ps.setBoolean(9, entity.getTurnoTrabajo());
         ps.setString(10, String.valueOf(entity.getTipo()));
         ps.setInt(11, entity.getIdLocal());
-        ps.setInt(12, entity.getIdLocal());
+        ps.setInt(12, entity.getIdUsuario());
     }
 
     @Override

@@ -5,31 +5,31 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/LocalWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="actualizarLoc">
-    <part name="parameters" element="tns:actualizarLoc" />
-  </message>
-  <message name="actualizarLocResponse">
-    <part name="parameters" element="tns:actualizarLocResponse" />
-  </message>
   <message name="obtenerLocal">
     <part name="parameters" element="tns:obtenerLocal" />
   </message>
   <message name="obtenerLocalResponse">
     <part name="parameters" element="tns:obtenerLocalResponse" />
   </message>
+  <message name="actualizarLoc">
+    <part name="parameters" element="tns:actualizarLoc" />
+  </message>
+  <message name="actualizarLocResponse">
+    <part name="parameters" element="tns:actualizarLocResponse" />
+  </message>
   <portType name="LocalWS">
-    <operation name="actualizarLoc">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocRequest" message="tns:actualizarLoc" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocResponse" message="tns:actualizarLocResponse" />
-    </operation>
     <operation name="obtenerLocal">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalRequest" message="tns:obtenerLocal" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalResponse" message="tns:obtenerLocalResponse" />
     </operation>
+    <operation name="actualizarLoc">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocRequest" message="tns:actualizarLoc" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocResponse" message="tns:actualizarLocResponse" />
+    </operation>
   </portType>
   <binding name="LocalWSPortBinding" type="tns:LocalWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="actualizarLoc">
+    <operation name="obtenerLocal">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -38,7 +38,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerLocal">
+    <operation name="actualizarLoc">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

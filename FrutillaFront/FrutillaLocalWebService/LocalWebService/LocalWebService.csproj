@@ -146,6 +146,9 @@
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorSupervisorResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.producto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\NotificionesWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
