@@ -110,6 +110,7 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
+                    
                     lblVerCorreo.Text = emp.correoElectronico;
 
                     // Ejecutamos JS para mostrar el modal
@@ -138,7 +139,7 @@ namespace LocalWebService
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
-                var fecha = emp.fechaContrato;
+               // var fecha = emp.fechaContrato;
 
 
                 if (emp != null)
@@ -200,26 +201,7 @@ namespace LocalWebService
             int idEmp;
             if (!int.TryParse(hfIdEmpleado.Value, out idEmp)) idEmp = 0;
 
-            string textoFecha = txtFechaContrato.Text?.Trim();
-
-            if (string.IsNullOrEmpty(textoFecha))
-            {
-                lblError.Text = "Debe seleccionar una fecha de contrato.";
-                lblError.CssClass = "text-danger";
-                return;
-            }
-
-            var pattern = LocalDatePattern.CreateWithInvariantCulture("uuuu-MM-dd");
-            var parseResult = pattern.Parse(textoFecha);
-
-            if (!parseResult.Success)
-            {
-                lblError.Text = "El formato de la fecha no es válido.";
-                lblError.CssClass = "text-danger";
-                return;
-            }
             
-
            
             // Construimos el DTO según tu 
             var empDto = new EmpleadoWS.empleado
@@ -233,6 +215,7 @@ namespace LocalWebService
                 telefono = txtTelefono.Text.Trim(),
                 correoElectronico = txtCorreo.Text.Trim(),
                 turnoTrabajo = true, 
+                fechatContratoSTRING = lblVerFechaContrato.Text.Trim(),
                 tipo = 'R',
                 usuarioSistema = "aa",
                 contraSistema = "aaa",
@@ -240,6 +223,16 @@ namespace LocalWebService
                 tipoUsuario = "Empleado"
 
             };
+
+        //    private localDate fechaContratoField;
+
+        //private int idLocalField;
+
+        //private double salarioField;
+
+        //private ushort tipoField;
+
+        //private bool turnoTrabajoField;
 
             try
             {

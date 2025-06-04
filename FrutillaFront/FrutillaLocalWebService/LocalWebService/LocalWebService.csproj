@@ -79,22 +79,14 @@
     <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.agregarClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\EmpleadoWS\EmpleadoWS.wsdl" />
-    <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\ClienteWS\configuration91.svcinfo" />
     <None Include="Connected Services\ClienteWS\configuration.svcinfo" />
     <None Include="Connected Services\ClienteWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.empleado.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
+    <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
+    <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.actualizarEmpleadoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -104,11 +96,15 @@
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.eliminarEmpleadoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.empleado.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
-    <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\EmpleadoWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -122,6 +118,10 @@
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\EmpleadoWS\EmpleadoWS.wsdl" />
+    <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
     <None Include="Connected Services\LocalWS\LocalWS.xsd">
       <SubType>Designer</SubType>
