@@ -46,9 +46,6 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NodaTime, Version=3.2.2.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NodaTime.3.2.2\lib\netstandard2.0\NodaTime.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -153,8 +150,36 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.actualizarOrdenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.lineaOrdenDeVenta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerDetallePedidoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerPedidosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.ordenVenta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerPedidoPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
+    <None Include="Connected Services\PedidoWS\PedidoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\UsuarioWS\configuration91.svcinfo" />
     <None Include="Connected Services\UsuarioWS\configuration.svcinfo" />
+    <None Include="Connected Services\PedidoWS\configuration91.svcinfo" />
+    <None Include="Connected Services\PedidoWS\configuration.svcinfo" />
+    <None Include="Connected Services\PedidoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.validarUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -168,6 +193,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="DetallePedido.aspx" />
     <Content Include="ListaClientesSupervisor.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -252,10 +278,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\PedidoWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\UsuarioWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaClientesSupervisor.aspx.cs">
       <DependentUpon>ListaClientesSupervisor.aspx</DependentUpon>
@@ -379,6 +417,7 @@
     <WCFMetadataStorage Include="Connected Services\EmpleadoWS\" />
     <WCFMetadataStorage Include="Connected Services\LocalWS\" />
     <WCFMetadataStorage Include="Connected Services\NotificionesWS\" />
+    <WCFMetadataStorage Include="Connected Services\PedidoWS\" />
     <WCFMetadataStorage Include="Connected Services\UsuarioWS\" />
   </ItemGroup>
   <PropertyGroup>
