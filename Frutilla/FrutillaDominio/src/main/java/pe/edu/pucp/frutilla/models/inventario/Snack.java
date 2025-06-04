@@ -10,6 +10,7 @@ public class Snack extends Producto{
 	
 	public Snack(){
 		super();
+                this.requiereEnvase = false;
 		this.estaEnvasado = false; 
 	}
 	

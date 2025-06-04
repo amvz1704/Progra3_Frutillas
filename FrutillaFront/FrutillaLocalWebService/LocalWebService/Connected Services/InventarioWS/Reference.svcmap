@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="1b978b2e-ae36-484d-86f0-4ee0c93f8038" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="75b783a9-dbff-401c-b53d-dfe364fcb1c2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8080/FrutillaWS/PedidoWS?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8080/FrutillaWS/InventarioWS?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="PedidoWS.wsdl" MetadataType="Wsdl" ID="8222c535-0bf9-4da8-9816-17d8b964b401" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/PedidoWS?wsdl" />
-    <MetadataFile FileName="PedidoWS.xsd" MetadataType="Schema" ID="38e86e1a-35ca-4957-932f-cdc00235ceab" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/PedidoWS?xsd=1" />
+    <MetadataFile FileName="InventarioWS.wsdl" MetadataType="Wsdl" ID="fc1f297c-c2c3-42cf-b2d2-040ad2f0bf7d" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/InventarioWS?wsdl" />
+    <MetadataFile FileName="InventarioWS.xsd" MetadataType="Schema" ID="4a30bfb3-960e-49bd-a6e3-fb1d98be8637" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/InventarioWS?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

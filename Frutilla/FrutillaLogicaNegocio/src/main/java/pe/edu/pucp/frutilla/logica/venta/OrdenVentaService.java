@@ -71,7 +71,11 @@ public class OrdenVentaService {
             }
         }
     }
-
+    
+     public void actualizarOrden (OrdenVenta orden) throws SQLException{
+        ordenVentaMySQL.actualizar(orden);
+    }
+     
     // Eliminar orden y sus líneas
     public void eliminarOrden(int idOrdenVenta) throws SQLException {
         lineaOrdenDeVentaMySQL.eliminarPorId(idOrdenVenta);
@@ -98,5 +102,8 @@ public class OrdenVentaService {
     // Listar órdenes por local
     public List<OrdenVenta> listarOrdenesPorLocal(int idLocal) throws SQLException {
         return ordenVentaMySQL.listarPorLocal(idLocal);
+    }
+    public OrdenVenta obtenerPedido (int id) throws SQLException {
+        return ordenVentaMySQL.obtenerPorId(id);
     }
 }

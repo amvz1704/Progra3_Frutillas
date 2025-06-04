@@ -41,7 +41,7 @@ public class PedidoWS {
         return null;
     }
     
-    @WebMethod(operationName = "obtenerDetallePedidoPorOrden")
+    @WebMethod(operationName = "obtenerDetallePedido")
     public List<LineaOrdenDeVenta> obtenerDetallePedido(@WebParam(name = "idOrdenVenta") int idOrden) {
         try {
             return daoLineaOrdenDeVenta.listarPorOrden(idOrden);
@@ -51,4 +51,25 @@ public class PedidoWS {
         }
     }
     
+    @WebMethod(operationName = "actualizarOrden")
+    public void actualizarOrden(@WebParam(name = "orden") OrdenVenta orden) {
+        try {
+            daoOrdenVenta.actualizarOrden(orden);
+        } catch (Exception ex) {
+           System.err.println("Error al actualizar pedido"  + ex.getMessage());
+            throw new RuntimeException("No se pudo obtener el detalle del pedido.");
+        }
+    }
+    
+    @WebMethod(operationName = "obtenerPedidoPorId")
+    public OrdenVenta obtenerPedidoPorId(@WebParam(name = "idOrdenVenta") int idOrden) {
+        try {
+            // Usamos el servicio de OrdenVenta para obtener el pedido completo
+            OrdenVenta pedido = daoOrdenVenta.obtenerPedido(idOrden); // Asegúrate de tener el método en OrdenVentaService
+            return pedido;
+        } catch (Exception ex) {
+            System.err.println("Error al obtener el pedido con ID " + idOrden + ": " + ex.getMessage());
+            throw new RuntimeException("No se pudo obtener el pedido.");
+        }
+    }
 }
