@@ -226,7 +226,7 @@
             <div class="modal-content">
               <!-- Encabezado -->
               <div class="modal-header bg-secondary">
-                <h5 ID="lblTituloModalEmpleadoEdicion" class="modal-title text-white">Editar Empleado</h5>
+                <h5 ID="lblTituloModalEmpleadoEdicion" class="modal-title text-white"></h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
               </div>
               <!-- Cuerpo -->
@@ -277,5 +277,7 @@
             </div>
           </div>
         </div>
+
+
 
 </asp:Content>

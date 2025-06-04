@@ -216,8 +216,6 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ordenVenta.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
         ordenVenta.setDescripcion(rs.getString("descripcion"));
         ordenVenta.setMontoTotal(rs.getDouble("montoTotal"));
-        ordenVenta.setEntregado(rs.getBoolean("entregado"));
-        ordenVenta.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
         return ordenVenta;
     }
 
@@ -269,23 +267,29 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
 
     public List<OrdenVenta> listarPorEmpleado(int idEmpleado) throws SQLException {
         List<OrdenVenta> ordenes = new ArrayList<>();
-        String query = "CALL ORDEN_VENTA_LISTAR_X_EMPLEADO(?)";
-        try (Connection con = DBManager.getInstance().getConnection();
-             CallableStatement cs = con.prepareCall(query)) {
+        String query = "SELECT idOrdenVenta, descripcion, montoTotal FROM OrdenVenta WHERE idEmpleado = ?";
 
-            cs.setInt(1, idEmpleado);
-            ResultSet rs = cs.executeQuery();
+        try (Connection con = DBManager.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+
+            ps.setInt(1, idEmpleado);
+            ResultSet rs = ps.executeQuery();
+
+
             while (rs.next()) {
                 OrdenVenta orden = createFromResultSet(rs);
                 ordenes.add(orden);
             }
+
         }
+
         return ordenes;
     }
+
     
     public OrdenVenta obtenerPorId(int idOrdenVenta) throws SQLException {
         OrdenVenta ordenVenta = null;
-        String query = "CALL ORDEN_VENTA_LISTAR_X_ID(?)";
+        String query = "{CALL ORDEN_VENTA_LISTAR_X_ID(?)}";
             try (Connection con = DBManager.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
 
@@ -307,7 +311,7 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     
     public List<OrdenVenta> listarTodas() throws SQLException {
         List<OrdenVenta> ordenes = new ArrayList<>();
-        String query = "CALL ORDEN_VENTA_LISTAR()";
+        String query = "{CALL ORDEN_VENTA_LISTAR()}";
         try (Connection con = DBManager.getInstance().getConnection();
          PreparedStatement ps = con.prepareStatement(query);
          ResultSet rs = ps.executeQuery()) {
