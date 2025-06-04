@@ -13,20 +13,26 @@
             </div>
         </div>
 
-        <!-- Tabla de productos -->
-        <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
+       <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
             <Columns>
                 <asp:BoundField DataField="NombreProducto" HeaderText="Producto" />
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                 <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C}" />
-                <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C}" />
+                <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
             </Columns>
-            <FooterStyle Font-Bold="True" />
-            <FooterTemplate>
-                <asp:Label ID="lblTotalPedido" runat="server" Text="" CssClass="fw-bold" />
-            </FooterTemplate>
-        </asp:GridView>
 
+           
+            <FooterStyle Font-Bold="True" />
+         
+        </asp:GridView>
+         <FooterTemplate>
+            <tr>
+                <td colspan="3" class="fw-bold">Total</td>
+                <td>
+                    <asp:Label ID="lblTotalPedido" runat="server" Text="" CssClass="fw-bold" />
+                </td>
+            </tr>
+        </FooterTemplate>
         <!-- Formulario para Estado y Empleado Asignado -->
         <div class="row mt-4">
             <div class="col-md-6">
@@ -54,7 +60,4 @@
         </div>
     </div>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-</asp:Content>
+

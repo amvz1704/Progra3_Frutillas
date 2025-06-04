@@ -46,6 +46,7 @@ namespace LocalWebService
 
         private void CargarPedido(int pedidoId)
         {
+            
             // Crear clientes WS
             PedidoWSClient pedidoClient = new PedidoWSClient();
             EmpleadoWSClient empleadoClient = new EmpleadoWSClient();
@@ -74,7 +75,7 @@ namespace LocalWebService
                 foreach (var p in productos)
                     totalPedido += p.subtotal; // Usamos Subtotal directamente
 
-                lblTotalPedido.Text = $"Total: {totalPedido:C}";
+                lblTotalPedido.Text = totalPedido.ToString("C");
 
                 // Llenar estado (EstadoVenta es un enum)
                 ddlEstado.SelectedValue = pedido.estado.ToString();  // Usamos el enum para el estado
