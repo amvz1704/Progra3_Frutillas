@@ -108,7 +108,7 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
-                    
+                    lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
 
                     // Ejecutamos JS para mostrar el modal
@@ -149,6 +149,14 @@ namespace LocalWebService
                     txtApellidoMa.Text = emp.apellidoMaterno;
                     txtSalario.Text = emp.salario.ToString("N2");
                     txtTelefono.Text = emp.telefono;
+                    string raw = emp.fechatContratoSTRING;
+                    DateTime fechaParsed = DateTime.ParseExact(
+                    raw,
+                    "ddd MMM dd HH:mm:ss 'PET' yyyy",
+                    System.Globalization.CultureInfo.InvariantCulture);
+
+
+                    txtFechaContrato.Text = fechaParsed.ToString("yyyy-MM-dd");
                     txtCorreo.Text = emp.correoElectronico;
 
 
