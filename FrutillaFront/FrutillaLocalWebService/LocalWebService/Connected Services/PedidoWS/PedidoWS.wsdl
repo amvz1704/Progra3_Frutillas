@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://WS.frutilla.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="PedidoWS" targetNamespace="http://WS.frutilla.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/PedidoWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="obtenerDetallePedidoPorOrden">
+    <part name="parameters" element="tns:obtenerDetallePedidoPorOrden" />
+  </message>
+  <message name="obtenerDetallePedidoPorOrdenResponse">
+    <part name="parameters" element="tns:obtenerDetallePedidoPorOrdenResponse" />
+  </message>
+  <message name="obtenerPedidosPorEmpleado">
+    <part name="parameters" element="tns:obtenerPedidosPorEmpleado" />
+  </message>
+  <message name="obtenerPedidosPorEmpleadoResponse">
+    <part name="parameters" element="tns:obtenerPedidosPorEmpleadoResponse" />
+  </message>
+  <portType name="PedidoWS">
+    <operation name="obtenerDetallePedidoPorOrden">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoPorOrdenRequest" message="tns:obtenerDetallePedidoPorOrden" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoPorOrdenResponse" message="tns:obtenerDetallePedidoPorOrdenResponse" />
+    </operation>
+    <operation name="obtenerPedidosPorEmpleado">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoRequest" message="tns:obtenerPedidosPorEmpleado" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoResponse" message="tns:obtenerPedidosPorEmpleadoResponse" />
+    </operation>
+  </portType>
+  <binding name="PedidoWSPortBinding" type="tns:PedidoWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="obtenerDetallePedidoPorOrden">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPedidosPorEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="PedidoWS">
+    <port name="PedidoWSPort" binding="tns:PedidoWSPortBinding">
+      <soap:address location="http://localhost:8080/FrutillaWS/PedidoWS" />
+    </port>
+  </service>
+</definitions>
