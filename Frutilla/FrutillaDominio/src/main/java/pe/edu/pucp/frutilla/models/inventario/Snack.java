@@ -10,8 +10,7 @@ public class Snack extends Producto{
 	
 	public Snack(){
 		super();
-		this.estaEnvasado = false;
-                this.requiereEnvase = false;
+		this.estaEnvasado = false; 
 	}
 	
 	public Snack(String nombre, String descripcion, String codigoProd, double precioUnitario,int stock, int stockMinimo, String tipo,String envase, boolean requiereEnvase, boolean estaEnvasado){

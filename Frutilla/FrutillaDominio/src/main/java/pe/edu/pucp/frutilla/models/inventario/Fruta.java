@@ -10,8 +10,6 @@ public class Fruta extends Producto{
 	
 	public Fruta(){
 		super();
-                this.requiereLimpieza = false;
-                this.requiereEnvase = false;
 		this.estaEnvasado = false; 
 		this.estaLimpio = false;
 	}
