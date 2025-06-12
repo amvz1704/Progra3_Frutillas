@@ -267,22 +267,24 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
 
     public List<OrdenVenta> listarPorEmpleado(int idEmpleado) throws SQLException {
         List<OrdenVenta> ordenes = new ArrayList<>();
-        String query = "SELECT idOrdenVenta, descripcion, montoTotal FROM OrdenVenta WHERE idEmpleado = ?";
+        String query = "SELECT * FROM OrdenVenta WHERE idEmpleado = ?";
 
         try (Connection con = DBManager.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
-
             ps.setInt(1, idEmpleado);
             ResultSet rs = ps.executeQuery();
-
-
             while (rs.next()) {
-                OrdenVenta orden = createFromResultSet(rs);
-                ordenes.add(orden);
+                OrdenVenta ordenVenta = createFromResultSet(rs);
+//                ordenVenta.setFecha(rs.getDate("fecha").toLocalDate());
+//                ordenVenta.setHoraFinEntrega(rs.getTime("horaFinEntrega").toLocalTime());
+                ordenVenta.setIdLocal(rs.getInt("idLocal"));
+//                ordenVenta.setIdComprobante(rs.getInt("idComprobante"));
+                ordenVenta.setIdCliente(rs.getInt("idCliente"));
+                ordenVenta.setIdEmpleado(rs.getInt("idEmpleado"));
+                ordenes.add(ordenVenta);
             }
 
         }
-
         return ordenes;
     }
 
