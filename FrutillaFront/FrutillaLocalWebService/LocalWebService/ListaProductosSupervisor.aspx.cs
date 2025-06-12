@@ -42,7 +42,7 @@ namespace LocalWebService
                     rptProductos.ItemCommand += rptProductos_ItemCommand;
                     Response.Redirect("Login.aspx");
                 }
-                
+
                 // Aca pueden hacer uso del obtener por id
             }
             else
@@ -188,6 +188,8 @@ namespace LocalWebService
                             return;
                         }
 
+
+                        inventarioWSClient.insertarBebida(bebida, idLocal);
                         break;
                     case 'S':
                         snack snack = new snack();

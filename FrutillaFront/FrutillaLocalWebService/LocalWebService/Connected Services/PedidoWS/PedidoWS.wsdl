@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/PedidoWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="obtenerDetallePedidoPorOrden">
-    <part name="parameters" element="tns:obtenerDetallePedidoPorOrden" />
+  <message name="obtenerDetallePedido">
+    <part name="parameters" element="tns:obtenerDetallePedido" />
   </message>
-  <message name="obtenerDetallePedidoPorOrdenResponse">
-    <part name="parameters" element="tns:obtenerDetallePedidoPorOrdenResponse" />
+  <message name="obtenerDetallePedidoResponse">
+    <part name="parameters" element="tns:obtenerDetallePedidoResponse" />
   </message>
   <message name="obtenerPedidosPorEmpleado">
     <part name="parameters" element="tns:obtenerPedidosPorEmpleado" />
@@ -17,19 +17,39 @@
   <message name="obtenerPedidosPorEmpleadoResponse">
     <part name="parameters" element="tns:obtenerPedidosPorEmpleadoResponse" />
   </message>
+  <message name="actualizarOrden">
+    <part name="parameters" element="tns:actualizarOrden" />
+  </message>
+  <message name="actualizarOrdenResponse">
+    <part name="parameters" element="tns:actualizarOrdenResponse" />
+  </message>
+  <message name="obtenerPedidoPorId">
+    <part name="parameters" element="tns:obtenerPedidoPorId" />
+  </message>
+  <message name="obtenerPedidoPorIdResponse">
+    <part name="parameters" element="tns:obtenerPedidoPorIdResponse" />
+  </message>
   <portType name="PedidoWS">
-    <operation name="obtenerDetallePedidoPorOrden">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoPorOrdenRequest" message="tns:obtenerDetallePedidoPorOrden" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoPorOrdenResponse" message="tns:obtenerDetallePedidoPorOrdenResponse" />
+    <operation name="obtenerDetallePedido">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest" message="tns:obtenerDetallePedido" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse" message="tns:obtenerDetallePedidoResponse" />
     </operation>
     <operation name="obtenerPedidosPorEmpleado">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoRequest" message="tns:obtenerPedidosPorEmpleado" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoResponse" message="tns:obtenerPedidosPorEmpleadoResponse" />
     </operation>
+    <operation name="actualizarOrden">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenRequest" message="tns:actualizarOrden" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenResponse" message="tns:actualizarOrdenResponse" />
+    </operation>
+    <operation name="obtenerPedidoPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdRequest" message="tns:obtenerPedidoPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdResponse" message="tns:obtenerPedidoPorIdResponse" />
+    </operation>
   </portType>
   <binding name="PedidoWSPortBinding" type="tns:PedidoWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="obtenerDetallePedidoPorOrden">
+    <operation name="obtenerDetallePedido">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -39,6 +59,24 @@
       </output>
     </operation>
     <operation name="obtenerPedidosPorEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="actualizarOrden">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPedidoPorId">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
