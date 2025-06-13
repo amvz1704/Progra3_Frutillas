@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainLayout.master.cs" Inherits="LocalWebService.MainLayout" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Empleado.Master.cs" Inherits="LocalWebService.MainLayout" %>
 
 <!DOCTYPE html>
 
