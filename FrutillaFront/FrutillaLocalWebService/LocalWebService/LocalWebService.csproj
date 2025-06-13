@@ -268,7 +268,6 @@
     <Content Include="Public\images\frutillaLogo.jpeg" />
     <Content Include="Public\images\ventasImagen.png" />
     <Content Include="Public\images\pedidosImagen.png" />
-    <Content Include="Public\images\pucp.png" />
     <Content Include="Public\images\empleadosImagen.png" />
     <Content Include="Public\js\bootstrap.bundle.js" />
     <Content Include="Public\js\bootstrap.bundle.min.js" />

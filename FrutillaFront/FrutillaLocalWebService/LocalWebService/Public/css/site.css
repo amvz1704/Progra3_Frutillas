@@ -125,6 +125,19 @@ input[type="date"] {
     background-color: #4F7E38;
 }
 
+.btn-frutilla-editar {
+    background-color: #6FA257;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-frutilla-editar:hover {
+    background-color: #2525A6;
+}
+
 .nav-frutilla .nav-link {
 background-color: #F8FBD9; /* Fondo normal */
 color: #333; /* Texto normal */
