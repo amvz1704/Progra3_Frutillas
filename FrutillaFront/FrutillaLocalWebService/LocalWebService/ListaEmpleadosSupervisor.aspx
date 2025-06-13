@@ -9,168 +9,149 @@
 
     <header class="py-2 border-bottom bg-frutilla">
       <div class="container">
-        <h2 class="m-0"> Local > Empleados </h2>
+        <h2 class="m-0"> Empleados </h2>
       </div>
    
 
     </header>
 
     <!-- 1. BARRA SUPERIOR: BÚSQUEDA / FILTROS / AGREGAR -->
-    <div class="row align-items-center mb-3">
-
-        <!-- Columna izquierda: campo de búsqueda -->
-
-        <div class="col-md-5 text-left" >
-            <div class="input-group">
-                <asp:TextBox ID="txtBuscar" runat="server"
-                                CssClass="form-control input-frutilla"
-                                Placeholder="Buscar Empleado"></asp:TextBox>
-                <button class="btn-frutilla" type="button" onclick="javascript:buscar_Click()">
-                    <i class="bi bi-search"></i>
-                </button>
+    <div class="container">
+        <div class="row align-items-center mb-3">
+            <!-- Columna izquierda: campo de búsqueda -->
+            <div class="col-md-5 text-left">
+                <div class="input-group">
+                    <asp:TextBox ID="txtBuscar" runat="server"
+                        CssClass="form-control input-frutilla"
+                        Placeholder="Buscar Empleado"></asp:TextBox>
+                    <button class="btn-frutilla" type="button" onclick="javascript:buscar_Click()">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Columna intermedia: dropdown de filtros -->
+            <div class="col-md-3 text-md-start text-center mt-2 mt-md-0">
+                <!-- Ejemplo de dropdown “Filtros” con checkboxes -->
+                <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="select-frutilla"
+                    DataTextField="Nombre" DataValueField="IdEmpleado" AppendDataBoundItems="true"
+                    AutoPostBack="True">
+                    <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="col-md-3 text-md-start text-right mt-2 mt-md-0">
+                <asp:Button ID="btnAgregarEmpleado" runat="server"
+                    Text="Agregar Empleado"
+                    CssClass="btn-frutilla"
+                    OnClick="btnAgregarEmpleado_Click" />
             </div>
         </div>
-
-        <!-- Columna intermedia: dropdown de filtros -->
-        <div class="col-md-3 text-md-start text-center mt-2 mt-md-0">
-            <!-- Ejemplo de dropdown “Filtros” con checkboxes -->
-            <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="select-frutilla" 
-            DataTextField="Nombre" DataValueField="IdEmpleado" AppendDataBoundItems="true"
-                 AutoPostBack="True">
-                <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
-            </asp:DropDownList>
-
-            
-           
-        </div>
-
-        <div class="col-md-3 text-md-start text-right mt-2 mt-md-0">
-
-             <asp:Button ID="btnAgregarEmpleado" runat="server"
-
-                 Text="Agregar Empleado"
-                 CssClass="btn-frutilla"
-                 OnClick="btnAgregarEmpleado_Click" />
-
-            </div>
-
-   
-            
-       </div>
+    </div>
+    
     
    <!-- 1. FIN BARRA SUPERIOR: FIN-->
-
         <asp:Label 
             ID="lblError" 
             runat="server" 
             CssClass="text-danger" 
             Visible="false" />
-
-
-
-
    <!-- 2. TABLA RESPONSIVA (GridView) -->
-    <asp:GridView ID="gvEmpleados" runat="server" AutoGenerateColumns="false" 
-    AllowPaging="false" ShowHeaderWhenEmpty="true"
-    CssClass="table table-hover table-striped table-bordered align-middle"
-        
-    HeaderStyle-CssClass="table-light text-center"
-    RowStyle-CssClass="text-center"
-    AlternatingRowStyle-CssClass="table-secondary"
-    PagerStyle-CssClass="pagination justify-content-center"
-         OnRowCommand="GvEmpleados_RowCommand">
-       
-    <Columns>
-         <asp:TemplateField HeaderText="Id" SortExpression="idEmpleado">
-            <HeaderStyle CssClass="text-uppercase" />
-            <ItemTemplate>
-                <%# Eval("idUsuario") %>
-            </ItemTemplate>
-            <ItemStyle Width="40px" />
-        </asp:TemplateField>
+    <div class="container">
+        <asp:GridView ID="gvEmpleados" runat="server" AutoGenerateColumns="false"
+            AllowPaging="false" ShowHeaderWhenEmpty="true"
+            CssClass="table table-striped table-responsive table-hover"
+            HeaderStyle-CssClass="table-light text-center"
+            RowStyle-CssClass="text-center"
+            PagerStyle-CssClass="pagination justify-content-center"
+            OnRowCommand="GvEmpleados_RowCommand">
+            <Columns>
+                <asp:TemplateField HeaderText="Id" SortExpression="idEmpleado">
+                    <HeaderStyle CssClass="text-uppercase" />
+                    <ItemTemplate>
+                        <%# Eval("idUsuario") %>
+                    </ItemTemplate>
+                    <ItemStyle Width="40px" />
+                </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
-            <HeaderStyle CssClass="text-uppercase" />
-            <ItemTemplate>
-                <span class="fw-semibold"><%# Eval("nombre") %></span>
-            </ItemTemplate>
-        </asp:TemplateField>
+                <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
+                    <HeaderStyle CssClass="text-uppercase" />
+                    <ItemTemplate>
+                        <%# Eval("nombre") %>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Apellido Pa" SortExpression="ApellidoPa">
-            <ItemTemplate>
-                <%# Eval("apellidoPaterno") %>
-            </ItemTemplate>
-        </asp:TemplateField>
+                <asp:TemplateField HeaderText="Apellido Pa" SortExpression="ApellidoPa">
+                    <ItemTemplate>
+                        <%# Eval("apellidoPaterno") %>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Apellido Ma" SortExpression="ApellidoMa">
-            <ItemTemplate>
-                <%# Eval("apellidoMaterno") %>
-            </ItemTemplate>
-        </asp:TemplateField>
+                <asp:TemplateField HeaderText="Apellido Ma" SortExpression="ApellidoMa">
+                    <ItemTemplate>
+                        <%# Eval("apellidoMaterno") %>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
-         <asp:TemplateField HeaderText="Salario" SortExpression="Salario">
-            <ItemTemplate>
-                $<%# String.Format("{0:N2}", Eval("salario")) %>
-            </ItemTemplate>
-            <ItemStyle Width="100px" />
-        </asp:TemplateField>
+                <asp:TemplateField HeaderText="Salario" SortExpression="Salario">
+                    <ItemTemplate>
+                        $<%# String.Format("{0:N2}", Eval("salario")) %>
+                    </ItemTemplate>
+                    <ItemStyle Width="100px" />
+                </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Teléfono" SortExpression="Telefono">
-            <ItemTemplate>
-                <%# Eval("telefono") %>
-            </ItemTemplate>
-            <ItemStyle Width="100px" />
-        </asp:TemplateField>
+                <asp:TemplateField HeaderText="Teléfono" SortExpression="Telefono">
+                    <ItemTemplate>
+                        <%# Eval("telefono") %>
+                    </ItemTemplate>
+                    <ItemStyle Width="100px" />
+                </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Correo" SortExpression="Correo">
-            <ItemTemplate>
-                <a href='mailto:<%# Eval("correoElectronico") %>' class="text-decoration-none">
-                    <%# Eval("correoElectronico") %>
-                </a>
-            </ItemTemplate>
-            <ItemStyle Width="200px" />
-        </asp:TemplateField>
+                <asp:TemplateField HeaderText="Correo" SortExpression="Correo">
+                    <ItemTemplate>
+                        <a href='mailto:<%# Eval("correoElectronico") %>' class="text-decoration-none">
+                            <%# Eval("correoElectronico") %>
+                        </a>
+                    </ItemTemplate>
+                    <ItemStyle Width="200px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Acciones">
+                    <HeaderStyle CssClass="text-uppercase text-center" />
+                    <ItemTemplate>
+                        <div class="d-flex justify-content-center">
 
-
-        <asp:TemplateField HeaderText="Acciones">
-            <HeaderStyle CssClass="text-uppercase text-center" />
-            <ItemTemplate>
-                <div class="d-flex justify-content-center">
-
-                    <div class="d-flex align-left">
-                        <asp:LinkButton ID="lnkVer" runat="server" 
-                            CommandName="VerDetalles"
-                            CommandArgument='<%# Eval("idUsuario") %>'
-                            CssClass="btn-frutilla"
-                            ToolTip="Ver Detalles">
+                            <div class="d-flex align-left">
+                                <asp:LinkButton ID="lnkVer" runat="server"
+                                    CommandName="VerDetalles"
+                                    CommandArgument='<%# Eval("idUsuario") %>'
+                                    CssClass="btn-frutilla"
+                                    ToolTip="Ver Detalles">
                             V
-                        </asp:LinkButton>
-                     </div>
+                                </asp:LinkButton>
+                            </div>
 
-                    <asp:LinkButton ID="lnkEditar" runat="server"
-                        CommandName="Editar"
-                        CommandArgument='<%# Eval("idUsuario") %>'
-                        CssClass="btn-frutilla"
-                        ToolTip="Editar">
+                            <asp:LinkButton ID="lnkEditar" runat="server"
+                                CommandName="Editar"
+                                CommandArgument='<%# Eval("idUsuario") %>'
+                                CssClass="btn-frutilla"
+                                ToolTip="Editar">
                         Ed
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
-                    <asp:LinkButton ID="lnkEliminar" runat="server"
-                        CommandName="Eliminar"
-                        CommandArgument='<%# Eval("idUsuario") %>'
-                        CssClass="btn-frutilla"
-                        OnClientClick="return confirm('¿Eliminar este empleado?');"
-                        ToolTip="Eliminar">
+                            <asp:LinkButton ID="lnkEliminar" runat="server"
+                                CommandName="Eliminar"
+                                CommandArgument='<%# Eval("idUsuario") %>'
+                                CssClass="btn-frutilla"
+                                OnClientClick="return confirm('¿Eliminar este empleado?');"
+                                ToolTip="Eliminar">
                         Del
-                    </asp:LinkButton>
-                </div>
-            </ItemTemplate>
-            <ItemStyle Width="200px" />
-        </asp:TemplateField>
-
-</Columns>
-
-    </asp:GridView>
+                            </asp:LinkButton>
+                        </div>
+                    </ItemTemplate>
+                    <ItemStyle Width="200px" />
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </div>
+   
    
     <!-- 2. FIN TABLA RESPONSIVA (GridView)  -->
 

@@ -100,8 +100,8 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
         ArrayList<Notificacion> entities = new ArrayList<>();
          try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(getSelectByFechaQuery())) {
-            
-            ps.setDate(1, java.sql.Date.valueOf(fecha));
+            java.sql.Date fechaSQL = java.sql.Date.valueOf(fecha);
+            ps.setDate(1, fechaSQL);
             ps.setInt(2, idSupervisor);
             try (ResultSet rs = ps.executeQuery()) {
                  while (rs.next()) {

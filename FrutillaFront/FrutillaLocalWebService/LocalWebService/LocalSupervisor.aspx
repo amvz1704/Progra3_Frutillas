@@ -38,9 +38,6 @@
               </p>
 
                  <div class="mb-5">
-              
-
-                 
                 <asp:Button ID="btnEditarLocal" runat="server"
                             CssClass="btn-frutilla"
                             Text="Editar Local"
@@ -66,6 +63,8 @@
                 </div>
                 <div class="card-body">
                     <h6 class="card-title">Administrar Empleados</h6>
+                    <p style="text-align: center;"> </p>
+                    <p style="text-align: center;">Desde aquí puedes ver y editar a los empleados del local.</p>
                     <asp:Button ID="AdminEmpleados" OnClick="BtnAdminEmpleados" runat="server"
                         Text="Ir" CssClass="btn-frutilla" />
                 </div>
@@ -79,6 +78,8 @@
                 </div>
                 <div class="card-body">
                     <h6 class="card-title">Administrar Productos</h6>
+                    <p style="text-align: center;"> </p>
+                    <p style="text-align: center;">Desde aquí puedes ver y editar a los productos del inventario del local.</p>
                     <asp:Button ID="AdminProductos" OnClick="BtnAdminProductos" runat="server"
                         Text="Ir" CssClass="btn-frutilla" />
                 </div>
@@ -92,6 +93,8 @@
                 </div>
                 <div class="card-body">
                     <h6 class="card-title">Administrar Ventas</h6>
+                    <p style="text-align: center;"> </p>
+                    <p style="text-align: center;">Desde aquí puedes ver y editar a los pedidos recibidos del inventario del local.</p>
                     <asp:Button ID="AdminVentas" OnClick="BtnAdminVentas" runat="server"
                         Text="Ir" CssClass="btn-frutilla" />
                 </div>
@@ -167,17 +170,9 @@
                         Cancelar
                     </button>
                 </div>
-               
-                    
             </div>
         </div>
-
-
     </asp:Panel>
     <!-- /FIN DEL MODAL -->
-
-    
-   
-
 </asp:Content>
 
