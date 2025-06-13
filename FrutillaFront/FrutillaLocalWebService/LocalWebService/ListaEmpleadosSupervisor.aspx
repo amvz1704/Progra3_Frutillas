@@ -11,10 +11,7 @@
       <div class="container">
         <h2 class="m-0"> Empleados </h2>
       </div>
-   
-
     </header>
-
     <!-- 1. BARRA SUPERIOR: BÚSQUEDA / FILTROS / AGREGAR -->
     <div class="container">
         <div class="row align-items-center mb-3">
@@ -46,8 +43,6 @@
             </div>
         </div>
     </div>
-    
-    
    <!-- 1. FIN BARRA SUPERIOR: FIN-->
         <asp:Label 
             ID="lblError" 
@@ -124,16 +119,16 @@
                                     CommandArgument='<%# Eval("idUsuario") %>'
                                     CssClass="btn-frutilla"
                                     ToolTip="Ver Detalles">
-                            V
+                                    <i class="bi bi-eye" title="Ver"></i>
                                 </asp:LinkButton>
                             </div>
 
                             <asp:LinkButton ID="lnkEditar" runat="server"
                                 CommandName="Editar"
                                 CommandArgument='<%# Eval("idUsuario") %>'
-                                CssClass="btn-frutilla"
+                                CssClass="btn-frutilla-editar"
                                 ToolTip="Editar">
-                        Ed
+                                <i class="bi bi-pencil" title="Editar"></i>
                             </asp:LinkButton>
 
                             <asp:LinkButton ID="lnkEliminar" runat="server"
@@ -142,7 +137,7 @@
                                 CssClass="btn-frutilla"
                                 OnClientClick="return confirm('¿Eliminar este empleado?');"
                                 ToolTip="Eliminar">
-                        Del
+                                <i class="bi bi-trash" title="Eliminar"></i>
                             </asp:LinkButton>
                         </div>
                     </ItemTemplate>
