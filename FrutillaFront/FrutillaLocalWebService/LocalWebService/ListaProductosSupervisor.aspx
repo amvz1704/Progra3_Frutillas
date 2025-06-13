@@ -85,9 +85,9 @@
                         <asp:TextBox ID="TxtTamanioOz" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                         <asp:Label ID="LblTipoBebida" runat="server" Text="Tipo de Bebida"></asp:Label>
                         <asp:TextBox ID="TxtTipoBebida" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblTipoLeche" runat="server" Text="Tipo de Leche"></asp:Label>
-<asp:Label ID="LblBebidaEndulzante" runat="server" Text="Tipo de Endulzante"></asp:Label>
+                        <asp:Label ID="LblBebidaEndulzante" runat="server" Text="Tipo de Endulzante"></asp:Label>
                         <asp:TextBox ID="TxtBebidaEndulzante" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                        <asp:Label ID="LblTipoLeche" runat="server" Text="Tipo de Leche"></asp:Label>
                         <asp:DropDownList ID="DropDownList1" CssClass="form-select mb-2" runat="server">
                             <asp:ListItem Text="Sin Lactosa" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Con Lactosa" Value="1"></asp:ListItem>

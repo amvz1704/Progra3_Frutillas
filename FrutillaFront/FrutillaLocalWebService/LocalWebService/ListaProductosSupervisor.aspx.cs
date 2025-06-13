@@ -195,6 +195,7 @@ namespace LocalWebService
                         snack snack = new snack();
                         break;
                 }
+                CargarProductos();
             }
             else
             {
