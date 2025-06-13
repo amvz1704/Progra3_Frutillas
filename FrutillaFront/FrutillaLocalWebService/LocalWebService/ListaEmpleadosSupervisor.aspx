@@ -134,7 +134,7 @@
                             <asp:LinkButton ID="lnkEliminar" runat="server"
                                 CommandName="Eliminar"
                                 CommandArgument='<%# Eval("idUsuario") %>'
-                                CssClass="btn-frutilla"
+                                CssClass="btn-frutilla-eliminar"
                                 OnClientClick="return confirm('¿Eliminar este empleado?');"
                                 ToolTip="Eliminar">
                                 <i class="bi bi-trash" title="Eliminar"></i>

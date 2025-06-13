@@ -18,11 +18,9 @@ public class OrdenVenta{
 	private double montoTotal; 
 	private EstadoVenta estado; 
 	private boolean entregado; 
-	private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
-	private ComprobantePago comprobantePago; //se crea al momento de que se realice el pago
+	//private ArrayList <LineaOrdenDeVenta> lineasOrdenes;
 	//Agregar Empleado
 	private int idEmpleado;
-
 	private int idLocal;
 	private int idComprobante;
 	private int idCliente;
@@ -55,7 +53,7 @@ public class OrdenVenta{
 		this.estado = EstadoVenta.FALTA_PAGO; 
 		this.fecha = LocalDate.now();
 		this.horaFinEntrega = LocalTime.now(); //el dia pedido debe ser el de entrega
-		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
+		//this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		this.entregado = false; 
 		this.montoTotal = 0; 
 		this.idEmpleado = -1;
@@ -74,12 +72,12 @@ public class OrdenVenta{
 		this.fecha = LocalDate.now();//el dia pedido debe ser el de entrega
 		this.idEmpleado = -1;
 		//una orden de venta crea un comprobante de pago
-		this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
+		//this.lineasOrdenes = new ArrayList<LineaOrdenDeVenta>();
 		
 		//copia de forma profunda las lineas de orden 
-		for(LineaOrdenDeVenta linea: lista){
-			lineasOrdenes.add(linea); 
-		}
+//		for(LineaOrdenDeVenta linea: lista){
+//			lineasOrdenes.add(linea); 
+//		}
 		this.estado = EstadoVenta.FALTA_PAGO; 
 		
 		this.entregado = false; //se actualizara despues
@@ -94,21 +92,21 @@ public class OrdenVenta{
 	public void crearComprobantePago(FormaDePago formaPago){
 		
 		//no se puede crear comprobante si no hay ninguna linea :)
-		if(lineasOrdenes.size() == 0){
-			System.out.println("Aun no se agregaron lineas de venta para crear un comprobante"); 
-			this.comprobantePago = new ComprobantePago();
-		}
-		
-		int numArticulos = 0;
-		for(LineaOrdenDeVenta linea: lineasOrdenes){
-			montoTotal += linea.getSubtotal(); 
-			numArticulos += linea.getCantidad(); 
-		}
-		
-		//se asigna por entregar al comprobante de pago
-		this.estado = EstadoVenta.POR_ENTREGAR; 
-		//se crea el comprobante de pago
-		this.comprobantePago = new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta, formaPago);
+//		if(lineasOrdenes.size() == 0){
+//			System.out.println("Aun no se agregaron lineas de venta para crear un comprobante"); 
+//			this.comprobantePago = new ComprobantePago();
+//		}
+//		
+//		int numArticulos = 0;
+//		for(LineaOrdenDeVenta linea: lineasOrdenes){
+//			montoTotal += linea.getSubtotal(); 
+//			numArticulos += linea.getCantidad(); 
+//		}
+//		
+//		//se asigna por entregar al comprobante de pago
+//		this.estado = EstadoVenta.POR_ENTREGAR; 
+//		//se crea el comprobante de pago
+//		this.comprobantePago = new ComprobantePago(numArticulos, montoTotal, 0.18, fecha, idOrdenVenta, formaPago);
 	}
 	
 	//tipo 2--> agregar linea de ordenVenta otro metodo de llenar un orden de venta
@@ -118,7 +116,7 @@ public class OrdenVenta{
      * @param linea
      */
 	public void agregarLineaOrden(LineaOrdenDeVenta linea){
-		lineasOrdenes.add(new LineaOrdenDeVenta(linea));
+//		lineasOrdenes.add(new LineaOrdenDeVenta(linea));
 	}
 	
 	//en vez de entregar pedido lo cambie a entrega exitosa que sera editado por un Repartidor
@@ -171,17 +169,17 @@ public class OrdenVenta{
      *
      * @param comprobantePago
      */
-    public void setComprobantePago(ComprobantePago comprobantePago) {
-		this.comprobantePago = comprobantePago;
-	}
-
-    /**
-     *
-     * @return
-     */
-    public ComprobantePago getComprobantePago() {
-		return new ComprobantePago(this.comprobantePago);
-	}
+//    public void setComprobantePago(ComprobantePago comprobantePago) {
+//		this.comprobantePago = comprobantePago;
+//	}
+//
+//    /**
+//     *
+//     * @return
+//     */
+//    public ComprobantePago getComprobantePago() {
+//		return new ComprobantePago(this.comprobantePago);
+//	}
 
     /**
      *
@@ -267,9 +265,9 @@ public class OrdenVenta{
      *
      * @return
      */
-    public ArrayList<LineaOrdenDeVenta> getLineasOrdenes(){
-		return new ArrayList<LineaOrdenDeVenta>(this.lineasOrdenes);
-	}
+//    public ArrayList<LineaOrdenDeVenta> getLineasOrdenes(){
+//		return new ArrayList<LineaOrdenDeVenta>(this.lineasOrdenes);
+//	}
 
     /**
      *
