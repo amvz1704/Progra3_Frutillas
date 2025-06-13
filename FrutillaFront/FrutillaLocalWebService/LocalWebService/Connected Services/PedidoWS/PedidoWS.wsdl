@@ -5,18 +5,6 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/PedidoWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="obtenerPedidoPorId">
-    <part name="parameters" element="tns:obtenerPedidoPorId" />
-  </message>
-  <message name="obtenerPedidoPorIdResponse">
-    <part name="parameters" element="tns:obtenerPedidoPorIdResponse" />
-  </message>
-  <message name="actualizarOrden">
-    <part name="parameters" element="tns:actualizarOrden" />
-  </message>
-  <message name="actualizarOrdenResponse">
-    <part name="parameters" element="tns:actualizarOrdenResponse" />
-  </message>
   <message name="obtenerDetallePedido">
     <part name="parameters" element="tns:obtenerDetallePedido" />
   </message>
@@ -29,15 +17,19 @@
   <message name="obtenerPedidosPorEmpleadoResponse">
     <part name="parameters" element="tns:obtenerPedidosPorEmpleadoResponse" />
   </message>
+  <message name="actualizarOrden">
+    <part name="parameters" element="tns:actualizarOrden" />
+  </message>
+  <message name="actualizarOrdenResponse">
+    <part name="parameters" element="tns:actualizarOrdenResponse" />
+  </message>
+  <message name="obtenerPedidoPorId">
+    <part name="parameters" element="tns:obtenerPedidoPorId" />
+  </message>
+  <message name="obtenerPedidoPorIdResponse">
+    <part name="parameters" element="tns:obtenerPedidoPorIdResponse" />
+  </message>
   <portType name="PedidoWS">
-    <operation name="obtenerPedidoPorId">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdRequest" message="tns:obtenerPedidoPorId" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdResponse" message="tns:obtenerPedidoPorIdResponse" />
-    </operation>
-    <operation name="actualizarOrden">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenRequest" message="tns:actualizarOrden" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenResponse" message="tns:actualizarOrdenResponse" />
-    </operation>
     <operation name="obtenerDetallePedido">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest" message="tns:obtenerDetallePedido" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse" message="tns:obtenerDetallePedidoResponse" />
@@ -46,10 +38,27 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoRequest" message="tns:obtenerPedidosPorEmpleado" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoResponse" message="tns:obtenerPedidosPorEmpleadoResponse" />
     </operation>
+    <operation name="actualizarOrden">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenRequest" message="tns:actualizarOrden" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenResponse" message="tns:actualizarOrdenResponse" />
+    </operation>
+    <operation name="obtenerPedidoPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdRequest" message="tns:obtenerPedidoPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdResponse" message="tns:obtenerPedidoPorIdResponse" />
+    </operation>
   </portType>
   <binding name="PedidoWSPortBinding" type="tns:PedidoWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="obtenerPedidoPorId">
+    <operation name="obtenerDetallePedido">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPedidosPorEmpleado">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -67,16 +76,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerDetallePedido">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="obtenerPedidosPorEmpleado">
+    <operation name="obtenerPedidoPorId">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
