@@ -32,7 +32,7 @@ public class PedidoWS {
     }
     
     @WebMethod(operationName = "obtenerPedidosPorEmpleado")
-    public List<OrdenVenta> obtenerPedidos(@WebParam (name ="idEmpleado") int idEmpleado) {
+    public List<OrdenVenta> obtenerPedidosPorEmpleado(@WebParam (name ="idEmpleado") int idEmpleado) {
         try{
             return daoOrdenVenta.listarOrdenesPorEmpleado(idEmpleado);
         }catch(Exception ex){ 
@@ -41,6 +41,15 @@ public class PedidoWS {
         return null;
     }
     
+    @WebMethod(operationName = "obtenerPedidosPorCliente")
+    public List<OrdenVenta> obtenerPedidosPorCliente(@WebParam (name ="idCliente") int idCliente){
+        try{
+            return daoOrdenVenta.listarOrdenesPorCliente(idCliente);
+        }catch(Exception ex){ 
+            System.out.println(ex.getMessage()); 
+        }
+        return null;
+    }
     @WebMethod(operationName = "obtenerDetallePedido")
     public List<LineaOrdenDeVenta> obtenerDetallePedido(@WebParam(name = "idOrdenVenta") int idOrden) {
         try {

@@ -53,9 +53,9 @@ public class Cliente extends Persona{
         // Agregar la orden de venta a la lista de órdenes del cliente
         agregarOrdenVenta(orden);
         //Se desea obtener el comprobante de pago
-        ComprobantePago comprobante = orden.getComprobantePago();
+        int idComprobante = orden.getIdComprobante();
         //Imprimir el comprobante de pago
-        System.out.println("Comprobante de pago: " + comprobante.toString() + "\n");
+        System.out.println("Comprobante de pago: " + idComprobante + "\n");
         return true;
     }
 

@@ -56,45 +56,42 @@
     <h5 class="mt-5 mb-3">Elige el módulo de administración:</h5>
     <div class="row g-4 justify-content-center">
         <!-- Empleados -->
-        <div class="col-6 col-md-3">
-            <div class="card h-100 text-center">
-                <div class="position-relative">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-header position-relative bg-transparent border-0">
                     <img src="/Public/images/empleadosImagen.png" class="position-absolute top-0 end-0 m-2" alt="Empleados" height="40" />
                 </div>
-                <div class="card-body">
-                    <h6 class="card-title">Administrar Empleados</h6>
-                    <p style="text-align: center;"> </p>
-                    <p style="text-align: center;">Desde aquí puedes ver y editar a los empleados del local.</p>
+                <div class="card-body d-flex flex-column text-center px-3 py-4">
+                    <h6 class="card-title fw-bold mb-3">Administrar Empleados</h6>
+                    <p class="card-text flex-grow-1">Desde aquí puedes ver y editar a los empleados del local.</p>
                     <asp:Button ID="AdminEmpleados" OnClick="BtnAdminEmpleados" runat="server"
                         Text="Ir" CssClass="btn-frutilla" />
                 </div>
             </div>
         </div>
         <!-- Productos -->
-        <div class="col-6 col-md-3">
-            <div class="card h-100 text-center">
-                <div class="position-relative">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-header position-relative bg-transparent border-0">
                     <img src="/Public/images/productosImagen.png" class="position-absolute top-0 end-0 m-2" alt="Empleados" height="40" />
                 </div>
-                <div class="card-body">
-                    <h6 class="card-title">Administrar Productos</h6>
-                    <p style="text-align: center;"> </p>
-                    <p style="text-align: center;">Desde aquí puedes ver y editar a los productos del inventario del local.</p>
+                <div class="card-body d-flex flex-column text-center px-3 py-4">
+                    <h6 class="card-title fw-bold mb-3">Administrar Productos</h6>
+                    <p class="card-text flex-grow-1">Desde aquí puedes ver y editar a los productos del inventario del local.</p>
                     <asp:Button ID="AdminProductos" OnClick="BtnAdminProductos" runat="server"
                         Text="Ir" CssClass="btn-frutilla" />
                 </div>
             </div>
         </div>
         <!-- Ventas -->
-        <div class="col-6 col-md-3">
-            <div class="card h-100 text-center">
-                <div class="position-relative">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-header position-relative bg-transparent border-0">
                     <img src="/Public/images/ventasImagen.png" class="position-absolute top-0 end-0 m-2" alt="Empleados" height="40" />
                 </div>
-                <div class="card-body">
-                    <h6 class="card-title">Administrar Ventas</h6>
-                    <p style="text-align: center;"> </p>
-                    <p style="text-align: center;">Desde aquí puedes ver y editar a los pedidos recibidos del inventario del local.</p>
+                <div class="card-body d-flex flex-column text-center px-3 py-4">
+                    <h6 class="card-title fw-bold mb-3">Administrar Ventas</h6>
+                    <p class="card-text flex-grow-1">Desde aquí puedes ver y editar a los pedidos recibidos del inventario del local.</p>
                     <asp:Button ID="AdminVentas" OnClick="BtnAdminVentas" runat="server"
                         Text="Ir" CssClass="btn-frutilla" />
                 </div>

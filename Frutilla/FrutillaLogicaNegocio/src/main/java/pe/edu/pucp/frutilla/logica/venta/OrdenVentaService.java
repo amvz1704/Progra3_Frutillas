@@ -4,6 +4,7 @@
  */
 package pe.edu.pucp.frutilla.logica.venta;
 
+import java.sql.SQLDataException;
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 import pe.edu.pucp.frutilla.models.venta.LineaOrdenDeVenta;
 
@@ -12,8 +13,6 @@ import pe.edu.pucp.frutilla.crud.mysql.venta.OrdenVentaMySQL;
 import pe.edu.pucp.frutilla.crud.mysql.venta.LineaOrdenDeVentaMySQL;
 import java.sql.SQLException;
 import java.util.List;
-import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
-import pe.edu.pucp.frutilla.crud.dao.venta.LineaOrdenVentaDAO;
 import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
 import pe.edu.pucp.frutilla.models.inventario.Producto;
 
@@ -82,8 +81,6 @@ public class OrdenVentaService {
         ordenVentaMySQL.eliminar(idOrdenVenta);
     }
 
-    
-
     // Listar todas las órdenes
     public List<OrdenVenta> listarTodasLasOrdenes() throws SQLException {
         return ordenVentaMySQL.listarTodos();
@@ -91,19 +88,27 @@ public class OrdenVentaService {
 
     // Listar órdenes por cliente
     public List<OrdenVenta> listarOrdenesPorCliente(int idCliente) throws SQLException {
+        if (idCliente<=0)
+            throw new SQLDataException("el id de cliente no puede ser 0 o negativo");
         return ordenVentaMySQL.listarPorCliente(idCliente);
     }
 
     // Listar órdenes por empleado
     public List<OrdenVenta> listarOrdenesPorEmpleado(int idEmpleado) throws SQLException {
+        if (idEmpleado<=0)
+            throw new SQLDataException("el id de empleado no puede ser 0 o negativo");
         return ordenVentaMySQL.listarPorEmpleado(idEmpleado);
     }
 
     // Listar órdenes por local
     public List<OrdenVenta> listarOrdenesPorLocal(int idLocal) throws SQLException {
+        if (idLocal<=0)
+            throw new SQLDataException("el id de local no puede ser 0 o negativo");
         return ordenVentaMySQL.listarPorLocal(idLocal);
     }
     public OrdenVenta obtenerPedido (int id) throws SQLException {
+        if (id<=0)
+            throw new SQLDataException("el id de la orden no puede ser 0 o negativo");
         return ordenVentaMySQL.obtenerPorId(id);
     }
 }
