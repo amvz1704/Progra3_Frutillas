@@ -23,10 +23,11 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.time.*; 
 import java.util.List;
+import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
 
-public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
+public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVentaDAO{
     
     //Uso los metodos sobrecargados de Query
     @Override
