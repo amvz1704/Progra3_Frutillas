@@ -74,6 +74,10 @@
     <None Include="Connected Services\ClienteWS\ClienteWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="ClienteCarrito.aspx" />
+    <Content Include="ClienteComprar.aspx" />
+    <Content Include="ClienteHome.aspx" />
+    <Content Include="ClientePedidos.aspx" />
     <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.agregarClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -293,6 +297,34 @@
     </Compile>
     <Compile Include="Cliente.Master.designer.cs">
       <DependentUpon>Cliente.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteCarrito.aspx.cs">
+      <DependentUpon>ClienteCarrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteCarrito.aspx.designer.cs">
+      <DependentUpon>ClienteCarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteComprar.aspx.cs">
+      <DependentUpon>ClienteComprar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteComprar.aspx.designer.cs">
+      <DependentUpon>ClienteComprar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteHome.aspx.cs">
+      <DependentUpon>ClienteHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteHome.aspx.designer.cs">
+      <DependentUpon>ClienteHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientePedidos.aspx.cs">
+      <DependentUpon>ClientePedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientePedidos.aspx.designer.cs">
+      <DependentUpon>ClientePedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ClienteWS\Reference.cs">
       <AutoGen>True</AutoGen>
