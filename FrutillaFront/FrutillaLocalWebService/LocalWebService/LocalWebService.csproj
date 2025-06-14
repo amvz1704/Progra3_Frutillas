@@ -78,6 +78,7 @@
     <Content Include="ClienteComprar.aspx" />
     <Content Include="ClienteHome.aspx" />
     <Content Include="ClientePedidos.aspx" />
+    <Content Include="ComprobantePago.aspx" />
     <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.agregarClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -325,6 +326,13 @@
     </Compile>
     <Compile Include="ClientePedidos.aspx.designer.cs">
       <DependentUpon>ClientePedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComprobantePago.aspx.cs">
+      <DependentUpon>ComprobantePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComprobantePago.aspx.designer.cs">
+      <DependentUpon>ComprobantePago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ClienteWS\Reference.cs">
       <AutoGen>True</AutoGen>

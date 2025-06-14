@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainLayout.Master" AutoEventWireup="true" CodeBehind="DetallePedido.aspx.cs" Inherits="LocalWebService.DetallePedido" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="DetallePedido.aspx.cs" Inherits="LocalWebService.DetallePedido" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container my-4">
         <h2 class="mb-4">Detalle del Pedido</h2>
