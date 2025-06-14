@@ -48,7 +48,7 @@ namespace LocalWebService
                 if (redirectUrl == null)
                 {
                     if (tipo.Equals("E")) redirectUrl = "LocalSupervisor.aspx";
-                    else redirectUrl = "Home.aspx";
+                    else redirectUrl = "ClienteHome.aspx";
                 }
 
                 Response.Redirect(redirectUrl, true);
