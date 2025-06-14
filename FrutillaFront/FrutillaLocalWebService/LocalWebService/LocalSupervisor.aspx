@@ -1,4 +1,4 @@
-﻿<%@ Page Title="VistaLocal" Language="C#" MasterPageFile="~/MainLayout.Master" AutoEventWireup="true" CodeBehind="LocalSupervisor.aspx.cs" Inherits="LocalWebService.LocalSupervisor" %>
+﻿<%@ Page Title="VistaLocal" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="LocalSupervisor.aspx.cs" Inherits="LocalWebService.LocalSupervisor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
 </asp:Content>
