@@ -69,7 +69,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cliente.Master" />
     <None Include="Connected Services\ClienteWS\ClienteWS.wsdl" />
     <None Include="Connected Services\ClienteWS\ClienteWS.xsd">
       <SubType>Designer</SubType>
@@ -276,7 +275,6 @@
     <Content Include="Public\js\bootstrap.esm.min.js" />
     <Content Include="Public\js\bootstrap.js" />
     <Content Include="Public\js\bootstrap.min.js" />
-    <Content Include="Empleado.Master" />
     <None Include="packages.config" />
     <None Include="Public\js\jquery-3.7.1.intellisense.js" />
     <Content Include="Public\js\jquery-3.7.1.js" />
@@ -287,13 +285,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente.Master.cs">
-      <DependentUpon>Cliente.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cliente.Master.designer.cs">
-      <DependentUpon>Cliente.Master</DependentUpon>
-    </Compile>
     <Compile Include="Connected Services\ClienteWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -335,13 +326,6 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Empleado.Master.cs">
-      <DependentUpon>Empleado.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Empleado.Master.designer.cs">
-      <DependentUpon>Empleado.Master</DependentUpon>
     </Compile>
     <Compile Include="FrutaBebida.cs" />
     <Compile Include="ListaEmpleadosSupervisor.aspx.cs">
@@ -386,6 +370,13 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MainLayout.Master.cs">
+      <DependentUpon>MainLayout.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainLayout.Master.designer.cs">
+      <DependentUpon>MainLayout.Master</DependentUpon>
+    </Compile>
     <Compile Include="Notificaciones\ListarNotificaciones.aspx.cs">
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -403,6 +394,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MainLayout.Master" />
     <None Include="Connected Services\NotificionesWS\NotificacionWS.wsdl" />
     <None Include="Connected Services\NotificionesWS\NotificacionWS.xsd">
       <SubType>Designer</SubType>
