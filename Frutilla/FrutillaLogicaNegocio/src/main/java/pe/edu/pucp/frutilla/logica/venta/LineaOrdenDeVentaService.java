@@ -33,8 +33,6 @@ public class LineaOrdenDeVentaService {
         return lineaOrdenVentaMySQL.obtener(idOrden);
     }
     
-    
-
     // Listar todas las líneas
     public List<LineaOrdenDeVenta> listarTodas() {
         return lineaOrdenVentaMySQL.listarTodos();

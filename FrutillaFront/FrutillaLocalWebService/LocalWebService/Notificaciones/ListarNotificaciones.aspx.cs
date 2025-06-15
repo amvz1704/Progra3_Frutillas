@@ -91,5 +91,10 @@ namespace LocalWebService.Notificaciones
             gvNotificaciones.PageIndex = e.NewPageIndex;
             CargarNotificaciones();
         }
+
+        protected void gvNotificaciones_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
     }
 }

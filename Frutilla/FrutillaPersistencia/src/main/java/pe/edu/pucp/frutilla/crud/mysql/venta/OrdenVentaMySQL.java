@@ -218,7 +218,9 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVen
         OrdenVenta orden = new OrdenVenta();
         orden.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
         orden.setFecha(rs.getDate("fecha").toLocalDate());
+        orden.setFechaStr(orden.getFecha().toString());
         orden.setHoraFinEntrega(rs.getTime("horaFinEntrega").toLocalTime());
+        orden.setHoraStr(orden.getHoraFinEntrega().toString());
         orden.setDescripcion(rs.getString("descripcion"));
         orden.setMontoTotal(rs.getDouble("montoTotal"));
         orden.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
