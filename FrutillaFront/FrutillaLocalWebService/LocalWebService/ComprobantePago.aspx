@@ -66,13 +66,13 @@
 
      <!-- Datos completos-->
     
-    <div class="container my-5">
+    <div class="container my-5" >
       
       <!-- Encabezado de comprobante omitido para brevedad -->
 
         <h5 class="mb-3">Detalle de artículos</h5>
 
-        <div class="container mt-4">
+        <div class="container mt-2"  style="width:60rem;">
              <asp:GridView
                     ID="gvDetalles"
                     runat="server"
@@ -122,43 +122,45 @@
                     />
                   </asp:GridView>
 
+              <div class="row mt-4">
+                <div class="col-md-4 mb-3">
+                  <label for="txtSubtotal" class="form-label"><strong>Subtotal</strong></label>
+                  <asp:TextBox
+                    ID="txtSubtotal"
+                    runat="server"
+                    CssClass="form-control"
+                    ReadOnly="true"
+                  />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="txtIGV" class="form-label"><strong>Monto IGV</strong></label>
+                  <asp:TextBox
+                    ID="txtIGV"
+                    runat="server"
+                    CssClass="form-control"
+                    ReadOnly="true"
+                  />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="txtTotal" class="form-label"><strong>Total</strong></label>
+                  <asp:TextBox
+                    ID="txtTotal"
+                    runat="server"
+                    CssClass="form-control"
+                    ReadOnly="true"
+                  />
+                </div>
+              </div>
+
+            <div class="d-flex justify-content-center mt-5">
+                <asp:Button ID="btnRegresar" runat="server"
+                    CssClass="btn-frutilla"
+                    Text="Regresar" />
+            </div>
+
          </div>
           <!-- Totales -->
-          <div class="row mt-4">
-            <div class="col-md-4 mb-3">
-              <label for="txtSubtotal" class="form-label"><strong>Subtotal</strong></label>
-              <asp:TextBox
-                ID="txtSubtotal"
-                runat="server"
-                CssClass="form-control"
-                ReadOnly="true"
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="txtIGV" class="form-label"><strong>Monto IGV</strong></label>
-              <asp:TextBox
-                ID="txtIGV"
-                runat="server"
-                CssClass="form-control"
-                ReadOnly="true"
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="txtTotal" class="form-label"><strong>Total</strong></label>
-              <asp:TextBox
-                ID="txtTotal"
-                runat="server"
-                CssClass="form-control"
-                ReadOnly="true"
-              />
-            </div>
-          </div>
-
-        <div class="d-flex justify-content-center mt-5">
-            <asp:Button ID="btnRegresar" runat="server"
-                CssClass="btn-frutilla"
-                Text="Regresar" />
-        </div>
+          
 
     
       </div>  

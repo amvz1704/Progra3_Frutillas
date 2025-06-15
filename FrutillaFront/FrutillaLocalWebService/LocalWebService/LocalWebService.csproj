@@ -77,6 +77,7 @@
     <Content Include="ClienteCarrito.aspx" />
     <Content Include="ClienteComprar.aspx" />
     <Content Include="ClienteHome.aspx" />
+    <Content Include="ClienteListaProducto.aspx" />
     <Content Include="ClientePedidos.aspx" />
     <Content Include="ComprobantePago.aspx" />
     <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.agregarClienteResponse.datasource">
@@ -84,6 +85,12 @@
     </Content>
     <None Include="Connected Services\ClienteWS\configuration91.svcinfo" />
     <None Include="Connected Services\ClienteWS\configuration.svcinfo" />
+    <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.cliente.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.obtenerClientePorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\ClienteWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -359,6 +366,13 @@
     </Compile>
     <Compile Include="ClienteHome.aspx.designer.cs">
       <DependentUpon>ClienteHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteListaProducto.aspx.cs">
+      <DependentUpon>ClienteListaProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteListaProducto.aspx.designer.cs">
+      <DependentUpon>ClienteListaProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="ClientePedidos.aspx.cs">
       <DependentUpon>ClientePedidos.aspx</DependentUpon>

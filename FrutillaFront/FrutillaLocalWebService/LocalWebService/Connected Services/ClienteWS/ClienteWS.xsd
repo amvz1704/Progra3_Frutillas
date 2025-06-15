@@ -2,9 +2,16 @@
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="agregarCliente" type="tns:agregarCliente" />
   <xs:element name="agregarClienteResponse" type="tns:agregarClienteResponse" />
-  <xs:complexType name="agregarCliente">
+  <xs:element name="obtenerClientePorId" type="tns:obtenerClientePorId" />
+  <xs:element name="obtenerClientePorIdResponse" type="tns:obtenerClientePorIdResponse" />
+  <xs:complexType name="obtenerClientePorId">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:cliente" />
+      <xs:element name="Idcliente" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerClientePorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:cliente" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="cliente">
@@ -26,6 +33,11 @@
       <xs:element minOccurs="0" name="telefono" type="xs:string" />
       <xs:element minOccurs="0" name="tipoUsuario" type="xs:string" />
       <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarCliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:cliente" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="agregarClienteResponse">
