@@ -10,8 +10,10 @@
             <h2 class="m-0">Pedido</h2>
         </div>
     </header>
+    <div class="col-md-3 ms-auto text-end mt-2 mt-md-0 pe-5">
+        <asp:Button ID="btnPedidos_Empleado" runat="server" Text="Buscar Mis Pedidos" OnClick="btnPedidos_Empleado_Click" CssClass="btn-frutilla" />
+    </div>
     <div class="container">
-        <asp:Button ID="btnPedidos_Empleado" runat="server" Text="Buscar Mis Pedidos" OnClick="btnPedidos_Empleado_Click" />
         <asp:GridView ID="gvPedidos" runat="server" AutoGenerateColumns="false"
             AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPedidos_PageIndexChanging"
             CssClass="table table-striped table-responsive table-hover"

@@ -17,6 +17,7 @@ namespace LocalWebService
         private PedidoWSClient pedidoWSClient;
         private char rol;
         private int idLocal;
+        private int idEmpleado;
 
         public ListaPedidos()
         {
@@ -41,6 +42,7 @@ namespace LocalWebService
                     ushort tipo = empleado.tipo; 
                     rol = (char) tipo;
                     idLocal = empleado.idLocal;
+                    idEmpleado = empleado.idUsuario;
                 }
                 else
                 {
@@ -54,6 +56,7 @@ namespace LocalWebService
 
             if (!IsPostBack)
             {
+                btnPedidos_Empleado.Enabled = (rol == 'R');
                 CargarPedidos();
             }
         }
@@ -74,7 +77,14 @@ namespace LocalWebService
 
         protected void btnPedidos_Empleado_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                gvPedidos.DataSource = pedidoWSClient.obtenerPedidosPorEmpleado(idEmpleado);
+                gvPedidos.DataBind();
+            } catch (Exception ex)
+            {
+                lblError.Text = "Error al cargar pedido de empleado " + idEmpleado + ": " + ex;
+            }
         }
 
         protected void gvPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -85,7 +95,14 @@ namespace LocalWebService
 
         protected void gvPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Response.Redirect($"DetallePedido.aspx");
+            if(e.CommandName == "VerDetalle")
+            {
+                int pedidoId;
+                if(int.TryParse(e.CommandArgument.ToString(), out pedidoId))
+                {
+                    Response.Redirect("DetallePedido.aspx?id=" + pedidoId);
+                }
+            }
         }
     }
 }
