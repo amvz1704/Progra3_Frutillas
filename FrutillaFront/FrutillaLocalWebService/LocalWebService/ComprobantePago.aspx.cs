@@ -101,5 +101,7 @@ namespace LocalWebService
             gvDetalles.PageIndex = e.NewPageIndex;
             BindGrid();
         }
+
+        //crear uno mas para que regrese a listaEmpleados 
     }
 }
