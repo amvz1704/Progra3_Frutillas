@@ -125,6 +125,13 @@ input[type="date"] {
     background-color: #4F7E38;
 }
 
+    .btn-frutilla[disabled],
+    .btn-frutilla:disabled {
+        background-color: #ccc;
+        color: #666666;
+        cursor: not-allowed;
+    }
+
 .btn-frutilla-editar {
     background-color: #5E5EEB;
     color: white;
