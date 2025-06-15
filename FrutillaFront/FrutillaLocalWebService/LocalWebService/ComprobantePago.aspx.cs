@@ -13,5 +13,14 @@ namespace LocalWebService
         {
 
         }
+
+        protected void gvComprobante_RowCommand(object sender, GridViewCommandEventArgs e) { 
+        
+        }
+
+        protected void gvDetalles_PageIndexChanging(object sender, EventArgs e)
+        {
+
+        }
     }
 }
