@@ -54,7 +54,7 @@
                         <li class="nav-item">
                             <asp:HyperLink ID="HyperLink2" runat="server"
                                 CssClass="nav-link active"
-                                NavigateUrl="~/ClienteComprar.aspx"
+                                NavigateUrl="~/ClienteListaProducto.aspx"
                                 Text="Comprar" />
                         </li>
                         <li class="nav-item">

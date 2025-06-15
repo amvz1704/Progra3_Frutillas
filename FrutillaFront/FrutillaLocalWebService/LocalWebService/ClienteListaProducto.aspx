@@ -5,6 +5,79 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     
+    <div class="container py-3 form-in-line">
+      <div class="d-flex align-items-center">
+        <!-- Barra de búsqueda -->
+          <div class="form-group mb-2">
+        <div class="search-bar flex-grow-1 me-3 d-flex align-items-center">
+          <asp:TextBox
+            ID="txtBuscar"
+            runat="server"
+            CssClass="form-control"
+            Placeholder="Buscar producto..."
+              Width="300px"
+          />
+          <button type="submit" class="btn btn-search">
+            <i class="bi bi-search"></i><!-- ícono de Bootstrap Icons -->
+          </button>
+        </div>
+              </div>
+
+        <!-- Dropdown Local -->
+          <div class="form-group mx-sm-3 mb-2">
+        <asp:DropDownList
+          ID="ddlLocal"
+          runat="server"
+          CssClass="form-select"
+            Width="120px"
+        >
+          <asp:ListItem Value="0">Local</asp:ListItem>
+          <asp:ListItem Value="1">Sucursal A</asp:ListItem>
+          <asp:ListItem Value="2">Sucursal B</asp:ListItem>
+        </asp:DropDownList>
+              </div>
+          <!-- Filtros como tags -->
+          <div class="form-group mb-2">
+        <asp:Panel ID="filterTags" runat="server" CssClass="filter-tags mt-2">
+            <asp:LinkButton
+              ID="btnTodos"
+              runat="server"
+              CssClass="btn btn-outline-light active"
+              CommandArgument="Todos"
+              OnClick="Filtro_Click"
+            >Todos</asp:LinkButton>
+
+            <asp:LinkButton
+              ID="btnSnack"
+              runat="server"
+              CssClass="btn btn-outline-light"
+              CommandArgument="Snack"
+              OnClick="Filtro_Click"
+            >Snack</asp:LinkButton>
+            <asp:LinkButton
+              ID="btnFruta"
+              runat="server"
+              CssClass="btn btn-outline-light"
+              CommandArgument="Fruta"
+              OnClick="Filtro_Click"
+            >Fruta</asp:LinkButton>
+            <asp:LinkButton
+              ID="btnBebidas"
+              runat="server"
+              CssClass="btn btn-outline-light"
+              CommandArgument="Bebidas"
+              OnClick="Filtro_Click"
+            >Bebidas</asp:LinkButton>
+  
+        </asp:Panel>
+
+      </div>
+          </div>
+
+    </div>
+
+
+
     <div class="container mt-4">
         <div style="background-color: #F8FBD9; padding: 15px; border-radius: 5px;">
             
