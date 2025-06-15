@@ -152,7 +152,7 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
     // Método personalizado para listar por ID de orden
     public List<LineaOrdenDeVenta> listarPorOrden(int idOrdenVenta) throws SQLException {
         List<LineaOrdenDeVenta> lineas = new ArrayList<>();
-        String query = "CALL LISTAR_LINEAS_X_ORDEN(?)";
+        String query = "SELECT * FROM LineaOrdenVenta WHERE idOrdenVenta = ?;"; //Falta implementar este procedimiento
 
         try (Connection con = DBManager.getInstance().getConnection();
              CallableStatement cs = con.prepareCall(query)) {

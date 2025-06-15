@@ -86,7 +86,7 @@
         </header>
 
         <!-- 3) Área principal donde se renderiza cada vista 
-          colcamos un ContenPlaceHolder para colcoer-->
+          colcamos un ContenPlaceHolder para colocar-->
         <main class="flex-grow-1">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </main>

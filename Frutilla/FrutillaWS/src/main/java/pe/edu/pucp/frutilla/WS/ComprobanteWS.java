@@ -7,7 +7,9 @@ import jakarta.jws.WebParam;
 import jakarta.xml.ws.WebServiceException;
 import java.util.List;
 import pe.edu.pucp.frutilla.logica.venta.ComprobantePagoService;
+import pe.edu.pucp.frutilla.logica.venta.LineaOrdenDeVentaService;
 import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
+import pe.edu.pucp.frutilla.models.venta.LineaOrdenDeVenta;
 
 @WebService(serviceName = "ComprobanteWS")
 public class ComprobanteWS {
@@ -53,6 +55,16 @@ public class ComprobanteWS {
             return comprobanteService.obtenerPorId(idComprobante);
         } catch (Exception ex) {
             throw new WebServiceException("Error al obtener Comprobante: " + ex.getMessage());
+        }
+    }
+    
+    @WebMethod(operationName = "obtenerLineasPorIdComprobante") 
+    public List<LineaOrdenDeVenta> obtenerLineasPorIdComprobante(@WebParam(name = "idComprobante") int idComprobante) {
+        LineaOrdenDeVentaService daoLinea = new LineaOrdenDeVentaService(); 
+        try {
+            return daoLinea.listarPorOrden(idComprobante);
+        } catch (Exception ex) {
+            throw new WebServiceException("Error al obtener las lineas del comprobante: " + ex.getMessage());
         }
     }
 //    @WebMethod(operationName = "listarComprobantes")
