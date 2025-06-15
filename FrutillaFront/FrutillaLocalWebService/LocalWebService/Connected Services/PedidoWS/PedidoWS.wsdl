@@ -11,11 +11,11 @@
   <message name="obtenerPedidoPorIdResponse">
     <part name="parameters" element="tns:obtenerPedidoPorIdResponse" />
   </message>
-  <message name="actualizarOrden">
-    <part name="parameters" element="tns:actualizarOrden" />
+  <message name="listarPedidoPorLocal">
+    <part name="parameters" element="tns:listarPedidoPorLocal" />
   </message>
-  <message name="actualizarOrdenResponse">
-    <part name="parameters" element="tns:actualizarOrdenResponse" />
+  <message name="listarPedidoPorLocalResponse">
+    <part name="parameters" element="tns:listarPedidoPorLocalResponse" />
   </message>
   <message name="obtenerDetallePedido">
     <part name="parameters" element="tns:obtenerDetallePedido" />
@@ -29,14 +29,32 @@
   <message name="obtenerPedidosPorEmpleadoResponse">
     <part name="parameters" element="tns:obtenerPedidosPorEmpleadoResponse" />
   </message>
+  <message name="obtenerPedidosPorCliente">
+    <part name="parameters" element="tns:obtenerPedidosPorCliente" />
+  </message>
+  <message name="obtenerPedidosPorClienteResponse">
+    <part name="parameters" element="tns:obtenerPedidosPorClienteResponse" />
+  </message>
+  <message name="actualizarOrden">
+    <part name="parameters" element="tns:actualizarOrden" />
+  </message>
+  <message name="actualizarOrdenResponse">
+    <part name="parameters" element="tns:actualizarOrdenResponse" />
+  </message>
+  <message name="agregarOrden">
+    <part name="parameters" element="tns:agregarOrden" />
+  </message>
+  <message name="agregarOrdenResponse">
+    <part name="parameters" element="tns:agregarOrdenResponse" />
+  </message>
   <portType name="PedidoWS">
     <operation name="obtenerPedidoPorId">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdRequest" message="tns:obtenerPedidoPorId" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdResponse" message="tns:obtenerPedidoPorIdResponse" />
     </operation>
-    <operation name="actualizarOrden">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenRequest" message="tns:actualizarOrden" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenResponse" message="tns:actualizarOrdenResponse" />
+    <operation name="listarPedidoPorLocal">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalRequest" message="tns:listarPedidoPorLocal" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalResponse" message="tns:listarPedidoPorLocalResponse" />
     </operation>
     <operation name="obtenerDetallePedido">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest" message="tns:obtenerDetallePedido" />
@@ -45,6 +63,18 @@
     <operation name="obtenerPedidosPorEmpleado">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoRequest" message="tns:obtenerPedidosPorEmpleado" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoResponse" message="tns:obtenerPedidosPorEmpleadoResponse" />
+    </operation>
+    <operation name="obtenerPedidosPorCliente">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteRequest" message="tns:obtenerPedidosPorCliente" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteResponse" message="tns:obtenerPedidosPorClienteResponse" />
+    </operation>
+    <operation name="actualizarOrden">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenRequest" message="tns:actualizarOrden" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenResponse" message="tns:actualizarOrdenResponse" />
+    </operation>
+    <operation name="agregarOrden">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/agregarOrdenRequest" message="tns:agregarOrden" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/agregarOrdenResponse" message="tns:agregarOrdenResponse" />
     </operation>
   </portType>
   <binding name="PedidoWSPortBinding" type="tns:PedidoWS">
@@ -58,7 +88,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="actualizarOrden">
+    <operation name="listarPedidoPorLocal">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -77,6 +107,33 @@
       </output>
     </operation>
     <operation name="obtenerPedidosPorEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPedidosPorCliente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="actualizarOrden">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="agregarOrden">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

@@ -60,6 +60,16 @@ public class PedidoWS {
         }
     }
     
+    @WebMethod(operationName = "agregarOrden")
+    public void agregarOrden(@WebParam(name = "orden")OrdenVenta orden){
+        try{
+            daoOrdenVenta.agregarOrden(orden);
+        } catch (Exception e){
+             System.err.println("Error al crear pedido"  + e.getMessage());
+            throw new RuntimeException("No se pudo crear pedido");
+        }
+    }
+    
     @WebMethod(operationName = "actualizarOrden")
     public void actualizarOrden(@WebParam(name = "orden") OrdenVenta orden) {
         try {
@@ -78,7 +88,18 @@ public class PedidoWS {
             return pedido;
         } catch (Exception ex) {
             System.err.println("Error al obtener el pedido con ID " + idOrden + ": " + ex.getMessage());
-            throw new RuntimeException("No se pudo obtener el pedido.");
         }
+        return null;
+    }
+    
+    @WebMethod(operationName = "listarPedidoPorLocal")
+    public List<OrdenVenta> listarPedidoPorLocal (@WebParam(name = "idLocal")int idLocal){
+        try{
+            return daoOrdenVenta.listarOrdenesPorLocal(idLocal);
+        } catch(Exception e) {
+            System.err.println("Error al listar el pedido con local " + idLocal 
+                    + ": " + e.getMessage());
+        }
+        return null;
     }
 }
