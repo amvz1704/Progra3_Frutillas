@@ -20,10 +20,7 @@
                 <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C}" />
                 <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
             </Columns>
-
-           
             <FooterStyle Font-Bold="True" />
-         
         </asp:GridView>
          <FooterTemplate>
             <tr>
@@ -51,7 +48,6 @@
                 <asp:TextBox ID="txtEmpleadoAsignado" runat="server" CssClass="form-control" Placeholder="Ingrese ID o nombre" />
             </div>
         </div>
-
         <!-- Mensaje resultado -->
         <div class="row mt-3">
             <div class="col-12">
