@@ -83,7 +83,7 @@
             
 
             <div class="row">
-                <asp:Repeater ID="rptProductos" runat="server">
+                <asp:Repeater ID="rptProductos" runat="server" OnItemCommand="rptProductos_ItemCommand">
                     <ItemTemplate>
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
@@ -93,7 +93,7 @@
                                     <p class="card-text">Precio: S/ <%# Eval("precioUnitario", "{0:N2}") %></p>
                                     <p class="card-text">Stock: <%# Eval("stock") %></p>
                                     <asp:Button ID="btnVerMas" runat="server" Text="Detalles" CssClass="btn btn-frutilla"
-                                        CommandName="VerMas" CommandArgument='<%# Eval("idProducto") %>' />
+                                        CommandName="VerMas" CommandArgument='<%# Eval("idProducto") %>'/>
                                     <asp:Button ID="btnAgregarCarrito" runat="server" Text="Agregar compra" CssClass="btn btn-frutilla"
                                         CommandName="agregarCarrito" CommandArgument='<%# Eval("idProducto") %>' />
 

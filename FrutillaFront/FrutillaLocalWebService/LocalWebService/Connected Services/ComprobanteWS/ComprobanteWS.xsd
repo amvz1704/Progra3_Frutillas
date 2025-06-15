@@ -10,6 +10,30 @@
   <xs:element name="obtenerComprobanteResponse" type="tns:obtenerComprobanteResponse" />
   <xs:element name="obtenerLineasPorIdComprobante" type="tns:obtenerLineasPorIdComprobante" />
   <xs:element name="obtenerLineasPorIdComprobanteResponse" type="tns:obtenerLineasPorIdComprobanteResponse" />
+  <xs:element name="obtenerProductoPorId" type="tns:obtenerProductoPorId" />
+  <xs:element name="obtenerProductoPorIdResponse" type="tns:obtenerProductoPorIdResponse" />
+  <xs:complexType name="obtenerProductoPorId">
+    <xs:sequence>
+      <xs:element name="idProducto" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerProductoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="producto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="precioUnitario" type="xs:double" />
+      <xs:element name="stock" type="xs:int" />
+      <xs:element name="stockMinimo" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="eliminarComprobante">
     <xs:sequence>
       <xs:element name="arg0" type="xs:int" />
@@ -69,18 +93,6 @@
       <xs:element name="subtotal" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="producto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
-      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
-      <xs:element name="idProducto" type="xs:int" />
-      <xs:element minOccurs="0" name="nombre" type="xs:string" />
-      <xs:element name="precioUnitario" type="xs:double" />
-      <xs:element name="stock" type="xs:int" />
-      <xs:element name="stockMinimo" type="xs:int" />
-      <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="agregarComprobante">
     <xs:sequence>
       <xs:element minOccurs="0" name="Comprobante" type="tns:comprobantePago" />
@@ -89,18 +101,18 @@
   <xs:complexType name="agregarComprobanteResponse">
     <xs:sequence />
   </xs:complexType>
+  <xs:simpleType name="tipoEstado">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DISPONIBLE" />
+      <xs:enumeration value="AGOTADO" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="formaDePago">
     <xs:restriction base="xs:string">
       <xs:enumeration value="TARJETA_CREDITO" />
       <xs:enumeration value="TARJETA_DEBITO" />
       <xs:enumeration value="PLIN" />
       <xs:enumeration value="YAPE" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="tipoEstado">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="DISPONIBLE" />
-      <xs:enumeration value="AGOTADO" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
