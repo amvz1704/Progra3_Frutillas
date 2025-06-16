@@ -5,29 +5,20 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/InventarioWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="insertarBebida">
-    <part name="parameters" element="tns:insertarBebida" />
-  </message>
-  <message name="insertarBebidaResponse">
-    <part name="parameters" element="tns:insertarBebidaResponse" />
-  </message>
-  <message name="listarTodos">
-    <part name="parameters" element="tns:listarTodos" />
-  </message>
-  <message name="listarTodosResponse">
-    <part name="parameters" element="tns:listarTodosResponse" />
-  </message>
+<<<<<<< HEAD
+=======
   <message name="eliminarProducto">
     <part name="parameters" element="tns:eliminarProducto" />
   </message>
   <message name="eliminarProductoResponse">
     <part name="parameters" element="tns:eliminarProductoResponse" />
   </message>
-  <message name="insertarFruta">
-    <part name="parameters" element="tns:insertarFruta" />
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
+  <message name="insertarBebida">
+    <part name="parameters" element="tns:insertarBebida" />
   </message>
-  <message name="insertarFrutaResponse">
-    <part name="parameters" element="tns:insertarFrutaResponse" />
+  <message name="insertarBebidaResponse">
+    <part name="parameters" element="tns:insertarBebidaResponse" />
   </message>
   <message name="actualizarProducto">
     <part name="parameters" element="tns:actualizarProducto" />
@@ -35,30 +26,85 @@
   <message name="actualizarProductoResponse">
     <part name="parameters" element="tns:actualizarProductoResponse" />
   </message>
+  <message name="listarTodos">
+    <part name="parameters" element="tns:listarTodos" />
+  </message>
+  <message name="listarTodosResponse">
+    <part name="parameters" element="tns:listarTodosResponse" />
+  </message>
+<<<<<<< HEAD
+  <message name="eliminarProducto">
+    <part name="parameters" element="tns:eliminarProducto" />
+  </message>
+  <message name="eliminarProductoResponse">
+    <part name="parameters" element="tns:eliminarProductoResponse" />
+  </message>
+=======
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
+  <message name="insertarFruta">
+    <part name="parameters" element="tns:insertarFruta" />
+  </message>
+  <message name="insertarFrutaResponse">
+    <part name="parameters" element="tns:insertarFrutaResponse" />
+  </message>
+<<<<<<< HEAD
+  <message name="actualizarProducto">
+    <part name="parameters" element="tns:actualizarProducto" />
+  </message>
+  <message name="actualizarProductoResponse">
+    <part name="parameters" element="tns:actualizarProductoResponse" />
+  </message>
   <portType name="InventarioWS">
-    <operation name="insertarBebida">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest" message="tns:insertarBebida" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaResponse" message="tns:insertarBebidaResponse" />
-    </operation>
-    <operation name="listarTodos">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosRequest" message="tns:listarTodos" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosResponse" message="tns:listarTodosResponse" />
-    </operation>
+=======
+  <message name="obtenerProductoPorId">
+    <part name="parameters" element="tns:obtenerProductoPorId" />
+  </message>
+  <message name="obtenerProductoPorIdResponse">
+    <part name="parameters" element="tns:obtenerProductoPorIdResponse" />
+  </message>
+  <portType name="InventarioWS">
     <operation name="eliminarProducto">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest" message="tns:eliminarProducto" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse" message="tns:eliminarProductoResponse" />
     </operation>
-    <operation name="insertarFruta">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest" message="tns:insertarFruta" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse" message="tns:insertarFrutaResponse" />
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
+    <operation name="insertarBebida">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest" message="tns:insertarBebida" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaResponse" message="tns:insertarBebidaResponse" />
     </operation>
     <operation name="actualizarProducto">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoRequest" message="tns:actualizarProducto" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoResponse" message="tns:actualizarProductoResponse" />
     </operation>
+    <operation name="listarTodos">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosRequest" message="tns:listarTodos" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosResponse" message="tns:listarTodosResponse" />
+    </operation>
+<<<<<<< HEAD
+    <operation name="eliminarProducto">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest" message="tns:eliminarProducto" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse" message="tns:eliminarProductoResponse" />
+    </operation>
+=======
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
+    <operation name="insertarFruta">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest" message="tns:insertarFruta" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse" message="tns:insertarFrutaResponse" />
+    </operation>
+<<<<<<< HEAD
+    <operation name="actualizarProducto">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoRequest" message="tns:actualizarProducto" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoResponse" message="tns:actualizarProductoResponse" />
+=======
+    <operation name="obtenerProductoPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdRequest" message="tns:obtenerProductoPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdResponse" message="tns:obtenerProductoPorIdResponse" />
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
+    </operation>
   </portType>
   <binding name="InventarioWSPortBinding" type="tns:InventarioWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+<<<<<<< HEAD
     <operation name="insertarBebida">
       <soap:operation soapAction="" />
       <input>
@@ -77,6 +123,8 @@
         <soap:body use="literal" />
       </output>
     </operation>
+=======
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
     <operation name="eliminarProducto">
       <soap:operation soapAction="" />
       <input>
@@ -86,7 +134,11 @@
         <soap:body use="literal" />
       </output>
     </operation>
+<<<<<<< HEAD
     <operation name="insertarFruta">
+=======
+    <operation name="insertarBebida">
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -104,6 +156,36 @@
         <soap:body use="literal" />
       </output>
     </operation>
+<<<<<<< HEAD
+=======
+    <operation name="listarTodos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarFruta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerProductoPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+>>>>>>> 5d51292c83556df2addfcdfb422766bdd7779e49
   </binding>
   <service name="InventarioWS">
     <port name="InventarioWSPort" binding="tns:InventarioWSPortBinding">

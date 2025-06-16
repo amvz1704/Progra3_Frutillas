@@ -78,6 +78,7 @@
     <Content Include="ClienteComprar.aspx" />
     <Content Include="ClienteHome.aspx" />
     <Content Include="ClienteListaProducto.aspx" />
+    <Content Include="ClientePago.aspx" />
     <Content Include="ClientePedidos.aspx" />
     <Content Include="ComprobantePago.aspx" />
     <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.agregarClienteResponse.datasource">
@@ -118,6 +119,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
@@ -168,6 +175,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.insertarBebidaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerProductoPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\InventarioWS\Reference.svcmap">
@@ -275,6 +285,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
+    <Content Include="DetalleProductoCliente.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -374,6 +385,13 @@
     <Compile Include="ClienteListaProducto.aspx.designer.cs">
       <DependentUpon>ClienteListaProducto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClientePago.aspx.cs">
+      <DependentUpon>ClientePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientePago.aspx.designer.cs">
+      <DependentUpon>ClientePago.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ClientePedidos.aspx.cs">
       <DependentUpon>ClientePedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -434,6 +452,13 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleProductoCliente.aspx.cs">
+      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleProductoCliente.aspx.designer.cs">
+      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleado.Master.cs">
       <DependentUpon>Empleado.Master</DependentUpon>

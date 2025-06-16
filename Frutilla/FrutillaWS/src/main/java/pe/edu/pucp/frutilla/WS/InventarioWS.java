@@ -99,6 +99,19 @@ public class InventarioWS {
         }
     }
     
+    @WebMethod(operationName = "obtenerProductoPorId")
+    public Producto obtenerProductoPorId(@WebParam(name = "idProducto") int idProducto) {
+        productoService = new ProductoService();
+        try {
+            // Usamos el servicio de Producto para obtener el Producto completo
+            Producto pedido = productoService.obtenerPorId(idProducto); // Asegúrate de tener el método en ProductoService
+            return pedido;
+        } catch (Exception ex) {
+            System.err.println("Error al obtener el producto con ID " + idProducto + ": " + ex.getMessage());
+        }
+        return null;
+    }
+    
 //    Falta agregar filtrar en persistencia
 //    @WebMethod(operationName = "filtrarPorTipo")
 //    public List<Producto> filtrarPorTipo(int idLocal, char tipo){
