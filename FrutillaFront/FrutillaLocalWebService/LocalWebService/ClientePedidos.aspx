@@ -10,12 +10,12 @@
             <h2 class="m-0">Pedidos Realizados</h2>
         </div>
     </header>
-    <div class="container">
+    <div class="container m-4">
         <asp:DropDownList ID="ddlLocales" runat="server" AutoPostBack="true" 
             OnSelectedIndexChanged="ddlLocales_SelectedIndexChanged"
              CssClass="form-control"></asp:DropDownList>
     </div>
-    <div class="container">
+    <div class="container m-4">
         <asp:GridView ID="gvPedidosCliente" runat="server" AutoGenerateColumns="false"
             AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPedidosCliente_PageIndexChanging"
             CssClass="table table-striped table-responsive table-hover"
@@ -32,7 +32,7 @@
                             Text="Ver Comprobante"
                             CommandName="VerComprobante"
                             CommandArgument='<%# Eval("idOrdenVenta") %>'
-                            CssClass="btn btn-primary btn-sm" />
+                            CssClass="btn-frutilla" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

@@ -97,10 +97,10 @@ CREATE PROCEDURE ORDEN_VENTA_LISTAR_X_CLIENTE(
 	IN _idCliente INT
 )
 BEGIN
-	SELECT idOrdenVenta,fecha,horaFinEntrega,descripcion,montoTotal,
-    estadoVenta,idLocal,idComprobante,idEmpleado,idCliente
-    FROM OrdenVenta WHERE idCliente=_idCliente AND 
-    NOT (estadoVenta="CANCELADO");  
+	SELECT idOrdenVenta,fecha,horaFinEntrega,OrdenVenta.descripcion,montoTotal,
+    estadoVenta,idComprobante,idCliente,idEmpleado,OrdenVenta.idLocal,L.nombre
+    FROM OrdenVenta, Local as L WHERE OrdenVenta.idLocal=L.idLocal
+    AND idCliente=_idCliente AND NOT (estadoVenta="CANCELADO") ORDER BY fecha DESC, horaFinEntrega DESC; 
 END$
 
 CREATE PROCEDURE ORDEN_VENTA_LISTAR_X_LOCAL(
@@ -118,9 +118,10 @@ CREATE PROCEDURE ORDEN_V_LISTAR_X_LOCALCLIENTE(
     IN _idCliente INT
 )
 BEGIN 
-	SELECT idOrdenVenta,fecha,horaFinEntrega,descripcion,montoTotal,
-    estadoVenta,idComprobante,idCliente,idEmpleado,idLocal
-    FROM OrdenVenta WHERE idLocal=_idLocal AND idCliente=_idCliente AND
+	SELECT idOrdenVenta,fecha,horaFinEntrega,OrdenVenta.descripcion,montoTotal,
+    estadoVenta,idComprobante,idCliente,idEmpleado,OrdenVenta.idLocal,L.nombre
+    FROM OrdenVenta, Local as L WHERE OrdenVenta.idLocal=_idLocal AND OrdenVenta.idLocal=L.idLocal
+    AND idCliente=_idCliente AND
     NOT (estadoVenta="CANCELADO") ORDER BY fecha DESC, horaFinEntrega DESC;  
 END$
 

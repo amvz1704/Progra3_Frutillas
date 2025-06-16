@@ -259,3 +259,50 @@ transition: 0.3s ease;
         box-shadow: 0 0 5px rgba(111, 162, 87, 0.4);
     }
 
+.banner {
+    background-image: url('../images/bannerFrutilla.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    height: 120px;
+    position: relative;
+}
+
+    .banner::after {
+        content: "";
+        background-color: rgba(255, 255, 255, 0.6); /* Fondo semitransparente */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+.texto-banner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+    .texto-banner h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+        color: #4a1d04; /* Color marrón oscuro */
+    }
+
+    .texto-banner p {
+        font-size: 14px;
+        margin: 0;
+        text-align: right;
+        color: #4a1d04;
+    }

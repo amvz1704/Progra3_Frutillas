@@ -336,6 +336,7 @@
     <Content Include="Public\fonts\css\v5-font-face.min.css" />
     <Content Include="Public\images\productosImagen.png" />
     <Content Include="Public\images\frutillaLogo.jpeg" />
+    <Content Include="Public\images\bannerFrutilla.jpg" />
     <Content Include="Public\images\ventasImagen.png" />
     <Content Include="Public\images\pedidosImagen.png" />
     <Content Include="Public\images\empleadosImagen.png" />

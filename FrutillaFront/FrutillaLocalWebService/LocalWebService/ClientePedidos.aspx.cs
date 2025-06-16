@@ -18,8 +18,8 @@ namespace LocalWebService
         private ClienteWSClient clienteWS;
         private PedidoWSClient pedidoWS;
         private LocalWSClient localWS;
-        int idCliente;
-        int idLocalSeleccionado = 0;
+        private int idCliente;
+        private int idLocalSeleccionado = 0;
 
         public ClientePedidos()
         {
@@ -105,7 +105,11 @@ namespace LocalWebService
                 int pedidoId;
                 if (int.TryParse(e.CommandArgument.ToString(), out pedidoId))
                 {
-                    Response.Redirect("ComprobantePago.aspx?id=" + pedidoId);
+                    ordenVenta ordenVenta = pedidoWS.obtenerPedidoPorId(pedidoId);
+                    if(ordenVenta.idComprobante != 0)
+                    {
+                        Response.Redirect("ComprobantePago.aspx?idComprobante=" + ordenVenta.idComprobante);
+                    }
                 }
             }
         }
