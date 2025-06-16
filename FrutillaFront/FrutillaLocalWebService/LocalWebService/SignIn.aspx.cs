@@ -91,6 +91,11 @@ namespace LocalWebService
                 lblCorreo.Text = "Correo electrónico no válido";
                 esValido = false;
             }
+            if (usuarioService.correoExiste(correo))
+            {
+                lblCorreo.Text = "Este correo ya está asociado a una cuenta.";
+                esValido = false;
+            }
 
             if (string.IsNullOrEmpty(telefono))
             {
@@ -138,7 +143,7 @@ namespace LocalWebService
                 ck.Path = FormsAuthentication.FormsCookiePath;
                 Response.Cookies.Add(ck);
 
-                Response.Redirect("Home.aspx", true);
+                Response.Redirect("ClienteHome.aspx", true);
             }
             else
             {

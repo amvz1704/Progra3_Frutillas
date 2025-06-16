@@ -44,4 +44,51 @@ public class UsuarioWS {
         }
         return -1;
     }
+    
+    @WebMethod(operationName = "generarTokenRecuperacion")
+    public String generarTokenRecuperacion(@WebParam(name = "idUsuario") int idUsuario) {
+        return TokenManager.generarToken(idUsuario);
+    }
+    
+    @WebMethod(operationName = "validarTokenRecuperacion")
+    public int validarTokenRecuperacion(@WebParam(name = "token") String token){
+        int idUsuario = TokenManager.validarToken(token);
+        return idUsuario;
+    }
+    
+    @WebMethod(operationName = "actualizarContrasena")
+    public boolean actualizarContrasena(@WebParam(name = "token") String token, @WebParam(name = "nuevaContrasena") String nuevaContrasena){
+        int idUsuario = TokenManager.validarToken(token);
+        if(idUsuario == -1) return false;
+        
+        try{
+            Persona usuario = usuarioService.obtener(idUsuario);
+            usuario.setContraSistema(nuevaContrasena);
+            usuarioService.actualizar(usuario);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    @WebMethod(operationName = "obtenerPorCorreo")
+    public Persona obtenerPorCorreo(String correo){
+        try{
+            return usuarioService.obtenerPorCorreo(correo);
+        } catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+        }
+        return null;
+    }
+    
+    @WebMethod(operationName = "correoExiste")
+    public boolean correoExiste(@WebParam(name = "correo") String correo){
+        try {
+            return usuarioService.correoExiste(correo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

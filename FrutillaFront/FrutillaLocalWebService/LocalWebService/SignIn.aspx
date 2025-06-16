@@ -38,37 +38,44 @@
                         </ul>
 
                         <div class="form-group mb-4">
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+                            <label for="txtNombre">Nombre<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingrese su nombre"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblNombre" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         
                         <div class="form-group mb-4">
-                            <asp:TextBox ID="txtApPaterno" runat="server" CssClass="form-control" placeholder="Apellido Paterno"></asp:TextBox>
+                            <label for="txtApPaterno">Apellido Paterno<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtApPaterno" runat="server" CssClass="form-control" placeholder="Ingrese su apellido paterno"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblApPaterno" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 
                         <div class="form-group mb-4">
-                            <asp:TextBox ID="txtApMaterno" runat="server" CssClass="form-control" placeholder="Apellido Materno"></asp:TextBox>
+                            <label for="txtApMaterno">Apellido Materno<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtApMaterno" runat="server" CssClass="form-control" placeholder="Ingrese su apellido materno"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblApMaterno" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 
                         <div class="form-group mb-3">
-                            <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" placeholder="Nombre de usuario"></asp:TextBox>
+                            <label for="txtUsuario">Nombre de Usuario<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" placeholder="Ingrese un nombre de usuario"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblUsuario" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 
                         <div class="form-group mb-4">
-                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Contraseña"></asp:TextBox>
+                            <label for="txtPassword">Contraseña<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Ingrese una contraseña"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblPassword" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 
                         <div class="form-group mb-4">
-                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Correo Electronico"></asp:TextBox>
+                            <label for="txtCorreo">Correo Electronico<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingrese su correo electronico"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblCorreo" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 
                         <div class="form-group mb-4">
-                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Telefono"></asp:TextBox>
+                            <label for="txtTelefono">Número de Teléfono<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingrese su número de teléfono"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblTelefono" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 

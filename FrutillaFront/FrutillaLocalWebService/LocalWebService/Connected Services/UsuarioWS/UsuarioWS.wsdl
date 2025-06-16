@@ -5,11 +5,41 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/UsuarioWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="generarTokenRecuperacion">
+    <part name="parameters" element="tns:generarTokenRecuperacion" />
+  </message>
+  <message name="generarTokenRecuperacionResponse">
+    <part name="parameters" element="tns:generarTokenRecuperacionResponse" />
+  </message>
+  <message name="validarTokenRecuperacion">
+    <part name="parameters" element="tns:validarTokenRecuperacion" />
+  </message>
+  <message name="validarTokenRecuperacionResponse">
+    <part name="parameters" element="tns:validarTokenRecuperacionResponse" />
+  </message>
+  <message name="actualizarContrasena">
+    <part name="parameters" element="tns:actualizarContrasena" />
+  </message>
+  <message name="actualizarContrasenaResponse">
+    <part name="parameters" element="tns:actualizarContrasenaResponse" />
+  </message>
   <message name="obtenerIDPorNombreUsuario">
     <part name="parameters" element="tns:obtenerIDPorNombreUsuario" />
   </message>
   <message name="obtenerIDPorNombreUsuarioResponse">
     <part name="parameters" element="tns:obtenerIDPorNombreUsuarioResponse" />
+  </message>
+  <message name="obtenerPorCorreo">
+    <part name="parameters" element="tns:obtenerPorCorreo" />
+  </message>
+  <message name="obtenerPorCorreoResponse">
+    <part name="parameters" element="tns:obtenerPorCorreoResponse" />
+  </message>
+  <message name="correoExiste">
+    <part name="parameters" element="tns:correoExiste" />
+  </message>
+  <message name="correoExisteResponse">
+    <part name="parameters" element="tns:correoExisteResponse" />
   </message>
   <message name="validarUsuario">
     <part name="parameters" element="tns:validarUsuario" />
@@ -18,9 +48,29 @@
     <part name="parameters" element="tns:validarUsuarioResponse" />
   </message>
   <portType name="UsuarioWS">
+    <operation name="generarTokenRecuperacion">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarTokenRecuperacionRequest" message="tns:generarTokenRecuperacion" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarTokenRecuperacionResponse" message="tns:generarTokenRecuperacionResponse" />
+    </operation>
+    <operation name="validarTokenRecuperacion">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionRequest" message="tns:validarTokenRecuperacion" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionResponse" message="tns:validarTokenRecuperacionResponse" />
+    </operation>
+    <operation name="actualizarContrasena">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/actualizarContrasenaRequest" message="tns:actualizarContrasena" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/actualizarContrasenaResponse" message="tns:actualizarContrasenaResponse" />
+    </operation>
     <operation name="obtenerIDPorNombreUsuario">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest" message="tns:obtenerIDPorNombreUsuario" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse" message="tns:obtenerIDPorNombreUsuarioResponse" />
+    </operation>
+    <operation name="obtenerPorCorreo">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoRequest" message="tns:obtenerPorCorreo" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoResponse" message="tns:obtenerPorCorreoResponse" />
+    </operation>
+    <operation name="correoExiste">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/correoExisteRequest" message="tns:correoExiste" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/correoExisteResponse" message="tns:correoExisteResponse" />
     </operation>
     <operation name="validarUsuario">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarUsuarioRequest" message="tns:validarUsuario" />
@@ -29,7 +79,52 @@
   </portType>
   <binding name="UsuarioWSPortBinding" type="tns:UsuarioWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="generarTokenRecuperacion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarTokenRecuperacion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="actualizarContrasena">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="obtenerIDPorNombreUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPorCorreo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="correoExiste">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
