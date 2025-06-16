@@ -56,7 +56,7 @@ namespace LocalWebService
 
             if (!IsPostBack)
             {
-                btnPedidos_Empleado.Enabled = (rol == 'R');
+                btnPedidos_Empleado.Visible = (rol == 'R');
                 CargarPedidos();
             }
         }

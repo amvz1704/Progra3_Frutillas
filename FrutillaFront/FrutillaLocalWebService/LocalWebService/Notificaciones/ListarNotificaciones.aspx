@@ -6,12 +6,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <header class="py-2 border-bottom bg-frutilla">
-        <div class="container">
+        <div class="container m-4">
             <h2 class="m-0">Notificaciones </h2>
         </div>
     </header>
 
-    <div class="container">
+    <div class="container m-4">
         <div style="background-color: #F8FBD9; padding: 15px; border-radius: 5px;">
             <div class="date-filter">
                 <input type="date" id="datePicker" runat="server" />
