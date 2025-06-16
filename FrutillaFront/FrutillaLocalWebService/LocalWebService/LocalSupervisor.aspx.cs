@@ -137,7 +137,7 @@ namespace LocalWebService
         protected void BtnAdminVentas(object sender, EventArgs e)
         {
 
-            Response.Redirect($"ListaVentasSupervisor.aspx?id={LOCAL_ID}");
+            Response.Redirect($"ListaPedidos.aspx");
         }
     }
 }
