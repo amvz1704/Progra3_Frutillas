@@ -48,4 +48,14 @@ public class LocalWS {
             return false; 
         }
     }
+    
+    @WebMethod(operationName = "listarLocales")
+    public List<Local> listarLocales(){
+        try{
+            return daoLocal.listarActivos();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+        }
+        return null;
+    }
 }

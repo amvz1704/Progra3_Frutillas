@@ -92,9 +92,5 @@ namespace LocalWebService.Notificaciones
             CargarNotificaciones();
         }
 
-        protected void gvNotificaciones_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
     }
 }

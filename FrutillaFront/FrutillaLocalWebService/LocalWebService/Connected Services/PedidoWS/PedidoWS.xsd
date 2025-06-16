@@ -5,6 +5,8 @@
   <xs:element name="agregarOrden" type="tns:agregarOrden" />
   <xs:element name="agregarOrdenResponse" type="tns:agregarOrdenResponse" />
   <xs:element name="listarPedidoPorLocal" type="tns:listarPedidoPorLocal" />
+  <xs:element name="listarPedidoPorLocalCliente" type="tns:listarPedidoPorLocalCliente" />
+  <xs:element name="listarPedidoPorLocalClienteResponse" type="tns:listarPedidoPorLocalClienteResponse" />
   <xs:element name="listarPedidoPorLocalResponse" type="tns:listarPedidoPorLocalResponse" />
   <xs:element name="obtenerDetallePedido" type="tns:obtenerDetallePedido" />
   <xs:element name="obtenerDetallePedidoResponse" type="tns:obtenerDetallePedidoResponse" />
@@ -82,6 +84,17 @@
   </xs:complexType>
   <xs:complexType name="actualizarOrdenResponse">
     <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarPedidoPorLocalCliente">
+    <xs:sequence>
+      <xs:element name="idLocal" type="xs:int" />
+      <xs:element name="idCliente" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarPedidoPorLocalClienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerPedidosPorCliente">
     <xs:sequence>
