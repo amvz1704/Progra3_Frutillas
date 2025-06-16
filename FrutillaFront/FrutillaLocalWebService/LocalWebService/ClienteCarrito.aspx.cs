@@ -62,7 +62,11 @@ namespace LocalWebService
         protected void btnPagar_Click(object sender, EventArgs e)
         {
             // Aquí rediriges a la pasarela de pago u otra página
-            Response.Redirect("ClientePago.aspx"); //falta crear pero redirige a pago! --> despues recien se sube a la BD
+
+
+            //CREA UN ORDENVENTA EN "PROCESO" --> terminar y hacer llamado a la BD
+
+            Response.Redirect("ClientePago.aspx"); //falta crear pero redirige a pago! --> despues recien se sube a la BD idOrdenVneta
         }
     }
 }
