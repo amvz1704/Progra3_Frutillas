@@ -18,24 +18,30 @@ namespace LocalWebService
         {
             if (!IsPostBack)
             {
-                // Si no hay carrito, volvemos a ListaProductos
-                if (CarritoSesion == null || !CarritoSesion.Any())
+                // Si no hay carrito, redirigimos
+                if (CarritoSesion == null || CarritoSesion.Count == 0)
                 {
-                    if (!CarritoSesion.Any())
-                    {
-                        Response.Redirect("ClienteHome.aspx"); //hay un problema al agregar itmes
-                    }
-                    else {
-
-                        Response.Redirect("ClienteListaProducto.aspx");
-                    }
-
-                        
+                    Response.Redirect("ClienteListaProducto.aspx");
                 }
 
-                BindCarrito(); 
+                BindCarrito();
             }
+        }
 
+        protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                var carrito = CarritoSesion;
+
+                if (carrito != null && index >= 0 && index < carrito.Count)
+                {
+                    carrito.RemoveAt(index);
+                    Session["Carrito"] = carrito;
+                    BindCarrito();
+                }
+            }
         }
 
         private void BindCarrito()
