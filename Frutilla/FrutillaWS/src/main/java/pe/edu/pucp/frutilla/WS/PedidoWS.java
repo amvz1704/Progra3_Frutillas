@@ -102,4 +102,16 @@ public class PedidoWS {
         }
         return null;
     }
+    
+    @WebMethod (operationName = "listarPedidoPorLocalCliente")
+    public List<OrdenVenta> listarPedidoPorLocalCliente(@WebParam(name = "idLocal")
+    int idLocal,@WebParam(name = "idCliente")int idCliente){
+        try{
+            return daoOrdenVenta.listarOrdenesPorLocalCliente(idLocal, idCliente);
+        } catch (Exception ex){
+            System.err.println("Error al listar el pedido con local y cliente " + idLocal 
+                    + ": " + ex.getMessage());
+        }
+        return null;
+    }
 }

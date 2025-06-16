@@ -201,6 +201,9 @@
     <None Include="Connected Services\InventarioWS\InventarioWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarLocalesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
     <None Include="Connected Services\LocalWS\LocalWS.xsd">
       <SubType>Designer</SubType>
@@ -257,6 +260,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
