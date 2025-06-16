@@ -66,10 +66,6 @@ namespace LocalWebService
             btnPagar.Enabled = true;
         }
 
-        protected void btnPagar_Click(object sender, EventArgs e)
-        {
-            // Aquí rediriges a la pasarela de pago u otra página
-            Response.Redirect("ClientePago.aspx");
-        }
+        
     }
 }
