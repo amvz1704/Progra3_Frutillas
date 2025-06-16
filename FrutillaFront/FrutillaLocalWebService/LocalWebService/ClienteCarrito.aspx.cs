@@ -16,7 +16,7 @@ namespace LocalWebService
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gvCarrito.RowCommand += gvCarrito_RowCommand;
+            
 
             if (!IsPostBack)
             {
@@ -26,23 +26,47 @@ namespace LocalWebService
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                var carrito = CarritoSesion;
+            var carrito = CarritoSesion;
+            if (carrito == null) return;
 
-                if (carrito != null && index >= 0 && index < carrito.Count)
-                {
+            int index = Convert.ToInt32(e.CommandArgument);
+            if (index < 0 || index >= carrito.Count) return;
+
+            switch (e.CommandName)
+            {
+                case "Aumentar":
+                    carrito[index].cantidad++;
+                    break;
+
+                case "Disminuir":
+                    if (carrito[index].cantidad > 1)
+                        carrito[index].cantidad--;
+                    break;
+
+                case "Eliminar":
                     carrito.RemoveAt(index);
-                    Session["Carrito"] = carrito;
-                    BindCarrito();
-                }
+                    break;
             }
+
+            // Recalcular subtotal
+            carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
+
+            Session["Carrito"] = carrito;
+            BindCarrito();
         }
 
         private void BindCarrito()
         {
             var carrito = CarritoSesion ?? new List<ComprobanteWS.lineaOrdenDeVenta>();
+
+            // Si el subtotal no está calculado, lo calculamos
+            foreach (var item in carrito)
+            {
+                if (item.subtotal <= 0 && item.producto != null)
+                {
+                    item.subtotal = item.cantidad * item.producto.precioUnitario;
+                }
+            }
 
             gvCarrito.DataSource = carrito;
             gvCarrito.DataBind();
@@ -56,6 +80,7 @@ namespace LocalWebService
                 return;
             }
 
+            // Ya no calculamos uno por uno: sumamos lo que ya hay
             decimal subtotal = carrito.Sum(x => Convert.ToDecimal(x.subtotal));
             decimal igv = subtotal * 0.18m;
             decimal total = subtotal + igv;
@@ -66,6 +91,10 @@ namespace LocalWebService
             btnPagar.Enabled = true;
         }
 
-        
+        protected void btnPagar_Click(object sender, EventArgs e)
+        {
+            // Aquí rediriges a la pasarela de pago u otra página
+            Response.Redirect("ClientePago.aspx");
+        }
     }
 }

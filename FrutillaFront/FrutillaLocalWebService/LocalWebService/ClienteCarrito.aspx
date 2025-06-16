@@ -6,27 +6,45 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
    
      <h3>Tu Carrito</h3>
-    <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False"
+ <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False"
     CssClass="table table-striped"
     OnRowCommand="gvCarrito_RowCommand">
-  <Columns>
-    <asp:BoundField DataField="Producto.IdProducto" HeaderText="Id" />
-    <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" />
-    <asp:BoundField DataField="Producto.Descripcion" HeaderText="Descripción" />
-    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-    <asp:BoundField DataField="Producto.PrecioUnitario" HeaderText="Precio" />
-    <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
+    <Columns>
+        <asp:BoundField DataField="Producto.IdProducto" HeaderText="Id" />
+        <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" />
+        <asp:BoundField DataField="Producto.Descripcion" HeaderText="Descripción" />
 
-    <asp:TemplateField HeaderText="Acciones">
-      <ItemTemplate>
-        <asp:LinkButton ID="btnEliminar" runat="server" 
-                        Text="Eliminar" 
-                        CommandName="Eliminar"
+        <asp:TemplateField HeaderText="Cantidad">
+            <ItemTemplate>
+                <div class="d-flex align-items-center">
+                    <asp:LinkButton ID="btnMenos" runat="server" Text="−"
+                        CommandName="Disminuir"
                         CommandArgument='<%# Container.DataItemIndex %>'
-                        CssClass="btn btn-danger btn-sm" />
-      </ItemTemplate>
-    </asp:TemplateField>
-  </Columns>
+                        CssClass="btn btn-outline-secondary btn-sm me-2" />
+
+                    <asp:Label ID="lblCantidad" runat="server" Text='<%# Eval("cantidad") %>' CssClass="fw-bold" />
+
+                    <asp:LinkButton ID="btnMas" runat="server" Text="+"
+                        CommandName="Aumentar"
+                        CommandArgument='<%# Container.DataItemIndex %>'
+                        CssClass="btn btn-outline-secondary btn-sm ms-2" />
+                </div>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:BoundField DataField="Producto.PrecioUnitario" HeaderText="Precio" DataFormatString="{0:F2}" HtmlEncode="false" />
+        <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
+
+        <asp:TemplateField HeaderText="Acciones">
+            <ItemTemplate>
+                <asp:LinkButton ID="btnEliminar" runat="server"
+                    Text="Eliminar"
+                    CommandName="Eliminar"
+                    CommandArgument='<%# Container.DataItemIndex %>'
+                    CssClass="btn btn-danger btn-sm" />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
 </asp:GridView>
 
 
