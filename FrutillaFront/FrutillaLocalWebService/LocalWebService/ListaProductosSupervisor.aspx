@@ -20,7 +20,7 @@
             </div>
 
             <div class="row">
-                <asp:Repeater ID="rptProductos" runat="server">
+                <asp:Repeater ID="rptProductos" runat="server" OnItemCommand="rptProductos_ItemCommand">
                     <ItemTemplate>
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
@@ -31,13 +31,26 @@
                                     <p class="card-text">Stock: <%# Eval("stock") %></p>
                                     <asp:Button ID="btnVerMas" runat="server" Text="Ver más" CssClass="btn btn-frutilla"
                                         CommandName="VerMas" CommandArgument='<%# Eval("idProducto") %>' />
-
                                 </div>
                             </div>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
+                <!-- Paginación -->
+                <div class="text-center mt-4">
+                    <asp:Button ID="Button1" runat="server" Text="&laquo; Anterior" OnClick="btnAnterior_Click" />
+                    <asp:Label ID="Label1" runat="server" CssClass="mx-2" />
+                    <asp:Button ID="Button2" runat="server" Text="Siguiente &raquo;" OnClick="btnSiguiente_Click" />
+                </div>
             </div>
+
+            <!-- Paginación -->
+            <div class="text-center mt-4">
+                <asp:Button ID="btnAnterior" runat="server" Text="&laquo; Anterior" OnClick="btnAnterior_Click" />
+                <asp:Label ID="lblPagina" runat="server" CssClass="mx-2" />
+                <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente &raquo;" OnClick="btnSiguiente_Click" />
+            </div>
+
         </div>
 
         <asp:Label ID="lblError" runat="server" CssClass="text-danger"></asp:Label>
@@ -53,12 +66,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control mb-2" placeholder="Nombre del producto" />
-                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control mb-2" placeholder="Precio" />
-                    <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control mb-2" placeholder="Descripcion" />
-                    <asp:TextBox ID="txtStock" runat="server" CssClass="form-control mb-2" placeholder="Stock" />
-                    <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control mb-2" placeholder="StockMinimo" />
-                    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control mb-2" placeholder="Codigo 3 Letras" />
+                    <asp:Label ID="Nombre" runat="server" Text="Nombre del producto"></asp:Label>
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control mb-2"/>
+                    <asp:Label ID="Precio" runat="server" Text="Precio (S/.)"></asp:Label>
+                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control mb-2" TextMode="Number"/>
+                    <asp:Label ID="Descripcion" runat="server" Text="Descripcion"></asp:Label>
+                    <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control mb-2"/>
+                    <asp:Label ID="Stock" runat="server" Text="Stock"></asp:Label>
+                    <asp:TextBox ID="txtStock" runat="server" CssClass="form-control mb-2" TextMode="Number"/>
+                    <asp:Label ID="StockMinimo" runat="server" Text="Stock Minimo"></asp:Label>
+                    <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control mb-2" TextMode="Number"/>
+                    <asp:Label ID="Codigo" runat="server" Text="Codigo 3 letras"></asp:Label>
+                    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control mb-2" MaxLength="3" />
                     <asp:DropDownList ID="TipoProducto" CssClass="form-select mb-2" runat="server" onchange="mostrarOpciones(this)">
                         <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                         <asp:ListItem Text="Fruta" Value="F"></asp:ListItem>
@@ -71,18 +90,18 @@
                     <div id="opcionFrutas" style="display: none;" class="mt-2">
                         <asp:Label ID="LblEnvase" runat="server" Text="Tipo de envase"></asp:Label>
                         <asp:TextBox ID="TxtTipoEnvase" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblFrutaRequiereEnvase" runat="server" Text="¿Requiere envase?"></asp:Label>
-                        <asp:CheckBox ID="ChkFrutaRequiereEnvase" runat="server" />
-                        <asp:Label ID="LblEnvasado" runat="server" Text="¿Esta envasado?"></asp:Label>
-                        <asp:CheckBox ID="ChkFrutaEstaEnvasado" runat="server" />
-                        <asp:Label ID="LblFrutaLimpieza" Text="¿Requiere limpieza?" runat="server" />
-                        <asp:CheckBox ID="ChkFrutaLimpieza" runat="server" />
+                        <asp:CheckBox ID="ChkFrutaRequiereEnvase" runat="server" Text="¿Requiere envase?" />
+                        <br />
+                        <asp:CheckBox ID="ChkFrutaEstaEnvasado" runat="server" Text="¿Está envasado?" />
+                        <br />
+                        <asp:CheckBox ID="ChkFrutaLimpieza" runat="server" Text="¿Requiere limpieza?" />
+
                     </div>
 
                     <!-- Campos adicionales para Opción Bebidas -->
                     <div id="opcionBebidas" style="display: none;" class="mt-2">
                         <asp:Label ID="LblTamanioOz" runat="server" Text="Tamanio(Oz)"></asp:Label>
-                        <asp:TextBox ID="TxtTamanioOz" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                        <asp:TextBox ID="TxtTamanioOz" runat="server" CssClass="form-control mb-2" TextMode="Number"></asp:TextBox>
                         <asp:Label ID="LblTipoBebida" runat="server" Text="Tipo de Bebida"></asp:Label>
                         <asp:TextBox ID="TxtTipoBebida" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                         <asp:Label ID="LblBebidaEndulzante" runat="server" Text="Tipo de Endulzante"></asp:Label>

@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using LocalWebService.EmpleadoWS;
 using LocalWebService.InventarioWS;
+using LocalWebService.PedidoWS;
 
 namespace LocalWebService
 {
@@ -64,8 +65,30 @@ namespace LocalWebService
 
                     ChkFrutas.Items.Add(new ListItem(texto, valorInt.ToString()));
                 }
+                PaginaActual = 0;
                 CargarProductos();
             }
+        }
+
+
+        private int PaginaActual
+        {
+            get { return ViewState["PaginaActual"] != null ? (int)ViewState["PaginaActual"] : 0; }
+            set { ViewState["PaginaActual"] = value; }
+        }
+
+        protected void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if(PaginaActual >= 0) { 
+                PaginaActual--;
+                CargarProductos();
+            }
+        }
+
+        protected void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            PaginaActual++;
+            CargarProductos();
         }
 
         /*private void CargarProductos()
@@ -87,7 +110,17 @@ namespace LocalWebService
             try
             {
                 var productos = inventarioWSClient.listarTodos(idLocal);
-                rptProductos.DataSource = productos;
+                PagedDataSource pagedData = new PagedDataSource();
+                pagedData.DataSource = productos;
+                pagedData.AllowPaging = true;
+                pagedData.PageSize = 6;
+                pagedData.CurrentPageIndex = PaginaActual;
+                btnAnterior.Enabled = !pagedData.IsFirstPage;
+                btnSiguiente.Enabled = !pagedData.IsLastPage;
+
+                lblPagina.Text = $"Página {PaginaActual + 1} de {pagedData.PageCount}";
+
+                rptProductos.DataSource = pagedData;
                 rptProductos.DataBind();
             }
             catch (Exception ex)
@@ -111,7 +144,7 @@ namespace LocalWebService
                 // Aquí puedes hacer lo que necesites con el idProducto,
                 // por ejemplo, redirigir a una página con detalles:
                 Response.Redirect($"DetalleProducto.aspx?id={idProducto}");
-
+                //producto producto = inventarioWSClient.(idProducto, idLocal);
                 // O abrir un modal, cargar info, etc.
             }
         }
@@ -157,9 +190,13 @@ namespace LocalWebService
                         fruta.codigoProd = txtCodigo.Text;
                         fruta.envase = TxtTipoEnvase.Text;
                         fruta.estaLimpio = ChkFrutaLimpieza.Checked;
+                        fruta.estaLimpioSpecified = true;
                         fruta.estaEnvasado = ChkFrutaEstaEnvasado.Checked;
+                        fruta.estaEnvasadoSpecified = true;
                         fruta.requiereEnvase = ChkFrutaRequiereEnvase.Checked;
+                        fruta.requiereEnvaseSpecified = true;
                         fruta.requiereLimpieza = ChkFrutaLimpieza.Checked;
+                        fruta.requiereLimpiezaSpecified = true; 
                         inventarioWSClient.insertarFruta(fruta, idLocal);
                         break;
                     case 'B':
@@ -199,10 +236,10 @@ namespace LocalWebService
             }
             else
             {
-                producto producto = new producto();
                 Response.Write("Por favor selecciona una opción.");
             }
         }
+
 
 
 
