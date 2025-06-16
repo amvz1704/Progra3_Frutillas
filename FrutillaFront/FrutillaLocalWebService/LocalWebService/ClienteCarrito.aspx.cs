@@ -16,14 +16,10 @@ namespace LocalWebService
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            gvCarrito.RowCommand += gvCarrito_RowCommand;
+
             if (!IsPostBack)
             {
-                // Si no hay carrito, redirigimos
-                if (CarritoSesion == null || CarritoSesion.Count == 0)
-                {
-                    Response.Redirect("ClienteListaProducto.aspx");
-                }
-
                 BindCarrito();
             }
         }
@@ -46,23 +42,34 @@ namespace LocalWebService
 
         private void BindCarrito()
         {
-            gvCarrito.DataSource = CarritoSesion;
+            var carrito = CarritoSesion ?? new List<ComprobanteWS.lineaOrdenDeVenta>();
+
+            gvCarrito.DataSource = carrito;
             gvCarrito.DataBind();
 
-            // Cálculos de totales
-            decimal subtotal = CarritoSesion.Sum(x => (decimal)x.subtotal);
+            if (carrito.Count == 0)
+            {
+                lblSubtotal.Text = "S/ 0.00";
+                lblIGV.Text = "S/ 0.00";
+                lblTotal.Text = "S/ 0.00";
+                btnPagar.Enabled = false;
+                return;
+            }
+
+            decimal subtotal = carrito.Sum(x => Convert.ToDecimal(x.subtotal));
             decimal igv = subtotal * 0.18m;
             decimal total = subtotal + igv;
 
             lblSubtotal.Text = subtotal.ToString("C");
             lblIGV.Text = igv.ToString("C");
             lblTotal.Text = total.ToString("C");
+            btnPagar.Enabled = true;
         }
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
             // Aquí rediriges a la pasarela de pago u otra página
-            Response.Redirect("ClientePago.aspx"); //falta crear pero redirige a pago! --> despues recien se sube a la BD
+            Response.Redirect("ClientePago.aspx");
         }
     }
 }
