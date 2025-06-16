@@ -7,16 +7,27 @@
    
      <h3>Tu Carrito</h3>
     <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False"
-        CssClass="table table-striped">
-      <Columns>
-           <asp:BoundField DataField="Producto.IdProducto"    HeaderText="Id" />
-          <asp:BoundField DataField="Producto.Nombre"    HeaderText="Nombre" />
-          <asp:BoundField DataField="Producto.Descripcion" HeaderText="Descripción" />
-        <asp:BoundField DataField="Cantidad"            HeaderText="Cantidad" />
-          <asp:BoundField DataField="Producto.PrecioUnitario"    HeaderText="Precio" />
-        <asp:BoundField DataField="Subtotal"            HeaderText="Subtotal" DataFormatString="{0:C}" />
-      </Columns>
-    </asp:GridView>
+    CssClass="table table-striped"
+    OnRowCommand="gvCarrito_RowCommand">
+  <Columns>
+    <asp:BoundField DataField="Producto.IdProducto" HeaderText="Id" />
+    <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" />
+    <asp:BoundField DataField="Producto.Descripcion" HeaderText="Descripción" />
+    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+    <asp:BoundField DataField="Producto.PrecioUnitario" HeaderText="Precio" />
+    <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
+
+    <asp:TemplateField HeaderText="Acciones">
+      <ItemTemplate>
+        <asp:LinkButton ID="btnEliminar" runat="server" 
+                        Text="Eliminar" 
+                        CommandName="Eliminar"
+                        CommandArgument='<%# Container.DataItemIndex %>'
+                        CssClass="btn btn-danger btn-sm" />
+      </ItemTemplate>
+    </asp:TemplateField>
+  </Columns>
+</asp:GridView>
 
 
     <div class="row mt-3">
