@@ -16,8 +16,6 @@ namespace LocalWebService
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
             if (!IsPostBack)
             {
                 BindCarrito();
@@ -36,20 +34,21 @@ namespace LocalWebService
             {
                 case "Aumentar":
                     carrito[index].cantidad++;
+                    carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
                     break;
 
                 case "Disminuir":
                     if (carrito[index].cantidad > 1)
+                    {
                         carrito[index].cantidad--;
+                        carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
+                    }
                     break;
 
                 case "Eliminar":
                     carrito.RemoveAt(index);
                     break;
             }
-
-            // Recalcular subtotal
-            carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
 
             Session["Carrito"] = carrito;
             BindCarrito();
@@ -80,7 +79,6 @@ namespace LocalWebService
                 return;
             }
 
-            // Ya no calculamos uno por uno: sumamos lo que ya hay
             decimal subtotal = carrito.Sum(x => Convert.ToDecimal(x.subtotal));
             decimal igv = subtotal * 0.18m;
             decimal total = subtotal + igv;
@@ -93,7 +91,6 @@ namespace LocalWebService
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
-            // Aquí rediriges a la pasarela de pago u otra página
             Response.Redirect("ClientePago.aspx");
         }
     }
