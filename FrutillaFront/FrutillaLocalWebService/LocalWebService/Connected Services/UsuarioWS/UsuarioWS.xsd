@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actualizarContrasena" type="tns:actualizarContrasena" />
+  <xs:element name="actualizarContrasenaResponse" type="tns:actualizarContrasenaResponse" />
+  <xs:element name="correoExiste" type="tns:correoExiste" />
+  <xs:element name="correoExisteResponse" type="tns:correoExisteResponse" />
+  <xs:element name="generarTokenRecuperacion" type="tns:generarTokenRecuperacion" />
+  <xs:element name="generarTokenRecuperacionResponse" type="tns:generarTokenRecuperacionResponse" />
   <xs:element name="obtenerIDPorNombreUsuario" type="tns:obtenerIDPorNombreUsuario" />
   <xs:element name="obtenerIDPorNombreUsuarioResponse" type="tns:obtenerIDPorNombreUsuarioResponse" />
+  <xs:element name="obtenerPorCorreo" type="tns:obtenerPorCorreo" />
+  <xs:element name="obtenerPorCorreoResponse" type="tns:obtenerPorCorreoResponse" />
+  <xs:element name="validarTokenRecuperacion" type="tns:validarTokenRecuperacion" />
+  <xs:element name="validarTokenRecuperacionResponse" type="tns:validarTokenRecuperacionResponse" />
   <xs:element name="validarUsuario" type="tns:validarUsuario" />
   <xs:element name="validarUsuarioResponse" type="tns:validarUsuarioResponse" />
+  <xs:complexType name="correoExiste">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="correo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="correoExisteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="obtenerIDPorNombreUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:string" />
@@ -12,6 +32,17 @@
   <xs:complexType name="obtenerIDPorNombreUsuarioResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarContrasena">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string" />
+      <xs:element minOccurs="0" name="nuevaContrasena" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarContrasenaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="validarUsuario">
@@ -37,6 +68,36 @@
       <xs:element minOccurs="0" name="telefono" type="xs:string" />
       <xs:element minOccurs="0" name="tipoUsuario" type="xs:string" />
       <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generarTokenRecuperacion">
+    <xs:sequence>
+      <xs:element name="idUsuario" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generarTokenRecuperacionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validarTokenRecuperacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validarTokenRecuperacionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPorCorreo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPorCorreoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:persona" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

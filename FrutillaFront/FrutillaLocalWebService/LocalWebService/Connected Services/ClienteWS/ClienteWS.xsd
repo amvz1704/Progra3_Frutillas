@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actualizarCliente" type="tns:actualizarCliente" />
+  <xs:element name="actualizarClienteResponse" type="tns:actualizarClienteResponse" />
   <xs:element name="agregarCliente" type="tns:agregarCliente" />
   <xs:element name="agregarClienteResponse" type="tns:agregarClienteResponse" />
   <xs:element name="obtenerClientePorId" type="tns:obtenerClientePorId" />
@@ -34,6 +36,14 @@
       <xs:element minOccurs="0" name="tipoUsuario" type="xs:string" />
       <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarCliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:cliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarClienteResponse">
+    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="agregarCliente">
     <xs:sequence>

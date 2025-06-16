@@ -88,4 +88,18 @@ public class UsuarioService {
         return usuarioMySQL.obtenerIDPorNombreUsuario(nombreUsuario.trim());
     }
     
+    public Persona obtenerPorCorreo(String correo) throws Exception{
+        if(correo == null || correo.trim().isEmpty()){
+            throw new Exception("El correo del usuario no puede ser vacío");
+        }
+        return usuarioMySQL.obtenerPorCorreo(correo.trim());
+    }
+    
+    public boolean correoExiste(String correo)throws Exception{
+        if(correo == null || correo.trim().isEmpty()){
+            throw new Exception("El correo no puede ser vacío");
+        }
+        return usuarioMySQL.correoExiste(correo);
+    }
+    
 }
