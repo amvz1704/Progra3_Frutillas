@@ -259,3 +259,77 @@ transition: 0.3s ease;
         box-shadow: 0 0 5px rgba(111, 162, 87, 0.4);
     }
 
+.banner {
+    background-image: url(/Public/images/bannerFrutilla.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    height: 180px;
+    position: relative;
+}
+
+.texto-banner {
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+    padding: 20px 40px;
+    background: rgba(255,255,255,0.5); /* Fondo blanco semitransparente */
+    border-radius: 12px;
+}
+
+    .texto-banner h1,
+    .texto-banner p {
+        text-align: center;
+        width: 100%;
+    }
+
+.producto-seccion {
+    background-color: #f8f0f8;
+    padding: 20px;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+    .producto-seccion h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4a1d04; /* marrón oscuro */
+        margin-bottom: 15px;
+    }
+
+.producto-right {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.producto-right-img {
+    width: 180px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.producto-right-texto h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #8b6f68; /* gris-marrón suave */
+}
+
+.producto-right-texto p {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #333;
+}

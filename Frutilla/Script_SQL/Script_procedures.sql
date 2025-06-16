@@ -23,6 +23,7 @@ DROP PROCEDURE IF EXISTS Notificacion_LISTAR_X_ID;
 DROP PROCEDURE IF EXISTS Notificacion_LISTAR;
 DROP PROCEDURE IF EXISTS Notificacion_LISTAR_X_CLIENTE;
 DROP PROCEDURE IF EXISTS Notificacion_LISTAR_X_EMPLEADO;
+DROP PROCEDURE IF EXISTS ORDEN_V_LISTAR_X_LOCALCLIENTE;
 
 
 DELIMITER $
@@ -96,10 +97,10 @@ CREATE PROCEDURE ORDEN_VENTA_LISTAR_X_CLIENTE(
 	IN _idCliente INT
 )
 BEGIN
-	SELECT idOrdenVenta,fecha,horaFinEntrega,descripcion,montoTotal,
-    estadoVenta,idLocal,idComprobante,idEmpleado
-    FROM OrdenVenta WHERE idCliente=_idCliente AND 
-    NOT (estadoVenta="CANCELADO");  
+	SELECT idOrdenVenta,fecha,horaFinEntrega,OrdenVenta.descripcion,montoTotal,
+    estadoVenta,idComprobante,idCliente,idEmpleado,OrdenVenta.idLocal,L.nombre
+    FROM OrdenVenta, Local as L WHERE OrdenVenta.idLocal=L.idLocal
+    AND idCliente=_idCliente AND NOT (estadoVenta="CANCELADO") ORDER BY fecha DESC, horaFinEntrega DESC; 
 END$
 
 CREATE PROCEDURE ORDEN_VENTA_LISTAR_X_LOCAL(
@@ -107,10 +108,23 @@ CREATE PROCEDURE ORDEN_VENTA_LISTAR_X_LOCAL(
 )
 BEGIN 
 	SELECT idOrdenVenta,fecha,horaFinEntrega,descripcion,montoTotal,
-    estadoVenta,idComprobante,idCliente,idEmpleado
+    estadoVenta,idComprobante,idCliente,idEmpleado,idLocal
     FROM OrdenVenta WHERE idLocal=_idLocal AND 
     NOT (estadoVenta="CANCELADO");  
 END$
+
+CREATE PROCEDURE ORDEN_V_LISTAR_X_LOCALCLIENTE(
+	IN _idLocal INT,
+    IN _idCliente INT
+)
+BEGIN 
+	SELECT idOrdenVenta,fecha,horaFinEntrega,OrdenVenta.descripcion,montoTotal,
+    estadoVenta,idComprobante,idCliente,idEmpleado,OrdenVenta.idLocal,L.nombre
+    FROM OrdenVenta, Local as L WHERE OrdenVenta.idLocal=_idLocal AND OrdenVenta.idLocal=L.idLocal
+    AND idCliente=_idCliente AND
+    NOT (estadoVenta="CANCELADO") ORDER BY fecha DESC, horaFinEntrega DESC;  
+END$
+
 
 CREATE PROCEDURE ORDEN_VENTA_LISTAR_X_EMPLEADO(
 	IN _idEmpleado INT

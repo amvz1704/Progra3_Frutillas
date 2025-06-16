@@ -2,6 +2,8 @@
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="actualizarLoc" type="tns:actualizarLoc" />
   <xs:element name="actualizarLocResponse" type="tns:actualizarLocResponse" />
+  <xs:element name="listarLocales" type="tns:listarLocales" />
+  <xs:element name="listarLocalesResponse" type="tns:listarLocalesResponse" />
   <xs:element name="obtenerLocal" type="tns:obtenerLocal" />
   <xs:element name="obtenerLocalResponse" type="tns:obtenerLocalResponse" />
   <xs:complexType name="obtenerLocal">
@@ -64,6 +66,14 @@
       <xs:element name="stock" type="xs:int" />
       <xs:element name="stockMinimo" type="xs:int" />
       <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarLocales">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarLocalesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:local" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="actualizarLoc">

@@ -26,8 +26,8 @@
     <form id="form1" runat="server">
         <div class="container login-container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card shadow p-4">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <div class="card shadow p-4 max-auto">
                         <ul class="nav nav-frutilla mb-3 justify-content-center" id="pills-tab" role="tablist">
                             <li class="nav-item text-center" role="presentation">
                                 <a class="nav-link active" id="pills-login-tab" data-bs-toggle="pill" href="Login.aspx" role="tab" aria-controls="pills-login" aria-selected="true">Ingresar</a>

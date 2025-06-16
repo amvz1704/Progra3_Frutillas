@@ -38,6 +38,8 @@ namespace LocalWebService.Notificaciones
                 if (empleado != null)
                 {
                     idSupervisor = empleado.idUsuario;
+                    gvNotificaciones.Visible = (empleado.tipo == 'S'); // Verifica si es supervisor
+                    lblError.Visible = gvNotificaciones.Visible;
                 }
                 else
                 {
@@ -92,9 +94,5 @@ namespace LocalWebService.Notificaciones
             CargarNotificaciones();
         }
 
-        protected void gvNotificaciones_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
     }
 }

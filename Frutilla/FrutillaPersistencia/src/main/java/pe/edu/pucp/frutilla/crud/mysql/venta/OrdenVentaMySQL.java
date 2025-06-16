@@ -359,6 +359,23 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVen
         return ordenes;
     }
     
+    public List<OrdenVenta> listarPorClienteLocal
+        (int idCliente,int idLocal) throws SQLException {
+        List<OrdenVenta> ordenes = new ArrayList<>();
+        String query = "{CALL ORDEN_V_LISTAR_X_LOCALCLIENTE(?,?)}";
+
+        try (Connection con = DBManager.getInstance().getConnection();
+             CallableStatement ps = con.prepareCall(query)) {
+            ps.setInt(1, idLocal);
+            ps.setInt(2, idCliente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                OrdenVenta ordenVenta = createFromResultSet(rs);
+                ordenes.add(ordenVenta);
+            }
+        }
+        return ordenes;
+    }
     
 
 }
