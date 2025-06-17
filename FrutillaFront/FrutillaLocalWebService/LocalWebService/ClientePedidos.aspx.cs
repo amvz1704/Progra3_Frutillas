@@ -112,6 +112,14 @@ namespace LocalWebService
                     }
                 }
             }
+            if(e.CommandName == "VerDetalle")
+            {
+                int pedidoId;
+                if (int.TryParse(e.CommandArgument.ToString(), out pedidoId))
+                {
+                    Response.Redirect("DetallePedidoCliente.aspx?idPedido=" + pedidoId);
+                }
+            }
         }
 
         protected void ddlLocales_SelectedIndexChanged(object sender, EventArgs e)
