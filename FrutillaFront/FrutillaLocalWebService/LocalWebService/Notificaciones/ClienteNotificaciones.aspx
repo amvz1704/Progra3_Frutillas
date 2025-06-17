@@ -1,23 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="ListarNotificaciones.aspx.cs" Inherits="LocalWebService.Notificaciones.ListarNotificaciones" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Cliente.Master" AutoEventWireup="true" CodeBehind="ClienteNotificaciones.aspx.cs" Inherits="LocalWebService.Notificaciones.ClienteNotificaciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <header class="py-2 border-bottom bg-frutilla">
-        <div class="container m-4">
-            <h2 class="m-0">Notificaciones </h2>
-        </div>
-    </header>
-
-    <div class="container">
+     <header class="py-2 border-bottom bg-frutilla">
+     <div class="container m-4">
+         <h2 class="m-0">Notificaciones </h2>
+     </div>
+ </header>
+        <div class="container">
         <div style="background-color: #F8FBD9; padding: 15px; border-radius: 5px;">
-            <div class="date-filter">
-                <input type="date" id="datePicker" runat="server" />
-                <asp:Button ID="btnSubmitDate" runat="server" Text="Buscar Notificaciones" OnClick="btnSubmitDate_Click"
-                    CssClass="btn-frutilla" />
-            </div>
             <asp:GridView ID="gvNotificaciones" runat="server" AutoGenerateColumns="false"
                 AllowPaging="true" PageSize="10" OnPageIndexChanging="gvNotificaciones_PageIndexChanging"
                 CssClass="table table-striped table-responsive table-hover">

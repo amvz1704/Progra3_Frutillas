@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="listarPorCliente" type="tns:listarPorCliente" />
+  <xs:element name="listarPorClienteResponse" type="tns:listarPorClienteResponse" />
   <xs:element name="listarPorFecha" type="tns:listarPorFecha" />
   <xs:element name="listarPorFechaResponse" type="tns:listarPorFechaResponse" />
   <xs:element name="listarPorSupervisor" type="tns:listarPorSupervisor" />
@@ -60,6 +62,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listarPorSupervisorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarPorCliente">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarPorClienteResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
     </xs:sequence>

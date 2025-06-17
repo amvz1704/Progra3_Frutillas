@@ -49,7 +49,7 @@
                             <asp:HyperLink ID="hlHome" runat="server"
                                 CssClass="nav-link active"
                                 NavigateUrl="~/ClienteHome.aspx"
-                                Text="Nosotros" />
+                                Text="Home" />
                         </li>
                         <li class="nav-item">
                             <asp:HyperLink ID="HyperLink2" runat="server"
@@ -70,8 +70,9 @@
                                 NavigateUrl="~/ClienteCarrito.aspx"
                                 Text="Carrito" />
                         </li>
-                        
-                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="Notificaciones/ClienteNotificaciones.aspx"><i class="bi bi-bell-fill"></i></a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ClientePerfil.aspx"><i class="bi bi-person-circle"></i></a>
                         </li>
