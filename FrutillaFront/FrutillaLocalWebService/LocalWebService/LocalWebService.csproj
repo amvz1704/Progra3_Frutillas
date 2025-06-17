@@ -235,6 +235,9 @@
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.producto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\NotificionesWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -316,6 +319,7 @@
     <Content Include="ListaVentasSupervisor.aspx" />
     <Content Include="LocalSupervisor.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Notificaciones\ClienteNotificaciones.aspx" />
     <Content Include="Notificaciones\ListarNotificaciones.aspx" />
     <Content Include="Public\css\bootstrap-grid.css" />
     <Content Include="Public\css\bootstrap-grid.min.css" />
@@ -555,6 +559,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.cs">
+      <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.designer.cs">
+      <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Notificaciones\ListarNotificaciones.aspx.cs">
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>

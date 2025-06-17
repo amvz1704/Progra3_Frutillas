@@ -42,7 +42,7 @@ FOR EACH ROW
 BEGIN
 	IF New.estadoVenta = 'POR_ENTREGAR' THEN
 		INSERT INTO Notificacion (tipoReceptor,fechaHora,
-        titulo,descripcion,idEmpleado) VALUES 
+        titulo,descripcion,idCliente) VALUES 
         ('CLIENTE',NOW(),"Pedido Listo",CONCAT("El pedido de id ",New.idOrdenVenta," esta listo para entregar"),New.idCliente);
     END IF;
 END$$
