@@ -1,9 +1,7 @@
 ﻿using LocalWebService.EmpleadoWS;
+using LocalWebService.LocalWS;
 using LocalWebService.PedidoWS;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,6 +14,8 @@ namespace LocalWebService
         {
             if (!IsPostBack)
             {
+                CargarEstados(); // ✅ Importante: poblar antes de asignar valor
+
                 int pedidoId;
                 if (int.TryParse(Request.QueryString["id"], out pedidoId))
                 {
@@ -26,6 +26,7 @@ namespace LocalWebService
                     lblMensaje.Text = "ID de pedido inválido.";
                 }
             }
+
             if (User.Identity.IsAuthenticated)
             {
                 string datos = FormsAuthentication.Decrypt(
@@ -36,7 +37,7 @@ namespace LocalWebService
                 string tipoUsuario = partes[0];
                 int idUsuario = int.Parse(partes[1]);
 
-                // Aca pueden hacer uso del obtener por id
+                // Puedes usar idUsuario o tipoUsuario si es necesario
             }
             else
             {
@@ -44,16 +45,23 @@ namespace LocalWebService
             }
         }
 
+        // ✅ Método para cargar los valores del enum estadoVenta
+        private void CargarEstados()
+        {
+            ddlEstado.Items.Clear();
+            foreach (string nombre in Enum.GetNames(typeof(estadoVenta)))
+            {
+                ddlEstado.Items.Add(new ListItem(nombre, nombre));
+            }
+        }
+
         private void CargarPedido(int pedidoId)
         {
-
-            // Crear clientes WS
             PedidoWSClient pedidoClient = new PedidoWSClient();
             EmpleadoWSClient empleadoClient = new EmpleadoWSClient();
 
             try
             {
-                // Obtener pedido general (estado, empleado)
                 var pedido = pedidoClient.obtenerPedidoPorId(pedidoId);
 
                 if (pedido == null)
@@ -62,29 +70,31 @@ namespace LocalWebService
                     return;
                 }
 
-                // Mostrar el ID del pedido
-                lblPedidoNumero.Text = pedido.idOrdenVenta.ToString();  // Usamos IdOrdenVenta directamente
+                lblPedidoNumero.Text = pedido.idOrdenVenta.ToString();
 
-                // Obtener detalle (productos)
-                var productos = pedidoClient.obtenerDetallePedido(pedidoId);
+                var productos = pedidoClient.obtenerDetallePedidoList(pedidoId);
+
+                if (productos == null || productos.Length == 0)
+                {
+                    lblMensaje.Text = "No hay productos asociados al pedido.";
+                    gvProductos.DataSource = null;
+                    gvProductos.DataBind();
+                    return;
+                }
+
                 gvProductos.DataSource = productos;
                 gvProductos.DataBind();
 
-                // Mostrar total pedido (sumar totales)
                 double totalPedido = 0;
                 foreach (var p in productos)
-                    totalPedido += p.subtotal; // Usamos Subtotal directamente
+                    totalPedido += p.subtotal;
 
                 lblTotalPedido.Text = totalPedido.ToString("C");
 
-                // Llenar estado (EstadoVenta es un enum)
-                ddlEstado.SelectedValue = pedido.estado.ToString();  // Usamos el enum para el estado
-
-                // Llenar empleado asignado (verificar si el pedido tiene un empleado asignado)
-                if (pedido.idEmpleado > 0)
-                    txtEmpleadoAsignado.Text = pedido.idEmpleado.ToString();  // Mostrar el ID del empleado asignado
-                else
-                    txtEmpleadoAsignado.Text = "";  // Si no tiene, dejar el campo vacío
+                ddlEstado.SelectedValue = pedido.estado.ToString();
+                txtEmpleadoAsignado.Text = (pedido.idEmpleado > 0)
+                    ? pedido.idEmpleado.ToString()
+                    : "";
             }
             catch (Exception ex)
             {
@@ -113,10 +123,10 @@ namespace LocalWebService
                     return;
                 }
 
-                // Actualizar estado del pedido (convertir de string a enum)
+                // ✅ Convertir estado seleccionado (asegúrate que ddlEstado tiene valores del enum exactos)
                 pedido.estado = (estadoVenta)Enum.Parse(typeof(estadoVenta), ddlEstado.SelectedValue);
 
-                // Actualizar empleado asignado (validar el ID ingresado)
+                // ✅ Validar ID de empleado
                 int empleadoId;
                 if (!int.TryParse(txtEmpleadoAsignado.Text, out empleadoId))
                 {
@@ -124,7 +134,6 @@ namespace LocalWebService
                     return;
                 }
 
-                // Buscar el empleado en el WS
                 var empleado = empleadoClient.obtenerEmpleadoPorId(empleadoId);
                 if (empleado == null)
                 {
@@ -132,10 +141,13 @@ namespace LocalWebService
                     return;
                 }
 
-                // Asignar el empleado al pedido
+                // ✅ Solo actualiza ID del empleado, ya que no tienes propiedad "empleado"
                 pedido.idEmpleado = empleado.idUsuario;
 
-                // Guardar pedido actualizado
+                // No toques cliente, local ni fecha si no están disponibles en el modelo
+                // No modifiques lineasOrden si no existe
+
+                // ✅ Guardar cambios
                 pedidoClient.actualizarOrden(pedido);
 
                 lblMensaje.Text = "Pedido actualizado correctamente.";
