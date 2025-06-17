@@ -311,8 +311,8 @@ transition: 0.3s ease;
 
 .producto-right {
     display: flex;
-    align-items: flex-start;
-    gap: 15px;
+    align-items: center;
+    justify-content: space-between
 }
 
 .producto-right-img {
@@ -324,12 +324,119 @@ transition: 0.3s ease;
 
 .producto-right-texto h4 {
     margin: 0;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight: bold;
     color: #8b6f68; /* gris-marrón suave */
 }
 
 .producto-right-texto p {
     margin-top: 5px;
-    font-size: 13px;
+    font-size: 15px;
     color: #333;
+}
+
+.producto-right.reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+/*Carrusel para el home del lado de cliente*/
+.carousel {
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 12px;
+    font-family: sans-serif;
+}
+
+.slides {
+    display: flex;
+    width: 300%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    display: flex;
+    flex: 1 0 100%;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    background-color: #fff0f5; /* como el fondo rosado claro */
+}
+
+    .slide img {
+        width: 300px;
+        height: auto;
+        border-radius: 8px;
+    }
+
+.slide-info {
+    flex: 1;
+}
+
+    .slide-info h3 {
+        margin: 0 0 10px;
+        color: #4c1b1b;
+    }
+
+    .slide-info p {
+        margin: 0 0 15px;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .slide-info .buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+        .slide-info .buttons a {
+            padding: 8px 16px;
+            border: none;
+            background-color: #4c1b1b;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+input[name="carousel"] {
+    display: none;
+}
+
+.nav-buttons {
+    text-align: center;
+    margin: 10px 0;
+}
+
+    .nav-buttons label {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #ccc;
+        border-radius: 50%;
+        margin: 0 4px;
+        cursor: pointer;
+    }
+
+#slide1:checked ~ .slides {
+    transform: translateX(0%);
+}
+
+#slide2:checked ~ .slides {
+    transform: translateX(-100%);
+}
+
+#slide3:checked ~ .slides {
+    transform: translateX(-200%);
+}
+
+#slide1:checked ~ .nav-buttons label[for="slide1"],
+#slide2:checked ~ .nav-buttons label[for="slide2"],
+#slide3:checked ~ .nav-buttons label[for="slide3"] {
+    background-color: #4c1b1b;
 }
