@@ -60,4 +60,13 @@ public class NotificacionWS {
             throw new WebServiceException("Error al listar notificaciones por fechas");
         }
     }
+    
+    @WebMethod(operationName = "listarPorCliente")
+    public ArrayList<Notificacion> listarPorCliente(int idCliente){
+        try {
+            return notificacionServ.listarPorCliente(idCliente);
+        }catch (Exception e){
+            throw new WebServiceException("Error al listar notificaciones por fechas");
+        }
+    }
 }

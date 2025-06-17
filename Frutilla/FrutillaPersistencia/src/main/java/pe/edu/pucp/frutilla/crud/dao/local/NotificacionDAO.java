@@ -16,4 +16,5 @@ import pe.edu.pucp.frutilla.models.local.Notificacion;
 public interface NotificacionDAO extends BaseDAO<Notificacion>{
     ArrayList<Notificacion> listarPorFecha(LocalDate fecha, int idSupervisor);
     ArrayList<Notificacion> listarPorSupervisor(int idSupervisor);
+    ArrayList<Notificacion> listarPorCliente (int idCliente);
 }

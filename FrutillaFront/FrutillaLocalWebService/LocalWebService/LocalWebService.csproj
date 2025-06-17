@@ -235,6 +235,9 @@
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.producto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\NotificionesWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -310,12 +313,14 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
+    <Content Include="DetallePedidoCliente.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
     <Content Include="ListaVentasSupervisor.aspx" />
     <Content Include="LocalSupervisor.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Notificaciones\ClienteNotificaciones.aspx" />
     <Content Include="Notificaciones\ListarNotificaciones.aspx" />
     <Content Include="Public\css\bootstrap-grid.css" />
     <Content Include="Public\css\bootstrap-grid.min.css" />
@@ -492,6 +497,13 @@
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DetallePedidoCliente.aspx.cs">
+      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedidoCliente.aspx.designer.cs">
+      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DetalleProductoCliente.aspx.cs">
       <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -555,6 +567,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.cs">
+      <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.designer.cs">
+      <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Notificaciones\ListarNotificaciones.aspx.cs">
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
