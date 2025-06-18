@@ -20,7 +20,7 @@ namespace LocalWebService
         //sacar las lineas de venta relacionadas con un comprobante
         private ComprobanteWSClient daoComprobante;
         private ClienteWSClient daoCliente;
-        private PedidoWSClient daoPedidoOrden; 
+        private PedidoWSClient daoPedidoOrden;
         const int pedidoOrden = 2; // 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -46,14 +46,15 @@ namespace LocalWebService
                     {
                         Response.Redirect("Login.aspx"); // A 
                     }
-                    
+
                 }
-                else {
+                else
+                {
                     Response.Redirect("Login.aspx"); //ademas colcoar un mensaje de vista solo acceso por cliente
 
                 }
 
-                
+
 
                 // Aca pueden hacer uso del obtener por id
             }
@@ -62,7 +63,7 @@ namespace LocalWebService
                 Response.Redirect("Login.aspx");
             }
 
-            
+
             if (!IsPostBack)
                 BindGrid();
         }
@@ -78,7 +79,7 @@ namespace LocalWebService
             int comprobanteId = ordenVenta.idComprobante;
 
             comprobantePago comprobante = daoComprobante.obtenerComprobante(comprobanteId);
-            lblId.Text = comprobanteId.ToString(); 
+            lblId.Text = comprobanteId.ToString();
             txtFecha.Text = comprobante.fecha.ToString();
             txtNumeroArticulos.Text = comprobante.numeroArticulos.ToString();
             txtMetodoPago.Text = comprobante.formaPago.ToString();
@@ -87,13 +88,14 @@ namespace LocalWebService
 
             txtSubtotal.Text = comprobante.subtotal.ToString();
             txtIGV.Text = comprobante.montoIGV.ToString();
-            txtTotal.Text = comprobante.total.ToString (); 
+            txtTotal.Text = comprobante.total.ToString();
             gvDetalles.DataSource = daoComprobante.obtenerLineasPorIdComprobante(comprobanteId);
             gvDetalles.DataBind();
         }
 
-        protected void gvComprobante_RowCommand(object sender, GridViewCommandEventArgs e) { 
-        
+        protected void gvComprobante_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
 
         protected void gvDetalles_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -101,7 +103,10 @@ namespace LocalWebService
             gvDetalles.PageIndex = e.NewPageIndex;
             BindGrid();
         }
-
-        //crear uno mas para que regrese a listaEmpleados 
+        protected void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClientePedidos.aspx");
+        }
+        // crear uno para que regrese a lista
     }
 }
