@@ -44,8 +44,6 @@ public class LocalService {
             throw new Exception("La direccion del local no puede ser vacia");
         if(loc.getTelefono()==null||loc.getTelefono().trim().isEmpty())
             throw new Exception("El telefono del local no puede ser vacia");
-        if(loc.getIdSupervisor()<=0)
-            throw new Exception("El id del supervisor no es valido");
 
         
         localDAO.actualizar(loc);

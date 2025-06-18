@@ -25,15 +25,6 @@ namespace LocalWebService.UsuarioWS {
         System.Threading.Tasks.Task<LocalWebService.UsuarioWS.generarTokenRecuperacionResponse> generarTokenRecuperacionAsync(LocalWebService.UsuarioWS.generarTokenRecuperacionRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.UsuarioWS.validarTokenRecuperacionResponse validarTokenRecuperacion(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionResponse")]
-        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.validarTokenRecuperacionResponse> validarTokenRecuperacionAsync(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/actualizarContrasenaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/actualizarContrasenaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -50,6 +41,15 @@ namespace LocalWebService.UsuarioWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse")]
         System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse> obtenerIDPorNombreUsuarioAsync(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.UsuarioWS.validarTokenRecuperacionResponse validarTokenRecuperacion(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionResponse")]
+        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.validarTokenRecuperacionResponse> validarTokenRecuperacionAsync(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoResponse")]
@@ -111,42 +111,6 @@ namespace LocalWebService.UsuarioWS {
         }
         
         public generarTokenRecuperacionResponse(string @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="validarTokenRecuperacion", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class validarTokenRecuperacionRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string token;
-        
-        public validarTokenRecuperacionRequest() {
-        }
-        
-        public validarTokenRecuperacionRequest(string token) {
-            this.token = token;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="validarTokenRecuperacionResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class validarTokenRecuperacionResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public validarTokenRecuperacionResponse() {
-        }
-        
-        public validarTokenRecuperacionResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -224,6 +188,42 @@ namespace LocalWebService.UsuarioWS {
         }
         
         public obtenerIDPorNombreUsuarioResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="validarTokenRecuperacion", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class validarTokenRecuperacionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string token;
+        
+        public validarTokenRecuperacionRequest() {
+        }
+        
+        public validarTokenRecuperacionRequest(string token) {
+            this.token = token;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="validarTokenRecuperacionResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class validarTokenRecuperacionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public validarTokenRecuperacionResponse() {
+        }
+        
+        public validarTokenRecuperacionResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -550,29 +550,6 @@ namespace LocalWebService.UsuarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.UsuarioWS.validarTokenRecuperacionResponse LocalWebService.UsuarioWS.UsuarioWS.validarTokenRecuperacion(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request) {
-            return base.Channel.validarTokenRecuperacion(request);
-        }
-        
-        public int validarTokenRecuperacion(string token) {
-            LocalWebService.UsuarioWS.validarTokenRecuperacionRequest inValue = new LocalWebService.UsuarioWS.validarTokenRecuperacionRequest();
-            inValue.token = token;
-            LocalWebService.UsuarioWS.validarTokenRecuperacionResponse retVal = ((LocalWebService.UsuarioWS.UsuarioWS)(this)).validarTokenRecuperacion(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.validarTokenRecuperacionResponse> LocalWebService.UsuarioWS.UsuarioWS.validarTokenRecuperacionAsync(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request) {
-            return base.Channel.validarTokenRecuperacionAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.UsuarioWS.validarTokenRecuperacionResponse> validarTokenRecuperacionAsync(string token) {
-            LocalWebService.UsuarioWS.validarTokenRecuperacionRequest inValue = new LocalWebService.UsuarioWS.validarTokenRecuperacionRequest();
-            inValue.token = token;
-            return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).validarTokenRecuperacionAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.UsuarioWS.actualizarContrasenaResponse LocalWebService.UsuarioWS.UsuarioWS.actualizarContrasena(LocalWebService.UsuarioWS.actualizarContrasenaRequest request) {
             return base.Channel.actualizarContrasena(request);
         }
@@ -618,6 +595,29 @@ namespace LocalWebService.UsuarioWS {
             LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest inValue = new LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest();
             inValue.arg0 = arg0;
             return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerIDPorNombreUsuarioAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.UsuarioWS.validarTokenRecuperacionResponse LocalWebService.UsuarioWS.UsuarioWS.validarTokenRecuperacion(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request) {
+            return base.Channel.validarTokenRecuperacion(request);
+        }
+        
+        public int validarTokenRecuperacion(string token) {
+            LocalWebService.UsuarioWS.validarTokenRecuperacionRequest inValue = new LocalWebService.UsuarioWS.validarTokenRecuperacionRequest();
+            inValue.token = token;
+            LocalWebService.UsuarioWS.validarTokenRecuperacionResponse retVal = ((LocalWebService.UsuarioWS.UsuarioWS)(this)).validarTokenRecuperacion(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.validarTokenRecuperacionResponse> LocalWebService.UsuarioWS.UsuarioWS.validarTokenRecuperacionAsync(LocalWebService.UsuarioWS.validarTokenRecuperacionRequest request) {
+            return base.Channel.validarTokenRecuperacionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.UsuarioWS.validarTokenRecuperacionResponse> validarTokenRecuperacionAsync(string token) {
+            LocalWebService.UsuarioWS.validarTokenRecuperacionRequest inValue = new LocalWebService.UsuarioWS.validarTokenRecuperacionRequest();
+            inValue.token = token;
+            return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).validarTokenRecuperacionAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

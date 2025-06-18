@@ -25,15 +25,6 @@ namespace LocalWebService.PedidoWS {
         System.Threading.Tasks.Task<LocalWebService.PedidoWS.listarPedidoPorLocalResponse> listarPedidoPorLocalAsync(LocalWebService.PedidoWS.listarPedidoPorLocalRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.PedidoWS.obtenerDetallePedidoResponse obtenerDetallePedido(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse")]
-        System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerDetallePedidoResponse> obtenerDetallePedidoAsync(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -43,6 +34,15 @@ namespace LocalWebService.PedidoWS {
         System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerPedidosPorEmpleadoResponse> obtenerPedidosPorEmpleadoAsync(LocalWebService.PedidoWS.obtenerPedidosPorEmpleadoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.PedidoWS.obtenerDetallePedidoResponse obtenerDetallePedido(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse")]
+        System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerDetallePedidoResponse> obtenerDetallePedidoAsync(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -50,15 +50,6 @@ namespace LocalWebService.PedidoWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteResponse")]
         System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerPedidosPorClienteResponse> obtenerPedidosPorClienteAsync(LocalWebService.PedidoWS.obtenerPedidosPorClienteRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse listarPedidoPorLocalCliente(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteResponse")]
-        System.Threading.Tasks.Task<LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse> listarPedidoPorLocalClienteAsync(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request);
         
         // CODEGEN: El parámetro 'orden' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenResponse")]
@@ -84,6 +75,15 @@ namespace LocalWebService.PedidoWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/agregarOrdenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/agregarOrdenResponse")]
         System.Threading.Tasks.Task<LocalWebService.PedidoWS.agregarOrdenResponse> agregarOrdenAsync(LocalWebService.PedidoWS.agregarOrdenRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse listarPedidoPorLocalCliente(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteResponse")]
+        System.Threading.Tasks.Task<LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse> listarPedidoPorLocalClienteAsync(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request);
     }
     
     /// <remarks/>
@@ -645,42 +645,6 @@ namespace LocalWebService.PedidoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerDetallePedido", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerDetallePedidoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idOrdenVenta;
-        
-        public obtenerDetallePedidoRequest() {
-        }
-        
-        public obtenerDetallePedidoRequest(int idOrdenVenta) {
-            this.idOrdenVenta = idOrdenVenta;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerDetallePedidoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerDetallePedidoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.PedidoWS.lineaOrdenDeVenta[] @return;
-        
-        public obtenerDetallePedidoResponse() {
-        }
-        
-        public obtenerDetallePedidoResponse(LocalWebService.PedidoWS.lineaOrdenDeVenta[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPedidosPorEmpleado", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerPedidosPorEmpleadoRequest {
         
@@ -717,6 +681,42 @@ namespace LocalWebService.PedidoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerDetallePedido", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerDetallePedidoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idOrdenVenta;
+        
+        public obtenerDetallePedidoRequest() {
+        }
+        
+        public obtenerDetallePedidoRequest(int idOrdenVenta) {
+            this.idOrdenVenta = idOrdenVenta;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerDetallePedidoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerDetallePedidoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.PedidoWS.lineaOrdenDeVenta[] @return;
+        
+        public obtenerDetallePedidoResponse() {
+        }
+        
+        public obtenerDetallePedidoResponse(LocalWebService.PedidoWS.lineaOrdenDeVenta[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPedidosPorCliente", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerPedidosPorClienteRequest {
         
@@ -746,47 +746,6 @@ namespace LocalWebService.PedidoWS {
         }
         
         public obtenerPedidosPorClienteResponse(LocalWebService.PedidoWS.ordenVenta[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPedidoPorLocalCliente", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPedidoPorLocalClienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idLocal;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idCliente;
-        
-        public listarPedidoPorLocalClienteRequest() {
-        }
-        
-        public listarPedidoPorLocalClienteRequest(int idLocal, int idCliente) {
-            this.idLocal = idLocal;
-            this.idCliente = idCliente;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPedidoPorLocalClienteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPedidoPorLocalClienteResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.PedidoWS.ordenVenta[] @return;
-        
-        public listarPedidoPorLocalClienteResponse() {
-        }
-        
-        public listarPedidoPorLocalClienteResponse(LocalWebService.PedidoWS.ordenVenta[] @return) {
             this.@return = @return;
         }
     }
@@ -883,6 +842,47 @@ namespace LocalWebService.PedidoWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPedidoPorLocalCliente", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPedidoPorLocalClienteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idLocal;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idCliente;
+        
+        public listarPedidoPorLocalClienteRequest() {
+        }
+        
+        public listarPedidoPorLocalClienteRequest(int idLocal, int idCliente) {
+            this.idLocal = idLocal;
+            this.idCliente = idCliente;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPedidoPorLocalClienteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPedidoPorLocalClienteResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.PedidoWS.ordenVenta[] @return;
+        
+        public listarPedidoPorLocalClienteResponse() {
+        }
+        
+        public listarPedidoPorLocalClienteResponse(LocalWebService.PedidoWS.ordenVenta[] @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface PedidoWSChannel : LocalWebService.PedidoWS.PedidoWS, System.ServiceModel.IClientChannel {
     }
@@ -934,29 +934,6 @@ namespace LocalWebService.PedidoWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.PedidoWS.obtenerDetallePedidoResponse LocalWebService.PedidoWS.PedidoWS.obtenerDetallePedido(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request) {
-            return base.Channel.obtenerDetallePedido(request);
-        }
-        
-        public LocalWebService.PedidoWS.lineaOrdenDeVenta[] obtenerDetallePedido(int idOrdenVenta) {
-            LocalWebService.PedidoWS.obtenerDetallePedidoRequest inValue = new LocalWebService.PedidoWS.obtenerDetallePedidoRequest();
-            inValue.idOrdenVenta = idOrdenVenta;
-            LocalWebService.PedidoWS.obtenerDetallePedidoResponse retVal = ((LocalWebService.PedidoWS.PedidoWS)(this)).obtenerDetallePedido(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerDetallePedidoResponse> LocalWebService.PedidoWS.PedidoWS.obtenerDetallePedidoAsync(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request) {
-            return base.Channel.obtenerDetallePedidoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerDetallePedidoResponse> obtenerDetallePedidoAsync(int idOrdenVenta) {
-            LocalWebService.PedidoWS.obtenerDetallePedidoRequest inValue = new LocalWebService.PedidoWS.obtenerDetallePedidoRequest();
-            inValue.idOrdenVenta = idOrdenVenta;
-            return ((LocalWebService.PedidoWS.PedidoWS)(this)).obtenerDetallePedidoAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.PedidoWS.obtenerPedidosPorEmpleadoResponse LocalWebService.PedidoWS.PedidoWS.obtenerPedidosPorEmpleado(LocalWebService.PedidoWS.obtenerPedidosPorEmpleadoRequest request) {
             return base.Channel.obtenerPedidosPorEmpleado(request);
         }
@@ -980,6 +957,29 @@ namespace LocalWebService.PedidoWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.PedidoWS.obtenerDetallePedidoResponse LocalWebService.PedidoWS.PedidoWS.obtenerDetallePedido(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request) {
+            return base.Channel.obtenerDetallePedido(request);
+        }
+        
+        public LocalWebService.PedidoWS.lineaOrdenDeVenta[] obtenerDetallePedido(int idOrdenVenta) {
+            LocalWebService.PedidoWS.obtenerDetallePedidoRequest inValue = new LocalWebService.PedidoWS.obtenerDetallePedidoRequest();
+            inValue.idOrdenVenta = idOrdenVenta;
+            LocalWebService.PedidoWS.obtenerDetallePedidoResponse retVal = ((LocalWebService.PedidoWS.PedidoWS)(this)).obtenerDetallePedido(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerDetallePedidoResponse> LocalWebService.PedidoWS.PedidoWS.obtenerDetallePedidoAsync(LocalWebService.PedidoWS.obtenerDetallePedidoRequest request) {
+            return base.Channel.obtenerDetallePedidoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.PedidoWS.obtenerDetallePedidoResponse> obtenerDetallePedidoAsync(int idOrdenVenta) {
+            LocalWebService.PedidoWS.obtenerDetallePedidoRequest inValue = new LocalWebService.PedidoWS.obtenerDetallePedidoRequest();
+            inValue.idOrdenVenta = idOrdenVenta;
+            return ((LocalWebService.PedidoWS.PedidoWS)(this)).obtenerDetallePedidoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.PedidoWS.obtenerPedidosPorClienteResponse LocalWebService.PedidoWS.PedidoWS.obtenerPedidosPorCliente(LocalWebService.PedidoWS.obtenerPedidosPorClienteRequest request) {
             return base.Channel.obtenerPedidosPorCliente(request);
         }
@@ -1000,31 +1000,6 @@ namespace LocalWebService.PedidoWS {
             LocalWebService.PedidoWS.obtenerPedidosPorClienteRequest inValue = new LocalWebService.PedidoWS.obtenerPedidosPorClienteRequest();
             inValue.idCliente = idCliente;
             return ((LocalWebService.PedidoWS.PedidoWS)(this)).obtenerPedidosPorClienteAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse LocalWebService.PedidoWS.PedidoWS.listarPedidoPorLocalCliente(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request) {
-            return base.Channel.listarPedidoPorLocalCliente(request);
-        }
-        
-        public LocalWebService.PedidoWS.ordenVenta[] listarPedidoPorLocalCliente(int idLocal, int idCliente) {
-            LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest inValue = new LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest();
-            inValue.idLocal = idLocal;
-            inValue.idCliente = idCliente;
-            LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse retVal = ((LocalWebService.PedidoWS.PedidoWS)(this)).listarPedidoPorLocalCliente(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse> LocalWebService.PedidoWS.PedidoWS.listarPedidoPorLocalClienteAsync(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request) {
-            return base.Channel.listarPedidoPorLocalClienteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse> listarPedidoPorLocalClienteAsync(int idLocal, int idCliente) {
-            LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest inValue = new LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest();
-            inValue.idLocal = idLocal;
-            inValue.idCliente = idCliente;
-            return ((LocalWebService.PedidoWS.PedidoWS)(this)).listarPedidoPorLocalClienteAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1092,6 +1067,31 @@ namespace LocalWebService.PedidoWS {
             LocalWebService.PedidoWS.agregarOrdenRequest inValue = new LocalWebService.PedidoWS.agregarOrdenRequest();
             inValue.orden = orden;
             return ((LocalWebService.PedidoWS.PedidoWS)(this)).agregarOrdenAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse LocalWebService.PedidoWS.PedidoWS.listarPedidoPorLocalCliente(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request) {
+            return base.Channel.listarPedidoPorLocalCliente(request);
+        }
+        
+        public LocalWebService.PedidoWS.ordenVenta[] listarPedidoPorLocalCliente(int idLocal, int idCliente) {
+            LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest inValue = new LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest();
+            inValue.idLocal = idLocal;
+            inValue.idCliente = idCliente;
+            LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse retVal = ((LocalWebService.PedidoWS.PedidoWS)(this)).listarPedidoPorLocalCliente(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse> LocalWebService.PedidoWS.PedidoWS.listarPedidoPorLocalClienteAsync(LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest request) {
+            return base.Channel.listarPedidoPorLocalClienteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse> listarPedidoPorLocalClienteAsync(int idLocal, int idCliente) {
+            LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest inValue = new LocalWebService.PedidoWS.listarPedidoPorLocalClienteRequest();
+            inValue.idLocal = idLocal;
+            inValue.idCliente = idCliente;
+            return ((LocalWebService.PedidoWS.PedidoWS)(this)).listarPedidoPorLocalClienteAsync(inValue);
         }
     }
 }

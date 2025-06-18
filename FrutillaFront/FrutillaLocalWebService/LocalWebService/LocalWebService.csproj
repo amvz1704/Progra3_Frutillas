@@ -188,15 +188,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.wsdl" />
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
       <SubType>Designer</SubType>
@@ -206,6 +197,15 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarLocalesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocalVariosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
@@ -310,6 +310,8 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
+    <Content Include="DetalleProductoCliente.aspx" />
+    <Content Include="EmpleadoPerfil.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -369,6 +371,10 @@
     <Content Include="Public\js\bootstrap.min.js" />
     <Content Include="Empleado.Master" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Public\js\jquery-3.7.1.intellisense.js" />
     <Content Include="Public\js\jquery-3.7.1.js" />
     <Content Include="Public\js\jquery-3.7.1.min.js" />
@@ -562,6 +568,11 @@
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="RecuperarCuenta.aspx.cs">
       <DependentUpon>RecuperarCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

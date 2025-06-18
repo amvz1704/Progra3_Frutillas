@@ -11,12 +11,6 @@
   <message name="obtenerProductoPorIdResponse">
     <part name="parameters" element="tns:obtenerProductoPorIdResponse" />
   </message>
-  <message name="eliminarProducto">
-    <part name="parameters" element="tns:eliminarProducto" />
-  </message>
-  <message name="eliminarProductoResponse">
-    <part name="parameters" element="tns:eliminarProductoResponse" />
-  </message>
   <message name="listarTodos">
     <part name="parameters" element="tns:listarTodos" />
   </message>
@@ -28,6 +22,12 @@
   </message>
   <message name="insertarFrutaResponse">
     <part name="parameters" element="tns:insertarFrutaResponse" />
+  </message>
+  <message name="eliminarProducto">
+    <part name="parameters" element="tns:eliminarProducto" />
+  </message>
+  <message name="eliminarProductoResponse">
+    <part name="parameters" element="tns:eliminarProductoResponse" />
   </message>
   <message name="insertarBebida">
     <part name="parameters" element="tns:insertarBebida" />
@@ -46,10 +46,6 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdRequest" message="tns:obtenerProductoPorId" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdResponse" message="tns:obtenerProductoPorIdResponse" />
     </operation>
-    <operation name="eliminarProducto">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest" message="tns:eliminarProducto" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse" message="tns:eliminarProductoResponse" />
-    </operation>
     <operation name="listarTodos">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosRequest" message="tns:listarTodos" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosResponse" message="tns:listarTodosResponse" />
@@ -57,6 +53,10 @@
     <operation name="insertarFruta">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest" message="tns:insertarFruta" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse" message="tns:insertarFrutaResponse" />
+    </operation>
+    <operation name="eliminarProducto">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest" message="tns:eliminarProducto" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse" message="tns:eliminarProductoResponse" />
     </operation>
     <operation name="insertarBebida">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest" message="tns:insertarBebida" />
@@ -78,15 +78,6 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="eliminarProducto">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="listarTodos">
       <soap:operation soapAction="" />
       <input>
@@ -97,6 +88,15 @@
       </output>
     </operation>
     <operation name="insertarFruta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarProducto">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
