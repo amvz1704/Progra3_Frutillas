@@ -382,8 +382,8 @@
     <Content Include="ListaVentasSupervisor.aspx" />
     <Content Include="LocalSupervisor.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="ClienteNotificaciones.aspx" />
-    <Content Include="ListarNotificaciones.aspx" />
+    <Content Include="Notificaciones\ClienteNotificaciones.aspx" />
+    <Content Include="Notificaciones\ListarNotificaciones.aspx" />
     <Content Include="Public\css\bootstrap-grid.css" />
     <Content Include="Public\css\bootstrap-grid.min.css" />
     <Content Include="Public\css\bootstrap-grid.rtl.css" />
@@ -629,18 +629,18 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ClienteNotificaciones.aspx.cs">
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.cs">
       <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ClienteNotificaciones.aspx.designer.cs">
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.designer.cs">
       <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ListarNotificaciones.aspx.cs">
+    <Compile Include="Notificaciones\ListarNotificaciones.aspx.cs">
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ListarNotificaciones.aspx.designer.cs">
+    <Compile Include="Notificaciones\ListarNotificaciones.aspx.designer.cs">
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
