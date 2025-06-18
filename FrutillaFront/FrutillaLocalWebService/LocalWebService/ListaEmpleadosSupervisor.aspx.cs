@@ -1,14 +1,15 @@
 ﻿using LocalWebService.EmpleadoWS;
 using LocalWebService.LocalWS;
+using LocalWebService.NotificionesWS;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using LocalWebService.NotificionesWS;
 
 
 namespace LocalWebService
@@ -36,13 +37,11 @@ namespace LocalWebService
             //codigo para abir el modal que agrega empleado * Por hacer 
             // Como es "Agregar", ponemos el hidden en 0:
             hfIdEmpleado.Value = "0";
+            hfModo.Value = "Create";
 
             // Limpiamos todos los campos del modal:
             LimpiarCamposModal();
 
-
-            // Inyectamos el script para mostrar el modal:
-            CargarModalCrearEmpleado();
         }
 
         private void LimpiarCamposModal()
@@ -55,6 +54,13 @@ namespace LocalWebService
             txtFechaContrato.Text = "";
             txtCorreo.Text = "";
             // HfIdEmpleado ya está en "0".
+
+            string script = @"
+                        var modal = new bootstrap.Modal(
+                          document.getElementById('miModalEditarEmpleado'), {});
+                        modal.show();";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowEditarModal", script, true);
+
         }
 
 
@@ -99,10 +105,6 @@ namespace LocalWebService
             }
         }
 
-        protected void BtnEditar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void BtnEliminar_Click(object sender, EventArgs e)
         {
@@ -133,9 +135,16 @@ namespace LocalWebService
                     lblVerTelefono.Text = emp.telefono;
                     lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
+                    if (emp.turnoTrabajo)
+                    {
+                        lblTurno.Text = "Mañana";
+                    }
+                    else {
+                        lblTurno.Text = "Tarde";
+                    }
 
-                    // Ejecutamos JS para mostrar el modal
-                    string script = @"
+                        // Ejecutamos JS para mostrar el modal
+                        string script = @"
                         var modal = new bootstrap.Modal(
                           document.getElementById('miModalVerDetalles'), {});
                         modal.show();";
@@ -153,32 +162,17 @@ namespace LocalWebService
             }
         }
 
-        private void CargarModalCrearEmpleado() {
-            // Mostrar modal
-            string script = @"
-            var myModal = new bootstrap.Modal(
-                 document.getElementById('miModalEditarEmpleado'),
-                 {keyboard: false}
-            );
-            myModal.show();";
-
-            ScriptManager.RegisterStartupScript(
-                this,
-                this.GetType(),
-                "ShowCrearEditarModal",
-                script,
-                true);
-
-        }
 
         private void CargarModalEditarEmpleado(int idEmp)
         {
+            hfModo.Value = "Editar";
+
             try
             {
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
-               // var fecha = emp.fechaContrato;
+                // var fecha = emp.fechaContrato;
 
 
                 if (emp != null)
@@ -191,6 +185,8 @@ namespace LocalWebService
                     txtSalario.Text = emp.salario.ToString("N2");
                     txtTelefono.Text = emp.telefono;
                     txtCorreo.Text = emp.correoElectronico;
+                    txtFechaContrato.Text = emp.fechatContratoSTRING;
+                    ddlEstado.SelectedValue = emp.turnoTrabajo.ToString().ToLower(); 
 
 
                     // Mostrar modal
@@ -235,6 +231,7 @@ namespace LocalWebService
             }
         }
 
+
         protected void btnGuardarModal_Click(object sender, EventArgs e)
         {
             int idEmp;
@@ -247,6 +244,11 @@ namespace LocalWebService
                 fechaFormateada = fechaContrato.ToString("yyyy-MM-dd");
                 // Ahora tienes la fecha en formato string tipo yyyy-MM-dd
             }
+
+            string modo = hfModo.Value;
+            
+
+
             // Construimos el DTO según tu 
             var empDto = new EmpleadoWS.empleado
             {
@@ -258,36 +260,23 @@ namespace LocalWebService
                 salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0,
                 telefono = txtTelefono.Text.Trim(),
                 correoElectronico = txtCorreo.Text.Trim(),
-                turnoTrabajo = true, 
-                fechatContratoSTRING = fechaFormateada,
-                tipo = 'R',
-                usuarioSistema = "aa",
-                contraSistema = "aaa",
-                activo = true,
-                tipoUsuario = "Empleado"
-
+                turnoTrabajo = ddlEstado.SelectedValue == "true",
+                fechatContratoSTRING = fechaFormateada
             };
 
-        //    private localDate fechaContratoField;
-
-        //private int idLocalField;
-
-        //private double salarioField;
-
-        //private ushort tipoField;
-
-        //private bool turnoTrabajoField;
 
             try
             {
                 var client = new EmpleadoWSClient();
                 bool ok;
-                if (idEmp == 0)
-                {
-                    ok = client.agregarEmpleado(empDto);      // Método WSDL para crear
+                if (modo == "Create")
+                { 
+                    ok = client.agregarEmpleado(empDto);      // Método WSDL para asignar un empleado* pero este debe crear su cuenta primero pues
                 }
                 else
                 {
+                    
+
                     ok = client.actualizarEmpleado(empDto); // Método WSDL para actualizar
                 }
                 client.Close();
@@ -296,8 +285,6 @@ namespace LocalWebService
                 {
                     lblError.Text = "INCORRECTO al agregar detalles de los empleados: "; return;
                 }
-
-                lblError.Text = "si bien al agregar detalles de los empleados: ";
 
                 // Recarga la grilla
                 CargarEmpleados();

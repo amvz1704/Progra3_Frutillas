@@ -77,6 +77,28 @@ public class InventarioMySQL implements InventarioDAO{
     }
     
     @Override
+    public char obtenerTipoProducto(int idProducto,int idLocal) throws SQLException{
+        String tipo = null;
+        String query = "SELECT tipo FROM Inventario WHERE "
+                + "idProducto = ? AND idLocal = ?";
+        try (Connection con=DBManager.getInstance().getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
+            ps.setInt(1, idProducto);
+            ps.setInt(2, idLocal);
+            try(ResultSet rs=ps.executeQuery()){
+                if(rs.next()){
+                    tipo=rs.getString("tipo");
+                }
+            }
+        }
+        if (tipo != null && !tipo.isEmpty()) {
+            return tipo.charAt(0);
+        } else {
+            throw new SQLException("No se encontró el tipo para el producto con ID " + idProducto + " en el local " + idLocal);
+        }
+    }
+    
+    @Override
     public ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException{
         ArrayList<Producto> productos= new ArrayList<>();
         //Recuperamos las frutas

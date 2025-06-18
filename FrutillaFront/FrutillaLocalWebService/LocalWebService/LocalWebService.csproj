@@ -78,7 +78,6 @@
     <Content Include="ClienteComprar.aspx" />
     <Content Include="ClienteHome.aspx" />
     <Content Include="ClienteListaProducto.aspx" />
-    <Content Include="ClientePago.aspx" />
     <Content Include="ClientePedidos.aspx" />
     <Content Include="ClientePerfil.aspx" />
     <Content Include="ComprobantePago.aspx" />
@@ -125,10 +124,10 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse.datasource">
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto.datasource">
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
@@ -181,22 +180,40 @@
     <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.insertarBebidaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerProductoPorIdResponse.datasource">
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.insertarSnackResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerProductoPorIdResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerTipoProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.bebida.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.fruta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerBebidaPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerFrutaPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerSnackPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.snack.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerStockPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\InventarioWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.wsdl" />
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
       <SubType>Designer</SubType>
@@ -206,6 +223,15 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarLocalesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocalVariosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
@@ -272,6 +298,9 @@
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerDetallePedidoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
     <None Include="Connected Services\PedidoWS\PedidoWS.xsd">
       <SubType>Designer</SubType>
@@ -313,7 +342,8 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
-    <Content Include="DetallePedidoCliente.aspx" />
+    <Content Include="DetalleProductoCliente.aspx" />
+    <Content Include="EmpleadoPerfil.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -357,6 +387,9 @@
     <Content Include="Public\fonts\css\v4-shims.min.css" />
     <Content Include="Public\fonts\css\v5-font-face.css" />
     <Content Include="Public\fonts\css\v5-font-face.min.css" />
+    <Content Include="Public\images\bebida.jpg" />
+    <Content Include="Public\images\frutas.jpg" />
+    <Content Include="Public\images\snack.jpg" />
     <Content Include="Public\images\fruteria-letras.jpg" />
     <Content Include="Public\images\fruteria-sociales.jpg" />
     <Content Include="Public\images\homeSnacks.jpg" />
@@ -365,6 +398,7 @@
     <Content Include="Public\images\productosImagen.png" />
     <Content Include="Public\images\frutillaLogo.jpeg" />
     <Content Include="Public\images\bannerFrutilla.jpg" />
+    <Content Include="Public\images\producto.jpg" />
     <Content Include="Public\images\ventasImagen.png" />
     <Content Include="Public\images\pedidosImagen.png" />
     <Content Include="Public\images\empleadosImagen.png" />
@@ -376,6 +410,10 @@
     <Content Include="Public\js\bootstrap.min.js" />
     <Content Include="Empleado.Master" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Public\js\jquery-3.7.1.intellisense.js" />
     <Content Include="Public\js\jquery-3.7.1.js" />
     <Content Include="Public\js\jquery-3.7.1.min.js" />
@@ -421,13 +459,6 @@
     </Compile>
     <Compile Include="ClienteListaProducto.aspx.designer.cs">
       <DependentUpon>ClienteListaProducto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ClientePago.aspx.cs">
-      <DependentUpon>ClientePago.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ClientePago.aspx.designer.cs">
-      <DependentUpon>ClientePago.aspx</DependentUpon>
     </Compile>
     <Compile Include="ClientePedidos.aspx.cs">
       <DependentUpon>ClientePedidos.aspx</DependentUpon>
@@ -496,20 +527,6 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DetallePedidoCliente.aspx.cs">
-      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DetallePedidoCliente.aspx.designer.cs">
-      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DetalleProductoCliente.aspx.cs">
-      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DetalleProductoCliente.aspx.designer.cs">
-      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleado.Master.cs">
       <DependentUpon>Empleado.Master</DependentUpon>
@@ -583,6 +600,11 @@
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="RecuperarCuenta.aspx.cs">
       <DependentUpon>RecuperarCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

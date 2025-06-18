@@ -15,15 +15,6 @@ namespace LocalWebService.ClienteWS {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", ConfigurationName="ClienteWS.ClienteWS")]
     public interface ClienteWS {
         
-        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
-        LocalWebService.ClienteWS.agregarClienteResponse agregarCliente(LocalWebService.ClienteWS.agregarClienteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteResponse")]
-        System.Threading.Tasks.Task<LocalWebService.ClienteWS.agregarClienteResponse> agregarClienteAsync(LocalWebService.ClienteWS.agregarClienteRequest request);
-        
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -33,6 +24,15 @@ namespace LocalWebService.ClienteWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdResponse")]
         System.Threading.Tasks.Task<LocalWebService.ClienteWS.obtenerClientePorIdResponse> obtenerClientePorIdAsync(LocalWebService.ClienteWS.obtenerClientePorIdRequest request);
+        
+        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
+        LocalWebService.ClienteWS.agregarClienteResponse agregarCliente(LocalWebService.ClienteWS.agregarClienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteResponse")]
+        System.Threading.Tasks.Task<LocalWebService.ClienteWS.agregarClienteResponse> agregarClienteAsync(LocalWebService.ClienteWS.agregarClienteRequest request);
         
         // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/actualizarClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ClienteWS/actualizarClienteResponse")]
@@ -215,34 +215,6 @@ namespace LocalWebService.ClienteWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="agregarCliente", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class agregarClienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.ClienteWS.cliente arg0;
-        
-        public agregarClienteRequest() {
-        }
-        
-        public agregarClienteRequest(LocalWebService.ClienteWS.cliente arg0) {
-            this.arg0 = arg0;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="agregarClienteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class agregarClienteResponse {
-        
-        public agregarClienteResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerClientePorId", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerClientePorIdRequest {
         
@@ -273,6 +245,34 @@ namespace LocalWebService.ClienteWS {
         
         public obtenerClientePorIdResponse(LocalWebService.ClienteWS.cliente @return) {
             this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="agregarCliente", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class agregarClienteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.ClienteWS.cliente arg0;
+        
+        public agregarClienteRequest() {
+        }
+        
+        public agregarClienteRequest(LocalWebService.ClienteWS.cliente arg0) {
+            this.arg0 = arg0;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="agregarClienteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class agregarClienteResponse {
+        
+        public agregarClienteResponse() {
         }
     }
     
@@ -332,28 +332,6 @@ namespace LocalWebService.ClienteWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.ClienteWS.agregarClienteResponse LocalWebService.ClienteWS.ClienteWS.agregarCliente(LocalWebService.ClienteWS.agregarClienteRequest request) {
-            return base.Channel.agregarCliente(request);
-        }
-        
-        public void agregarCliente(LocalWebService.ClienteWS.cliente arg0) {
-            LocalWebService.ClienteWS.agregarClienteRequest inValue = new LocalWebService.ClienteWS.agregarClienteRequest();
-            inValue.arg0 = arg0;
-            LocalWebService.ClienteWS.agregarClienteResponse retVal = ((LocalWebService.ClienteWS.ClienteWS)(this)).agregarCliente(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.ClienteWS.agregarClienteResponse> LocalWebService.ClienteWS.ClienteWS.agregarClienteAsync(LocalWebService.ClienteWS.agregarClienteRequest request) {
-            return base.Channel.agregarClienteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.ClienteWS.agregarClienteResponse> agregarClienteAsync(LocalWebService.ClienteWS.cliente arg0) {
-            LocalWebService.ClienteWS.agregarClienteRequest inValue = new LocalWebService.ClienteWS.agregarClienteRequest();
-            inValue.arg0 = arg0;
-            return ((LocalWebService.ClienteWS.ClienteWS)(this)).agregarClienteAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.ClienteWS.obtenerClientePorIdResponse LocalWebService.ClienteWS.ClienteWS.obtenerClientePorId(LocalWebService.ClienteWS.obtenerClientePorIdRequest request) {
             return base.Channel.obtenerClientePorId(request);
         }
@@ -374,6 +352,28 @@ namespace LocalWebService.ClienteWS {
             LocalWebService.ClienteWS.obtenerClientePorIdRequest inValue = new LocalWebService.ClienteWS.obtenerClientePorIdRequest();
             inValue.Idcliente = Idcliente;
             return ((LocalWebService.ClienteWS.ClienteWS)(this)).obtenerClientePorIdAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.ClienteWS.agregarClienteResponse LocalWebService.ClienteWS.ClienteWS.agregarCliente(LocalWebService.ClienteWS.agregarClienteRequest request) {
+            return base.Channel.agregarCliente(request);
+        }
+        
+        public void agregarCliente(LocalWebService.ClienteWS.cliente arg0) {
+            LocalWebService.ClienteWS.agregarClienteRequest inValue = new LocalWebService.ClienteWS.agregarClienteRequest();
+            inValue.arg0 = arg0;
+            LocalWebService.ClienteWS.agregarClienteResponse retVal = ((LocalWebService.ClienteWS.ClienteWS)(this)).agregarCliente(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.ClienteWS.agregarClienteResponse> LocalWebService.ClienteWS.ClienteWS.agregarClienteAsync(LocalWebService.ClienteWS.agregarClienteRequest request) {
+            return base.Channel.agregarClienteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.ClienteWS.agregarClienteResponse> agregarClienteAsync(LocalWebService.ClienteWS.cliente arg0) {
+            LocalWebService.ClienteWS.agregarClienteRequest inValue = new LocalWebService.ClienteWS.agregarClienteRequest();
+            inValue.arg0 = arg0;
+            return ((LocalWebService.ClienteWS.ClienteWS)(this)).agregarClienteAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

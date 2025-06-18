@@ -1,9 +1,13 @@
 ﻿
+using LocalWebService.ClienteWS;
+using LocalWebService.EmpleadoWS;
 using LocalWebService.LocalWS;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,114 +17,130 @@ namespace LocalWebService
     public partial class LocalSupervisor : System.Web.UI.Page
     {
         const int LOCAL_ID = 2; //esto dependera del id del empleado --> cambiar con LOGIN
-        private LocalWSClient daoLocal;
-        private String localNombre;
-        private String localDescripcion;
-        private String localTelefono;
-        private String localDireccion;
+        private int idLocalAAAA; 
+        private local localActual;
+        private LocalWSClient localWSClient;
+
+        public LocalSupervisor()
+        {
+            localWSClient = new LocalWSClient();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (User.Identity.IsAuthenticated)
+            {
+                string datos = FormsAuthentication.Decrypt(
+                    Request.Cookies[FormsAuthentication.FormsCookieName].Value
+                ).UserData;
+
+                string[] partes = datos.Split('|');
+                string tipoUsuario = partes[0];
+                int idUsuario = int.Parse(partes[1]);
+                EmpleadoWSClient empleadoWSClient = new EmpleadoWSClient(); 
+                EmpleadoWS.empleado empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
+                if (empleado != null)
+                {
+                    idLocalAAAA = empleado.idLocal;
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             if (!IsPostBack)
             {
-                CargarDatosLocal();
+                localActual = localWSClient.obtenerLocal(LOCAL_ID); // cambiar a idLocal
+                // Asigna valores a cada control
+                lblNombre.Text = localActual.nombre; ;
+                lblDireccion.Text = localActual.direccion;
+                lblDescripcion.Text = localActual.descripcion;
+                lblTelefono.Text = localActual.telefono;
+
+
+                btnEditar.CommandArgument = LOCAL_ID.ToString(); //importante   
+                                
             }
         }
 
         private void CargarDatosLocal()
         {
-            var client = new LocalWSClient();
-            local local = client.obtenerLocal(LOCAL_ID);
+            localActual = localWSClient.obtenerLocal(LOCAL_ID); // cambiar a idLocal
 
-            if (local != null)
+            // Y aquí asignas el CommandArgument con ese ID
+            
+
+            if (localActual != null)
             {
                 // Asigna valores a cada control
-                localNombre = local.nombre;
-                localDireccion = local.direccion;
-                localDescripcion = local.descripcion;
-                localTelefono = local.telefono;
+                lblNombre.Text = localActual.nombre; ;
+                lblDireccion.Text = localActual.direccion;
+                lblDescripcion.Text = localActual.descripcion;
+                lblTelefono.Text = localActual.telefono;
+
 
             }
 
-            lblNombre.Text = localNombre;
-            lblDireccion.Text = localDireccion;
-            lblDescripcion.Text = localDescripcion;
-            lblTelefono.Text = localTelefono;
+            
         }
 
         protected void btnEditarLocal_Click(object sender, EventArgs e)
         {
-            // 1. Cargar datos del local en los controles del modal:
+            var btn = (LinkButton)sender;
+            int idLocal = int.Parse(btn.CommandArgument);
+            hfLocalId.Value = idLocal.ToString();
 
-            var client = new LocalWSClient();
-            local local = client.obtenerLocal(LOCAL_ID);
+            local localNuevo = localWSClient.obtenerLocal(idLocal);
+            if (localNuevo != null)
+                txtNombreLocal.Text = localNuevo.nombre;
+                txtTelefonoLocal.Text = localNuevo.telefono;
+                txtDireccionLocal.Text = localNuevo.direccion;
+                txtDescripcionLocal.Text = localNuevo.descripcion;
+                ddlEstadoLocal.SelectedValue = "true";
 
-            txtNombreLocal.Text = local.nombre;
-            txtDireccionLocal.Text = local.direccion;
-            txtTelefonoLocal.Text = local.telefono;
-            txtDescripcionLocal.Text = local.descripcion;
-            ddlEstadoLocal.SelectedValue = "true";
+            // 2) Desde el servidor le decimos al cliente que abra el modal
+            string showModal = $@"
+          var modal = new bootstrap.Modal(
+            document.getElementById('{pnlModalLocal.ClientID}'));
+          modal.show();";
 
-
-            // 2. Inyectar JavaScript para abrir el modal por su ClientID
-            string script = "var myModal = new bootstrap.Modal(document.getElementById('"
-                            + pnlModalLocal.ClientID
-                            + "'), { keyboard: false });"
-                            + "myModal.show();";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowModalLocal", script, true);
+            ScriptManager.RegisterStartupScript(
+              this,
+              this.GetType(),
+              "ShowEditModal",
+              showModal,
+              true);
         }
 
         protected void btnGuardarLocalModal_Click(object sender, EventArgs e)
         {
-            string nombre = txtNombreLocal.Text.Trim();
-            string direccion = txtDireccionLocal.Text.Trim();
-            string telefono = txtTelefonoLocal.Text.Trim();
-            string descripcion = txtDescripcionLocal.Text.Trim();
-            bool activo = ddlEstadoLocal.SelectedValue == "true";
-
-            local localNuevo = new LocalWS.local
+            if (!int.TryParse(hfLocalId.Value, out var idLocal) || idLocal == 0)
             {
-                idLocal = LOCAL_ID,
-                nombre = nombre,
-                direccion = direccion,
-                telefono = telefono,
-                descripcion = descripcion,
-                activo = activo
+                lblError.Text = "ID inválido.";
+                return;
+            }
 
-            };
+            localWSClient.actualizarLocalVarios(idLocal, txtNombreLocal.Text.Trim(), txtTelefonoLocal.Text.Trim(), txtDescripcionLocal.Text.Trim(),
+                txtDireccionLocal.Text.Trim());
 
-            try
-            {
-                // Llamar al servicio y obtener la respuesta boolean
-                var client = new LocalWSClient();
-                bool ok = client.actualizarLoc(localNuevo); //FALSE xd
-                client.Close();
+            CargarDatosLocal();
 
-                if (!ok)
-                {
-                    // El booleano vino como “false”: hubo un fallo interno en el servicio
-                    lblError.Text = "El servicio NO pudo actualizar el Local. Revise los datos.";
-                    lblError.CssClass = "text-danger";
-                    return;
-                }
-
-                // Éxito: recargar la UI
-                CargarDatosLocal();  // o el método que refresque la lista/tarjeta de locales
-
-                // Cerrar el modal con JavaScript
-                string scriptHide = @"
+            // Cerrar el modal con JavaScript
+            string scriptHide = @"
                     var modal = bootstrap.Modal.getInstance(
                         document.getElementById('" + pnlModalLocal.ClientID + @"'));
                     if(modal) modal.hide();";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "HideModal", scriptHide, true);
-            }
-            catch (Exception ex)
-            {
-                // Aquí atrapamos CommunicationException o FaultException si algo falla
-                lblError.Text = "Error al comunicarse con el servicio: " + ex.Message;
-                lblError.CssClass = "text-danger";
-            }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "HideModal", scriptHide, true);
+
         }
+
 
         protected void BtnAdminEmpleados(object sender, EventArgs e)
         {

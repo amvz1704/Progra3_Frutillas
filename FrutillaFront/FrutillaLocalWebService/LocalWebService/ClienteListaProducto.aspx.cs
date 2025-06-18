@@ -12,8 +12,6 @@ using System.Web.UI.WebControls;
 namespace LocalWebService
 {
 
-    
-
     public partial class ClienteListaProducto : System.Web.UI.Page
     {
 

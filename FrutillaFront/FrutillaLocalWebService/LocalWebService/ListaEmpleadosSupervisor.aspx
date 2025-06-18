@@ -40,6 +40,10 @@
                     Text="Agregar Empleado"
                     CssClass="btn-frutilla"
                     OnClick="btnAgregarEmpleado_Click" />
+
+                     <!-- Modal clientes -->
+                <asp:HiddenField ID="hfModo"    runat="server" />  <!-- "Create" ó "Edit" -->
+                <asp:HiddenField ID="hfIdCliente" runat="server" /> <!-- el ID sólo en edición -->
             </div>
         </div>
     </div>
@@ -108,6 +112,14 @@
                     </ItemTemplate>
                     <ItemStyle Width="200px" />
                 </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Turno" SortExpression="Turno">
+                    <ItemTemplate>
+                        <%# (bool)Eval("turnoTrabajo") ? "Mañana" : "Noche" %>
+                    </ItemTemplate>
+                    <ItemStyle Width="60px" />
+                </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="Acciones">
                     <HeaderStyle CssClass="text-uppercase text-center" />
                     <ItemTemplate>
@@ -186,6 +198,9 @@
 
                   <dt class="col-sm-4">Correo:</dt>
                   <dd class="col-sm-8"><asp:Label ID="lblVerCorreo" runat="server" /></dd>
+
+                   <dt class="col-sm-4">Turno:</dt>
+                  <dd class="col-sm-8"><asp:Label ID="lblTurno" runat="server" /></dd>
                 </dl>
               </div>
               <!-- Pie -->
@@ -240,6 +255,15 @@
                   <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" />
                 </div>
               </div>
+                <div class="mb-3">
+                  <asp:DropDownList 
+                      ID="ddlEstado" 
+                      runat="server" 
+                      CssClass="form-select">
+                    <asp:ListItem Value="true"  Text="Mañana" />
+             <asp:ListItem Value="false" Text="Noche" />
+                  </asp:DropDownList>
+                </div>
               <!-- Pie -->
               <div class="modal-footer">
                 <asp:Button ID="btnGuardarModal" runat="server"
@@ -254,6 +278,6 @@
           </div>
         </div>
 
-
+   
 
 </asp:Content>

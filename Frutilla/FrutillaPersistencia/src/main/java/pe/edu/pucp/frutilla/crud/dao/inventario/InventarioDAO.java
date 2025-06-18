@@ -21,6 +21,7 @@ public interface InventarioDAO {
     void eliminarInventario (int idProducto,int idLocal) throws SQLException;
     //Este es para poder jalar todos los productos asociados a un local particular
     ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException;
-    
+    //Devuelve el tipo de producto del inventario
+    public char obtenerTipoProducto(int idProducto,int idLocal) throws SQLException;
 }
 
