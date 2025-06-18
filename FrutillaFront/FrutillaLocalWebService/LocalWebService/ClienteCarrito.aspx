@@ -7,20 +7,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-<<<<<<< HEAD
-   
-     <h3>Tu Carrito</h3>
-    <div class="container">
-
- <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False"
-    CssClass="table table-striped"
-    OnRowCommand="gvCarrito_RowCommand">
-    <Columns>
-        <asp:BoundField DataField="Producto.IdProducto" HeaderText="Id" />
-        <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" />
-        <asp:BoundField DataField="Producto.Descripcion" HeaderText="Descripción" />
-=======
->>>>>>> 0702500ae142cb8c254ebf891c39f89459f92da9
 
     <header class="py-2 border-bottom bg-frutilla">
         <div class="container">
@@ -72,7 +58,6 @@
                         Text="Eliminar"
                         CommandName="Eliminar"
                         CommandArgument='<%# Container.DataItemIndex %>'
-<<<<<<< HEAD
                         CssClass="btn btn-outline-secondary btn-sm me-2" />
 
                     <asp:Label ID="lblCantidad" runat="server" Text='<%# Eval("cantidad") %>' CssClass="fw-bold" />
@@ -99,15 +84,6 @@
         </asp:TemplateField>
     </Columns>
 </asp:GridView>
-    </div>
-
-=======
-                        CssClass="btn btn-danger btn-sm" />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
->>>>>>> 0702500ae142cb8c254ebf891c39f89459f92da9
 
     <div class="row mt-3">
         <div class="col-md-4">

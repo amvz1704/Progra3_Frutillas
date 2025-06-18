@@ -27,7 +27,7 @@ namespace LocalWebService
             if (!IsPostBack)
             {
                 // 1) Obtener el valor de la URL: ClientePago.aspx?id=123
-                sId = Request.QueryString["id"];
+                string sId = Request.QueryString["id"];
                 if (!int.TryParse(sId, out int id))
                 {
                     // Parámetro inválido; podrías redirigir o mostrar error
@@ -75,7 +75,7 @@ namespace LocalWebService
             decimal total = subtotal + igv;
 
             //RECIEN SE INSERTA EN LA BD, se crea un pedido y asi --> luego de eso finalmente se confirma con pagar
-            txtPedido.Text = sId; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
+            txtPedido.Text = "Por editar"; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
 
 
             txtSubtotal.Text = subtotal.ToString("C2");
