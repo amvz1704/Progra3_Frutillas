@@ -69,14 +69,29 @@ namespace LocalWebService
             try
             {
                 var productos = inventarioWSClient.listarTodos(int.Parse(ddlLocal.SelectedValue)); //cambiar por el local seleccionado 
-                var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
-
-                rptProductos.DataSource = productosSinDuplicados;
-                rptProductos.DataBind();
+                
+                
+                
+                if (productos != null)
+                {
+                    var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
+                    rptProductos.DataSource = productosSinDuplicados;
+                    rptProductos.DataBind();
+                    lblError.Text = ""; // Limpiar mensaje de error si todo va bien
+                }
+                else
+                {
+                    // Si no hay productos, asegúrate de limpiar el repeater
+                    rptProductos.DataSource = null;
+                    rptProductos.DataBind();
+                    lblError.Text = "Local no cuenta con productos disponibles";
+                }
             }
             catch (Exception ex)
             {
-                lblError.Text = "Error al cargar productos: " + ex.Message;
+                rptProductos.DataSource = null;
+                rptProductos.DataBind();
+                lblError.Text = "Debe seleccionar un local ";
             }
         }
 
@@ -148,5 +163,19 @@ namespace LocalWebService
         }
 
 
+        //esta función obtiene la imagen del producto según su tipo
+        public string ObtenerImagenPorTipo(object idProd)
+        {
+            int idProducto = Convert.ToInt32(idProd);
+            inventarioWSClient = new InventarioWSClient();
+            ushort tipo = inventarioWSClient.obtenerTipoProducto(idProducto, int.Parse(ddlLocal.SelectedValue));
+            switch (tipo)
+            {
+                case 'F': return "/Public/images/frutas.jpg";
+                case 'B': return "/Public/images/bebida.jpg";
+                case 'S': return "/Public/images/snack.jpg";
+                default: return "/Public/images/producto.jpg";
+            }
+        }
     }
 }

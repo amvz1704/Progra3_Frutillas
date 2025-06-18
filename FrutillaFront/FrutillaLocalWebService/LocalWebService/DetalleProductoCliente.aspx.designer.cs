@@ -42,13 +42,13 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.HiddenField HiddenTipoEstadoProductoEdit;
 
         /// <summary>
-        /// Control LblEditNombre.
+        /// Control imgProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEditNombre;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgProducto;
 
         /// <summary>
         /// Control TxtEditNombre.
@@ -60,15 +60,6 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.TextBox TxtEditNombre;
 
         /// <summary>
-        /// Control LblEditPrecio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEditPrecio;
-
-        /// <summary>
         /// Control TxtEditPrecio.
         /// </summary>
         /// <remarks>
@@ -76,15 +67,6 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtEditPrecio;
-
-        /// <summary>
-        /// Control LblEditDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEditDescripcion;
 
         /// <summary>
         /// Control TxtEditDescripcion.
@@ -96,15 +78,6 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.TextBox TxtEditDescripcion;
 
         /// <summary>
-        /// Control LblEditStock.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEditStock;
-
-        /// <summary>
         /// Control TxtEditStock.
         /// </summary>
         /// <remarks>
@@ -112,51 +85,6 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtEditStock;
-
-        /// <summary>
-        /// Control LblEditStockMin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEditStockMin;
-
-        /// <summary>
-        /// Control TxtEditStockMin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtEditStockMin;
-
-        /// <summary>
-        /// Control LblEditCodigo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEditCodigo;
-
-        /// <summary>
-        /// Control TxtEditCodigo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtEditCodigo;
-
-        /// <summary>
-        /// Control LblTipoEnvasoEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTipoEnvasoEdit;
 
         /// <summary>
         /// Control TxtTipoEnvaseEdit.
@@ -195,15 +123,6 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.CheckBox ChkReqLimpiezaEdit;
 
         /// <summary>
-        /// Control LblTamanioEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTamanioEdit;
-
-        /// <summary>
         /// Control TxtTamanioEdit.
         /// </summary>
         /// <remarks>
@@ -211,15 +130,6 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtTamanioEdit;
-
-        /// <summary>
-        /// Control LblTipoBebidaEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTipoBebidaEdit;
 
         /// <summary>
         /// Control TxtTipoBebidaEdit.
@@ -231,15 +141,6 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.TextBox TxtTipoBebidaEdit;
 
         /// <summary>
-        /// Control LblTipoEndulzanteEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTipoEndulzanteEdit;
-
-        /// <summary>
         /// Control TxtTipoEndulzanteEdit.
         /// </summary>
         /// <remarks>
@@ -247,15 +148,6 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtTipoEndulzanteEdit;
-
-        /// <summary>
-        /// Control LblTipoLecheEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTipoLecheEdit;
 
         /// <summary>
         /// Control DDTipoLecheEdit.
@@ -267,15 +159,6 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.DropDownList DDTipoLecheEdit;
 
         /// <summary>
-        /// Control LblFrutasBebEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblFrutasBebEdit;
-
-        /// <summary>
         /// Control ChkFrutasBebEdit.
         /// </summary>
         /// <remarks>
@@ -283,15 +166,6 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList ChkFrutasBebEdit;
-
-        /// <summary>
-        /// Control LblTipoSnackEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTipoSnackEdit;
 
         /// <summary>
         /// Control TxtTipoSnackEdit.
@@ -303,15 +177,6 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.TextBox TxtTipoSnackEdit;
 
         /// <summary>
-        /// Control LblEnvaseSnackEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEnvaseSnackEdit;
-
-        /// <summary>
         /// Control TxtEnvaseSnackEdit.
         /// </summary>
         /// <remarks>
@@ -319,6 +184,15 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtEnvaseSnackEdit;
+
+        /// <summary>
+        /// Control btnAgregarAlCarrito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarAlCarrito;
 
         /// <summary>
         /// Control lblMensaje.

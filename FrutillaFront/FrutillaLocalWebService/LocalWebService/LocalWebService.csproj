@@ -343,6 +343,7 @@
     </None>
     <Content Include="DetallePedido.aspx" />
     <Content Include="DetalleProductoCliente.aspx" />
+    <Content Include="EmpleadoPerfil.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />

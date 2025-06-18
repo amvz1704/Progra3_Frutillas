@@ -11,17 +11,23 @@
   <message name="obtenerIDPorNombreUsuarioResponse">
     <part name="parameters" element="tns:obtenerIDPorNombreUsuarioResponse" />
   </message>
+  <message name="validarTokenRecuperacion">
+    <part name="parameters" element="tns:validarTokenRecuperacion" />
+  </message>
+  <message name="validarTokenRecuperacionResponse">
+    <part name="parameters" element="tns:validarTokenRecuperacionResponse" />
+  </message>
   <message name="actualizarContrasena">
     <part name="parameters" element="tns:actualizarContrasena" />
   </message>
   <message name="actualizarContrasenaResponse">
     <part name="parameters" element="tns:actualizarContrasenaResponse" />
   </message>
-  <message name="validarTokenRecuperacion">
-    <part name="parameters" element="tns:validarTokenRecuperacion" />
+  <message name="generarTokenRecuperacion">
+    <part name="parameters" element="tns:generarTokenRecuperacion" />
   </message>
-  <message name="validarTokenRecuperacionResponse">
-    <part name="parameters" element="tns:validarTokenRecuperacionResponse" />
+  <message name="generarTokenRecuperacionResponse">
+    <part name="parameters" element="tns:generarTokenRecuperacionResponse" />
   </message>
   <message name="obtenerPorCorreo">
     <part name="parameters" element="tns:obtenerPorCorreo" />
@@ -41,24 +47,22 @@
   <message name="validarUsuarioResponse">
     <part name="parameters" element="tns:validarUsuarioResponse" />
   </message>
-  <message name="generarTokenRecuperacion">
-    <part name="parameters" element="tns:generarTokenRecuperacion" />
-  </message>
-  <message name="generarTokenRecuperacionResponse">
-    <part name="parameters" element="tns:generarTokenRecuperacionResponse" />
-  </message>
   <portType name="UsuarioWS">
     <operation name="obtenerIDPorNombreUsuario">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest" message="tns:obtenerIDPorNombreUsuario" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse" message="tns:obtenerIDPorNombreUsuarioResponse" />
     </operation>
+    <operation name="validarTokenRecuperacion">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionRequest" message="tns:validarTokenRecuperacion" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionResponse" message="tns:validarTokenRecuperacionResponse" />
+    </operation>
     <operation name="actualizarContrasena">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/actualizarContrasenaRequest" message="tns:actualizarContrasena" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/actualizarContrasenaResponse" message="tns:actualizarContrasenaResponse" />
     </operation>
-    <operation name="validarTokenRecuperacion">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionRequest" message="tns:validarTokenRecuperacion" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarTokenRecuperacionResponse" message="tns:validarTokenRecuperacionResponse" />
+    <operation name="generarTokenRecuperacion">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarTokenRecuperacionRequest" message="tns:generarTokenRecuperacion" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarTokenRecuperacionResponse" message="tns:generarTokenRecuperacionResponse" />
     </operation>
     <operation name="obtenerPorCorreo">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoRequest" message="tns:obtenerPorCorreo" />
@@ -72,14 +76,19 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarUsuarioRequest" message="tns:validarUsuario" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarUsuarioResponse" message="tns:validarUsuarioResponse" />
     </operation>
-    <operation name="generarTokenRecuperacion">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarTokenRecuperacionRequest" message="tns:generarTokenRecuperacion" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarTokenRecuperacionResponse" message="tns:generarTokenRecuperacionResponse" />
-    </operation>
   </portType>
   <binding name="UsuarioWSPortBinding" type="tns:UsuarioWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <operation name="obtenerIDPorNombreUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarTokenRecuperacion">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -97,7 +106,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="validarTokenRecuperacion">
+    <operation name="generarTokenRecuperacion">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -125,15 +134,6 @@
       </output>
     </operation>
     <operation name="validarUsuario">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="generarTokenRecuperacion">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
