@@ -71,7 +71,7 @@
                                 Text="Carrito" />
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Notificaciones/ClienteNotificaciones.aspx"><i class="bi bi-bell-fill"></i></a>
+                            <a class="nav-link" href="ClienteNotificaciones.aspx"><i class="bi bi-bell-fill"></i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ClientePerfil.aspx"><i class="bi bi-person-circle"></i></a>

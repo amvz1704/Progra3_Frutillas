@@ -13,19 +13,53 @@ namespace LocalWebService
         private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
             => Session["Carrito"] as List<ComprobanteWS.lineaOrdenDeVenta>;
 
+        private int servicioOrdenId
+        {
+            get => ViewState["servicioOrdenId"] as int? ?? 0;
+            set => ViewState["servicioOrdenId"] = value;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                // 1) Obtener el valor de la URL: ClientePago.aspx?id=123
+                string sId = Request.QueryString["id"];
+                if (!int.TryParse(sId, out int id))
+                {
+                    // Parámetro inválido; podrías redirigir o mostrar error
+                    Response.Redirect("ClienteCarrito.aspx");
+                    return;
+                }
+
+                // 2) Guardarlo si luego lo vas a reutilizar
+                servicioOrdenId = id;
+
                 // Si no hay carrito o está vacío, volver al carrito
                 if (Carrito == null || !Carrito.Any())
                 {
                     Response.Redirect("ClienteCarrito.aspx");
                     return;
                 }
+
+                // Seleccionar método de pago por defecto: Tarjeta
+                SeleccionarMetodo("Tarjeta");
+
                 CargarTotales();
             }
         }
+
+        private void SeleccionarMetodo(string metodo)
+        {
+            // Marcar visualmente el botón seleccionado
+            btnTarjeta.CssClass = metodo == "Tarjeta" ? "btn btn-success" : "btn btn-outline-secondary";
+            btnTransferencia.CssClass = metodo == "Transferencia" ? "btn btn-success" : "btn btn-outline-secondary";
+
+            // Mostrar u ocultar sección de bancos
+            pnlBancos.Visible = metodo == "Transferencia";
+        }
+
+
 
         private void CargarTotales()
         {
@@ -45,15 +79,9 @@ namespace LocalWebService
 
         protected void SeleccionarMetodo_Click(object sender, EventArgs e)
         {
-            var btn = (System.Web.UI.WebControls.Button)sender;
+            var btn = (Button)sender;
             string metodo = btn.CommandArgument;
-
-            // Marcar visualmente el botón seleccionado
-            btnTarjeta.CssClass = metodo == "Tarjeta" ? "btn btn-success" : "btn btn-outline-secondary";
-            btnTransferencia.CssClass = metodo == "Transferencia" ? "btn btn-success" : "btn btn-outline-secondary";
-
-            // Mostrar u ocultar sección de bancos si es necesario
-            pnlBancos.Visible = metodo == "Transferencia";
+            SeleccionarMetodo(metodo);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -66,7 +94,12 @@ namespace LocalWebService
         protected void btnPagar_Click(object sender, EventArgs e)
         {
             // Aquí iría tu lógica de integración con pasarela de pago
+
             // Por ahora simulamos confirmación y vaciamos el carrito:
+
+            //actualizar servicio orden id con ServicioOrdenId --> UPDATE ordenServicio "PAGADO"
+
+
             Session["Carrito"] = null;
             //En realidad debe de abrir un modal! tal que... 
         }
@@ -74,8 +107,16 @@ namespace LocalWebService
         protected void btnVerComprobante_Click(object sender, EventArgs e)
         {
             //var idOrden = Session["UltimaOrdenId"]?.ToString() ?? Request.QueryString["pedidoId"];
-            int idOrden = 2;
-            Response.Redirect($"ComprobantePago.aspx?id={idOrden}");
+
+
+            //creas el comprobante y lo subes a la BD 
+
+            //idBD
+
+            int idComprobanteServicio = 2;
+
+            //luego vas a ver el comprobante cread
+            Response.Redirect($"ComprobantePago.aspx?id={idComprobanteServicio}");
         }
     }
 }

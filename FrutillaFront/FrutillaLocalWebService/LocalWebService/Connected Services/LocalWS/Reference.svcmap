@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="cdeb5d70-a3df-4a8c-9c27-858158628827" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="4a98de26-112c-4eec-9b66-41e145481e2d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:8080/FrutillaWS/LocalWS?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LocalWS.wsdl" MetadataType="Wsdl" ID="c742b7aa-a702-49e4-9af6-177b00bdf286" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/LocalWS?wsdl" />
-    <MetadataFile FileName="LocalWS.xsd" MetadataType="Schema" ID="b7f5be13-5078-4946-9401-d888332468a4" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/LocalWS?xsd=1" />
+    <MetadataFile FileName="LocalWS.wsdl" MetadataType="Wsdl" ID="41de241c-49e9-4dbe-9048-1e1dde0c1cb1" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/LocalWS?wsdl" />
+    <MetadataFile FileName="LocalWS.xsd" MetadataType="Schema" ID="c1f7b7c9-1e5a-4012-b241-68433fc798e5" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/LocalWS?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

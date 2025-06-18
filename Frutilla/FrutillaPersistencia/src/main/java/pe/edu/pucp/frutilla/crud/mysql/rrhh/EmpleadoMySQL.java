@@ -16,6 +16,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 
@@ -110,6 +111,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         empleado.setActivo(rs.getBoolean("activo"));
         LocalDate temporal = rs.getDate("fechaContrato").toLocalDate(); 
         empleado.setFechaContrato(java.util.Date.from(temporal.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        empleado.setFechatContratoSTRING(temporal.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         empleado.setSalario(rs.getDouble("salario"));
         empleado.setTurnoTrabajo(rs.getBoolean("turnoTrabajo"));
         empleado.setTipo(tipo);
