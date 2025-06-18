@@ -162,5 +162,10 @@ namespace LocalWebService
                 empleadoClient.Close();
             }
         }
+
+        protected void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListaPedidos.aspx");
+        }
     }
 }

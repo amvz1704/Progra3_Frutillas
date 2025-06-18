@@ -342,6 +342,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
+    <Content Include="DetallePedidoCliente.aspx" />
     <Content Include="DetalleProductoCliente.aspx" />
     <Content Include="EmpleadoPerfil.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
@@ -527,6 +528,13 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedidoCliente.aspx.cs">
+      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedidoCliente.aspx.designer.cs">
+      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleado.Master.cs">
       <DependentUpon>Empleado.Master</DependentUpon>
