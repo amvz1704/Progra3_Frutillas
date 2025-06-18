@@ -32,7 +32,6 @@ public class UsuarioService {
     }
 
     public void actualizar(Persona persona) throws Exception {
-        // Validaciones
         if (persona == null) {
             throw new Exception("La persona no puede ser nula");
         }
@@ -48,7 +47,7 @@ public class UsuarioService {
         if (persona.getContraSistema() == null || persona.getContraSistema().trim().isEmpty()) {
             throw new Exception("La contraseña no puede ser vacía");
         }
-
+        usuarioMySQL.actualizar(persona);
     }
 
     public void eliminar(int idUsuario) throws Exception {

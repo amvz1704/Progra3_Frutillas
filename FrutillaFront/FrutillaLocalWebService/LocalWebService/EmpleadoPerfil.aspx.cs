@@ -1,4 +1,5 @@
-﻿using LocalWebService.EmpleadoWS;
+﻿using LocalWebService.ClienteWS;
+using LocalWebService.EmpleadoWS;
 using LocalWebService.UsuarioWS;
 using System;
 using System.Linq;
@@ -12,7 +13,6 @@ namespace LocalWebService
     {
         protected EmpleadoWSClient empleadoService;
         protected UsuarioWSClient usuarioService;
-        private empleado empleadoActual;
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -28,21 +28,21 @@ namespace LocalWebService
                 return;
             }
 
-            if (Session["empleado"] == null)
+            string datos = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            string[] partes = datos.Split('|');
+            string tipoUsuario = partes[0];
+            int idUsuario = int.Parse(partes[1]);
+
+            if (tipoUsuario != "E")
             {
-                string datos = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
-                string[] partes = datos.Split('|');
-                string tipoUsuario = partes[0];
-                int idUsuario = int.Parse(partes[1]);
+                Response.Redirect("Login.aspx");
+                return;
+            }
 
-                if (tipoUsuario != "E")
-                {
-                    Response.Redirect("Login.aspx");
-                    return;
-                }
-
-                empleadoActual = empleadoService.obtenerEmpleadoPorId(idUsuario);
-                if (empleadoActual == null)
+            if (!IsPostBack)
+            {
+                empleado empleado = empleadoService.obtenerEmpleadoPorId(idUsuario);
+                if (empleado == null)
                 {
                     lblEstado.Text = "No se encontró la información del usuario.";
                     lblEstado.CssClass = "text-danger";
@@ -50,17 +50,10 @@ namespace LocalWebService
                     return;
                 }
 
-                Session["empleado"] = empleadoActual;
-            }
-            else
-            {
-                empleadoActual = (empleado)Session["empleado"];
+                Session["empleado"] = empleado;
             }
 
-            if (!IsPostBack)
-            {
-                MostrarDatos(empleadoActual);
-            }
+            MostrarDatos((empleado)Session["empleado"]);
         }
 
         private void MostrarDatos(empleado e)
@@ -75,21 +68,19 @@ namespace LocalWebService
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
-            empleadoActual = (empleado)Session["empleado"];
+            empleado empleado = (empleado)Session["empleado"];
 
-            txtNombre.Text = empleadoActual.nombre;
-            txtApellidoPaterno.Text = empleadoActual.apellidoPaterno;
-            txtApellidoMaterno.Text = empleadoActual.apellidoMaterno;
-            txtCorreo.Text = empleadoActual.correoElectronico;
-            txtTelefono.Text = empleadoActual.telefono;
+            txtNombre.Text = empleado.nombre;
+            txtApellidoPaterno.Text = empleado.apellidoPaterno;
+            txtApellidoMaterno.Text = empleado.apellidoMaterno;
+            txtCorreo.Text = empleado.correoElectronico;
+            txtTelefono.Text = empleado.telefono;
 
             ToggleModoEdicion(true);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            empleadoActual = (empleado)Session["empleado"];
-            MostrarDatos(empleadoActual);
             ToggleModoEdicion(false);
             lblMensaje.Text = "";
         }
@@ -101,6 +92,8 @@ namespace LocalWebService
             lblApMaternoError.Text = "";
             lblCorreoError.Text = "";
             lblTelefonoError.Text = "";
+
+            empleado empleado = (empleado)Session["empleado"];
 
             string nombre = txtNombre.Text.Trim();
             string apPaterno = txtApellidoPaterno.Text.Trim();
@@ -130,7 +123,7 @@ namespace LocalWebService
                 datosvalidos = false;
                 lblCorreoError.Text = "Correo electrónico no válido.";
             }
-            else if (!correo.Equals(empleadoActual.correoElectronico, StringComparison.OrdinalIgnoreCase) && usuarioService.correoExiste(correo))
+            else if (!correo.Equals(empleado.correoElectronico, StringComparison.OrdinalIgnoreCase) && usuarioService.correoExiste(correo))
             {
                 datosvalidos = false;
                 lblCorreoError.Text = "El correo ya está en uso por otra cuenta.";
@@ -148,18 +141,31 @@ namespace LocalWebService
 
             try
             {
-                empleadoActual.nombre = nombre;
-                empleadoActual.apellidoPaterno = apPaterno;
-                empleadoActual.apellidoMaterno = apMaterno;
-                empleadoActual.correoElectronico = correo;
-                empleadoActual.telefono = telefono;
+                empleado.nombre = nombre;
+                empleado.apellidoPaterno = apPaterno;
+                empleado.apellidoMaterno = apMaterno;
+                empleado.correoElectronico = correo;
+                empleado.telefono = telefono;
 
-                empleadoService.actualizarEmpleado(empleadoActual);
-                Session["empleado"] = empleadoActual;
+                string date = empleado.fechatContratoSTRING;
+                empleado.fechatContratoSTRING = date;
 
-                MostrarDatos(empleadoActual);
-                lblMensaje.CssClass = "text-success";
-                lblMensaje.Text = "Datos actualizados correctamente.";
+                bool actualizado = empleadoService.actualizarEmpleado(empleado);
+
+                if (actualizado)
+                {
+                    Session["empleado"] = empleado;
+
+                    MostrarDatos(empleado);
+
+                    lblMensaje.CssClass = "text-success";
+                    lblMensaje.Text = "Datos actualizados correctamente.";
+                }
+                else
+                {
+                    lblMensaje.CssClass = "text-danger";
+                    lblMensaje.Text = "No se pudo actualizar los datos correctamente.";
+                }
                 ToggleModoEdicion(false);
             }
             catch (Exception ex)
@@ -177,8 +183,25 @@ namespace LocalWebService
             txtNombre.Visible = txtApellidoPaterno.Visible = txtApellidoMaterno.Visible =
             txtCorreo.Visible = txtTelefono.Visible = editar;
 
-            btnEditar.Visible = !editar;
+            btnEditar.Visible = btnCerrarSesion.Visible = !editar;
             btnGuardar.Visible = btnCancelar.Visible = editar;
+        }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(cookie);
+            }
+
+            Session.Clear();
+            Session.Abandon();
+
+            Response.Redirect("Login.aspx");
         }
     }
 }

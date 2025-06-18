@@ -50,10 +50,15 @@ public class EmpleadoWS {
     @WebMethod(operationName = "actualizarEmpleado")
     public boolean actualizarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            
+            
         try { 
-            Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
-            empleado.setFechaContrato(sdf.parse(empleado.getFechatContratoSTRING()));
-        } catch (ParseException ex) {
+            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            empleado.setFechaContrato(LocalDate.parse(empleado.getFechatContratoSTRING(), formatter));
+            //Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
+            //empleado.setFechaContrato(sdf.parse(empleado.getFechatContratoSTRING()));
+        }catch (Exception ex) {
             Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
         }    
         try{
@@ -92,9 +97,10 @@ public class EmpleadoWS {
     public boolean agregarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try { 
-            Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
-            empleado.setFechaContrato(sdf.parse(empleado.getFechatContratoSTRING()));
-        } catch (ParseException ex) {
+            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            empleado.setFechaContrato(LocalDate.parse(empleado.getFechatContratoSTRING(), formatter));
+        } catch (Exception ex) {
             Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
         }   
         

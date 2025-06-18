@@ -99,7 +99,8 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <asp:Button ID="btnEditar" runat="server" Text="Editar Perfil" CssClass="btn btn-editar" OnClick="btnEditar_Click" />
+                        <asp:Button ID="btnEditar" runat="server" Text="Editar Perfil" CssClass="btn btn-frutilla" OnClick="btnEditar_Click" />
+                        <asp:Button ID="btnCerrarSesion" runat="server" CssClass="btn btn-frutilla" BackColor="Red" BorderColor="Red" Text="Cerrar Sesión" OnClick="btnCerrarSesion_Click" />
                         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success me-2" Visible="false" OnClick="btnGuardar_Click" />
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" Visible="false" OnClick="btnCancelar_Click" />
                     </div>
