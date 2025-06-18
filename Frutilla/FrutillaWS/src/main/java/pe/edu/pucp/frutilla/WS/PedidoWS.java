@@ -127,4 +127,26 @@ public class PedidoWS {
         }
         return null;
     }
+    
+    @WebMethod(operationName = "generarOrdenConLineas")
+    public int generarOrdenConLineas(
+            @WebParam(name = "orden") OrdenVenta orden,
+            @WebParam(name = "lineas") List<LineaOrdenDeVenta> lineas) {
+        try {
+            // 1. Agregar la orden
+            daoOrdenVenta.agregarOrden(orden); // actualiza el ID
+            int idOrden = orden.getIdOrdenVenta();
+
+            // 2. Agregar cada línea asociada a la orden
+            for (LineaOrdenDeVenta linea : lineas) {
+                linea.setIdOrdenVenta(idOrden);
+                daoLineaOrdenDeVenta.registrarLinea(linea);
+            }
+
+            return idOrden;
+        } catch (Exception e) {
+            System.err.println("Error al generar la orden con líneas: " + e.getMessage());
+            return -1;
+        }
+    }
 }
