@@ -124,6 +124,12 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <None Include="Connected Services\ComprobanteWS\configuration91.svcinfo" />
@@ -292,6 +298,9 @@
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerDetallePedidoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
     <None Include="Connected Services\PedidoWS\PedidoWS.xsd">
       <SubType>Designer</SubType>
@@ -376,6 +385,9 @@
     <Content Include="Public\fonts\css\v4-shims.min.css" />
     <Content Include="Public\fonts\css\v5-font-face.css" />
     <Content Include="Public\fonts\css\v5-font-face.min.css" />
+    <Content Include="Public\images\bebida.jpg" />
+    <Content Include="Public\images\frutas.jpg" />
+    <Content Include="Public\images\snack.jpg" />
     <Content Include="Public\images\fruteria-letras.jpg" />
     <Content Include="Public\images\fruteria-sociales.jpg" />
     <Content Include="Public\images\homeSnacks.jpg" />
@@ -384,6 +396,7 @@
     <Content Include="Public\images\productosImagen.png" />
     <Content Include="Public\images\frutillaLogo.jpeg" />
     <Content Include="Public\images\bannerFrutilla.jpg" />
+    <Content Include="Public\images\producto.jpg" />
     <Content Include="Public\images\ventasImagen.png" />
     <Content Include="Public\images\pedidosImagen.png" />
     <Content Include="Public\images\empleadosImagen.png" />
