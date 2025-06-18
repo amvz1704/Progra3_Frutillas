@@ -50,11 +50,20 @@ public class InventarioWS {
         }
     }
     
+     @WebMethod(operationName = "obtenerStockPorId")
+    public int obtenerStockPorId(int idProducto, int idLocal){
+        try{
+            return inventarioService.obtenerStockPorId(idProducto, idLocal);
+        }
+        catch (Exception e){
+            throw new WebServiceException("Error al obtener stock por id");
+        }
+    }
+    
     @WebMethod(operationName = "insertarFruta")
     public void insertarFruta(Fruta producto, int idLocal){
         try{
             frutaService = new FrutaService();
-            boolean requiere = producto.isRequiereEnvase();
             frutaService.agregar((Fruta)producto);
             producto.setTipoEstado(TipoEstado.DISPONIBLE);
                 
@@ -75,7 +84,21 @@ public class InventarioWS {
             inventarioService.insertar(producto, idLocal);
         }
         catch (Exception e){
-            throw new WebServiceException("Error al agregar fruta");
+            throw new WebServiceException("Error al agregar bebida");
+        }
+    }
+    
+    @WebMethod(operationName = "insertarSnack")
+    public void insertarSnack(Snack producto, int idLocal){
+        try{
+            snackService = new SnackService();
+            snackService.agregar((Snack)producto);
+            producto.setTipoEstado(TipoEstado.DISPONIBLE);
+                
+            inventarioService.insertar(producto, idLocal);
+        }
+        catch (Exception e){
+            throw new WebServiceException("Error al agregar snack");
         }
     }
     
@@ -111,6 +134,54 @@ public class InventarioWS {
         }
         return null;
     }
+    
+    @WebMethod(operationName = "obtenerFrutaPorId")
+    public Fruta obtenerFrutaPorId(@WebParam(name = "idfruta") int idProducto){
+        frutaService = new FrutaService();
+        try{
+            Fruta fruta = frutaService.obtenerPorId(idProducto);
+            return fruta;
+        } catch (Exception ex) {
+            System.err.println("Error al obtener la fruta con ID " + idProducto + ": " + ex.getMessage());
+        }
+        return null;
+    }
+    
+    @WebMethod(operationName = "obtenerSnackPorId")
+    public Snack obtenerSnackPorId(@WebParam(name = "idsnack") int idProducto){
+        snackService = new SnackService();
+        try{
+            Snack snack = snackService.obtenerPorId(idProducto);
+            return snack;
+        } catch (Exception ex) {
+            System.err.println("Error al obtener el snack con ID " + idProducto + ": " + ex.getMessage());
+        }
+        return null;
+    }
+    
+    @WebMethod(operationName = "obtenerBebidaPorId")
+    public Bebida obtenerBebidaPorId(@WebParam(name = "idbebida") int idProducto){
+        bebidaService = new BebidaService();
+        try{
+            Bebida bebida = bebidaService.obtenerPorId(idProducto);
+            return bebida;
+        } catch (Exception ex) {
+            System.err.println("Error al obtener la bebida con ID " + idProducto + ": " + ex.getMessage());
+        }
+        return null;
+    }
+    
+    @WebMethod(operationName = "obtenerTipoProducto")
+    public char obtenerTipoProducto(int idProducto, int idLocal){
+        try{
+            return inventarioService.obtenerTipoProducto(idProducto, idLocal);
+        }
+        catch (Exception e){
+            throw new WebServiceException("Error encontrar el tipo de producto");
+        }
+    }
+    
+    
     
 //    Falta agregar filtrar en persistencia
 //    @WebMethod(operationName = "filtrarPorTipo")
