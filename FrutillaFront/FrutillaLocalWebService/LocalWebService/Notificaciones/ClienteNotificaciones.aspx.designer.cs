@@ -7,20 +7,29 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace LocalWebService
+namespace LocalWebService.Notificaciones
 {
 
 
-    public partial class ClienteHome
+    public partial class ClienteNotificaciones
     {
 
         /// <summary>
-        /// Control ProductosCliente.
+        /// Control gvNotificaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ProductosCliente;
+        protected global::System.Web.UI.WebControls.GridView gvNotificaciones;
+
+        /// <summary>
+        /// Control lblError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

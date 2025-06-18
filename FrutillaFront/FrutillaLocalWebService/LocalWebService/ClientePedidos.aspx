@@ -15,7 +15,7 @@
             OnSelectedIndexChanged="ddlLocales_SelectedIndexChanged"
              CssClass="form-control"></asp:DropDownList>
     </div>
-    <div class="container m-4">
+    <div class="container">
         <asp:GridView ID="gvPedidosCliente" runat="server" AutoGenerateColumns="false"
             AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPedidosCliente_PageIndexChanging"
             CssClass="table table-striped table-responsive table-hover"
@@ -28,11 +28,20 @@
                 <asp:BoundField DataField="estado" HeaderText="Estado" />
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
-                        <asp:Button ID="btnVerComprobante" runat="server"
+                        <asp:LinkButton ID="btnVerComprobante" runat="server"
                             Text="Ver Comprobante"
                             CommandName="VerComprobante"
                             CommandArgument='<%# Eval("idOrdenVenta") %>'
-                            CssClass="btn-frutilla" />
+                            CssClass="btn-frutilla">
+                            <i class="bi bi-file-earmark-text" title="Ver Comprobante"></i>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="btnVerDetalle" runat="server"
+                            Text="Ver Detalle"
+                            CommandName="VerDetalle"
+                            CommandArgument='<%# Eval("idOrdenVenta") %>'
+                            CssClass="btn-frutilla">
+                             <i class="bi bi-eye" title="Ver Detalle"></i>
+                        </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

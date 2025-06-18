@@ -44,4 +44,9 @@ public class NotificacionService {
         }
         return notificacionDAO.listarPorFecha(fecha,idSupervisor);
     }
+    public ArrayList<Notificacion> listarPorCliente(int idCliente)throws Exception{
+        if(idCliente<=0)
+            throw new Exception("El idCliente no puede ser negativo o 0");
+        return notificacionDAO.listarPorCliente(idCliente);
+    }
 }

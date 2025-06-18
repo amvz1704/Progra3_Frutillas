@@ -5,18 +5,58 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/PedidoWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="listarPedidoPorLocalCliente">
+    <part name="parameters" element="tns:listarPedidoPorLocalCliente" />
+  </message>
+  <message name="listarPedidoPorLocalClienteResponse">
+    <part name="parameters" element="tns:listarPedidoPorLocalClienteResponse" />
+  </message>
+  <message name="obtenerPedidoPorId">
+    <part name="parameters" element="tns:obtenerPedidoPorId" />
+  </message>
+  <message name="obtenerPedidoPorIdResponse">
+    <part name="parameters" element="tns:obtenerPedidoPorIdResponse" />
+  </message>
+  <message name="actualizarOrden">
+    <part name="parameters" element="tns:actualizarOrden" />
+  </message>
+  <message name="actualizarOrdenResponse">
+    <part name="parameters" element="tns:actualizarOrdenResponse" />
+  </message>
+  <message name="agregarOrden">
+    <part name="parameters" element="tns:agregarOrden" />
+  </message>
+  <message name="agregarOrdenResponse">
+    <part name="parameters" element="tns:agregarOrdenResponse" />
+  </message>
   <message name="listarPedidoPorLocal">
     <part name="parameters" element="tns:listarPedidoPorLocal" />
   </message>
   <message name="listarPedidoPorLocalResponse">
     <part name="parameters" element="tns:listarPedidoPorLocalResponse" />
   </message>
+<<<<<<< HEAD
+=======
+  <message name="obtenerPedidosPorCliente">
+    <part name="parameters" element="tns:obtenerPedidosPorCliente" />
+  </message>
+  <message name="obtenerPedidosPorClienteResponse">
+    <part name="parameters" element="tns:obtenerPedidosPorClienteResponse" />
+  </message>
+  <message name="obtenerDetallePedido">
+    <part name="parameters" element="tns:obtenerDetallePedido" />
+  </message>
+  <message name="obtenerDetallePedidoResponse">
+    <part name="parameters" element="tns:obtenerDetallePedidoResponse" />
+  </message>
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
   <message name="obtenerPedidosPorEmpleado">
     <part name="parameters" element="tns:obtenerPedidosPorEmpleado" />
   </message>
   <message name="obtenerPedidosPorEmpleadoResponse">
     <part name="parameters" element="tns:obtenerPedidosPorEmpleadoResponse" />
   </message>
+<<<<<<< HEAD
   <message name="obtenerDetallePedido">
     <part name="parameters" element="tns:obtenerDetallePedido" />
   </message>
@@ -53,15 +93,45 @@
   <message name="listarPedidoPorLocalClienteResponse">
     <part name="parameters" element="tns:listarPedidoPorLocalClienteResponse" />
   </message>
+=======
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
   <portType name="PedidoWS">
+    <operation name="listarPedidoPorLocalCliente">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteRequest" message="tns:listarPedidoPorLocalCliente" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteResponse" message="tns:listarPedidoPorLocalClienteResponse" />
+    </operation>
+    <operation name="obtenerPedidoPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdRequest" message="tns:obtenerPedidoPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidoPorIdResponse" message="tns:obtenerPedidoPorIdResponse" />
+    </operation>
+    <operation name="actualizarOrden">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenRequest" message="tns:actualizarOrden" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/actualizarOrdenResponse" message="tns:actualizarOrdenResponse" />
+    </operation>
+    <operation name="agregarOrden">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/agregarOrdenRequest" message="tns:agregarOrden" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/agregarOrdenResponse" message="tns:agregarOrdenResponse" />
+    </operation>
     <operation name="listarPedidoPorLocal">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalRequest" message="tns:listarPedidoPorLocal" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalResponse" message="tns:listarPedidoPorLocalResponse" />
     </operation>
+<<<<<<< HEAD
+=======
+    <operation name="obtenerPedidosPorCliente">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteRequest" message="tns:obtenerPedidosPorCliente" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorClienteResponse" message="tns:obtenerPedidosPorClienteResponse" />
+    </operation>
+    <operation name="obtenerDetallePedido">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest" message="tns:obtenerDetallePedido" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse" message="tns:obtenerDetallePedidoResponse" />
+    </operation>
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
     <operation name="obtenerPedidosPorEmpleado">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoRequest" message="tns:obtenerPedidosPorEmpleado" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerPedidosPorEmpleadoResponse" message="tns:obtenerPedidosPorEmpleadoResponse" />
     </operation>
+<<<<<<< HEAD
     <operation name="obtenerDetallePedido">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoRequest" message="tns:obtenerDetallePedido" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/obtenerDetallePedidoResponse" message="tns:obtenerDetallePedidoResponse" />
@@ -86,9 +156,47 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteRequest" message="tns:listarPedidoPorLocalCliente" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/PedidoWS/listarPedidoPorLocalClienteResponse" message="tns:listarPedidoPorLocalClienteResponse" />
     </operation>
+=======
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
   </portType>
   <binding name="PedidoWSPortBinding" type="tns:PedidoWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="listarPedidoPorLocalCliente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPedidoPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="actualizarOrden">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="agregarOrden">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="listarPedidoPorLocal">
       <soap:operation soapAction="" />
       <input>
@@ -98,6 +206,27 @@
         <soap:body use="literal" />
       </output>
     </operation>
+<<<<<<< HEAD
+=======
+    <operation name="obtenerPedidosPorCliente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerDetallePedido">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
     <operation name="obtenerPedidosPorEmpleado">
       <soap:operation soapAction="" />
       <input>
@@ -107,6 +236,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
+<<<<<<< HEAD
     <operation name="obtenerDetallePedido">
       <soap:operation soapAction="" />
       <input>
@@ -161,6 +291,8 @@
         <soap:body use="literal" />
       </output>
     </operation>
+=======
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
   </binding>
   <service name="PedidoWS">
     <port name="PedidoWSPort" binding="tns:PedidoWSPortBinding">

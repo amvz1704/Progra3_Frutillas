@@ -5,18 +5,33 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/NotificacionWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarPorSupervisor">
-    <part name="parameters" element="tns:listarPorSupervisor" />
-  </message>
-  <message name="listarPorSupervisorResponse">
-    <part name="parameters" element="tns:listarPorSupervisorResponse" />
-  </message>
   <message name="listarPorFecha">
     <part name="parameters" element="tns:listarPorFecha" />
   </message>
   <message name="listarPorFechaResponse">
     <part name="parameters" element="tns:listarPorFechaResponse" />
   </message>
+  <message name="listarPorCliente">
+    <part name="parameters" element="tns:listarPorCliente" />
+  </message>
+  <message name="listarPorClienteResponse">
+    <part name="parameters" element="tns:listarPorClienteResponse" />
+  </message>
+  <message name="listarPorSupervisor">
+    <part name="parameters" element="tns:listarPorSupervisor" />
+  </message>
+  <message name="listarPorSupervisorResponse">
+    <part name="parameters" element="tns:listarPorSupervisorResponse" />
+  </message>
+<<<<<<< HEAD
+  <message name="listarPorFecha">
+    <part name="parameters" element="tns:listarPorFecha" />
+  </message>
+  <message name="listarPorFechaResponse">
+    <part name="parameters" element="tns:listarPorFechaResponse" />
+  </message>
+=======
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
   <message name="listarTodos">
     <part name="parameters" element="tns:listarTodos" />
   </message>
@@ -24,14 +39,25 @@
     <part name="parameters" element="tns:listarTodosResponse" />
   </message>
   <portType name="NotificacionWS">
-    <operation name="listarPorSupervisor">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorRequest" message="tns:listarPorSupervisor" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorResponse" message="tns:listarPorSupervisorResponse" />
-    </operation>
     <operation name="listarPorFecha">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest" message="tns:listarPorFecha" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse" message="tns:listarPorFechaResponse" />
     </operation>
+    <operation name="listarPorCliente">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteRequest" message="tns:listarPorCliente" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteResponse" message="tns:listarPorClienteResponse" />
+    </operation>
+    <operation name="listarPorSupervisor">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorRequest" message="tns:listarPorSupervisor" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorResponse" message="tns:listarPorSupervisorResponse" />
+    </operation>
+<<<<<<< HEAD
+    <operation name="listarPorFecha">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest" message="tns:listarPorFecha" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse" message="tns:listarPorFechaResponse" />
+    </operation>
+=======
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
     <operation name="listarTodos">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarTodosRequest" message="tns:listarTodos" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarTodosResponse" message="tns:listarTodosResponse" />
@@ -39,6 +65,24 @@
   </portType>
   <binding name="NotificacionWSPortBinding" type="tns:NotificacionWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="listarPorFecha">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarPorCliente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="listarPorSupervisor">
       <soap:operation soapAction="" />
       <input>
@@ -57,6 +101,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
+<<<<<<< HEAD
     <operation name="listarTodos">
       <soap:operation soapAction="" />
       <input>
@@ -66,6 +111,8 @@
         <soap:body use="literal" />
       </output>
     </operation>
+=======
+>>>>>>> 43b564ee9ac0020c9b64fc45d87c7b8c7dd14ce0
   </binding>
   <service name="NotificacionWS">
     <port name="NotificacionWSPort" binding="tns:NotificacionWSPortBinding">
