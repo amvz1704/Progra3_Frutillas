@@ -60,6 +60,7 @@ namespace LocalWebService
         }
 
 
+
         private void CargarTotales()
         {
             // Asumimos que cada línea ya tiene Subtotal = Precio * Cantidad
