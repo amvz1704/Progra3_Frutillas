@@ -5,6 +5,9 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.xml.ws.WebServiceException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import pe.edu.pucp.frutilla.logica.inventario.ProductoService;
 import pe.edu.pucp.frutilla.logica.venta.ComprobantePagoService;
@@ -27,6 +30,12 @@ public class ComprobanteWS {
     @WebMethod(operationName = "agregarComprobante")
     public void agregarComprobante(@WebParam(name = "Comprobante") ComprobantePago comp) {
         try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
+            // Convierte el String fecha a Date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaDate =  LocalDate.parse(comp.getFechaStr(), formatter);
+            comp.setFecha(fechaDate);
             comprobanteService.agregar(comp);
         } catch (Exception ex) {
             throw new WebServiceException("Error al agregar el comprobante: " + ex.getMessage());
@@ -36,6 +45,12 @@ public class ComprobanteWS {
     @WebMethod(operationName = "actualizarComprobante")
     public void actualizarComprobante(@WebParam(name = "Comprobante") ComprobantePago comp) {
         try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
+            // Convierte el String fecha a Date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaDate =  LocalDate.parse(comp.getFechaStr(), formatter);
+            comp.setFecha(fechaDate);
             comprobanteService.actualizar(comp);
         } catch (Exception ex) {
             throw new WebServiceException("Error al actualizar el comprobante: " + ex.getMessage());

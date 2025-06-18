@@ -6,6 +6,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
    
      <h3>Tu Carrito</h3>
+    <div class="container">
+
  <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False"
     CssClass="table table-striped"
     OnRowCommand="gvCarrito_RowCommand">
@@ -46,6 +48,7 @@
         </asp:TemplateField>
     </Columns>
 </asp:GridView>
+    </div>
 
 
     <div class="row mt-3">

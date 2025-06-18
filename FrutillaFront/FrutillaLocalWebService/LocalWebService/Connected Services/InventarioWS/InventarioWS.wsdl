@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://WS.frutilla.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="InventarioWS" targetNamespace="http://WS.frutilla.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/InventarioWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="listarTodos">
+    <part name="parameters" element="tns:listarTodos" />
+  </message>
+  <message name="listarTodosResponse">
+    <part name="parameters" element="tns:listarTodosResponse" />
+  </message>
+  <message name="actualizarProducto">
+    <part name="parameters" element="tns:actualizarProducto" />
+  </message>
+  <message name="actualizarProductoResponse">
+    <part name="parameters" element="tns:actualizarProductoResponse" />
+  </message>
+  <message name="insertarFruta">
+    <part name="parameters" element="tns:insertarFruta" />
+  </message>
+  <message name="insertarFrutaResponse">
+    <part name="parameters" element="tns:insertarFrutaResponse" />
+  </message>
+  <message name="insertarBebida">
+    <part name="parameters" element="tns:insertarBebida" />
+  </message>
+  <message name="insertarBebidaResponse">
+    <part name="parameters" element="tns:insertarBebidaResponse" />
+  </message>
+  <message name="obtenerStockPorId">
+    <part name="parameters" element="tns:obtenerStockPorId" />
+  </message>
+  <message name="obtenerStockPorIdResponse">
+    <part name="parameters" element="tns:obtenerStockPorIdResponse" />
+  </message>
+  <message name="obtenerBebidaPorId">
+    <part name="parameters" element="tns:obtenerBebidaPorId" />
+  </message>
+  <message name="obtenerBebidaPorIdResponse">
+    <part name="parameters" element="tns:obtenerBebidaPorIdResponse" />
+  </message>
+  <message name="obtenerSnackPorId">
+    <part name="parameters" element="tns:obtenerSnackPorId" />
+  </message>
+  <message name="obtenerSnackPorIdResponse">
+    <part name="parameters" element="tns:obtenerSnackPorIdResponse" />
+  </message>
+  <message name="insertarSnack">
+    <part name="parameters" element="tns:insertarSnack" />
+  </message>
+  <message name="insertarSnackResponse">
+    <part name="parameters" element="tns:insertarSnackResponse" />
+  </message>
+  <message name="eliminarProducto">
+    <part name="parameters" element="tns:eliminarProducto" />
+  </message>
+  <message name="eliminarProductoResponse">
+    <part name="parameters" element="tns:eliminarProductoResponse" />
+  </message>
+  <message name="obtenerFrutaPorId">
+    <part name="parameters" element="tns:obtenerFrutaPorId" />
+  </message>
+  <message name="obtenerFrutaPorIdResponse">
+    <part name="parameters" element="tns:obtenerFrutaPorIdResponse" />
+  </message>
+  <message name="obtenerProductoPorId">
+    <part name="parameters" element="tns:obtenerProductoPorId" />
+  </message>
+  <message name="obtenerProductoPorIdResponse">
+    <part name="parameters" element="tns:obtenerProductoPorIdResponse" />
+  </message>
+  <message name="obtenerTipoProducto">
+    <part name="parameters" element="tns:obtenerTipoProducto" />
+  </message>
+  <message name="obtenerTipoProductoResponse">
+    <part name="parameters" element="tns:obtenerTipoProductoResponse" />
+  </message>
+  <portType name="InventarioWS">
+    <operation name="listarTodos">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosRequest" message="tns:listarTodos" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosResponse" message="tns:listarTodosResponse" />
+    </operation>
+    <operation name="actualizarProducto">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoRequest" message="tns:actualizarProducto" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoResponse" message="tns:actualizarProductoResponse" />
+    </operation>
+    <operation name="insertarFruta">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest" message="tns:insertarFruta" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse" message="tns:insertarFrutaResponse" />
+    </operation>
+    <operation name="insertarBebida">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest" message="tns:insertarBebida" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaResponse" message="tns:insertarBebidaResponse" />
+    </operation>
+    <operation name="obtenerStockPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdRequest" message="tns:obtenerStockPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdResponse" message="tns:obtenerStockPorIdResponse" />
+    </operation>
+    <operation name="obtenerBebidaPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerBebidaPorIdRequest" message="tns:obtenerBebidaPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerBebidaPorIdResponse" message="tns:obtenerBebidaPorIdResponse" />
+    </operation>
+    <operation name="obtenerSnackPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerSnackPorIdRequest" message="tns:obtenerSnackPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerSnackPorIdResponse" message="tns:obtenerSnackPorIdResponse" />
+    </operation>
+    <operation name="insertarSnack">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackRequest" message="tns:insertarSnack" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackResponse" message="tns:insertarSnackResponse" />
+    </operation>
+    <operation name="eliminarProducto">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest" message="tns:eliminarProducto" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse" message="tns:eliminarProductoResponse" />
+    </operation>
+    <operation name="obtenerFrutaPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerFrutaPorIdRequest" message="tns:obtenerFrutaPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerFrutaPorIdResponse" message="tns:obtenerFrutaPorIdResponse" />
+    </operation>
+    <operation name="obtenerProductoPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdRequest" message="tns:obtenerProductoPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdResponse" message="tns:obtenerProductoPorIdResponse" />
+    </operation>
+    <operation name="obtenerTipoProducto">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoRequest" message="tns:obtenerTipoProducto" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoResponse" message="tns:obtenerTipoProductoResponse" />
+    </operation>
+  </portType>
+  <binding name="InventarioWSPortBinding" type="tns:InventarioWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="listarTodos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="actualizarProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarFruta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarBebida">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerStockPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerBebidaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerSnackPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarSnack">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerFrutaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerProductoPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerTipoProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="InventarioWS">
+    <port name="InventarioWSPort" binding="tns:InventarioWSPortBinding">
+      <soap:address location="http://localhost:8080/FrutillaWS/InventarioWS" />
+    </port>
+  </service>
+</definitions>
