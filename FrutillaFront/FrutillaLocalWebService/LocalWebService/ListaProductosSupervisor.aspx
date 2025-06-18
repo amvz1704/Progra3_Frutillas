@@ -25,7 +25,7 @@
                     <ItemTemplate>
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
-                                <img src="https://via.placeholder.com/300x200?text=Producto" class="card-img-top" alt="Imagen producto" />
+                                <img src='<%# ObtenerImagenPorTipo(Eval("idProducto")) %>' class="card-img-top" alt="Imagen producto" />
                                 <div class="card-body">
                                     <h5 class="card-title"><%# Eval("nombre") %></h5>
                                     <p class="card-text">Precio: S/ <%# Eval("precioUnitario", "{0:N2}") %></p>
@@ -33,7 +33,7 @@
                                     <asp:Button ID="btnVerMas" runat="server" Text="Ver más" CssClass="btn btn-frutilla"
                                         CommandName="VerMas" CommandArgument='<%# Eval("idProducto") %>' />
                                     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"
-    CommandName="Eliminar" CommandArgument='<%# Eval("idProducto") %>' />
+                                        CommandName="Eliminar" CommandArgument='<%# Eval("idProducto") %>' />
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
 
     <!-- Modal para agregar producto -->
 
-    <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true" runat="server">
+    <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
