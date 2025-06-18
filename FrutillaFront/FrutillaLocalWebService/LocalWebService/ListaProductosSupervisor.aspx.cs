@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using LocalWebService.EmpleadoWS;
 using LocalWebService.InventarioWS;
 using LocalWebService.PedidoWS;
+using LocalWebService.ProductoImagenWS;
 
 namespace LocalWebService
 {
@@ -16,11 +17,13 @@ namespace LocalWebService
     {
         private InventarioWSClient inventarioWSClient;
         private EmpleadoWSClient empleadoWSClient;
+        private ProductoImagenWSClient productoImagenWSClient;
         private int idLocal;
         public ListaProductosSupervisor()
         {
             inventarioWSClient = new InventarioWSClient();
             empleadoWSClient = new EmpleadoWSClient();
+            productoImagenWSClient = new ProductoImagenWSClient();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -110,8 +113,9 @@ namespace LocalWebService
             try
             {
                 var productos = inventarioWSClient.listarTodos(idLocal);
+                var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
                 PagedDataSource pagedData = new PagedDataSource();
-                pagedData.DataSource = productos;
+                pagedData.DataSource = productosSinDuplicados;
                 pagedData.AllowPaging = true;
                 pagedData.PageSize = 6;
                 pagedData.CurrentPageIndex = PaginaActual;
@@ -438,15 +442,7 @@ namespace LocalWebService
         {
             int idProducto = Convert.ToInt32(idProd);
             ushort tipo = inventarioWSClient.obtenerTipoProducto(idProducto, idLocal);
-            switch (tipo)
-            {
-                case 'F': return "/Public/images/frutas.jpg";
-                case 'B': return "/Public/images/bebida.jpg";
-                case 'S': return "/Public/images/snack.jpg";
-                default: return "/Public/images/producto.jpg";
-            }
+            return productoImagenWSClient.obtenerUrlPorTipo(tipo);
         }
-
-
     }
 }

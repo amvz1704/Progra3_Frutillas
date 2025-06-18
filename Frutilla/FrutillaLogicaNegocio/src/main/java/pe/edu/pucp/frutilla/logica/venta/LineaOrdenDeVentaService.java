@@ -6,20 +6,25 @@ package pe.edu.pucp.frutilla.logica.venta;
 
 import java.sql.SQLException;
 import java.util.List;
+import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL;
 import pe.edu.pucp.frutilla.crud.mysql.venta.LineaOrdenDeVentaMySQL;
+import pe.edu.pucp.frutilla.models.inventario.Producto;
 import pe.edu.pucp.frutilla.models.venta.LineaOrdenDeVenta;
 
 
 public class LineaOrdenDeVentaService {
     private LineaOrdenDeVentaMySQL lineaOrdenVentaMySQL;
+    private InventarioMySQL inventarioMySQL;
 
     public LineaOrdenDeVentaService() {
         lineaOrdenVentaMySQL = new LineaOrdenDeVentaMySQL();
+        inventarioMySQL = new  InventarioMySQL();
     }
     
     // Registrar una línea
-    public void registrarLinea(LineaOrdenDeVenta linea) throws SQLException {
-        if (linea.getCantidad() > linea.getProducto().getStock()) {
+    public void registrarLinea(LineaOrdenDeVenta linea,int idLocal) throws SQLException {
+        int stock = inventarioMySQL.obtenerInventarioPorId(linea.getProducto().getIdProducto(), idLocal);
+        if (linea.getCantidad() > stock) {
             throw new IllegalArgumentException("Stock insuficiente para el producto: " +
                                                linea.getProducto().getNombre());
         }

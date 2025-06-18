@@ -12,8 +12,17 @@ public class ComprobantePago {
     private double total;
     private LocalDate fecha;
     private FormaDePago formaPago;
+    private String fechaStr;
     private static int correlativo = 1;
     // CONSTRUCTORES
+
+    public String getFechaStr() {
+        return fechaStr;
+    }
+
+    public void setFechaStr(String fechaStr) {
+        this.fechaStr = fechaStr;
+    }
     
     public ComprobantePago(){
         this.fecha = LocalDate.now();
