@@ -333,10 +333,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
-<<<<<<< HEAD
-=======
-    <Content Include="DetallePedidoCliente.aspx" />
->>>>>>> 1e35f2349518eb7589615023534adae52d376382
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
