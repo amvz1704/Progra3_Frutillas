@@ -141,16 +141,6 @@
   <xs:complexType name="eliminarProductoResponse">
     <xs:sequence />
   </xs:complexType>
-  <xs:complexType name="obtenerFrutaPorId">
-    <xs:sequence>
-      <xs:element name="idfruta" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerFrutaPorIdResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:fruta" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="obtenerSnackPorId">
     <xs:sequence>
       <xs:element name="idsnack" type="xs:int" />
@@ -161,14 +151,14 @@
       <xs:element minOccurs="0" name="return" type="tns:snack" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerBebidaPorId">
+  <xs:complexType name="obtenerFrutaPorId">
     <xs:sequence>
-      <xs:element name="idbebida" type="xs:int" />
+      <xs:element name="idfruta" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerBebidaPorIdResponse">
+  <xs:complexType name="obtenerFrutaPorIdResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:bebida" />
+      <xs:element minOccurs="0" name="return" type="tns:fruta" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="insertarBebida">
@@ -179,6 +169,16 @@
   </xs:complexType>
   <xs:complexType name="insertarBebidaResponse">
     <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="obtenerBebidaPorId">
+    <xs:sequence>
+      <xs:element name="idbebida" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerBebidaPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:bebida" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerStockPorId">
     <xs:sequence>
