@@ -41,9 +41,24 @@ namespace LocalWebService
                     Response.Redirect("ClienteCarrito.aspx");
                     return;
                 }
+
+                // Seleccionar método de pago por defecto: Tarjeta
+                SeleccionarMetodo("Tarjeta");
+
                 CargarTotales();
             }
         }
+
+        private void SeleccionarMetodo(string metodo)
+        {
+            // Marcar visualmente el botón seleccionado
+            btnTarjeta.CssClass = metodo == "Tarjeta" ? "btn btn-success" : "btn btn-outline-secondary";
+            btnTransferencia.CssClass = metodo == "Transferencia" ? "btn btn-success" : "btn btn-outline-secondary";
+
+            // Mostrar u ocultar sección de bancos
+            pnlBancos.Visible = metodo == "Transferencia";
+        }
+
 
         private void CargarTotales()
         {
@@ -63,15 +78,9 @@ namespace LocalWebService
 
         protected void SeleccionarMetodo_Click(object sender, EventArgs e)
         {
-            var btn = (System.Web.UI.WebControls.Button)sender;
+            var btn = (Button)sender;
             string metodo = btn.CommandArgument;
-
-            // Marcar visualmente el botón seleccionado
-            btnTarjeta.CssClass = metodo == "Tarjeta" ? "btn btn-success" : "btn btn-outline-secondary";
-            btnTransferencia.CssClass = metodo == "Transferencia" ? "btn btn-success" : "btn btn-outline-secondary";
-
-            // Mostrar u ocultar sección de bancos si es necesario
-            pnlBancos.Visible = metodo == "Transferencia";
+            SeleccionarMetodo(metodo);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

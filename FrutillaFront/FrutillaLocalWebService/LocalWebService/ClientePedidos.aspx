@@ -10,11 +10,13 @@
             <h2 class="m-0">Pedidos Realizados</h2>
         </div>
     </header>
+
     <div class="container m-4">
         <asp:DropDownList ID="ddlLocales" runat="server" AutoPostBack="true" 
             OnSelectedIndexChanged="ddlLocales_SelectedIndexChanged"
              CssClass="form-control"></asp:DropDownList>
     </div>
+
     <div class="container">
         <asp:GridView ID="gvPedidosCliente" runat="server" AutoGenerateColumns="false"
             AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPedidosCliente_PageIndexChanging"
@@ -32,7 +34,7 @@
                             Text="Ver Comprobante"
                             CommandName="VerComprobante"
                             CommandArgument='<%# Eval("idOrdenVenta") %>'
-                            CssClass="btn-frutilla">
+                            CssClass="btn-frutilla me-2" style="margin-right: 8px;">
                             <i class="bi bi-file-earmark-text" title="Ver Comprobante"></i>
                         </asp:LinkButton>
                         <asp:LinkButton ID="btnVerDetalle" runat="server"
@@ -47,6 +49,6 @@
             </Columns>
         </asp:GridView>
     </div>
+
     <asp:Label ID="lblError" runat="server" Text="-" CssClass="text-danger"></asp:Label>
 </asp:Content>
-
