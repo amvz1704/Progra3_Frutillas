@@ -20,8 +20,8 @@ namespace LocalWebService
         //sacar las lineas de venta relacionadas con un comprobante
         private ComprobanteWSClient daoComprobante;
         private ClienteWSClient daoCliente;
-        private PedidoWSClient daoPedidoOrden;  
-
+        private PedidoWSClient daoPedidoOrden;
+        private LocalWSClient daoLocal;
         private int idComprobanteServicio
         {
             get => ViewState["idComprobanteServicio"] as int? ?? 0;
@@ -33,6 +33,7 @@ namespace LocalWebService
             daoCliente = new ClienteWSClient();
             daoComprobante = new ComprobanteWSClient();
             daoPedidoOrden = new PedidoWSClient();
+            daoLocal = new LocalWSClient();
 
             // 1) Obtener el valor de la URL: ClientePago.aspx?id=123
             string sId = Request.QueryString["id"];
@@ -62,11 +63,17 @@ namespace LocalWebService
             int comprobanteId = ordenVenta.idComprobante;
 
             comprobantePago comprobante = daoComprobante.obtenerComprobante(comprobanteId);
-            lblId.Text = comprobanteId.ToString(); 
-            txtFecha.Text = comprobante.fecha.ToString();
+            lblId.Text = comprobanteId.ToString();
+
+
+            txtFecha.Text = "2222-11-11"; //editar luego 
+            
             txtNumeroArticulos.Text = comprobante.numeroArticulos.ToString();
             txtMetodoPago.Text = comprobante.formaPago.ToString();
-            txtLocal.Text = ordenVenta.idLocal.ToString();
+
+            local copia = daoLocal.obtenerLocal(ordenVenta.idLocal);
+
+            txtLocal.Text = copia.nombre; //editar y
             txtDescripcion.Text = ordenVenta.descripcion.ToString();
 
             txtSubtotal.Text = comprobante.subtotal.ToString();
@@ -76,8 +83,9 @@ namespace LocalWebService
             gvDetalles.DataBind();
         }
 
-        protected void btnRegresar(object sender, EventArgs e) { 
-        
+        protected void btnRegresar_Click(object sender, EventArgs e) {
+            // Si quieres volver a la página de carrito:
+            Response.Redirect("ClientePedidos.aspx");
         }
 
         protected void gvDetalles_PageIndexChanging(object sender, GridViewPageEventArgs e)

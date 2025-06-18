@@ -91,16 +91,19 @@ namespace LocalWebService
            
         protected void btnPagar_Click(object sender, EventArgs e)
         {
-            int servicioOrdenId =  1; 
+            int servicioOrdenId =  1;
 
             //subimos a la BD las lineas ordenes de venta del carrito
 
 
             //crea la orden de servicio "EN_PROCESO"
 
+
+            // Aquí puedes hacer lo que necesites con el idProducto,
+            // por ejemplo, redirigir a una página con detalles:
             //Pasamos el idOrden
 
-            Response.Redirect("ClientePago.aspx?id={servicioOrdenId}");
+            Response.Redirect($"ClientePago.aspx?id={servicioOrdenId}");
         }
     }
 }

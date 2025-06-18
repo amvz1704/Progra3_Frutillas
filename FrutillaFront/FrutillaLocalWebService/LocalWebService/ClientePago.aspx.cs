@@ -13,10 +13,10 @@ namespace LocalWebService
         private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
             => Session["Carrito"] as List<ComprobanteWS.lineaOrdenDeVenta>;
 
-        private int ServicioOrdenId
+        private int servicioOrdenId
         {
-            get => ViewState["ServicioOrdenId"] as int? ?? 0;
-            set => ViewState["ServicioOrdenId"] = value;
+            get => ViewState["servicioOrdenId"] as int? ?? 0;
+            set => ViewState["servicioOrdenId"] = value;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace LocalWebService
                 }
 
                 // 2) Guardarlo si luego lo vas a reutilizar
-                ServicioOrdenId = id;
+                servicioOrdenId = id;
 
                 // Si no hay carrito o está vacío, volver al carrito
                 if (Carrito == null || !Carrito.Any())
