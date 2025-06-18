@@ -124,6 +124,12 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <None Include="Connected Services\ComprobanteWS\configuration91.svcinfo" />
@@ -290,6 +296,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerDetallePedidoListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
