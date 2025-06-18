@@ -11,8 +11,7 @@ namespace LocalWebService
 {
     public partial class ClientePago : System.Web.UI.Page
     {
-        // Helper para leer el carrito de Session
-
+    
         private ComprobanteWSClient ComprobanteWS;
         private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
             => Session["Carrito"] as List<ComprobanteWS.lineaOrdenDeVenta>;
@@ -76,7 +75,7 @@ namespace LocalWebService
             decimal total = subtotal + igv;
 
             //RECIEN SE INSERTA EN LA BD, se crea un pedido y asi --> luego de eso finalmente se confirma con pagar
-            txtPedido.Text = "Por edtiar"; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
+            txtPedido.Text = "Por editar"; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
 
 
             txtSubtotal.Text = subtotal.ToString("C2");
