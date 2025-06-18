@@ -110,8 +110,9 @@ namespace LocalWebService
             try
             {
                 var productos = inventarioWSClient.listarTodos(idLocal);
+                var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
                 PagedDataSource pagedData = new PagedDataSource();
-                pagedData.DataSource = productos;
+                pagedData.DataSource = productosSinDuplicados;
                 pagedData.AllowPaging = true;
                 pagedData.PageSize = 6;
                 pagedData.CurrentPageIndex = PaginaActual;

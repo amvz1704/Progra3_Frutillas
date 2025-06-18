@@ -9,7 +9,7 @@
 
     <header class="py-2 border-bottom bg-frutilla">
         <div class="container">
-            <h2 class="m-0"> Productos </h2>
+            <h2 class="m-0">Productos </h2>
         </div>
     </header>
 
@@ -33,7 +33,7 @@
                                     <asp:Button ID="btnVerMas" runat="server" Text="Ver más" CssClass="btn btn-frutilla"
                                         CommandName="VerMas" CommandArgument='<%# Eval("idProducto") %>' />
                                     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"
-    CommandName="Eliminar" CommandArgument='<%# Eval("idProducto") %>' />
+                                        CommandName="Eliminar" CommandArgument='<%# Eval("idProducto") %>' />
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
 
     <!-- Modal para agregar producto -->
 
-    <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true" runat="server">
+    <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -235,7 +235,7 @@
                                 document.getElementById('opcionSnacksEditar').style.display = 'block';
                             }
                         }
-</script>
+                    </script>
                     <!-- Modal para agregar producto -->
                 </div>
                 <div class="modal-footer">

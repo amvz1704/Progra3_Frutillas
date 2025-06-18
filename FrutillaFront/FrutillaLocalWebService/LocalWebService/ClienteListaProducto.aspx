@@ -30,10 +30,8 @@
           runat="server"
           CssClass="form-select"
             Width="120px"
-        >
-          <asp:ListItem Value="0">Local</asp:ListItem>
-          <asp:ListItem Value="1">Sucursal A</asp:ListItem>
-          <asp:ListItem Value="2">Sucursal B</asp:ListItem>
+            AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLocal_SelectedIndexChanged">
         </asp:DropDownList>
               </div>
           <!-- Filtros como tags -->

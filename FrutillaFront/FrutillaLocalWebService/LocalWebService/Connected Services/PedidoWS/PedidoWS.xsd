@@ -9,6 +9,8 @@
   <xs:element name="listarPedidoPorLocalClienteResponse" type="tns:listarPedidoPorLocalClienteResponse" />
   <xs:element name="listarPedidoPorLocalResponse" type="tns:listarPedidoPorLocalResponse" />
   <xs:element name="obtenerDetallePedido" type="tns:obtenerDetallePedido" />
+  <xs:element name="obtenerDetallePedidoList" type="tns:obtenerDetallePedidoList" />
+  <xs:element name="obtenerDetallePedidoListResponse" type="tns:obtenerDetallePedidoListResponse" />
   <xs:element name="obtenerDetallePedidoResponse" type="tns:obtenerDetallePedidoResponse" />
   <xs:element name="obtenerPedidoPorId" type="tns:obtenerPedidoPorId" />
   <xs:element name="obtenerPedidoPorIdResponse" type="tns:obtenerPedidoPorIdResponse" />
@@ -77,6 +79,37 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="obtenerDetallePedidoList">
+    <xs:sequence>
+      <xs:element name="idOrdenVenta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerDetallePedidoListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:lineaOrdenDeVenta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="lineaOrdenDeVenta">
+    <xs:sequence>
+      <xs:element name="cantidad" type="xs:int" />
+      <xs:element name="idLineaVenta" type="xs:int" />
+      <xs:element name="idOrdenVenta" type="xs:int" />
+      <xs:element minOccurs="0" name="producto" type="tns:producto" />
+      <xs:element name="subtotal" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="producto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="precioUnitario" type="xs:double" />
+      <xs:element name="stock" type="xs:int" />
+      <xs:element name="stockMinimo" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="actualizarOrden">
     <xs:sequence>
       <xs:element minOccurs="0" name="orden" type="tns:ordenVenta" />
@@ -114,27 +147,6 @@
   <xs:complexType name="obtenerDetallePedidoResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:lineaOrdenDeVenta" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="lineaOrdenDeVenta">
-    <xs:sequence>
-      <xs:element name="cantidad" type="xs:int" />
-      <xs:element name="idLineaVenta" type="xs:int" />
-      <xs:element name="idOrdenVenta" type="xs:int" />
-      <xs:element minOccurs="0" name="producto" type="tns:producto" />
-      <xs:element name="subtotal" type="xs:double" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="producto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
-      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
-      <xs:element name="idProducto" type="xs:int" />
-      <xs:element minOccurs="0" name="nombre" type="xs:string" />
-      <xs:element name="precioUnitario" type="xs:double" />
-      <xs:element name="stock" type="xs:int" />
-      <xs:element name="stockMinimo" type="xs:int" />
-      <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="estadoVenta">

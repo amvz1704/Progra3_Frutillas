@@ -19,6 +19,7 @@ namespace LocalWebService
 
         private InventarioWSClient inventarioWSClient;
         private ComprobanteWSClient ComprobanteWS;
+        private LocalWSClient localWSClient;
         const int idPedidoOrden = 1; 
 
         // Propiedad helper para el carrito en Session
@@ -38,16 +39,41 @@ namespace LocalWebService
             inventarioWSClient = new InventarioWSClient();
             if (!IsPostBack)
             {
+                CargarLocales();
                 CargarProductos();
             }
         }
+
+        private void CargarLocales()
+        {
+            localWSClient = new LocalWSClient();
+            ddlLocal.Items.Clear();
+            ddlLocal.Items.Add(new ListItem("Selecciona un local", "0"));
+            foreach (var local in localWSClient.listarLocales()) // Cambiar por locales activos
+            {
+                ddlLocal.Items.Add(new ListItem(local.nombre, local.idLocal.ToString()));
+            }
+        }
+
+        protected void ddlLocal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idLocal;
+            if (int.TryParse(ddlLocal.SelectedValue, out idLocal))
+            {
+                // Llama a tu método para cargar productos filtrados por el local seleccionado
+                CargarProductos();
+            }
+        }
+
 
         private void CargarProductos()
         {
             try
             {
-                var productos = inventarioWSClient.listarTodos(1); //cambiar por el local seleccionado 
-                rptProductos.DataSource = productos;
+                var productos = inventarioWSClient.listarTodos(int.Parse(ddlLocal.SelectedValue)); //cambiar por el local seleccionado 
+                var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
+
+                rptProductos.DataSource = productosSinDuplicados;
                 rptProductos.DataBind();
             }
             catch (Exception ex)
@@ -64,7 +90,7 @@ namespace LocalWebService
 
                 // Aquí puedes hacer lo que necesites con el idProducto,
                 // por ejemplo, redirigir a una página con detalles:
-                Response.Redirect($"DetalleProductoCliente.aspx?id={idProducto}");
+                Response.Redirect($"DetalleProductoCliente.aspx?id={idProducto}&idLocal={ddlLocal.SelectedValue}");
 
                 // O abrir un modal, cargar info, etc.
             }

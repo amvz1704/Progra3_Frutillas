@@ -124,6 +124,12 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <None Include="Connected Services\ComprobanteWS\configuration91.svcinfo" />
@@ -292,6 +298,9 @@
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerDetallePedidoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
     <None Include="Connected Services\PedidoWS\PedidoWS.xsd">
       <SubType>Designer</SubType>
@@ -333,6 +342,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
+    <Content Include="DetalleProductoCliente.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -508,6 +518,13 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleProductoCliente.aspx.cs">
+      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleProductoCliente.aspx.designer.cs">
+      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleado.Master.cs">
       <DependentUpon>Empleado.Master</DependentUpon>
