@@ -8,7 +8,18 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h3>Tu Carrito</h3>
+    <header class="py-2 border-bottom bg-frutilla">
+        <div class="container">
+            <h2 class="m-0">Carrito de compras</h2>
+        </div>
+    </header>
+
+    <div class="container m-4">
+        <asp:DropDownList ID="ddlLocales" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLocales_SelectedIndexChanged"
+            CssClass="form-control">
+        </asp:DropDownList>
+    </div>
 
     <asp:Label ID="lblError" runat="server" ForeColor="Red" EnableViewState="false" />
 

@@ -7,6 +7,10 @@ package pe.edu.pucp.frutilla.WS;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
@@ -134,13 +138,23 @@ public class PedidoWS {
             @WebParam(name = "lineas") List<LineaOrdenDeVenta> lineas) {
         try {
             // 1. Agregar la orden
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
+            // Convierte el String fecha a Date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaDate =  LocalDate.parse(orden.getFechaStr(), formatter);
+            orden.setFecha(fechaDate);
+            SimpleDateFormat sdfHora = new SimpleDateFormat("HH:mm:ss");
+            sdf.setLenient(false);
+            DateTimeFormatter formatterHora=DateTimeFormatter.ofPattern("HH:mm:ss");
+            LocalTime horaFinal = LocalTime.parse(orden.getHoraStr(),formatterHora);
+            orden.setHoraFinEntrega(horaFinal);
             daoOrdenVenta.agregarOrden(orden); // actualiza el ID
             int idOrden = orden.getIdOrdenVenta();
-
             // 2. Agregar cada línea asociada a la orden
             for (LineaOrdenDeVenta linea : lineas) {
                 linea.setIdOrdenVenta(idOrden);
-                daoLineaOrdenDeVenta.registrarLinea(linea);
+                daoLineaOrdenDeVenta.registrarLinea(linea,orden.getIdLocal());
             }
 
             return idOrden;

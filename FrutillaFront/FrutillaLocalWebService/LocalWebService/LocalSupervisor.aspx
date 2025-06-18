@@ -15,7 +15,7 @@
         <div class="row g-0">
           <!-- Imagen -->
           <div class="col-md-4">
-            <asp:Image ID="imgLocal" runat="server" CssClass="img-fluid rounded-start" />
+            <asp:Image ID="imgLocal" ImageUrl="~/Public/images/fruteria-letras.png" runat="server" CssClass="img-fluid rounded-start" />
           </div>
           <!-- Datos -->
           <div class="col-md-8">
@@ -56,7 +56,9 @@
 
 
     <!-- 4) Grid de Cards para los módulos de administración -->
-    <h5 class="mt-5 mb-3">Elige el módulo de administración:</h5>
+    <div class="container">
+        <h5 class="mt-5 mb-3">Elige el módulo de administración:</h5>
+    </div>
     <div class="row g-4 justify-content-center">
         <!-- Empleados -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
