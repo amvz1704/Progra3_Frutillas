@@ -127,8 +127,8 @@ namespace LocalWebService
                 return;
             }
 
-            localWSClient.actualizarLocalVarios(idLocal, txtNombreLocal.Text.Trim(), txtDescripcionLocal.Text.Trim(),
-                txtDireccionLocal.Text.Trim(), txtTelefonoLocal.Text.Trim());
+            localWSClient.actualizarLocalVarios(idLocal, txtNombreLocal.Text.Trim(), txtTelefonoLocal.Text.Trim(), txtDescripcionLocal.Text.Trim(),
+                txtDireccionLocal.Text.Trim());
 
             CargarDatosLocal();
 
