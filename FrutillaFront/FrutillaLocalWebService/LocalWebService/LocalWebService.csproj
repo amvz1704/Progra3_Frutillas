@@ -78,6 +78,7 @@
     <Content Include="ClienteComprar.aspx" />
     <Content Include="ClienteHome.aspx" />
     <Content Include="ClienteListaProducto.aspx" />
+    <Content Include="ClientePago.aspx" />
     <Content Include="ClientePedidos.aspx" />
     <Content Include="ClientePerfil.aspx" />
     <Content Include="ComprobantePago.aspx" />
@@ -459,6 +460,13 @@
     </Compile>
     <Compile Include="ClienteListaProducto.aspx.designer.cs">
       <DependentUpon>ClienteListaProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientePago.aspx.cs">
+      <DependentUpon>ClientePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientePago.aspx.designer.cs">
+      <DependentUpon>ClientePago.aspx</DependentUpon>
     </Compile>
     <Compile Include="ClientePedidos.aspx.cs">
       <DependentUpon>ClientePedidos.aspx</DependentUpon>
