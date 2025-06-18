@@ -386,6 +386,9 @@
     <Content Include="Public\fonts\css\v4-shims.min.css" />
     <Content Include="Public\fonts\css\v5-font-face.css" />
     <Content Include="Public\fonts\css\v5-font-face.min.css" />
+    <Content Include="Public\images\bebida.jpg" />
+    <Content Include="Public\images\frutas.jpg" />
+    <Content Include="Public\images\snack.jpg" />
     <Content Include="Public\images\fruteria-letras.jpg" />
     <Content Include="Public\images\fruteria-sociales.jpg" />
     <Content Include="Public\images\homeSnacks.jpg" />
@@ -394,6 +397,7 @@
     <Content Include="Public\images\productosImagen.png" />
     <Content Include="Public\images\frutillaLogo.jpeg" />
     <Content Include="Public\images\bannerFrutilla.jpg" />
+    <Content Include="Public\images\producto.jpg" />
     <Content Include="Public\images\ventasImagen.png" />
     <Content Include="Public\images\pedidosImagen.png" />
     <Content Include="Public\images\empleadosImagen.png" />
