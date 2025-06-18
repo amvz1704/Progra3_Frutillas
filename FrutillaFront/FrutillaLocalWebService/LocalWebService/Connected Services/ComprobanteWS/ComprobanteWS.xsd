@@ -50,6 +50,7 @@
   <xs:complexType name="comprobantePago">
     <xs:sequence>
       <xs:element minOccurs="0" name="fecha" type="tns:localDate" />
+      <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
       <xs:element minOccurs="0" name="formaPago" type="tns:formaDePago" />
       <xs:element name="idComprobante" type="xs:int" />
       <xs:element name="montoIGV" type="xs:double" />

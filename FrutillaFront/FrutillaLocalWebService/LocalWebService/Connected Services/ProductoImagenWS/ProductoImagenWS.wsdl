@@ -17,11 +17,11 @@
   <message name="actualizarProductoImagenResponse">
     <part name="parameters" element="tns:actualizarProductoImagenResponse" />
   </message>
-  <message name="eliminarProductoImagen">
-    <part name="parameters" element="tns:eliminarProductoImagen" />
+  <message name="obtenerProductoImagen">
+    <part name="parameters" element="tns:obtenerProductoImagen" />
   </message>
-  <message name="eliminarProductoImagenResponse">
-    <part name="parameters" element="tns:eliminarProductoImagenResponse" />
+  <message name="obtenerProductoImagenResponse">
+    <part name="parameters" element="tns:obtenerProductoImagenResponse" />
   </message>
   <message name="agregarProductoImagen">
     <part name="parameters" element="tns:agregarProductoImagen" />
@@ -29,17 +29,17 @@
   <message name="agregarProductoImagenResponse">
     <part name="parameters" element="tns:agregarProductoImagenResponse" />
   </message>
-  <message name="obtenerProductoImagen">
-    <part name="parameters" element="tns:obtenerProductoImagen" />
-  </message>
-  <message name="obtenerProductoImagenResponse">
-    <part name="parameters" element="tns:obtenerProductoImagenResponse" />
-  </message>
   <message name="listarProductoImagen">
     <part name="parameters" element="tns:listarProductoImagen" />
   </message>
   <message name="listarProductoImagenResponse">
     <part name="parameters" element="tns:listarProductoImagenResponse" />
+  </message>
+  <message name="eliminarProductoImagen">
+    <part name="parameters" element="tns:eliminarProductoImagen" />
+  </message>
+  <message name="eliminarProductoImagenResponse">
+    <part name="parameters" element="tns:eliminarProductoImagenResponse" />
   </message>
   <portType name="ProductoImagenWS">
     <operation name="obtenerUrlPorTipo">
@@ -50,21 +50,21 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/actualizarProductoImagenRequest" message="tns:actualizarProductoImagen" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/actualizarProductoImagenResponse" message="tns:actualizarProductoImagenResponse" />
     </operation>
-    <operation name="eliminarProductoImagen">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenRequest" message="tns:eliminarProductoImagen" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenResponse" message="tns:eliminarProductoImagenResponse" />
+    <operation name="obtenerProductoImagen">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/obtenerProductoImagenRequest" message="tns:obtenerProductoImagen" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/obtenerProductoImagenResponse" message="tns:obtenerProductoImagenResponse" />
     </operation>
     <operation name="agregarProductoImagen">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/agregarProductoImagenRequest" message="tns:agregarProductoImagen" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/agregarProductoImagenResponse" message="tns:agregarProductoImagenResponse" />
     </operation>
-    <operation name="obtenerProductoImagen">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/obtenerProductoImagenRequest" message="tns:obtenerProductoImagen" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/obtenerProductoImagenResponse" message="tns:obtenerProductoImagenResponse" />
-    </operation>
     <operation name="listarProductoImagen">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenRequest" message="tns:listarProductoImagen" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenResponse" message="tns:listarProductoImagenResponse" />
+    </operation>
+    <operation name="eliminarProductoImagen">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenRequest" message="tns:eliminarProductoImagen" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenResponse" message="tns:eliminarProductoImagenResponse" />
     </operation>
   </portType>
   <binding name="ProductoImagenWSPortBinding" type="tns:ProductoImagenWS">
@@ -87,7 +87,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="eliminarProductoImagen">
+    <operation name="obtenerProductoImagen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -105,7 +105,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerProductoImagen">
+    <operation name="listarProductoImagen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -114,7 +114,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarProductoImagen">
+    <operation name="eliminarProductoImagen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

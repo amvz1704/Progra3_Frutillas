@@ -1,4 +1,36 @@
-﻿html, body {
+﻿.my-img-medium {
+    max-width: 120px;
+    max-height: 120px;
+    align-content: center;
+}
+
+.qr-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px; /* Ajusta según necesidad */
+}
+
+.qr-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px; /* Espacio entre QR y logo */
+    width: 100%;
+}
+
+    .qr-content > div {
+        text-align: center;
+    }
+
+.qr-logo-right {
+    margin-left: 24px;
+    align-self: flex-end;
+}
+
+
+
+html, body {
     height: 100%;
     font-family: 'Ubuntu', sans-serif;
     background-color: #fefefe;

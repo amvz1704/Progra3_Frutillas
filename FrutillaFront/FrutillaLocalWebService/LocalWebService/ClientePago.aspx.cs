@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
+using LocalWebService.ComprobanteWS;
 
 namespace LocalWebService
 {
     public partial class ClientePago : System.Web.UI.Page
     {
-        // Helper para leer el carrito de Session}
-        string sId;
+    
+        private ComprobanteWSClient ComprobanteWS;
         private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
             => Session["Carrito"] as List<ComprobanteWS.lineaOrdenDeVenta>;
 
@@ -36,7 +38,7 @@ namespace LocalWebService
                 // 2) Guardarlo si luego lo vas a reutilizar
                 servicioOrdenId = id;
 
-                // Si no hay carrito o está vacío, volver al carrito
+                // Si no hay carrito o está vacío, volver al carrito    
                 if (Carrito == null || !Carrito.Any())
                 {
                     Response.Redirect("ClienteCarrito.aspx");
@@ -55,9 +57,12 @@ namespace LocalWebService
             // Marcar visualmente el botón seleccionado
             btnTarjeta.CssClass = metodo == "Tarjeta" ? "btn btn-success" : "btn btn-outline-secondary";
             btnTransferencia.CssClass = metodo == "Transferencia" ? "btn btn-success" : "btn btn-outline-secondary";
-
+            btnPlin.CssClass = metodo == "Plin" ? "btn btn-success" : "btn btn-outline-secondary";
+            btnYape.CssClass = metodo == "Yape" ? "btn btn-success" : "btn btn-outline-secondary";
             // Mostrar u ocultar sección de bancos
             pnlBancos.Visible = metodo == "Transferencia";
+            qrPlin.Visible = metodo == "Plin";
+            qrYape.Visible = metodo == "Yape";
         }
 
 
@@ -92,19 +97,6 @@ namespace LocalWebService
             Response.Redirect("ClienteCarrito.aspx");
         }
 
-        protected void btnPagar_Click(object sender, EventArgs e)
-        {
-            // Aquí iría tu lógica de integración con pasarela de pago
-
-            // Por ahora simulamos confirmación y vaciamos el carrito:
-
-            //actualizar servicio orden id con ServicioOrdenId --> UPDATE ordenServicio "PAGADO"
-
-
-            Session["Carrito"] = null;
-            //En realidad debe de abrir un modal! tal que... 
-        }
-
         protected void btnVerComprobante_Click(object sender, EventArgs e)
         {
             //var idOrden = Session["UltimaOrdenId"]?.ToString() ?? Request.QueryString["pedidoId"];
@@ -118,6 +110,46 @@ namespace LocalWebService
 
             //luego vas a ver el comprobante cread
             Response.Redirect($"ComprobantePago.aspx?id={idComprobanteServicio}");
+        }
+
+        protected void btnPagar_Click1(object sender, EventArgs e)
+        {
+            // Aquí iría tu lógica de integración con pasarela de pago
+            ComprobanteWS = new ComprobanteWSClient();
+            string metodoSeleccionado = btnTarjeta.CssClass.Contains("btn-success") ? "TARJETA_CREDITO" :
+                                btnTransferencia.CssClass.Contains("btn-success") ? "Transferencia" :
+                                btnPlin.CssClass.Contains("btn-success") ? "PLIN" : "YAPE";
+
+            // Convertir el string al enum formaDePago
+            Enum.TryParse(metodoSeleccionado, out ComprobanteWS.formaDePago formadePago);
+
+            comprobantePago comprobante = new comprobantePago();
+            comprobante.formaPago = formadePago;
+            comprobante.formaPagoSpecified = true;
+            comprobante.montoIGV = (double)(Carrito.Sum(l => (decimal)l.subtotal) * 0.18m); // Asumiendo IGV incluido
+                comprobante.numeroArticulos = Carrito.Count;
+            comprobante.fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
+            comprobante.subtotal = (double)(Carrito.Sum(l => (decimal)l.subtotal));
+            comprobante.total = double.Parse(txtTotal.Text.Split(' ')[0]); // Asumiendo IGV incluido
+            
+
+            // Por ahora simulamos confirmación y vaciamos el carrito:
+            ComprobanteWS.agregarComprobante(comprobante);
+            //actualizar servicio orden id con ServicioOrdenId --> UPDATE ordenServicio "PAGADO"
+
+
+            Session["Carrito"] = null;
+            //En realidad debe de abrir un modal! tal que... 
+
+            // Si tu modal tiene runat="server"
+            ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowModal",
+                "var m = new bootstrap.Modal(document.getElementById('successModal')); m.show();",
+                true
+            );
+
         }
     }
 }
