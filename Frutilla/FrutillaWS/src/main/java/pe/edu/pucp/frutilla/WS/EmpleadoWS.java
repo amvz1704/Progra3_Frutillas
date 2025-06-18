@@ -115,7 +115,6 @@ public class EmpleadoWS {
             
             empleado.setFechaContrato(fechaTemp);
         } catch (ParseException ex) {
-            
             Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }   

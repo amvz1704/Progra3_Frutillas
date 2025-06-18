@@ -45,20 +45,19 @@ public class UsuarioWS {
         return -1;
     }
     
-    @WebMethod(operationName = "generarTokenRecuperacion")
-    public String generarTokenRecuperacion(@WebParam(name = "idUsuario") int idUsuario) {
-        return TokenManager.generarToken(idUsuario);
+    @WebMethod(operationName = "generarCodigoRecuperacion")
+    public String generarCodigoRecuperacion(@WebParam(name = "idUsuario") int idUsuario) {
+        return CodigoManager.generarCodigo(idUsuario);
     }
     
-    @WebMethod(operationName = "validarTokenRecuperacion")
-    public int validarTokenRecuperacion(@WebParam(name = "token") String token){
-        int idUsuario = TokenManager.validarToken(token);
-        return idUsuario;
+    @WebMethod(operationName = "validarCodigoRecuperacion")
+    public int validarCodigoRecuperacion(@WebParam(name = "token") String codigo){
+        return CodigoManager.validarCodigo(codigo);
     }
     
     @WebMethod(operationName = "actualizarContrasena")
-    public boolean actualizarContrasena(@WebParam(name = "token") String token, @WebParam(name = "nuevaContrasena") String nuevaContrasena){
-        int idUsuario = TokenManager.validarToken(token);
+    public boolean actualizarContrasena(@WebParam(name = "codigo") String codigo, @WebParam(name = "nuevaContrasena") String nuevaContrasena){
+        int idUsuario = CodigoManager.validarCodigo(codigo);
         if(idUsuario == -1) return false;
         
         try{

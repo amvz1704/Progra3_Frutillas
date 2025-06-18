@@ -69,6 +69,15 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
+        /// Control btnCerrarSesionMaster.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCerrarSesionMaster;
+
+        /// <summary>
         /// Control MainContent.
         /// </summary>
         /// <remarks>

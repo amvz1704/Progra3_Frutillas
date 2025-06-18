@@ -6,7 +6,7 @@ import java.time.ZoneId;
 
 public class Empleado extends Persona{
     
-    private Date fechaContrato;
+    private LocalDate fechaContrato;
     private String fechatContratoSTRING; 
     private double salario;
     // Este podriamos considerarlo un enum (manana o tarde) --> o solo un bool false si es manan o true si es tarde - gandy recomendacion 
@@ -16,7 +16,7 @@ public class Empleado extends Persona{
 	
 
     public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno, 
-    String correoElectronico, String telefono, Date fechaContrato,
+    String correoElectronico, String telefono, LocalDate fechaContrato,
     double salario, String usuarioSistema, String contraSistema, char tipo, int idLocal, int idUsuario ){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, usuarioSistema, contraSistema, idUsuario, "E");
         this.fechaContrato = fechaContrato;
@@ -55,11 +55,10 @@ public class Empleado extends Persona{
     }
 
     public LocalDate getFechaContrato() {
-        LocalDate copia = fechaContrato.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
-        return copia;
+        return fechaContrato;
     }
 
-    public void setFechaContrato(Date fechaContrato) {
+    public void setFechaContrato(LocalDate fechaContrato) {
         this.fechaContrato = fechaContrato;
     }
 

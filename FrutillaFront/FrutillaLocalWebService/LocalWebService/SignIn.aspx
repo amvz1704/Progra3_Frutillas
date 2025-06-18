@@ -68,8 +68,8 @@
                         <asp:Label ID="lblPassword" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 
                         <div class="form-group mb-4">
-                            <label for="txtCorreo">Correo Electronico<span style="color:red">*</span></label>
-                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingrese su correo electronico"></asp:TextBox>
+                            <label for="txtCorreo">Correo Electrónico<span style="color:red">*</span></label>
+                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingrese su correo electrónico"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblCorreo" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 

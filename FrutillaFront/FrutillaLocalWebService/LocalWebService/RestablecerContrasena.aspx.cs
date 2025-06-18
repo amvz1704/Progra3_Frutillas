@@ -11,55 +11,45 @@ namespace LocalWebService
     public partial class RestablecerContrasena : System.Web.UI.Page
     {
         protected UsuarioWSClient usuarioService;
+        private string codigo;
+        private int idUsuario;
 
         protected void Page_Init(object sender, EventArgs e)
         {
             usuarioService = new UsuarioWSClient();
+            codigo = Session["codigoRecuperacion"] as string;
+            idUsuario = (Session["idUsuarioRecuperacion"] != null) ? (int)Session["idUsuarioRecuperacion"] : -1;
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (!IsPostBack)
+                lblEstado.Text = "";
+                
+
+                if (string.IsNullOrEmpty(codigo) || idUsuario <= 0)
                 {
-                    string token = Request.QueryString["token"];
-
-                    if (string.IsNullOrEmpty(token))
-                    {
-                        lblEstado.Text = "Enlace inválido o expirado.";
-                        btnRestablecer.Enabled = false;
-                        pnlFormulario.Visible = false;
-                        return;
-                    }
-
-                    int idUsuario = usuarioService.validarTokenRecuperacion(token);
-
-                    if (idUsuario <= 0)
-                    {
-                        lblEstado.Text = "Enlace inválido o expirado.";
-                        btnRestablecer.Enabled = false;
-                        pnlFormulario.Visible = false;
-                        return;
-                    }
-
-                    lblEstado.Text = "Token válido, puede cambiar su contraseña.";
-                    lblEstado.CssClass = "text-success d-block text-center";
-                    btnRestablecer.Enabled = true;
-                    pnlFormulario.Visible = true;
-
-                    ViewState["token"] = token;
-                    ViewState["idUsuario"] = idUsuario;
+                    Response.Redirect("Login.aspx");
+                    btnRestablecer.Enabled = false;
+                    pnlFormulario.Visible = false;
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                lblEstado.Text = "Error: " + ex.Message;
-                lblEstado.CssClass = "text-danger d-block text-center";
-                btnRestablecer.Enabled = false;
-                pnlFormulario.Visible = false;
-            }
+
+                int validacion = usuarioService.validarCodigoRecuperacion(codigo);
+                if (validacion != idUsuario)
+                {
+                    lblEstado.Text = "El código ha expirado o no es válido. Por facor, inicie el proceso de recuperación nuevamente.";
+                    lblEstado.CssClass = "text-danger d-block text-center";
+                    btnRestablecer.Enabled = false;
+                    pnlFormulario.Visible = false;
+                    return;
+                }
+
+                lblEstado.Text = "Código válido, puede cambiar su contraseña.";
+                lblEstado.CssClass = "text-success d-block text-center";
+                pnlFormulario.Visible = true;
+                btnRestablecer.Enabled = true;
         }
+
 
         protected void btnRestablecer_Click(object sender, EventArgs e)
         {
@@ -95,15 +85,15 @@ namespace LocalWebService
                 return;
             }
 
-            string token = ViewState["token"] as string;
+            int validacion = usuarioService.validarCodigoRecuperacion(codigo);
 
-            if (string.IsNullOrEmpty(token))
+            if (validacion != idUsuario)
             {
-                lblEstado.Text = "Token inválido. Por favor, vuelva a solicitar la recuperación de contraseña.";
+                lblEstado.Text = "Sesión inválida. Por favor, vuelva a solicitar el codigo.";
                 return;
             }
 
-            bool ok = usuarioService.actualizarContrasena(token, nueva);
+            bool ok = usuarioService.actualizarContrasena(codigo, nueva);
 
             if (ok)
             {
@@ -117,6 +107,11 @@ namespace LocalWebService
             {
                 lblEstado.Text = "No se pudo actualizar la contraseña.";
             }
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
         }
     }
 }

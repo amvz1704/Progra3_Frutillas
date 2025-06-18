@@ -39,11 +39,13 @@ public class ClienteWS {
     }
     
     @WebMethod(operationName = "actualizarCliente")
-    public void actualizarCliente(Cliente cliente){
+    public boolean actualizarCliente(Cliente cliente){
         try{
             clienteService.actualizar(cliente);
+            return true;
         }catch (Exception ex){
             System.out.println(ex.getMessage()); 
+            return false;
         }
     }
 }
