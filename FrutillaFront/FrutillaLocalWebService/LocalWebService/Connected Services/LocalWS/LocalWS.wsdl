@@ -5,6 +5,12 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/LocalWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="listarLocales">
+    <part name="parameters" element="tns:listarLocales" />
+  </message>
+  <message name="listarLocalesResponse">
+    <part name="parameters" element="tns:listarLocalesResponse" />
+  </message>
   <message name="obtenerLocal">
     <part name="parameters" element="tns:obtenerLocal" />
   </message>
@@ -18,6 +24,10 @@
     <part name="parameters" element="tns:actualizarLocResponse" />
   </message>
   <portType name="LocalWS">
+    <operation name="listarLocales">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesRequest" message="tns:listarLocales" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesResponse" message="tns:listarLocalesResponse" />
+    </operation>
     <operation name="obtenerLocal">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalRequest" message="tns:obtenerLocal" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalResponse" message="tns:obtenerLocalResponse" />
@@ -29,6 +39,15 @@
   </portType>
   <binding name="LocalWSPortBinding" type="tns:LocalWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="listarLocales">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="obtenerLocal">
       <soap:operation soapAction="" />
       <input>

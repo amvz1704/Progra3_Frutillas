@@ -120,4 +120,49 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
 
         return -1;
     }
+    
+    public Persona obtenerPorCorreo(String correo)throws Exception{
+        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, u.tipo FROM Usuario u " +
+                "JOIN Cliente c ON u.idUsuario = c.idUsuario " +
+                "WHERE c.correoElectronico = ? " +
+                "UNION " +
+                "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, u.tipo " +
+                "FROM Usuario u " +
+                "JOIN Empleado e ON u.idUsuario = e.idUsuario " +
+                "WHERE e.correoElectronico = ? ";
+
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);) 
+        {
+            ps.setString(1, correo);
+            ps.setString(2, correo);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return createFromResultSet(rs);
+                }
+            }
+        } catch (Exception ex) {
+            throw new Exception("Error al recuperar cuenta", ex);
+        }
+
+        return null;
+    }
+    
+    public boolean correoExiste(String correo) throws SQLException{
+        String sql ="SELECT 1 FROM Cliente WHERE correoElectronico = ? " +
+            "UNION " +
+            "SELECT 1 FROM Empleado WHERE correoElectronico = ? " +
+            "LIMIT 1";
+
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, correo);
+            ps.setString(2, correo);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
 }

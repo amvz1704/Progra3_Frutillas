@@ -38,6 +38,8 @@ namespace LocalWebService.Notificaciones
                 if (empleado != null)
                 {
                     idSupervisor = empleado.idUsuario;
+                    gvNotificaciones.Visible = (empleado.tipo == 'S'); // Verifica si es supervisor
+                    lblError.Visible = gvNotificaciones.Visible;
                 }
                 else
                 {
@@ -61,14 +63,16 @@ namespace LocalWebService.Notificaciones
         {
             try
             {
-                //cambiar a session idempleados y con la verificacion de supervisor
-                gvNotificaciones.DataSource = notificacionWSClient.listarPorSupervisor(idSupervisor).ToList();
+                gvNotificaciones.DataSource = notificacionWSClient.listarPorSupervisor(idSupervisor);// Cambiar por id de Session
                 gvNotificaciones.DataBind();
-            } catch (Exception ex)
+
+            } catch(Exception e)
             {
-                lblError.Text = "Error al cargar notificaciones" + ex;
+                lblError.Text = "Error al cargar las notificaciones: " + e.Message;
+                lblError.Visible = true;
+                gvNotificaciones.Visible = false;
+                return;
             }
-            
         }
 
         protected void btnSubmitDate_Click(object sender, EventArgs e)
@@ -81,7 +85,7 @@ namespace LocalWebService.Notificaciones
             {
                 DateTime selectedDate = DateTime.Parse(datePicker.Value);
                 string fechaFormateada = selectedDate.ToString("yyyy-MM-dd");
-                gvNotificaciones.DataSource = notificacionWSClient.listarPorFecha(fechaFormateada, 1); //cambiar por id de Session
+                gvNotificaciones.DataSource = notificacionWSClient.listarPorFecha(fechaFormateada, idSupervisor); //cambiar por id de Session
                 gvNotificaciones.DataBind();
             }
         }
@@ -92,9 +96,5 @@ namespace LocalWebService.Notificaciones
             CargarNotificaciones();
         }
 
-        protected void gvNotificaciones_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
     }
 }

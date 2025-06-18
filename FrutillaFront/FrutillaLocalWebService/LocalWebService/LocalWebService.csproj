@@ -79,6 +79,7 @@
     <Content Include="ClienteHome.aspx" />
     <Content Include="ClienteListaProducto.aspx" />
     <Content Include="ClientePedidos.aspx" />
+    <Content Include="ClientePerfil.aspx" />
     <Content Include="ComprobantePago.aspx" />
     <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.agregarClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -89,6 +90,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.obtenerClientePorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClienteWS\LocalWebService.ClienteWS.actualizarClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\ClienteWS\Reference.svcmap">
@@ -221,6 +225,9 @@
     <None Include="Connected Services\InventarioWS\InventarioWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarLocalesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
     <None Include="Connected Services\LocalWS\LocalWS.xsd">
       <SubType>Designer</SubType>
@@ -246,6 +253,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.producto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\NotificionesWS\Reference.svcmap">
@@ -279,6 +289,9 @@
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.listarPedidoPorLocalClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
     <None Include="Connected Services\PedidoWS\PedidoWS.xsd">
       <SubType>Designer</SubType>
@@ -300,17 +313,37 @@
     <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.actualizarContrasenaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.correoExisteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.generarTokenRecuperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.obtenerPorCorreoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.validarTokenRecuperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\UsuarioWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
+<<<<<<< HEAD
+=======
+    <Content Include="DetallePedidoCliente.aspx" />
+>>>>>>> 1e35f2349518eb7589615023534adae52d376382
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
     <Content Include="ListaVentasSupervisor.aspx" />
     <Content Include="LocalSupervisor.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Notificaciones\ClienteNotificaciones.aspx" />
     <Content Include="Notificaciones\ListarNotificaciones.aspx" />
     <Content Include="Public\css\bootstrap-grid.css" />
     <Content Include="Public\css\bootstrap-grid.min.css" />
@@ -347,8 +380,14 @@
     <Content Include="Public\fonts\css\v4-shims.min.css" />
     <Content Include="Public\fonts\css\v5-font-face.css" />
     <Content Include="Public\fonts\css\v5-font-face.min.css" />
+    <Content Include="Public\images\fruteria-letras.jpg" />
+    <Content Include="Public\images\fruteria-sociales.jpg" />
+    <Content Include="Public\images\homeSnacks.jpg" />
+    <Content Include="Public\images\homeFrutas.jpg" />
+    <Content Include="Public\images\homeProductos.jpg" />
     <Content Include="Public\images\productosImagen.png" />
     <Content Include="Public\images\frutillaLogo.jpeg" />
+    <Content Include="Public\images\bannerFrutilla.jpg" />
     <Content Include="Public\images\ventasImagen.png" />
     <Content Include="Public\images\pedidosImagen.png" />
     <Content Include="Public\images\empleadosImagen.png" />
@@ -365,6 +404,8 @@
     <Content Include="Public\js\jquery-3.7.1.min.js" />
     <Content Include="Public\js\jquery-3.7.1.slim.js" />
     <Content Include="Public\js\jquery-3.7.1.slim.min.js" />
+    <Content Include="RecuperarCuenta.aspx" />
+    <Content Include="RestablecerContrasena.aspx" />
     <Content Include="SignIn.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -410,6 +451,13 @@
     </Compile>
     <Compile Include="ClientePedidos.aspx.designer.cs">
       <DependentUpon>ClientePedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientePerfil.aspx.cs">
+      <DependentUpon>ClientePerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientePerfil.aspx.designer.cs">
+      <DependentUpon>ClientePerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="ComprobantePago.aspx.cs">
       <DependentUpon>ComprobantePago.aspx</DependentUpon>
@@ -472,6 +520,13 @@
     <Compile Include="Empleado.Master.designer.cs">
       <DependentUpon>Empleado.Master</DependentUpon>
     </Compile>
+    <Compile Include="EmpleadoPerfil.aspx.cs">
+      <DependentUpon>EmpleadoPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpleadoPerfil.aspx.designer.cs">
+      <DependentUpon>EmpleadoPerfil.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FrutaBebida.cs" />
     <Compile Include="ListaEmpleadosSupervisor.aspx.cs">
       <DependentUpon>ListaEmpleadosSupervisor.aspx</DependentUpon>
@@ -515,6 +570,13 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.cs">
+      <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notificaciones\ClienteNotificaciones.aspx.designer.cs">
+      <DependentUpon>ClienteNotificaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Notificaciones\ListarNotificaciones.aspx.cs">
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -523,6 +585,20 @@
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecuperarCuenta.aspx.cs">
+      <DependentUpon>RecuperarCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecuperarCuenta.aspx.designer.cs">
+      <DependentUpon>RecuperarCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RestablecerContrasena.aspx.cs">
+      <DependentUpon>RestablecerContrasena.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RestablecerContrasena.aspx.designer.cs">
+      <DependentUpon>RestablecerContrasena.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

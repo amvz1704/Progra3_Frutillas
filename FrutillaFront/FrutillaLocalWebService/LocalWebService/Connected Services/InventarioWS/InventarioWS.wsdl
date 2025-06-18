@@ -38,8 +38,8 @@
   <message name="eliminarProducto">
     <part name="parameters" element="tns:eliminarProducto" />
   </message>
-  <message name="eliminarProductoResponse">
-    <part name="parameters" element="tns:eliminarProductoResponse" />
+  <message name="insertarFrutaResponse">
+    <part name="parameters" element="tns:insertarFrutaResponse" />
   </message>
   <message name="obtenerStockPorId">
     <part name="parameters" element="tns:obtenerStockPorId" />

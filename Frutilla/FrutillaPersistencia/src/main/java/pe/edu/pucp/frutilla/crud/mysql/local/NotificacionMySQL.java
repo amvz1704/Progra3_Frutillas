@@ -140,4 +140,24 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
         return "SELECT * FROM Notificacion WHERE idEmpleado = ?";
     }
     
+    @Override
+    public ArrayList<Notificacion> listarPorCliente(int idCliente){
+        ArrayList<Notificacion> entities = new ArrayList<>();
+        try(Connection conn=DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(getSelectByClienteQuery())){
+            ps.setInt(1, idCliente);
+            try(ResultSet rs=ps.executeQuery()){
+                while(rs.next()){
+                    entities.add(createFromResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener entidad", e);
+        }
+        return entities;
+    }
+
+    private String getSelectByClienteQuery() {
+        return "SELECT * FROM Notificacion WHERE idCliente = ?";
+    }
 }

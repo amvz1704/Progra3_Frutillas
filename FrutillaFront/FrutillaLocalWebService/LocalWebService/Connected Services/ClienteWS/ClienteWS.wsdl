@@ -17,6 +17,12 @@
   <message name="obtenerClientePorIdResponse">
     <part name="parameters" element="tns:obtenerClientePorIdResponse" />
   </message>
+  <message name="actualizarCliente">
+    <part name="parameters" element="tns:actualizarCliente" />
+  </message>
+  <message name="actualizarClienteResponse">
+    <part name="parameters" element="tns:actualizarClienteResponse" />
+  </message>
   <portType name="ClienteWS">
     <operation name="agregarCliente">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteRequest" message="tns:agregarCliente" />
@@ -25,6 +31,10 @@
     <operation name="obtenerClientePorId">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdRequest" message="tns:obtenerClientePorId" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdResponse" message="tns:obtenerClientePorIdResponse" />
+    </operation>
+    <operation name="actualizarCliente">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/actualizarClienteRequest" message="tns:actualizarCliente" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/actualizarClienteResponse" message="tns:actualizarClienteResponse" />
     </operation>
   </portType>
   <binding name="ClienteWSPortBinding" type="tns:ClienteWS">
@@ -39,6 +49,15 @@
       </output>
     </operation>
     <operation name="obtenerClientePorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="actualizarCliente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

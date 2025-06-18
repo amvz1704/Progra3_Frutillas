@@ -37,4 +37,13 @@ public class ClienteWS {
         }
         return null; 
     }
+    
+    @WebMethod(operationName = "actualizarCliente")
+    public void actualizarCliente(Cliente cliente){
+        try{
+            clienteService.actualizar(cliente);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+        }
+    }
 }

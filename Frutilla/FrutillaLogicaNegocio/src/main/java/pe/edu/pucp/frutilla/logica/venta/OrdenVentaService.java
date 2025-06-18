@@ -146,4 +146,13 @@ public class OrdenVentaService {
             throw new SQLDataException("el id de la orden no puede ser 0 o negativo");
         return ordenVentaMySQL.obtenerPorId(id);
     }
+    
+    public List<OrdenVenta> listarOrdenesPorLocalCliente(int idLocal,int idCliente)
+            throws SQLException{
+        if (idLocal<=0)
+            throw new SQLDataException("el id de local no puede ser 0 o negativo");
+         if (idCliente<=0)
+            throw new SQLDataException("el id de cliente no puede ser 0 o negativo");
+         return ordenVentaMySQL.listarPorClienteLocal(idCliente, idLocal);
+    }
 }

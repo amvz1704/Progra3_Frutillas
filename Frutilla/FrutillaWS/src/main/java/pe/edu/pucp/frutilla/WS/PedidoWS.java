@@ -7,6 +7,7 @@ package pe.edu.pucp.frutilla.WS;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
+import java.util.ArrayList;
 import java.util.List;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 import pe.edu.pucp.frutilla.logica.venta.LineaOrdenDeVentaService;
@@ -90,6 +91,18 @@ public class PedidoWS {
             System.err.println("Error al obtener el pedido con ID " + idOrden + ": " + ex.getMessage());
         }
         return null;
+        
+    }
+    
+    @WebMethod(operationName = "obtenerDetallePedidoList")
+    public List<LineaOrdenDeVenta> obtenerDetallePedidoList(@WebParam(name = "idOrdenVenta") int idOrden) {
+        try {
+            List<LineaOrdenDeVenta> resultado = daoLineaOrdenDeVenta.listarPorOrden(idOrden);
+            return (resultado != null) ? resultado : new ArrayList<>();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return new ArrayList<>(); // ⚠️ ← aquí también
+        }
     }
     
     @WebMethod(operationName = "listarPedidoPorLocal")
@@ -99,6 +112,18 @@ public class PedidoWS {
         } catch(Exception e) {
             System.err.println("Error al listar el pedido con local " + idLocal 
                     + ": " + e.getMessage());
+        }
+        return null;
+    }
+    
+    @WebMethod (operationName = "listarPedidoPorLocalCliente")
+    public List<OrdenVenta> listarPedidoPorLocalCliente(@WebParam(name = "idLocal")
+    int idLocal,@WebParam(name = "idCliente")int idCliente){
+        try{
+            return daoOrdenVenta.listarOrdenesPorLocalCliente(idLocal, idCliente);
+        } catch (Exception ex){
+            System.err.println("Error al listar el pedido con local y cliente " + idLocal 
+                    + ": " + ex.getMessage());
         }
         return null;
     }

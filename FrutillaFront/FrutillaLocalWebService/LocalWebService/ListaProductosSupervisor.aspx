@@ -9,7 +9,7 @@
 
     <header class="py-2 border-bottom bg-frutilla">
         <div class="container">
-            <h2 class="m-0">Local > Productos </h2>
+            <h2 class="m-0"> Productos </h2>
         </div>
     </header>
 

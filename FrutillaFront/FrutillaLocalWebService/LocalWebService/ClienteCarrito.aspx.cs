@@ -18,45 +18,80 @@ namespace LocalWebService
         {
             if (!IsPostBack)
             {
-                // Si no hay carrito, volvemos a ListaProductos
-                if (CarritoSesion == null || !CarritoSesion.Any())
-                {
-                    if (!CarritoSesion.Any())
+                BindCarrito();
+            }
+        }
+
+        protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            var carrito = CarritoSesion;
+            if (carrito == null) return;
+
+            int index = Convert.ToInt32(e.CommandArgument);
+            if (index < 0 || index >= carrito.Count) return;
+
+            switch (e.CommandName)
+            {
+                case "Aumentar":
+                    carrito[index].cantidad++;
+                    carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
+                    break;
+
+                case "Disminuir":
+                    if (carrito[index].cantidad > 1)
                     {
-                        Response.Redirect("ClienteHome.aspx"); //hay un problema al agregar itmes
+                        carrito[index].cantidad--;
+                        carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
                     }
-                    else {
+                    break;
 
-                        Response.Redirect("ClienteListaProducto.aspx");
-                    }
-
-                        
-                }
-
-                BindCarrito(); 
+                case "Eliminar":
+                    carrito.RemoveAt(index);
+                    break;
             }
 
+            Session["Carrito"] = carrito;
+            BindCarrito();
         }
 
         private void BindCarrito()
         {
-            gvCarrito.DataSource = CarritoSesion;
+            var carrito = CarritoSesion ?? new List<ComprobanteWS.lineaOrdenDeVenta>();
+
+            // Si el subtotal no está calculado, lo calculamos
+            foreach (var item in carrito)
+            {
+                if (item.subtotal <= 0 && item.producto != null)
+                {
+                    item.subtotal = item.cantidad * item.producto.precioUnitario;
+                }
+            }
+
+            gvCarrito.DataSource = carrito;
             gvCarrito.DataBind();
 
-            // Cálculos de totales
-            decimal subtotal = CarritoSesion.Sum(x => (decimal)x.subtotal);
+            if (carrito.Count == 0)
+            {
+                lblSubtotal.Text = "S/ 0.00";
+                lblIGV.Text = "S/ 0.00";
+                lblTotal.Text = "S/ 0.00";
+                btnPagar.Enabled = false;
+                return;
+            }
+
+            decimal subtotal = carrito.Sum(x => Convert.ToDecimal(x.subtotal));
             decimal igv = subtotal * 0.18m;
             decimal total = subtotal + igv;
 
             lblSubtotal.Text = subtotal.ToString("C");
             lblIGV.Text = igv.ToString("C");
             lblTotal.Text = total.ToString("C");
+            btnPagar.Enabled = true;
         }
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
-            // Aquí rediriges a la pasarela de pago u otra página
-            Response.Redirect("ClientePago.aspx"); //falta crear pero redirige a pago! --> despues recien se sube a la BD
+            Response.Redirect("ClientePago.aspx");
         }
     }
 }

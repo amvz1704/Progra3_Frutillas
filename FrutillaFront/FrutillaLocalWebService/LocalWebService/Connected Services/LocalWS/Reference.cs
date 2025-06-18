@@ -16,6 +16,16 @@ namespace LocalWebService.LocalWS {
     public interface LocalWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.LocalWS.listarLocalesResponse listarLocales(LocalWebService.LocalWS.listarLocalesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesResponse")]
+        System.Threading.Tasks.Task<LocalWebService.LocalWS.listarLocalesResponse> listarLocalesAsync(LocalWebService.LocalWS.listarLocalesRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
@@ -578,6 +588,34 @@ namespace LocalWebService.LocalWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarLocales", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarLocalesRequest {
+        
+        public listarLocalesRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarLocalesResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarLocalesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.LocalWS.local[] @return;
+        
+        public listarLocalesResponse() {
+        }
+        
+        public listarLocalesResponse(LocalWebService.LocalWS.local[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerLocal", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerLocalRequest {
         
@@ -672,6 +710,27 @@ namespace LocalWebService.LocalWS {
         
         public LocalWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.LocalWS.listarLocalesResponse LocalWebService.LocalWS.LocalWS.listarLocales(LocalWebService.LocalWS.listarLocalesRequest request) {
+            return base.Channel.listarLocales(request);
+        }
+        
+        public LocalWebService.LocalWS.local[] listarLocales() {
+            LocalWebService.LocalWS.listarLocalesRequest inValue = new LocalWebService.LocalWS.listarLocalesRequest();
+            LocalWebService.LocalWS.listarLocalesResponse retVal = ((LocalWebService.LocalWS.LocalWS)(this)).listarLocales(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.LocalWS.listarLocalesResponse> LocalWebService.LocalWS.LocalWS.listarLocalesAsync(LocalWebService.LocalWS.listarLocalesRequest request) {
+            return base.Channel.listarLocalesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.LocalWS.listarLocalesResponse> listarLocalesAsync() {
+            LocalWebService.LocalWS.listarLocalesRequest inValue = new LocalWebService.LocalWS.listarLocalesRequest();
+            return ((LocalWebService.LocalWS.LocalWS)(this)).listarLocalesAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

@@ -22,12 +22,12 @@
     </style>
 </head>
 <body>
-    
+
     <form id="form1" runat="server">
         <div class="container login-container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card shadow p-4">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <div class="card shadow p-4 max-auto">
                         <ul class="nav nav-frutilla mb-3 justify-content-center" id="pills-tab" role="tablist">
                             <li class="nav-item text-center" role="presentation">
                                 <a class="nav-link active" id="pills-login-tab" data-bs-toggle="pill" href="Login.aspx" role="tab" aria-controls="pills-login" aria-selected="true">Ingresar</a>
@@ -38,17 +38,23 @@
                         </ul>
 
                         <div class="form-group mb-3">
-                            <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" placeholder="Usuario"></asp:TextBox>
+                            <label for="txtUsuario">Usuario</label>
+                            <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblUsuario" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
                         <div class="form-group mb-4">
-                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Contraseña"></asp:TextBox>
+                            <label for="txtPassword">Contraseña</label>
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblPassword" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
                         <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
                         <div class="d-grid">
                             <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn-frutilla" OnClick="btnLogin_Click" />
                         </div>
+                        <div class="text-center mt-3">
+                            <a href="RecuperarCuenta.aspx" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -58,4 +64,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>
-

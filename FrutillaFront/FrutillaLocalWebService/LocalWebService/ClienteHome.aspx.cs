@@ -13,5 +13,10 @@ namespace LocalWebService
         {
 
         }
+
+        protected void ProductosCliente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClienteListaProducto.aspx");
+        }
     }
 }
