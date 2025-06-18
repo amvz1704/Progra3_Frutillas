@@ -13,10 +13,28 @@ namespace LocalWebService
         private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
             => Session["Carrito"] as List<ComprobanteWS.lineaOrdenDeVenta>;
 
+        private int ServicioOrdenId
+        {
+            get => ViewState["ServicioOrdenId"] as int? ?? 0;
+            set => ViewState["ServicioOrdenId"] = value;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                // 1) Obtener el valor de la URL: ClientePago.aspx?id=123
+                string sId = Request.QueryString["id"];
+                if (!int.TryParse(sId, out int id))
+                {
+                    // Parámetro inválido; podrías redirigir o mostrar error
+                    Response.Redirect("ClienteCarrito.aspx");
+                    return;
+                }
+
+                // 2) Guardarlo si luego lo vas a reutilizar
+                ServicioOrdenId = id;
+
                 // Si no hay carrito o está vacío, volver al carrito
                 if (Carrito == null || !Carrito.Any())
                 {
@@ -66,7 +84,12 @@ namespace LocalWebService
         protected void btnPagar_Click(object sender, EventArgs e)
         {
             // Aquí iría tu lógica de integración con pasarela de pago
+
             // Por ahora simulamos confirmación y vaciamos el carrito:
+
+            //actualizar servicio orden id con ServicioOrdenId --> UPDATE ordenServicio "PAGADO"
+
+
             Session["Carrito"] = null;
             //En realidad debe de abrir un modal! tal que... 
         }
@@ -74,8 +97,16 @@ namespace LocalWebService
         protected void btnVerComprobante_Click(object sender, EventArgs e)
         {
             //var idOrden = Session["UltimaOrdenId"]?.ToString() ?? Request.QueryString["pedidoId"];
-            int idOrden = 2;
-            Response.Redirect($"ComprobantePago.aspx?id={idOrden}");
+
+
+            //creas el comprobante y lo subes a la BD 
+
+            //idBD
+
+            int idComprobanteServicio = 2;
+
+            //luego vas a ver el comprobante cread
+            Response.Redirect($"ComprobantePago.aspx?id={idComprobanteServicio}");
         }
     }
 }

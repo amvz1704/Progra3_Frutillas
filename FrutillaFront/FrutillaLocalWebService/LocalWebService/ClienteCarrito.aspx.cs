@@ -88,10 +88,19 @@ namespace LocalWebService
             lblTotal.Text = total.ToString("C");
             btnPagar.Enabled = true;
         }
-
+           
         protected void btnPagar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ClientePago.aspx");
+            int servicioOrdenId =  1; 
+
+            //subimos a la BD las lineas ordenes de venta del carrito
+
+
+            //crea la orden de servicio "EN_PROCESO"
+
+            //Pasamos el idOrden
+
+            Response.Redirect("ClientePago.aspx?id={servicioOrdenId}");
         }
     }
 }

@@ -20,8 +20,13 @@ namespace LocalWebService
         //sacar las lineas de venta relacionadas con un comprobante
         private ComprobanteWSClient daoComprobante;
         private ClienteWSClient daoCliente;
-        private PedidoWSClient daoPedidoOrden; 
-        const int pedidoOrden = 2; // 
+        private PedidoWSClient daoPedidoOrden;  
+
+        private int idComprobanteServicio
+        {
+            get => ViewState["idComprobanteServicio"] as int? ?? 0;
+            set => ViewState["idComprobanteServicio"] = value;
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,40 +34,19 @@ namespace LocalWebService
             daoComprobante = new ComprobanteWSClient();
             daoPedidoOrden = new PedidoWSClient();
 
-            if (User.Identity.IsAuthenticated)
+            // 1) Obtener el valor de la URL: ClientePago.aspx?id=123
+            string sId = Request.QueryString["id"];
+            if (!int.TryParse(sId, out int id))
             {
-                string datos = FormsAuthentication.Decrypt(
-                    Request.Cookies[FormsAuthentication.FormsCookieName].Value
-                ).UserData;
-
-                string[] partes = datos.Split('|');
-                string tipoUsuario = partes[0];
-                int idUsuario = int.Parse(partes[1]);
-
-                if (tipoUsuario == "C")
-                {
-                    cliente cliente = daoCliente.obtenerClientePorId(idUsuario);
-                    if (cliente == null)
-                    {
-                        Response.Redirect("Login.aspx"); // A 
-                    }
-                    
-                }
-                else {
-                    Response.Redirect("Login.aspx"); //ademas colcoar un mensaje de vista solo acceso por cliente
-
-                }
-
-                
-
-                // Aca pueden hacer uso del obtener por id
-            }
-            else
-            {
-                Response.Redirect("Login.aspx");
+                // Parámetro inválido; podrías redirigir o mostrar error
+                Response.Redirect("ClienteCarrito.aspx"); //no se hgenero un comprobante 
+                return;
             }
 
-            
+            // 2) Guardarlo si luego lo vas a reutilizar
+            idComprobanteServicio = id;
+
+
             if (!IsPostBack)
                 BindGrid();
         }
@@ -73,7 +57,7 @@ namespace LocalWebService
             //la informacion del producto actual -- casos descontinuados por ejemplo (pro ahora no hago cambios hasta conversarlo con el grupo) 
             //lo calculas del comprobante actual 
 
-            ordenVenta ordenVenta = daoPedidoOrden.obtenerPedidoPorId(pedidoOrden);
+            ordenVenta ordenVenta = daoPedidoOrden.obtenerPedidoPorId(idComprobanteServicio);
 
             int comprobanteId = ordenVenta.idComprobante;
 
@@ -92,7 +76,7 @@ namespace LocalWebService
             gvDetalles.DataBind();
         }
 
-        protected void gvComprobante_RowCommand(object sender, GridViewCommandEventArgs e) { 
+        protected void btnRegresar(object sender, EventArgs e) { 
         
         }
 
