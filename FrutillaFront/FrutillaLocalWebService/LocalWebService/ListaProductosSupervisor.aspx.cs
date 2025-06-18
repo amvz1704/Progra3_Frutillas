@@ -433,7 +433,19 @@ namespace LocalWebService
             }
         }
 
-
+        //esta función obtiene la imagen del producto según su tipo
+        public string ObtenerImagenPorTipo(object idProd)
+        {
+            int idProducto = Convert.ToInt32(idProd);
+            ushort tipo = inventarioWSClient.obtenerTipoProducto(idProducto, idLocal);
+            switch (tipo)
+            {
+                case 'F': return "/Public/images/frutas.jpg";
+                case 'B': return "/Public/images/bebida.jpg";
+                case 'S': return "/Public/images/snack.jpg";
+                default: return "/Public/images/producto.jpg";
+            }
+        }
 
 
     }
