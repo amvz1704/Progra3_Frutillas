@@ -13,6 +13,8 @@ namespace LocalWebService
     {
         protected EmpleadoWSClient empleadoService;
         protected UsuarioWSClient usuarioService;
+        private empleado empleadoActual;
+        private ushort tipoEmpleado;
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -47,6 +49,7 @@ namespace LocalWebService
                     lblEstado.Text = "No se encontró la información del usuario.";
                     lblEstado.CssClass = "text-danger";
                     btnEditar.Enabled = false;
+                    btnVistaCliente.Visible = false;
                     return;
                 }
 
@@ -202,6 +205,17 @@ namespace LocalWebService
             Session.Abandon();
 
             Response.Redirect("Login.aspx");
+         }
+        protected void btnVistaCliente_Click(object sender, EventArgs e)
+        {
+            if(tipoEmpleado == 83) 
+            {
+                Response.Redirect("ClienteHome.aspx");
+            }
+            else
+            {
+                btnVistaCliente.CssClass = "btn btn-secondary disabled";
+            }
         }
     }
 }

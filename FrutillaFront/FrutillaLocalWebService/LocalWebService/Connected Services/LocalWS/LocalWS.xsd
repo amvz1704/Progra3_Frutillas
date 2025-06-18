@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="actualizarLoc" type="tns:actualizarLoc" />
-  <xs:element name="actualizarLocResponse" type="tns:actualizarLocResponse" />
+  <xs:element name="actualizarLocalVarios" type="tns:actualizarLocalVarios" />
+  <xs:element name="actualizarLocalVariosResponse" type="tns:actualizarLocalVariosResponse" />
   <xs:element name="listarLocales" type="tns:listarLocales" />
   <xs:element name="listarLocalesResponse" type="tns:listarLocalesResponse" />
   <xs:element name="obtenerLocal" type="tns:obtenerLocal" />
   <xs:element name="obtenerLocalResponse" type="tns:obtenerLocalResponse" />
+  <xs:complexType name="actualizarLocalVarios">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="telefono" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="direccion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarLocalVariosResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="obtenerLocal">
     <xs:sequence>
       <xs:element name="idLocal" type="xs:int" />
@@ -21,51 +35,10 @@
       <xs:element name="activo" type="xs:boolean" />
       <xs:element minOccurs="0" name="descripcion" type="xs:string" />
       <xs:element minOccurs="0" name="direccion" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="empleados" nillable="true" type="tns:empleado" />
       <xs:element name="idLocal" type="xs:int" />
       <xs:element name="idSupervisor" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="productos" nillable="true" type="tns:producto" />
       <xs:element minOccurs="0" name="telefono" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="empleado">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:persona">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="fechatContratoSTRING" type="xs:string" />
-          <xs:element name="idLocal" type="xs:int" />
-          <xs:element name="salario" type="xs:double" />
-          <xs:element name="tipo" type="xs:unsignedShort" />
-          <xs:element name="turnoTrabajo" type="xs:boolean" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="persona">
-    <xs:sequence>
-      <xs:element name="activo" type="xs:boolean" />
-      <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string" />
-      <xs:element minOccurs="0" name="apellidoPaterno" type="xs:string" />
-      <xs:element minOccurs="0" name="contraSistema" type="xs:string" />
-      <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
-      <xs:element name="idUsuario" type="xs:int" />
-      <xs:element minOccurs="0" name="nombre" type="xs:string" />
-      <xs:element minOccurs="0" name="telefono" type="xs:string" />
-      <xs:element minOccurs="0" name="tipoUsuario" type="xs:string" />
-      <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="producto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
-      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
-      <xs:element name="idProducto" type="xs:int" />
-      <xs:element minOccurs="0" name="nombre" type="xs:string" />
-      <xs:element name="precioUnitario" type="xs:double" />
-      <xs:element name="stock" type="xs:int" />
-      <xs:element name="stockMinimo" type="xs:int" />
-      <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listarLocales">
@@ -76,20 +49,4 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:local" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="actualizarLoc">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="local" type="tns:local" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="actualizarLocResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="tipoEstado">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="DISPONIBLE" />
-      <xs:enumeration value="AGOTADO" />
-    </xs:restriction>
-  </xs:simpleType>
 </xs:schema>

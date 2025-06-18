@@ -4,7 +4,6 @@ using LocalWebService.LocalWS;
 using LocalWebService.NotificionesWS;
 using LocalWebService.PedidoWS;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -68,12 +67,19 @@ namespace LocalWebService
             {
                 if (idLocal == 0)
                 {
-                    gvPedidosCliente.DataSource = pedidoWS.obtenerPedidosPorCliente(idCliente);
+                    var lista = pedidoWS.obtenerPedidosPorCliente(idCliente);
+                    gvPedidosCliente.DataSource = lista
+                        .OrderByDescending(p => p.idOrdenVenta)
+                        .ToList();
                 }
                 else
                 {
-                    gvPedidosCliente.DataSource = pedidoWS.listarPedidoPorLocalCliente(idLocal, idCliente);
+                    var lista = pedidoWS.listarPedidoPorLocalCliente(idLocal, idCliente);
+                    gvPedidosCliente.DataSource = lista
+                        .OrderByDescending(p => p.idOrdenVenta)
+                        .ToList();
                 }
+
                 gvPedidosCliente.DataBind();
             }
             catch (Exception ex)
@@ -91,7 +97,6 @@ namespace LocalWebService
             ddlLocales.Items.Insert(0, new ListItem("-- Todos los locales --", "0"));
         }
 
-
         protected void gvPedidosCliente_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPedidosCliente.PageIndex = e.NewPageIndex;
@@ -106,13 +111,14 @@ namespace LocalWebService
                 if (int.TryParse(e.CommandArgument.ToString(), out pedidoId))
                 {
                     ordenVenta ordenVenta = pedidoWS.obtenerPedidoPorId(pedidoId);
-                    if(ordenVenta.idComprobante != 0)
+                    if (ordenVenta.idComprobante != 0)
                     {
                         Response.Redirect("ComprobantePago.aspx?idComprobante=" + ordenVenta.idComprobante);
                     }
                 }
             }
-            if(e.CommandName == "VerDetalle")
+
+            if (e.CommandName == "VerDetalle")
             {
                 int pedidoId;
                 if (int.TryParse(e.CommandArgument.ToString(), out pedidoId))

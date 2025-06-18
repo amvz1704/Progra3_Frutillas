@@ -50,6 +50,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container perfil-container">
+        <asp:Button ID="btnVistaCliente" runat="server" Text="Ir a Vista Cliente" CssClass="btn btn-frutilla" OnClick="btnVistaCliente_Click" />
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="perfil-card shadow">

@@ -78,6 +78,7 @@
     <Content Include="ClienteComprar.aspx" />
     <Content Include="ClienteHome.aspx" />
     <Content Include="ClienteListaProducto.aspx" />
+    <Content Include="ClientePago.aspx" />
     <Content Include="ClientePedidos.aspx" />
     <Content Include="ClientePerfil.aspx" />
     <Content Include="ComprobantePago.aspx" />
@@ -214,15 +215,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.wsdl" />
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
       <SubType>Designer</SubType>
@@ -232,6 +224,15 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.listarLocalesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.local.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.obtenerLocalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LocalWS\LocalWebService.LocalWS.actualizarLocalVariosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\LocalWS\LocalWS.wsdl" />
@@ -301,8 +302,36 @@
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerDetallePedidoListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.generarOrdenConLineasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
     <None Include="Connected Services\PedidoWS\PedidoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.actualizarProductoImagenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.agregarProductoImagenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.eliminarProductoImagenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.listarProductoImagenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.obtenerProductoImagenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.productoImagen.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.obtenerUrlPorTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ProductoImagenWS\ProductoImagenWS.wsdl" />
+    <None Include="Connected Services\ProductoImagenWS\ProductoImagenWS.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\UsuarioWS\configuration91.svcinfo" />
@@ -310,6 +339,12 @@
     <None Include="Connected Services\PedidoWS\configuration91.svcinfo" />
     <None Include="Connected Services\PedidoWS\configuration.svcinfo" />
     <None Include="Connected Services\PedidoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ProductoImagenWS\configuration91.svcinfo" />
+    <None Include="Connected Services\ProductoImagenWS\configuration.svcinfo" />
+    <None Include="Connected Services\ProductoImagenWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -342,6 +377,8 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="DetallePedido.aspx" />
+    <Content Include="DetalleProductoCliente.aspx" />
+    <Content Include="EmpleadoPerfil.aspx" />
     <Content Include="ListaEmpleadosSupervisor.aspx" />
     <Content Include="ListaPedidos.aspx" />
     <Content Include="ListaProductosSupervisor.aspx" />
@@ -408,6 +445,10 @@
     <Content Include="Public\js\bootstrap.min.js" />
     <Content Include="Empleado.Master" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Public\js\jquery-3.7.1.intellisense.js" />
     <Content Include="Public\js\jquery-3.7.1.js" />
     <Content Include="Public\js\jquery-3.7.1.min.js" />
@@ -453,6 +494,13 @@
     </Compile>
     <Compile Include="ClienteListaProducto.aspx.designer.cs">
       <DependentUpon>ClienteListaProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientePago.aspx.cs">
+      <DependentUpon>ClientePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientePago.aspx.designer.cs">
+      <DependentUpon>ClientePago.aspx</DependentUpon>
     </Compile>
     <Compile Include="ClientePedidos.aspx.cs">
       <DependentUpon>ClientePedidos.aspx</DependentUpon>
@@ -510,6 +558,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ProductoImagenWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\UsuarioWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -521,6 +574,13 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleProductoCliente.aspx.cs">
+      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleProductoCliente.aspx.designer.cs">
+      <DependentUpon>DetalleProductoCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleado.Master.cs">
       <DependentUpon>Empleado.Master</DependentUpon>
@@ -594,6 +654,11 @@
       <DependentUpon>ListarNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="RecuperarCuenta.aspx.cs">
       <DependentUpon>RecuperarCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -675,6 +740,7 @@
     <WCFMetadataStorage Include="Connected Services\LocalWS\" />
     <WCFMetadataStorage Include="Connected Services\NotificionesWS\" />
     <WCFMetadataStorage Include="Connected Services\PedidoWS\" />
+    <WCFMetadataStorage Include="Connected Services\ProductoImagenWS\" />
     <WCFMetadataStorage Include="Connected Services\UsuarioWS\" />
   </ItemGroup>
   <PropertyGroup>

@@ -42,6 +42,24 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.Button btnAgregarEmpleado;
 
         /// <summary>
+        /// Control hfModo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfModo;
+
+        /// <summary>
+        /// Control hfIdCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdCliente;
+
+        /// <summary>
         /// Control lblError.
         /// </summary>
         /// <remarks>
@@ -132,6 +150,15 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.Label lblVerCorreo;
 
         /// <summary>
+        /// Control lblTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTurno;
+
+        /// <summary>
         /// Control hfIdEmpleado.
         /// </summary>
         /// <remarks>
@@ -202,6 +229,15 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCorreo;
+
+        /// <summary>
+        /// Control ddlEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
 
         /// <summary>
         /// Control btnGuardarModal.

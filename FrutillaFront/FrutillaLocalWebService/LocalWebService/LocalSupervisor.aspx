@@ -15,7 +15,7 @@
         <div class="row g-0">
           <!-- Imagen -->
           <div class="col-md-4">
-            <asp:Image ID="imgLocal" runat="server" CssClass="img-fluid rounded-start" />
+            <asp:Image ID="imgLocal" ImageUrl="~/Public/images/fruteria-letras.png" runat="server" CssClass="img-fluid rounded-start" />
           </div>
           <!-- Datos -->
           <div class="col-md-8">
@@ -38,10 +38,13 @@
               </p>
 
                  <div class="mb-5">
-                <asp:Button ID="btnEditarLocal" runat="server"
-                            CssClass="btn-frutilla"
-                            Text="Editar Local"
-                            OnClick="btnEditarLocal_Click" />
+                     <asp:LinkButton
+                        ID="btnEditar"
+                        runat="server"
+                        OnClick="btnEditarLocal_Click"
+                        CssClass="btn btn-sm btn-primary">
+                      ✎ Editar
+                    </asp:LinkButton>
                 
             </div>
 
@@ -53,7 +56,9 @@
 
 
     <!-- 4) Grid de Cards para los módulos de administración -->
-    <h5 class="mt-5 mb-3">Elige el módulo de administración:</h5>
+    <div class="container">
+        <h5 class="mt-5 mb-3">Elige el módulo de administración:</h5>
+    </div>
     <div class="row g-4 justify-content-center">
         <!-- Empleados -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
@@ -108,7 +113,13 @@
  runat="server" 
  CssClass="text-danger" 
  Visible="false" />
-    <asp:Panel ID="pnlModalLocal" runat="server" CssClass="modal fade" Style="display: none;" aria-hidden="true">
+
+    <asp:HiddenField ID="hfLocalId" runat="server" />
+
+    <asp:Panel ID="pnlModalLocal" runat="server" CssClass="modal fade" 
+        TabIndex="-1"
+    Role="dialog"
+    aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <!-- Encabezado del modal -->
@@ -149,6 +160,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
+
                             <label for="ddlEstadoLocal" class="form-label">Estado</label>
                             <asp:DropDownList ID="ddlEstadoLocal" runat="server" CssClass="form-select">
                                 <asp:ListItem Value="true">Activo</asp:ListItem>
@@ -159,10 +171,13 @@
                 </div>
 
                 <!-- Pie del modal: botones Guardar / Cancelar -->
+                
+   
                 <div class="modal-footer">
-                    <asp:Button ID="btnGuardarLocalModal" runat="server"
+                    <asp:LinkButton ID="btnGuardarLocalModal" runat="server"
                                 CssClass="btn btn-success" Text="Guardar"
                                 OnClick="btnGuardarLocalModal_Click" />
+
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Cancelar
                     </button>

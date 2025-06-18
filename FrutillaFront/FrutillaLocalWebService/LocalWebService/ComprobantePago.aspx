@@ -155,7 +155,7 @@
             <div class="d-flex justify-content-center mt-5">
                 <asp:Button ID="btnRegresar" runat="server"
                     CssClass="btn-frutilla"
-                    Text="Ver Pedidos" />
+                    Text="Ver Pedidos" OnClick="btnRegresar_Click" />
             </div>
 
          </div>
