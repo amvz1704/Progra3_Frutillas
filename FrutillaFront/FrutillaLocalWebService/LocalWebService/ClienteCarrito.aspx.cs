@@ -102,29 +102,6 @@ namespace LocalWebService
 
             pedidoWS = new PedidoWSClient();
 
-<<<<<<< Updated upstream
-            lblSubtotal.Text = subtotal.ToString("C");
-            lblIGV.Text = igv.ToString("C");
-            lblTotal.Text = total.ToString("C");
-            btnPagar.Enabled = true;
-        }
-           
-        protected void btnPagar_Click(object sender, EventArgs e)
-        {
-            int servicioOrdenId =  1;
-
-            //subimos a la BD las lineas ordenes de venta del carrito
-
-
-            //crea la orden de servicio "EN_PROCESO"
-
-
-            // Aquí puedes hacer lo que necesites con el idProducto,
-            // por ejemplo, redirigir a una página con detalles:
-            //Pasamos el idOrden
-
-            Response.Redirect($"ClientePago.aspx?id={servicioOrdenId}");
-=======
             // Extraer valores de sesión (asegúrate de tenerlos correctamente configurados en login)
             int idEmpleado = Session["idEmpleado"] != null ? (int)Session["idEmpleado"] : 0;
             int idLocal = Session["idLocal"] != null ? (int)Session["idLocal"] : 0;
@@ -181,7 +158,6 @@ namespace LocalWebService
 
                 Response.Redirect("ClientePago.aspx?id=-1");
             }
->>>>>>> Stashed changes
         }
     }
 }
