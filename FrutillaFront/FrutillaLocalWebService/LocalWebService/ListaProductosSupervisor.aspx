@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="ListaProductosSupervisor.aspx.cs" Inherits="LocalWebService.ListaProductosSupervisor" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -69,18 +68,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <asp:Label ID="Nombre" runat="server" Text="Nombre del producto"></asp:Label>
+                    <label for="txtNombre">Nombre del producto<span style="color:red">*</span></label>
                     <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="Precio" runat="server" Text="Precio (S/.)"></asp:Label>
+                    <label for="txtPrecio">Precio (S/.)<span style="color:red">*</span></label>
                     <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="Descripcion" runat="server" Text="Descripcion"></asp:Label>
+                    <label for="txtDescripcion">Descripcion<span style="color:red">*</span></label>
                     <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="Stock" runat="server" Text="Stock"></asp:Label>
+                    <label for="txtStock">Stock<span style="color:red">*</span></label>
                     <asp:TextBox ID="txtStock" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="StockMinimo" runat="server" Text="Stock Minimo"></asp:Label>
+                    <label for="txtStockMinimo">Stock Minimo<span style="color:red">*</span></label>
                     <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="Codigo" runat="server" Text="Codigo 3 letras"></asp:Label>
+                    <label for="txtCodigo">Codigo 3 letras<span style="color:red">*</span></label>
                     <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control mb-2" MaxLength="3" />
+                    <label for="TipoProducto">Tipo Producto<span style="color:red">*</span></label>
                     <asp:DropDownList ID="TipoProducto" CssClass="form-select mb-2" runat="server" onchange="mostrarOpciones(this)">
                         <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                         <asp:ListItem Text="Fruta" Value="F"></asp:ListItem>
@@ -171,17 +171,17 @@
                     <asp:HiddenField ID="HiddenTipoProductoEdit" runat="server" />
                     <asp:HiddenField ID="HiddenIdProductoEdit" runat="server" />
                     <asp:HiddenField ID="HiddenTipoEstadoProductoEdit" runat="server" />
-                    <asp:Label ID="LblEditNombre" runat="server" Text="Nombre del producto"></asp:Label>
+                    <label for="txtNombre">Nombre del producto<span style="color:red">*</span></label>
                     <asp:TextBox ID="TxtEditNombre" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="LblEditPrecio" runat="server" Text="Precio (S/.)"></asp:Label>
+                    <label for="txtPrecio">Precio (S/.)<span style="color:red">*</span></label>
                     <asp:TextBox ID="TxtEditPrecio" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="LblEditDescripcion" runat="server" Text="Descripcion"></asp:Label>
+                    <label for="txtDescripcion">Descripcion<span style="color:red">*</span></label>
                     <asp:TextBox ID="TxtEditDescripcion" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="LblEditStock" runat="server" Text="Stock"></asp:Label>
+                    <label for="txtStock">Stock<span style="color:red">*</span></label>
                     <asp:TextBox ID="TxtEditStock" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="LblEditStockMin" runat="server" Text="Stock Minimo"></asp:Label>
+                    <label for="txtStockMinimo">Stock Minimo<span style="color:red">*</span></label>
                     <asp:TextBox ID="TxtEditStockMin" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="LblEditCodigo" runat="server" Text="Codigo 3 letras"></asp:Label>
+                    <label for="txtCodigo">Codigo 3 letras<span style="color:red">*</span></label>
                     <asp:TextBox ID="TxtEditCodigo" runat="server" CssClass="form-control mb-2" MaxLength="3" />
 
 

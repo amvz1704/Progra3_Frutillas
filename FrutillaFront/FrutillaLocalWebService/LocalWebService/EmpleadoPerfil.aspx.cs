@@ -13,8 +13,6 @@ namespace LocalWebService
     {
         protected EmpleadoWSClient empleadoService;
         protected UsuarioWSClient usuarioService;
-        private empleado empleadoActual;
-        private ushort tipoEmpleado;
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -34,7 +32,6 @@ namespace LocalWebService
             string[] partes = datos.Split('|');
             string tipoUsuario = partes[0];
             int idUsuario = int.Parse(partes[1]);
-
             if (tipoUsuario != "E")
             {
                 Response.Redirect("Login.aspx");
@@ -54,6 +51,7 @@ namespace LocalWebService
                 }
 
                 Session["empleado"] = empleado;
+                Session["tipo"] = empleado.tipo.ToString();
             }
 
             MostrarDatos((empleado)Session["empleado"]);
@@ -208,7 +206,8 @@ namespace LocalWebService
          }
         protected void btnVistaCliente_Click(object sender, EventArgs e)
         {
-            if(tipoEmpleado == 83) 
+            string tipo = Session["tipo"].ToString();
+            if (tipo.Equals("83")) 
             {
                 Response.Redirect("ClienteHome.aspx");
             }

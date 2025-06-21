@@ -52,27 +52,6 @@
             <asp:BoundField DataField="Producto.PrecioUnitario" HeaderText="Precio" DataFormatString="{0:F2}" HtmlEncode="false" />
             <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
 
-            <asp:TemplateField HeaderText="Acciones">
-                <ItemTemplate>
-                    <asp:LinkButton ID="btnEliminar" runat="server"
-                        Text="Eliminar"
-                        CommandName="Eliminar"
-                        CommandArgument='<%# Container.DataItemIndex %>'
-                        CssClass="btn btn-outline-secondary btn-sm me-2" />
-
-                    <asp:Label ID="lblCantidad" runat="server" Text='<%# Eval("cantidad") %>' CssClass="fw-bold" />
-
-                    <asp:LinkButton ID="btnMas" runat="server" Text="+"
-                        CommandName="Aumentar"
-                        CommandArgument='<%# Container.DataItemIndex %>'
-                        CssClass="btn btn-outline-secondary btn-sm ms-2" />
-                </div>
-            </ItemTemplate>
-        </asp:TemplateField>
-
-        <asp:BoundField DataField="Producto.PrecioUnitario" HeaderText="Precio" DataFormatString="{0:F2}" HtmlEncode="false" />
-        <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
-
         <asp:TemplateField HeaderText="Acciones">
             <ItemTemplate>
                 <asp:LinkButton ID="btnEliminar" runat="server"

@@ -82,7 +82,8 @@ namespace LocalWebService
 
         protected void btnAnterior_Click(object sender, EventArgs e)
         {
-            if(PaginaActual >= 0) { 
+            if (PaginaActual >= 0)
+            {
                 PaginaActual--;
                 CargarProductos();
             }
@@ -139,7 +140,7 @@ namespace LocalWebService
             {
                 int idProducto = int.Parse(e.CommandArgument.ToString());
                 char tipoProducto = (char)inventarioWSClient.obtenerTipoProducto(idProducto, idLocal);
-                
+
                 HiddenTipoProductoEdit.Value = tipoProducto.ToString();
                 HiddenIdProductoEdit.Value = e.CommandArgument.ToString();
                 // Obtener y asignar datos según el tipo
@@ -162,7 +163,7 @@ namespace LocalWebService
                             ChkReqLimpiezaEdit.Checked = fruta.requiereLimpieza;
                             // Asigna los campos específicos de fruta si los tienes en el modal
                         }
-                        
+
                         break;
                     case 'B':
                         var bebida = (bebida)inventarioWSClient.obtenerBebidaPorId(idProducto);
@@ -183,7 +184,7 @@ namespace LocalWebService
 
                             // Asigna los campos específicos de bebida si los tienes en el modal
                         }
-                        
+
                         break;
                     case 'S':
                         var snack = (snack)inventarioWSClient.obtenerSnackPorId(idProducto);
@@ -222,7 +223,7 @@ namespace LocalWebService
                 CargarProductos();
 
             }
-            else if(e.CommandName == "Eliminar")
+            else if (e.CommandName == "Eliminar")
             {
                 int idProducto = int.Parse(e.CommandArgument.ToString());
                 inventarioWSClient.eliminarProducto(idProducto, idLocal);
@@ -289,7 +290,7 @@ namespace LocalWebService
                 inventarioWSClient.actualizarProducto(fruta, idLocal);
             }
             else if (tipo == "B")
-            {   
+            {
                 bebida bebida = new bebida();
                 if (Enum.TryParse(HiddenTipoEstadoProductoEdit.Value, out InventarioWS.tipoEstado estado))
                 {
@@ -382,7 +383,7 @@ namespace LocalWebService
                         fruta.requiereEnvase = ChkFrutaRequiereEnvase.Checked;
                         fruta.requiereEnvaseSpecified = true;
                         fruta.requiereLimpieza = ChkFrutaLimpieza.Checked;
-                        fruta.requiereLimpiezaSpecified = true; 
+                        fruta.requiereLimpiezaSpecified = true;
                         inventarioWSClient.insertarFruta(fruta, idLocal);
                         break;
                     case 'B':
