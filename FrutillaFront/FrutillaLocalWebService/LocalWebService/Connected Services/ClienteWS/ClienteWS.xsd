@@ -43,7 +43,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="actualizarClienteResponse">
-    <xs:sequence />
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="agregarCliente">
     <xs:sequence>

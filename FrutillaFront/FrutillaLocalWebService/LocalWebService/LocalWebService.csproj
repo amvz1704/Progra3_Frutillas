@@ -363,13 +363,13 @@
     <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.correoExisteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.generarTokenRecuperacionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.obtenerPorCorreoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.validarTokenRecuperacionResponse.datasource">
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.generarCodigoRecuperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.validarCodigoRecuperacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\UsuarioWS\Reference.svcmap">

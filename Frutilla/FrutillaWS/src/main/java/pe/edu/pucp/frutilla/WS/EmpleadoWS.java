@@ -49,38 +49,32 @@ public class EmpleadoWS {
 
     @WebMethod(operationName = "actualizarEmpleado")
     public boolean actualizarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
-        try { 
-            Date fechaTemp = sdf.parse(empleado.getFechatContratoSTRING());
-            empleado.setFechaContrato(LocalDate.parse(empleado.getFechatContratoSTRING()));
-            
-            try {
-                Empleado hiddenValues = daoEmpleado.obtener(empleado.getIdUsuario());
-                hiddenValues.setNombre(empleado.getNombre());
-                hiddenValues.setApellidoMaterno(empleado.getApellidoMaterno());
-                hiddenValues.setApellidoPaterno(empleado.getApellidoPaterno());
-                hiddenValues.setSalario(empleado.getSalario());
-                hiddenValues.setCorreoElectronico(empleado.getCorreoElectronico());
-                hiddenValues.setTurnoTrabajo(empleado.getTurnoTrabajo());
-                hiddenValues.setTelefono(empleado.getTelefono());
-                hiddenValues.setFechaContrato(LocalDate.parse(empleado.getFechatContratoSTRING()));
-                hiddenValues.setFechatContratoSTRING(empleado.getFechatContratoSTRING());
-                try{
-                    daoEmpleado.actualizar(hiddenValues);
-                    return true; 
-                }catch(Exception ex){ 
-                    System.out.println(ex.getMessage()); 
-                    return false; 
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
+        empleado.setFechaContrato(LocalDate.parse(empleado.getFechatContratoSTRING()));
+
+        try {
+            Empleado hiddenValues = daoEmpleado.obtener(empleado.getIdUsuario());
+            hiddenValues.setNombre(empleado.getNombre());
+            hiddenValues.setApellidoMaterno(empleado.getApellidoMaterno());
+            hiddenValues.setApellidoPaterno(empleado.getApellidoPaterno());
+            hiddenValues.setSalario(empleado.getSalario());
+            hiddenValues.setCorreoElectronico(empleado.getCorreoElectronico());
+            hiddenValues.setTurnoTrabajo(empleado.getTurnoTrabajo());
+            hiddenValues.setTelefono(empleado.getTelefono());
+            hiddenValues.setFechaContrato(empleado.getFechaContrato());
+            hiddenValues.setFechatContratoSTRING(empleado.getFechatContratoSTRING());
+            try{
+                daoEmpleado.actualizar(hiddenValues);
+                return true; 
+            }catch(Exception ex){ 
+                System.out.println(ex.getMessage()); 
+                return false; 
             }
-            
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }    
+        }
+           
         return false; 
     }
 
@@ -109,7 +103,7 @@ public class EmpleadoWS {
     
     @WebMethod(operationName = "agregarEmpleado")
     public boolean agregarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try { 
             LocalDate fechaTemp = LocalDate.parse(empleado.getFechatContratoSTRING());
             

@@ -133,8 +133,12 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
+
+                    // Define el formato de entrada esperado.
+                    
                     lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
+                    
                     if (emp.turnoTrabajo)
                     {
                         lblTurno.Text = "Mañana";

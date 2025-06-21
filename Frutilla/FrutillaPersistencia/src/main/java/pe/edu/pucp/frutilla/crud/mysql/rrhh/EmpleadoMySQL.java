@@ -109,9 +109,12 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         empleado.setUsuarioSistema(rs.getString("usuarioSistema"));
         empleado.setContraSistema(rs.getString("contrasSistema"));
         empleado.setActivo(rs.getBoolean("activo"));
+        //Se asigna la cadena de string al mismo tiempo 
         LocalDate temporal = rs.getDate("fechaContrato").toLocalDate(); 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         empleado.setFechaContrato(temporal);
+        empleado.setFechatContratoSTRING(temporal.format(formatter));
+        //se termina de asignar
         empleado.setSalario(rs.getDouble("salario"));
         empleado.setTurnoTrabajo(rs.getBoolean("turnoTrabajo"));
         empleado.setTipo(tipo);
