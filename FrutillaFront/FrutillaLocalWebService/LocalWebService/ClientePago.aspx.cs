@@ -78,9 +78,9 @@ namespace LocalWebService
             txtPedido.Text = "Por editar"; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
 
 
-            txtSubtotal.Text = subtotal.ToString("C2");
-            txtIGV.Text = igv.ToString("C2");
-            txtTotal.Text = total.ToString("C2");
+            txtSubtotal.Text = subtotal.ToString();
+            txtIGV.Text = igv.ToString();
+            txtTotal.Text = total.ToString();
         }
 
         protected void SeleccionarMetodo_Click(object sender, EventArgs e)
@@ -130,7 +130,7 @@ namespace LocalWebService
                 comprobante.numeroArticulos = Carrito.Count;
             comprobante.fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
             comprobante.subtotal = (double)(Carrito.Sum(l => (decimal)l.subtotal));
-            comprobante.total = double.Parse(txtTotal.Text.Split(' ')[0]); // Asumiendo IGV incluido
+            comprobante.total = double.Parse(txtTotal.Text); // Asumiendo IGV incluido
             
 
             // Por ahora simulamos confirmación y vaciamos el carrito:
