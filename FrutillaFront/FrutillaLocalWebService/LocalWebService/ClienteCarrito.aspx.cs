@@ -156,7 +156,7 @@ namespace LocalWebService
             string fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
             string horaStr = DateTime.Now.ToString("HH:mm:ss");
 
-            var nuevaOrden = new PedidoWS.ordenVenta
+            var nuevaOrden = new PedidoWS.ordenVentaDTO
             {
                 idEmpleado = 0,
                 idLocal = idLocal,

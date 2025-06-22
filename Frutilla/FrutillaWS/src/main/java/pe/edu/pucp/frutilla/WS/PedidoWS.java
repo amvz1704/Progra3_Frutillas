@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import pe.edu.pucp.frutilla.dto.OrdenVentaDTO;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 import pe.edu.pucp.frutilla.logica.venta.LineaOrdenDeVentaService;
 import pe.edu.pucp.frutilla.logica.venta.OrdenVentaService;
@@ -37,9 +38,15 @@ public class PedidoWS {
     }
     
     @WebMethod(operationName = "obtenerPedidosPorEmpleado")
-    public List<OrdenVenta> obtenerPedidosPorEmpleado(@WebParam (name ="idEmpleado") int idEmpleado) {
+    public List<OrdenVentaDTO> obtenerPedidosPorEmpleado(@WebParam (name ="idEmpleado") int idEmpleado) {
         try{
-            return daoOrdenVenta.listarOrdenesPorEmpleado(idEmpleado);
+            List<OrdenVenta> lista = daoOrdenVenta.listarOrdenesPorEmpleado(idEmpleado);
+            List<OrdenVentaDTO> listaDTO = new ArrayList<>();
+            for(int i=0;i<lista.size();i++){
+                OrdenVentaDTO temp = new OrdenVentaDTO(lista.get(i));
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         }catch(Exception ex){ 
             System.out.println(ex.getMessage()); 
         }
@@ -47,9 +54,15 @@ public class PedidoWS {
     }
     
     @WebMethod(operationName = "obtenerPedidosPorCliente")
-    public List<OrdenVenta> obtenerPedidosPorCliente(@WebParam (name ="idCliente") int idCliente){
+    public List<OrdenVentaDTO> obtenerPedidosPorCliente(@WebParam (name ="idCliente") int idCliente){
         try{
-            return daoOrdenVenta.listarOrdenesPorCliente(idCliente);
+            List<OrdenVenta> lista = daoOrdenVenta.listarOrdenesPorCliente(idCliente);
+            List<OrdenVentaDTO> listaDTO = new ArrayList<>();
+            for(int i=0;i<lista.size();i++){
+                OrdenVentaDTO temp = new OrdenVentaDTO(lista.get(i));
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         }catch(Exception ex){ 
             System.out.println(ex.getMessage()); 
         }
@@ -66,9 +79,10 @@ public class PedidoWS {
     }
     
     @WebMethod(operationName = "agregarOrden")
-    public void agregarOrden(@WebParam(name = "orden")OrdenVenta orden){
+    public void agregarOrden(@WebParam(name = "orden")OrdenVentaDTO orden){
         try{
-            daoOrdenVenta.agregarOrden(orden);
+            OrdenVenta ordenFinal = orden.convertirAOrdenVenta();
+            daoOrdenVenta.agregarOrden(ordenFinal);
         } catch (Exception e){
              System.err.println("Error al crear pedido"  + e.getMessage());
             throw new RuntimeException("No se pudo crear pedido");
@@ -76,9 +90,10 @@ public class PedidoWS {
     }
     
     @WebMethod(operationName = "actualizarOrden")
-    public void actualizarOrden(@WebParam(name = "orden") OrdenVenta orden) {
+    public void actualizarOrden(@WebParam(name = "orden") OrdenVentaDTO orden) {
         try {
-            daoOrdenVenta.actualizarOrden(orden);
+            OrdenVenta ordenFinal = orden.convertirAOrdenVenta();
+            daoOrdenVenta.actualizarOrden(ordenFinal);
         } catch (Exception ex) {
            System.err.println("Error al actualizar pedido"  + ex.getMessage());
             throw new RuntimeException("No se pudo obtener el detalle del pedido.");
@@ -86,11 +101,11 @@ public class PedidoWS {
     }
     
     @WebMethod(operationName = "obtenerPedidoPorId")
-    public OrdenVenta obtenerPedidoPorId(@WebParam(name = "idOrdenVenta") int idOrden) {
+    public OrdenVentaDTO obtenerPedidoPorId(@WebParam(name = "idOrdenVenta") int idOrden) {
         try {
-            // Usamos el servicio de OrdenVenta para obtener el pedido completo
-            OrdenVenta pedido = daoOrdenVenta.obtenerPedido(idOrden); // Asegúrate de tener el método en OrdenVentaService
-            return pedido;
+            OrdenVenta pedido = daoOrdenVenta.obtenerPedido(idOrden);
+            OrdenVentaDTO pedidoFinal = new OrdenVentaDTO(pedido);
+            return pedidoFinal;
         } catch (Exception ex) {
             System.err.println("Error al obtener el pedido con ID " + idOrden + ": " + ex.getMessage());
         }
@@ -110,9 +125,15 @@ public class PedidoWS {
     }
     
     @WebMethod(operationName = "listarPedidoPorLocal")
-    public List<OrdenVenta> listarPedidoPorLocal (@WebParam(name = "idLocal")int idLocal){
+    public List<OrdenVentaDTO> listarPedidoPorLocal (@WebParam(name = "idLocal")int idLocal){
         try{
-            return daoOrdenVenta.listarOrdenesPorLocal(idLocal);
+            List<OrdenVenta> lista = daoOrdenVenta.listarOrdenesPorLocal(idLocal);
+            List<OrdenVentaDTO> listaDTO = new ArrayList<>();
+            for(int i=0;i<lista.size();i++){
+                OrdenVentaDTO temp = new OrdenVentaDTO(lista.get(i));
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         } catch(Exception e) {
             System.err.println("Error al listar el pedido con local " + idLocal 
                     + ": " + e.getMessage());
@@ -121,10 +142,16 @@ public class PedidoWS {
     }
     
     @WebMethod (operationName = "listarPedidoPorLocalCliente")
-    public List<OrdenVenta> listarPedidoPorLocalCliente(@WebParam(name = "idLocal")
+    public List<OrdenVentaDTO> listarPedidoPorLocalCliente(@WebParam(name = "idLocal")
     int idLocal,@WebParam(name = "idCliente")int idCliente){
         try{
-            return daoOrdenVenta.listarOrdenesPorLocalCliente(idLocal, idCliente);
+            List<OrdenVenta> lista = daoOrdenVenta.listarOrdenesPorLocalCliente(idLocal, idCliente);
+            List<OrdenVentaDTO> listaDTO = new ArrayList<>();
+            for(int i=0;i<lista.size();i++){
+                OrdenVentaDTO temp = new OrdenVentaDTO(lista.get(i));
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         } catch (Exception ex){
             System.err.println("Error al listar el pedido con local y cliente " + idLocal 
                     + ": " + ex.getMessage());
@@ -134,29 +161,17 @@ public class PedidoWS {
     
     @WebMethod(operationName = "generarOrdenConLineas")
     public int generarOrdenConLineas(
-            @WebParam(name = "orden") OrdenVenta orden,
+            @WebParam(name = "orden") OrdenVentaDTO orden,
             @WebParam(name = "lineas") List<LineaOrdenDeVenta> lineas) {
         try {
-            // 1. Agregar la orden
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
-            // Convierte el String fecha a Date
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate fechaDate =  LocalDate.parse(orden.getFechaStr(), formatter);
-            orden.setFecha(fechaDate);
-            SimpleDateFormat sdfHora = new SimpleDateFormat("HH:mm:ss");
-            sdf.setLenient(false);
-            DateTimeFormatter formatterHora=DateTimeFormatter.ofPattern("HH:mm:ss");
-            LocalTime horaFinal = LocalTime.parse(orden.getHoraStr(),formatterHora);
-            orden.setHoraFinEntrega(horaFinal);
-            daoOrdenVenta.agregarOrden(orden); // actualiza el ID
-            int idOrden = orden.getIdOrdenVenta();
+            OrdenVenta ordenFinal = orden.convertirAOrdenVenta();
+            daoOrdenVenta.agregarOrden(ordenFinal); // actualiza el ID
+            int idOrden = ordenFinal.getIdOrdenVenta();
             // 2. Agregar cada línea asociada a la orden
             for (LineaOrdenDeVenta linea : lineas) {
                 linea.setIdOrdenVenta(idOrden);
-                daoLineaOrdenDeVenta.registrarLinea(linea,orden.getIdLocal());
+                daoLineaOrdenDeVenta.registrarLinea(linea,ordenFinal.getIdLocal());
             }
-
             return idOrden;
         } catch (Exception e) {
             System.err.println("Error al generar la orden con líneas: " + e.getMessage());
