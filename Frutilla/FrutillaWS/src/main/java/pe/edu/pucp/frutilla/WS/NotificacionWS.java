@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import pe.edu.pucp.frutilla.dto.NotificacionDTO;
 import pe.edu.pucp.frutilla.logica.local.NotificacionService;
 import pe.edu.pucp.frutilla.models.local.Notificacion;
 
@@ -30,41 +31,67 @@ public class NotificacionWS {
     }
     
     @WebMethod(operationName = "listarTodos")
-    public List<Notificacion> listarTodos() {
+    public List<NotificacionDTO> listarTodos() {
         try {
-            return notificacionServ.listarTodos();
+            List<Notificacion> lista = notificacionServ.listarTodos();
+            List<NotificacionDTO> listaDTO = new ArrayList<> ();
+            for (int i=0;i<lista.size();i++){
+                NotificacionDTO temp = new NotificacionDTO(lista.get(i));
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         }catch (Exception e){
             throw new WebServiceException("Error al listar notificaciones");
         }
     }
     
     @WebMethod(operationName = "listarPorFecha")
-    public ArrayList<Notificacion> listarPorFecha(String fecha,int idSupervisor) {
+    public ArrayList<NotificacionDTO> listarPorFecha(String fecha,int idSupervisor) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
-            // Convierte el String fecha a Date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate fechaDate =  LocalDate.parse(fecha, formatter);
-            return notificacionServ.listarPorFecha(fechaDate,idSupervisor);
+            ArrayList<Notificacion> lista = notificacionServ.listarPorFecha(fechaDate,idSupervisor);
+            ArrayList<NotificacionDTO> listaDTO = new ArrayList<>();
+            for(int i=0;i<lista.size();i++){
+                NotificacionDTO temp = new NotificacionDTO(lista.get(i));
+                temp.setTipoReceptor('S');
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         }catch (Exception e){
             throw new WebServiceException("Error al listar notificaciones por fechas");
         }
     }
     
     @WebMethod(operationName = "listarPorSupervisor")
-    public ArrayList<Notificacion> listarPorSupervisor(int idSupervisor) {
+    public ArrayList<NotificacionDTO> listarPorSupervisor(int idSupervisor) {
         try {
-            return notificacionServ.listarPorSupervisor(idSupervisor);
+            ArrayList<Notificacion> lista = notificacionServ.listarPorSupervisor(idSupervisor);
+            ArrayList<NotificacionDTO> listaDTO = new ArrayList<> ();
+            for (int i=0;i<lista.size();i++){
+                NotificacionDTO temp = new NotificacionDTO(lista.get(i));
+                temp.setTipoReceptor('S');
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         }catch (Exception e){
             throw new WebServiceException("Error al listar notificaciones por fechas");
         }
     }
     
     @WebMethod(operationName = "listarPorCliente")
-    public ArrayList<Notificacion> listarPorCliente(int idCliente){
+    public ArrayList<NotificacionDTO> listarPorCliente(int idCliente){
         try {
-            return notificacionServ.listarPorCliente(idCliente);
+            ArrayList<Notificacion> lista = notificacionServ.listarPorCliente(idCliente);
+            ArrayList<NotificacionDTO> listaDTO = new ArrayList<> ();
+            for (int i=0;i<lista.size();i++){
+                NotificacionDTO temp = new NotificacionDTO(lista.get(i));
+                temp.setTipoReceptor('C');
+                listaDTO.add(temp);
+            }
+            return listaDTO;
         }catch (Exception e){
             throw new WebServiceException("Error al listar notificaciones por fechas");
         }
