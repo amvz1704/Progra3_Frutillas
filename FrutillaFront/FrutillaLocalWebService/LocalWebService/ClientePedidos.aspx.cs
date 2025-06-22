@@ -110,7 +110,7 @@ namespace LocalWebService
                 int pedidoId;
                 if (int.TryParse(e.CommandArgument.ToString(), out pedidoId))
                 {
-                    ordenVenta ordenVenta = pedidoWS.obtenerPedidoPorId(pedidoId);
+                    ordenVentaDTO ordenVenta = pedidoWS.obtenerPedidoPorId(pedidoId);
                     if (ordenVenta.idComprobante != 0)
                     {
                         Response.Redirect("ComprobantePago.aspx?idComprobante=" + ordenVenta.idComprobante);

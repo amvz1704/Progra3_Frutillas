@@ -22,17 +22,15 @@
   <xs:element name="obtenerPedidosPorEmpleadoResponse" type="tns:obtenerPedidosPorEmpleadoResponse" />
   <xs:complexType name="agregarOrden">
     <xs:sequence>
-      <xs:element minOccurs="0" name="orden" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" name="orden" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ordenVenta">
+  <xs:complexType name="ordenVentaDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="descripcion" type="xs:string" />
       <xs:element name="entregado" type="xs:boolean" />
       <xs:element minOccurs="0" name="estado" type="tns:estadoVenta" />
-      <xs:element minOccurs="0" name="fecha" type="tns:localDate" />
       <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
-      <xs:element minOccurs="0" name="horaFinEntrega" type="tns:localTime" />
       <xs:element minOccurs="0" name="horaStr" type="xs:string" />
       <xs:element name="idCliente" type="xs:int" />
       <xs:element name="idComprobante" type="xs:int" />
@@ -41,12 +39,6 @@
       <xs:element name="idOrdenVenta" type="xs:int" />
       <xs:element name="montoTotal" type="xs:double" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="localTime" final="extension restriction">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="agregarOrdenResponse">
     <xs:sequence />
@@ -58,7 +50,7 @@
   </xs:complexType>
   <xs:complexType name="listarPedidoPorLocalResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerPedidoPorId">
@@ -68,12 +60,12 @@
   </xs:complexType>
   <xs:complexType name="obtenerPedidoPorIdResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" name="return" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="generarOrdenConLineas">
     <xs:sequence>
-      <xs:element minOccurs="0" name="orden" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" name="orden" type="tns:ordenVentaDTO" />
       <xs:element minOccurs="0" maxOccurs="unbounded" name="lineas" type="tns:lineaOrdenDeVenta" />
     </xs:sequence>
   </xs:complexType>
@@ -110,7 +102,7 @@
   </xs:complexType>
   <xs:complexType name="obtenerPedidosPorEmpleadoResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerDetallePedidoList">
@@ -125,7 +117,7 @@
   </xs:complexType>
   <xs:complexType name="actualizarOrden">
     <xs:sequence>
-      <xs:element minOccurs="0" name="orden" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" name="orden" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="actualizarOrdenResponse">
@@ -139,7 +131,7 @@
   </xs:complexType>
   <xs:complexType name="listarPedidoPorLocalClienteResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerPedidosPorCliente">
@@ -149,7 +141,7 @@
   </xs:complexType>
   <xs:complexType name="obtenerPedidosPorClienteResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerDetallePedido">

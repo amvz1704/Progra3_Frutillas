@@ -58,7 +58,7 @@ namespace LocalWebService
             //la informacion del producto actual -- casos descontinuados por ejemplo (pro ahora no hago cambios hasta conversarlo con el grupo) 
             //lo calculas del comprobante actual 
 
-            ordenVenta ordenVenta = daoPedidoOrden.obtenerPedidoPorId(idComprobanteServicio);
+            ordenVentaDTO ordenVenta = daoPedidoOrden.obtenerPedidoPorId(idComprobanteServicio);
 
             int comprobanteId = ordenVenta.idComprobante;
 

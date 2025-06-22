@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * @author User
  */
 public class OrdenVenta{
-	
 	private int idOrdenVenta; 
 	private LocalDate fecha; 
         private String fechaStr;

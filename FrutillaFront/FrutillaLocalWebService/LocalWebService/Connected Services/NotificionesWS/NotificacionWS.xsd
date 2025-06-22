@@ -16,13 +16,12 @@
   </xs:complexType>
   <xs:complexType name="listarPorFechaResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacionDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="notificacion">
+  <xs:complexType name="notificacionDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="descripcion" type="xs:string" />
-      <xs:element minOccurs="0" name="fecha" type="tns:localDate" />
       <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
       <xs:element name="idCliente" type="xs:int" />
       <xs:element name="idNotificacion" type="xs:int" />
@@ -30,9 +29,6 @@
       <xs:element name="tipoReceptor" type="xs:unsignedShort" />
       <xs:element minOccurs="0" name="titulo" type="xs:string" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="listarTodos">
     <xs:sequence>
@@ -63,7 +59,7 @@
   </xs:complexType>
   <xs:complexType name="listarPorSupervisorResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacionDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listarPorCliente">
@@ -73,7 +69,7 @@
   </xs:complexType>
   <xs:complexType name="listarPorClienteResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacion" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notificacionDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="tipoEstado">
