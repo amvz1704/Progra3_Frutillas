@@ -275,9 +275,9 @@ namespace LocalWebService
                 telefono = txtTelefono.Text.Trim(),
                 correoElectronico = txtCorreo.Text.Trim(),
                 turnoTrabajo = ddlEstado.SelectedValue == "true",
-                fechatContratoSTRING = fechaFormateada
-                //usuarioSistema = txtUsuario.Text.Trim(),
-                //contraSistema = txtContrasena.Text.Trim()
+                fechatContratoSTRING = fechaFormateada,
+                usuarioSistema = txtUsuario.Text.Trim(),
+                contraSistema = txtContrasena.Text.Trim()
             };
 
 

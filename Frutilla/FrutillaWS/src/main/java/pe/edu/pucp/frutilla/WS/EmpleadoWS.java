@@ -64,6 +64,8 @@ public class EmpleadoWS {
             hiddenValues.setTelefono(empleado.getTelefono());
             hiddenValues.setFechaContrato(empleado.getFechaContrato());
             hiddenValues.setFechatContratoSTRING(empleado.getFechatContratoSTRING());
+            hiddenValues.setUsuarioSistema(empleado.getUsuarioSistema());
+            hiddenValues.setContraSistema(empleado.getContraSistema());
             try{
                 daoEmpleado.actualizar(hiddenValues);
                 return true; 

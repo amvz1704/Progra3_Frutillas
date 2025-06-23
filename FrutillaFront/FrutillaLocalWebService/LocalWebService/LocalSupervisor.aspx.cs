@@ -62,7 +62,7 @@ namespace LocalWebService
                 lblDireccion.Text = localActual.direccion;
                 lblDescripcion.Text = localActual.descripcion;
                 lblTelefono.Text = localActual.telefono;
-                //falta agregar la imagen
+                //falta agregar la imagen !!
 
 
                 btnEditar.CommandArgument = LOCAL_ID.ToString(); //para editar la informacion del local actual 
