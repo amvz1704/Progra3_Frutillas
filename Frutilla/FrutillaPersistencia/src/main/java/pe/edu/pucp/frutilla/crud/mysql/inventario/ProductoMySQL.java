@@ -137,4 +137,29 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
         return entities;
     }
 
+    @Override
+    public ArrayList<Producto> obtenerSoloProductosSinCategoriaTodosPorLocal(int idLocal) {
+        ArrayList<Producto> entities = new ArrayList<>();
+        String query="SELECT p.idProducto,nombre,descripcion,"
+                + "codProd,precioUnitario,stockMinimo,i.stock,"
+                + "i.estado FROM Producto p,Inventario i WHERE "
+                + "p.idProducto=i.idProducto AND i.idLocal=? AND i.tipo="
+                + "P";
+        try (Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);) {
+            ps.setInt(1, idLocal);
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    Producto temp=createFromResultSet(rs);
+                    temp.setStock(rs.getInt("stock"));
+                    temp.setTipoEstado(TipoEstado.valueOf(rs.getString("estado")));
+                    System.out.println(temp.toString());
+                    entities.add(temp);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar entidades", e);
+        }
+        return entities;
+    }
 }

@@ -112,7 +112,7 @@ public class InventarioMySQL implements InventarioDAO{
         productos.addAll(snaSQL.obtenerTodosPorLocal(idLocal));
         //Buscamos los productos restantes
         ProductoMySQL proSQl = new ProductoMySQL();
-        productos.addAll(proSQl.obtenerTodosPorLocal(idLocal));
+        productos.addAll(proSQl.obtenerSoloProductosSinCategoriaTodosPorLocal(idLocal));
         //retonamo el arraylist completo;
         return productos;
     }
@@ -163,7 +163,7 @@ public class InventarioMySQL implements InventarioDAO{
         default:
             //Buscamos los productos restantes
             ProductoMySQL proSQl = new ProductoMySQL();
-            productos.addAll(proSQl.obtenerTodosPorLocal(idLocal));
+            productos.addAll(proSQl.obtenerSoloProductosSinCategoriaTodosPorLocal(idLocal));
         }
         //retonamo el arraylist completo;
         return productos;
