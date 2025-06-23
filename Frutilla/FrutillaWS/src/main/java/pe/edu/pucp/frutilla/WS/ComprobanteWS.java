@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import pe.edu.pucp.frutilla.dto.ComprobanteDTO;
 import pe.edu.pucp.frutilla.logica.inventario.ProductoService;
 import pe.edu.pucp.frutilla.logica.venta.ComprobantePagoService;
 import pe.edu.pucp.frutilla.logica.venta.LineaOrdenDeVentaService;
@@ -28,30 +29,20 @@ public class ComprobanteWS {
     
     
     @WebMethod(operationName = "agregarComprobante")
-    public void agregarComprobante(@WebParam(name = "Comprobante") ComprobantePago comp) {
+    public void agregarComprobante(@WebParam(name = "Comprobante") ComprobanteDTO comp) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
-            // Convierte el String fecha a Date
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate fechaDate =  LocalDate.parse(comp.getFechaStr(), formatter);
-            comp.setFecha(fechaDate);
-            comprobanteService.agregar(comp);
+            ComprobantePago enviado = comp.convertirAComprobante();
+            comprobanteService.agregar(enviado);
         } catch (Exception ex) {
             throw new WebServiceException("Error al agregar el comprobante: " + ex.getMessage());
         }
     }
     
     @WebMethod(operationName = "actualizarComprobante")
-    public void actualizarComprobante(@WebParam(name = "Comprobante") ComprobantePago comp) {
+    public void actualizarComprobante(@WebParam(name = "Comprobante") ComprobanteDTO comp) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
-            // Convierte el String fecha a Date
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate fechaDate =  LocalDate.parse(comp.getFechaStr(), formatter);
-            comp.setFecha(fechaDate);
-            comprobanteService.actualizar(comp);
+            ComprobantePago enviado = comp.convertirAComprobante();
+            comprobanteService.actualizar(enviado);
         } catch (Exception ex) {
             throw new WebServiceException("Error al actualizar el comprobante: " + ex.getMessage());
         }
@@ -67,9 +58,11 @@ public class ComprobanteWS {
     }
     
     @WebMethod(operationName = "obtenerComprobante") 
-    public ComprobantePago obtenerComprobante(@WebParam(name = "idComprobante") int idComprobante) {
+    public ComprobanteDTO obtenerComprobante(@WebParam(name = "idComprobante") int idComprobante) {
         try {
-            return comprobanteService.obtenerPorId(idComprobante);
+            ComprobantePago base=comprobanteService.obtenerPorId(idComprobante);
+            ComprobanteDTO enviado=new ComprobanteDTO(base);
+            return enviado;
         } catch (Exception ex) {
             throw new WebServiceException("Error al obtener Comprobante: " + ex.getMessage());
         }

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import pe.edu.pucp.frutilla.models.local.Notificacion;
 
 public class NotificacionDTO {
-     private int idNotificacion;
+    private int idNotificacion;
     private String fechaStr; //usado para poder pasar la info a front
     private String titulo;
     private String descripcion;
