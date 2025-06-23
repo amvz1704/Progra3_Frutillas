@@ -16,6 +16,36 @@ namespace LocalWebService.EmpleadoWS {
     public interface EmpleadoWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse obtenerEmpleadoPorId(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdResponse")]
+        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse> obtenerEmpleadoPorIdAsync(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosxLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosxLocalResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse obtenerEmpleadosxLocal(LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosxLocalRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosxLocalResponse")]
+        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse> obtenerEmpleadosxLocalAsync(LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.EmpleadoWS.eliminarEmpleadoResponse eliminarEmpleado(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
+        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.eliminarEmpleadoResponse> eliminarEmpleadoAsync(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/agregarEmpleadoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/agregarEmpleadoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
@@ -34,36 +64,6 @@ namespace LocalWebService.EmpleadoWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/actualizarEmpleadoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/actualizarEmpleadoResponse")]
         System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.actualizarEmpleadoResponse> actualizarEmpleadoAsync(LocalWebService.EmpleadoWS.actualizarEmpleadoRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.EmpleadoWS.obtenerEmpleadosResponse obtenerEmpleados(LocalWebService.EmpleadoWS.obtenerEmpleadosRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosResponse")]
-        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadosResponse> obtenerEmpleadosAsync(LocalWebService.EmpleadoWS.obtenerEmpleadosRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.EmpleadoWS.eliminarEmpleadoResponse eliminarEmpleado(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
-        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.eliminarEmpleadoResponse> eliminarEmpleadoAsync(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(persona))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse obtenerEmpleadoPorId(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdResponse")]
-        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse> obtenerEmpleadoPorIdAsync(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request);
     }
     
     /// <remarks/>
@@ -178,6 +178,7 @@ namespace LocalWebService.EmpleadoWS {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(empleadoDTO))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(empleado))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
@@ -336,6 +337,193 @@ namespace LocalWebService.EmpleadoWS {
         }
     }
     
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/")]
+    public partial class empleadoDTO : persona {
+        
+        private string fechatContratoSTRINGField;
+        
+        private int idLocalField;
+        
+        private double salarioField;
+        
+        private ushort tipoField;
+        
+        private bool turnoTrabajoField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
+        public string fechatContratoSTRING {
+            get {
+                return this.fechatContratoSTRINGField;
+            }
+            set {
+                this.fechatContratoSTRINGField = value;
+                this.RaisePropertyChanged("fechatContratoSTRING");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public int idLocal {
+            get {
+                return this.idLocalField;
+            }
+            set {
+                this.idLocalField = value;
+                this.RaisePropertyChanged("idLocal");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public double salario {
+            get {
+                return this.salarioField;
+            }
+            set {
+                this.salarioField = value;
+                this.RaisePropertyChanged("salario");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public ushort tipo {
+            get {
+                return this.tipoField;
+            }
+            set {
+                this.tipoField = value;
+                this.RaisePropertyChanged("tipo");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        public bool turnoTrabajo {
+            get {
+                return this.turnoTrabajoField;
+            }
+            set {
+                this.turnoTrabajoField = value;
+                this.RaisePropertyChanged("turnoTrabajo");
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleadoPorId", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerEmpleadoPorIdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idEmpleado;
+        
+        public obtenerEmpleadoPorIdRequest() {
+        }
+        
+        public obtenerEmpleadoPorIdRequest(int idEmpleado) {
+            this.idEmpleado = idEmpleado;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleadoPorIdResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerEmpleadoPorIdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.EmpleadoWS.empleado @return;
+        
+        public obtenerEmpleadoPorIdResponse() {
+        }
+        
+        public obtenerEmpleadoPorIdResponse(LocalWebService.EmpleadoWS.empleado @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleadosxLocal", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerEmpleadosxLocalRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idLocal;
+        
+        public obtenerEmpleadosxLocalRequest() {
+        }
+        
+        public obtenerEmpleadosxLocalRequest(int idLocal) {
+            this.idLocal = idLocal;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleadosxLocalResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerEmpleadosxLocalResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.EmpleadoWS.empleadoDTO[] @return;
+        
+        public obtenerEmpleadosxLocalResponse() {
+        }
+        
+        public obtenerEmpleadosxLocalResponse(LocalWebService.EmpleadoWS.empleadoDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarEmpleado", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarEmpleadoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idEmpleado;
+        
+        public eliminarEmpleadoRequest() {
+        }
+        
+        public eliminarEmpleadoRequest(int idEmpleado) {
+            this.idEmpleado = idEmpleado;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarEmpleadoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarEmpleadoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public eliminarEmpleadoResponse() {
+        }
+        
+        public eliminarEmpleadoResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -408,114 +596,6 @@ namespace LocalWebService.EmpleadoWS {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleados", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerEmpleadosRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idLocal;
-        
-        public obtenerEmpleadosRequest() {
-        }
-        
-        public obtenerEmpleadosRequest(int idLocal) {
-            this.idLocal = idLocal;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleadosResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerEmpleadosResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.EmpleadoWS.empleado[] @return;
-        
-        public obtenerEmpleadosResponse() {
-        }
-        
-        public obtenerEmpleadosResponse(LocalWebService.EmpleadoWS.empleado[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarEmpleado", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarEmpleadoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idEmpleado;
-        
-        public eliminarEmpleadoRequest() {
-        }
-        
-        public eliminarEmpleadoRequest(int idEmpleado) {
-            this.idEmpleado = idEmpleado;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarEmpleadoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarEmpleadoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public eliminarEmpleadoResponse() {
-        }
-        
-        public eliminarEmpleadoResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleadoPorId", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerEmpleadoPorIdRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idEmpleado;
-        
-        public obtenerEmpleadoPorIdRequest() {
-        }
-        
-        public obtenerEmpleadoPorIdRequest(int idEmpleado) {
-            this.idEmpleado = idEmpleado;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerEmpleadoPorIdResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerEmpleadoPorIdResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.EmpleadoWS.empleado @return;
-        
-        public obtenerEmpleadoPorIdResponse() {
-        }
-        
-        public obtenerEmpleadoPorIdResponse(LocalWebService.EmpleadoWS.empleado @return) {
-            this.@return = @return;
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface EmpleadoWSChannel : LocalWebService.EmpleadoWS.EmpleadoWS, System.ServiceModel.IClientChannel {
     }
@@ -541,6 +621,75 @@ namespace LocalWebService.EmpleadoWS {
         
         public EmpleadoWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleadoPorId(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request) {
+            return base.Channel.obtenerEmpleadoPorId(request);
+        }
+        
+        public LocalWebService.EmpleadoWS.empleado obtenerEmpleadoPorId(int idEmpleado) {
+            LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest();
+            inValue.idEmpleado = idEmpleado;
+            LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse retVal = ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleadoPorId(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse> LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleadoPorIdAsync(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request) {
+            return base.Channel.obtenerEmpleadoPorIdAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse> obtenerEmpleadoPorIdAsync(int idEmpleado) {
+            LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest();
+            inValue.idEmpleado = idEmpleado;
+            return ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleadoPorIdAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleadosxLocal(LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest request) {
+            return base.Channel.obtenerEmpleadosxLocal(request);
+        }
+        
+        public LocalWebService.EmpleadoWS.empleadoDTO[] obtenerEmpleadosxLocal(int idLocal) {
+            LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest();
+            inValue.idLocal = idLocal;
+            LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse retVal = ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleadosxLocal(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse> LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleadosxLocalAsync(LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest request) {
+            return base.Channel.obtenerEmpleadosxLocalAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse> obtenerEmpleadosxLocalAsync(int idLocal) {
+            LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalRequest();
+            inValue.idLocal = idLocal;
+            return ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleadosxLocalAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.EmpleadoWS.eliminarEmpleadoResponse LocalWebService.EmpleadoWS.EmpleadoWS.eliminarEmpleado(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request) {
+            return base.Channel.eliminarEmpleado(request);
+        }
+        
+        public bool eliminarEmpleado(int idEmpleado) {
+            LocalWebService.EmpleadoWS.eliminarEmpleadoRequest inValue = new LocalWebService.EmpleadoWS.eliminarEmpleadoRequest();
+            inValue.idEmpleado = idEmpleado;
+            LocalWebService.EmpleadoWS.eliminarEmpleadoResponse retVal = ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).eliminarEmpleado(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.eliminarEmpleadoResponse> LocalWebService.EmpleadoWS.EmpleadoWS.eliminarEmpleadoAsync(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request) {
+            return base.Channel.eliminarEmpleadoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.eliminarEmpleadoResponse> eliminarEmpleadoAsync(int idEmpleado) {
+            LocalWebService.EmpleadoWS.eliminarEmpleadoRequest inValue = new LocalWebService.EmpleadoWS.eliminarEmpleadoRequest();
+            inValue.idEmpleado = idEmpleado;
+            return ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).eliminarEmpleadoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -587,75 +736,6 @@ namespace LocalWebService.EmpleadoWS {
             LocalWebService.EmpleadoWS.actualizarEmpleadoRequest inValue = new LocalWebService.EmpleadoWS.actualizarEmpleadoRequest();
             inValue.empleado = empleado;
             return ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).actualizarEmpleadoAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.EmpleadoWS.obtenerEmpleadosResponse LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleados(LocalWebService.EmpleadoWS.obtenerEmpleadosRequest request) {
-            return base.Channel.obtenerEmpleados(request);
-        }
-        
-        public LocalWebService.EmpleadoWS.empleado[] obtenerEmpleados(int idLocal) {
-            LocalWebService.EmpleadoWS.obtenerEmpleadosRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadosRequest();
-            inValue.idLocal = idLocal;
-            LocalWebService.EmpleadoWS.obtenerEmpleadosResponse retVal = ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleados(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadosResponse> LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleadosAsync(LocalWebService.EmpleadoWS.obtenerEmpleadosRequest request) {
-            return base.Channel.obtenerEmpleadosAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadosResponse> obtenerEmpleadosAsync(int idLocal) {
-            LocalWebService.EmpleadoWS.obtenerEmpleadosRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadosRequest();
-            inValue.idLocal = idLocal;
-            return ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleadosAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.EmpleadoWS.eliminarEmpleadoResponse LocalWebService.EmpleadoWS.EmpleadoWS.eliminarEmpleado(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request) {
-            return base.Channel.eliminarEmpleado(request);
-        }
-        
-        public bool eliminarEmpleado(int idEmpleado) {
-            LocalWebService.EmpleadoWS.eliminarEmpleadoRequest inValue = new LocalWebService.EmpleadoWS.eliminarEmpleadoRequest();
-            inValue.idEmpleado = idEmpleado;
-            LocalWebService.EmpleadoWS.eliminarEmpleadoResponse retVal = ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).eliminarEmpleado(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.eliminarEmpleadoResponse> LocalWebService.EmpleadoWS.EmpleadoWS.eliminarEmpleadoAsync(LocalWebService.EmpleadoWS.eliminarEmpleadoRequest request) {
-            return base.Channel.eliminarEmpleadoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.eliminarEmpleadoResponse> eliminarEmpleadoAsync(int idEmpleado) {
-            LocalWebService.EmpleadoWS.eliminarEmpleadoRequest inValue = new LocalWebService.EmpleadoWS.eliminarEmpleadoRequest();
-            inValue.idEmpleado = idEmpleado;
-            return ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).eliminarEmpleadoAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleadoPorId(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request) {
-            return base.Channel.obtenerEmpleadoPorId(request);
-        }
-        
-        public LocalWebService.EmpleadoWS.empleado obtenerEmpleadoPorId(int idEmpleado) {
-            LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest();
-            inValue.idEmpleado = idEmpleado;
-            LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse retVal = ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleadoPorId(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse> LocalWebService.EmpleadoWS.EmpleadoWS.obtenerEmpleadoPorIdAsync(LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest request) {
-            return base.Channel.obtenerEmpleadoPorIdAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse> obtenerEmpleadoPorIdAsync(int idEmpleado) {
-            LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest inValue = new LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdRequest();
-            inValue.idEmpleado = idEmpleado;
-            return ((LocalWebService.EmpleadoWS.EmpleadoWS)(this)).obtenerEmpleadoPorIdAsync(inValue);
         }
     }
 }

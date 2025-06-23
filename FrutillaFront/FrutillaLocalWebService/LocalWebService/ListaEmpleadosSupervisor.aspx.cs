@@ -2,6 +2,7 @@
 using LocalWebService.LocalWS;
 using LocalWebService.NotificionesWS;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,8 +19,17 @@ namespace LocalWebService
     public partial class ListaEmpleadosSupervisor : System.Web.UI.Page
     {
         //protected Empleado empleadoService;
-        const int LOCAL_ID = 1; //esto dependera del id del empleado que abre la pagina
+        
         private EmpleadoWSClient daoEmpleado;
+        protected int LocalId { get; private set; }
+        //para obtener el local 
+        private int localActualId
+        {
+            get => ViewState["LOCAL_ID"] as int? ?? 0;
+            set => ViewState["LOCAL_ID"] = value;
+        }
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,11 +37,26 @@ namespace LocalWebService
             daoEmpleado = new EmpleadoWSClient();
             if (!IsPostBack)
             {
+                string sId = Request.QueryString["id"];
+                if (!int.TryParse(sId, out int id))
+                {
+                    // Parámetro inválido; podrías redirigir o mostrar error
+                    Response.Redirect("LocalSupervisor.aspx");
+                    return;
+                }
+                // 2) Guardarlo si luego lo vas a reutilizar
+                localActualId = id;
                 CargarEmpleados();
             }
 
         }
 
+
+        protected void btnBuscarEmpleado_Click(object sender, EventArgs e) {
+
+            string nombre = txtBuscar.Text.Trim();
+            CargarEmpleados(nombre);
+        } 
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
             //codigo para abir el modal que agrega empleado * Por hacer 
@@ -76,12 +101,37 @@ namespace LocalWebService
 
         }
 
-        private void CargarEmpleados()
+        private void CargarEmpleados(string filtroNombre = null)
         {
+            
+
             try
             {
-                gvEmpleados.DataSource = daoEmpleado.obtenerEmpleados(LOCAL_ID);
-                gvEmpleados.DataBind();
+                // 1) Obtén la lista completa (desde tu DAO o servicio)
+                var listaOriginal = daoEmpleado.obtenerEmpleadosxLocal(localActualId);
+
+                if (!string.IsNullOrWhiteSpace(filtroNombre))
+                {
+                    var filtrados = listaOriginal
+                    .Where(emp => !string.IsNullOrEmpty(emp.nombre)
+                                  && (emp.nombre.IndexOf(filtroNombre,StringComparison.CurrentCultureIgnoreCase) >= 0
+                                  ||
+                                  emp.apellidoPaterno.IndexOf(filtroNombre,StringComparison.CurrentCultureIgnoreCase) >= 0
+                                  ||
+                                  emp.apellidoMaterno.IndexOf(filtroNombre, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                                  
+                                  )
+                    .ToList();
+
+                    gvEmpleados.DataSource = filtrados;
+                    gvEmpleados.DataBind();
+                }
+                else {
+                    gvEmpleados.DataSource = listaOriginal;
+                    gvEmpleados.DataBind();
+
+                }
+                
             }
             catch (Exception ex)
             {
@@ -267,7 +317,7 @@ namespace LocalWebService
             var empDto = new EmpleadoWS.empleado
             {
                 idUsuario = idEmp,
-                idLocal = LOCAL_ID,
+                idLocal = localActualId,
                 nombre = txtNombre.Text.Trim(),
                 apellidoPaterno = txtApellidoPa.Text.Trim(),
                 apellidoMaterno = txtApellidoMa.Text.Trim(),

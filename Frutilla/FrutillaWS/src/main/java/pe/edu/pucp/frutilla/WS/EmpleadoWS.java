@@ -11,10 +11,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pe.edu.pucp.frutilla.dto.EmpleadoDTO;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
 
@@ -36,10 +38,17 @@ public class EmpleadoWS {
     
    
     
-    @WebMethod(operationName = "obtenerEmpleados")
-    public List<Empleado> obtenerEmpleados(@WebParam (name ="idLocal") int idLocal) {
+    @WebMethod(operationName = "obtenerEmpleadosxLocal")
+    public List<EmpleadoDTO> obtenerEmpleadosxLocal(@WebParam (name ="idLocal") int idLocal) {
         try{
-            return daoEmpleado.listarTodosPorLocal(idLocal);
+            List<Empleado> lista = daoEmpleado.listarTodosPorLocal(idLocal);
+            List<EmpleadoDTO> listaDTO = new ArrayList<>();
+            for(int i=0;i<lista.size();i++){
+                EmpleadoDTO temp = new EmpleadoDTO(lista.get(i));
+                listaDTO.add(temp);
+            }
+            
+            return listaDTO; 
         }catch(Exception ex){ 
             System.out.println(ex.getMessage()); 
         }

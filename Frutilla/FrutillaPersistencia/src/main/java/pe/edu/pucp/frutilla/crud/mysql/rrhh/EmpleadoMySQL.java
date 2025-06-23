@@ -174,7 +174,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
             throw new RuntimeException("Error al agregar entidad", e);
         }
     }
-
+   
     @Override
     public ArrayList<Empleado> listarTodosPorLocal(int idLocal){
         ArrayList<Empleado> empleados = new ArrayList<>();

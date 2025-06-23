@@ -44,12 +44,11 @@
   </xs:complexType>
   <xs:complexType name="actualizarComprobante">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Comprobante" type="tns:comprobantePago" />
+      <xs:element minOccurs="0" name="Comprobante" type="tns:comprobanteDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="comprobantePago">
+  <xs:complexType name="comprobanteDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" name="fecha" type="tns:localDate" />
       <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
       <xs:element minOccurs="0" name="formaPago" type="tns:formaDePago" />
       <xs:element name="idComprobante" type="xs:int" />
@@ -58,9 +57,6 @@
       <xs:element name="subtotal" type="xs:double" />
       <xs:element name="total" type="xs:double" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="actualizarComprobanteResponse">
     <xs:sequence />
@@ -72,7 +68,7 @@
   </xs:complexType>
   <xs:complexType name="obtenerComprobanteResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:comprobantePago" />
+      <xs:element minOccurs="0" name="return" type="tns:comprobanteDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerLineasPorIdComprobante">
@@ -96,7 +92,7 @@
   </xs:complexType>
   <xs:complexType name="agregarComprobante">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Comprobante" type="tns:comprobantePago" />
+      <xs:element minOccurs="0" name="Comprobante" type="tns:comprobanteDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="agregarComprobanteResponse">

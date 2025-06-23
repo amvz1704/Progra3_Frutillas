@@ -123,7 +123,7 @@ namespace LocalWebService
             // Convertir el string al enum formaDePago
             Enum.TryParse(metodoSeleccionado, out ComprobanteWS.formaDePago formadePago);
 
-            comprobantePago comprobante = new comprobantePago();
+            comprobanteDTO comprobante = new comprobanteDTO();
             comprobante.formaPago = formadePago;
             comprobante.formaPagoSpecified = true;
             comprobante.montoIGV = (double)(Carrito.Sum(l => (decimal)l.subtotal) * 0.18m); // Asumiendo IGV incluido

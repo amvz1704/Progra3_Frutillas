@@ -110,9 +110,6 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.agregarComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.comprobantePago.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.eliminarComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -129,6 +126,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.comprobanteDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
@@ -154,7 +154,10 @@
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosResponse.datasource">
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.empleadoDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\EmpleadoWS\Reference.svcmap">

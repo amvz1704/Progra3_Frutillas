@@ -28,22 +28,6 @@ namespace LocalWebService.ComprobanteWS {
             "e")]
         System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse> obtenerLineasPorIdComprobanteAsync(LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteRequest request);
         
-        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LocalWebService.ComprobanteWS.eliminarComprobanteResponse eliminarComprobante(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteResponse")]
-        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.eliminarComprobanteResponse> eliminarComprobanteAsync(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request);
-        
-        // CODEGEN: El parámetro 'Comprobante' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LocalWebService.ComprobanteWS.actualizarComprobanteResponse actualizarComprobante(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteResponse")]
-        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.actualizarComprobanteResponse> actualizarComprobanteAsync(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request);
-        
         // CODEGEN: El parámetro 'Comprobante' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/agregarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/agregarComprobanteResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -61,6 +45,14 @@ namespace LocalWebService.ComprobanteWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerComprobanteResponse")]
         System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.obtenerComprobanteResponse> obtenerComprobanteAsync(LocalWebService.ComprobanteWS.obtenerComprobanteRequest request);
         
+        // CODEGEN: El parámetro 'Comprobante' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        LocalWebService.ComprobanteWS.actualizarComprobanteResponse actualizarComprobante(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteResponse")]
+        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.actualizarComprobanteResponse> actualizarComprobanteAsync(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request);
+        
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -69,6 +61,14 @@ namespace LocalWebService.ComprobanteWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdResponse")]
         System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse> obtenerProductoPorIdAsync(LocalWebService.ComprobanteWS.obtenerProductoPorIdRequest request);
+        
+        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        LocalWebService.ComprobanteWS.eliminarComprobanteResponse eliminarComprobante(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteResponse")]
+        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.eliminarComprobanteResponse> eliminarComprobanteAsync(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request);
     }
     
     /// <remarks/>
@@ -322,27 +322,7 @@ namespace LocalWebService.ComprobanteWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/")]
-    public partial class localDate : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/")]
-    public partial class comprobantePago : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private localDate fechaField;
+    public partial class comprobanteDTO : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string fechaStrField;
         
@@ -362,18 +342,6 @@ namespace LocalWebService.ComprobanteWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
-        public localDate fecha {
-            get {
-                return this.fechaField;
-            }
-            set {
-                this.fechaField = value;
-                this.RaisePropertyChanged("fecha");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
         public string fechaStr {
             get {
                 return this.fechaStrField;
@@ -385,7 +353,7 @@ namespace LocalWebService.ComprobanteWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
         public formaDePago formaPago {
             get {
                 return this.formaPagoField;
@@ -409,7 +377,7 @@ namespace LocalWebService.ComprobanteWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
         public int idComprobante {
             get {
                 return this.idComprobanteField;
@@ -421,7 +389,7 @@ namespace LocalWebService.ComprobanteWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public double montoIGV {
             get {
                 return this.montoIGVField;
@@ -433,7 +401,7 @@ namespace LocalWebService.ComprobanteWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public int numeroArticulos {
             get {
                 return this.numeroArticulosField;
@@ -445,7 +413,7 @@ namespace LocalWebService.ComprobanteWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public double subtotal {
             get {
                 return this.subtotalField;
@@ -457,7 +425,7 @@ namespace LocalWebService.ComprobanteWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public double total {
             get {
                 return this.totalField;
@@ -536,73 +504,17 @@ namespace LocalWebService.ComprobanteWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarComprobante", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarComprobanteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg0;
-        
-        public eliminarComprobanteRequest() {
-        }
-        
-        public eliminarComprobanteRequest(int arg0) {
-            this.arg0 = arg0;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarComprobanteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarComprobanteResponse {
-        
-        public eliminarComprobanteResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="actualizarComprobante", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class actualizarComprobanteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.ComprobanteWS.comprobantePago Comprobante;
-        
-        public actualizarComprobanteRequest() {
-        }
-        
-        public actualizarComprobanteRequest(LocalWebService.ComprobanteWS.comprobantePago Comprobante) {
-            this.Comprobante = Comprobante;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="actualizarComprobanteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class actualizarComprobanteResponse {
-        
-        public actualizarComprobanteResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="agregarComprobante", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class agregarComprobanteRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.ComprobanteWS.comprobantePago Comprobante;
+        public LocalWebService.ComprobanteWS.comprobanteDTO Comprobante;
         
         public agregarComprobanteRequest() {
         }
         
-        public agregarComprobanteRequest(LocalWebService.ComprobanteWS.comprobantePago Comprobante) {
+        public agregarComprobanteRequest(LocalWebService.ComprobanteWS.comprobanteDTO Comprobante) {
             this.Comprobante = Comprobante;
         }
     }
@@ -643,13 +555,41 @@ namespace LocalWebService.ComprobanteWS {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.ComprobanteWS.comprobantePago @return;
+        public LocalWebService.ComprobanteWS.comprobanteDTO @return;
         
         public obtenerComprobanteResponse() {
         }
         
-        public obtenerComprobanteResponse(LocalWebService.ComprobanteWS.comprobantePago @return) {
+        public obtenerComprobanteResponse(LocalWebService.ComprobanteWS.comprobanteDTO @return) {
             this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="actualizarComprobante", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class actualizarComprobanteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.ComprobanteWS.comprobanteDTO Comprobante;
+        
+        public actualizarComprobanteRequest() {
+        }
+        
+        public actualizarComprobanteRequest(LocalWebService.ComprobanteWS.comprobanteDTO Comprobante) {
+            this.Comprobante = Comprobante;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="actualizarComprobanteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class actualizarComprobanteResponse {
+        
+        public actualizarComprobanteResponse() {
         }
     }
     
@@ -686,6 +626,34 @@ namespace LocalWebService.ComprobanteWS {
         
         public obtenerProductoPorIdResponse(LocalWebService.ComprobanteWS.producto @return) {
             this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarComprobante", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarComprobanteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg0;
+        
+        public eliminarComprobanteRequest() {
+        }
+        
+        public eliminarComprobanteRequest(int arg0) {
+            this.arg0 = arg0;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarComprobanteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarComprobanteResponse {
+        
+        public eliminarComprobanteResponse() {
         }
     }
     
@@ -740,55 +708,11 @@ namespace LocalWebService.ComprobanteWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.ComprobanteWS.eliminarComprobanteResponse LocalWebService.ComprobanteWS.ComprobanteWS.eliminarComprobante(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request) {
-            return base.Channel.eliminarComprobante(request);
-        }
-        
-        public void eliminarComprobante(int arg0) {
-            LocalWebService.ComprobanteWS.eliminarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.eliminarComprobanteRequest();
-            inValue.arg0 = arg0;
-            LocalWebService.ComprobanteWS.eliminarComprobanteResponse retVal = ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).eliminarComprobante(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.eliminarComprobanteResponse> LocalWebService.ComprobanteWS.ComprobanteWS.eliminarComprobanteAsync(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request) {
-            return base.Channel.eliminarComprobanteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.eliminarComprobanteResponse> eliminarComprobanteAsync(int arg0) {
-            LocalWebService.ComprobanteWS.eliminarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.eliminarComprobanteRequest();
-            inValue.arg0 = arg0;
-            return ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).eliminarComprobanteAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.ComprobanteWS.actualizarComprobanteResponse LocalWebService.ComprobanteWS.ComprobanteWS.actualizarComprobante(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request) {
-            return base.Channel.actualizarComprobante(request);
-        }
-        
-        public void actualizarComprobante(LocalWebService.ComprobanteWS.comprobantePago Comprobante) {
-            LocalWebService.ComprobanteWS.actualizarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.actualizarComprobanteRequest();
-            inValue.Comprobante = Comprobante;
-            LocalWebService.ComprobanteWS.actualizarComprobanteResponse retVal = ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).actualizarComprobante(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.actualizarComprobanteResponse> LocalWebService.ComprobanteWS.ComprobanteWS.actualizarComprobanteAsync(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request) {
-            return base.Channel.actualizarComprobanteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.actualizarComprobanteResponse> actualizarComprobanteAsync(LocalWebService.ComprobanteWS.comprobantePago Comprobante) {
-            LocalWebService.ComprobanteWS.actualizarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.actualizarComprobanteRequest();
-            inValue.Comprobante = Comprobante;
-            return ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).actualizarComprobanteAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.ComprobanteWS.agregarComprobanteResponse LocalWebService.ComprobanteWS.ComprobanteWS.agregarComprobante(LocalWebService.ComprobanteWS.agregarComprobanteRequest request) {
             return base.Channel.agregarComprobante(request);
         }
         
-        public void agregarComprobante(LocalWebService.ComprobanteWS.comprobantePago Comprobante) {
+        public void agregarComprobante(LocalWebService.ComprobanteWS.comprobanteDTO Comprobante) {
             LocalWebService.ComprobanteWS.agregarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.agregarComprobanteRequest();
             inValue.Comprobante = Comprobante;
             LocalWebService.ComprobanteWS.agregarComprobanteResponse retVal = ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).agregarComprobante(inValue);
@@ -799,7 +723,7 @@ namespace LocalWebService.ComprobanteWS {
             return base.Channel.agregarComprobanteAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.agregarComprobanteResponse> agregarComprobanteAsync(LocalWebService.ComprobanteWS.comprobantePago Comprobante) {
+        public System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.agregarComprobanteResponse> agregarComprobanteAsync(LocalWebService.ComprobanteWS.comprobanteDTO Comprobante) {
             LocalWebService.ComprobanteWS.agregarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.agregarComprobanteRequest();
             inValue.Comprobante = Comprobante;
             return ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).agregarComprobanteAsync(inValue);
@@ -810,7 +734,7 @@ namespace LocalWebService.ComprobanteWS {
             return base.Channel.obtenerComprobante(request);
         }
         
-        public LocalWebService.ComprobanteWS.comprobantePago obtenerComprobante(int idComprobante) {
+        public LocalWebService.ComprobanteWS.comprobanteDTO obtenerComprobante(int idComprobante) {
             LocalWebService.ComprobanteWS.obtenerComprobanteRequest inValue = new LocalWebService.ComprobanteWS.obtenerComprobanteRequest();
             inValue.idComprobante = idComprobante;
             LocalWebService.ComprobanteWS.obtenerComprobanteResponse retVal = ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).obtenerComprobante(inValue);
@@ -826,6 +750,28 @@ namespace LocalWebService.ComprobanteWS {
             LocalWebService.ComprobanteWS.obtenerComprobanteRequest inValue = new LocalWebService.ComprobanteWS.obtenerComprobanteRequest();
             inValue.idComprobante = idComprobante;
             return ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).obtenerComprobanteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.ComprobanteWS.actualizarComprobanteResponse LocalWebService.ComprobanteWS.ComprobanteWS.actualizarComprobante(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request) {
+            return base.Channel.actualizarComprobante(request);
+        }
+        
+        public void actualizarComprobante(LocalWebService.ComprobanteWS.comprobanteDTO Comprobante) {
+            LocalWebService.ComprobanteWS.actualizarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.actualizarComprobanteRequest();
+            inValue.Comprobante = Comprobante;
+            LocalWebService.ComprobanteWS.actualizarComprobanteResponse retVal = ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).actualizarComprobante(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.actualizarComprobanteResponse> LocalWebService.ComprobanteWS.ComprobanteWS.actualizarComprobanteAsync(LocalWebService.ComprobanteWS.actualizarComprobanteRequest request) {
+            return base.Channel.actualizarComprobanteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.actualizarComprobanteResponse> actualizarComprobanteAsync(LocalWebService.ComprobanteWS.comprobanteDTO Comprobante) {
+            LocalWebService.ComprobanteWS.actualizarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.actualizarComprobanteRequest();
+            inValue.Comprobante = Comprobante;
+            return ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).actualizarComprobanteAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -849,6 +795,28 @@ namespace LocalWebService.ComprobanteWS {
             LocalWebService.ComprobanteWS.obtenerProductoPorIdRequest inValue = new LocalWebService.ComprobanteWS.obtenerProductoPorIdRequest();
             inValue.idProducto = idProducto;
             return ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).obtenerProductoPorIdAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.ComprobanteWS.eliminarComprobanteResponse LocalWebService.ComprobanteWS.ComprobanteWS.eliminarComprobante(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request) {
+            return base.Channel.eliminarComprobante(request);
+        }
+        
+        public void eliminarComprobante(int arg0) {
+            LocalWebService.ComprobanteWS.eliminarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.eliminarComprobanteRequest();
+            inValue.arg0 = arg0;
+            LocalWebService.ComprobanteWS.eliminarComprobanteResponse retVal = ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).eliminarComprobante(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.eliminarComprobanteResponse> LocalWebService.ComprobanteWS.ComprobanteWS.eliminarComprobanteAsync(LocalWebService.ComprobanteWS.eliminarComprobanteRequest request) {
+            return base.Channel.eliminarComprobanteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.ComprobanteWS.eliminarComprobanteResponse> eliminarComprobanteAsync(int arg0) {
+            LocalWebService.ComprobanteWS.eliminarComprobanteRequest inValue = new LocalWebService.ComprobanteWS.eliminarComprobanteRequest();
+            inValue.arg0 = arg0;
+            return ((LocalWebService.ComprobanteWS.ComprobanteWS)(this)).eliminarComprobanteAsync(inValue);
         }
     }
 }
