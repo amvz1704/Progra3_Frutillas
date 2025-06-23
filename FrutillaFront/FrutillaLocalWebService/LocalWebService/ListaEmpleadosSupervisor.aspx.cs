@@ -40,11 +40,11 @@ namespace LocalWebService
             hfModo.Value = "Create";
 
             // Limpiamos todos los campos del modal:
-            LimpiarCamposModal();
+            crearUsuarioModal(); //creamos otro modal para la creacion de usuario
 
         }
 
-        private void LimpiarCamposModal()
+        private void crearUsuarioModal()
         {
             txtNombre.Text = "";
             txtApellidoPa.Text = "";
@@ -53,6 +53,11 @@ namespace LocalWebService
             txtSalario.Text = "";
             txtFechaContrato.Text = "";
             txtCorreo.Text = "";
+
+            //usuario generado random con contraRandom
+
+            txtUsuario.Text = "";
+            txtContrasena.Text = ""; 
             // HfIdEmpleado ya está en "0".
 
             string script = @"
@@ -139,12 +144,13 @@ namespace LocalWebService
                     lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
                     
+                    
                     if (emp.turnoTrabajo)
                     {
                         lblTurno.Text = "Mañana";
                     }
                     else {
-                        lblTurno.Text = "Tarde";
+                        lblTurno.Text = "Noche";
                     }
 
                         // Ejecutamos JS para mostrar el modal
@@ -190,7 +196,9 @@ namespace LocalWebService
                     txtTelefono.Text = emp.telefono;
                     txtCorreo.Text = emp.correoElectronico;
                     txtFechaContrato.Text = emp.fechatContratoSTRING;
-                    ddlEstado.SelectedValue = emp.turnoTrabajo.ToString().ToLower(); 
+                    ddlEstado.SelectedValue = emp.turnoTrabajo.ToString().ToLower();
+                    txtUsuario.Text = emp.usuarioSistema.ToString();
+                    txtContrasena.Text = emp.contraSistema.ToString();
 
 
                     // Mostrar modal
@@ -250,10 +258,12 @@ namespace LocalWebService
             }
 
             string modo = hfModo.Value;
-            
-
 
             // Construimos el DTO según tu 
+
+            //debemos enviar un nombre de usuario y contraseña generados automaticamente 
+
+            //una vez actualizado la base de datos lo confirma la persona y se crea el usuario 
             var empDto = new EmpleadoWS.empleado
             {
                 idUsuario = idEmp,
@@ -266,6 +276,8 @@ namespace LocalWebService
                 correoElectronico = txtCorreo.Text.Trim(),
                 turnoTrabajo = ddlEstado.SelectedValue == "true",
                 fechatContratoSTRING = fechaFormateada
+                //usuarioSistema = txtUsuario.Text.Trim(),
+                //contraSistema = txtContrasena.Text.Trim()
             };
 
 
@@ -275,12 +287,11 @@ namespace LocalWebService
                 bool ok;
                 if (modo == "Create")
                 { 
-                    ok = client.agregarEmpleado(empDto);      // Método WSDL para asignar un empleado* pero este debe crear su cuenta primero pues
+                    ok = client.agregarEmpleado(empDto);
+                    // Método WSDL para asignar un empleado* pero este debe crear su cuenta primero pues
                 }
                 else
                 {
-                    
-
                     ok = client.actualizarEmpleado(empDto); // Método WSDL para actualizar
                 }
                 client.Close();
@@ -295,10 +306,12 @@ namespace LocalWebService
 
                 // Cerrar modal por JavaScript
                 string scriptHide = @"
-                  var modal = bootstrap.Modal.getInstance(
-                    document.getElementById('miModalEditarEmpleado'));
-                  if(modal) modal.hide();";
+                var modal = bootstrap.Modal.getInstance(
+                document.getElementById('miModalEditarEmpleado'));
+                if(modal) modal.hide();";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "HideModal", scriptHide, true);
+               
+                
             }
             catch (Exception ex)
             {

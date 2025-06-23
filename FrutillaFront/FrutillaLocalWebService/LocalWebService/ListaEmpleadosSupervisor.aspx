@@ -90,12 +90,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Salario" SortExpression="Salario">
-                    <ItemTemplate>
-                        $<%# String.Format("{0:N2}", Eval("salario")) %>
-                    </ItemTemplate>
-                    <ItemStyle Width="100px" />
-                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Teléfono" SortExpression="Telefono">
                     <ItemTemplate>
@@ -211,7 +205,7 @@
           </div>
         </div>
 
-    <!-- MODAL AGREGAR/EDITAR EMPLEADO -->
+    <!-- MODAL EDITAR EMPLEADO -->
         <div class="modal fade" id="miModalEditarEmpleado" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -236,34 +230,64 @@
                   <label class="form-label" for="txtApellidoMa">Apellido Materno</label>
                   <asp:TextBox ID="txtApellidoMa" runat="server" CssClass="form-control" />
                 </div>
+
+                  
                 <div class="mb-3">
-                  <label class="form-label" for="txtSalario">Salario</label>
-                  <asp:TextBox ID="txtSalario" runat="server" CssClass="form-control" />
+                    <div class="row g-3 align-items-end">
+                        <div class="col-6">
+                          <label class="form-label" for="txtSalario">Salario</label>
+                          <asp:TextBox ID="txtSalario" runat="server" CssClass="form-control" />
+                        </div>
+                        <div class="col-6">
+                          <label class="form-label" for="txtTelefono">Teléfono</label>
+                          <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" />
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label" for="txtTelefono">Teléfono</label>
-                  <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" />
+                    <div class="row g-3 align-items-end">
+                    <div class="col-6">
+                        
+                    <label class="form-label" for="txtFechaContrato">Fecha Contrato</label>
+                    <asp:TextBox ID="txtFechaContrato" runat="server"
+                        CssClass="form-control"
+                        TextMode="Date" />
+                    </div> 
+                    <div class="col-6">
+                        <label class="form-label" for="ddlEstado">Turno</label>
+                        <asp:DropDownList 
+                            ID="ddlEstado" 
+                            runat="server" 
+                            CssClass="form-select">
+                        <asp:ListItem Value="true"  Text="Mañana" />
+                        <asp:ListItem Value="false" Text="Noche" />
+                        </asp:DropDownList>
+                    </div> 
+                        </div>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label" for="txtFechaContrato">Fecha Contrato</label>
-                  <asp:TextBox ID="txtFechaContrato" runat="server"
-                      CssClass="form-control"
-                      TextMode="Date" />
-                </div>
+
+
                 <div class="mb-3">
                   <label class="form-label" for="txtCorreo">Correo</label>
                   <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" />
                 </div>
-              </div>
+
                 <div class="mb-3">
-                  <asp:DropDownList 
-                      ID="ddlEstado" 
-                      runat="server" 
-                      CssClass="form-select">
-                    <asp:ListItem Value="true"  Text="Mañana" />
-             <asp:ListItem Value="false" Text="Noche" />
-                  </asp:DropDownList>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-6">
+                            <label class="form-label" for="txtUsuario">Usuario</label>
+                            <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"/>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="txtContrasena">Contrasena</label>
+                            <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control"/>
+                        </div>
+                    </div>
                 </div>
+              
+                
+              
+              </div>
               <!-- Pie -->
               <div class="modal-footer">
                 <asp:Button ID="btnGuardarModal" runat="server"
@@ -277,6 +301,8 @@
             </div>
           </div>
         </div>
+
+   
 
    
 
