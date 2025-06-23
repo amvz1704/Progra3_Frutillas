@@ -40,7 +40,7 @@ namespace LocalWebService
 
             if (!IsPostBack)
             {
-                empleado empleado = empleadoService.obtenerEmpleadoPorId(idUsuario);
+                empleadoDTO empleado = empleadoService.obtenerEmpleadoPorId(idUsuario);
                 if (empleado == null)
                 {
                     lblEstado.Text = "No se encontró la información del usuario.";
@@ -54,10 +54,10 @@ namespace LocalWebService
                 Session["tipo"] = empleado.tipo.ToString();
             }
 
-            MostrarDatos((empleado)Session["empleado"]);
+            MostrarDatos((empleadoDTO)Session["empleado"]);
         }
 
-        private void MostrarDatos(empleado e)
+        private void MostrarDatos(empleadoDTO e)
         {
             lblNombre.Text = e.nombre;
             lblApellidoPaterno.Text = e.apellidoPaterno;
@@ -69,7 +69,7 @@ namespace LocalWebService
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
-            empleado empleado = (empleado)Session["empleado"];
+            empleadoDTO empleado = (empleadoDTO)Session["empleado"];
 
             txtNombre.Text = empleado.nombre;
             txtApellidoPaterno.Text = empleado.apellidoPaterno;
@@ -94,7 +94,7 @@ namespace LocalWebService
             lblCorreoError.Text = "";
             lblTelefonoError.Text = "";
 
-            empleado empleado = (empleado)Session["empleado"];
+            empleadoDTO empleado = (empleadoDTO)Session["empleado"];
 
             string nombre = txtNombre.Text.Trim();
             string apPaterno = txtApellidoPaterno.Text.Trim();

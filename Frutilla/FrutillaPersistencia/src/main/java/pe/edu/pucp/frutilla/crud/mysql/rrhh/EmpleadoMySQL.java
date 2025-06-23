@@ -55,6 +55,10 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
     protected String getSelectAllQuery() {
         return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND u.idUsuario = e.idUsuario";
     }
+    
+    protected String getSelectAllQueryByLocalId() {
+        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND u.idUsuario = e.idUsuario AND e.idLocal = ?";
+    }
 
     @Override
     protected void setInsertParameters(PreparedStatement ps, Empleado entity) throws SQLException {
@@ -178,7 +182,7 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
     @Override
     public ArrayList<Empleado> listarTodosPorLocal(int idLocal){
         ArrayList<Empleado> empleados = new ArrayList<>();
-        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND e.idLocal = ? AND u.idUsuario = e.idUsuario";
+        String query = getSelectAllQueryByLocalId(); 
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idLocal);

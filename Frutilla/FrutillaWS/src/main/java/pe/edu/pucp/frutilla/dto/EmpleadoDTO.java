@@ -30,7 +30,7 @@ public class EmpleadoDTO extends Persona{
         this.setTelefono(base.getTelefono());
         this.setUsuarioSistema(base.getUsuarioSistema());
         this.setContraSistema(base.getContraSistema());
-        this.setActivo(true);
+        this.setActivo(base.getActivo());
         this.setIdUsuario(base.getIdUsuario());
         this.setTipoUsuario(base.getTipoUsuario());
         

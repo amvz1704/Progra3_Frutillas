@@ -281,6 +281,7 @@ namespace LocalWebService
                 if (ok)
                 {
                     lblError.Text = "Correcto al obtener detalles los empleados: ";
+                    CargarEmpleados(); 
                 }
                 else
                 {
@@ -314,7 +315,7 @@ namespace LocalWebService
             //debemos enviar un nombre de usuario y contraseña generados automaticamente 
 
             //una vez actualizado la base de datos lo confirma la persona y se crea el usuario 
-            var empDto = new EmpleadoWS.empleado
+            var empDto = new EmpleadoWS.empleadoDTO
             {
                 idUsuario = idEmp,
                 idLocal = localActualId,

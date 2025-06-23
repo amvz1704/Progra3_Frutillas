@@ -33,7 +33,7 @@ namespace LocalWebService.Notificaciones
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
                 int idUsuario = int.Parse(partes[1]);
-                EmpleadoWS.empleado empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
+                EmpleadoWS.empleadoDTO empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
 
                 if (empleado != null)
                 {
