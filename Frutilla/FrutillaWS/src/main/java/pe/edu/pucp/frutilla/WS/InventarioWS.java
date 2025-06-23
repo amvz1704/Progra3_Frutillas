@@ -183,15 +183,15 @@ public class InventarioWS {
     
     
     
-//    Falta agregar filtrar en persistencia
-//    @WebMethod(operationName = "filtrarPorTipo")
-//    public List<Producto> filtrarPorTipo(int idLocal, char tipo){
-//        try{
-//            return inventarioService.filtrarPorTipo(idLocal, tipo);
-//        }
-//        catch (Exception e){
-//            throw new WebServiceException("Error al filtrar por tipo");
-//        }
-//    }
+    //Falta agregar filtrar en persistencia
+    @WebMethod(operationName = "filtrarPorTipo")
+    public List<Producto> listarPorTipo(int idLocal, char tipo){
+        try{
+            return inventarioService.listarPorTipo(idLocal, tipo);
+        }
+        catch (Exception e){
+            throw new WebServiceException("Error al filtrar por tipo");
+        }
+    }
     
 }

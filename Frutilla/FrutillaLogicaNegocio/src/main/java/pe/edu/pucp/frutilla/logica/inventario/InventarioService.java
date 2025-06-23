@@ -72,6 +72,14 @@ public class InventarioService {
         return invSQL.obtenerTodos(idLocal);
     }
     
+    public ArrayList<Producto> listarPorTipo(int idLocal, char tipo) throws Exception{
+        if(idLocal<=0)
+            throw new Exception("El id del loccal no puede ser negativo");
+        if(tipo != 'F' || tipo != 'S' || tipo != 'B' || tipo != 'P')
+            throw new Exception("El tipo de producto no es valido");
+        return invSQL.listarPorTipo(idLocal, tipo);
+    }
+    
     public char obtenerTipoProducto(int idProducto, int idLocal) throws Exception {
         if(idLocal<=0)
             throw new Exception("El id del loccal no puede ser negativo");

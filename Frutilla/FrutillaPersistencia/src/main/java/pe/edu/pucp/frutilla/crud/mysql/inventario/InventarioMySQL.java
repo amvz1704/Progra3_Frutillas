@@ -141,4 +141,31 @@ public class InventarioMySQL implements InventarioDAO{
             ps.executeUpdate();
         }
     }
+    
+    @Override
+    public ArrayList<Producto> listarPorTipo(int idLocal, char tipo) throws SQLException{
+        ArrayList<Producto> productos= new ArrayList<>();
+        //Recuperamos las frutas
+        switch(tipo){
+            case 'F':
+            FrutaMySQL fruSQL=new FrutaMySQL();
+            productos.addAll(fruSQL.obtenerTodosPorLocal(idLocal));
+        break;
+            case 'B':
+            //Recuperamos las bebidas
+            BebidaMySQL bebSQL=new BebidaMySQL();
+            productos.addAll(bebSQL.obtenerTodosPorLocal(idLocal));
+        break;
+            case 'S':
+            //Recuperamos los snacks
+            SnackMySQL snaSQL=new SnackMySQL();
+            productos.addAll(snaSQL.obtenerTodosPorLocal(idLocal));
+        default:
+            //Buscamos los productos restantes
+            ProductoMySQL proSQl = new ProductoMySQL();
+            productos.addAll(proSQl.obtenerTodosPorLocal(idLocal));
+        }
+        //retonamo el arraylist completo;
+        return productos;
+    }
 }
