@@ -80,6 +80,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="tns:producto" />
       <xs:element name="arg1" type="xs:int" />
+      <xs:element name="arg2" type="xs:unsignedShort" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="actualizarProductoResponse">
