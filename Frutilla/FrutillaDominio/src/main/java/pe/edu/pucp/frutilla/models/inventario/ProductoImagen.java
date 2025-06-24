@@ -5,35 +5,27 @@
 package pe.edu.pucp.frutilla.models.inventario;
 
 public class ProductoImagen {
-    private int idProductoImagen;
-    private char tipoProducto;
-    private String utlImagen;
+    private int idProducto;
+    private String urlImagen;
 
     public ProductoImagen() {
-        tipoProducto='P';
-    }
-    
-    public char getTipoProducto() {
-        return tipoProducto;
     }
 
-    public void setTipoProducto(char tipoProducto) {
-        this.tipoProducto = tipoProducto;
+    public int getIdProducto() {
+        return idProducto;
     }
 
-    public String getUtlImagen() {
-        return utlImagen;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
-    public void setUtlImagen(String utlImagen) {
-        this.utlImagen = utlImagen;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public int getIdProductoImagen() {
-        return idProductoImagen;
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
-    public void setIdProductoImagen(int idProductoImagen) {
-        this.idProductoImagen = idProductoImagen;
-    }
+
 }
