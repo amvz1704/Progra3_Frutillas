@@ -19,6 +19,7 @@ namespace LocalWebService
         private EmpleadoWSClient empleadoWSClient;
         private ProductoImagenWSClient productoImagenWSClient;
         private int idLocal;
+        private char tipoSeleccionado = 'T'; // Por defecto, todos los tipos seleccionados
         public ListaProductosSupervisor()
         {
             inventarioWSClient = new InventarioWSClient();
@@ -109,16 +110,37 @@ namespace LocalWebService
             }
 
         }*/
+
+
+        private void SeleccionarTipo(char tipo)
+        {
+            // Marcar visualmente el botón seleccionado
+            btnTodos.CssClass = tipo == 'T' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnFruta.CssClass = tipo == 'F' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnSnack.CssClass = tipo == 'S' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnBebidas.CssClass = tipo == 'B' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnOtros.CssClass = tipo == 'P' ? "btn btn-success" : "btn btn-outline-secondary";
+        }
+
+        protected void FiltroProductos_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            char tipo = btn.CommandArgument[0];
+            tipoSeleccionado = tipo; // Actualizar el tipo seleccionado
+            SeleccionarTipo(tipo);
+            CargarProductos();
+        }
+
         private void CargarProductos()
         {
             try
             {
-                var productos = inventarioWSClient.listarTodos(idLocal);
+                var productos = inventarioWSClient.filtrarPorTipo(idLocal, tipoSeleccionado);
                 var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
                 PagedDataSource pagedData = new PagedDataSource();
                 pagedData.DataSource = productosSinDuplicados;
                 pagedData.AllowPaging = true;
-                pagedData.PageSize = 6;
+                pagedData.PageSize = 8;
                 pagedData.CurrentPageIndex = PaginaActual;
                 btnAnterior.Enabled = !pagedData.IsFirstPage;
                 btnSiguiente.Enabled = !pagedData.IsLastPage;
@@ -444,6 +466,11 @@ namespace LocalWebService
             int idProducto = Convert.ToInt32(idProd);
             ushort tipo = inventarioWSClient.obtenerTipoProducto(idProducto, idLocal);
             return productoImagenWSClient.obtenerUrlPorTipo(tipo);
+        }
+
+        protected void btnBebidas_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

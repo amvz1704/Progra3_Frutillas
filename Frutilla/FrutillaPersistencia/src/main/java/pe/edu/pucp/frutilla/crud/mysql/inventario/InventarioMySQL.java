@@ -150,20 +150,24 @@ public class InventarioMySQL implements InventarioDAO{
             case 'F':
             FrutaMySQL fruSQL=new FrutaMySQL();
             productos.addAll(fruSQL.obtenerTodosPorLocal(idLocal));
-        break;
-            case 'B':
+            break;
+        case 'B':
             //Recuperamos las bebidas
             BebidaMySQL bebSQL=new BebidaMySQL();
             productos.addAll(bebSQL.obtenerTodosPorLocal(idLocal));
-        break;
-            case 'S':
+            break;
+        case 'S':
             //Recuperamos los snacks
             SnackMySQL snaSQL=new SnackMySQL();
             productos.addAll(snaSQL.obtenerTodosPorLocal(idLocal));
-        default:
+            break;
+        case 'P':
             //Buscamos los productos restantes
             ProductoMySQL proSQl = new ProductoMySQL();
             productos.addAll(proSQl.obtenerSoloProductosSinCategoriaTodosPorLocal(idLocal));
+            break;
+        default:
+            return obtenerTodos(idLocal) ;
         }
         //retonamo el arraylist completo;
         return productos;
