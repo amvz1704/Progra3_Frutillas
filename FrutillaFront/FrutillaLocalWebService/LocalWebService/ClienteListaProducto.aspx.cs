@@ -18,7 +18,8 @@ namespace LocalWebService
         private InventarioWSClient inventarioWSClient;
         private ComprobanteWSClient ComprobanteWS;
         private LocalWSClient localWSClient;
-        const int idPedidoOrden = 1; 
+        const int idPedidoOrden = 1;
+        char tipoSeleccionado = 'T'; // Por defecto, todos los tipos seleccionados
 
         // Propiedad helper para el carrito en Session
         private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
@@ -72,11 +73,30 @@ namespace LocalWebService
         }
 
 
+        private void SeleccionarTipo(char tipo)
+        {
+            // Marcar visualmente el botón seleccionado
+            btnTodos.CssClass = tipo == 'T' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnFruta.CssClass = tipo == 'F' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnSnack.CssClass = tipo == 'S' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnBebidas.CssClass = tipo == 'B' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnOtros.CssClass = tipo == 'P' ? "btn btn-success" : "btn btn-outline-secondary";
+        }
+
+        protected void FiltroProductos_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            char tipo = btn.CommandArgument[0];
+            tipoSeleccionado = tipo; // Actualizar el tipo seleccionado
+            SeleccionarTipo(tipo);
+            CargarProductos();
+        }
+
         private void CargarProductos()
         {
             try
             {
-                var productos = inventarioWSClient.listarTodos(int.Parse(ddlLocal.SelectedValue)); //cambiar por el local seleccionado 
+                var productos = inventarioWSClient.filtrarPorTipo(int.Parse(ddlLocal.SelectedValue), tipoSeleccionado); //cambiar por el local seleccionado 
                 
                 
                 
@@ -115,7 +135,8 @@ namespace LocalWebService
 
                 // O abrir un modal, cargar info, etc.
             }
-            if (e.CommandName == "agregarCarrito") {
+            if (e.CommandName == "agregarCarrito")
+            {
 
                 //se crea un nuevo Pedido, que se podra editar al ver carrito 
                 int idProd = Convert.ToInt32(e.CommandArgument);
@@ -144,30 +165,6 @@ namespace LocalWebService
                 }
 
             }
-        }
-
-
-        protected void Filtro_Click(object sender, EventArgs e)
-        {
-           // sender será el LinkButton que clickeaste
-            var btn = (LinkButton)sender;
-            string categoria = btn.CommandArgument;
-
-            // Marcar botón activo
-            foreach (var ctrl in filterTags.Controls)
-            {
-                if (ctrl is LinkButton lb)
-                    lb.CssClass = "btn btn-outline-light";
-            }
-            btn.CssClass = "btn btn-outline-light active";
-
-            // Filtrar tu listado con esa categoría...
-            BuscarYBind(txtBuscar.Text.Trim(), ddlLocal.SelectedValue, categoria);
-        }
-
-        private void BuscarYBind(string criterio, string localId, string categoria)
-        {
-            // Tu lógica para buscar productos y bindearlos a un repeater/grid...
         }
 
 

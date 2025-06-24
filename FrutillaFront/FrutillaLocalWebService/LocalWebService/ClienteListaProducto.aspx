@@ -7,87 +7,118 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container py-3 form-in-line">
-        <div class="d-flex align-items-center">
+        <!-- Sección de búsqueda y filtros - Completamente responsive -->
+        <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-2 gap-md-0">
             <!-- Barra de búsqueda -->
-            <div class="form-group mb-2 d-flex align-items-center">
+            <div class="form-group mb-2 mb-md-0 d-flex align-items-center flex-grow-1">
                 <asp:TextBox
                     ID="txtBuscar"
                     runat="server"
-                    CssClass="input-frutilla me-2"
+                    CssClass="input-frutilla me-2 flex-grow-1"
                     Placeholder="Buscar producto..."
-                    Width="300px" />
-                <button type="submit" class="btn btn-frutilla">
+                    Style="min-width: 200px;" />
+                <button type="submit" class="btn btn-frutilla flex-shrink-0">
                     <i class="bi bi-search"></i>
                 </button>
             </div>
 
             <!-- Dropdown Local -->
-            <div class="form-group mx-sm-3 mb-2 dropdown-saludable">
+            <div class="form-group mb-2 mb-md-0 dropdown-saludable">
                 <asp:DropDownList
                     ID="ddlLocal"
                     runat="server"
-                    CssClass="form-select select-frutilla"
-                    Width="200px"
+                    CssClass="form-select select-frutilla w-100"
+                    Style="min-width: 200px;"
                     AutoPostBack="true"
                     OnSelectedIndexChanged="ddlLocal_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
         </div>
-        <asp:Panel ID="filterTags" runat="server" CssClass="mt-3">
-            <asp:LinkButton ID="btnTodos" runat="server"
-                CssClass="btn btn-frutilla me-2"
-                CommandArgument="Todos" OnClick="Filtro_Click">Todos</asp:LinkButton>
 
-            <asp:LinkButton ID="btnSnack" runat="server"
-                CssClass="btn btn-frutilla me-2"
-                CommandArgument="Snack" OnClick="Filtro_Click">Snack</asp:LinkButton>
+        <!-- Panel de filtros de productos - Responsive con flex-wrap -->
+        <asp:Panel ID="FiltroProductos" runat="server" CssClass="mt-3">
+            <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-sm-start">
+                <asp:Button ID="btnTodos" runat="server"
+                    CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                    CommandArgument="T" OnClick="FiltroProductos_Click" Text="Todos" />
 
-            <asp:LinkButton ID="btnFruta" runat="server"
-                CssClass="btn btn-frutilla me-2"
-                CommandArgument="Fruta" OnClick="Filtro_Click">Fruta</asp:LinkButton>
+                <asp:Button ID="btnSnack" runat="server"
+                    CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                    CommandArgument="S" OnClick="FiltroProductos_Click" Text="Snack" />
 
-            <asp:LinkButton ID="btnBebidas" runat="server"
-                CssClass="btn btn-frutilla"
-                CommandArgument="Bebidas" OnClick="Filtro_Click">Bebidas</asp:LinkButton>
+                <asp:Button ID="btnFruta" runat="server"
+                    CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                    CommandArgument="F" OnClick="FiltroProductos_Click" Text="Fruta" />
+
+                <asp:Button ID="btnBebidas" runat="server"
+                    CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                    CommandArgument="B" OnClick="FiltroProductos_Click" Text="Bebidas" />
+
+                <asp:Button ID="btnOtros" runat="server"
+                    CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                    CommandArgument="P" OnClick="FiltroProductos_Click" Text="Otros" />
+            </div>
         </asp:Panel>
-
-
     </div>
 
-
+    <!-- Contenedor principal de productos -->
     <div class="container mt-4">
         <div style="background-color: #F8FBD9; padding: 15px; border-radius: 5px;">
-
-
-            <div class="row">
+            <!-- Grid de productos con breakpoints mejorados -->
+            <div class="row g-3 g-md-4">
                 <asp:Repeater ID="rptProductos" runat="server" OnItemCommand="rptProductos_ItemCommand">
                     <ItemTemplate>
-                        <div class="col-md-4 mb-4">
-                            <div class="card-producto h-100">
-                                <img src='<%# ObtenerImagenPorTipo(Eval("idProducto")) %>' class="card-img-top" alt="Imagen producto" />
-                                <div class="card-body">
-                                    <h5 class="card-title"><%# Eval("nombre") %></h5>
-                                    <p class="card-text">Precio: S/ <%# Eval("precioUnitario", "{0:N2}") %></p>
-                                    <p class="card-text">Stock: <%# Eval("stock") %></p>
-
-                                    <asp:Button ID="btnVerMas" runat="server" Text="Detalles"
-                                        CssClass="btn btn-frutilla me-2"
-                                        CommandName="VerMas"
-                                        CommandArgument='<%# Eval("idProducto") %>' />
-
-                                    <asp:Button ID="btnAgregarCarrito" runat="server" Text="Agregar compra"
-                                        CssClass="btn btn-frutilla"
-                                        CommandName="agregarCarrito"
-                                        CommandArgument='<%# Eval("idProducto") %>' />
+                        <!-- Responsive grid: 1 col en xs, 2 cols en sm, 3 cols en lg, 4 cols en xl -->
+                        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card-saludable h-100 d-flex flex-column">
+                                <!-- Imagen responsive -->
+                                <div class="position-relative" style="padding-top: 60%; overflow: hidden;">
+                                    <img src='<%# ObtenerImagenPorTipo(Eval("idProducto")) %>' 
+                                         class="position-absolute top-0 start-0 w-100 h-100" 
+                                         style="object-fit: cover;" 
+                                         alt="<%# Eval("nombre") %>" />
+                                </div>
+                                
+                                <!-- Contenido de la tarjeta -->
+                                <div class="card-body d-flex flex-column flex-grow-1 p-3">
+                                    <h5 class="card-title text-truncate mb-2" title="<%# Eval("nombre") %>">
+                                        <%# Eval("nombre") %>
+                                    </h5>
+                                    
+                                    <!-- Información de precio y stock - responsive -->
+                                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3 gap-1">
+                                        <p class="precio mb-0 fw-bold text-success">
+                                            Precio: S/ <%# Eval("precioUnitario", "{0:N2}") %>
+                                        </p>
+                                        <p class="stock mb-0 text-muted">
+                                            <small>Stock: <%# Eval("stock") %></small>
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- Botones - siempre al final de la tarjeta -->
+                                    <div class="mt-auto">
+                                        <div class="d-flex flex-column flex-sm-row gap-2">
+                                            <asp:Button ID="btnVerMas" runat="server" Text="Detalles"
+                                                CssClass="btn btn-outline-primary flex-fill btn-sm"
+                                                CommandName="VerMas"
+                                                CommandArgument='<%# Eval("idProducto") %>' />
+                                            <asp:Button ID="btnAgregarCarrito" runat="server" Text="Agregar"
+                                                CssClass="btn btn-frutilla flex-fill btn-sm"
+                                                CommandName="agregarCarrito"
+                                                CommandArgument='<%# Eval("idProducto") %>' />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </ItemTemplate>
-
                 </asp:Repeater>
             </div>
         </div>
 
-        <asp:Label ID="lblError" runat="server" CssClass="mb-2"></asp:Label>
+        <!-- Mensaje de error responsive -->
+        <div class="mt-3 text-center">
+            <asp:Label ID="lblError" runat="server" CssClass="label-importante d-block"></asp:Label>
+        </div>
     </div>
 </asp:Content>

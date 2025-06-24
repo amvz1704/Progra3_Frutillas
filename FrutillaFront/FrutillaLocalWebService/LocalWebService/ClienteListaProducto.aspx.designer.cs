@@ -33,13 +33,13 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.DropDownList ddlLocal;
 
         /// <summary>
-        /// Control filterTags.
+        /// Control FiltroProductos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel filterTags;
+        protected global::System.Web.UI.WebControls.Panel FiltroProductos;
 
         /// <summary>
         /// Control btnTodos.
@@ -48,7 +48,7 @@ namespace LocalWebService
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnTodos;
+        protected global::System.Web.UI.WebControls.Button btnTodos;
 
         /// <summary>
         /// Control btnSnack.
@@ -57,7 +57,7 @@ namespace LocalWebService
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSnack;
+        protected global::System.Web.UI.WebControls.Button btnSnack;
 
         /// <summary>
         /// Control btnFruta.
@@ -66,7 +66,7 @@ namespace LocalWebService
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnFruta;
+        protected global::System.Web.UI.WebControls.Button btnFruta;
 
         /// <summary>
         /// Control btnBebidas.
@@ -75,7 +75,16 @@ namespace LocalWebService
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBebidas;
+        protected global::System.Web.UI.WebControls.Button btnBebidas;
+
+        /// <summary>
+        /// Control btnOtros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOtros;
 
         /// <summary>
         /// Control rptProductos.

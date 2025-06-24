@@ -22,6 +22,8 @@ public interface InventarioDAO {
     //Este es para poder jalar todos los productos asociados a un local particular
     ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException;
     //Devuelve el tipo de producto del inventario
-    public char obtenerTipoProducto(int idProducto,int idLocal) throws SQLException;
+    char obtenerTipoProducto(int idProducto,int idLocal) throws SQLException;
+    //Devuelve los productos de acuerdo al tipo al tipo de producto y local
+    ArrayList<Producto> listarPorTipo(int idLocal, char tipo) throws SQLException;
 }
 
