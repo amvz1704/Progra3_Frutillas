@@ -42,7 +42,7 @@
                         ID="btnEditar"
                         runat="server"
                         OnClick="btnEditarLocal_Click"
-                        CssClass="btn btn-sm btn-primary">
+                        CssClass="btn-frutilla-editar">
                       ✎ Editar
                     </asp:LinkButton>
                 
@@ -133,18 +133,18 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="txtNombreLocal" class="form-label">Nombre</label>
+                            <label for="txtNombreLocal" class="form-label">Nombre<span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtNombreLocal" runat="server" CssClass="form-control" />
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="txtTelefonoLocal" class="form-label">Teléfono</label>
+                            <label for="txtTelefonoLocal" class="form-label">Teléfono<span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtTelefonoLocal" runat="server" CssClass="form-control" />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="txtDireccionLocal" class="form-label">Dirección</label>
+                            <label for="txtDireccionLocal" class="form-label">Dirección<span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtDireccionLocal" runat="server" 
                                             CssClass="form-control" />
                         </div>
@@ -152,7 +152,7 @@
 
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="txtDescripcionLocal" class="form-label">Descripcion</label>
+                            <label for="txtDescripcionLocal" class="form-label">Descripcion<span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtDescripcionLocal" runat="server" 
                                             CssClass="form-control" TextMode="MultiLine" Rows="2" />
                         </div>
@@ -161,7 +161,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
 
-                            <label for="ddlEstadoLocal" class="form-label">Estado</label>
+                            <label for="ddlEstadoLocal" class="form-label">Estado<span class="text-danger">*</span></label>
                             <asp:DropDownList ID="ddlEstadoLocal" runat="server" CssClass="form-select">
                                 <asp:ListItem Value="true">Activo</asp:ListItem>
                                 <asp:ListItem Value="false">Inactivo</asp:ListItem>

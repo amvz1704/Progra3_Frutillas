@@ -594,7 +594,7 @@ input[type="date"] {
 
     .gridview-saludable th {
         background: linear-gradient(135deg, #6FA257, #8BC34A);
-        color: white;
+        color: black;
         padding: 15px 12px;
         text-align: left;
         font-weight: 600;

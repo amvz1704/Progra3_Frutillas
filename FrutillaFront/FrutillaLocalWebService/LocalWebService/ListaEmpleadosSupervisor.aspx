@@ -60,14 +60,14 @@
     <div class="container">
         <asp:GridView ID="gvEmpleados" runat="server" AutoGenerateColumns="false"
             AllowPaging="false" ShowHeaderWhenEmpty="true"
-            CssClass="table table-striped table-responsive table-hover"
+            CssClass="table table-striped table-responsive table-hover gridview-saludable"
             HeaderStyle-CssClass="table-light text-center"
             RowStyle-CssClass="text-center"
             PagerStyle-CssClass="pagination justify-content-center"
             OnRowCommand="GvEmpleados_RowCommand">
             <Columns>
                 <asp:TemplateField HeaderText="Id" SortExpression="idEmpleado">
-                    <HeaderStyle CssClass="text-uppercase" />
+                    <HeaderStyle CssClass="text-uppercase text-center text-black" />
                     <ItemTemplate>
                         <%# Eval("idUsuario") %>
                     </ItemTemplate>
@@ -75,19 +75,21 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
-                    <HeaderStyle CssClass="text-uppercase" />
+                    <HeaderStyle CssClass="text-uppercase text-center text-black" />
                     <ItemTemplate>
                         <%# Eval("nombre") %>
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Apellido Pa" SortExpression="ApellidoPa">
+                <asp:TemplateField HeaderText="Apellido Pa" SortExpression="ApellidoPa" >
+                    <HeaderStyle CssClass=" text-center text-black" />
                     <ItemTemplate>
                         <%# Eval("apellidoPaterno") %>
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Apellido Ma" SortExpression="ApellidoMa">
+                    <HeaderStyle CssClass="text-center text-black" />
                     <ItemTemplate>
                         <%# Eval("apellidoMaterno") %>
                     </ItemTemplate>
@@ -95,6 +97,7 @@
 
 
                 <asp:TemplateField HeaderText="Teléfono" SortExpression="Telefono">
+                    <HeaderStyle CssClass="text-center text-black" />
                     <ItemTemplate>
                         <%# Eval("telefono") %>
                     </ItemTemplate>
@@ -102,6 +105,7 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Correo" SortExpression="Correo">
+                    <HeaderStyle CssClass="text-center text-black" />
                     <ItemTemplate>
                         <a href='mailto:<%# Eval("correoElectronico") %>' class="text-decoration-none">
                             <%# Eval("correoElectronico") %>
@@ -111,6 +115,7 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Turno" SortExpression="Turno">
+                    <HeaderStyle CssClass="text-center text-black" />
                     <ItemTemplate>
                         <%# (bool)Eval("turnoTrabajo") ? "Mañana" : "Noche" %>
                     </ItemTemplate>
@@ -118,7 +123,7 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Acciones">
-                    <HeaderStyle CssClass="text-uppercase text-center" />
+                    <HeaderStyle CssClass="text-center text-black" />
                     <ItemTemplate>
                         <div class="d-flex justify-content-center">
 
@@ -165,7 +170,7 @@
             <div class="modal-content">
               <!-- Encabezado -->
               <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white">Detalles del Empleado</h5>
+                <h5 class="modal-title text-black">Detalles del Empleado</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
               </div>
               <!-- Cuerpo -->
@@ -222,15 +227,15 @@
                 <asp:HiddenField ID="hfIdEmpleado" runat="server" />
 
                 <div class="mb-3">
-                  <label class="form-label" for="txtNombre">Nombre</label>
+                  <label class="form-label" for="txtNombre">Nombre<span class="text-danger">*</span></label>
                   <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
                 </div>
                 <div class="mb-3">
-                  <label class="form-label" for="txtApellidoPa">Apellido Paterno</label>
+                  <label class="form-label" for="txtApellidoPa">Apellido Paterno<span class="text-danger">*</span></label>
                   <asp:TextBox ID="txtApellidoPa" runat="server" CssClass="form-control" />
                 </div>
                 <div class="mb-3">
-                  <label class="form-label" for="txtApellidoMa">Apellido Materno</label>
+                  <label class="form-label" for="txtApellidoMa">Apellido Materno<span class="text-danger">*</span></label>
                   <asp:TextBox ID="txtApellidoMa" runat="server" CssClass="form-control" />
                 </div>
 
@@ -238,11 +243,11 @@
                 <div class="mb-3">
                     <div class="row g-3 align-items-end">
                         <div class="col-6">
-                          <label class="form-label" for="txtSalario">Salario</label>
+                          <label class="form-label" for="txtSalario">Salario<span class="text-danger">*</span></label>
                           <asp:TextBox ID="txtSalario" runat="server" CssClass="form-control" />
                         </div>
                         <div class="col-6">
-                          <label class="form-label" for="txtTelefono">Teléfono</label>
+                          <label class="form-label" for="txtTelefono">Teléfono<span class="text-danger">*</span></label>
                           <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" />
                         </div>
                     </div>
@@ -251,13 +256,13 @@
                     <div class="row g-3 align-items-end">
                     <div class="col-6">
                         
-                    <label class="form-label" for="txtFechaContrato">Fecha Contrato</label>
+                    <label class="form-label" for="txtFechaContrato">Fecha Contrato<span class="text-danger">*</span></label>
                     <asp:TextBox ID="txtFechaContrato" runat="server"
                         CssClass="form-control"
                         TextMode="Date" />
                     </div> 
                     <div class="col-6">
-                        <label class="form-label" for="ddlEstado">Turno</label>
+                        <label class="form-label" for="ddlEstado">Turno<span class="text-danger">*</span></label>
                         <asp:DropDownList 
                             ID="ddlEstado" 
                             runat="server" 
@@ -271,18 +276,18 @@
 
 
                 <div class="mb-3">
-                  <label class="form-label" for="txtCorreo">Correo</label>
+                  <label class="form-label" for="txtCorreo">Correo<span class="text-danger">*</span></label>
                   <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" />
                 </div>
 
                 <div class="mb-3">
                     <div class="row g-3 align-items-end">
                         <div class="col-6">
-                            <label class="form-label" for="txtUsuario">Usuario</label>
+                            <label class="form-label" for="txtUsuario">Usuario<span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"/>
                         </div>
                         <div class="col-6">
-                            <label class="form-label" for="txtContrasena">Contrasena</label>
+                            <label class="form-label" for="txtContrasena">Contrasena<span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control"/>
                         </div>
                     </div>
