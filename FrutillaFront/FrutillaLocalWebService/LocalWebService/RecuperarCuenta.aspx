@@ -28,9 +28,10 @@
                 <div class="col-md-6">
                     <div class="card shadow p-4">
                         <h4 class="mb-3 text-center">Recuperar Cuenta</h4>
+                        <p class="mb-3 text-center">Ingresa el correo electrónico asociado a tu cuenta. Te enviaremos un código de verificación para restablecer tu contraseña.</p>
                         <div class="form-group mb-3">
                             <label for="txtCorreo">Correo electrónico</label>
-                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Correo electrónico"></asp:TextBox>
+                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingrese su correo electrónico"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger mb-3 d-block text-center"></asp:Label>
                         <div class="d-grid mb-2">

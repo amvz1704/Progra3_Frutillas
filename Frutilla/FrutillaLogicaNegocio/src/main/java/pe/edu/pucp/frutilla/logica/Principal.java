@@ -26,6 +26,7 @@ import pe.edu.pucp.frutilla.models.inventario.TipoLeche;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Principal {
@@ -37,23 +38,46 @@ public class Principal {
     
     public static void main(String[] args) throws Exception {
         
-//            // TODO code application logic here
+//            // TODO code application logic here Probar insertar 3 locales con 3 supervisores 
+
+//insertar de forma masiva productos 
+//asegurar el funcionamiento de comprobante
             LocalService probar = new LocalService();
              
-            Local obtener = probar.obtenerPorId(2); 
-////            
-            System.out.println(obtener);
             //Ingreso de datos
-            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");
-            ingresar.setIdLocal(2);
+            Local ingresar = new Local("E1", "Descripcipn", "Av. Universitaria", "xxx-xxx-xxx");
             
-            ingresar.setDescripcion("Nueva descripcion 222222");
             
-            probar.actualizar(ingresar);
+            probar.agregar(ingresar);
+            probar.agregar(ingresar);
+            probar.agregar(ingresar);
             
-            obtener = probar.obtenerPorId(2);
+            Local obtener = probar.obtenerPorId(2); //obtener todos los locales
             
-            System.out.println(obtener);
+            
+            //Ingresar 3 empleados 
+            //Actualizar datos
+            EmpleadoService probarEmpleado = new EmpleadoService(); 
+            
+            Supervisor supFrutilla = new Supervisor();
+            
+
+            //agregar supervisor a cada local
+            
+            
+            probarEmpleado.agregar(supFrutilla);
+
+            
+            //asignar un supervisor a cada local 
+            
+            
+            
+            
+            //Agregar 1 bebida, 1 fruta 1 Snack, 1 General (a cada local)
+            
+            
+            //Desde el front hacer pedidos --> revisar los requisitos 
+            
             
             //ingreso de un dato correcto primero Local, luego supervisor, luego Local con el supervisor (pienso que podria automatizarse)
 ////            

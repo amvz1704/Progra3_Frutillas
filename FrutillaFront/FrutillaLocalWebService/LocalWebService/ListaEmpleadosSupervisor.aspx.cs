@@ -2,6 +2,7 @@
 using LocalWebService.LocalWS;
 using LocalWebService.NotificionesWS;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,8 +19,17 @@ namespace LocalWebService
     public partial class ListaEmpleadosSupervisor : System.Web.UI.Page
     {
         //protected Empleado empleadoService;
-        const int LOCAL_ID = 1; //esto dependera del id del empleado que abre la pagina
+        
         private EmpleadoWSClient daoEmpleado;
+        protected int LocalId { get; private set; }
+        //para obtener el local 
+        private int localActualId
+        {
+            get => ViewState["LOCAL_ID"] as int? ?? 0;
+            set => ViewState["LOCAL_ID"] = value;
+        }
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,11 +37,26 @@ namespace LocalWebService
             daoEmpleado = new EmpleadoWSClient();
             if (!IsPostBack)
             {
+                string sId = Request.QueryString["id"];
+                if (!int.TryParse(sId, out int id))
+                {
+                    // Parámetro inválido; podrías redirigir o mostrar error
+                    Response.Redirect("LocalSupervisor.aspx");
+                    return;
+                }
+                // 2) Guardarlo si luego lo vas a reutilizar
+                localActualId = id;
                 CargarEmpleados();
             }
 
         }
 
+
+        protected void btnBuscarEmpleado_Click(object sender, EventArgs e) {
+
+            string nombre = txtBuscar.Text.Trim();
+            CargarEmpleados(nombre);
+        } 
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
             //codigo para abir el modal que agrega empleado * Por hacer 
@@ -40,11 +65,11 @@ namespace LocalWebService
             hfModo.Value = "Create";
 
             // Limpiamos todos los campos del modal:
-            LimpiarCamposModal();
+            crearUsuarioModal(); //creamos otro modal para la creacion de usuario
 
         }
 
-        private void LimpiarCamposModal()
+        private void crearUsuarioModal()
         {
             txtNombre.Text = "";
             txtApellidoPa.Text = "";
@@ -53,6 +78,11 @@ namespace LocalWebService
             txtSalario.Text = "";
             txtFechaContrato.Text = "";
             txtCorreo.Text = "";
+
+            //usuario generado random con contraRandom
+
+            txtUsuario.Text = "";
+            txtContrasena.Text = ""; 
             // HfIdEmpleado ya está en "0".
 
             string script = @"
@@ -71,12 +101,37 @@ namespace LocalWebService
 
         }
 
-        private void CargarEmpleados()
+        private void CargarEmpleados(string filtroNombre = null)
         {
+            
+
             try
             {
-                gvEmpleados.DataSource = daoEmpleado.obtenerEmpleados(LOCAL_ID);
-                gvEmpleados.DataBind();
+                // 1) Obtén la lista completa (desde tu DAO o servicio)
+                var listaOriginal = daoEmpleado.obtenerEmpleadosxLocal(localActualId);
+
+                if (!string.IsNullOrWhiteSpace(filtroNombre))
+                {
+                    var filtrados = listaOriginal
+                    .Where(emp => !string.IsNullOrEmpty(emp.nombre)
+                                  && (emp.nombre.IndexOf(filtroNombre,StringComparison.CurrentCultureIgnoreCase) >= 0
+                                  ||
+                                  emp.apellidoPaterno.IndexOf(filtroNombre,StringComparison.CurrentCultureIgnoreCase) >= 0
+                                  ||
+                                  emp.apellidoMaterno.IndexOf(filtroNombre, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                                  
+                                  )
+                    .ToList();
+
+                    gvEmpleados.DataSource = filtrados;
+                    gvEmpleados.DataBind();
+                }
+                else {
+                    gvEmpleados.DataSource = listaOriginal;
+                    gvEmpleados.DataBind();
+
+                }
+                
             }
             catch (Exception ex)
             {
@@ -133,14 +188,19 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
+
+                    // Define el formato de entrada esperado.
+                    
                     lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
+                    
+                    
                     if (emp.turnoTrabajo)
                     {
                         lblTurno.Text = "Mañana";
                     }
                     else {
-                        lblTurno.Text = "Tarde";
+                        lblTurno.Text = "Noche";
                     }
 
                         // Ejecutamos JS para mostrar el modal
@@ -186,7 +246,9 @@ namespace LocalWebService
                     txtTelefono.Text = emp.telefono;
                     txtCorreo.Text = emp.correoElectronico;
                     txtFechaContrato.Text = emp.fechatContratoSTRING;
-                    ddlEstado.SelectedValue = emp.turnoTrabajo.ToString().ToLower(); 
+                    ddlEstado.SelectedValue = emp.turnoTrabajo.ToString().ToLower();
+                    txtUsuario.Text = emp.usuarioSistema.ToString();
+                    txtContrasena.Text = emp.contraSistema.ToString();
 
 
                     // Mostrar modal
@@ -219,6 +281,7 @@ namespace LocalWebService
                 if (ok)
                 {
                     lblError.Text = "Correcto al obtener detalles los empleados: ";
+                    CargarEmpleados(); 
                 }
                 else
                 {
@@ -246,14 +309,16 @@ namespace LocalWebService
             }
 
             string modo = hfModo.Value;
-            
-
 
             // Construimos el DTO según tu 
-            var empDto = new EmpleadoWS.empleado
+
+            //debemos enviar un nombre de usuario y contraseña generados automaticamente 
+
+            //una vez actualizado la base de datos lo confirma la persona y se crea el usuario 
+            var empDto = new EmpleadoWS.empleadoDTO
             {
                 idUsuario = idEmp,
-                idLocal = LOCAL_ID,
+                idLocal = localActualId,
                 nombre = txtNombre.Text.Trim(),
                 apellidoPaterno = txtApellidoPa.Text.Trim(),
                 apellidoMaterno = txtApellidoMa.Text.Trim(),
@@ -261,7 +326,9 @@ namespace LocalWebService
                 telefono = txtTelefono.Text.Trim(),
                 correoElectronico = txtCorreo.Text.Trim(),
                 turnoTrabajo = ddlEstado.SelectedValue == "true",
-                fechatContratoSTRING = fechaFormateada
+                fechatContratoSTRING = fechaFormateada,
+                usuarioSistema = txtUsuario.Text.Trim(),
+                contraSistema = txtContrasena.Text.Trim()
             };
 
 
@@ -271,12 +338,11 @@ namespace LocalWebService
                 bool ok;
                 if (modo == "Create")
                 { 
-                    ok = client.agregarEmpleado(empDto);      // Método WSDL para asignar un empleado* pero este debe crear su cuenta primero pues
+                    ok = client.agregarEmpleado(empDto);
+                    // Método WSDL para asignar un empleado* pero este debe crear su cuenta primero pues
                 }
                 else
                 {
-                    
-
                     ok = client.actualizarEmpleado(empDto); // Método WSDL para actualizar
                 }
                 client.Close();
@@ -291,10 +357,12 @@ namespace LocalWebService
 
                 // Cerrar modal por JavaScript
                 string scriptHide = @"
-                  var modal = bootstrap.Modal.getInstance(
-                    document.getElementById('miModalEditarEmpleado'));
-                  if(modal) modal.hide();";
+                var modal = bootstrap.Modal.getInstance(
+                document.getElementById('miModalEditarEmpleado'));
+                if(modal) modal.hide();";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "HideModal", scriptHide, true);
+               
+                
             }
             catch (Exception ex)
             {

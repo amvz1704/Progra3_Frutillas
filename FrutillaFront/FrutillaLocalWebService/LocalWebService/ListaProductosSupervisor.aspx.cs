@@ -19,6 +19,7 @@ namespace LocalWebService
         private EmpleadoWSClient empleadoWSClient;
         private ProductoImagenWSClient productoImagenWSClient;
         private int idLocal;
+        private char tipoSeleccionado = 'T'; // Por defecto, todos los tipos seleccionados
         public ListaProductosSupervisor()
         {
             inventarioWSClient = new InventarioWSClient();
@@ -36,7 +37,7 @@ namespace LocalWebService
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
                 int idUsuario = int.Parse(partes[1]);
-                empleado empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
+                empleadoDTO empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
                 if (empleado != null)
                 {
                     idLocal = empleado.idLocal;
@@ -82,7 +83,8 @@ namespace LocalWebService
 
         protected void btnAnterior_Click(object sender, EventArgs e)
         {
-            if(PaginaActual >= 0) { 
+            if (PaginaActual >= 0)
+            {
                 PaginaActual--;
                 CargarProductos();
             }
@@ -108,16 +110,37 @@ namespace LocalWebService
             }
 
         }*/
+
+
+        private void SeleccionarTipo(char tipo)
+        {
+            // Marcar visualmente el botón seleccionado
+            btnTodos.CssClass = tipo == 'T' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnFruta.CssClass = tipo == 'F' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnSnack.CssClass = tipo == 'S' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnBebidas.CssClass = tipo == 'B' ? "btn btn-success" : "btn btn-outline-secondary";
+            btnOtros.CssClass = tipo == 'P' ? "btn btn-success" : "btn btn-outline-secondary";
+        }
+
+        protected void FiltroProductos_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            char tipo = btn.CommandArgument[0];
+            tipoSeleccionado = tipo; // Actualizar el tipo seleccionado
+            SeleccionarTipo(tipo);
+            CargarProductos();
+        }
+
         private void CargarProductos()
         {
             try
             {
-                var productos = inventarioWSClient.listarTodos(idLocal);
+                var productos = inventarioWSClient.filtrarPorTipo(idLocal, tipoSeleccionado);
                 var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
                 PagedDataSource pagedData = new PagedDataSource();
                 pagedData.DataSource = productosSinDuplicados;
                 pagedData.AllowPaging = true;
-                pagedData.PageSize = 6;
+                pagedData.PageSize = 8;
                 pagedData.CurrentPageIndex = PaginaActual;
                 btnAnterior.Enabled = !pagedData.IsFirstPage;
                 btnSiguiente.Enabled = !pagedData.IsLastPage;
@@ -139,7 +162,7 @@ namespace LocalWebService
             {
                 int idProducto = int.Parse(e.CommandArgument.ToString());
                 char tipoProducto = (char)inventarioWSClient.obtenerTipoProducto(idProducto, idLocal);
-                
+
                 HiddenTipoProductoEdit.Value = tipoProducto.ToString();
                 HiddenIdProductoEdit.Value = e.CommandArgument.ToString();
                 // Obtener y asignar datos según el tipo
@@ -162,7 +185,7 @@ namespace LocalWebService
                             ChkReqLimpiezaEdit.Checked = fruta.requiereLimpieza;
                             // Asigna los campos específicos de fruta si los tienes en el modal
                         }
-                        
+
                         break;
                     case 'B':
                         var bebida = (bebida)inventarioWSClient.obtenerBebidaPorId(idProducto);
@@ -183,7 +206,7 @@ namespace LocalWebService
 
                             // Asigna los campos específicos de bebida si los tienes en el modal
                         }
-                        
+
                         break;
                     case 'S':
                         var snack = (snack)inventarioWSClient.obtenerSnackPorId(idProducto);
@@ -222,7 +245,7 @@ namespace LocalWebService
                 CargarProductos();
 
             }
-            else if(e.CommandName == "Eliminar")
+            else if (e.CommandName == "Eliminar")
             {
                 int idProducto = int.Parse(e.CommandArgument.ToString());
                 inventarioWSClient.eliminarProducto(idProducto, idLocal);
@@ -289,7 +312,7 @@ namespace LocalWebService
                 inventarioWSClient.actualizarProducto(fruta, idLocal);
             }
             else if (tipo == "B")
-            {   
+            {
                 bebida bebida = new bebida();
                 if (Enum.TryParse(HiddenTipoEstadoProductoEdit.Value, out InventarioWS.tipoEstado estado))
                 {
@@ -382,7 +405,7 @@ namespace LocalWebService
                         fruta.requiereEnvase = ChkFrutaRequiereEnvase.Checked;
                         fruta.requiereEnvaseSpecified = true;
                         fruta.requiereLimpieza = ChkFrutaLimpieza.Checked;
-                        fruta.requiereLimpiezaSpecified = true; 
+                        fruta.requiereLimpiezaSpecified = true;
                         inventarioWSClient.insertarFruta(fruta, idLocal);
                         break;
                     case 'B':
@@ -443,6 +466,11 @@ namespace LocalWebService
             int idProducto = Convert.ToInt32(idProd);
             ushort tipo = inventarioWSClient.obtenerTipoProducto(idProducto, idLocal);
             return productoImagenWSClient.obtenerUrlPorTipo(tipo);
+        }
+
+        protected void btnBebidas_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

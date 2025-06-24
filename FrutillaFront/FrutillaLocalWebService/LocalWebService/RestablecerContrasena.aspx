@@ -7,6 +7,20 @@
     <meta charset="utf-8" />
     <title>Restablecer Contraseña</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Public/css/site.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #F8FBD9;
+        }
+
+        .login-container {
+            margin-top: 100px;
+        }
+
+        .card {
+            border-radius: 1rem;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,13 +34,18 @@
 
                         <asp:Panel ID="pnlFormulario" runat="server" Visible="false">
                             <div class="form-group mb-3">
-                                <asp:TextBox ID="txtNuevaContrasena" runat="server" CssClass="form-control" TextMode="Password" placeholder="Nueva contraseña"></asp:TextBox>
+                                <label for="txtNuevaContrasena">Nueva Contraseña</label>
+                                <asp:TextBox ID="txtNuevaContrasena" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                             </div>
                             <div class="form-group mb-4">
-                                <asp:TextBox ID="txtConfirmarContrasena" runat="server" CssClass="form-control" TextMode="Password" placeholder="Confirmar contraseña"></asp:TextBox>
+                                <label for="txtCorreotxtCorreo">Confirmar nueva contraseña</label>
+                                <asp:TextBox ID="txtConfirmarContrasena" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                             </div>
                             <div class="d-grid">
-                                <asp:Button ID="btnRestablecer" runat="server" CssClass="btn btn-primary" Text="Guardar contraseña" OnClick="btnRestablecer_Click" />
+                                <asp:Button ID="btnRestablecer" runat="server" CssClass="btn btn-frutilla" Text="Guardar contraseña" OnClick="btnRestablecer_Click" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <asp:Button ID="btnVolver" runat="server" Text="← Volver al inicio de sesión" CssClass="btn btn-secondary" OnClick="btnVolver_Click" />
                             </div>
                         </asp:Panel>
                     </div>

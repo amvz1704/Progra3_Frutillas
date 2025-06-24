@@ -47,21 +47,17 @@ namespace LocalWebService
                 }
 
                 int idUsuario = persona.idUsuario;
-                string token = usuarioService.generarTokenRecuperacion(idUsuario);
-
-                string enlaceRecuperacion = $"http://localhost:44369/RestablecerContrasena.aspx?token={token}";
+                string codigo = usuarioService.generarCodigoRecuperacion(idUsuario);
 
                 string asunto = "Recuperación de contraseña - Frutilla";
-                string cuerpo = $@"
-                    <p>Hola, hemos recibido una solicitud para recuperar tu contraseña.</p>
-                    <p>Haz clic en el siguiente botón para restablecerla:</p>
-                    <p><a href='{enlaceRecuperacion}' style='background-color:#28a745;color:white;padding:10px 15px;text-decoration:none;border-radius:5px;'>Recuperar contraseña</a></p>
-                    <p>Si no solicitaste este correo, ignóralo.</p>";
+                string mensaje = $@"<p>Hola, hemos recibido una solicitud para recuperar tu contraseña.</p>
+                                <p>Tu código de verificación es:</p>
+                                <h2 style='color:#070426'>{codigo}</h2>
+                                <p>Ingresa este código en la página para continuar con la recuperación de tu cuenta.</p>";
 
-                EnviarCorreoMailtrap(correo, asunto, cuerpo);
+                EnviarCorreoMailtrap(correo, asunto, mensaje);
 
-                lblMensaje.CssClass = "text-success mb-3 d-block text-center";
-                lblMensaje.Text = "Se ha enviado un enlace a su correo.";
+                Response.Redirect("VerificarCodigo.aspx");
             }
             catch (Exception ex)
             {

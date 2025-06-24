@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:HiddenField ID="hfidComprobante"    runat="server" />  <!-- "Create" ó "Edit" -->
     <h2 class="text-center mb-4">Pagos</h2>
     <div class="row g-3 mb-4 p-3 bg-white rounded shadow-sm">
         <div class="col-md-3">
@@ -84,11 +85,14 @@
         </div>
     </div>
 
+    
+
     <div class="text-center mt-4">
         <asp:Button ID="btnCancelar" runat="server" Text="✕ Cancelar" CssClass="btn btn-danger me-3" OnClick="btnCancelar_Click" />
         <asp:Button ID="btnPagar" runat="server" Text="🛒 Pagar" CssClass="btn btn-success" OnClick="btnPagar_Click1" />
     </div>
 
+    
     <!-- javascript:var m=new bootstrap.Modal(document.getElementById('successModal'));m.show(); return false; -->
 
     <!-- Modal de confirmación -->

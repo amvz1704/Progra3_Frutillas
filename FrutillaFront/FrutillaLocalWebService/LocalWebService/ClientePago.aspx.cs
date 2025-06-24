@@ -1,11 +1,14 @@
-﻿using System;
+﻿using LocalWebService.ComprobanteWS;
+using LocalWebService.LocalWS;
+using LocalWebService.PedidoWS;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using LocalWebService.ComprobanteWS;
 
 namespace LocalWebService
 {
@@ -13,6 +16,8 @@ namespace LocalWebService
     {
     
         private ComprobanteWSClient ComprobanteWS;
+
+
         private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
             => Session["Carrito"] as List<ComprobanteWS.lineaOrdenDeVenta>;
 
@@ -24,6 +29,7 @@ namespace LocalWebService
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ComprobanteWS = new ComprobanteWSClient();
             if (!IsPostBack)
             {
                 // 1) Obtener el valor de la URL: ClientePago.aspx?id=123
@@ -36,7 +42,13 @@ namespace LocalWebService
                 }
 
                 // 2) Guardarlo si luego lo vas a reutilizar
+                if (id == -1) {
+                    Response.Redirect("ClienteCarrito.aspx");
+                    return; 
+                }
+
                 servicioOrdenId = id;
+
 
                 // Si no hay carrito o está vacío, volver al carrito    
                 if (Carrito == null || !Carrito.Any())
@@ -77,10 +89,11 @@ namespace LocalWebService
             //RECIEN SE INSERTA EN LA BD, se crea un pedido y asi --> luego de eso finalmente se confirma con pagar
             txtPedido.Text = "Por editar"; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
 
+           
 
-            txtSubtotal.Text = subtotal.ToString("C2");
-            txtIGV.Text = igv.ToString("C2");
-            txtTotal.Text = total.ToString("C2");
+            txtSubtotal.Text = subtotal.ToString();
+            txtIGV.Text = igv.ToString();
+            txtTotal.Text = total.ToString();
         }
 
         protected void SeleccionarMetodo_Click(object sender, EventArgs e)
@@ -99,17 +112,12 @@ namespace LocalWebService
 
         protected void btnVerComprobante_Click(object sender, EventArgs e)
         {
-            //var idOrden = Session["UltimaOrdenId"]?.ToString() ?? Request.QueryString["pedidoId"];
+            //          servicioOrdenId
+            //int idComprobante = Convert.ToInt32(hfidComprobante.Value); 
 
-
-            //creas el comprobante y lo subes a la BD 
-
-            //idBD
-
-            int idComprobanteServicio = 2;
 
             //luego vas a ver el comprobante cread
-            Response.Redirect($"ComprobantePago.aspx?id={idComprobanteServicio}");
+            Response.Redirect($"ComprobantePago.aspx?id={servicioOrdenId}");
         }
 
         protected void btnPagar_Click1(object sender, EventArgs e)
@@ -123,19 +131,38 @@ namespace LocalWebService
             // Convertir el string al enum formaDePago
             Enum.TryParse(metodoSeleccionado, out ComprobanteWS.formaDePago formadePago);
 
-            comprobantePago comprobante = new comprobantePago();
+            comprobanteDTO comprobante = new comprobanteDTO();
             comprobante.formaPago = formadePago;
             comprobante.formaPagoSpecified = true;
             comprobante.montoIGV = (double)(Carrito.Sum(l => (decimal)l.subtotal) * 0.18m); // Asumiendo IGV incluido
                 comprobante.numeroArticulos = Carrito.Count;
             comprobante.fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
             comprobante.subtotal = (double)(Carrito.Sum(l => (decimal)l.subtotal));
-            comprobante.total = double.Parse(txtTotal.Text.Split(' ')[0]); // Asumiendo IGV incluido
+            comprobante.total = double.Parse(txtTotal.Text); // Asumiendo IGV incluido
             
 
             // Por ahora simulamos confirmación y vaciamos el carrito:
-            ComprobanteWS.agregarComprobante(comprobante);
-            //actualizar servicio orden id con ServicioOrdenId --> UPDATE ordenServicio "PAGADO"
+            
+            //actualizar servicio orden id con ServicioOrdenId --> UPDATE ordenServicio "POR_ENTREGAR"
+
+            //vecorrectamente 
+            int idComprobanteCreado = ComprobanteWS.agregarComprobante(comprobante); //debo obtener el id de alguna forma! 
+            hfidComprobante.Value = idComprobanteCreado.ToString(); 
+
+            PedidoWSClient pedidoWS = new PedidoWSClient(); 
+            ordenVentaDTO orden = pedidoWS.obtenerPedidoPorId(servicioOrdenId);
+
+            // 3) Comprueba que no sea null antes de usarlo
+            if (orden == null)
+            {
+
+                return;
+            }
+
+            orden.idComprobante = idComprobanteCreado;
+            orden.estado = estadoVenta.POR_ENTREGAR; 
+
+            pedidoWS.actualizarOrden(orden);
 
 
             Session["Carrito"] = null;

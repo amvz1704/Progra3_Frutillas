@@ -16,8 +16,7 @@ namespace LocalWebService
 {
     public partial class LocalSupervisor : System.Web.UI.Page
     {
-        const int LOCAL_ID = 2; //esto dependera del id del empleado --> cambiar con LOGIN
-        private int idLocalAAAA; 
+        private int LOCAL_ID; //esto dependera del id del empleado --> cambiar con LOGIN
         private local localActual;
         private LocalWSClient localWSClient;
 
@@ -39,33 +38,34 @@ namespace LocalWebService
                 string tipoUsuario = partes[0];
                 int idUsuario = int.Parse(partes[1]);
                 EmpleadoWSClient empleadoWSClient = new EmpleadoWSClient(); 
-                EmpleadoWS.empleado empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
+                EmpleadoWS.empleadoDTO empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
                 if (empleado != null)
                 {
-                    idLocalAAAA = empleado.idLocal;
+                    LOCAL_ID = empleado.idLocal;
                 }
                 else
                 {
-                    Response.Redirect("Login.aspx");
+                    Response.Redirect("Login.aspx"); //regresa a login si no existe el empleado
                 }
 
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx"); //regresa a login si no se autentica
             }
 
             if (!IsPostBack)
             {
-                localActual = localWSClient.obtenerLocal(LOCAL_ID); // cambiar a idLocal
+                localActual = localWSClient.obtenerLocal(LOCAL_ID); // el LOCAL_ID dependerá del usuario que ingrese!
                 // Asigna valores a cada control
-                lblNombre.Text = localActual.nombre; ;
+                lblNombre.Text = localActual.nombre;
                 lblDireccion.Text = localActual.direccion;
                 lblDescripcion.Text = localActual.descripcion;
                 lblTelefono.Text = localActual.telefono;
+                //falta agregar la imagen !!
 
 
-                btnEditar.CommandArgument = LOCAL_ID.ToString(); //importante   
+                btnEditar.CommandArgument = LOCAL_ID.ToString(); //para editar la informacion del local actual 
                                 
             }
         }

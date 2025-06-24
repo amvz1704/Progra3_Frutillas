@@ -46,8 +46,8 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -110,9 +110,6 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.agregarComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.comprobantePago.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.eliminarComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -129,6 +126,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.comprobanteDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
@@ -148,13 +148,13 @@
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.eliminarEmpleadoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.empleado.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadoPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosResponse.datasource">
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.empleadoDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmpleadoWS\LocalWebService.EmpleadoWS.obtenerEmpleadosxLocalResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\EmpleadoWS\Reference.svcmap">
@@ -211,6 +211,9 @@
     <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.obtenerStockPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.filtrarPorTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\InventarioWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -253,9 +256,6 @@
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarTodosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.notificacion.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorSupervisorResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -263,6 +263,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.listarPorClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotificionesWS\LocalWebService.NotificionesWS.notificacionDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\NotificionesWS\Reference.svcmap">
@@ -279,9 +282,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerPedidosPorEmpleadoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.ordenVenta.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.obtenerDetallePedidoResponse.datasource">
@@ -303,6 +303,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.generarOrdenConLineasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\PedidoWS\LocalWebService.PedidoWS.ordenVentaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\PedidoWS\PedidoWS.wsdl" />
@@ -363,13 +366,13 @@
     <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.correoExisteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.generarTokenRecuperacionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.obtenerPorCorreoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.validarTokenRecuperacionResponse.datasource">
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.generarCodigoRecuperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\UsuarioWS\LocalWebService.UsuarioWS.validarCodigoRecuperacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\UsuarioWS\Reference.svcmap">

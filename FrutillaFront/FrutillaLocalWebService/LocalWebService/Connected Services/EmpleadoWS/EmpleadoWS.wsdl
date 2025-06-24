@@ -5,29 +5,29 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/EmpleadoWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="agregarEmpleado">
-    <part name="parameters" element="tns:agregarEmpleado" />
-  </message>
-  <message name="agregarEmpleadoResponse">
-    <part name="parameters" element="tns:agregarEmpleadoResponse" />
-  </message>
-  <message name="obtenerEmpleados">
-    <part name="parameters" element="tns:obtenerEmpleados" />
-  </message>
-  <message name="obtenerEmpleadosResponse">
-    <part name="parameters" element="tns:obtenerEmpleadosResponse" />
-  </message>
   <message name="actualizarEmpleado">
     <part name="parameters" element="tns:actualizarEmpleado" />
   </message>
   <message name="actualizarEmpleadoResponse">
     <part name="parameters" element="tns:actualizarEmpleadoResponse" />
   </message>
+  <message name="agregarEmpleado">
+    <part name="parameters" element="tns:agregarEmpleado" />
+  </message>
+  <message name="agregarEmpleadoResponse">
+    <part name="parameters" element="tns:agregarEmpleadoResponse" />
+  </message>
   <message name="eliminarEmpleado">
     <part name="parameters" element="tns:eliminarEmpleado" />
   </message>
   <message name="eliminarEmpleadoResponse">
     <part name="parameters" element="tns:eliminarEmpleadoResponse" />
+  </message>
+  <message name="obtenerEmpleadosxLocal">
+    <part name="parameters" element="tns:obtenerEmpleadosxLocal" />
+  </message>
+  <message name="obtenerEmpleadosxLocalResponse">
+    <part name="parameters" element="tns:obtenerEmpleadosxLocalResponse" />
   </message>
   <message name="obtenerEmpleadoPorId">
     <part name="parameters" element="tns:obtenerEmpleadoPorId" />
@@ -36,21 +36,21 @@
     <part name="parameters" element="tns:obtenerEmpleadoPorIdResponse" />
   </message>
   <portType name="EmpleadoWS">
-    <operation name="agregarEmpleado">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/agregarEmpleadoRequest" message="tns:agregarEmpleado" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/agregarEmpleadoResponse" message="tns:agregarEmpleadoResponse" />
-    </operation>
-    <operation name="obtenerEmpleados">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosRequest" message="tns:obtenerEmpleados" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosResponse" message="tns:obtenerEmpleadosResponse" />
-    </operation>
     <operation name="actualizarEmpleado">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/actualizarEmpleadoRequest" message="tns:actualizarEmpleado" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/actualizarEmpleadoResponse" message="tns:actualizarEmpleadoResponse" />
     </operation>
+    <operation name="agregarEmpleado">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/agregarEmpleadoRequest" message="tns:agregarEmpleado" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/agregarEmpleadoResponse" message="tns:agregarEmpleadoResponse" />
+    </operation>
     <operation name="eliminarEmpleado">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest" message="tns:eliminarEmpleado" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse" message="tns:eliminarEmpleadoResponse" />
+    </operation>
+    <operation name="obtenerEmpleadosxLocal">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosxLocalRequest" message="tns:obtenerEmpleadosxLocal" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadosxLocalResponse" message="tns:obtenerEmpleadosxLocalResponse" />
     </operation>
     <operation name="obtenerEmpleadoPorId">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/EmpleadoWS/obtenerEmpleadoPorIdRequest" message="tns:obtenerEmpleadoPorId" />
@@ -59,24 +59,6 @@
   </portType>
   <binding name="EmpleadoWSPortBinding" type="tns:EmpleadoWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="agregarEmpleado">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="obtenerEmpleados">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="actualizarEmpleado">
       <soap:operation soapAction="" />
       <input>
@@ -86,7 +68,25 @@
         <soap:body use="literal" />
       </output>
     </operation>
+    <operation name="agregarEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="eliminarEmpleado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerEmpleadosxLocal">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

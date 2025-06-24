@@ -156,7 +156,7 @@ namespace LocalWebService
             string fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
             string horaStr = DateTime.Now.ToString("HH:mm:ss");
 
-            var nuevaOrden = new PedidoWS.ordenVenta
+            var nuevaOrden = new PedidoWS.ordenVentaDTO
             {
                 idEmpleado = 0,
                 idLocal = idLocal,
@@ -183,7 +183,7 @@ namespace LocalWebService
                     }
                 }).ToArray();
 
-                int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);
+                int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);  //EDITAR, funciona en el back pero no en el front
 
                 if (idGenerado == -1)
                 {
@@ -194,7 +194,11 @@ namespace LocalWebService
                 }
 
                 // Redireccionar a la página de confirmación
-                Response.Redirect("ClientePago.aspx?id=" + idGenerado);
+                // false: NO aborta el hilo, simplemente añade la cabecera de redirección
+                Response.Redirect("ClientePago.aspx?id=" + idGenerado, false);
+
+                // Indica a ASP.NET que termine la petición sin abortar el hilo
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {

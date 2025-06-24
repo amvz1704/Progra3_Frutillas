@@ -1,248 +1,469 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="ListaProductosSupervisor.aspx.cs" Inherits="LocalWebService.ListaProductosSupervisor" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Header de sección -->
-
-    <header class="py-2 border-bottom bg-frutilla">
+    <!-- Header de sección responsive -->
+    <header class="py-3 py-md-4 border-bottom bg-frutilla">
         <div class="container">
-            <h2 class="m-0">Productos </h2>
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center">
+                <h2 class="m-0 text-black mb-2 mb-sm-0">Gestión de Productos</h2>
+                <small class="text-black-50 d-none d-md-block">Panel de administración</small>
+            </div>
         </div>
     </header>
 
     <div class="container mt-4">
-        <div style="background-color: #F8FBD9; padding: 15px; border-radius: 5px;">
-            <div class="producto-add mb-3">
-                <asp:Button ID="btnAgregarProducto" runat="server" Text="Agregar Producto" OnClick="btnAgregarProducto_Click"
-                    CssClass="btn btn-frutilla" />
+        <div style="background-color: #F8FBD9; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            
+            <!-- Sección de agregar producto - responsive -->
+            <div class="producto-add mb-4 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
+                <div>
+                    <h4 class="mb-1">Productos Disponibles</h4>
+                    <p class="text-muted mb-0 small">Administra el catálogo de productos</p>
+                </div>
+                <asp:Button ID="btnAgregarProducto" runat="server" Text="+ Agregar Producto" 
+                    OnClick="btnAgregarProducto_Click" CssClass="btn btn-frutilla" />
             </div>
+            <!-- Barra de búsqueda -->
+<div class="form-group mb-2 mb-md-0 d-flex align-items-center flex-grow-1">
+    <asp:TextBox
+        ID="txtBuscar"
+        runat="server"
+        CssClass="input-frutilla me-2 flex-grow-1"
+        Placeholder="Buscar producto..."
+        Style="min-width: 200px;" />
+    <button type="submit" class="btn btn-frutilla flex-shrink-0">
+        <i class="bi bi-search"></i>
+    </button>
+</div>
 
-            <div class="row">
+                <!-- Panel de filtros de productos - Responsive con flex-wrap -->
+    <asp:Panel ID="FiltroProductos" runat="server" CssClass="mt-3">
+        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-sm-start">
+            <asp:Button ID="btnTodos" runat="server"
+                CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                CommandArgument="T" OnClick="FiltroProductos_Click" Text="Todos" />
+
+            <asp:Button ID="btnSnack" runat="server"
+                CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                CommandArgument="S" OnClick="FiltroProductos_Click" Text="Snack" />
+
+            <asp:Button ID="btnFruta" runat="server"
+                CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                CommandArgument="F" OnClick="FiltroProductos_Click" Text="Fruta" />
+
+            <asp:Button ID="btnBebidas" runat="server"
+                CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                CommandArgument="B" OnClick="FiltroProductos_Click" Text="Bebidas" />
+
+            <asp:Button ID="btnOtros" runat="server"
+                CssClass="btn btn-outline-secondary flex-fill flex-sm-grow-0"
+                CommandArgument="P" OnClick="FiltroProductos_Click" Text="Otros" />
+        </div>
+    </asp:Panel>
+</div>
+
+            <!-- Grid de productos responsive -->
+            <div class="row g-3 g-md-4">
                 <asp:Repeater ID="rptProductos" runat="server" OnItemCommand="rptProductos_ItemCommand">
                     <ItemTemplate>
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <img src='<%# ObtenerImagenPorTipo(Eval("idProducto")) %>' class="card-img-top" alt="Imagen producto" />
-                                <div class="card-body">
-                                    <h5 class="card-title"><%# Eval("nombre") %></h5>
-                                    <p class="card-producto">Precio: S/ <%# Eval("precioUnitario", "{0:N2}") %></p>
-                                    <p class="card-producto">Stock: <%# Eval("stock") %></p>
-                                    <asp:Button ID="btnVerMas" runat="server" Text="Ver más" CssClass="btn btn-frutilla"
-                                        CommandName="VerMas" CommandArgument='<%# Eval("idProducto") %>' />
-                                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"
-                                        CommandName="Eliminar" CommandArgument='<%# Eval("idProducto") %>' />
+                        <!-- Responsive grid: 1 col en xs, 2 cols en sm, 3 cols en md, 4 cols en lg -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="card-saludable h-100 d-flex flex-column">
+                                <!-- Imagen responsive con aspect ratio fijo -->
+                                <div class="position-relative" style="padding-top: 60%; overflow: hidden; border-radius: 8px 8px 0 0;">
+                                    <img src='<%# ObtenerImagenPorTipo(Eval("idProducto")) %>' 
+                                         class="position-absolute top-0 start-0 w-100 h-100" 
+                                         style="object-fit: cover;" 
+                                         alt="<%# Eval("nombre") %>" />
+                                </div>
+                                
+                                <!-- Contenido de la tarjeta -->
+                                <div class="card-body d-flex flex-column flex-grow-1 p-3">
+                                    <h5 class="card-title text-truncate mb-2" title="<%# Eval("nombre") %>">
+                                        <%# Eval("nombre") %>
+                                    </h5>
+
+                                    <!-- Información de precio, stock y estado - responsive -->
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <span class="text-muted small">Precio:</span>
+                                            <span class="fw-bold text-success">S/ <%# Eval("precioUnitario", "{0:N2}") %></span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-muted small">Stock:</span>
+                                            <span class="badge bg-secondary"><%# Eval("stock") %></span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-muted small">Estado:</span>
+                                            <span class="badge bg-secondary"><%# Eval("tipoEstado") %></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botones de acción - responsive -->
+                                    <div class="mt-auto">
+                                        <div class="d-flex flex-column gap-2">
+                                            <asp:Button ID="btnVerMas" runat="server" Text="✏️ Editar" 
+                                                CssClass="btn btn-outline-primary btn-sm w-100"
+                                                CommandName="VerMas" CommandArgument='<%# Eval("idProducto") %>' />
+                                            <asp:Button ID="btnEliminar" runat="server" Text="🗑️ Eliminar" 
+                                                CssClass="btn btn-outline-danger btn-sm w-100"
+                                                CommandName="Eliminar" CommandArgument='<%# Eval("idProducto") %>'
+                                                OnClientClick="return confirm('¿Está seguro de eliminar este producto?');" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-                <!-- Paginación -->
-                <div class="text-center mt-4">
-                    <asp:Button ID="Button1" runat="server" Text="&laquo; Anterior" OnClick="btnAnterior_Click" />
-                    <asp:Label ID="Label1" runat="server" CssClass="mx-2" />
-                    <asp:Button ID="Button2" runat="server" Text="Siguiente &raquo;" OnClick="btnSiguiente_Click" />
-                </div>
             </div>
 
-            <!-- Paginación -->
-            <div class="text-center mt-4">
-                <asp:Button ID="btnAnterior" runat="server" Text="&laquo; Anterior" OnClick="btnAnterior_Click" />
-                <asp:Label ID="lblPagina" runat="server" CssClass="mx-2" />
-                <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente &raquo;" OnClick="btnSiguiente_Click" />
+            <!-- Paginación responsive -->
+            <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center mt-4 gap-2">
+                <asp:Button ID="btnAnterior" runat="server" Text="‹ Anterior" 
+                    OnClick="btnAnterior_Click" CssClass="btn btn-outline-secondary btn-sm" />
+                <asp:Label ID="lblPagina" runat="server" CssClass="mx-2 text-muted small" />
+                <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente ›" 
+                    OnClick="btnSiguiente_Click" CssClass="btn btn-outline-secondary btn-sm" />
             </div>
-
         </div>
 
-        <asp:Label ID="lblError" runat="server" CssClass="text-danger"></asp:Label>
+        <!-- Mensaje de error responsive -->
+        <div class="mt-3 text-center">
+            <asp:Label ID="lblError" runat="server" CssClass="text-danger d-block"></asp:Label>
+        </div>
     </div>
 
-    <!-- Modal para agregar producto -->
-
+    <!-- Modal para agregar producto - responsive -->
     <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalAgregarProductoLabel">Agregar Nuevo Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <div class="modal-header bg-frutilla text-black">
+                    <h5 class="modal-title" id="modalAgregarProductoLabel">
+                        <i class="bi bi-plus-circle me-2"></i>Agregar Nuevo Producto
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <asp:Label ID="Nombre" runat="server" Text="Nombre del producto"></asp:Label>
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="Precio" runat="server" Text="Precio (S/.)"></asp:Label>
-                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="Descripcion" runat="server" Text="Descripcion"></asp:Label>
-                    <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="Stock" runat="server" Text="Stock"></asp:Label>
-                    <asp:TextBox ID="txtStock" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="StockMinimo" runat="server" Text="Stock Minimo"></asp:Label>
-                    <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="Codigo" runat="server" Text="Codigo 3 letras"></asp:Label>
-                    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control mb-2" MaxLength="3" />
-                    <asp:DropDownList ID="TipoProducto" CssClass="form-select mb-2" runat="server" onchange="mostrarOpciones(this)">
-                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                        <asp:ListItem Text="Fruta" Value="F"></asp:ListItem>
-                        <asp:ListItem Text="Bebida" Value="B"></asp:ListItem>
-                        <asp:ListItem Text="Snack" Value="S"></asp:ListItem>
-                    </asp:DropDownList>
-
-
-                    <!-- Campos adicionales para Opción Frutas -->
-                    <div id="opcionFrutas" style="display: none;" class="mt-2">
-                        <asp:Label ID="LblEnvase" runat="server" Text="Tipo de envase"></asp:Label>
-                        <asp:TextBox ID="TxtTipoEnvase" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:CheckBox ID="ChkFrutaRequiereEnvase" runat="server" Text="¿Requiere envase?" />
-                        <br />
-                        <asp:CheckBox ID="ChkFrutaEstaEnvasado" runat="server" Text="¿Está envasado?" />
-                        <br />
-                        <asp:CheckBox ID="ChkFrutaLimpieza" runat="server" Text="¿Requiere limpieza?" />
-
+                    <!-- Formulario responsive -->
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <label for="txtNombre" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingrese el nombre" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="txtPrecio" class="form-label">Precio (S/.) <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" TextMode="Number" 
+                                step="0.01" placeholder="0.00" />
+                        </div>
+                        <div class="col-12">
+                            <label for="txtDescripcion" class="form-label">Descripción <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" 
+                                TextMode="MultiLine" Rows="3" placeholder="Ingrese la descripción" />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="txtStock" class="form-label">Stock <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" TextMode="Number" 
+                                placeholder="0" />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="txtStockMinimo" class="form-label">Stock Mínimo <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control" TextMode="Number" 
+                                placeholder="0" />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="txtCodigo" class="form-label">Código (3 letras) <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control text-uppercase" 
+                                MaxLength="3" placeholder="ABC" />
+                        </div>
+                        <div class="col-12">
+                            <label for="TipoProducto" class="form-label">Tipo de Producto <span class="text-danger">*</span></label>
+                            <asp:DropDownList ID="TipoProducto" CssClass="form-select" runat="server" 
+                                onchange="mostrarOpciones(this)">
+                                <asp:ListItem Text="Seleccione un tipo" Value=""></asp:ListItem>
+                                <asp:ListItem Text="🍎 Fruta" Value="F"></asp:ListItem>
+                                <asp:ListItem Text="🥤 Bebida" Value="B"></asp:ListItem>
+                                <asp:ListItem Text="🍪 Snack" Value="S"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
                     </div>
 
-                    <!-- Campos adicionales para Opción Bebidas -->
-                    <div id="opcionBebidas" style="display: none;" class="mt-2">
-                        <asp:Label ID="LblTamanioOz" runat="server" Text="Tamanio(Oz)"></asp:Label>
-                        <asp:TextBox ID="TxtTamanioOz" runat="server" CssClass="form-control mb-2" TextMode="Number"></asp:TextBox>
-                        <asp:Label ID="LblTipoBebida" runat="server" Text="Tipo de Bebida"></asp:Label>
-                        <asp:TextBox ID="TxtTipoBebida" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblBebidaEndulzante" runat="server" Text="Tipo de Endulzante"></asp:Label>
-                        <asp:TextBox ID="TxtBebidaEndulzante" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblTipoLeche" runat="server" Text="Tipo de Leche"></asp:Label>
-                        <asp:DropDownList ID="DropDownList1" CssClass="form-select mb-2" runat="server">
-                            <asp:ListItem Text="Sin Lactosa" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Con Lactosa" Value="1"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:Label ID="LblFrutasBebida" runat="server" Text="Frutas"></asp:Label>
-                        <asp:CheckBoxList ID="ChkFrutas" runat="server" RepeatLayout="Flow" CssClass="form-check"></asp:CheckBoxList>
+                    <!-- Campos adicionales para Frutas -->
+                    <div id="opcionFrutas" style="display: none;" class="mt-4">
+                        <div class="border-top pt-3">
+                            <h6 class="text-muted mb-3">🍎 Configuración de Fruta</h6>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <asp:Label ID="LblEnvase" runat="server" Text="Tipo de envase" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTipoEnvase" runat="server" CssClass="form-control" 
+                                        placeholder="Ej: Bandeja, bolsa, etc."></asp:TextBox>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check mb-2">
+                                        <asp:CheckBox ID="ChkFrutaRequiereEnvase" runat="server" Text="¿Requiere envase?" 
+                                            CssClass="form-check form-check-inline" />
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <asp:CheckBox ID="ChkFrutaEstaEnvasado" runat="server" Text="¿Está envasado?" 
+                                            CssClass="form-check form-check-inline" />
+                                    </div>
+                                    <div class="form-check ">
+                                        <asp:CheckBox ID="ChkFrutaLimpieza" runat="server" Text="¿Requiere limpieza?" 
+                                            CssClass="form-check form-check-inline" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Campos adicionales para Opción Snacks -->
-                    <div id="opcionSnacks" style="display: none;" class="mt-2">
-                        <asp:Label ID="LblTipoSnack" runat="server" Text="Tipo de snack"></asp:Label>
-                        <asp:TextBox ID="TxtTipoSnack" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblSnackEnvase" runat="server" Text="Envase"></asp:Label>
-                        <asp:TextBox ID="TxtSnackEnvase" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-
+                    <!-- Campos adicionales para Bebidas -->
+                    <div id="opcionBebidas" style="display: none;" class="mt-4">
+                        <div class="border-top pt-3">
+                            <h6 class="text-muted mb-3">🥤 Configuración de Bebida</h6>
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTamanioOz" runat="server" Text="Tamaño (Oz)" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTamanioOz" runat="server" CssClass="form-control" 
+                                        TextMode="Number" placeholder="16"></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTipoBebida" runat="server" Text="Tipo de Bebida" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTipoBebida" runat="server" CssClass="form-control" 
+                                        placeholder="Ej: Jugo, smoothie, etc."></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblBebidaEndulzante" runat="server" Text="Tipo de Endulzante" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtBebidaEndulzante" runat="server" CssClass="form-control" 
+                                        placeholder="Ej: Stevia, azúcar, etc."></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTipoLeche" runat="server" Text="Tipo de Leche" CssClass="form-label"></asp:Label>
+                                    <asp:DropDownList ID="DropDownList1" CssClass="form-select" runat="server">
+                                        <asp:ListItem Text="Sin Lactosa" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="Con Lactosa" Value="1"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-12">
+                                    <asp:Label ID="LblFrutasBebida" runat="server" Text="Frutas incluidas" CssClass="form-label"></asp:Label>
+                                    <asp:CheckBoxList ID="ChkFrutas" runat="server" RepeatLayout="Flow" 
+                                        CssClass="d-flex flex-wrap gap-2"></asp:CheckBoxList>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <script>
-                        function mostrarOpciones(select) {
-                            var valor = select.value;
-
-                            // Ocultar todos
-                            document.getElementById('opcionFrutas').style.display = 'none';
-                            document.getElementById('opcionBebidas').style.display = 'none';
-                            document.getElementById('opcionSnacks').style.display = 'none';
-
-                            // Mostrar el que corresponde
-                            if (valor === "F") {
-                                document.getElementById('opcionFrutas').style.display = 'block';
-                            } else if (valor === "B") {
-                                document.getElementById('opcionBebidas').style.display = 'block';
-                            } else if (valor === "S") {
-                                document.getElementById('opcionSnacks').style.display = 'block';
-                            }
-
-                        }
-                    </script>
-
+                    <!-- Campos adicionales para Snacks -->
+                    <div id="opcionSnacks" style="display: none;" class="mt-4">
+                        <div class="border-top pt-3">
+                            <h6 class="text-muted mb-3">🍪 Configuración de Snack</h6>
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTipoSnack" runat="server" Text="Tipo de snack" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTipoSnack" runat="server" CssClass="form-control" 
+                                        placeholder="Ej: Galletas, frutos secos, etc."></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblSnackEnvase" runat="server" Text="Envase" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtSnackEnvase" runat="server" CssClass="form-control" 
+                                        placeholder="Ej: Bolsa, caja, etc."></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnGuardarProducto" runat="server" Text="Guardar" CssClass="btn btn-frutilla" OnClick="btnGuardarProducto_Click" />
+                    <asp:Button ID="btnGuardarProducto" runat="server" Text="💾 Guardar Producto" 
+                        CssClass="btn btn-frutilla me-2" OnClick="btnGuardarProducto_Click" />
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <!-- Modal para editar producto -->
-
+    <!-- Modal para editar producto - responsive -->
     <div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="modalEditarProductoLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditarProductoLabel">Editar Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <div class="modal-header bg-primary text-black">
+                    <h5 class="modal-title" id="modalEditarProductoLabel">
+                        <i class="bi bi-pencil-square me-2"></i>Editar Producto
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Campos ocultos -->
                     <asp:HiddenField ID="HiddenTipoProductoEdit" runat="server" />
                     <asp:HiddenField ID="HiddenIdProductoEdit" runat="server" />
                     <asp:HiddenField ID="HiddenTipoEstadoProductoEdit" runat="server" />
-                    <asp:Label ID="LblEditNombre" runat="server" Text="Nombre del producto"></asp:Label>
-                    <asp:TextBox ID="TxtEditNombre" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="LblEditPrecio" runat="server" Text="Precio (S/.)"></asp:Label>
-                    <asp:TextBox ID="TxtEditPrecio" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="LblEditDescripcion" runat="server" Text="Descripcion"></asp:Label>
-                    <asp:TextBox ID="TxtEditDescripcion" runat="server" CssClass="form-control mb-2" />
-                    <asp:Label ID="LblEditStock" runat="server" Text="Stock"></asp:Label>
-                    <asp:TextBox ID="TxtEditStock" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="LblEditStockMin" runat="server" Text="Stock Minimo"></asp:Label>
-                    <asp:TextBox ID="TxtEditStockMin" runat="server" CssClass="form-control mb-2" TextMode="Number" />
-                    <asp:Label ID="LblEditCodigo" runat="server" Text="Codigo 3 letras"></asp:Label>
-                    <asp:TextBox ID="TxtEditCodigo" runat="server" CssClass="form-control mb-2" MaxLength="3" />
-
-
-                    <!-- Campos adicionales para Opción Frutas -->
-                    <div id="opcionFrutasEditar" style="display: none;" class="mt-2">
-                        <asp:Label ID="LblTipoEnvasoEdit" runat="server" Text="Tipo de envase"></asp:Label>
-                        <asp:TextBox ID="TxtTipoEnvaseEdit" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:CheckBox ID="ChkReqEnvaseEdit" runat="server" Text="¿Requiere envase?" />
-                        <br />
-                        <asp:CheckBox ID="ChkEnvasadoEdit" runat="server" Text="¿Está envasado?" />
-                        <br />
-                        <asp:CheckBox ID="ChkReqLimpiezaEdit" runat="server" Text="¿Requiere limpieza?" />
-
-                    </div>
-                    <!-- Campos adicionales para Opción Bebidas -->
-                    <div id="opcionBebidasEditar" style="display: none;" class="mt-2">
-                        <asp:Label ID="LblTamanioEdit" runat="server" Text="Tamanio(Oz)"></asp:Label>
-                        <asp:TextBox ID="TxtTamanioEdit" runat="server" CssClass="form-control mb-2" TextMode="Number"></asp:TextBox>
-                        <asp:Label ID="LblTipoBebidaEdit" runat="server" Text="Tipo de Bebida"></asp:Label>
-                        <asp:TextBox ID="TxtTipoBebidaEdit" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblTipoEndulzanteEdit" runat="server" Text="Tipo de Endulzante"></asp:Label>
-                        <asp:TextBox ID="TxtTipoEndulzanteEdit" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblTipoLecheEdit" runat="server" Text="Tipo de Leche"></asp:Label>
-                        <asp:DropDownList ID="DDTipoLecheEdit" CssClass="form-select mb-2" runat="server">
-                            <asp:ListItem Text="Sin Lactosa" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Con Lactosa" Value="1"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:Label ID="LblFrutasBebEdit" runat="server" Text="Frutas"></asp:Label>
-                        <asp:CheckBoxList ID="ChkFrutasBebEdit" runat="server" RepeatLayout="Flow" CssClass="form-check"></asp:CheckBoxList>
-                    </div>
-                    <!-- Campos adicionales para Opción Snacks -->
-                    <div id="opcionSnacksEditar" style="display: none;" class="mt-2">
-                        <asp:Label ID="LblTipoSnackEdit" runat="server" Text="Tipo de snack"></asp:Label>
-                        <asp:TextBox ID="TxtTipoSnackEdit" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-                        <asp:Label ID="LblEnvaseSnackEdit" runat="server" Text="Envase"></asp:Label>
-                        <asp:TextBox ID="TxtEnvaseSnackEdit" runat="server" CssClass="form-control mb-2"></asp:TextBox>
-
+                    
+                    <!-- Formulario de edición responsive -->
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <label for="TxtEditNombre" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="TxtEditNombre" runat="server" CssClass="form-control" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="TxtEditPrecio" class="form-label">Precio (S/.) <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="TxtEditPrecio" runat="server" CssClass="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="TxtEditDescripcion" class="form-label">Descripción <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="TxtEditDescripcion" runat="server" CssClass="form-control" 
+                                TextMode="MultiLine" Rows="3" />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="TxtEditStock" class="form-label">Stock <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="TxtEditStock" runat="server" CssClass="form-control" TextMode="Number" />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="TxtEditStockMin" class="form-label">Stock Mínimo <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="TxtEditStockMin" runat="server" CssClass="form-control" TextMode="Number" />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="TxtEditCodigo" class="form-label">Código (3 letras) <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="TxtEditCodigo" runat="server" CssClass="form-control text-uppercase" MaxLength="3" />
+                        </div>
                     </div>
 
-                    <script type="text/javascript">
-                        function mostrarOpcionesEditar(tipo) {
-                            document.getElementById('opcionFrutasEditar').style.display = 'none';
-                            document.getElementById('opcionBebidasEditar').style.display = 'none';
-                            document.getElementById('opcionSnacksEditar').style.display = 'none';
+                    <!-- Campos adicionales para edición de Frutas -->
+                    <div id="opcionFrutasEditar" style="display: none;" class="mt-4">
+                        <div class="border-top pt-3">
+                            <h6 class="text-muted mb-3">🍎 Configuración de Fruta</h6>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <asp:Label ID="LblTipoEnvasoEdit" runat="server" Text="Tipo de envase" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTipoEnvaseEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <asp:CheckBox ID="ChkReqEnvaseEdit" runat="server" Text="¿Requiere envase?" 
+                                            CssClass="form-check form-check-inline" />
+                                    </div>
+                                    <div class="form-check">
+                                        <asp:CheckBox ID="ChkEnvasadoEdit" runat="server" Text="¿Está envasado?" 
+                                            CssClass="form-check form-check-inline" />
+                                    </div>
+                                    <div class="form-check">
+                                        <asp:CheckBox ID="ChkReqLimpiezaEdit" runat="server" Text="¿Requiere limpieza?" 
+                                            CssClass="form-check form-check-inline" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            if (tipo === 'F') {
-                                document.getElementById('opcionFrutasEditar').style.display = 'block';
-                            } else if (tipo === 'B') {
-                                document.getElementById('opcionBebidasEditar').style.display = 'block';
-                            } else if (tipo === 'S') {
-                                document.getElementById('opcionSnacksEditar').style.display = 'block';
-                            }
-                        }
-                    </script>
-                    <!-- Modal para agregar producto -->
+                    <!-- Campos adicionales para edición de Bebidas -->
+                    <div id="opcionBebidasEditar" style="display: none;" class="mt-4">
+                        <div class="border-top pt-3">
+                            <h6 class="text-muted mb-3">🥤 Configuración de Bebida</h6>
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTamanioEdit" runat="server" Text="Tamaño (Oz)" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTamanioEdit" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTipoBebidaEdit" runat="server" Text="Tipo de Bebida" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTipoBebidaEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTipoEndulzanteEdit" runat="server" Text="Tipo de Endulzante" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTipoEndulzanteEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTipoLecheEdit" runat="server" Text="Tipo de Leche" CssClass="form-label"></asp:Label>
+                                    <asp:DropDownList ID="DDTipoLecheEdit" CssClass="form-select" runat="server">
+                                        <asp:ListItem Text="Sin Lactosa" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="Con Lactosa" Value="1"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-12">
+                                    <asp:Label ID="LblFrutasBebEdit" runat="server" Text="Frutas incluidas" CssClass="form-label"></asp:Label>
+                                    <asp:CheckBoxList ID="ChkFrutasBebEdit" runat="server" RepeatLayout="Flow" 
+                                        CssClass="d-flex flex-wrap gap-2"></asp:CheckBoxList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campos adicionales para edición de Snacks -->
+                    <div id="opcionSnacksEditar" style="display: none;" class="mt-4">
+                        <div class="border-top pt-3">
+                            <h6 class="text-muted mb-3">🍪 Configuración de Snack</h6>
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblTipoSnackEdit" runat="server" Text="Tipo de snack" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtTipoSnackEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <asp:Label ID="LblEnvaseSnackEdit" runat="server" Text="Envase" CssClass="form-label"></asp:Label>
+                                    <asp:TextBox ID="TxtEnvaseSnackEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="BtnGuardarEdicion" runat="server" Text="Guardar" CssClass="btn btn-frutilla" OnClick="btnGuardarEdicionProducto_Click" />
+                    <asp:Button ID="BtnGuardarEdicion" runat="server" Text="💾 Guardar Cambios" 
+                        CssClass="btn btn-primary me-2" OnClick="btnGuardarEdicionProducto_Click" />
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
-</asp:Content>
+
+    <!-- JavaScript mejorado para funcionalidad responsive -->
+    <script type="text/javascript">
+        function mostrarOpciones(select) {
+            var valor = select.value;
+
+            // Ocultar todos los paneles
+            document.getElementById('opcionFrutas').style.display = 'none';
+            document.getElementById('opcionBebidas').style.display = 'none';
+            document.getElementById('opcionSnacks').style.display = 'none';
+
+            // Mostrar el panel correspondiente con animación
+            if (valor === "F") {
+                document.getElementById('opcionFrutas').style.display = 'block';
+            } else if (valor === "B") {
+                document.getElementById('opcionBebidas').style.display = 'block';
+            } else if (valor === "S") {
+                document.getElementById('opcionSnacks').style.display = 'block';
+            }
+        }
+
+        function mostrarOpcionesEditar(tipo) {
+            // Ocultar todos los paneles de edición
+            document.getElementById('opcionFrutasEditar').style.display = 'none';
+            document.getElementById('opcionBebidasEditar').style.display = 'none';
+            document.getElementById('opcionSnacksEditar').style.display = 'none';
+
+            // Mostrar el panel correspondiente
+            if (tipo === 'F') {
+                document.getElementById('opcionFrutasEditar').style.display = 'block';
+            } else if (tipo === 'B') {
+                document.getElementById('opcionBebidasEditar').style.display = 'block';
+            } else if (tipo === 'S') {
+                document.getElementById('opcionSnacksEditar').style.display = 'block';
+            }
+        }
+
+        // Función para mejorar la experiencia en móviles
+        document.addEventListener('DOMContentLoaded', function () {
+            // Agregar efectos hover solo en dispositivos no táctiles
+            if (!('ontouchstart' in window)) {
+                document.querySelectorAll('.card-saludable').forEach(function (card) {
+                    card.addEventListener('mouseenter', function () {
+                        this.style.transform = 'translateY(-4px)';
+                        this.style.transition = 'transform 0.2s ease';
+                    });
+                    card.addEventListener('mouseleave', function () {
+                        this.style.transform = 'translateY(0)';
+                    });
+                });
+            }
+        });
+    </script>
+    </asp:Content>

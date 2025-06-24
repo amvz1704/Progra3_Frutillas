@@ -157,12 +157,23 @@ input[type="date"] {
     font-weight: 500;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(111, 162, 87, 0.2);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 44px; /* Altura mínima recomendada para toques en móvil */
 }
 
     .btn-frutilla:hover {
-        background-color: #4F7E38;
+        background-color: #689F38;
         transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(111, 162, 87, 0.3);
+        box-shadow: 0 4px 8px rgba(242, 255, 181, 0.4);
+        color: white; /* Asegurar que el texto permanezca blanco */
+    }
+
+    .btn-frutilla:focus {
+        outline: 2px solid #8BC34A;
+        outline-offset: 2px;
     }
 
     .btn-frutilla[disabled],
@@ -173,6 +184,22 @@ input[type="date"] {
         transform: none;
         box-shadow: none;
     }
+
+/* Ajustes responsive para botones */
+@media (max-width: 575.98px) {
+    .btn-frutilla {
+        padding: 14px 16px;
+        font-size: 15px;
+        min-height: 48px; /* Altura mayor en móviles para facilitar el toque */
+    }
+}
+
+@media (max-width: 375px) {
+    .btn-frutilla {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+}
 
 /* BOTÓN ACEPTAR/CONFIRMAR */
 .btn-aceptar {
@@ -462,6 +489,15 @@ input[type="date"] {
         padding: 15px;
         text-align: center;
     }
+
+.card-body .precio,
+.card-body .stock {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+}
+
 
 /* CARD PRODUCTO */
 .card-producto {
@@ -883,4 +919,101 @@ input[name="carousel"] {
         .texto-banner h1 {
             font-size: 2rem;
         }
+}
+
+
+/* Mejoras responsivas adicionales */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .card-saludable {
+        margin-bottom: 1rem;
+    }
+
+    .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-in-line .d-flex {
+        gap: 0.5rem;
+    }
+
+    .input-frutilla {
+        font-size: 0.9rem;
+    }
+}
+
+/* Asegurar que las tarjetas tengan altura uniforme */
+.card-saludable {
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+    .card-saludable:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+/* Texto truncado para títulos largos */
+.text-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Espaciado mejorado en móviles */
+@media (max-width: 768px) {
+    .gap-2 {
+        gap: 0.5rem !important;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .card-saludable {
+        margin-bottom: 1rem;
+    }
+
+    .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .producto-add {
+        text-align: center;
+    }
+
+        .producto-add h4 {
+            font-size: 1.1rem;
+        }
+}
+
+@media (max-width: 768px) {
+    .modal-lg {
+        max-width: 95%;
+    }
+
+    .form-check {
+        margin-bottom: 0.5rem;
+    }
+
+    .gap-2 {
+        gap: 0.5rem !important;
+    }
 }

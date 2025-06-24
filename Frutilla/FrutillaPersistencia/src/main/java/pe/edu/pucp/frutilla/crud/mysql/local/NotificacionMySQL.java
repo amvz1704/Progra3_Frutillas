@@ -82,7 +82,6 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
         Timestamp timeSt = rs.getTimestamp("fechaHora");
         LocalDateTime dateTime = timeSt.toLocalDateTime();
         notificacion.setFecha(dateTime.toLocalDate());
-        notificacion.setFechaStr(dateTime.toLocalDate().toString());
         notificacion.setTitulo(rs.getString("titulo"));
         notificacion.setDescripcion(rs.getString("descripcion"));
         notificacion.setIdCliente(rs.getInt("idCliente"));

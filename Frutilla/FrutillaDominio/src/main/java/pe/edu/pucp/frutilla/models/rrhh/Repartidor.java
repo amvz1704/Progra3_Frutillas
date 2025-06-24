@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Repartidor extends Empleado{
 
-    public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, Date fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal, int idUsuario){
+    public Repartidor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal, int idUsuario){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'R', idLocal, idUsuario);
     }
 
