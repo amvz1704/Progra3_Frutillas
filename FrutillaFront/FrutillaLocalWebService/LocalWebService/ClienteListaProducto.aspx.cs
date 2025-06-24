@@ -2,6 +2,7 @@
 using LocalWebService.InventarioWS;
 using LocalWebService.LocalWS;
 using LocalWebService.PedidoWS;
+using LocalWebService.ProductoImagenWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace LocalWebService
 
         private InventarioWSClient inventarioWSClient;
         private ComprobanteWSClient ComprobanteWS;
+        private ProductoImagenWSClient ProductoImagenWS;
         private LocalWSClient localWSClient;
         const int idPedidoOrden = 1;
         char tipoSeleccionado = 'T'; // Por defecto, todos los tipos seleccionados
@@ -36,6 +38,7 @@ namespace LocalWebService
         {
             ComprobanteWS = new ComprobanteWSClient(); 
             inventarioWSClient = new InventarioWSClient();
+            ProductoImagenWS = new ProductoImagenWSClient();
             if (!IsPostBack)
             {
                 CargarLocales();
@@ -172,15 +175,8 @@ namespace LocalWebService
         public string ObtenerImagenPorTipo(object idProd)
         {
             int idProducto = Convert.ToInt32(idProd);
-            inventarioWSClient = new InventarioWSClient();
-            ushort tipo = inventarioWSClient.obtenerTipoProducto(idProducto, int.Parse(ddlLocal.SelectedValue));
-            switch (tipo)
-            {
-                case 'F': return "/Public/images/frutas.jpg";
-                case 'B': return "/Public/images/bebida.jpg";
-                case 'S': return "/Public/images/snack.jpg";
-                default: return "/Public/images/producto.jpg";
-            }
+            string v = ProductoImagenWS.obtenerProductoImagen(idProducto);
+            return v;
         }
     }
 }
