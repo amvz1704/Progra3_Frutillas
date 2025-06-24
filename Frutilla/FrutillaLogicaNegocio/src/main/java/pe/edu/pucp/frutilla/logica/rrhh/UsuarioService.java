@@ -28,7 +28,7 @@ public class UsuarioService {
         if (persona.getContraSistema() == null || persona.getContraSistema().trim().isEmpty()) {
             throw new Exception("La contraseña no puede ser vacía");
         }
-
+        usuarioMySQL.agregar(persona);
     }
 
     public void actualizar(Persona persona) throws Exception {

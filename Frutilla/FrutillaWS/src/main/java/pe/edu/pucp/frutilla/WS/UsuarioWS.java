@@ -7,6 +7,7 @@ package pe.edu.pucp.frutilla.WS;
 import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import org.mindrot.jbcrypt.BCrypt;
 import pe.edu.pucp.frutilla.logica.rrhh.UsuarioService;
 import pe.edu.pucp.frutilla.models.rrhh.Persona;
 import pe.edu.pucp.frutilla.models.rrhh.Cliente;
@@ -51,7 +52,7 @@ public class UsuarioWS {
     }
     
     @WebMethod(operationName = "validarCodigoRecuperacion")
-    public int validarCodigoRecuperacion(@WebParam(name = "token") String codigo){
+    public int validarCodigoRecuperacion(@WebParam(name = "codigo") String codigo){
         return CodigoManager.validarCodigo(codigo);
     }
     
@@ -62,7 +63,8 @@ public class UsuarioWS {
         
         try{
             Persona usuario = usuarioService.obtener(idUsuario);
-            usuario.setContraSistema(nuevaContrasena);
+            String hashedContrasena = BCrypt.hashpw(nuevaContrasena,BCrypt.gensalt());
+            usuario.setContraSistema(hashedContrasena);
             usuarioService.actualizar(usuario);
             return true;
         }catch (Exception e){
