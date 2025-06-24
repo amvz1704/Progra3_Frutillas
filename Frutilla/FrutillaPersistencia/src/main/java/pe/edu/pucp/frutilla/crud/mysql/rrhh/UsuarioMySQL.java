@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pe.edu.pucp.frutilla.config.DBManager;
+import org.mindrot.jbcrypt.BCrypt;
 
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
 import pe.edu.pucp.frutilla.models.rrhh.Persona;
@@ -41,8 +42,9 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
     
     @Override
     protected void setInsertParameters(PreparedStatement ps, Persona entity) throws SQLException {
+        String hashedContrasena = BCrypt.hashpw(entity.getContraSistema(), BCrypt.gensalt());
         ps.setString(1, entity.getUsuarioSistema());
-        ps.setString(2, entity.getContraSistema());
+        ps.setString(2, hashedContrasena);
         ps.setBoolean(3, true);
         if(entity instanceof Empleado) {
             ps.setString(4,"E");
@@ -81,16 +83,18 @@ public class UsuarioMySQL extends BaseDAOImpl<Persona> implements UsuarioDAO{
     
     @Override
     public Persona validarUsuario(String usuarioSistema, String contrasSistema) throws Exception {
-        String query = "SELECT idUsuario, usuarioSistema, contrasSistema, activo, tipo FROM Usuario WHERE usuarioSistema = ? AND contrasSistema = ? AND activo = true";
+        String query = "SELECT idUsuario, usuarioSistema, contrasSistema, activo, tipo FROM Usuario WHERE usuarioSistema = ? AND activo = true";
 
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);) 
         {
             ps.setString(1, usuarioSistema);
-            ps.setString(2, contrasSistema);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return createFromResultSet(rs);
+                    String hashedContrasena = rs.getString("contrasSistema");
+                    if(BCrypt.checkpw(contrasSistema, hashedContrasena)){
+                        return createFromResultSet(rs);
+                    }
                 }
             }
         } catch (Exception ex) {

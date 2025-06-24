@@ -176,6 +176,7 @@ namespace LocalWebService
                             TxtEditNombre.Text = fruta.nombre;
                             TxtEditPrecio.Text = fruta.precioUnitario.ToString();
                             TxtEditDescripcion.Text = fruta.descripcion;
+                            DdlEditEstado.SelectedValue = fruta.tipoEstado.ToString();
                             TxtEditStock.Text = inventarioWSClient.obtenerStockPorId(idProducto, idLocal).ToString();
                             TxtEditStockMin.Text = fruta.stockMinimo.ToString();
                             TxtEditCodigo.Text = fruta.codigoProd;
@@ -195,6 +196,7 @@ namespace LocalWebService
                             TxtEditNombre.Text = bebida.nombre;
                             TxtEditPrecio.Text = bebida.precioUnitario.ToString();
                             TxtEditDescripcion.Text = bebida.descripcion;
+                            DdlEditEstado.SelectedValue = bebida.tipoEstado.ToString();
                             TxtEditStock.Text = inventarioWSClient.obtenerStockPorId(idProducto, idLocal).ToString();
                             TxtEditStockMin.Text = bebida.stockMinimo.ToString();
                             TxtEditCodigo.Text = bebida.codigoProd;
@@ -215,6 +217,7 @@ namespace LocalWebService
                             HiddenTipoEstadoProductoEdit.Value = snack.tipoEstado.ToString();
                             TxtEditNombre.Text = snack.nombre;
                             TxtEditPrecio.Text = snack.precioUnitario.ToString();
+                            DdlEditEstado.SelectedValue = snack.tipoEstado.ToString();
                             TxtEditDescripcion.Text = snack.descripcion;
                             TxtEditStock.Text = inventarioWSClient.obtenerStockPorId(idProducto, idLocal).ToString();
                             TxtEditStockMin.Text = snack.stockMinimo.ToString();
@@ -224,6 +227,22 @@ namespace LocalWebService
                             // Asigna los campos específicos de snack si los tienes en el modal
                         }
                         break;
+                    case 'P':
+                        var producto = inventarioWSClient.obtenerProductoPorId(idProducto);
+                        if (producto != null)
+                        {
+                            HiddenTipoEstadoProductoEdit.Value = producto.tipoEstado.ToString();
+                            TxtEditNombre.Text = producto.nombre;
+                            TxtEditPrecio.Text = producto.precioUnitario.ToString();
+                            DdlEditEstado.SelectedValue = producto.tipoEstado.ToString();
+                            TxtEditDescripcion.Text = producto.descripcion;
+                            TxtEditStock.Text = inventarioWSClient.obtenerStockPorId(idProducto, idLocal).ToString();
+                            TxtEditStockMin.Text = producto.stockMinimo.ToString();
+                            TxtEditCodigo.Text = producto.codigoProd;
+                            // Asigna los campos específicos de snack si los tienes en el modal
+                        }
+                        break;
+
                 }
 
                 ScriptManager.RegisterStartupScript(
@@ -283,7 +302,7 @@ namespace LocalWebService
             {
                 fruta fruta = new fruta();
                 // Convert the string value to the enum type 'tipoEstado'
-                if (Enum.TryParse(HiddenTipoEstadoProductoEdit.Value, out InventarioWS.tipoEstado estado))
+                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
                 {
                     fruta.tipoEstado = estado;
                     fruta.tipoEstadoSpecified = true;
@@ -309,12 +328,12 @@ namespace LocalWebService
                 fruta.requiereEnvaseSpecified = true;
                 fruta.requiereLimpieza = ChkReqLimpiezaEdit.Checked;
                 fruta.requiereLimpiezaSpecified = true;
-                inventarioWSClient.actualizarProducto(fruta, idLocal);
+                inventarioWSClient.actualizarProducto(fruta, idLocal, 'F');
             }
             else if (tipo == "B")
             {
                 bebida bebida = new bebida();
-                if (Enum.TryParse(HiddenTipoEstadoProductoEdit.Value, out InventarioWS.tipoEstado estado))
+                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
                 {
                     bebida.tipoEstado = estado;
                     bebida.tipoEstadoSpecified = true;
@@ -348,12 +367,12 @@ namespace LocalWebService
                     return;
                 }
 
-                inventarioWSClient.actualizarProducto(bebida, idLocal);
+                inventarioWSClient.actualizarProducto(bebida, idLocal, 'B');
             }
             else if (tipo == "S")
             {
                 snack snack = new snack();
-                if (Enum.TryParse(HiddenTipoEstadoProductoEdit.Value, out InventarioWS.tipoEstado estado))
+                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
                 {
                     snack.tipoEstado = estado;
                     snack.tipoEstadoSpecified = true;
@@ -373,8 +392,32 @@ namespace LocalWebService
                 snack.tipo = TxtTipoSnackEdit.Text;
                 snack.envase = TxtEnvaseSnackEdit.Text;
 
-                inventarioWSClient.actualizarProducto(snack, idLocal);
+                inventarioWSClient.actualizarProducto(snack, idLocal, 'S');
             }
+            else
+            {
+                InventarioWS.producto producto = new InventarioWS.producto();
+                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
+                {
+                    producto.tipoEstado = estado;
+                    producto.tipoEstadoSpecified = true;
+                }
+                else
+                {
+                    lblError.Text = "El estado del producto no es válido.";
+                    return;
+                }
+                producto.idProducto = id;
+                producto.nombre = TxtEditNombre.Text;
+                producto.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                producto.descripcion = TxtEditDescripcion.Text;
+                producto.stock = Int32.Parse(TxtEditStock.Text);
+                producto.codigoProd = TxtEditCodigo.Text;
+                producto.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
+
+                inventarioWSClient.actualizarProducto(producto, idLocal, 'P');
+            }
+            CargarProductos();
         }
 
         protected void btnGuardarProducto_Click(object sender, EventArgs e)
