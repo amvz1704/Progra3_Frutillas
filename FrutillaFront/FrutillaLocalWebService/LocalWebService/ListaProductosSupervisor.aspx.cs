@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -96,21 +97,6 @@ namespace LocalWebService
             CargarProductos();
         }
 
-        /*private void CargarProductos()
-        {
-            try
-            {
-                //cambiar a session idempleados y con la verificacion de supervisor
-                gvProductos.DataSource = inventarioWSClient.listarTodos(idLocal).ToList();
-                gvProductos.DataBind();
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "Error al cargar productos" + ex;
-            }
-
-        }*/
-
 
         private void SeleccionarTipo(char tipo)
         {
@@ -136,26 +122,55 @@ namespace LocalWebService
             try
             {
                 var productos = inventarioWSClient.filtrarPorTipo(idLocal, tipoSeleccionado);
-                var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
-                PagedDataSource pagedData = new PagedDataSource();
-                pagedData.DataSource = productosSinDuplicados;
-                pagedData.AllowPaging = true;
-                pagedData.PageSize = 8;
-                pagedData.CurrentPageIndex = PaginaActual;
-                btnAnterior.Enabled = !pagedData.IsFirstPage;
-                btnSiguiente.Enabled = !pagedData.IsLastPage;
+                if (productos != null)
+                {
+                    var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
+                    PagedDataSource pagedData = new PagedDataSource();
+                    pagedData.DataSource = productosSinDuplicados;
+                    pagedData.AllowPaging = true;
+                    pagedData.PageSize = 8;
+                    pagedData.CurrentPageIndex = PaginaActual;
+                    btnAnterior.Enabled = !pagedData.IsFirstPage;
+                    btnSiguiente.Enabled = !pagedData.IsLastPage;
 
-                lblPagina.Text = $"Página {PaginaActual + 1} de {pagedData.PageCount}";
+                    lblPagina.Text = $"Página {PaginaActual + 1} de {pagedData.PageCount}";
 
-                rptProductos.DataSource = pagedData;
-                rptProductos.DataBind();
+                    rptProductos.DataSource = pagedData;
+                    rptProductos.DataBind();
+                    lblError.Text = "";
+                }
+                else
+                {
+                    // Si no hay productos, asegúrate de limpiar el repeater
+                    rptProductos.DataSource = null;
+                    rptProductos.DataBind();
+                    switch (tipoSeleccionado)
+                    {
+                        case 'F':
+                            lblError.Text = "No se cuenta con frutas disponibles en este local.";
+                            break;
+                        case 'S':
+                            lblError.Text = "No se cuenta con snacks disponibles en este local.";
+                            break;
+                        case 'B':
+                            lblError.Text = "No se cuenta con bebidas disponibles en este local.";
+                            break;
+                        case 'P':
+                            lblError.Text = "No se cuenta con otro tipo de productos disponibles en este local.";
+                            break;
+                        case 'T':
+                            lblError.Text = "No se cuenta con productos disponibles en este local.";
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {
+                rptProductos.DataSource = null;
+                rptProductos.DataBind();
                 lblError.Text = "Error al cargar productos: " + ex.Message;
             }
         }
-
         protected void rptProductos_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "VerMas")
