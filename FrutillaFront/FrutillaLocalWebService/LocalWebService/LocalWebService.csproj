@@ -330,9 +330,6 @@
     <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.productoImagen.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ProductoImagenWS\LocalWebService.ProductoImagenWS.obtenerUrlPorTipoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\ProductoImagenWS\ProductoImagenWS.wsdl" />
     <None Include="Connected Services\ProductoImagenWS\ProductoImagenWS.xsd">
       <SubType>Designer</SubType>

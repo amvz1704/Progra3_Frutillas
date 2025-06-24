@@ -335,6 +335,19 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Usuario` (
 ENGINE = InnoDB;
 
 
+DROP TABLE IF EXISTS `frutilla`.`ProductoImagen`;
+CREATE TABLE IF NOT EXISTS `frutilla`.`ProductoImagen` (
+  `idProducto` INT NOT NULL,
+  `urlImagen` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idProducto`),
+  INDEX `fk_ProductoImagen_Producto1_idx` (`idProducto` ASC) VISIBLE,
+  CONSTRAINT `fk_ProductoImagen_Producto1`
+    FOREIGN KEY (`idProducto`)
+    REFERENCES `frutilla`.`Producto` (`idProducto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
