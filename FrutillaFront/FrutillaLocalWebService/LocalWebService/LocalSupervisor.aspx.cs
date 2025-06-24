@@ -38,7 +38,7 @@ namespace LocalWebService
                 string tipoUsuario = partes[0];
                 int idUsuario = int.Parse(partes[1]);
                 EmpleadoWSClient empleadoWSClient = new EmpleadoWSClient(); 
-                EmpleadoWS.empleado empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
+                EmpleadoWS.empleadoDTO empleado = empleadoWSClient.obtenerEmpleadoPorId(idUsuario);
                 if (empleado != null)
                 {
                     LOCAL_ID = empleado.idLocal;

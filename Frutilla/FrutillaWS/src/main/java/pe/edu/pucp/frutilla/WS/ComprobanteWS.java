@@ -29,13 +29,15 @@ public class ComprobanteWS {
     
     
     @WebMethod(operationName = "agregarComprobante")
-    public void agregarComprobante(@WebParam(name = "Comprobante") ComprobanteDTO comp) {
+    public int agregarComprobante(@WebParam(name = "Comprobante") ComprobanteDTO comp) {
         try {
             ComprobantePago enviado = comp.convertirAComprobante();
-            comprobanteService.agregar(enviado);
+            
+            return comprobanteService.agregar(enviado);
         } catch (Exception ex) {
             throw new WebServiceException("Error al agregar el comprobante: " + ex.getMessage());
         }
+         
     }
     
     @WebMethod(operationName = "actualizarComprobante")

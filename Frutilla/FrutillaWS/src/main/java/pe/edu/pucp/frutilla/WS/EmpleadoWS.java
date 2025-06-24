@@ -11,10 +11,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pe.edu.pucp.frutilla.dto.EmpleadoDTO;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
 
@@ -36,10 +38,17 @@ public class EmpleadoWS {
     
    
     
-    @WebMethod(operationName = "obtenerEmpleados")
-    public List<Empleado> obtenerEmpleados(@WebParam (name ="idLocal") int idLocal) {
+    @WebMethod(operationName = "obtenerEmpleadosxLocal")
+    public List<EmpleadoDTO> obtenerEmpleadosxLocal(@WebParam (name ="idLocal") int idLocal) {
         try{
-            return daoEmpleado.listarTodosPorLocal(idLocal);
+            List<Empleado> lista = daoEmpleado.listarTodosPorLocal(idLocal);
+            List<EmpleadoDTO> listaDTO = new ArrayList<>();
+            for(int i=0;i<lista.size();i++){
+                EmpleadoDTO temp = new EmpleadoDTO(lista.get(i));
+                listaDTO.add(temp);
+            }
+            
+            return listaDTO; 
         }catch(Exception ex){ 
             System.out.println(ex.getMessage()); 
         }
@@ -48,24 +57,10 @@ public class EmpleadoWS {
     
 
     @WebMethod(operationName = "actualizarEmpleado")
-    public boolean actualizarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    public boolean actualizarEmpleado(@WebParam (name ="empleado") EmpleadoDTO empleado) {
         
-        empleado.setFechaContrato(LocalDate.parse(empleado.getFechatContratoSTRING()));
-
         try {
-            Empleado hiddenValues = daoEmpleado.obtener(empleado.getIdUsuario());
-            hiddenValues.setNombre(empleado.getNombre());
-            hiddenValues.setApellidoMaterno(empleado.getApellidoMaterno());
-            hiddenValues.setApellidoPaterno(empleado.getApellidoPaterno());
-            hiddenValues.setSalario(empleado.getSalario());
-            hiddenValues.setCorreoElectronico(empleado.getCorreoElectronico());
-            hiddenValues.setTurnoTrabajo(empleado.getTurnoTrabajo());
-            hiddenValues.setTelefono(empleado.getTelefono());
-            hiddenValues.setFechaContrato(empleado.getFechaContrato());
-            hiddenValues.setFechatContratoSTRING(empleado.getFechatContratoSTRING());
-            hiddenValues.setUsuarioSistema(empleado.getUsuarioSistema());
-            hiddenValues.setContraSistema(empleado.getContraSistema());
+            Empleado hiddenValues = empleado.convertirAEmpleado();
             try{
                 daoEmpleado.actualizar(hiddenValues);
                 return true; 
@@ -93,10 +88,12 @@ public class EmpleadoWS {
     }
     
     @WebMethod(operationName = "obtenerEmpleadoPorId")
-    public Empleado obtenerEmpleadoPorId(@WebParam (name ="idEmpleado") int idEmpleado) {
+    public EmpleadoDTO obtenerEmpleadoPorId(@WebParam (name ="idEmpleado") int idEmpleado) {
         
         try{
-            return daoEmpleado.obtener(idEmpleado);
+            Empleado temp = daoEmpleado.obtener(idEmpleado);
+            EmpleadoDTO empleadoFinal = new  EmpleadoDTO(temp);
+            return empleadoFinal; 
         }catch(Exception ex){ 
             System.out.println(ex.getMessage()); 
         }
@@ -104,19 +101,13 @@ public class EmpleadoWS {
     }
     
     @WebMethod(operationName = "agregarEmpleado")
-    public boolean agregarEmpleado(@WebParam (name ="empleado") Empleado empleado) {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try { 
-            LocalDate fechaTemp = LocalDate.parse(empleado.getFechatContratoSTRING());
+    public boolean agregarEmpleado(@WebParam (name ="empleado") EmpleadoDTO empleado) {
+       
+            Empleado temp = empleado.convertirAEmpleado();
             
-            empleado.setFechaContrato(fechaTemp);
-        } catch (Exception ex) {
-            Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }   
         
         try{
-            daoEmpleado.agregar(empleado);
+            daoEmpleado.agregar(temp);
             
             return true;
         }catch(Exception ex){ 

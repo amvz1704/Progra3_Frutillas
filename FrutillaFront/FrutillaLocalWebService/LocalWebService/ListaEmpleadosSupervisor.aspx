@@ -14,31 +14,34 @@
     </header>
     <!-- 1. BARRA SUPERIOR: BÚSQUEDA / FILTROS / AGREGAR -->
     <div class="container">
+
         <div class="row align-items-center mb-3">
             <!-- Columna izquierda: campo de búsqueda -->
             <div class="col-md-5 text-left">
                 <div class="input-group">
                     <asp:TextBox ID="txtBuscar" runat="server"
-                        CssClass="form-control input-frutilla"
-                        Placeholder="Buscar Empleado"></asp:TextBox>
-                    <button class="btn-frutilla" type="button" onclick="javascript:buscar_Click()">
+                        CssClass="form-control form-control-sm input-frutilla"
+                        Placeholder="Buscar Empleado por nombre..."></asp:TextBox>
+                    <asp:LinkButton class="btn-frutilla" runat="server"  type="button"  OnClick="btnBuscarEmpleado_Click">
                         <i class="bi bi-search"></i>
-                    </button>
+                    </asp:LinkButton>
                 </div>
             </div>
-            <!-- Columna intermedia: dropdown de filtros -->
+            <!-- Columna intermedia: dropdown de filtros 
             <div class="col-md-3 text-md-start text-center mt-2 mt-md-0">
-                <!-- Ejemplo de dropdown “Filtros” con checkboxes -->
+                
                 <asp:DropDownList ID="DdlEmpleados" runat="server" CssClass="select-frutilla"
                     DataTextField="Nombre" DataValueField="IdEmpleado" AppendDataBoundItems="true"
                     AutoPostBack="True">
                     <asp:ListItem Text="Filtros" Value="0"></asp:ListItem>
                 </asp:DropDownList>
-            </div>
-            <div class="col-md-3 text-md-start text-right mt-2 mt-md-0">
+            </div> 
+             -->
+
+            <div class="col-md-3 text-md-end text-right mt-2 mt-md-0">
                 <asp:Button ID="btnAgregarEmpleado" runat="server"
                     Text="Agregar Empleado"
-                    CssClass="btn-frutilla"
+                    CssClass="btn-frutilla btn-sm"
                     OnClick="btnAgregarEmpleado_Click" />
 
                      <!-- Modal clientes -->

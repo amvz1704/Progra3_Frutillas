@@ -8,8 +8,8 @@
   <xs:element name="eliminarEmpleadoResponse" type="tns:eliminarEmpleadoResponse" />
   <xs:element name="obtenerEmpleadoPorId" type="tns:obtenerEmpleadoPorId" />
   <xs:element name="obtenerEmpleadoPorIdResponse" type="tns:obtenerEmpleadoPorIdResponse" />
-  <xs:element name="obtenerEmpleados" type="tns:obtenerEmpleados" />
-  <xs:element name="obtenerEmpleadosResponse" type="tns:obtenerEmpleadosResponse" />
+  <xs:element name="obtenerEmpleadosxLocal" type="tns:obtenerEmpleadosxLocal" />
+  <xs:element name="obtenerEmpleadosxLocalResponse" type="tns:obtenerEmpleadosxLocalResponse" />
   <xs:complexType name="obtenerEmpleadoPorId">
     <xs:sequence>
       <xs:element name="idEmpleado" type="xs:int" />
@@ -17,14 +17,13 @@
   </xs:complexType>
   <xs:complexType name="obtenerEmpleadoPorIdResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:empleado" />
+      <xs:element minOccurs="0" name="return" type="tns:empleadoDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="empleado">
+  <xs:complexType name="empleadoDTO">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:persona">
         <xs:sequence>
-          <xs:element minOccurs="0" name="fechaContrato" type="tns:localDate" />
           <xs:element minOccurs="0" name="fechatContratoSTRING" type="xs:string" />
           <xs:element name="idLocal" type="xs:int" />
           <xs:element name="salario" type="xs:double" />
@@ -48,22 +47,9 @@
       <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="obtenerEmpleados">
-    <xs:sequence>
-      <xs:element name="idLocal" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerEmpleadosResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleado" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="agregarEmpleado">
     <xs:sequence>
-      <xs:element minOccurs="0" name="empleado" type="tns:empleado" />
+      <xs:element minOccurs="0" name="empleado" type="tns:empleadoDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="agregarEmpleadoResponse">
@@ -73,12 +59,22 @@
   </xs:complexType>
   <xs:complexType name="actualizarEmpleado">
     <xs:sequence>
-      <xs:element minOccurs="0" name="empleado" type="tns:empleado" />
+      <xs:element minOccurs="0" name="empleado" type="tns:empleadoDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="actualizarEmpleadoResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerEmpleadosxLocal">
+    <xs:sequence>
+      <xs:element name="idLocal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerEmpleadosxLocalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleadoDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarEmpleado">

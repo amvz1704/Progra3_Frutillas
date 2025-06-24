@@ -21,17 +21,5 @@ public class Supervisor extends Empleado{
         return super.toString();
     }
 
-//    public void generarReporte(int idLocal, LocalDate fecha){
-//        LocalMySQL localMySQL = new LocalMySQL();
-//        Local local;
-//        try{
-//            local = localMySQL.obtenerLocalPorId(idLocal);
-//        }
-//        catch(Exception e){
-//            System.out.println("Error al obtener el local: " + e.getMessage());
-//            return;
-//        }
-//        local.generarReporteVentas(fecha);
-//    }
 
 }

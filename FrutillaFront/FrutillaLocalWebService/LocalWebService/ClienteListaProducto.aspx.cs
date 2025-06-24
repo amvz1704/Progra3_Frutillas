@@ -52,15 +52,23 @@ namespace LocalWebService
             {
                 ddlLocal.Items.Add(new ListItem(local.nombre, local.idLocal.ToString()));
             }
+
+            //debo guardar el local seleccionado
         }
 
         protected void ddlLocal_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idLocal;
+
+            // Guardas en Session
+            
+
             if (int.TryParse(ddlLocal.SelectedValue, out idLocal))
             {
                 // Llama a tu método para cargar productos filtrados por el local seleccionado
+                Session["idLocal"] = idLocal;
                 CargarProductos();
+
             }
         }
 
