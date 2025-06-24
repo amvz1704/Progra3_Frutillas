@@ -187,6 +187,7 @@
                                 <asp:ListItem Text="🍎 Fruta" Value="F"></asp:ListItem>
                                 <asp:ListItem Text="🥤 Bebida" Value="B"></asp:ListItem>
                                 <asp:ListItem Text="🍪 Snack" Value="S"></asp:ListItem>
+                                <asp:ListItem Text="Otro" Value="P"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -305,13 +306,20 @@
                             <label for="TxtEditNombre" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
                             <asp:TextBox ID="TxtEditNombre" runat="server" CssClass="form-control" />
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-3">
                             <label for="TxtEditPrecio" class="form-label">Precio (S/.) <span class="text-danger">*</span></label>
                             <asp:TextBox ID="TxtEditPrecio" runat="server" CssClass="form-control" />
                         </div>
+                        <div class="col-12 col-md-3">
+                            <label for="TxtEditEstado" class="form-label">Estado <span class="text-danger">*</span></label>
+                            <asp:DropDownList ID="DdlEditEstado" runat="server" CssClass="form-select">
+                                <asp:ListItem Text="DISPONIBLE" Value="DISPONIBLE"></asp:ListItem>
+                                <asp:ListItem Text="AGOTADO" Value="AGOTADO"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
                         <div class="col-12">
                             <label for="TxtEditDescripcion" class="form-label">Descripción <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="TxtEditDescripcion" runat="server" CssClass="form-control" 
+                            <asp:TextBox ID="TxtEditDescripcion" runat="server" CssClass="form-control"
                                 TextMode="MultiLine" Rows="3" />
                         </div>
                         <div class="col-12 col-md-4">

@@ -103,8 +103,26 @@ public class InventarioWS {
     }
     
     @WebMethod(operationName = "actualizarProducto")
-    public void actualizarProducto(Producto producto, int idLocal){
+    public void actualizarProducto(Producto producto, int idLocal, char tipo){
         try{
+            switch(tipo){
+                case 'F':
+                    frutaService = new FrutaService();
+                    frutaService.actualizar((Fruta)producto);
+                    break;
+                case 'B':
+                    bebidaService = new BebidaService();
+                    bebidaService.actualizar((Bebida)producto);
+                    break;
+                case 'S':
+                    snackService = new SnackService();
+                    snackService.actualizar((Snack)producto);
+                    break;
+                case 'P':
+                    productoService = new ProductoService();
+                    productoService.actualizar(producto);
+                    break;
+            }
             inventarioService.actualizar(producto, idLocal);
         }
         catch (Exception e){
