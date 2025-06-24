@@ -22,6 +22,7 @@ public class OrdenVentaDTO {
     private int idLocal;
     private int idComprobante;
     private int idCliente;
+    private String localnombre; 
 
     public OrdenVentaDTO() {
         this.entregado = false;

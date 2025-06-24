@@ -58,27 +58,28 @@ namespace LocalWebService
             //la informacion del producto actual -- casos descontinuados por ejemplo (pro ahora no hago cambios hasta conversarlo con el grupo) 
             //lo calculas del comprobante actual 
 
-            ordenVentaDTO ordenVenta = daoPedidoOrden.obtenerPedidoPorId(idComprobanteServicio);
+
+            ordenVentaDTO ordenVenta = daoPedidoOrden.obtenerPedidoPorId(idComprobanteServicio); 
 
             int comprobanteId = ordenVenta.idComprobante;
 
-            comprobanteDTO comprobante = daoComprobante.obtenerComprobante(comprobanteId);
-            lblId.Text = comprobanteId.ToString();
-
-
-            txtFecha.Text = "2222-11-11"; //editar luego 
+            comprobanteDTO comprobante = daoComprobante.obtenerComprobante(comprobanteId); //tenemos que hacer doble llamado por eso
             
+
+            lblId.Text = comprobanteId.ToString(); 
             txtNumeroArticulos.Text = comprobante.numeroArticulos.ToString();
+            txtFecha.Text = comprobante.fechaStr;
             txtMetodoPago.Text = comprobante.formaPago.ToString();
+            txtDescripcion.Text = ordenVenta.descripcion;
 
-            local copia = daoLocal.obtenerLocal(ordenVenta.idLocal);
+            
+            local local = daoLocal.obtenerLocal(ordenVenta.idLocal);
 
-            txtLocal.Text = copia.nombre; //editar y
-            txtDescripcion.Text = ordenVenta.descripcion.ToString();
-
+            txtLocal.Text =  local.nombre.ToString();
             txtSubtotal.Text = comprobante.subtotal.ToString();
             txtIGV.Text = comprobante.montoIGV.ToString();
-            txtTotal.Text = comprobante.total.ToString (); 
+            txtTotal.Text = comprobante.total.ToString();   
+
             gvDetalles.DataSource = daoComprobante.obtenerLineasPorIdComprobante(comprobanteId);
             gvDetalles.DataBind();
         }

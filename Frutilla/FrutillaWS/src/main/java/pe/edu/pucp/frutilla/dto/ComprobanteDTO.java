@@ -20,6 +20,10 @@ public class ComprobanteDTO {
     private double total;
     private FormaDePago formaPago;
     private String fechaStr;
+    //agregar el nombre del local
+    private String nombreLocal; 
+    //agregar comprobanteDescripcion
+    private String descripcionOrden; 
 
     public ComprobanteDTO() {
     }

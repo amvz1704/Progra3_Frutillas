@@ -96,7 +96,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="agregarComprobanteResponse">
-    <xs:sequence />
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="tipoEstado">
     <xs:restriction base="xs:string">
