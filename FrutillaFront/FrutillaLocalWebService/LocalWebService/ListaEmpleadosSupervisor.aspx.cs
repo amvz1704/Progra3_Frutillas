@@ -1,6 +1,7 @@
 ﻿using LocalWebService.EmpleadoWS;
 using LocalWebService.LocalWS;
 using LocalWebService.NotificionesWS;
+using LocalWebService.UsuarioWS;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -310,25 +311,108 @@ namespace LocalWebService
 
             string modo = hfModo.Value;
 
-            // Construimos el DTO según tu 
+            //validar el ingreso de usuario --> hacer una sesion sabes 
+            UsuarioWSClient usuarioService = new UsuarioWSClient(); 
 
-            //debemos enviar un nombre de usuario y contraseña generados automaticamente 
+            string nombre = txtNombre.Text.Trim();
+            string apPaterno = txtApellidoPa.Text.Trim();
+            string apMaterno = txtApellidoMa.Text.Trim();
+            string usuario = txtUsuario.Text.Trim();
+            string password = txtContrasena.Text;
+            string correo = txtCorreo.Text.Trim();
+            string telefono = txtTelefono.Text.Trim();
+            double salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0;
+            bool turnoTrabajo = ddlEstado.SelectedValue == "true";
+
+            bool esValido = true;
+            //mostrar un modal
+            if (string.IsNullOrEmpty(nombre)) { txtNombre.Text = "Ingrese su nombre"; esValido = false; }
+            if (string.IsNullOrEmpty(apPaterno)) { txtApellidoPa.Text = "Ingrese su apellido paterno"; esValido = false; }
+            if (string.IsNullOrEmpty(apMaterno)) { txtApellidoMa.Text = "Ingrese su apellido materno"; esValido = false; }
+            if (string.IsNullOrEmpty(usuario))
+            {
+                txtUsuario.Text = "Ingrese un nombre de usuario";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(usuario, @"^[a-zA-Z0-9_]+$"))
+            {
+                txtUsuario.Text = "Solo se permite una palabra sin espacios, letras, números o guion bajo.";
+                esValido = false;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                txtContrasena.Text = "Ingrese una contraseña";
+                esValido = false;
+            }
+            else if (password.Length < 6)
+            {
+                txtContrasena.Text = "La contraseña debe tener al menos 6 caracteres.";
+                esValido = false;
+            }
+            else if (password.Contains(" "))
+            {
+                txtContrasena.Text = "La contraseña no debe contener espacios.";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(password, @"^[a-zA-Z0-9]+$"))
+            {
+                txtContrasena.Text = "Solo se permiten letras y números.";
+                esValido = false;
+            }
+
+
+            if (string.IsNullOrEmpty(correo))
+            {
+                txtCorreo.Text = "Ingrese un correo electrónico";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(correo, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                txtCorreo.Text = "Correo electrónico no válido";
+                esValido = false;
+            }
+            if (usuarioService.correoExiste(correo))
+            {
+                txtCorreo.Text = "Este correo ya está asociado a una cuenta.";
+                esValido = false;
+            }
+
+            if (string.IsNullOrEmpty(telefono))
+            {
+                txtTelefono.Text = "Ingrese un teléfono";
+                esValido = false;
+            }
+            else if (!telefono.All(char.IsDigit) || telefono.Length != 9)
+            {
+                txtTelefono.Text = "Teléfono inválido. Debe contener 9 dígitos numéricos.";
+                esValido = false;
+            }
+
+            if (!esValido) return;
+
+            int id = usuarioService.obtenerIDPorNombreUsuario(usuario);
+            if (id > 0)
+            {
+                txtUsuario.Text = "Este nombre de usuario ya está en uso.";
+                return;
+            }
 
             //una vez actualizado la base de datos lo confirma la persona y se crea el usuario 
             var empDto = new EmpleadoWS.empleadoDTO
             {
                 idUsuario = idEmp,
                 idLocal = localActualId,
-                nombre = txtNombre.Text.Trim(),
-                apellidoPaterno = txtApellidoPa.Text.Trim(),
-                apellidoMaterno = txtApellidoMa.Text.Trim(),
-                salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0,
-                telefono = txtTelefono.Text.Trim(),
-                correoElectronico = txtCorreo.Text.Trim(),
-                turnoTrabajo = ddlEstado.SelectedValue == "true",
+                nombre = nombre,
+                apellidoPaterno = apPaterno,
+                apellidoMaterno = apMaterno,
+                salario = salario,
+                telefono = telefono,
+                correoElectronico = correo,
+                turnoTrabajo = turnoTrabajo,
                 fechatContratoSTRING = fechaFormateada,
-                usuarioSistema = txtUsuario.Text.Trim(),
-                contraSistema = txtContrasena.Text.Trim()
+                usuarioSistema = usuario,
+                contraSistema = password
             };
 
 

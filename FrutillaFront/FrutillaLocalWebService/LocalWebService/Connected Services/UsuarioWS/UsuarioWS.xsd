@@ -14,16 +14,6 @@
   <xs:element name="validarCodigoRecuperacionResponse" type="tns:validarCodigoRecuperacionResponse" />
   <xs:element name="validarUsuario" type="tns:validarUsuario" />
   <xs:element name="validarUsuarioResponse" type="tns:validarUsuarioResponse" />
-  <xs:complexType name="correoExiste">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="correo" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="correoExisteResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="generarCodigoRecuperacion">
     <xs:sequence>
       <xs:element name="idUsuario" type="xs:int" />
@@ -34,6 +24,16 @@
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="correoExiste">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="correo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="correoExisteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="obtenerIDPorNombreUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:string" />
@@ -42,6 +42,17 @@
   <xs:complexType name="obtenerIDPorNombreUsuarioResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarContrasena">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigo" type="xs:string" />
+      <xs:element minOccurs="0" name="nuevaContrasena" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarContrasenaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="validarUsuario">
@@ -69,17 +80,6 @@
       <xs:element minOccurs="0" name="usuarioSistema" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="actualizarContrasena">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="codigo" type="xs:string" />
-      <xs:element minOccurs="0" name="nuevaContrasena" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="actualizarContrasenaResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="obtenerPorCorreo">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:string" />
@@ -92,7 +92,7 @@
   </xs:complexType>
   <xs:complexType name="validarCodigoRecuperacion">
     <xs:sequence>
-      <xs:element minOccurs="0" name="token" type="xs:string" />
+      <xs:element minOccurs="0" name="codigo" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="validarCodigoRecuperacionResponse">

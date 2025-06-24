@@ -129,13 +129,12 @@
                 <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente ›" 
                     OnClick="btnSiguiente_Click" CssClass="btn btn-outline-secondary btn-sm" />
             </div>
-        </div>
+       
 
         <!-- Mensaje de error responsive -->
         <div class="mt-3 text-center">
             <asp:Label ID="lblError" runat="server" CssClass="text-danger d-block"></asp:Label>
         </div>
-    </div>
 
     <!-- Modal para agregar producto - responsive -->
     <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true">
