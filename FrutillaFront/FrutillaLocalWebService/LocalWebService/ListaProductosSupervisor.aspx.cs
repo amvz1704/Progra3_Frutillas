@@ -507,8 +507,7 @@ namespace LocalWebService
         public string ObtenerImagenPorTipo(object idProd)
         {
             int idProducto = Convert.ToInt32(idProd);
-            ushort tipo = inventarioWSClient.obtenerTipoProducto(idProducto, idLocal);
-            return productoImagenWSClient.obtenerUrlPorTipo(tipo);
+            return productoImagenWSClient.obtenerProductoImagen(idProducto);
         }
 
         protected void btnBebidas_Click(object sender, EventArgs e)

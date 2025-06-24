@@ -20,16 +20,16 @@ public class ProductoImagenService {
    }
    
    public void agregar(ProductoImagen prodImagen) throws Exception{
-       if(prodImagen.getIdProductoImagen()<=0)
+       if(prodImagen.getIdProducto()<=0)
            throw new Exception("el id no puede ser menor o igual a 0");
-       if(prodImagen.getUtlImagen()==null||prodImagen.getUtlImagen().trim().isEmpty())
+       if(prodImagen.getUrlImagen()==null||prodImagen.getUrlImagen().trim().isEmpty())
            throw new Exception("la utl no puede ser vacia");
       productoImagenMySQL.agregar(prodImagen);           
    }
    public void actualizar(ProductoImagen prodImagen) throws Exception{
-       if(prodImagen.getIdProductoImagen()<=0)
+       if(prodImagen.getIdProducto()<=0)
            throw new Exception("el id no puede ser menor o igual a 0");
-       if(prodImagen.getUtlImagen()==null||prodImagen.getUtlImagen().trim().isEmpty())
+       if(prodImagen.getUrlImagen()==null||prodImagen.getUrlImagen().trim().isEmpty())
            throw new Exception("la utl no puede ser vacia");
        productoImagenMySQL.actualizar(prodImagen);
    }
@@ -42,9 +42,6 @@ public class ProductoImagenService {
        if(idProductoImagen<=0)
            throw new Exception("el id no puede ser menor o igual a 0");
        return productoImagenMySQL.obtener(idProductoImagen);
-   }
-   public String obtenerUrlPorTipo(char tipoProducto){
-       return productoImagenMySQL.obtenerImagenPorTipo(tipoProducto);
    }
    public List<ProductoImagen> listar() throws Exception{
        return productoImagenMySQL.listarTodos();
