@@ -327,7 +327,7 @@ DROP TABLE IF EXISTS `frutilla`.`Usuario` ;
 CREATE TABLE IF NOT EXISTS `frutilla`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `usuarioSistema` VARCHAR(45) NOT NULL,
-  `contrasSistema` VARCHAR(45) NOT NULL,
+  `contrasSistema` VARCHAR(100) NOT NULL,
   `activo` TINYINT NOT NULL DEFAULT 1,
   `tipo` CHAR(1) NOT NULL,
   PRIMARY KEY (`idUsuario`),
