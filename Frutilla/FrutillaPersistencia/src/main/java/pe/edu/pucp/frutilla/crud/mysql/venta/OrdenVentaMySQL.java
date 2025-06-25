@@ -110,7 +110,7 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVen
             cs.setInt(8, entity.getIdLocal());
 
             // idComprobante (nuevo parámetro)
-            if (entity.getIdEmpleado() > 0) {
+            if (entity.getIdComprobante() > 0) {
                 cs.setInt(9, entity.getIdComprobante());
             } else {
                 cs.setNull(9, Types.INTEGER);
