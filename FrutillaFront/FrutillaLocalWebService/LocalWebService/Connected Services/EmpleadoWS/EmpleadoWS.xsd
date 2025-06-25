@@ -57,16 +57,6 @@
       <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="actualizarEmpleado">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="empleado" type="tns:empleadoDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="actualizarEmpleadoResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="obtenerEmpleadosxLocal">
     <xs:sequence>
       <xs:element name="idLocal" type="xs:int" />
@@ -75,6 +65,16 @@
   <xs:complexType name="obtenerEmpleadosxLocalResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:empleadoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarEmpleado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="empleado" type="tns:empleadoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarEmpleadoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarEmpleado">

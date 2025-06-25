@@ -216,6 +216,7 @@
     </Content>
     <None Include="Connected Services\InventarioWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.wsdl" />
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
