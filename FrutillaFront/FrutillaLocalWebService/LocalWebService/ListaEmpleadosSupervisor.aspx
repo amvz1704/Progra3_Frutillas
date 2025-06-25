@@ -38,7 +38,7 @@
             </div> 
              -->
 
-            <div class="col-md-3 text-md-end text-right mt-2 mt-md-0">
+            <div class="col-md-7 text-md-end text-right mt-2 mt-md-0">
                 <asp:Button ID="btnAgregarEmpleado" runat="server"
                     Text="Agregar Empleado"
                     CssClass="btn-frutilla btn-sm"
