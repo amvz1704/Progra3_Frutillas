@@ -1,0 +1,155 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="VentasXLocal" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="58b47830-7390-45f5-b41b-73d3254b0b8b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FrutillaTest"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="479"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="521"/>
+	<parameter name="LocalBuscar" class="java.lang.Integer"/>
+	<query language="sql"><![CDATA[SELECT `idOrdenVenta`,
+	fecha,
+	descripcion,
+	`montoTotal`,
+	`estadoVenta`,
+	`horaFinEntrega`,
+	`idCliente`,
+	`idEmpleado`
+FROM frutilla.`OrdenVenta`
+Where  frutilla.`OrdenVenta`.`idLocal` = $P{LocalBuscar} ]]></query>
+	<field name="idOrdenVenta" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idOrdenVenta"/>
+		<property name="com.jaspersoft.studio.field.label" value="idOrdenVenta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<field name="montoTotal" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="montoTotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="montoTotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<field name="estadoVenta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estadoVenta"/>
+		<property name="com.jaspersoft.studio.field.label" value="estadoVenta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<field name="horaFinEntrega" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="horaFinEntrega"/>
+		<property name="com.jaspersoft.studio.field.label" value="horaFinEntrega"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<field name="idCliente" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="idCliente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<field name="idEmpleado" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idEmpleado"/>
+		<property name="com.jaspersoft.studio.field.label" value="idEmpleado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="OrdenVenta"/>
+	</field>
+	<sortField name="idOrdenVenta"/>
+	<background splitType="Stretch"/>
+	<title height="78" splitType="Stretch">
+		<element kind="staticText" uuid="04a7c320-c2d6-42c5-8e91-a30e9e1a6cef" x="130" y="20" width="266" height="30" fontSize="16.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Reportes de Ventas por Local]]></text>
+		</element>
+		<element kind="image" uuid="2731a295-5898-4a15-8c03-b50d955c9219" x="10" y="10" width="80" height="40">
+			<expression><![CDATA["C:/Users/ADMIN/Documents/GitHub/Progra3_Frutillas/image-Jasper/nuevva-marca-frutilla.png"]]></expression>
+		</element>
+	</title>
+	<pageHeader height="48" splitType="Stretch">
+		<element kind="staticText" uuid="cde608dc-3407-40eb-94c7-619278953f73" x="0" y="10" width="150" height="20" fontSize="14.0">
+			<text><![CDATA[Número de Local:]]></text>
+		</element>
+		<element kind="textField" uuid="a35c8caf-e8a3-4a30-acb2-5d6514fde4e0" x="120" y="10" width="140" height="20" fontSize="14.0">
+			<expression><![CDATA[$P{LocalBuscar}]]></expression>
+		</element>
+		<element kind="textField" uuid="6b36e0f6-3228-4e1b-bcb0-cbef367b9d8a" x="440" y="11" width="120" height="18" fontSize="14.0" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="staticText" uuid="ae612062-1466-428c-83b6-745ddec2f3a8" x="290" y="10" width="150" height="20" fontSize="14.0">
+			<text><![CDATA[Fecha de emisión:]]></text>
+		</element>
+	</pageHeader>
+	<columnHeader height="41" splitType="Stretch">
+		<element kind="staticText" uuid="9d4b81f5-086f-4b3f-84fd-98c8d5519d22" mode="Opaque" x="-10" y="10" width="70" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[N° Pedido]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a19fde6-0828-496b-9ed9-726e039a5987"/>
+		</element>
+		<element kind="staticText" uuid="ebac56df-fcac-4431-85db-371528b4c4bd" mode="Opaque" x="60" y="10" width="100" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[Descripción]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8bede52a-ecaa-45d0-b57c-2a3f13aa90aa"/>
+		</element>
+		<element kind="staticText" uuid="1dc64ecd-5104-4ec6-a3df-b09ad0eab5a6" mode="Opaque" x="290" y="10" width="80" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[Fecha]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="33375f3e-2fa6-450c-8f18-af171589997e"/>
+		</element>
+		<element kind="staticText" uuid="6b8f5ca5-9e7f-441d-84c5-352ea52162d0" mode="Opaque" x="160" y="10" width="70" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[N° Cliente]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4767aa9-bda2-4f41-9dbf-9dc89809bb13"/>
+		</element>
+		<element kind="staticText" uuid="ba0ae4d0-09e6-459e-a78a-9494eecb3869" mode="Opaque" x="230" y="10" width="60" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[N° Empleado]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd63652b-679d-454e-89e1-806b7426d2ea"/>
+		</element>
+		<element kind="staticText" uuid="fedd0294-ba0b-45ab-a0bc-d242c5faab29" mode="Opaque" x="370" y="10" width="60" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[Hora de Entrega]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d73323e-befc-46ba-9937-b19bdc31c3ba"/>
+		</element>
+		<element kind="staticText" uuid="3fef723c-98bb-4615-8ddf-b2663c6cdd55" mode="Opaque" x="430" y="10" width="80" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[Estado]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="24161339-da33-4934-8fc7-8e6d454dc01c"/>
+		</element>
+		<element kind="staticText" uuid="e03c1b98-97ba-475d-aa5b-826a4ed42290" mode="Opaque" x="510" y="10" width="59" height="30" forecolor="#050505" backcolor="#60D16D" markup="none" bold="true" hTextAlign="Center">
+			<text><![CDATA[Monto Total]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6f7aba9-67e3-4a6d-be46-2a941ad55fdd"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<element kind="textField" uuid="bd18fc62-1193-4b55-a12e-ac178a800238" mode="Opaque" x="-10" y="0" width="70" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{idOrdenVenta}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a19fde6-0828-496b-9ed9-726e039a5987"/>
+			</element>
+			<element kind="textField" uuid="86e99a8e-4bb8-4b1c-af77-4a2b5a94415c" mode="Opaque" x="60" y="0" width="100" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{descripcion}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8bede52a-ecaa-45d0-b57c-2a3f13aa90aa"/>
+			</element>
+			<element kind="textField" uuid="a5eb1d84-a48d-4d0a-8abb-a4daa08cfcfc" mode="Opaque" x="290" y="0" width="80" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{fecha}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="33375f3e-2fa6-450c-8f18-af171589997e"/>
+			</element>
+			<element kind="textField" uuid="e72c2d01-ff95-49d8-9f52-5e5b13875e05" mode="Opaque" x="160" y="0" width="70" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{idCliente}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4767aa9-bda2-4f41-9dbf-9dc89809bb13"/>
+			</element>
+			<element kind="textField" uuid="a2bae21b-e452-4493-b70b-7e717a7acb06" mode="Opaque" x="230" y="0" width="60" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{idEmpleado}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd63652b-679d-454e-89e1-806b7426d2ea"/>
+			</element>
+			<element kind="textField" uuid="b1cea313-f1b7-4020-8dd7-4a781467d259" mode="Opaque" x="370" y="0" width="60" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{horaFinEntrega}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d73323e-befc-46ba-9937-b19bdc31c3ba"/>
+			</element>
+			<element kind="textField" uuid="84a392e6-2ba5-47b7-9164-5c71bd3647e3" mode="Opaque" x="430" y="0" width="80" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{estadoVenta}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="24161339-da33-4934-8fc7-8e6d454dc01c"/>
+			</element>
+			<element kind="textField" uuid="c8aeb39d-3567-460d-9e61-91450f843e8a" mode="Opaque" x="510" y="0" width="59" height="30" backcolor="#FFFFFF">
+				<expression><![CDATA[$F{montoTotal}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6f7aba9-67e3-4a6d-be46-2a941ad55fdd"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="215" splitType="Stretch"/>
+</jasperReport>

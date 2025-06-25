@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="pe.edu.pucp.frutilla" targetNamespace="pe.edu.pucp.frutilla" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Exception" type="tns:Exception" />
+  <xs:element name="VentasXEmpleado" type="tns:VentasXEmpleado" />
+  <xs:element name="VentasXEmpleadoResponse" type="tns:VentasXEmpleadoResponse" />
+  <xs:element name="VentasXLocal" type="tns:VentasXLocal" />
+  <xs:element name="VentasXLocalResponse" type="tns:VentasXLocalResponse" />
+  <xs:element name="generarBuffer" type="tns:generarBuffer" />
+  <xs:element name="generarBufferResponse" type="tns:generarBufferResponse" />
+  <xs:complexType name="generarBuffer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string" />
+                  <xs:element minOccurs="0" name="value" type="xs:anyType" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generarBufferResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VentasXLocal">
+    <xs:sequence>
+      <xs:element name="idLocal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VentasXLocalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VentasXEmpleado">
+    <xs:sequence>
+      <xs:element name="idEmpleado" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VentasXEmpleadoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
