@@ -413,6 +413,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <asp:FileUpload ID="FileUpload" runat="server" class="form-control-file"/>
                     <asp:Button ID="BtnGuardarEdicion" runat="server" Text="💾 Guardar Cambios" 
                         CssClass="btn btn-primary me-2" OnClick="btnGuardarEdicionProducto_Click" />
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

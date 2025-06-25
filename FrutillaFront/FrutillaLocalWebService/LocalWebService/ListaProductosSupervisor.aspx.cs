@@ -344,6 +344,7 @@ namespace LocalWebService
                 fruta.requiereLimpieza = ChkReqLimpiezaEdit.Checked;
                 fruta.requiereLimpiezaSpecified = true;
                 inventarioWSClient.actualizarProducto(fruta, idLocal, 'F');
+                ColocarImagenProducto(id, FileUpload.FileName);
             }
             else if (tipo == "B")
             {
@@ -383,6 +384,7 @@ namespace LocalWebService
                 }
 
                 inventarioWSClient.actualizarProducto(bebida, idLocal, 'B');
+                ColocarImagenProducto(id, FileUpload.FileName);
             }
             else if (tipo == "S")
             {
@@ -408,6 +410,7 @@ namespace LocalWebService
                 snack.envase = TxtEnvaseSnackEdit.Text;
 
                 inventarioWSClient.actualizarProducto(snack, idLocal, 'S');
+                ColocarImagenProducto(id, FileUpload.FileName);
             }
             else
             {
@@ -431,6 +434,7 @@ namespace LocalWebService
                 producto.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
 
                 inventarioWSClient.actualizarProducto(producto, idLocal, 'P');
+                ColocarImagenProducto(id, FileUpload.FileName);
             }
             CargarProductos();
         }
@@ -523,6 +527,45 @@ namespace LocalWebService
         {
             int idProducto = Convert.ToInt32(idProd);
             return productoImagenWSClient.obtenerProductoImagen(idProducto);
+        }
+
+        //funcion para agregar imagen del producto
+        private void ColocarImagenProducto(int idProducto, string imagen)
+        {
+            try
+            {
+                string imagenActual = productoImagenWSClient.obtenerProductoImagen(idProducto);
+                if (imagenActual != "~/imagenes/placeholder.jpg")
+                {
+                    if (FileUpload.HasFile)
+                    {
+                        string rutaImagen = "Public/images/" + imagen;
+                        productoImagen temp = new productoImagen
+                        {
+                            idProducto = idProducto,
+                            urlImagen = rutaImagen
+                        };
+                        productoImagenWSClient.actualizarProductoImagen(temp);
+                    }
+                }
+                else
+                {
+                    if (FileUpload.HasFile)
+                    {
+                        string rutaImagen = "Public/images/" + imagen;
+                        productoImagen temp = new productoImagen
+                        {
+                            idProducto = idProducto,
+                            urlImagen = rutaImagen
+                        };
+                        productoImagenWSClient.agregarProductoImagen(temp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "Error al agregar imagen: " + ex.Message;
+            }
         }
 
         protected void btnBebidas_Click(object sender, EventArgs e)

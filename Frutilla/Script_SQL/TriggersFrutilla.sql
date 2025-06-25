@@ -1,3 +1,6 @@
+Drop trigger Notificacion_Inventario;
+Drop trigger Notificacion_Prod_Agotado;
+
 DELIMITER $$
 CREATE TRIGGER Notificacion_Inventario
 AFTER UPDATE ON Inventario
@@ -28,7 +31,7 @@ BEGIN
 	DECLARE idSup_Local INT;
     SELECT idUsuario INTO idSup_Local FROM Empleado 
     WHERE New.idLocal = Empleado.idLocal AND Empleado.tipo='S';
-	IF New.Stock = 0 THEN 
+	IF New.stock = 0 THEN 
 		INSERT INTO Notificacion (tipoReceptor,fechaHora,
         titulo,descripcion,idEmpleado) VALUES 
         ('SUPERVISOR',NOW(),"Sin stock",CONCAT("El producto con id ",New.idProducto," esta agotado"),idSup_Local);
