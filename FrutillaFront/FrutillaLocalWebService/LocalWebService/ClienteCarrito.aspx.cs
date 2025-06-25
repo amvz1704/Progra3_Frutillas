@@ -39,17 +39,12 @@ namespace LocalWebService
                 ).UserData;
 
                 string[] partes = datos.Split('|');
-                string tipoUsuario = partes[0];
                 int idUsuario = int.Parse(partes[1]);
                 cliente cliente = clienteWS.obtenerClientePorId(idUsuario);
 
                 if (cliente != null)
                 {
                     idClienteGlobal = cliente.idUsuario;
-                }
-                else
-                {
-                    Response.Redirect("Login.aspx");
                 }
             }
             else

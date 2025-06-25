@@ -16,22 +16,13 @@ namespace LocalWebService.NotificionesWS {
     public interface NotificacionWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.NotificionesWS.listarPorSupervisorResponse listarPorSupervisor(LocalWebService.NotificionesWS.listarPorSupervisorRequest request);
+        LocalWebService.NotificionesWS.listarPorFechaResponse listarPorFecha(LocalWebService.NotificionesWS.listarPorFechaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorResponse")]
-        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorSupervisorResponse> listarPorSupervisorAsync(LocalWebService.NotificionesWS.listarPorSupervisorRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.NotificionesWS.listarPorClienteResponse listarPorCliente(LocalWebService.NotificionesWS.listarPorClienteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteResponse")]
-        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorClienteResponse> listarPorClienteAsync(LocalWebService.NotificionesWS.listarPorClienteRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse")]
+        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorFechaResponse> listarPorFechaAsync(LocalWebService.NotificionesWS.listarPorFechaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarTodosRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarTodosResponse")]
@@ -43,13 +34,22 @@ namespace LocalWebService.NotificionesWS {
         System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarTodosResponse> listarTodosAsync(LocalWebService.NotificionesWS.listarTodosRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.NotificionesWS.listarPorFechaResponse listarPorFecha(LocalWebService.NotificionesWS.listarPorFechaRequest request);
+        LocalWebService.NotificionesWS.listarPorClienteResponse listarPorCliente(LocalWebService.NotificionesWS.listarPorClienteRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse")]
-        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorFechaResponse> listarPorFechaAsync(LocalWebService.NotificionesWS.listarPorFechaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteResponse")]
+        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorClienteResponse> listarPorClienteAsync(LocalWebService.NotificionesWS.listarPorClienteRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.NotificionesWS.listarPorSupervisorResponse listarPorSupervisor(LocalWebService.NotificionesWS.listarPorSupervisorRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorResponse")]
+        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorSupervisorResponse> listarPorSupervisorAsync(LocalWebService.NotificionesWS.listarPorSupervisorRequest request);
     }
     
     /// <remarks/>
@@ -328,71 +328,40 @@ namespace LocalWebService.NotificionesWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorSupervisor", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorSupervisorRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorFecha", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorFechaRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg0;
+        public string arg0;
         
-        public listarPorSupervisorRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg1;
+        
+        public listarPorFechaRequest() {
         }
         
-        public listarPorSupervisorRequest(int arg0) {
+        public listarPorFechaRequest(string arg0, int arg1) {
             this.arg0 = arg0;
+            this.arg1 = arg1;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorSupervisorResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorSupervisorResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorFechaResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorFechaResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LocalWebService.NotificionesWS.notificacionDTO[] @return;
         
-        public listarPorSupervisorResponse() {
+        public listarPorFechaResponse() {
         }
         
-        public listarPorSupervisorResponse(LocalWebService.NotificionesWS.notificacionDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorCliente", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorClienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg0;
-        
-        public listarPorClienteRequest() {
-        }
-        
-        public listarPorClienteRequest(int arg0) {
-            this.arg0 = arg0;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorClienteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorClienteResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.NotificionesWS.notificacionDTO[] @return;
-        
-        public listarPorClienteResponse() {
-        }
-        
-        public listarPorClienteResponse(LocalWebService.NotificionesWS.notificacionDTO[] @return) {
+        public listarPorFechaResponse(LocalWebService.NotificionesWS.notificacionDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -436,40 +405,71 @@ namespace LocalWebService.NotificionesWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorFecha", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorFechaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorCliente", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorClienteRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string arg0;
+        public int arg0;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg1;
-        
-        public listarPorFechaRequest() {
+        public listarPorClienteRequest() {
         }
         
-        public listarPorFechaRequest(string arg0, int arg1) {
+        public listarPorClienteRequest(int arg0) {
             this.arg0 = arg0;
-            this.arg1 = arg1;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorFechaResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorFechaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorClienteResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorClienteResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LocalWebService.NotificionesWS.notificacionDTO[] @return;
         
-        public listarPorFechaResponse() {
+        public listarPorClienteResponse() {
         }
         
-        public listarPorFechaResponse(LocalWebService.NotificionesWS.notificacionDTO[] @return) {
+        public listarPorClienteResponse(LocalWebService.NotificionesWS.notificacionDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorSupervisor", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorSupervisorRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg0;
+        
+        public listarPorSupervisorRequest() {
+        }
+        
+        public listarPorSupervisorRequest(int arg0) {
+            this.arg0 = arg0;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorSupervisorResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorSupervisorResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.NotificionesWS.notificacionDTO[] @return;
+        
+        public listarPorSupervisorResponse() {
+        }
+        
+        public listarPorSupervisorResponse(LocalWebService.NotificionesWS.notificacionDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -502,49 +502,28 @@ namespace LocalWebService.NotificionesWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.NotificionesWS.listarPorSupervisorResponse LocalWebService.NotificionesWS.NotificacionWS.listarPorSupervisor(LocalWebService.NotificionesWS.listarPorSupervisorRequest request) {
-            return base.Channel.listarPorSupervisor(request);
+        LocalWebService.NotificionesWS.listarPorFechaResponse LocalWebService.NotificionesWS.NotificacionWS.listarPorFecha(LocalWebService.NotificionesWS.listarPorFechaRequest request) {
+            return base.Channel.listarPorFecha(request);
         }
         
-        public LocalWebService.NotificionesWS.notificacionDTO[] listarPorSupervisor(int arg0) {
-            LocalWebService.NotificionesWS.listarPorSupervisorRequest inValue = new LocalWebService.NotificionesWS.listarPorSupervisorRequest();
+        public LocalWebService.NotificionesWS.notificacionDTO[] listarPorFecha(string arg0, int arg1) {
+            LocalWebService.NotificionesWS.listarPorFechaRequest inValue = new LocalWebService.NotificionesWS.listarPorFechaRequest();
             inValue.arg0 = arg0;
-            LocalWebService.NotificionesWS.listarPorSupervisorResponse retVal = ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorSupervisor(inValue);
+            inValue.arg1 = arg1;
+            LocalWebService.NotificionesWS.listarPorFechaResponse retVal = ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorFecha(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorSupervisorResponse> LocalWebService.NotificionesWS.NotificacionWS.listarPorSupervisorAsync(LocalWebService.NotificionesWS.listarPorSupervisorRequest request) {
-            return base.Channel.listarPorSupervisorAsync(request);
+        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorFechaResponse> LocalWebService.NotificionesWS.NotificacionWS.listarPorFechaAsync(LocalWebService.NotificionesWS.listarPorFechaRequest request) {
+            return base.Channel.listarPorFechaAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorSupervisorResponse> listarPorSupervisorAsync(int arg0) {
-            LocalWebService.NotificionesWS.listarPorSupervisorRequest inValue = new LocalWebService.NotificionesWS.listarPorSupervisorRequest();
+        public System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorFechaResponse> listarPorFechaAsync(string arg0, int arg1) {
+            LocalWebService.NotificionesWS.listarPorFechaRequest inValue = new LocalWebService.NotificionesWS.listarPorFechaRequest();
             inValue.arg0 = arg0;
-            return ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorSupervisorAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.NotificionesWS.listarPorClienteResponse LocalWebService.NotificionesWS.NotificacionWS.listarPorCliente(LocalWebService.NotificionesWS.listarPorClienteRequest request) {
-            return base.Channel.listarPorCliente(request);
-        }
-        
-        public LocalWebService.NotificionesWS.notificacionDTO[] listarPorCliente(int arg0) {
-            LocalWebService.NotificionesWS.listarPorClienteRequest inValue = new LocalWebService.NotificionesWS.listarPorClienteRequest();
-            inValue.arg0 = arg0;
-            LocalWebService.NotificionesWS.listarPorClienteResponse retVal = ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorCliente(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorClienteResponse> LocalWebService.NotificionesWS.NotificacionWS.listarPorClienteAsync(LocalWebService.NotificionesWS.listarPorClienteRequest request) {
-            return base.Channel.listarPorClienteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorClienteResponse> listarPorClienteAsync(int arg0) {
-            LocalWebService.NotificionesWS.listarPorClienteRequest inValue = new LocalWebService.NotificionesWS.listarPorClienteRequest();
-            inValue.arg0 = arg0;
-            return ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorClienteAsync(inValue);
+            inValue.arg1 = arg1;
+            return ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorFechaAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -571,28 +550,49 @@ namespace LocalWebService.NotificionesWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.NotificionesWS.listarPorFechaResponse LocalWebService.NotificionesWS.NotificacionWS.listarPorFecha(LocalWebService.NotificionesWS.listarPorFechaRequest request) {
-            return base.Channel.listarPorFecha(request);
+        LocalWebService.NotificionesWS.listarPorClienteResponse LocalWebService.NotificionesWS.NotificacionWS.listarPorCliente(LocalWebService.NotificionesWS.listarPorClienteRequest request) {
+            return base.Channel.listarPorCliente(request);
         }
         
-        public LocalWebService.NotificionesWS.notificacionDTO[] listarPorFecha(string arg0, int arg1) {
-            LocalWebService.NotificionesWS.listarPorFechaRequest inValue = new LocalWebService.NotificionesWS.listarPorFechaRequest();
+        public LocalWebService.NotificionesWS.notificacionDTO[] listarPorCliente(int arg0) {
+            LocalWebService.NotificionesWS.listarPorClienteRequest inValue = new LocalWebService.NotificionesWS.listarPorClienteRequest();
             inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            LocalWebService.NotificionesWS.listarPorFechaResponse retVal = ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorFecha(inValue);
+            LocalWebService.NotificionesWS.listarPorClienteResponse retVal = ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorCliente(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorFechaResponse> LocalWebService.NotificionesWS.NotificacionWS.listarPorFechaAsync(LocalWebService.NotificionesWS.listarPorFechaRequest request) {
-            return base.Channel.listarPorFechaAsync(request);
+        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorClienteResponse> LocalWebService.NotificionesWS.NotificacionWS.listarPorClienteAsync(LocalWebService.NotificionesWS.listarPorClienteRequest request) {
+            return base.Channel.listarPorClienteAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorFechaResponse> listarPorFechaAsync(string arg0, int arg1) {
-            LocalWebService.NotificionesWS.listarPorFechaRequest inValue = new LocalWebService.NotificionesWS.listarPorFechaRequest();
+        public System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorClienteResponse> listarPorClienteAsync(int arg0) {
+            LocalWebService.NotificionesWS.listarPorClienteRequest inValue = new LocalWebService.NotificionesWS.listarPorClienteRequest();
             inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            return ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorFechaAsync(inValue);
+            return ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorClienteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.NotificionesWS.listarPorSupervisorResponse LocalWebService.NotificionesWS.NotificacionWS.listarPorSupervisor(LocalWebService.NotificionesWS.listarPorSupervisorRequest request) {
+            return base.Channel.listarPorSupervisor(request);
+        }
+        
+        public LocalWebService.NotificionesWS.notificacionDTO[] listarPorSupervisor(int arg0) {
+            LocalWebService.NotificionesWS.listarPorSupervisorRequest inValue = new LocalWebService.NotificionesWS.listarPorSupervisorRequest();
+            inValue.arg0 = arg0;
+            LocalWebService.NotificionesWS.listarPorSupervisorResponse retVal = ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorSupervisor(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorSupervisorResponse> LocalWebService.NotificionesWS.NotificacionWS.listarPorSupervisorAsync(LocalWebService.NotificionesWS.listarPorSupervisorRequest request) {
+            return base.Channel.listarPorSupervisorAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.NotificionesWS.listarPorSupervisorResponse> listarPorSupervisorAsync(int arg0) {
+            LocalWebService.NotificionesWS.listarPorSupervisorRequest inValue = new LocalWebService.NotificionesWS.listarPorSupervisorRequest();
+            inValue.arg0 = arg0;
+            return ((LocalWebService.NotificionesWS.NotificacionWS)(this)).listarPorSupervisorAsync(inValue);
         }
     }
 }
