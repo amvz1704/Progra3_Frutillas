@@ -40,6 +40,7 @@ namespace LocalWebService
 
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
+
                 int idUsuario = int.Parse(partes[1]);
                 cliente cliente = clienteWS.obtenerClientePorId(idUsuario);
 
@@ -58,22 +59,40 @@ namespace LocalWebService
             }
             if (!IsPostBack)
             {
-                llenarDropdownLocales();
+                
+
                 BindCarrito();
             }
         }
 
-        private void llenarDropdownLocales()
-        {
-            ddlLocales.DataSource = localWS.listarLocales();
-            ddlLocales.DataTextField = "nombre";
-            ddlLocales.DataValueField = "idLocal";
-            ddlLocales.DataBind();
-            ddlLocales.Items.Insert(0, new ListItem("Seleccione un local", "0"));
-        }
+        //private void llenarDropdownLocales()
+        //{
+        //    ddlLocales.DataSource = localWS.listarLocales();
+        //    ddlLocales.DataTextField = "nombre";
+        //    ddlLocales.DataValueField = "idLocal";
+        //    ddlLocales.DataBind();
+        //    ddlLocales.Items.Insert(0, new ListItem("Seleccione un local", "0"));
+        //}
 
         private void BindCarrito()
         {
+
+
+            // 1) Recuperar idLocal
+                if (Session["idLocal"] == null)
+                Response.Redirect("ClienteHome.aspx");
+
+            int idLocal = (int)Session["idLocal"];
+
+            // 2) Obtener el objeto Local completo
+            var cliente = new LocalWSClient();
+            local local = cliente.obtenerLocal(idLocal);
+            cliente.Close();
+
+            // Guárdalo en un label o en una propiedad si lo necesitas luego
+            lblNombreLocal.Text = local.nombre;
+            lblDireccion.Text = local.direccion;
+
             var carrito = CarritoSesion ?? new List<ComprobanteWS.lineaOrdenDeVenta>();
 
             foreach (var item in carrito)
@@ -208,10 +227,10 @@ namespace LocalWebService
             }
         }
 
-        protected void ddlLocales_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            idLocalSeleccionado = int.Parse(ddlLocales.SelectedValue);
-            Session["idLocal"] = idLocalSeleccionado;
-        }
+        //protected void ddlLocales_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    idLocalSeleccionado = int.Parse(ddlLocales.SelectedValue);
+        //    Session["idLocal"] = idLocalSeleccionado;
+        //}
     }
 }

@@ -10,8 +10,6 @@
   <xs:element name="listarProductoImagenResponse" type="tns:listarProductoImagenResponse" />
   <xs:element name="obtenerProductoImagen" type="tns:obtenerProductoImagen" />
   <xs:element name="obtenerProductoImagenResponse" type="tns:obtenerProductoImagenResponse" />
-  <xs:element name="obtenerUrlPorTipo" type="tns:obtenerUrlPorTipo" />
-  <xs:element name="obtenerUrlPorTipoResponse" type="tns:obtenerUrlPorTipoResponse" />
   <xs:complexType name="listarProductoImagen">
     <xs:sequence />
   </xs:complexType>
@@ -22,9 +20,8 @@
   </xs:complexType>
   <xs:complexType name="productoImagen">
     <xs:sequence>
-      <xs:element name="idProductoImagen" type="xs:int" />
-      <xs:element name="tipoProducto" type="xs:unsignedShort" />
-      <xs:element minOccurs="0" name="utlImagen" type="xs:string" />
+      <xs:element name="idProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="urlImagen" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="agregarProductoImagen">
@@ -49,16 +46,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerProductoImagenResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:productoImagen" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerUrlPorTipo">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:unsignedShort" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerUrlPorTipoResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>

@@ -16,6 +16,15 @@ namespace LocalWebService.InventarioWS {
     public interface InventarioWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.InventarioWS.obtenerTipoProductoResponse obtenerTipoProducto(LocalWebService.InventarioWS.obtenerTipoProductoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoResponse")]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerTipoProductoResponse> obtenerTipoProductoAsync(LocalWebService.InventarioWS.obtenerTipoProductoRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerProductoPorIdResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -25,45 +34,21 @@ namespace LocalWebService.InventarioWS {
         System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerProductoPorIdResponse> obtenerProductoPorIdAsync(LocalWebService.InventarioWS.obtenerProductoPorIdRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.InventarioWS.obtenerTipoProductoResponse obtenerTipoProducto(LocalWebService.InventarioWS.obtenerTipoProductoRequest request);
+        LocalWebService.InventarioWS.obtenerStockPorIdResponse obtenerStockPorId(LocalWebService.InventarioWS.obtenerStockPorIdRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerTipoProductoResponse")]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerTipoProductoResponse> obtenerTipoProductoAsync(LocalWebService.InventarioWS.obtenerTipoProductoRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdResponse")]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerStockPorIdResponse> obtenerStockPorIdAsync(LocalWebService.InventarioWS.obtenerStockPorIdRequest request);
         
-        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse")]
+        // CODEGEN: El parámetro 'producto' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarStockRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarStockResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LocalWebService.InventarioWS.insertarFrutaResponse insertarFruta(LocalWebService.InventarioWS.insertarFrutaRequest request);
+        LocalWebService.InventarioWS.actualizarStockResponse actualizarStock(LocalWebService.InventarioWS.actualizarStockRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse")]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarFrutaResponse> insertarFrutaAsync(LocalWebService.InventarioWS.insertarFrutaRequest request);
-        
-        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LocalWebService.InventarioWS.insertarBebidaResponse insertarBebida(LocalWebService.InventarioWS.insertarBebidaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaResponse")]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarBebidaResponse> insertarBebidaAsync(LocalWebService.InventarioWS.insertarBebidaRequest request);
-        
-        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LocalWebService.InventarioWS.eliminarProductoResponse eliminarProducto(LocalWebService.InventarioWS.eliminarProductoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse")]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.eliminarProductoResponse> eliminarProductoAsync(LocalWebService.InventarioWS.eliminarProductoRequest request);
-        
-        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LocalWebService.InventarioWS.insertarSnackResponse insertarSnack(LocalWebService.InventarioWS.insertarSnackRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackResponse")]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarSnackResponse> insertarSnackAsync(LocalWebService.InventarioWS.insertarSnackRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarStockRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarStockResponse")]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.actualizarStockResponse> actualizarStockAsync(LocalWebService.InventarioWS.actualizarStockRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosResponse")]
@@ -73,6 +58,14 @@ namespace LocalWebService.InventarioWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosResponse")]
         System.Threading.Tasks.Task<LocalWebService.InventarioWS.listarTodosResponse> listarTodosAsync(LocalWebService.InventarioWS.listarTodosRequest request);
+        
+        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        LocalWebService.InventarioWS.insertarSnackResponse insertarSnack(LocalWebService.InventarioWS.insertarSnackRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarSnackResponse")]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarSnackResponse> insertarSnackAsync(LocalWebService.InventarioWS.insertarSnackRequest request);
         
         // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoResponse")]
@@ -91,6 +84,14 @@ namespace LocalWebService.InventarioWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerBebidaPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerBebidaPorIdResponse")]
         System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerBebidaPorIdResponse> obtenerBebidaPorIdAsync(LocalWebService.InventarioWS.obtenerBebidaPorIdRequest request);
         
+        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        LocalWebService.InventarioWS.insertarBebidaResponse insertarBebida(LocalWebService.InventarioWS.insertarBebidaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaResponse")]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarBebidaResponse> insertarBebidaAsync(LocalWebService.InventarioWS.insertarBebidaRequest request);
+        
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerFrutaPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerFrutaPorIdResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -101,15 +102,6 @@ namespace LocalWebService.InventarioWS {
         System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerFrutaPorIdResponse> obtenerFrutaPorIdAsync(LocalWebService.InventarioWS.obtenerFrutaPorIdRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.InventarioWS.obtenerStockPorIdResponse obtenerStockPorId(LocalWebService.InventarioWS.obtenerStockPorIdRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerStockPorIdResponse")]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerStockPorIdResponse> obtenerStockPorIdAsync(LocalWebService.InventarioWS.obtenerStockPorIdRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/filtrarPorTipoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/filtrarPorTipoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -117,6 +109,14 @@ namespace LocalWebService.InventarioWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/filtrarPorTipoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/filtrarPorTipoResponse")]
         System.Threading.Tasks.Task<LocalWebService.InventarioWS.filtrarPorTipoResponse> filtrarPorTipoAsync(LocalWebService.InventarioWS.filtrarPorTipoRequest request);
+        
+        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        LocalWebService.InventarioWS.insertarFrutaResponse insertarFruta(LocalWebService.InventarioWS.insertarFrutaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse")]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarFrutaResponse> insertarFrutaAsync(LocalWebService.InventarioWS.insertarFrutaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerSnackPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerSnackPorIdResponse")]
@@ -126,6 +126,55 @@ namespace LocalWebService.InventarioWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerSnackPorIdRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/obtenerSnackPorIdResponse")]
         System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerSnackPorIdResponse> obtenerSnackPorIdAsync(LocalWebService.InventarioWS.obtenerSnackPorIdRequest request);
+        
+        // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        LocalWebService.InventarioWS.eliminarProductoResponse eliminarProducto(LocalWebService.InventarioWS.eliminarProductoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse")]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.eliminarProductoResponse> eliminarProductoAsync(LocalWebService.InventarioWS.eliminarProductoRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerTipoProducto", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerTipoProductoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg1;
+        
+        public obtenerTipoProductoRequest() {
+        }
+        
+        public obtenerTipoProductoRequest(int arg0, int arg1) {
+            this.arg0 = arg0;
+            this.arg1 = arg1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerTipoProductoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerTipoProductoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public ushort @return;
+        
+        public obtenerTipoProductoResponse() {
+        }
+        
+        public obtenerTipoProductoResponse(ushort @return) {
+            this.@return = @return;
+        }
     }
     
     /// <remarks/>
@@ -692,8 +741,8 @@ namespace LocalWebService.InventarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerTipoProducto", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerTipoProductoRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerStockPorId", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerStockPorIdRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -703,10 +752,10 @@ namespace LocalWebService.InventarioWS {
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public int arg1;
         
-        public obtenerTipoProductoRequest() {
+        public obtenerStockPorIdRequest() {
         }
         
-        public obtenerTipoProductoRequest(int arg0, int arg1) {
+        public obtenerStockPorIdRequest(int arg0, int arg1) {
             this.arg0 = arg0;
             this.arg1 = arg1;
         }
@@ -715,17 +764,17 @@ namespace LocalWebService.InventarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerTipoProductoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerTipoProductoResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerStockPorIdResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerStockPorIdResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ushort @return;
+        public int @return;
         
-        public obtenerTipoProductoResponse() {
+        public obtenerStockPorIdResponse() {
         }
         
-        public obtenerTipoProductoResponse(ushort @return) {
+        public obtenerStockPorIdResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -733,132 +782,33 @@ namespace LocalWebService.InventarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarFruta", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarFrutaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="actualizarStock", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class actualizarStockRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.InventarioWS.fruta arg0;
+        public LocalWebService.InventarioWS.producto producto;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg1;
+        public int idLocal;
         
-        public insertarFrutaRequest() {
+        public actualizarStockRequest() {
         }
         
-        public insertarFrutaRequest(LocalWebService.InventarioWS.fruta arg0, int arg1) {
-            this.arg0 = arg0;
-            this.arg1 = arg1;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarFrutaResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarFrutaResponse {
-        
-        public insertarFrutaResponse() {
+        public actualizarStockRequest(LocalWebService.InventarioWS.producto producto, int idLocal) {
+            this.producto = producto;
+            this.idLocal = idLocal;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarBebida", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarBebidaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="actualizarStockResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class actualizarStockResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.InventarioWS.bebida arg0;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg1;
-        
-        public insertarBebidaRequest() {
-        }
-        
-        public insertarBebidaRequest(LocalWebService.InventarioWS.bebida arg0, int arg1) {
-            this.arg0 = arg0;
-            this.arg1 = arg1;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarBebidaResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarBebidaResponse {
-        
-        public insertarBebidaResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProducto", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarProductoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg0;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg1;
-        
-        public eliminarProductoRequest() {
-        }
-        
-        public eliminarProductoRequest(int arg0, int arg1) {
-            this.arg0 = arg0;
-            this.arg1 = arg1;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProductoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarProductoResponse {
-        
-        public eliminarProductoResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarSnack", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarSnackRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.InventarioWS.snack arg0;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg1;
-        
-        public insertarSnackRequest() {
-        }
-        
-        public insertarSnackRequest(LocalWebService.InventarioWS.snack arg0, int arg1) {
-            this.arg0 = arg0;
-            this.arg1 = arg1;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarSnackResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarSnackResponse {
-        
-        public insertarSnackResponse() {
+        public actualizarStockResponse() {
         }
     }
     
@@ -895,6 +845,39 @@ namespace LocalWebService.InventarioWS {
         
         public listarTodosResponse(LocalWebService.InventarioWS.producto[] @return) {
             this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarSnack", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarSnackRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.InventarioWS.snack arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg1;
+        
+        public insertarSnackRequest() {
+        }
+        
+        public insertarSnackRequest(LocalWebService.InventarioWS.snack arg0, int arg1) {
+            this.arg0 = arg0;
+            this.arg1 = arg1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarSnackResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarSnackResponse {
+        
+        public insertarSnackResponse() {
         }
     }
     
@@ -975,6 +958,39 @@ namespace LocalWebService.InventarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarBebida", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarBebidaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.InventarioWS.bebida arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg1;
+        
+        public insertarBebidaRequest() {
+        }
+        
+        public insertarBebidaRequest(LocalWebService.InventarioWS.bebida arg0, int arg1) {
+            this.arg0 = arg0;
+            this.arg1 = arg1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarBebidaResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarBebidaResponse {
+        
+        public insertarBebidaResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerFrutaPorId", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerFrutaPorIdRequest {
         
@@ -1004,47 +1020,6 @@ namespace LocalWebService.InventarioWS {
         }
         
         public obtenerFrutaPorIdResponse(LocalWebService.InventarioWS.fruta @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerStockPorId", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerStockPorIdRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg0;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int arg1;
-        
-        public obtenerStockPorIdRequest() {
-        }
-        
-        public obtenerStockPorIdRequest(int arg0, int arg1) {
-            this.arg0 = arg0;
-            this.arg1 = arg1;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerStockPorIdResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerStockPorIdResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public obtenerStockPorIdResponse() {
-        }
-        
-        public obtenerStockPorIdResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1093,6 +1068,39 @@ namespace LocalWebService.InventarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarFruta", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarFrutaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.InventarioWS.fruta arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg1;
+        
+        public insertarFrutaRequest() {
+        }
+        
+        public insertarFrutaRequest(LocalWebService.InventarioWS.fruta arg0, int arg1) {
+            this.arg0 = arg0;
+            this.arg1 = arg1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarFrutaResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarFrutaResponse {
+        
+        public insertarFrutaResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerSnackPorId", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerSnackPorIdRequest {
         
@@ -1126,6 +1134,39 @@ namespace LocalWebService.InventarioWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProducto", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarProductoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg1;
+        
+        public eliminarProductoRequest() {
+        }
+        
+        public eliminarProductoRequest(int arg0, int arg1) {
+            this.arg0 = arg0;
+            this.arg1 = arg1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProductoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarProductoResponse {
+        
+        public eliminarProductoResponse() {
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface InventarioWSChannel : LocalWebService.InventarioWS.InventarioWS, System.ServiceModel.IClientChannel {
     }
@@ -1154,29 +1195,6 @@ namespace LocalWebService.InventarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.InventarioWS.obtenerProductoPorIdResponse LocalWebService.InventarioWS.InventarioWS.obtenerProductoPorId(LocalWebService.InventarioWS.obtenerProductoPorIdRequest request) {
-            return base.Channel.obtenerProductoPorId(request);
-        }
-        
-        public LocalWebService.InventarioWS.producto obtenerProductoPorId(int idProducto) {
-            LocalWebService.InventarioWS.obtenerProductoPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerProductoPorIdRequest();
-            inValue.idProducto = idProducto;
-            LocalWebService.InventarioWS.obtenerProductoPorIdResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerProductoPorId(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerProductoPorIdResponse> LocalWebService.InventarioWS.InventarioWS.obtenerProductoPorIdAsync(LocalWebService.InventarioWS.obtenerProductoPorIdRequest request) {
-            return base.Channel.obtenerProductoPorIdAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerProductoPorIdResponse> obtenerProductoPorIdAsync(int idProducto) {
-            LocalWebService.InventarioWS.obtenerProductoPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerProductoPorIdRequest();
-            inValue.idProducto = idProducto;
-            return ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerProductoPorIdAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.InventarioWS.obtenerTipoProductoResponse LocalWebService.InventarioWS.InventarioWS.obtenerTipoProducto(LocalWebService.InventarioWS.obtenerTipoProductoRequest request) {
             return base.Channel.obtenerTipoProducto(request);
         }
@@ -1202,75 +1220,98 @@ namespace LocalWebService.InventarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.InventarioWS.insertarFrutaResponse LocalWebService.InventarioWS.InventarioWS.insertarFruta(LocalWebService.InventarioWS.insertarFrutaRequest request) {
-            return base.Channel.insertarFruta(request);
+        LocalWebService.InventarioWS.obtenerProductoPorIdResponse LocalWebService.InventarioWS.InventarioWS.obtenerProductoPorId(LocalWebService.InventarioWS.obtenerProductoPorIdRequest request) {
+            return base.Channel.obtenerProductoPorId(request);
         }
         
-        public void insertarFruta(LocalWebService.InventarioWS.fruta arg0, int arg1) {
-            LocalWebService.InventarioWS.insertarFrutaRequest inValue = new LocalWebService.InventarioWS.insertarFrutaRequest();
-            inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            LocalWebService.InventarioWS.insertarFrutaResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarFruta(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarFrutaResponse> LocalWebService.InventarioWS.InventarioWS.insertarFrutaAsync(LocalWebService.InventarioWS.insertarFrutaRequest request) {
-            return base.Channel.insertarFrutaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarFrutaResponse> insertarFrutaAsync(LocalWebService.InventarioWS.fruta arg0, int arg1) {
-            LocalWebService.InventarioWS.insertarFrutaRequest inValue = new LocalWebService.InventarioWS.insertarFrutaRequest();
-            inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            return ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarFrutaAsync(inValue);
+        public LocalWebService.InventarioWS.producto obtenerProductoPorId(int idProducto) {
+            LocalWebService.InventarioWS.obtenerProductoPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerProductoPorIdRequest();
+            inValue.idProducto = idProducto;
+            LocalWebService.InventarioWS.obtenerProductoPorIdResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerProductoPorId(inValue);
+            return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.InventarioWS.insertarBebidaResponse LocalWebService.InventarioWS.InventarioWS.insertarBebida(LocalWebService.InventarioWS.insertarBebidaRequest request) {
-            return base.Channel.insertarBebida(request);
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerProductoPorIdResponse> LocalWebService.InventarioWS.InventarioWS.obtenerProductoPorIdAsync(LocalWebService.InventarioWS.obtenerProductoPorIdRequest request) {
+            return base.Channel.obtenerProductoPorIdAsync(request);
         }
         
-        public void insertarBebida(LocalWebService.InventarioWS.bebida arg0, int arg1) {
-            LocalWebService.InventarioWS.insertarBebidaRequest inValue = new LocalWebService.InventarioWS.insertarBebidaRequest();
-            inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            LocalWebService.InventarioWS.insertarBebidaResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarBebida(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarBebidaResponse> LocalWebService.InventarioWS.InventarioWS.insertarBebidaAsync(LocalWebService.InventarioWS.insertarBebidaRequest request) {
-            return base.Channel.insertarBebidaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarBebidaResponse> insertarBebidaAsync(LocalWebService.InventarioWS.bebida arg0, int arg1) {
-            LocalWebService.InventarioWS.insertarBebidaRequest inValue = new LocalWebService.InventarioWS.insertarBebidaRequest();
-            inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            return ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarBebidaAsync(inValue);
+        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerProductoPorIdResponse> obtenerProductoPorIdAsync(int idProducto) {
+            LocalWebService.InventarioWS.obtenerProductoPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerProductoPorIdRequest();
+            inValue.idProducto = idProducto;
+            return ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerProductoPorIdAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.InventarioWS.eliminarProductoResponse LocalWebService.InventarioWS.InventarioWS.eliminarProducto(LocalWebService.InventarioWS.eliminarProductoRequest request) {
-            return base.Channel.eliminarProducto(request);
+        LocalWebService.InventarioWS.obtenerStockPorIdResponse LocalWebService.InventarioWS.InventarioWS.obtenerStockPorId(LocalWebService.InventarioWS.obtenerStockPorIdRequest request) {
+            return base.Channel.obtenerStockPorId(request);
         }
         
-        public void eliminarProducto(int arg0, int arg1) {
-            LocalWebService.InventarioWS.eliminarProductoRequest inValue = new LocalWebService.InventarioWS.eliminarProductoRequest();
+        public int obtenerStockPorId(int arg0, int arg1) {
+            LocalWebService.InventarioWS.obtenerStockPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerStockPorIdRequest();
             inValue.arg0 = arg0;
             inValue.arg1 = arg1;
-            LocalWebService.InventarioWS.eliminarProductoResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).eliminarProducto(inValue);
+            LocalWebService.InventarioWS.obtenerStockPorIdResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerStockPorId(inValue);
+            return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.eliminarProductoResponse> LocalWebService.InventarioWS.InventarioWS.eliminarProductoAsync(LocalWebService.InventarioWS.eliminarProductoRequest request) {
-            return base.Channel.eliminarProductoAsync(request);
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerStockPorIdResponse> LocalWebService.InventarioWS.InventarioWS.obtenerStockPorIdAsync(LocalWebService.InventarioWS.obtenerStockPorIdRequest request) {
+            return base.Channel.obtenerStockPorIdAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.eliminarProductoResponse> eliminarProductoAsync(int arg0, int arg1) {
-            LocalWebService.InventarioWS.eliminarProductoRequest inValue = new LocalWebService.InventarioWS.eliminarProductoRequest();
+        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerStockPorIdResponse> obtenerStockPorIdAsync(int arg0, int arg1) {
+            LocalWebService.InventarioWS.obtenerStockPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerStockPorIdRequest();
             inValue.arg0 = arg0;
             inValue.arg1 = arg1;
-            return ((LocalWebService.InventarioWS.InventarioWS)(this)).eliminarProductoAsync(inValue);
+            return ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerStockPorIdAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.InventarioWS.actualizarStockResponse LocalWebService.InventarioWS.InventarioWS.actualizarStock(LocalWebService.InventarioWS.actualizarStockRequest request) {
+            return base.Channel.actualizarStock(request);
+        }
+        
+        public void actualizarStock(LocalWebService.InventarioWS.producto producto, int idLocal) {
+            LocalWebService.InventarioWS.actualizarStockRequest inValue = new LocalWebService.InventarioWS.actualizarStockRequest();
+            inValue.producto = producto;
+            inValue.idLocal = idLocal;
+            LocalWebService.InventarioWS.actualizarStockResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).actualizarStock(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.actualizarStockResponse> LocalWebService.InventarioWS.InventarioWS.actualizarStockAsync(LocalWebService.InventarioWS.actualizarStockRequest request) {
+            return base.Channel.actualizarStockAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.actualizarStockResponse> actualizarStockAsync(LocalWebService.InventarioWS.producto producto, int idLocal) {
+            LocalWebService.InventarioWS.actualizarStockRequest inValue = new LocalWebService.InventarioWS.actualizarStockRequest();
+            inValue.producto = producto;
+            inValue.idLocal = idLocal;
+            return ((LocalWebService.InventarioWS.InventarioWS)(this)).actualizarStockAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.InventarioWS.listarTodosResponse LocalWebService.InventarioWS.InventarioWS.listarTodos(LocalWebService.InventarioWS.listarTodosRequest request) {
+            return base.Channel.listarTodos(request);
+        }
+        
+        public LocalWebService.InventarioWS.producto[] listarTodos(int idLocal) {
+            LocalWebService.InventarioWS.listarTodosRequest inValue = new LocalWebService.InventarioWS.listarTodosRequest();
+            inValue.idLocal = idLocal;
+            LocalWebService.InventarioWS.listarTodosResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).listarTodos(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.listarTodosResponse> LocalWebService.InventarioWS.InventarioWS.listarTodosAsync(LocalWebService.InventarioWS.listarTodosRequest request) {
+            return base.Channel.listarTodosAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.listarTodosResponse> listarTodosAsync(int idLocal) {
+            LocalWebService.InventarioWS.listarTodosRequest inValue = new LocalWebService.InventarioWS.listarTodosRequest();
+            inValue.idLocal = idLocal;
+            return ((LocalWebService.InventarioWS.InventarioWS)(this)).listarTodosAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1295,29 +1336,6 @@ namespace LocalWebService.InventarioWS {
             inValue.arg0 = arg0;
             inValue.arg1 = arg1;
             return ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarSnackAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.InventarioWS.listarTodosResponse LocalWebService.InventarioWS.InventarioWS.listarTodos(LocalWebService.InventarioWS.listarTodosRequest request) {
-            return base.Channel.listarTodos(request);
-        }
-        
-        public LocalWebService.InventarioWS.producto[] listarTodos(int idLocal) {
-            LocalWebService.InventarioWS.listarTodosRequest inValue = new LocalWebService.InventarioWS.listarTodosRequest();
-            inValue.idLocal = idLocal;
-            LocalWebService.InventarioWS.listarTodosResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).listarTodos(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.listarTodosResponse> LocalWebService.InventarioWS.InventarioWS.listarTodosAsync(LocalWebService.InventarioWS.listarTodosRequest request) {
-            return base.Channel.listarTodosAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.listarTodosResponse> listarTodosAsync(int idLocal) {
-            LocalWebService.InventarioWS.listarTodosRequest inValue = new LocalWebService.InventarioWS.listarTodosRequest();
-            inValue.idLocal = idLocal;
-            return ((LocalWebService.InventarioWS.InventarioWS)(this)).listarTodosAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1370,6 +1388,30 @@ namespace LocalWebService.InventarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.InventarioWS.insertarBebidaResponse LocalWebService.InventarioWS.InventarioWS.insertarBebida(LocalWebService.InventarioWS.insertarBebidaRequest request) {
+            return base.Channel.insertarBebida(request);
+        }
+        
+        public void insertarBebida(LocalWebService.InventarioWS.bebida arg0, int arg1) {
+            LocalWebService.InventarioWS.insertarBebidaRequest inValue = new LocalWebService.InventarioWS.insertarBebidaRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            LocalWebService.InventarioWS.insertarBebidaResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarBebida(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarBebidaResponse> LocalWebService.InventarioWS.InventarioWS.insertarBebidaAsync(LocalWebService.InventarioWS.insertarBebidaRequest request) {
+            return base.Channel.insertarBebidaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarBebidaResponse> insertarBebidaAsync(LocalWebService.InventarioWS.bebida arg0, int arg1) {
+            LocalWebService.InventarioWS.insertarBebidaRequest inValue = new LocalWebService.InventarioWS.insertarBebidaRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            return ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarBebidaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.InventarioWS.obtenerFrutaPorIdResponse LocalWebService.InventarioWS.InventarioWS.obtenerFrutaPorId(LocalWebService.InventarioWS.obtenerFrutaPorIdRequest request) {
             return base.Channel.obtenerFrutaPorId(request);
         }
@@ -1390,31 +1432,6 @@ namespace LocalWebService.InventarioWS {
             LocalWebService.InventarioWS.obtenerFrutaPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerFrutaPorIdRequest();
             inValue.idfruta = idfruta;
             return ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerFrutaPorIdAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.InventarioWS.obtenerStockPorIdResponse LocalWebService.InventarioWS.InventarioWS.obtenerStockPorId(LocalWebService.InventarioWS.obtenerStockPorIdRequest request) {
-            return base.Channel.obtenerStockPorId(request);
-        }
-        
-        public int obtenerStockPorId(int arg0, int arg1) {
-            LocalWebService.InventarioWS.obtenerStockPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerStockPorIdRequest();
-            inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            LocalWebService.InventarioWS.obtenerStockPorIdResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerStockPorId(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerStockPorIdResponse> LocalWebService.InventarioWS.InventarioWS.obtenerStockPorIdAsync(LocalWebService.InventarioWS.obtenerStockPorIdRequest request) {
-            return base.Channel.obtenerStockPorIdAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.obtenerStockPorIdResponse> obtenerStockPorIdAsync(int arg0, int arg1) {
-            LocalWebService.InventarioWS.obtenerStockPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerStockPorIdRequest();
-            inValue.arg0 = arg0;
-            inValue.arg1 = arg1;
-            return ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerStockPorIdAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1443,6 +1460,30 @@ namespace LocalWebService.InventarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.InventarioWS.insertarFrutaResponse LocalWebService.InventarioWS.InventarioWS.insertarFruta(LocalWebService.InventarioWS.insertarFrutaRequest request) {
+            return base.Channel.insertarFruta(request);
+        }
+        
+        public void insertarFruta(LocalWebService.InventarioWS.fruta arg0, int arg1) {
+            LocalWebService.InventarioWS.insertarFrutaRequest inValue = new LocalWebService.InventarioWS.insertarFrutaRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            LocalWebService.InventarioWS.insertarFrutaResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarFruta(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarFrutaResponse> LocalWebService.InventarioWS.InventarioWS.insertarFrutaAsync(LocalWebService.InventarioWS.insertarFrutaRequest request) {
+            return base.Channel.insertarFrutaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.insertarFrutaResponse> insertarFrutaAsync(LocalWebService.InventarioWS.fruta arg0, int arg1) {
+            LocalWebService.InventarioWS.insertarFrutaRequest inValue = new LocalWebService.InventarioWS.insertarFrutaRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            return ((LocalWebService.InventarioWS.InventarioWS)(this)).insertarFrutaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.InventarioWS.obtenerSnackPorIdResponse LocalWebService.InventarioWS.InventarioWS.obtenerSnackPorId(LocalWebService.InventarioWS.obtenerSnackPorIdRequest request) {
             return base.Channel.obtenerSnackPorId(request);
         }
@@ -1463,6 +1504,30 @@ namespace LocalWebService.InventarioWS {
             LocalWebService.InventarioWS.obtenerSnackPorIdRequest inValue = new LocalWebService.InventarioWS.obtenerSnackPorIdRequest();
             inValue.idsnack = idsnack;
             return ((LocalWebService.InventarioWS.InventarioWS)(this)).obtenerSnackPorIdAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.InventarioWS.eliminarProductoResponse LocalWebService.InventarioWS.InventarioWS.eliminarProducto(LocalWebService.InventarioWS.eliminarProductoRequest request) {
+            return base.Channel.eliminarProducto(request);
+        }
+        
+        public void eliminarProducto(int arg0, int arg1) {
+            LocalWebService.InventarioWS.eliminarProductoRequest inValue = new LocalWebService.InventarioWS.eliminarProductoRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            LocalWebService.InventarioWS.eliminarProductoResponse retVal = ((LocalWebService.InventarioWS.InventarioWS)(this)).eliminarProducto(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.InventarioWS.eliminarProductoResponse> LocalWebService.InventarioWS.InventarioWS.eliminarProductoAsync(LocalWebService.InventarioWS.eliminarProductoRequest request) {
+            return base.Channel.eliminarProductoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.InventarioWS.eliminarProductoResponse> eliminarProductoAsync(int arg0, int arg1) {
+            LocalWebService.InventarioWS.eliminarProductoRequest inValue = new LocalWebService.InventarioWS.eliminarProductoRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            return ((LocalWebService.InventarioWS.InventarioWS)(this)).eliminarProductoAsync(inValue);
         }
     }
 }

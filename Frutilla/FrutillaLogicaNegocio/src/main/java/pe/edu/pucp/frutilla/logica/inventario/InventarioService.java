@@ -4,6 +4,7 @@
  */
 package pe.edu.pucp.frutilla.logica.inventario;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL;
 import pe.edu.pucp.frutilla.models.inventario.Producto;
@@ -18,6 +19,21 @@ public class InventarioService {
     
     public InventarioService (){
         invSQL=new InventarioMySQL();
+    }
+    
+     public void actualizarStock(Producto producto, int idLocal) throws Exception {
+        if (idLocal <= 0)
+            throw new Exception("El id del local no puede ser negativo");
+        if (producto.getIdProducto() <= 0)
+            throw new Exception("El id de producto no puede ser negativo");
+        if (producto.getStock() < 0)
+            throw new Exception("El stock no puede ser negativo");
+
+        try {
+            invSQL.actualizarStock(producto, idLocal);
+        } catch (SQLException e) {
+            throw new Exception("Error al actualizar el stock en la base de datos: " + e.getMessage(), e);
+        }
     }
     
     public void insertar(Producto prod,int idLocal) throws Exception{

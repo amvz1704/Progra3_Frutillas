@@ -56,7 +56,7 @@ namespace LocalWebService
                 ddlLocal.Items.Add(new ListItem(local.nombre, local.idLocal.ToString()));
             }
 
-            //debo guardar el local seleccionado
+
         }
 
         protected void ddlLocal_SelectedIndexChanged(object sender, EventArgs e)

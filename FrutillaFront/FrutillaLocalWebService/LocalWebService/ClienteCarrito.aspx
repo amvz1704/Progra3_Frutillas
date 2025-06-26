@@ -14,17 +14,36 @@
         </div>
     </header>
 
-    <div class="container m-4">
-        <asp:DropDownList ID="ddlLocales" runat="server" AutoPostBack="true"
-            OnSelectedIndexChanged="ddlLocales_SelectedIndexChanged"
-            CssClass="form-control">
-        </asp:DropDownList>
+     <div class="container mb-4">
+    <div style="background-color: #DFF0D8; border-radius: 5px;">
+
+        <div class="container m-4">
+            <p class="card-text mb-1">
+                <strong>Local:</strong>
+                <asp:Label ID="lblNombreLocal" runat="server" Text="—" />
+                
+            </p>
+
+            <p class="card-text mb-1">
+                <strong>Direccion:</strong>
+                <asp:Label ID="lblDireccion" runat="server" Text="—" />
+    
+            </p>
+
+            
+        </div>
+
+    </div>
     </div>
 
     <asp:Label ID="lblError" runat="server" ForeColor="Red" EnableViewState="false" />
 
+    <!-- Lista de productos en carrito con fondo verde y tabla blanca -->
+     <div class="container mb-4">
+        <div style="background-color: #DFF0D8; padding: 15px; border-radius: 5px;">
+
     <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False"
-        CssClass="table table-striped"
+        CssClass="table table-striped table-hover table-bordered bg-white"
         OnRowCommand="gvCarrito_RowCommand">
         <Columns>
             <asp:BoundField DataField="Producto.IdProducto" HeaderText="Id" />
@@ -39,7 +58,7 @@
                             CommandArgument='<%# Container.DataItemIndex %>'
                             CssClass="btn btn-outline-secondary btn-sm me-2" />
 
-                        <asp:Label ID="lblCantidad" runat="server" Text='<%# Eval("cantidad") %>' CssClass="fw-bold" />
+                       <asp:Label ID="lblCantidad" runat="server" Text='<%# Eval("cantidad") %>' CssClass="fw-bold small" />
 
                         <asp:LinkButton ID="btnMas" runat="server" Text="+"
                             CommandName="Aumentar"
@@ -58,30 +77,42 @@
                     Text="Eliminar"
                     CommandName="Eliminar"
                     CommandArgument='<%# Container.DataItemIndex %>'
-                    CssClass="btn btn-danger btn-sm" />
+                    CssClass="btn btn-danger btn-sm" >
+                    <i class="bi bi-trash3" title="Eliminar"></i>
+                 </asp:LinkButton>
             </ItemTemplate>
         </asp:TemplateField>
     </Columns>
 </asp:GridView>
 
-    <div class="row mt-3">
-        <div class="col-md-4">
-            <label><strong>Subtotal:</strong></label>
-            <asp:Label ID="lblSubtotal" runat="server" />
-        </div>
-        <div class="col-md-4">
-            <label><strong>IGV (18%):</strong></label>
-            <asp:Label ID="lblIGV" runat="server" />
-        </div>
-        <div class="col-md-4">
-            <label><strong>Total:</strong></label>
-            <asp:Label ID="lblTotal" runat="server" />
-        </div>
+     </div>
     </div>
 
-    <asp:Button ID="btnPagar" runat="server"
-        Text="Proceder al Pago"
-        CssClass="btn btn-success mt-4"
-        OnClick="btnPagar_Click" />
+     <!-- Totales alineados más compactos -->
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-4 offset-md-8">
+                <div class="mb-1 d-flex justify-content-end align-items-center">
+                    <label class="fw-bold me-2 mb-0">Subtotal:</label>
+                    <asp:Label ID="lblSubtotal" runat="server" CssClass="text-success fw-bold small mb-0" />
+                </div>
+                <div class="mb-1 d-flex justify-content-end align-items-center">
+                    <label class="fw-bold me-2 mb-0">IGV (18%):</label>
+                    <asp:Label ID="lblIGV" runat="server" CssClass="text-success fw-bold small mb-0" />
+                </div>
+                <div class="mb-2 d-flex justify-content-end align-items-center">
+                    <label class="fw-bold me-2 mb-0">Total:</label>
+                    <asp:Label ID="lblTotal" runat="server" CssClass="text-success fw-bold small mb-0" />
+                </div>
+                <div class="text-end">
+                    <asp:Button ID="btnPagar" runat="server"
+                        Text="Proceder al Pago"
+                        CssClass="btn btn-success px-4"
+                        OnClick="btnPagar_Click" />
+                </div>
+            </div>
+
+            </div>
+        </div>
 
 </asp:Content>

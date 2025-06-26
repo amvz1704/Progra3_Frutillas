@@ -2,6 +2,8 @@
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="actualizarProducto" type="tns:actualizarProducto" />
   <xs:element name="actualizarProductoResponse" type="tns:actualizarProductoResponse" />
+  <xs:element name="actualizarStock" type="tns:actualizarStock" />
+  <xs:element name="actualizarStockResponse" type="tns:actualizarStockResponse" />
   <xs:element name="eliminarProducto" type="tns:eliminarProducto" />
   <xs:element name="eliminarProductoResponse" type="tns:eliminarProductoResponse" />
   <xs:element name="filtrarPorTipo" type="tns:filtrarPorTipo" />
@@ -107,13 +109,13 @@
       <xs:element name="return" type="xs:unsignedShort" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="insertarBebida">
+  <xs:complexType name="actualizarStock">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:bebida" />
-      <xs:element name="arg1" type="xs:int" />
+      <xs:element minOccurs="0" name="producto" type="tns:producto" />
+      <xs:element name="idLocal" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="insertarBebidaResponse">
+  <xs:complexType name="actualizarStockResponse">
     <xs:sequence />
   </xs:complexType>
   <xs:complexType name="obtenerBebidaPorId">
@@ -125,6 +127,15 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:bebida" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarBebida">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:bebida" />
+      <xs:element name="arg1" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarBebidaResponse">
+    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="obtenerProductoPorId">
     <xs:sequence>

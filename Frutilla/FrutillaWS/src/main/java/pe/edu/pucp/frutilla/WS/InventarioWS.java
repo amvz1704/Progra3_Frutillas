@@ -40,6 +40,16 @@ public class InventarioWS {
         inventarioService = new InventarioService();
     }
     
+     @WebMethod(operationName = "actualizarStock")
+    public void actualizarStock(@WebParam(name = "producto") Producto producto, 
+                                @WebParam(name = "idLocal") int idLocal) {
+        try {
+            inventarioService.actualizarStock(producto, idLocal);
+        } catch (Exception e) {
+            throw new WebServiceException("Error al actualizar el stock del producto: " + e.getMessage());
+        }
+    }
+    
     @WebMethod(operationName = "listarTodos")
     public List<Producto> listarTodos(@WebParam(name = "idLocal")int idLocal){
         try{

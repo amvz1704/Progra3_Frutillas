@@ -214,6 +214,9 @@
     <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.filtrarPorTipoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\InventarioWS\LocalWebService.InventarioWS.actualizarStockResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\InventarioWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
