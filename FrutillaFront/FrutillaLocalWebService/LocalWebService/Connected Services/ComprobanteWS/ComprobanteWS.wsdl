@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/ComprobanteWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="obtenerProductoPorId">
-    <part name="parameters" element="tns:obtenerProductoPorId" />
+  <message name="actualizarComprobante">
+    <part name="parameters" element="tns:actualizarComprobante" />
   </message>
-  <message name="obtenerProductoPorIdResponse">
-    <part name="parameters" element="tns:obtenerProductoPorIdResponse" />
+  <message name="actualizarComprobanteResponse">
+    <part name="parameters" element="tns:actualizarComprobanteResponse" />
   </message>
   <message name="eliminarComprobante">
     <part name="parameters" element="tns:eliminarComprobante" />
@@ -17,11 +17,11 @@
   <message name="eliminarComprobanteResponse">
     <part name="parameters" element="tns:eliminarComprobanteResponse" />
   </message>
-  <message name="actualizarComprobante">
-    <part name="parameters" element="tns:actualizarComprobante" />
+  <message name="obtenerComprobante">
+    <part name="parameters" element="tns:obtenerComprobante" />
   </message>
-  <message name="actualizarComprobanteResponse">
-    <part name="parameters" element="tns:actualizarComprobanteResponse" />
+  <message name="obtenerComprobanteResponse">
+    <part name="parameters" element="tns:obtenerComprobanteResponse" />
   </message>
   <message name="obtenerLineasPorIdComprobante">
     <part name="parameters" element="tns:obtenerLineasPorIdComprobante" />
@@ -29,37 +29,37 @@
   <message name="obtenerLineasPorIdComprobanteResponse">
     <part name="parameters" element="tns:obtenerLineasPorIdComprobanteResponse" />
   </message>
-  <message name="obtenerComprobante">
-    <part name="parameters" element="tns:obtenerComprobante" />
+  <message name="obtenerProductoPorId">
+    <part name="parameters" element="tns:obtenerProductoPorId" />
   </message>
-  <message name="obtenerComprobanteResponse">
-    <part name="parameters" element="tns:obtenerComprobanteResponse" />
+  <message name="obtenerProductoPorIdResponse">
+    <part name="parameters" element="tns:obtenerProductoPorIdResponse" />
   </message>
   <portType name="ComprobanteWS">
-    <operation name="obtenerProductoPorId">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdRequest" message="tns:obtenerProductoPorId" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdResponse" message="tns:obtenerProductoPorIdResponse" />
+    <operation name="actualizarComprobante">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteRequest" message="tns:actualizarComprobante" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteResponse" message="tns:actualizarComprobanteResponse" />
     </operation>
     <operation name="eliminarComprobante">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteRequest" message="tns:eliminarComprobante" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/eliminarComprobanteResponse" message="tns:eliminarComprobanteResponse" />
     </operation>
-    <operation name="actualizarComprobante">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteRequest" message="tns:actualizarComprobante" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteResponse" message="tns:actualizarComprobanteResponse" />
+    <operation name="obtenerComprobante">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerComprobanteRequest" message="tns:obtenerComprobante" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerComprobanteResponse" message="tns:obtenerComprobanteResponse" />
     </operation>
     <operation name="obtenerLineasPorIdComprobante">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerLineasPorIdComprobanteRequest" message="tns:obtenerLineasPorIdComprobante" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerLineasPorIdComprobanteResponse" message="tns:obtenerLineasPorIdComprobanteResponse" />
     </operation>
-    <operation name="obtenerComprobante">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerComprobanteRequest" message="tns:obtenerComprobante" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerComprobanteResponse" message="tns:obtenerComprobanteResponse" />
+    <operation name="obtenerProductoPorId">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdRequest" message="tns:obtenerProductoPorId" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdResponse" message="tns:obtenerProductoPorIdResponse" />
     </operation>
   </portType>
   <binding name="ComprobanteWSPortBinding" type="tns:ComprobanteWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="obtenerProductoPorId">
+    <operation name="actualizarComprobante">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -77,7 +77,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="actualizarComprobante">
+    <operation name="obtenerComprobante">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -95,7 +95,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerComprobante">
+    <operation name="obtenerProductoPorId">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

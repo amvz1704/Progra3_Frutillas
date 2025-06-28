@@ -107,25 +107,25 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.actualizarComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.eliminarComprobanteResponse.datasource">
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.comprobanteDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerComprobanteResponse.datasource">
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.eliminarComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.lineaOrdenDeVenta.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerComprobanteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse1.datasource">
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.comprobanteDTO.datasource">
+    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
