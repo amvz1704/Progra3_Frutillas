@@ -112,7 +112,7 @@ public class OrdenVentaService {
      
     // Eliminar orden y sus líneas
     public void eliminarOrden(int idOrdenVenta) throws SQLException {
-        lineaOrdenDeVentaMySQL.eliminarTodasPorIdOrden(idOrdenVenta);
+        lineaOrdenDeVentaMySQL.eliminarPorId(idOrdenVenta);
         ordenVentaMySQL.eliminar(idOrdenVenta);
     }
 

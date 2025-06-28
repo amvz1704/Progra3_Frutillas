@@ -1,3 +1,4 @@
+﻿
 ﻿using LocalWebService.ComprobanteWS;
 using LocalWebService.LocalWS;
 using LocalWebService.PedidoWS;
@@ -14,7 +15,7 @@ namespace LocalWebService
 {
     public partial class ClientePago : System.Web.UI.Page
     {
-    
+
         private ComprobanteWSClient ComprobanteWS;
 
 
@@ -42,9 +43,10 @@ namespace LocalWebService
                 }
 
                 // 2) Guardarlo si luego lo vas a reutilizar
-                if (id == -1) {
+                if (id == -1)
+                {
                     Response.Redirect("ClienteCarrito.aspx");
-                    return; 
+                    return;
                 }
 
                 servicioOrdenId = id;
@@ -89,7 +91,7 @@ namespace LocalWebService
             //RECIEN SE INSERTA EN LA BD, se crea un pedido y asi --> luego de eso finalmente se confirma con pagar
             txtPedido.Text = "Por editar"; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
 
-           
+
 
             txtSubtotal.Text = subtotal.ToString();
             txtIGV.Text = igv.ToString();
@@ -138,7 +140,7 @@ namespace LocalWebService
             comprobante.formaPago = formadePago;
             comprobante.formaPagoSpecified = true;
             comprobante.montoIGV = (double)(Carrito.Sum(l => (decimal)l.subtotal) * 0.18m); // Asumiendo IGV incluido
-                comprobante.numeroArticulos = Carrito.Count;
+            comprobante.numeroArticulos = Carrito.Count;
             comprobante.fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
             comprobante.subtotal = (double)(Carrito.Sum(l => (decimal)l.subtotal));
             comprobante.total = double.Parse(txtTotal.Text); // Asumiendo IGV incluido
@@ -152,7 +154,7 @@ namespace LocalWebService
                 Response.Redirect("ClienteCarrito.aspx");
                 return;
             }
-            
+
             int resultado = PedidoWS.insertarOrden(id, comprobante);
 
             if (resultado == 1)
@@ -172,17 +174,36 @@ namespace LocalWebService
             }
             else if (resultado == -1)
             {
+                MensajeError.Text = "Stock insuficiente, intentalo de nuevo";
                 //subir modal y luego redirigi a carrito por insuficiencia de stock
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "ShowModal",
+                    "var m = new bootstrap.Modal(document.getElementById('errorModal')); m.show();",
+                    true
+                );
 
             }
-            else {
+            else
+            {
                 //subir modal de error desconocido (por si aca) y luego redirigi a carrito
+                MensajeError.Text = "Error desconocido";
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "ShowModal",
+                    "var m = new bootstrap.Modal(document.getElementById('errorModal')); m.show();",
+                    true
+                );
             }
 
 
 
 
-
+        }
+        protected void regresarCarrito_Click(object sender, EventArgs e) {
+            Response.Redirect("ClienteCarrito.aspx");
         }
     }
 }

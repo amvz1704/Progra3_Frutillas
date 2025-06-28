@@ -64,7 +64,7 @@
         </div>
     </asp:Panel>
 </div>
-</div>
+
             <!-- Grid de productos responsive -->
             <div class="row g-3 g-md-4">
                 <asp:Repeater ID="rptProductos" runat="server" OnItemCommand="rptProductos_ItemCommand">
