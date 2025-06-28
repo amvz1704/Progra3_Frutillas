@@ -11,30 +11,30 @@
   <message name="obtenerClientePorIdResponse">
     <part name="parameters" element="tns:obtenerClientePorIdResponse" />
   </message>
-  <message name="agregarCliente">
-    <part name="parameters" element="tns:agregarCliente" />
-  </message>
-  <message name="agregarClienteResponse">
-    <part name="parameters" element="tns:agregarClienteResponse" />
-  </message>
   <message name="actualizarCliente">
     <part name="parameters" element="tns:actualizarCliente" />
   </message>
   <message name="actualizarClienteResponse">
     <part name="parameters" element="tns:actualizarClienteResponse" />
   </message>
+  <message name="agregarCliente">
+    <part name="parameters" element="tns:agregarCliente" />
+  </message>
+  <message name="agregarClienteResponse">
+    <part name="parameters" element="tns:agregarClienteResponse" />
+  </message>
   <portType name="ClienteWS">
     <operation name="obtenerClientePorId">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdRequest" message="tns:obtenerClientePorId" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/obtenerClientePorIdResponse" message="tns:obtenerClientePorIdResponse" />
     </operation>
-    <operation name="agregarCliente">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteRequest" message="tns:agregarCliente" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteResponse" message="tns:agregarClienteResponse" />
-    </operation>
     <operation name="actualizarCliente">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/actualizarClienteRequest" message="tns:actualizarCliente" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/actualizarClienteResponse" message="tns:actualizarClienteResponse" />
+    </operation>
+    <operation name="agregarCliente">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteRequest" message="tns:agregarCliente" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ClienteWS/agregarClienteResponse" message="tns:agregarClienteResponse" />
     </operation>
   </portType>
   <binding name="ClienteWSPortBinding" type="tns:ClienteWS">
@@ -48,7 +48,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="agregarCliente">
+    <operation name="actualizarCliente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -57,7 +57,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="actualizarCliente">
+    <operation name="agregarCliente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

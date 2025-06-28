@@ -63,7 +63,7 @@ namespace LocalWebService
 
             int comprobanteId = ordenVenta.idComprobante;
 
-            ComprobanteWS.comprobanteDTO comprobante = daoComprobante.obtenerComprobante(comprobanteId); //tenemos que hacer doble llamado por eso
+            comprobanteDTO comprobante = daoComprobante.obtenerComprobante(comprobanteId); //tenemos que hacer doble llamado por eso
             
 
             lblId.Text = comprobanteId.ToString(); 

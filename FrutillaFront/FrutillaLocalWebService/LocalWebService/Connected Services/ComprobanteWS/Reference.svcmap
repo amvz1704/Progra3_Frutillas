@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="ae80f0b5-69b3-49d1-b7cd-187943977b73" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="f55ca9e4-5b9a-4163-b8b0-3c471f13482e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:8080/FrutillaWS/ComprobanteWS?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ComprobanteWS.wsdl" MetadataType="Wsdl" ID="35d05b72-5835-445f-87ff-54a34e809500" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/ComprobanteWS?wsdl" />
-    <MetadataFile FileName="ComprobanteWS.xsd" MetadataType="Schema" ID="e79eb61b-05cb-4bf2-a628-f0396354f0d4" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/ComprobanteWS?xsd=1" />
+    <MetadataFile FileName="ComprobanteWS.wsdl" MetadataType="Wsdl" ID="2ac19a53-b00b-404d-aadb-e0e0313ce037" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/ComprobanteWS?wsdl" />
+    <MetadataFile FileName="ComprobanteWS.xsd" MetadataType="Schema" ID="b67de281-50fa-4696-9559-d4a18d231462" SourceId="1" SourceUrl="http://localhost:8080/FrutillaWS/ComprobanteWS?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

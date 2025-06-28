@@ -123,18 +123,15 @@ namespace LocalWebService
         protected void btnPagar_Click1(object sender, EventArgs e)
         {
             // Aquí iría tu lógica de integración con pasarela de pago
-            PedidoWSClient PedidoWS = new PedidoWSClient();
-
+            ComprobanteWS = new ComprobanteWSClient();
             string metodoSeleccionado = btnTarjeta.CssClass.Contains("btn-success") ? "TARJETA_CREDITO" :
                                 btnTransferencia.CssClass.Contains("btn-success") ? "Transferencia" :
                                 btnPlin.CssClass.Contains("btn-success") ? "PLIN" : "YAPE";
 
             // Convertir el string al enum formaDePago
-            Enum.TryParse(metodoSeleccionado, out PedidoWS.formaDePago formadePago);
+            Enum.TryParse(metodoSeleccionado, out ComprobanteWS.formaDePago formadePago);
 
-
-
-            PedidoWS.comprobanteDTO comprobante = new PedidoWS.comprobanteDTO();
+            comprobanteDTO comprobante = new comprobanteDTO();
             comprobante.formaPago = formadePago;
             comprobante.formaPagoSpecified = true;
             comprobante.montoIGV = (double)(Carrito.Sum(l => (decimal)l.subtotal) * 0.18m); // Asumiendo IGV incluido
@@ -142,46 +139,43 @@ namespace LocalWebService
             comprobante.fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
             comprobante.subtotal = (double)(Carrito.Sum(l => (decimal)l.subtotal));
             comprobante.total = double.Parse(txtTotal.Text); // Asumiendo IGV incluido
-
+            
 
             // Por ahora simulamos confirmación y vaciamos el carrito:
-            string sId = Request.QueryString["id"];
-            if (!int.TryParse(sId, out int id))
+            
+            //actualizar servicio orden id con ServicioOrdenId --> UPDATE ordenServicio "POR_ENTREGAR"
+
+            //vecorrectamente 
+            int idComprobanteCreado = ComprobanteWS.agregarComprobante(comprobante); //debo obtener el id de alguna forma! 
+            hfidComprobante.Value = idComprobanteCreado.ToString(); 
+
+            PedidoWSClient pedidoWS = new PedidoWSClient(); 
+            ordenVentaDTO orden = pedidoWS.obtenerPedidoPorId(servicioOrdenId);
+
+            // 3) Comprueba que no sea null antes de usarlo
+            if (orden == null)
             {
-                // Parámetro inválido; podrías redirigir o mostrar error
-                Response.Redirect("ClienteCarrito.aspx");
+
                 return;
             }
-            
-            int resultado = PedidoWS.insertarOrden(id, comprobante);
 
-            if (resultado == 1)
-            {
-                Session["Carrito"] = null;
-                //En realidad debe de abrir un modal! tal que... 
+            orden.idComprobante = idComprobanteCreado;
+            orden.estado = estadoVenta.POR_ENTREGAR; 
 
-                // Si tu modal tiene runat="server"
-                ScriptManager.RegisterStartupScript(
-                    this,
-                    this.GetType(),
-                    "ShowModal",
-                    "var m = new bootstrap.Modal(document.getElementById('successModal')); m.show();",
-                    true
-                );
-
-            }
-            else if (resultado == -1)
-            {
-                //subir modal y luego redirigi a carrito por insuficiencia de stock
-
-            }
-            else {
-                //subir modal de error desconocido (por si aca) y luego redirigi a carrito
-            }
+            pedidoWS.actualizarOrden(orden);
 
 
+            Session["Carrito"] = null;
+            //En realidad debe de abrir un modal! tal que... 
 
-
+            // Si tu modal tiene runat="server"
+            ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowModal",
+                "var m = new bootstrap.Modal(document.getElementById('successModal')); m.show();",
+                true
+            );
 
         }
     }

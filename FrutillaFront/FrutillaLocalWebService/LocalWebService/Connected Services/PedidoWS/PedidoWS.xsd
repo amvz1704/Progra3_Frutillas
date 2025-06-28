@@ -6,8 +6,6 @@
   <xs:element name="agregarOrdenResponse" type="tns:agregarOrdenResponse" />
   <xs:element name="generarOrdenConLineas" type="tns:generarOrdenConLineas" />
   <xs:element name="generarOrdenConLineasResponse" type="tns:generarOrdenConLineasResponse" />
-  <xs:element name="insertarOrden" type="tns:insertarOrden" />
-  <xs:element name="insertarOrdenResponse" type="tns:insertarOrdenResponse" />
   <xs:element name="listarPedidoPorLocal" type="tns:listarPedidoPorLocal" />
   <xs:element name="listarPedidoPorLocalCliente" type="tns:listarPedidoPorLocalCliente" />
   <xs:element name="listarPedidoPorLocalClienteResponse" type="tns:listarPedidoPorLocalClienteResponse" />
@@ -53,28 +51,6 @@
   <xs:complexType name="listarPedidoPorLocalResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarOrden">
-    <xs:sequence>
-      <xs:element name="idOrden" type="xs:int" />
-      <xs:element minOccurs="0" name="comprobante" type="tns:comprobanteDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="comprobanteDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
-      <xs:element minOccurs="0" name="formaPago" type="tns:formaDePago" />
-      <xs:element name="idComprobante" type="xs:int" />
-      <xs:element name="montoIGV" type="xs:double" />
-      <xs:element name="numeroArticulos" type="xs:int" />
-      <xs:element name="subtotal" type="xs:double" />
-      <xs:element name="total" type="xs:double" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarOrdenResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerPedidoPorId">
@@ -186,14 +162,6 @@
       <xs:enumeration value="POR_ENTREGAR" />
       <xs:enumeration value="FALTA_PAGO" />
       <xs:enumeration value="CANCELADO" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="formaDePago">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="TARJETA_CREDITO" />
-      <xs:enumeration value="TARJETA_DEBITO" />
-      <xs:enumeration value="PLIN" />
-      <xs:enumeration value="YAPE" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="tipoEstado">

@@ -36,10 +36,6 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
     protected String getDeleteQuery() {
         return "CALL ELIMINAR_LINEA_ORDEN_VENTA(?)";
     }
-    
-    protected String getDeleteALLQuery() {
-        return "DELETE FROM LineaOrdenVenta WHERE idOrdenVenta=?";
-    }
 
     //
     @Override 
@@ -114,17 +110,6 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
             cs.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error al eliminar entidad", e);
-        }
-    }
-    
-    public void eliminarTodasPorIdOrden(Integer id) {
-        try (Connection conn = DBManager.getInstance().getConnection();
-            CallableStatement cs = conn.prepareCall(getDeleteALLQuery())) {
-            
-            cs.setInt(1, id);
-            cs.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al eliminar las entidedades", e);
         }
     }
 

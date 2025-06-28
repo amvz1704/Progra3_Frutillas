@@ -2,6 +2,8 @@
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="actualizarComprobante" type="tns:actualizarComprobante" />
   <xs:element name="actualizarComprobanteResponse" type="tns:actualizarComprobanteResponse" />
+  <xs:element name="agregarComprobante" type="tns:agregarComprobante" />
+  <xs:element name="agregarComprobanteResponse" type="tns:agregarComprobanteResponse" />
   <xs:element name="eliminarComprobante" type="tns:eliminarComprobante" />
   <xs:element name="eliminarComprobanteResponse" type="tns:eliminarComprobanteResponse" />
   <xs:element name="obtenerComprobante" type="tns:obtenerComprobante" />
@@ -86,6 +88,16 @@
       <xs:element name="idOrdenVenta" type="xs:int" />
       <xs:element minOccurs="0" name="producto" type="tns:producto" />
       <xs:element name="subtotal" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarComprobante">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comprobante" type="tns:comprobanteDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarComprobanteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="tipoEstado">

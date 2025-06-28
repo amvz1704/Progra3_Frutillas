@@ -37,18 +37,7 @@ namespace LocalWebService
 
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
-
-
-                int idUsuario = 10; //el id del clientePrueba si es que entras como supervisor
-
-                if (tipoUsuario == "C")
-                {
-                    idUsuario = int.Parse(partes[1]);
-
-                }
-
-
-
+                int idUsuario = int.Parse(partes[1]);
                 cliente cliente = clienteWS.obtenerClientePorId(idUsuario);
 
                 if (cliente != null)
@@ -76,56 +65,22 @@ namespace LocalWebService
         {
             try
             {
-                bool a = false;
-
-                //Para obtener el tipo Usuario
-                string datos = FormsAuthentication.Decrypt(
-                    Request.Cookies[FormsAuthentication.FormsCookieName].Value
-                ).UserData;
-
-                string[] partes = datos.Split('|');
-                string tipoUsuario = partes[0];
-
-                if (tipoUsuario == "C") {
-                    if (idLocal == 0)
-                    {
-                        var lista = pedidoWS.obtenerPedidosPorCliente(idCliente);
-                        gvPedidosCliente.DataSource = lista
-                            .OrderByDescending(p => p.idOrdenVenta)
-                            .ToList();
-
-                        if (lista == null)
-                        {
-                            a = true;
-                        }
-                    }
-                    else
-                    {
-                        var lista = pedidoWS.listarPedidoPorLocalCliente(idLocal, idCliente);
-                        gvPedidosCliente.DataSource = lista
-                            .OrderByDescending(p => p.idOrdenVenta)
-                            .ToList();
-                        if (lista == null)
-                        {
-                            a = true;
-                        }
-
-
-                    }
-
-                    if (!a)
-                    {
-                        gvPedidosCliente.DataBind();
-
-                    }
-
-
+                if (idLocal == 0)
+                {
+                    var lista = pedidoWS.obtenerPedidosPorCliente(idCliente);
+                    gvPedidosCliente.DataSource = lista
+                        .OrderByDescending(p => p.idOrdenVenta)
+                        .ToList();
+                }
+                else
+                {
+                    var lista = pedidoWS.listarPedidoPorLocalCliente(idLocal, idCliente);
+                    gvPedidosCliente.DataSource = lista
+                        .OrderByDescending(p => p.idOrdenVenta)
+                        .ToList();
                 }
 
-
-
-               
-
+                gvPedidosCliente.DataBind();
             }
             catch (Exception ex)
             {
@@ -175,7 +130,6 @@ namespace LocalWebService
 
         protected void ddlLocales_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //
             idLocalSeleccionado = int.Parse(ddlLocales.SelectedValue);
             CargarPedidos(idLocalSeleccionado);
         }
