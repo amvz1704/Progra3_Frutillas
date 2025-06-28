@@ -1,5 +1,4 @@
 ﻿using LocalWebService.ClienteWS;
-using LocalWebService.ComprobanteWS;
 using LocalWebService.InventarioWS;
 using LocalWebService.LocalWS;
 using LocalWebService.PedidoWS;
@@ -41,7 +40,14 @@ namespace LocalWebService
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
 
-                int idUsuario = int.Parse(partes[1]);
+                int idUsuario = 10; //el id del clientePrueba 
+
+                if (tipoUsuario == "C")
+                {
+                    idUsuario = int.Parse(partes[1]);
+
+                }
+
                 cliente cliente = clienteWS.obtenerClientePorId(idUsuario);
 
                 if (cliente != null)
