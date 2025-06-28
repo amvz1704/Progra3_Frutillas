@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/InventarioWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="eliminarProducto">
-    <part name="parameters" element="tns:eliminarProducto" />
+  <message name="insertarFruta">
+    <part name="parameters" element="tns:insertarFruta" />
   </message>
-  <message name="eliminarProductoResponse">
-    <part name="parameters" element="tns:eliminarProductoResponse" />
+  <message name="insertarFrutaResponse">
+    <part name="parameters" element="tns:insertarFrutaResponse" />
   </message>
   <message name="insertarBebida">
     <part name="parameters" element="tns:insertarBebida" />
@@ -23,22 +23,22 @@
   <message name="listarTodosResponse">
     <part name="parameters" element="tns:listarTodosResponse" />
   </message>
-  <message name="insertarFruta">
-    <part name="parameters" element="tns:insertarFruta" />
-  </message>
-  <message name="insertarFrutaResponse">
-    <part name="parameters" element="tns:insertarFrutaResponse" />
-  </message>
   <message name="actualizarProducto">
     <part name="parameters" element="tns:actualizarProducto" />
   </message>
   <message name="actualizarProductoResponse">
     <part name="parameters" element="tns:actualizarProductoResponse" />
   </message>
+  <message name="eliminarProducto">
+    <part name="parameters" element="tns:eliminarProducto" />
+  </message>
+  <message name="eliminarProductoResponse">
+    <part name="parameters" element="tns:eliminarProductoResponse" />
+  </message>
   <portType name="InventarioWS">
-    <operation name="eliminarProducto">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest" message="tns:eliminarProducto" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse" message="tns:eliminarProductoResponse" />
+    <operation name="insertarFruta">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest" message="tns:insertarFruta" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse" message="tns:insertarFrutaResponse" />
     </operation>
     <operation name="insertarBebida">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarBebidaRequest" message="tns:insertarBebida" />
@@ -48,18 +48,18 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosRequest" message="tns:listarTodos" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/listarTodosResponse" message="tns:listarTodosResponse" />
     </operation>
-    <operation name="insertarFruta">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaRequest" message="tns:insertarFruta" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/insertarFrutaResponse" message="tns:insertarFrutaResponse" />
-    </operation>
     <operation name="actualizarProducto">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoRequest" message="tns:actualizarProducto" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/actualizarProductoResponse" message="tns:actualizarProductoResponse" />
     </operation>
+    <operation name="eliminarProducto">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoRequest" message="tns:eliminarProducto" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/InventarioWS/eliminarProductoResponse" message="tns:eliminarProductoResponse" />
+    </operation>
   </portType>
   <binding name="InventarioWSPortBinding" type="tns:InventarioWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="eliminarProducto">
+    <operation name="insertarFruta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -86,7 +86,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="insertarFruta">
+    <operation name="actualizarProducto">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -95,7 +95,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="actualizarProducto">
+    <operation name="eliminarProducto">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

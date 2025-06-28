@@ -98,7 +98,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     @Override
     public ArrayList<Empleado> encontrarEmpleados(int idLocal) throws SQLException{
 
-        EmpleadoDAO interfazEmpleado = new EmpleadoMySQL(); 
+        EmpleadoMySQL interfazEmpleado = new EmpleadoMySQL(); 
         return interfazEmpleado.listarTodosPorLocal(idLocal);
     }
 
@@ -111,7 +111,7 @@ public class LocalMySQL extends BaseDAOImpl<Local> implements LocalDAO{
     
     @Override
     public ArrayList<OrdenVenta> encontrarVentas(int idLocal) throws SQLException{
-        OrdenVentaDAO interfazVenta = new OrdenVentaMySQL();  //falta actualizar DAO para que lo implemente
+        OrdenVentaMySQL interfazVenta = new OrdenVentaMySQL();  //falta actualizar DAO para que lo implemente
         return new ArrayList<>(interfazVenta.listarPorLocal(idLocal));
     }
 }

@@ -23,12 +23,10 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.time.*; 
 import java.util.List;
-
-import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
 
-public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVentaDAO{
+public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     
     //Uso los metodos sobrecargados de Query
     @Override
@@ -223,7 +221,6 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVen
 
     // Métodos adicionales para listar por cliente, empleado, local, id , todos
     
-    @Override
     public List<OrdenVenta> listarPorCliente(int idCliente) {
         List<OrdenVenta> ordenes = new ArrayList<>();
         String query = "{CALL ORDEN_VENTA_LISTAR_X_CLIENTE(?)}";
@@ -246,7 +243,6 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVen
         return ordenes;
     }
 
-    @Override
     public List<OrdenVenta> listarPorLocal(int idLocal) {
         List<OrdenVenta> ordenes = new ArrayList<>();
         String query = "{CALL ORDEN_VENTA_LISTAR_X_LOCAL(?)}";
@@ -268,8 +264,7 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVen
 
         return ordenes;
     }
-    
-    @Override
+
     public List<OrdenVenta> listarPorEmpleado(int idEmpleado) throws SQLException {
         List<OrdenVenta> ordenes = new ArrayList<>();
         String query = "SELECT * FROM OrdenVenta WHERE idEmpleado = ?";

@@ -6,6 +6,8 @@ import pe.edu.pucp.frutilla.models.inventario.Producto;
 //import java.time.*;
 import java.util.ArrayList;
 
+//import com.frutilla.crud.mysql.local.LocalMySQL;
+//import com.frutilla.crud.mysql.venta.OrdenVentaMySQL;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
 import pe.edu.pucp.frutilla.models.rrhh.Repartidor;
 import pe.edu.pucp.frutilla.models.rrhh.Supervisor;
@@ -20,7 +22,7 @@ public class Local {
     private boolean activo;
     private String telefono;
     private int idSupervisor;
-//    private ArrayList<int> idOrdenesVentas; // Lista de ordenes de venta //LO CAMBIE no es necesario que lo tenga ¿sabes?
+    private ArrayList<OrdenVenta> ordenesVentas; // Lista de ordenes de venta
     private ArrayList<Empleado> empleados; // Lista de empleados
     private ArrayList<Producto> productos; // Lista de todos los productos
 
@@ -32,7 +34,7 @@ public class Local {
         this.direccion = direccion;
         this.telefono = telefono;
         this.activo = true; // Por defecto, el local está activo al crearse
-//        this.ordenesVentas = new ArrayList<OrdenVenta>();
+        this.ordenesVentas = new ArrayList<OrdenVenta>();
         this.empleados = new ArrayList<Empleado>();
         this.productos = new ArrayList<Producto>();
     }
@@ -45,7 +47,7 @@ public class Local {
         this.direccion = local.getDireccion();
         this.telefono = local.getTelefono();
         this.activo = local.getActivo();
-//        this.ordenesVentas = new ArrayList<OrdenVenta>(local.getOrdenesVentas());
+        this.ordenesVentas = new ArrayList<OrdenVenta>(local.getOrdenesVentas());
         this.empleados = new ArrayList<Empleado>(local.getEmpleados()); 
         this.productos = new ArrayList<Producto>(local.getProductos());
         this.idSupervisor = local.getIdSupervisor();
@@ -61,14 +63,14 @@ public class Local {
     }
 	
 	//Regresa la primer orden que esta por ser entregada 
-//    public OrdenVenta obtenerOrden(){
-//        for(OrdenVenta orden : ordenesVentas) {
-//            if(orden.getEstado() == EstadoVenta.POR_ENTREGAR) {
-//                return orden; // Devuelve la primera orden en estado POR_ENTREGAR
-//            }
-//        }
-//        return null; // No hay ordenes en estado POR_ENTREGAR
-//    }
+    public OrdenVenta obtenerOrden(){
+        for(OrdenVenta orden : ordenesVentas) {
+            if(orden.getEstado() == EstadoVenta.POR_ENTREGAR) {
+                return orden; // Devuelve la primera orden en estado POR_ENTREGAR
+            }
+        }
+        return null; // No hay ordenes en estado POR_ENTREGAR
+    }
 	//dado una lista de productos y una lista de cantidades actualiza el stock 
     public void actualizarStock(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad) {
         for (int i = 0; i < listaProductos.size(); i++) {
@@ -100,12 +102,12 @@ public class Local {
         }
     }
     
-//    public void setVentas(ArrayList<OrdenVenta> lista){
-//        this.ordenesVentas = new ArrayList<>(); 
-//        for(OrdenVenta a: lista){
-//            ordenesVentas.add(a); 
-//        }
-//    }
+    public void setVentas(ArrayList<OrdenVenta> lista){
+        this.ordenesVentas = new ArrayList<>(); 
+        for(OrdenVenta a: lista){
+            ordenesVentas.add(a); 
+        }
+    }
     /*Metodos para agregar por PRIMERA VEZ una lista de X objetos asociados al local*/
 	
     //verifica si existe el stock necesario para un producto 
@@ -143,9 +145,9 @@ public class Local {
 	
 	//Agregando ordenes de venta y empleados 
 	
-//    public void agregarOrdenVenta(OrdenVenta orden){
-//        ordenesVentas.add(orden);
-//    }
+    public void agregarOrdenVenta(OrdenVenta orden){
+        ordenesVentas.add(orden);
+    }
 
     public void agregarEmpleado(Empleado empleado){
         if(empleado instanceof Supervisor){
@@ -254,16 +256,14 @@ public class Local {
     public void setIdSupervisor(int idSupervisor){
         this.idSupervisor = idSupervisor;
     }
-//
-//    public ArrayList<OrdenVenta> getOrdenesVentas() {
-//        return new ArrayList<OrdenVenta>(ordenesVentas);
-//    }
+
+    public ArrayList<OrdenVenta> getOrdenesVentas() {
+        return new ArrayList<OrdenVenta>(ordenesVentas);
+    }
 
     public ArrayList<Empleado> getEmpleados() {
         return new ArrayList<Empleado>(empleados);
     }
-    
-    
     public ArrayList<Producto> getProductos() {
     
         ArrayList<Producto> lista = new ArrayList<Producto>();
