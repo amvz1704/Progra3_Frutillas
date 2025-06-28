@@ -28,11 +28,10 @@ public class UsuarioService {
         if (persona.getContraSistema() == null || persona.getContraSistema().trim().isEmpty()) {
             throw new Exception("La contraseña no puede ser vacía");
         }
-
+        usuarioMySQL.agregar(persona);
     }
 
     public void actualizar(Persona persona) throws Exception {
-        // Validaciones
         if (persona == null) {
             throw new Exception("La persona no puede ser nula");
         }
@@ -48,7 +47,7 @@ public class UsuarioService {
         if (persona.getContraSistema() == null || persona.getContraSistema().trim().isEmpty()) {
             throw new Exception("La contraseña no puede ser vacía");
         }
-
+        usuarioMySQL.actualizar(persona);
     }
 
     public void eliminar(int idUsuario) throws Exception {
@@ -86,6 +85,20 @@ public class UsuarioService {
             throw new Exception("El nombre de usuario no puede ser vacío");
         }
         return usuarioMySQL.obtenerIDPorNombreUsuario(nombreUsuario.trim());
+    }
+    
+    public Persona obtenerPorCorreo(String correo) throws Exception{
+        if(correo == null || correo.trim().isEmpty()){
+            throw new Exception("El correo del usuario no puede ser vacío");
+        }
+        return usuarioMySQL.obtenerPorCorreo(correo.trim());
+    }
+    
+    public boolean correoExiste(String correo)throws Exception{
+        if(correo == null || correo.trim().isEmpty()){
+            throw new Exception("El correo no puede ser vacío");
+        }
+        return usuarioMySQL.correoExiste(correo);
     }
     
 }

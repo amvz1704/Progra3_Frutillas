@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import pe.edu.pucp.frutilla.config.DBManager;
 import pe.edu.pucp.frutilla.crud.dao.local.NotificacionDAO;
@@ -79,10 +80,9 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
     protected Notificacion createFromResultSet(ResultSet rs) throws SQLException {
         Notificacion notificacion = new Notificacion();
         notificacion.setIdNotificacion(rs.getInt("idNotificacion"));
-        Timestamp timeSt = rs.getTimestamp("fechaHora");
-        LocalDateTime dateTime = timeSt.toLocalDateTime();
-        notificacion.setFecha(dateTime.toLocalDate());
-        notificacion.setFechaStr(dateTime.toLocalDate().toString());
+        LocalDate date = rs.getDate("fecha").toLocalDate();
+        LocalTime time = rs.getTime("hora").toLocalTime();
+        notificacion.setFecha(date);
         notificacion.setTitulo(rs.getString("titulo"));
         notificacion.setDescripcion(rs.getString("descripcion"));
         notificacion.setIdCliente(rs.getInt("idCliente"));
@@ -140,4 +140,24 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
         return "SELECT * FROM Notificacion WHERE idEmpleado = ?";
     }
     
+    @Override
+    public ArrayList<Notificacion> listarPorCliente(int idCliente){
+        ArrayList<Notificacion> entities = new ArrayList<>();
+        try(Connection conn=DBManager.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(getSelectByClienteQuery())){
+            ps.setInt(1, idCliente);
+            try(ResultSet rs=ps.executeQuery()){
+                while(rs.next()){
+                    entities.add(createFromResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener entidad", e);
+        }
+        return entities;
+    }
+
+    private String getSelectByClienteQuery() {
+        return "SELECT * FROM Notificacion WHERE idCliente = ?";
+    }
 }

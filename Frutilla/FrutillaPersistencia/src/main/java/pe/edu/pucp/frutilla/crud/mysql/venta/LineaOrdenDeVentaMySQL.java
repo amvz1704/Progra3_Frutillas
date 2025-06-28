@@ -50,7 +50,10 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         return null;
     }
     
-
+    protected String getDeleteALLQuery() {
+        return "DELETE FROM LineaOrdenVenta WHERE idOrdenVenta=?";
+    }
+    
     @Override
     protected void setInsertParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {
         ps.setInt(1, entity.getIdOrdenVenta());
@@ -129,6 +132,17 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
             ps.executeUpdate();
         }
     }
+    
+    public void eliminarTodasPorIdOrden(Integer id) {
+        try (Connection conn = DBManager.getInstance().getConnection();
+            CallableStatement cs = conn.prepareCall(getDeleteALLQuery())) {
+            
+            cs.setInt(1, id);
+            cs.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar las entidedades", e);
+        }
+    }
 
     @Override
     protected void setId(LineaOrdenDeVenta entity, Integer id) {
@@ -152,7 +166,7 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
     // Método personalizado para listar por ID de orden
     public List<LineaOrdenDeVenta> listarPorOrden(int idOrdenVenta) throws SQLException {
         List<LineaOrdenDeVenta> lineas = new ArrayList<>();
-        String query = "CALL LISTAR_LINEAS_X_ORDEN(?)";
+        String query = "SELECT * FROM LineaOrdenVenta WHERE idOrdenVenta = ?;"; //Falta implementar este procedimiento
 
         try (Connection con = DBManager.getInstance().getConnection();
              CallableStatement cs = con.prepareCall(query)) {

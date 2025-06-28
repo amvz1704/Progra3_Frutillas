@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainLayout.Master" AutoEventWireup="true" CodeBehind="ListarNotificaciones.aspx.cs" Inherits="LocalWebService.Notificaciones.ListarNotificaciones" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="ListarNotificaciones.aspx.cs" Inherits="LocalWebService.Notificaciones.ListarNotificaciones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <header class="py-2 border-bottom bg-frutilla">
-        <div class="container">
+        <div class="container m-4">
             <h2 class="m-0">Notificaciones </h2>
         </div>
     </header>
@@ -30,4 +30,5 @@
             </asp:GridView>
         </div>
         <asp:Label ID="lblError" runat="server" Text="-" CssClass="text-danger"></asp:Label>
+        </div>
 </asp:Content>

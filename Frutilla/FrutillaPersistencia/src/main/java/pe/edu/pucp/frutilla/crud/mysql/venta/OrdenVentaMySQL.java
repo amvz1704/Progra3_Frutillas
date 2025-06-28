@@ -23,10 +23,11 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.time.*; 
 import java.util.List;
+import pe.edu.pucp.frutilla.crud.dao.venta.OrdenVentaDAO;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
 
 
-public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
+public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> implements OrdenVentaDAO{
     
     //Uso los metodos sobrecargados de Query
     @Override
@@ -109,7 +110,12 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
             cs.setInt(8, entity.getIdLocal());
 
             // idComprobante (nuevo parámetro)
-            cs.setInt(9, entity.getIdComprobante()); 
+            if (entity.getIdComprobante() > 0) {
+                cs.setInt(9, entity.getIdComprobante());
+            } else {
+                cs.setNull(9, Types.INTEGER);
+            }
+            
 
             cs.setInt(10, entity.getIdCliente());
 
@@ -144,9 +150,11 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
                 orden.setMontoTotal(rs.getDouble("montoTotal"));
                 orden.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
                 orden.setIdLocal(rs.getInt("idLocal"));
-                orden.setIdComprobante(rs.getInt("idComprobante"));
+                int idComprobante = rs.getInt("idComprobante");
+                if (!rs.wasNull()){
+                    orden.setIdComprobante(idComprobante);
+                }
                 orden.setIdCliente(rs.getInt("idCliente"));
-
                 int idEmpleado = rs.getInt("idEmpleado");
                 if (!rs.wasNull()) {
                     orden.setIdEmpleado(idEmpleado);
@@ -187,7 +195,7 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         ps.setBoolean(6, entity.getEntregado());
         ps.setString(7, entity.getEstado().name());
         ps.setInt(8, entity.getIdLocal());
-        ps.setInt(9, entity.getComprobantePago().getIdComprobante());
+        ps.setInt(9, entity.getIdComprobante());
         ps.setInt(10, entity.getIdCliente());
         ps.setInt(11, entity.getIdEmpleado());
     }
@@ -212,11 +220,35 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
     //Resultado
     @Override
     protected OrdenVenta createFromResultSet(ResultSet rs) throws SQLException {
-        OrdenVenta ordenVenta = new OrdenVenta();
-        ordenVenta.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
-        ordenVenta.setDescripcion(rs.getString("descripcion"));
-        ordenVenta.setMontoTotal(rs.getDouble("montoTotal"));
-        return ordenVenta;
+        OrdenVenta orden = new OrdenVenta();
+        orden.setIdOrdenVenta(rs.getInt("idOrdenVenta"));
+        orden.setFecha(rs.getDate("fecha").toLocalDate());
+        orden.setFechaStr(orden.getFecha().toString());
+        orden.setHoraFinEntrega(rs.getTime("horaFinEntrega").toLocalTime());
+        orden.setHoraStr(orden.getHoraFinEntrega().toString());
+        orden.setDescripcion(rs.getString("descripcion"));
+        orden.setMontoTotal(rs.getDouble("montoTotal"));
+        orden.setEstado(EstadoVenta.valueOf(rs.getString("estadoVenta")));
+        orden.setIdLocal(rs.getInt("idLocal"));
+        int idCliente = rs.getInt("idCliente");
+        if (!rs.wasNull()){
+            orden.setIdCliente(idCliente);
+        }
+        int idComprobante = rs.getInt("idComprobante");
+        if (!rs.wasNull()){
+            orden.setIdComprobante(idComprobante);
+        }
+        else{
+            orden.setIdComprobante(0);
+        }
+        int idEmpleado = rs.getInt("idEmpleado");
+        if (!rs.wasNull()) {
+            orden.setIdEmpleado(idEmpleado);
+        }
+        else{
+            orden.setIdEmpleado(0);
+        }
+        return orden;
     }
 
     // Métodos adicionales para listar por cliente, empleado, local, id , todos
@@ -332,6 +364,23 @@ public class OrdenVentaMySQL extends BaseDAOImpl<OrdenVenta> {
         return ordenes;
     }
     
+    public List<OrdenVenta> listarPorClienteLocal
+        (int idCliente,int idLocal) throws SQLException {
+        List<OrdenVenta> ordenes = new ArrayList<>();
+        String query = "{CALL ORDEN_V_LISTAR_X_LOCALCLIENTE(?,?)}";
+
+        try (Connection con = DBManager.getInstance().getConnection();
+             CallableStatement ps = con.prepareCall(query)) {
+            ps.setInt(1, idLocal);
+            ps.setInt(2, idCliente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                OrdenVenta ordenVenta = createFromResultSet(rs);
+                ordenes.add(ordenVenta);
+            }
+        }
+        return ordenes;
+    }
     
 
 }

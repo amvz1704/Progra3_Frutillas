@@ -5,30 +5,49 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/LocalWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="actualizarLocalVarios">
+    <part name="parameters" element="tns:actualizarLocalVarios" />
+  </message>
+  <message name="actualizarLocalVariosResponse">
+    <part name="parameters" element="tns:actualizarLocalVariosResponse" />
+  </message>
   <message name="obtenerLocal">
     <part name="parameters" element="tns:obtenerLocal" />
   </message>
   <message name="obtenerLocalResponse">
     <part name="parameters" element="tns:obtenerLocalResponse" />
   </message>
-  <message name="actualizarLoc">
-    <part name="parameters" element="tns:actualizarLoc" />
+  <message name="listarLocales">
+    <part name="parameters" element="tns:listarLocales" />
   </message>
-  <message name="actualizarLocResponse">
-    <part name="parameters" element="tns:actualizarLocResponse" />
+  <message name="listarLocalesResponse">
+    <part name="parameters" element="tns:listarLocalesResponse" />
   </message>
   <portType name="LocalWS">
+    <operation name="actualizarLocalVarios">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocalVariosRequest" message="tns:actualizarLocalVarios" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocalVariosResponse" message="tns:actualizarLocalVariosResponse" />
+    </operation>
     <operation name="obtenerLocal">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalRequest" message="tns:obtenerLocal" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/obtenerLocalResponse" message="tns:obtenerLocalResponse" />
     </operation>
-    <operation name="actualizarLoc">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocRequest" message="tns:actualizarLoc" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/actualizarLocResponse" message="tns:actualizarLocResponse" />
+    <operation name="listarLocales">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesRequest" message="tns:listarLocales" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/LocalWS/listarLocalesResponse" message="tns:listarLocalesResponse" />
     </operation>
   </portType>
   <binding name="LocalWSPortBinding" type="tns:LocalWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="actualizarLocalVarios">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="obtenerLocal">
       <soap:operation soapAction="" />
       <input>
@@ -38,7 +57,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="actualizarLoc">
+    <operation name="listarLocales">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

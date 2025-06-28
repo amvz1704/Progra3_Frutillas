@@ -1,15 +1,10 @@
 package pe.edu.pucp.frutilla.models.local;
 
-import pe.edu.pucp.frutilla.models.venta.EstadoVenta;
-import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 import pe.edu.pucp.frutilla.models.inventario.Producto;
 //import java.time.*;
 import java.util.ArrayList;
 
-//import com.frutilla.crud.mysql.local.LocalMySQL;
-//import com.frutilla.crud.mysql.venta.OrdenVentaMySQL;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
-import pe.edu.pucp.frutilla.models.rrhh.Repartidor;
 import pe.edu.pucp.frutilla.models.rrhh.Supervisor;
 
 
@@ -22,9 +17,9 @@ public class Local {
     private boolean activo;
     private String telefono;
     private int idSupervisor;
-    private ArrayList<OrdenVenta> ordenesVentas; // Lista de ordenes de venta
-    private ArrayList<Empleado> empleados; // Lista de empleados
-    private ArrayList<Producto> productos; // Lista de todos los productos
+//    private ArrayList<OrdenVenta> ordenesVentas; // Lista de ordenes de venta
+//    private ArrayList<Empleado> empleados; // Lista de empleados
+//    private ArrayList<Producto> productos; // Lista de todos los productos
 
 	//Constructor Local
     public Local(String nombre, String descripcion, String direccion, String telefono){
@@ -34,9 +29,9 @@ public class Local {
         this.direccion = direccion;
         this.telefono = telefono;
         this.activo = true; // Por defecto, el local está activo al crearse
-        this.ordenesVentas = new ArrayList<OrdenVenta>();
-        this.empleados = new ArrayList<Empleado>();
-        this.productos = new ArrayList<Producto>();
+//        this.ordenesVentas = new ArrayList<OrdenVenta>();
+//        this.empleados = new ArrayList<Empleado>();
+//        this.productos = new ArrayList<Producto>();
     }
 
 	//Constructor copia Local
@@ -47,9 +42,9 @@ public class Local {
         this.direccion = local.getDireccion();
         this.telefono = local.getTelefono();
         this.activo = local.getActivo();
-        this.ordenesVentas = new ArrayList<OrdenVenta>(local.getOrdenesVentas());
-        this.empleados = new ArrayList<Empleado>(local.getEmpleados()); 
-        this.productos = new ArrayList<Producto>(local.getProductos());
+//        this.ordenesVentas = new ArrayList<OrdenVenta>(local.getOrdenesVentas());
+//        this.empleados = new ArrayList<Empleado>(local.getEmpleados()); 
+//        this.productos = new ArrayList<Producto>(local.getProductos());
         this.idSupervisor = local.getIdSupervisor();
     }
 	
@@ -63,99 +58,99 @@ public class Local {
     }
 	
 	//Regresa la primer orden que esta por ser entregada 
-    public OrdenVenta obtenerOrden(){
-        for(OrdenVenta orden : ordenesVentas) {
-            if(orden.getEstado() == EstadoVenta.POR_ENTREGAR) {
-                return orden; // Devuelve la primera orden en estado POR_ENTREGAR
-            }
-        }
-        return null; // No hay ordenes en estado POR_ENTREGAR
-    }
+//    public OrdenVenta obtenerOrden(){
+//        for(OrdenVenta orden : ordenesVentas) {
+//            if(orden.getEstado() == EstadoVenta.POR_ENTREGAR) {
+//                return orden; // Devuelve la primera orden en estado POR_ENTREGAR
+//            }
+//        }
+//        return null; // No hay ordenes en estado POR_ENTREGAR
+//    }
 	//dado una lista de productos y una lista de cantidades actualiza el stock 
-    public void actualizarStock(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad) {
-        for (int i = 0; i < listaProductos.size(); i++) {
-            Producto pro = listaProductos.get(i);
-            int cantidad = listaCantidad.get(i);
-            // Verifica si el producto existe en la lista de productos
-            for (Producto p : productos) {
-                if (p.getCodigoProd().equals(pro.getCodigoProd())) {
-                    p.actualizarStock(-cantidad);
-                    System.out.println("Se actualizó el stock del producto: " + p.getNombre());
-                    break;
-                }
-            }
-        }
-    }
+//    public void actualizarStock(ArrayList<Producto> listaProductos, ArrayList<Integer> listaCantidad) {
+//        for (int i = 0; i < listaProductos.size(); i++) {
+//            Producto pro = listaProductos.get(i);
+//            int cantidad = listaCantidad.get(i);
+//            // Verifica si el producto existe en la lista de productos
+//            for (Producto p : productos) {
+//                if (p.getCodigoProd().equals(pro.getCodigoProd())) {
+//                    p.actualizarStock(-cantidad);
+//                    System.out.println("Se actualizó el stock del producto: " + p.getNombre());
+//                    break;
+//                }
+//            }
+//        }
+//    }
     
     /*Metodos para agregar por PRIMERA VEZ una lista de X objetos asociados en el local*/
-    public void setProductos(ArrayList<Producto> lista){
-        this.productos = new ArrayList<>(); 
-        for(Producto a: lista){
-            productos.add(a); 
-        }
-    }
-    
-    public void setEmpleados(ArrayList<Empleado> lista){
-        this.empleados = new ArrayList<>(); 
-        for(Empleado a: lista){
-            empleados.add(a); 
-        }
-    }
-    
-    public void setVentas(ArrayList<OrdenVenta> lista){
-        this.ordenesVentas = new ArrayList<>(); 
-        for(OrdenVenta a: lista){
-            ordenesVentas.add(a); 
-        }
-    }
+//    public void setProductos(ArrayList<Producto> lista){
+//        this.productos = new ArrayList<>(); 
+//        for(Producto a: lista){
+//            productos.add(a); 
+//        }
+//    }
+//    
+//    public void setEmpleados(ArrayList<Empleado> lista){
+//        this.empleados = new ArrayList<>(); 
+//        for(Empleado a: lista){
+//            empleados.add(a); 
+//        }
+//    }
+//    
+//    public void setVentas(ArrayList<OrdenVenta> lista){
+//        this.ordenesVentas = new ArrayList<>(); 
+//        for(OrdenVenta a: lista){
+//            ordenesVentas.add(a); 
+//        }
+//    }
     /*Metodos para agregar por PRIMERA VEZ una lista de X objetos asociados al local*/
 	
     //verifica si existe el stock necesario para un producto 
-    public boolean verificarStock(Producto producto, int cantidad) {
-        // Verifica si el producto existe en la lista de productos
-        for (Producto p : productos) {
-            if (p.getCodigoProd().equals(producto.getCodigoProd())) {
-                if (p.getStock() >= cantidad){
-                    System.out.println("Hay suficiente stock del producto: " + p.getNombre());
-                    return true;
-                }
-                System.out.println("No hay suficiente stock del producto: " + p.getNombre());
-                return false;
-            }
-        }
+//    public boolean verificarStock(Producto producto, int cantidad) {
+//        // Verifica si el producto existe en la lista de productos
+//        for (Producto p : productos) {
+//            if (p.getCodigoProd().equals(producto.getCodigoProd())) {
+//                if (p.getStock() >= cantidad){
+//                    System.out.println("Hay suficiente stock del producto: " + p.getNombre());
+//                    return true;
+//                }
+//                System.out.println("No hay suficiente stock del producto: " + p.getNombre());
+//                return false;
+//            }
+//        }
+//    
+//        System.out.println("El producto(" + producto.getNombre() + ") no existe en el local.");
+//        return false;
+//    }
     
-        System.out.println("El producto(" + producto.getNombre() + ") no existe en el local.");
-        return false;
-    }
-    
-	//agrega el producto o el stock de producto
-    public void agregarProducto(Producto producto){
-        for(Producto p : productos) {
-            if (p.getCodigoProd().equals(producto.getCodigoProd())) {
-                System.out.println("El producto(" + producto.getNombre() + ") ya existe en el local.");
-                p.actualizarStock(producto.getStock()); // Actualiza el stock del producto existente
-                return;
-            }
-        }
-        // Si no existe se agrega el nuevo producto
-        productos.add(producto);
-        System.out.println("Se agrego el producto(" + producto.getNombre() + ") al local.");
-    }
-	
+//	//agrega el producto o el stock de producto
+//    public void agregarProducto(Producto producto){
+//        for(Producto p : productos) {
+//            if (p.getCodigoProd().equals(producto.getCodigoProd())) {
+//                System.out.println("El producto(" + producto.getNombre() + ") ya existe en el local.");
+//                p.actualizarStock(producto.getStock()); // Actualiza el stock del producto existente
+//                return;
+//            }
+//        }
+//        // Si no existe se agrega el nuevo producto
+//        productos.add(producto);
+//        System.out.println("Se agrego el producto(" + producto.getNombre() + ") al local.");
+//    }
+//	
 	
 	//Agregando ordenes de venta y empleados 
 	
-    public void agregarOrdenVenta(OrdenVenta orden){
-        ordenesVentas.add(orden);
-    }
-
-    public void agregarEmpleado(Empleado empleado){
-        if(empleado instanceof Supervisor){
-            setIdSupervisor(empleado.getIdUsuario());
-            System.out.println("Se agrego el supervisor al local.");
-        }
-        empleados.add(empleado);
-    }
+//    public void agregarOrdenVenta(OrdenVenta orden){
+//        ordenesVentas.add(orden);
+//    }
+//
+//    public void agregarEmpleado(Empleado empleado){
+//        if(empleado instanceof Supervisor){
+//            setIdSupervisor(empleado.getIdUsuario());
+//            System.out.println("Se agrego el supervisor al local.");
+//        }
+//        empleados.add(empleado);
+//    }
 
 //    public void generarReporteEmpleados(){
 //        LocalMySQL localMySQL = new LocalMySQL();
@@ -257,23 +252,23 @@ public class Local {
         this.idSupervisor = idSupervisor;
     }
 
-    public ArrayList<OrdenVenta> getOrdenesVentas() {
-        return new ArrayList<OrdenVenta>(ordenesVentas);
-    }
-
-    public ArrayList<Empleado> getEmpleados() {
-        return new ArrayList<Empleado>(empleados);
-    }
-    public ArrayList<Producto> getProductos() {
-    
-        ArrayList<Producto> lista = new ArrayList<Producto>();
-        
-        for(Producto a: productos){
-            lista.add(a); 
-        }
-        
-        return new ArrayList<Producto>(lista);
-    }
+//    public ArrayList<OrdenVenta> getOrdenesVentas() {
+//        return new ArrayList<OrdenVenta>(ordenesVentas);
+//    }
+//
+//    public ArrayList<Empleado> getEmpleados() {
+//        return new ArrayList<Empleado>(empleados);
+//    }
+//    public ArrayList<Producto> getProductos() {
+//    
+//        ArrayList<Producto> lista = new ArrayList<Producto>();
+//        
+//        for(Producto a: productos){
+//            lista.add(a); 
+//        }
+//        
+//        return new ArrayList<Producto>(lista);
+//    }
 
 }
 

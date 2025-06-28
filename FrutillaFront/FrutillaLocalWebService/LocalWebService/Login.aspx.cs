@@ -48,7 +48,7 @@ namespace LocalWebService
                 if (redirectUrl == null)
                 {
                     if (tipo.Equals("E")) redirectUrl = "LocalSupervisor.aspx";
-                    else redirectUrl = "Home.aspx";
+                    else redirectUrl = "ClienteHome.aspx";
                 }
 
                 Response.Redirect(redirectUrl, true);
@@ -58,21 +58,6 @@ namespace LocalWebService
             {
                 lblMensaje.Text = "Usuario o contraseña incorrectos.";
             }
-        }
-
-        protected void btnRegister_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnIrRegistro_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnIrRegistro_Click1(object sender, EventArgs e)
-        {
-
         }
     }
 }

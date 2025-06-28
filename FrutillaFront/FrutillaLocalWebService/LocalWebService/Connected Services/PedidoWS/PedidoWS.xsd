@@ -2,30 +2,38 @@
 <xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="actualizarOrden" type="tns:actualizarOrden" />
   <xs:element name="actualizarOrdenResponse" type="tns:actualizarOrdenResponse" />
+  <xs:element name="agregarOrden" type="tns:agregarOrden" />
+  <xs:element name="agregarOrdenResponse" type="tns:agregarOrdenResponse" />
+  <xs:element name="generarOrdenConLineas" type="tns:generarOrdenConLineas" />
+  <xs:element name="generarOrdenConLineasResponse" type="tns:generarOrdenConLineasResponse" />
+  <xs:element name="insertarOrden" type="tns:insertarOrden" />
+  <xs:element name="insertarOrdenResponse" type="tns:insertarOrdenResponse" />
+  <xs:element name="listarPedidoPorLocal" type="tns:listarPedidoPorLocal" />
+  <xs:element name="listarPedidoPorLocalCliente" type="tns:listarPedidoPorLocalCliente" />
+  <xs:element name="listarPedidoPorLocalClienteResponse" type="tns:listarPedidoPorLocalClienteResponse" />
+  <xs:element name="listarPedidoPorLocalResponse" type="tns:listarPedidoPorLocalResponse" />
   <xs:element name="obtenerDetallePedido" type="tns:obtenerDetallePedido" />
+  <xs:element name="obtenerDetallePedidoList" type="tns:obtenerDetallePedidoList" />
+  <xs:element name="obtenerDetallePedidoListResponse" type="tns:obtenerDetallePedidoListResponse" />
   <xs:element name="obtenerDetallePedidoResponse" type="tns:obtenerDetallePedidoResponse" />
   <xs:element name="obtenerPedidoPorId" type="tns:obtenerPedidoPorId" />
   <xs:element name="obtenerPedidoPorIdResponse" type="tns:obtenerPedidoPorIdResponse" />
+  <xs:element name="obtenerPedidosPorCliente" type="tns:obtenerPedidosPorCliente" />
+  <xs:element name="obtenerPedidosPorClienteResponse" type="tns:obtenerPedidosPorClienteResponse" />
   <xs:element name="obtenerPedidosPorEmpleado" type="tns:obtenerPedidosPorEmpleado" />
   <xs:element name="obtenerPedidosPorEmpleadoResponse" type="tns:obtenerPedidosPorEmpleadoResponse" />
-  <xs:complexType name="obtenerPedidoPorId">
+  <xs:complexType name="agregarOrden">
     <xs:sequence>
-      <xs:element name="idOrdenVenta" type="xs:int" />
+      <xs:element minOccurs="0" name="orden" type="tns:ordenVentaDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerPedidoPorIdResponse">
+  <xs:complexType name="ordenVentaDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:ordenVenta" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ordenVenta">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="comprobantePago" type="tns:comprobantePago" />
       <xs:element minOccurs="0" name="descripcion" type="xs:string" />
       <xs:element name="entregado" type="xs:boolean" />
       <xs:element minOccurs="0" name="estado" type="tns:estadoVenta" />
-      <xs:element minOccurs="0" name="fecha" type="tns:localDate" />
-      <xs:element minOccurs="0" name="horaFinEntrega" type="tns:localTime" />
+      <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
+      <xs:element minOccurs="0" name="horaStr" type="xs:string" />
       <xs:element name="idCliente" type="xs:int" />
       <xs:element name="idComprobante" type="xs:int" />
       <xs:element name="idEmpleado" type="xs:int" />
@@ -34,9 +42,28 @@
       <xs:element name="montoTotal" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="comprobantePago">
+  <xs:complexType name="agregarOrdenResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarPedidoPorLocal">
     <xs:sequence>
-      <xs:element minOccurs="0" name="fecha" type="tns:localDate" />
+      <xs:element name="idLocal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarPedidoPorLocalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarOrden">
+    <xs:sequence>
+      <xs:element name="idOrden" type="xs:int" />
+      <xs:element minOccurs="0" name="comprobante" type="tns:comprobanteDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="comprobanteDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
       <xs:element minOccurs="0" name="formaPago" type="tns:formaDePago" />
       <xs:element name="idComprobante" type="xs:int" />
       <xs:element name="montoIGV" type="xs:double" />
@@ -45,38 +72,25 @@
       <xs:element name="total" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="localTime" final="extension restriction">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="obtenerPedidosPorEmpleado">
+  <xs:complexType name="insertarOrdenResponse">
     <xs:sequence>
-      <xs:element name="idEmpleado" type="xs:int" />
+      <xs:element name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerPedidosPorEmpleadoResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="actualizarOrden">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="orden" type="tns:ordenVenta" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="actualizarOrdenResponse">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="obtenerDetallePedido">
+  <xs:complexType name="obtenerPedidoPorId">
     <xs:sequence>
       <xs:element name="idOrdenVenta" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerDetallePedidoResponse">
+  <xs:complexType name="obtenerPedidoPorIdResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:lineaOrdenDeVenta" />
+      <xs:element minOccurs="0" name="return" type="tns:ordenVentaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generarOrdenConLineas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="orden" type="tns:ordenVentaDTO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="lineas" type="tns:lineaOrdenDeVenta" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="lineaOrdenDeVenta">
@@ -100,14 +114,70 @@
       <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="formaDePago">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="TARJETA_CREDITO" />
-      <xs:enumeration value="TARJETA_DEBITO" />
-      <xs:enumeration value="PLIN" />
-      <xs:enumeration value="YAPE" />
-    </xs:restriction>
-  </xs:simpleType>
+  <xs:complexType name="generarOrdenConLineasResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPedidosPorEmpleado">
+    <xs:sequence>
+      <xs:element name="idEmpleado" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPedidosPorEmpleadoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerDetallePedidoList">
+    <xs:sequence>
+      <xs:element name="idOrdenVenta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerDetallePedidoListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:lineaOrdenDeVenta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarOrden">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="orden" type="tns:ordenVentaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarOrdenResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarPedidoPorLocalCliente">
+    <xs:sequence>
+      <xs:element name="idLocal" type="xs:int" />
+      <xs:element name="idCliente" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarPedidoPorLocalClienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPedidosPorCliente">
+    <xs:sequence>
+      <xs:element name="idCliente" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPedidosPorClienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerDetallePedido">
+    <xs:sequence>
+      <xs:element name="idOrdenVenta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerDetallePedidoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:lineaOrdenDeVenta" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:simpleType name="estadoVenta">
     <xs:restriction base="xs:string">
       <xs:enumeration value="ENTREGADO" />
@@ -116,6 +186,14 @@
       <xs:enumeration value="POR_ENTREGAR" />
       <xs:enumeration value="FALTA_PAGO" />
       <xs:enumeration value="CANCELADO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formaDePago">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TARJETA_CREDITO" />
+      <xs:enumeration value="TARJETA_DEBITO" />
+      <xs:enumeration value="PLIN" />
+      <xs:enumeration value="YAPE" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="tipoEstado">

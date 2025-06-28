@@ -78,6 +78,7 @@ public class ComprobantePagoMySQL extends BaseDAOImpl<ComprobantePago> implement
         comprobante.setMontoIGV(rs.getDouble("montoIGV"));
         comprobante.setTotal(rs.getDouble("total"));
         comprobante.setFecha(rs.getDate("fecha").toLocalDate());
+        comprobante.setFechaStr(comprobante.getFecha().toString());
         comprobante.setFormaPago(FormaDePago.valueOf(rs.getString("formaDePago")));
         return comprobante;
     }

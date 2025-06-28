@@ -69,13 +69,13 @@ namespace LocalWebService
         protected global::System.Web.UI.WebControls.Label lblTelefono;
 
         /// <summary>
-        /// Control btnEditarLocal.
+        /// Control btnEditar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditarLocal;
+        protected global::System.Web.UI.WebControls.LinkButton btnEditar;
 
         /// <summary>
         /// Control AdminEmpleados.
@@ -112,6 +112,15 @@ namespace LocalWebService
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
+        /// Control hfLocalId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfLocalId;
 
         /// <summary>
         /// Control pnlModalLocal.
@@ -174,6 +183,6 @@ namespace LocalWebService
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarLocalModal;
+        protected global::System.Web.UI.WebControls.LinkButton btnGuardarLocalModal;
     }
 }

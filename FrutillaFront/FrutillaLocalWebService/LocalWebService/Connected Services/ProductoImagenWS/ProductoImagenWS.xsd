@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actualizarProductoImagen" type="tns:actualizarProductoImagen" />
+  <xs:element name="actualizarProductoImagenResponse" type="tns:actualizarProductoImagenResponse" />
+  <xs:element name="agregarProductoImagen" type="tns:agregarProductoImagen" />
+  <xs:element name="agregarProductoImagenResponse" type="tns:agregarProductoImagenResponse" />
+  <xs:element name="eliminarProductoImagen" type="tns:eliminarProductoImagen" />
+  <xs:element name="eliminarProductoImagenResponse" type="tns:eliminarProductoImagenResponse" />
+  <xs:element name="listarProductoImagen" type="tns:listarProductoImagen" />
+  <xs:element name="listarProductoImagenResponse" type="tns:listarProductoImagenResponse" />
+  <xs:element name="obtenerProductoImagen" type="tns:obtenerProductoImagen" />
+  <xs:element name="obtenerProductoImagenResponse" type="tns:obtenerProductoImagenResponse" />
+  <xs:complexType name="listarProductoImagen">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarProductoImagenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:productoImagen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="productoImagen">
+    <xs:sequence>
+      <xs:element name="idProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="urlImagen" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarProductoImagen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:productoImagen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarProductoImagenResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="eliminarProductoImagen">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarProductoImagenResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="obtenerProductoImagen">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerProductoImagenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarProductoImagen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:productoImagen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarProductoImagenResponse">
+    <xs:sequence />
+  </xs:complexType>
+</xs:schema>

@@ -17,4 +17,5 @@ public interface ProductoDAO extends BaseDAO<Producto> {
     //Metodos extra
     ArrayList<Producto> obtenerPorNombre(String nombre);
     ArrayList<Producto> obtenerTodosPorLocal(int idLocal);
+    ArrayList<Producto> obtenerSoloProductosSinCategoriaTodosPorLocal(int idLocal);
 }

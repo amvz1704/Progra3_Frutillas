@@ -7,6 +7,7 @@ package pe.edu.pucp.frutilla.WS;
 import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import org.mindrot.jbcrypt.BCrypt;
 import pe.edu.pucp.frutilla.logica.rrhh.UsuarioService;
 import pe.edu.pucp.frutilla.models.rrhh.Persona;
 import pe.edu.pucp.frutilla.models.rrhh.Cliente;
@@ -43,5 +44,52 @@ public class UsuarioWS {
             System.out.println(ex.getMessage()); 
         }
         return -1;
+    }
+    
+    @WebMethod(operationName = "generarCodigoRecuperacion")
+    public String generarCodigoRecuperacion(@WebParam(name = "idUsuario") int idUsuario) {
+        return CodigoManager.generarCodigo(idUsuario);
+    }
+    
+    @WebMethod(operationName = "validarCodigoRecuperacion")
+    public int validarCodigoRecuperacion(@WebParam(name = "codigo") String codigo){
+        return CodigoManager.validarCodigo(codigo);
+    }
+    
+    @WebMethod(operationName = "actualizarContrasena")
+    public boolean actualizarContrasena(@WebParam(name = "codigo") String codigo, @WebParam(name = "nuevaContrasena") String nuevaContrasena){
+        int idUsuario = CodigoManager.validarCodigo(codigo);
+        if(idUsuario == -1) return false;
+        
+        try{
+            Persona usuario = usuarioService.obtener(idUsuario);
+            String hashedContrasena = BCrypt.hashpw(nuevaContrasena,BCrypt.gensalt());
+            usuario.setContraSistema(hashedContrasena);
+            usuarioService.actualizar(usuario);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    @WebMethod(operationName = "obtenerPorCorreo")
+    public Persona obtenerPorCorreo(String correo){
+        try{
+            return usuarioService.obtenerPorCorreo(correo);
+        } catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+        }
+        return null;
+    }
+    
+    @WebMethod(operationName = "correoExiste")
+    public boolean correoExiste(@WebParam(name = "correo") String correo){
+        try {
+            return usuarioService.correoExiste(correo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

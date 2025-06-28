@@ -77,6 +77,28 @@ public class InventarioMySQL implements InventarioDAO{
     }
     
     @Override
+    public char obtenerTipoProducto(int idProducto,int idLocal) throws SQLException{
+        String tipo = null;
+        String query = "SELECT tipo FROM Inventario WHERE "
+                + "idProducto = ? AND idLocal = ?";
+        try (Connection con=DBManager.getInstance().getConnection();
+             PreparedStatement ps=con.prepareStatement(query)){
+            ps.setInt(1, idProducto);
+            ps.setInt(2, idLocal);
+            try(ResultSet rs=ps.executeQuery()){
+                if(rs.next()){
+                    tipo=rs.getString("tipo");
+                }
+            }
+        }
+        if (tipo != null && !tipo.isEmpty()) {
+            return tipo.charAt(0);
+        } else {
+            throw new SQLException("No se encontró el tipo para el producto con ID " + idProducto + " en el local " + idLocal);
+        }
+    }
+    
+    @Override
     public ArrayList<Producto> obtenerTodos(int idLocal) throws SQLException{
         ArrayList<Producto> productos= new ArrayList<>();
         //Recuperamos las frutas
@@ -90,7 +112,7 @@ public class InventarioMySQL implements InventarioDAO{
         productos.addAll(snaSQL.obtenerTodosPorLocal(idLocal));
         //Buscamos los productos restantes
         ProductoMySQL proSQl = new ProductoMySQL();
-        productos.addAll(proSQl.obtenerTodosPorLocal(idLocal));
+        productos.addAll(proSQl.obtenerSoloProductosSinCategoriaTodosPorLocal(idLocal));
         //retonamo el arraylist completo;
         return productos;
     }
@@ -118,5 +140,36 @@ public class InventarioMySQL implements InventarioDAO{
             ps.setInt(3,idLocal);
             ps.executeUpdate();
         }
+    }
+    
+    @Override
+    public ArrayList<Producto> listarPorTipo(int idLocal, char tipo) throws SQLException{
+        ArrayList<Producto> productos= new ArrayList<>();
+        //Recuperamos las frutas
+        switch(tipo){
+            case 'F':
+            FrutaMySQL fruSQL=new FrutaMySQL();
+            productos.addAll(fruSQL.obtenerTodosPorLocal(idLocal));
+            break;
+        case 'B':
+            //Recuperamos las bebidas
+            BebidaMySQL bebSQL=new BebidaMySQL();
+            productos.addAll(bebSQL.obtenerTodosPorLocal(idLocal));
+            break;
+        case 'S':
+            //Recuperamos los snacks
+            SnackMySQL snaSQL=new SnackMySQL();
+            productos.addAll(snaSQL.obtenerTodosPorLocal(idLocal));
+            break;
+        case 'P':
+            //Buscamos los productos restantes
+            ProductoMySQL proSQl = new ProductoMySQL();
+            productos.addAll(proSQl.obtenerSoloProductosSinCategoriaTodosPorLocal(idLocal));
+            break;
+        default:
+            return obtenerTodos(idLocal) ;
+        }
+        //retonamo el arraylist completo;
+        return productos;
     }
 }

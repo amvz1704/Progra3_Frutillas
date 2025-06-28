@@ -30,7 +30,8 @@ public class ComprobantePagoService {
             throw new Exception("El total del copmrobante no puede menor a 0");
         if(comp.getFormaPago().name()==null||comp.getFormaPago().name().trim().isEmpty())
             throw new Exception("El nombre de la Forma de Pago no puede ser vacio");   
-        comprobanteSQL.agregar(comp);
+        comprobanteSQL.agregar(comp); //se cambia aqui con fe
+        
 //        Notificacion noti = comprobanteSQL.crearNotificacionCompra(comp);
 //        NotificacionMySQL notiSQL = new NotificacionMySQL();
 //        notiSQL.agregar(noti);

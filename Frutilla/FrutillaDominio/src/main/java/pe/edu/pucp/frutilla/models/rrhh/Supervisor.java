@@ -8,7 +8,7 @@ public class Supervisor extends Empleado{
         super();
     }
 
-    public Supervisor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, Date fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal, int idUsuario){
+    public Supervisor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String telefono, LocalDate fechaContrato, double salario, String usuarioSistema, String contraSistema, int idLocal, int idUsuario){
         super(nombre, apellidoPaterno, apellidoMaterno, correoElectronico, telefono, fechaContrato, salario, usuarioSistema, contraSistema, 'S', idLocal, idUsuario);
     }
 
@@ -21,17 +21,5 @@ public class Supervisor extends Empleado{
         return super.toString();
     }
 
-//    public void generarReporte(int idLocal, LocalDate fecha){
-//        LocalMySQL localMySQL = new LocalMySQL();
-//        Local local;
-//        try{
-//            local = localMySQL.obtenerLocalPorId(idLocal);
-//        }
-//        catch(Exception e){
-//            System.out.println("Error al obtener el local: " + e.getMessage());
-//            return;
-//        }
-//        local.generarReporteVentas(fecha);
-//    }
 
 }

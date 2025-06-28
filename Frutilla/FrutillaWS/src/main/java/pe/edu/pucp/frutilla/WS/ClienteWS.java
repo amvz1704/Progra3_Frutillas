@@ -27,4 +27,25 @@ public class ClienteWS {
             System.out.println(ex.getMessage()); 
         }
     }
+    
+    @WebMethod(operationName = "obtenerClientePorId")
+    public Cliente obtenerClientePorId(@WebParam (name ="Idcliente") int Idcliente){
+        try{
+            return clienteService.obtener(Idcliente);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+        }
+        return null; 
+    }
+    
+    @WebMethod(operationName = "actualizarCliente")
+    public boolean actualizarCliente(Cliente cliente){
+        try{
+            clienteService.actualizar(cliente);
+            return true;
+        }catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+            return false;
+        }
+    }
 }

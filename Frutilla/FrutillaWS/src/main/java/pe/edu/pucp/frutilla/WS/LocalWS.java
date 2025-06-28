@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/WebServices/WebService.java to edit this template
- */
 package pe.edu.pucp.frutilla.WS;
 
 import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,15 +35,44 @@ public class LocalWS {
         return null;
     }
     
-    @WebMethod(operationName = "actualizarLoc")
-    public boolean actualizarLoc(@WebParam (name ="local") Local local) {
-        System.out.println("Llega al servicio con Local: " + local);
-        try{
-            daoLocal.actualizar(local);
-            return true;
-        }catch(Exception ex){ 
-            System.out.println(ex.getMessage()); 
-            return false; 
+    @WebMethod(operationName = "actualizarLocalVarios")
+    public boolean actualizarLocalVarios(
+            @WebParam (name ="id") int id, 
+            @WebParam (name ="nombre") String nombre,
+            @WebParam (name ="telefono") String telefono,
+            @WebParam (name ="descripcion") String descripcion,
+            @WebParam (name ="direccion") String direccion) {
+        
+        try {
+            Local local = new Local(daoLocal.obtenerPorId(id));
+            local.setIdLocal(id);
+            local.setDescripcion(descripcion);
+            local.setDireccion(direccion);
+            local.setTelefono(telefono);
+            local.setNombre(nombre);
+            
+            System.out.println("Llega al servicio con Local: " + local);
+            try{
+                daoLocal.actualizar(local);
+                return true;
+            }catch(Exception ex){ 
+                System.out.println(ex.getMessage()); 
+                return false; 
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(LocalWS.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false; 
+        
+    }
+    
+    @WebMethod(operationName = "listarLocales")
+    public List<Local> listarLocales(){
+        try{
+            return daoLocal.listarActivos();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage()); 
+        }
+        return null;
     }
 }

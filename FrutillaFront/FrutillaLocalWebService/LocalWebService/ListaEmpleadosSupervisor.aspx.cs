@@ -1,14 +1,17 @@
 ﻿using LocalWebService.EmpleadoWS;
 using LocalWebService.LocalWS;
+using LocalWebService.NotificionesWS;
+using LocalWebService.UsuarioWS;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using LocalWebService.NotificionesWS;
 
 
 namespace LocalWebService
@@ -17,8 +20,17 @@ namespace LocalWebService
     public partial class ListaEmpleadosSupervisor : System.Web.UI.Page
     {
         //protected Empleado empleadoService;
-        const int LOCAL_ID = 1; //esto dependera del id del empleado que abre la pagina
+        
         private EmpleadoWSClient daoEmpleado;
+        protected int LocalId { get; private set; }
+        //para obtener el local 
+        private int localActualId
+        {
+            get => ViewState["LOCAL_ID"] as int? ?? 0;
+            set => ViewState["LOCAL_ID"] = value;
+        }
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,26 +38,39 @@ namespace LocalWebService
             daoEmpleado = new EmpleadoWSClient();
             if (!IsPostBack)
             {
+                string sId = Request.QueryString["id"];
+                if (!int.TryParse(sId, out int id))
+                {
+                    // Parámetro inválido; podrías redirigir o mostrar error
+                    Response.Redirect("LocalSupervisor.aspx");
+                    return;
+                }
+                // 2) Guardarlo si luego lo vas a reutilizar
+                localActualId = id;
                 CargarEmpleados();
             }
 
         }
 
+
+        protected void btnBuscarEmpleado_Click(object sender, EventArgs e) {
+
+            string nombre = txtBuscar.Text.Trim();
+            CargarEmpleados(nombre);
+        } 
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
             //codigo para abir el modal que agrega empleado * Por hacer 
             // Como es "Agregar", ponemos el hidden en 0:
             hfIdEmpleado.Value = "0";
+            hfModo.Value = "Create";
 
             // Limpiamos todos los campos del modal:
-            LimpiarCamposModal();
+            crearUsuarioModal(); //creamos otro modal para la creacion de usuario
 
-
-            // Inyectamos el script para mostrar el modal:
-            CargarModalCrearEmpleado();
         }
 
-        private void LimpiarCamposModal()
+        private void crearUsuarioModal()
         {
             txtNombre.Text = "";
             txtApellidoPa.Text = "";
@@ -54,7 +79,19 @@ namespace LocalWebService
             txtSalario.Text = "";
             txtFechaContrato.Text = "";
             txtCorreo.Text = "";
+
+            //usuario generado random con contraRandom
+
+            txtUsuario.Text = "";
+            txtContrasena.Text = ""; 
             // HfIdEmpleado ya está en "0".
+
+            string script = @"
+                        var modal = new bootstrap.Modal(
+                          document.getElementById('miModalEditarEmpleado'), {});
+                        modal.show();";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowEditarModal", script, true);
+
         }
 
 
@@ -65,12 +102,37 @@ namespace LocalWebService
 
         }
 
-        private void CargarEmpleados()
+        private void CargarEmpleados(string filtroNombre = null)
         {
+            
+
             try
             {
-                gvEmpleados.DataSource = daoEmpleado.obtenerEmpleados(LOCAL_ID);
-                gvEmpleados.DataBind();
+                // 1) Obtén la lista completa (desde tu DAO o servicio)
+                var listaOriginal = daoEmpleado.obtenerEmpleadosxLocal(localActualId);
+
+                if (!string.IsNullOrWhiteSpace(filtroNombre))
+                {
+                    var filtrados = listaOriginal
+                    .Where(emp => !string.IsNullOrEmpty(emp.nombre)
+                                  && (emp.nombre.IndexOf(filtroNombre,StringComparison.CurrentCultureIgnoreCase) >= 0
+                                  ||
+                                  emp.apellidoPaterno.IndexOf(filtroNombre,StringComparison.CurrentCultureIgnoreCase) >= 0
+                                  ||
+                                  emp.apellidoMaterno.IndexOf(filtroNombre, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                                  
+                                  )
+                    .ToList();
+
+                    gvEmpleados.DataSource = filtrados;
+                    gvEmpleados.DataBind();
+                }
+                else {
+                    gvEmpleados.DataSource = listaOriginal;
+                    gvEmpleados.DataBind();
+
+                }
+                
             }
             catch (Exception ex)
             {
@@ -99,10 +161,6 @@ namespace LocalWebService
             }
         }
 
-        protected void BtnEditar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void BtnEliminar_Click(object sender, EventArgs e)
         {
@@ -131,11 +189,23 @@ namespace LocalWebService
                     lblVerApellidoMa.Text = emp.apellidoMaterno;
                     lblVerSalario.Text = emp.salario.ToString("N2");
                     lblVerTelefono.Text = emp.telefono;
+
+                    // Define el formato de entrada esperado.
+                    
                     lblVerFechaContrato.Text = emp.fechatContratoSTRING;
                     lblVerCorreo.Text = emp.correoElectronico;
+                    
+                    
+                    if (emp.turnoTrabajo)
+                    {
+                        lblTurno.Text = "Mañana";
+                    }
+                    else {
+                        lblTurno.Text = "Noche";
+                    }
 
-                    // Ejecutamos JS para mostrar el modal
-                    string script = @"
+                        // Ejecutamos JS para mostrar el modal
+                        string script = @"
                         var modal = new bootstrap.Modal(
                           document.getElementById('miModalVerDetalles'), {});
                         modal.show();";
@@ -153,32 +223,17 @@ namespace LocalWebService
             }
         }
 
-        private void CargarModalCrearEmpleado() {
-            // Mostrar modal
-            string script = @"
-            var myModal = new bootstrap.Modal(
-                 document.getElementById('miModalEditarEmpleado'),
-                 {keyboard: false}
-            );
-            myModal.show();";
-
-            ScriptManager.RegisterStartupScript(
-                this,
-                this.GetType(),
-                "ShowCrearEditarModal",
-                script,
-                true);
-
-        }
 
         private void CargarModalEditarEmpleado(int idEmp)
         {
+            hfModo.Value = "Editar";
+
             try
             {
                 var client = new EmpleadoWSClient();
                 var emp = client.obtenerEmpleadoPorId(idEmp);
                 client.Close();
-               // var fecha = emp.fechaContrato;
+                // var fecha = emp.fechaContrato;
 
 
                 if (emp != null)
@@ -191,6 +246,10 @@ namespace LocalWebService
                     txtSalario.Text = emp.salario.ToString("N2");
                     txtTelefono.Text = emp.telefono;
                     txtCorreo.Text = emp.correoElectronico;
+                    txtFechaContrato.Text = emp.fechatContratoSTRING;
+                    ddlEstado.SelectedValue = emp.turnoTrabajo.ToString().ToLower();
+                    txtUsuario.Text = emp.usuarioSistema.ToString();
+                    txtContrasena.Text = emp.contraSistema.ToString();
 
 
                     // Mostrar modal
@@ -223,6 +282,7 @@ namespace LocalWebService
                 if (ok)
                 {
                     lblError.Text = "Correcto al obtener detalles los empleados: ";
+                    CargarEmpleados(); 
                 }
                 else
                 {
@@ -234,6 +294,7 @@ namespace LocalWebService
                 lblError.Text = "DANGER!! " + ex.Message;
             }
         }
+
 
         protected void btnGuardarModal_Click(object sender, EventArgs e)
         {
@@ -247,44 +308,122 @@ namespace LocalWebService
                 fechaFormateada = fechaContrato.ToString("yyyy-MM-dd");
                 // Ahora tienes la fecha en formato string tipo yyyy-MM-dd
             }
-            // Construimos el DTO según tu 
-            var empDto = new EmpleadoWS.empleado
+
+            string modo = hfModo.Value;
+
+            //validar el ingreso de usuario --> hacer una sesion sabes 
+            UsuarioWSClient usuarioService = new UsuarioWSClient(); 
+
+            string nombre = txtNombre.Text.Trim();
+            string apPaterno = txtApellidoPa.Text.Trim();
+            string apMaterno = txtApellidoMa.Text.Trim();
+            string usuario = txtUsuario.Text.Trim();
+            string password = txtContrasena.Text;
+            string correo = txtCorreo.Text.Trim();
+            string telefono = txtTelefono.Text.Trim();
+            double salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0;
+            bool turnoTrabajo = ddlEstado.SelectedValue == "true";
+
+            bool esValido = true;
+            //mostrar un modal
+            if (string.IsNullOrEmpty(nombre)) { txtNombre.Text = "Ingrese su nombre"; esValido = false; }
+            if (string.IsNullOrEmpty(apPaterno)) { txtApellidoPa.Text = "Ingrese su apellido paterno"; esValido = false; }
+            if (string.IsNullOrEmpty(apMaterno)) { txtApellidoMa.Text = "Ingrese su apellido materno"; esValido = false; }
+            if (string.IsNullOrEmpty(usuario))
+            {
+                txtUsuario.Text = "Ingrese un nombre de usuario";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(usuario, @"^[a-zA-Z0-9_]+$"))
+            {
+                txtUsuario.Text = "Solo se permite una palabra sin espacios, letras, números o guion bajo.";
+                esValido = false;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                txtContrasena.Text = "Ingrese una contraseña";
+                esValido = false;
+            }
+            else if (password.Length < 6)
+            {
+                txtContrasena.Text = "La contraseña debe tener al menos 6 caracteres.";
+                esValido = false;
+            }
+            else if (password.Contains(" "))
+            {
+                txtContrasena.Text = "La contraseña no debe contener espacios.";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(password, @"^[a-zA-Z0-9]+$"))
+            {
+                txtContrasena.Text = "Solo se permiten letras y números.";
+                esValido = false;
+            }
+
+
+            if (string.IsNullOrEmpty(correo))
+            {
+                txtCorreo.Text = "Ingrese un correo electrónico";
+                esValido = false;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(correo, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                txtCorreo.Text = "Correo electrónico no válido";
+                esValido = false;
+            }
+            if (usuarioService.correoExiste(correo))
+            {
+                txtCorreo.Text = "Este correo ya está asociado a una cuenta.";
+                esValido = false;
+            }
+
+            if (string.IsNullOrEmpty(telefono))
+            {
+                txtTelefono.Text = "Ingrese un teléfono";
+                esValido = false;
+            }
+            else if (!telefono.All(char.IsDigit) || telefono.Length != 9)
+            {
+                txtTelefono.Text = "Teléfono inválido. Debe contener 9 dígitos numéricos.";
+                esValido = false;
+            }
+
+            if (!esValido) return;
+
+            int id = usuarioService.obtenerIDPorNombreUsuario(usuario);
+            if (id > 0)
+            {
+                txtUsuario.Text = "Este nombre de usuario ya está en uso.";
+                return;
+            }
+
+            //una vez actualizado la base de datos lo confirma la persona y se crea el usuario 
+            var empDto = new EmpleadoWS.empleadoDTO
             {
                 idUsuario = idEmp,
-                idLocal = LOCAL_ID,
-                nombre = txtNombre.Text.Trim(),
-                apellidoPaterno = txtApellidoPa.Text.Trim(),
-                apellidoMaterno = txtApellidoMa.Text.Trim(),
-                salario = double.TryParse(txtSalario.Text.Trim(), out double s) ? s : 0,
-                telefono = txtTelefono.Text.Trim(),
-                correoElectronico = txtCorreo.Text.Trim(),
-                turnoTrabajo = true, 
+                idLocal = localActualId,
+                nombre = nombre,
+                apellidoPaterno = apPaterno,
+                apellidoMaterno = apMaterno,
+                salario = salario,
+                telefono = telefono,
+                correoElectronico = correo,
+                turnoTrabajo = turnoTrabajo,
                 fechatContratoSTRING = fechaFormateada,
-                tipo = 'R',
-                usuarioSistema = "aa",
-                contraSistema = "aaa",
-                activo = true,
-                tipoUsuario = "Empleado"
-
+                usuarioSistema = usuario,
+                contraSistema = password
             };
 
-        //    private localDate fechaContratoField;
-
-        //private int idLocalField;
-
-        //private double salarioField;
-
-        //private ushort tipoField;
-
-        //private bool turnoTrabajoField;
 
             try
             {
                 var client = new EmpleadoWSClient();
                 bool ok;
-                if (idEmp == 0)
-                {
-                    ok = client.agregarEmpleado(empDto);      // Método WSDL para crear
+                if (modo == "Create")
+                { 
+                    ok = client.agregarEmpleado(empDto);
+                    // Método WSDL para asignar un empleado* pero este debe crear su cuenta primero pues
                 }
                 else
                 {
@@ -297,17 +436,17 @@ namespace LocalWebService
                     lblError.Text = "INCORRECTO al agregar detalles de los empleados: "; return;
                 }
 
-                lblError.Text = "si bien al agregar detalles de los empleados: ";
-
                 // Recarga la grilla
                 CargarEmpleados();
 
                 // Cerrar modal por JavaScript
                 string scriptHide = @"
-                  var modal = bootstrap.Modal.getInstance(
-                    document.getElementById('miModalEditarEmpleado'));
-                  if(modal) modal.hide();";
+                var modal = bootstrap.Modal.getInstance(
+                document.getElementById('miModalEditarEmpleado'));
+                if(modal) modal.hide();";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "HideModal", scriptHide, true);
+               
+                
             }
             catch (Exception ex)
             {

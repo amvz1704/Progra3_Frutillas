@@ -327,13 +327,26 @@ DROP TABLE IF EXISTS `frutilla`.`Usuario` ;
 CREATE TABLE IF NOT EXISTS `frutilla`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `usuarioSistema` VARCHAR(45) NOT NULL,
-  `contrasSistema` VARCHAR(45) NOT NULL,
+  `contrasSistema` VARCHAR(100) NOT NULL,
   `activo` TINYINT NOT NULL DEFAULT 1,
   `tipo` CHAR(1) NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `usuarioSistema_UNIQUE` (`usuarioSistema` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+
+DROP TABLE IF EXISTS `frutilla`.`ProductoImagen`;
+CREATE TABLE IF NOT EXISTS `frutilla`.`ProductoImagen` (
+  `idProducto` INT NOT NULL,
+  `urlImagen` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idProducto`),
+  INDEX `fk_ProductoImagen_Producto1_idx` (`idProducto` ASC) VISIBLE,
+  CONSTRAINT `fk_ProductoImagen_Producto1`
+    FOREIGN KEY (`idProducto`)
+    REFERENCES `frutilla`.`Producto` (`idProducto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

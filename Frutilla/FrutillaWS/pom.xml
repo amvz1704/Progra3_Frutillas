@@ -45,9 +45,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>FrutillaPersistencia</artifactId>
             <version>${project.version}</version>
-        
-        
-            </dependency>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
     </dependencies>
     
     <build>

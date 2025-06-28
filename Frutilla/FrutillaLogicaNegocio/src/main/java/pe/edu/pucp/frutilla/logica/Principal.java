@@ -26,7 +26,11 @@ import pe.edu.pucp.frutilla.models.inventario.TipoLeche;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import pe.edu.pucp.frutilla.logica.rrhh.UsuarioService;
+import pe.edu.pucp.frutilla.models.rrhh.Cliente;
+import pe.edu.pucp.frutilla.models.rrhh.Persona;
 
 public class Principal {
 
@@ -37,14 +41,72 @@ public class Principal {
     
     public static void main(String[] args) throws Exception {
         
-//            // TODO code application logic here
-//            LocalService probar = new LocalService();
-////             
-//            Local obtener = probar.obtenerPorId(1); 
-////            
-//            System.out.println(obtener);
-            //Ingreso de datos
+//            // TODO code application logic here Probar insertar 3 locales con 3 supervisores 
+
+//insertar de forma masiva productos 
+//asegurar el funcionamiento de comprobante
+            LocalService localS = new LocalService();
+             
+//            //Ingreso de datos
+//            Local ingresar = new Local("E1", "Descripcipn", "Av. Universitaria", "xxx-xxx-xxx");
 //            
+//            
+//            localS.agregar(ingresar);
+//            localS.agregar(ingresar);
+//            localS.agregar(ingresar);
+////            
+//            Local obtener = localS.obtenerPorId(2); //obtener todos los locales
+//            System.out.println(obtener); 
+            
+            //Ingresar 3 empleados 
+            
+            //Ingresar clientes
+            
+            //Actualizar datos
+//            EmpleadoService probarEmpleado = new EmpleadoService(); 
+//            
+//                    
+//            Empleado supFrutilla = probarEmpleado.obtener(2);
+//            
+//            //agregar supervisor a cada local
+//            
+//            supFrutilla.setTipo('S');
+//            supFrutilla.setIdUsuario(2);
+//            
+//            //agregar supervisor a cada local
+//            probarEmpleado.actualizar(supFrutilla);
+//            
+//            supFrutilla = probarEmpleado.obtener(3);
+//            
+//            supFrutilla.setTipo('S');
+//            supFrutilla.setIdUsuario(3);
+//            
+//            //agregar supervisor a cada local
+//            probarEmpleado.actualizar(supFrutilla);
+//            
+//            probarEmpleado.agregar(supFrutilla);
+//            
+//            supFrutilla.setIdLocal(2);
+//            supFrutilla.setUsuarioSistema("gato");
+//            supFrutilla.setContraSistema("academico");
+//            
+//            probarEmpleado.agregar(supFrutilla);
+//            
+//            supFrutilla.setIdLocal(3);
+//            supFrutilla.setUsuarioSistema("suricata");
+//            supFrutilla.setContraSistema("academica");
+//            
+//            probarEmpleado.agregar(supFrutilla);
+            
+            
+            //El problema es el local
+            
+        
+            
+            
+            //Desde el front hacer pedidos --> revisar los requisitos 
+            
+            
             //ingreso de un dato correcto primero Local, luego supervisor, luego Local con el supervisor (pienso que podria automatizarse)
 ////            
 //            Local ingresar = new Local("Polideportivo", "Frutilla dentro de Cato", "Av. Universitaria", "xxx-xxx-xxx");

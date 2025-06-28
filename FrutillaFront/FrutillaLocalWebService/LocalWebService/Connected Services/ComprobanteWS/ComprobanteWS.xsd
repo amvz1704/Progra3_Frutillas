@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://WS.frutilla.pucp.edu.pe/" targetNamespace="http://WS.frutilla.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actualizarComprobante" type="tns:actualizarComprobante" />
+  <xs:element name="actualizarComprobanteResponse" type="tns:actualizarComprobanteResponse" />
+  <xs:element name="eliminarComprobante" type="tns:eliminarComprobante" />
+  <xs:element name="eliminarComprobanteResponse" type="tns:eliminarComprobanteResponse" />
+  <xs:element name="obtenerComprobante" type="tns:obtenerComprobante" />
+  <xs:element name="obtenerComprobanteResponse" type="tns:obtenerComprobanteResponse" />
+  <xs:element name="obtenerLineasPorIdComprobante" type="tns:obtenerLineasPorIdComprobante" />
+  <xs:element name="obtenerLineasPorIdComprobanteResponse" type="tns:obtenerLineasPorIdComprobanteResponse" />
+  <xs:element name="obtenerProductoPorId" type="tns:obtenerProductoPorId" />
+  <xs:element name="obtenerProductoPorIdResponse" type="tns:obtenerProductoPorIdResponse" />
+  <xs:complexType name="obtenerProductoPorId">
+    <xs:sequence>
+      <xs:element name="idProducto" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerProductoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="producto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoProd" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="precioUnitario" type="xs:double" />
+      <xs:element name="stock" type="xs:int" />
+      <xs:element name="stockMinimo" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoEstado" type="tns:tipoEstado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarComprobante">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarComprobanteResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="actualizarComprobante">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comprobante" type="tns:comprobanteDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="comprobanteDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fechaStr" type="xs:string" />
+      <xs:element minOccurs="0" name="formaPago" type="tns:formaDePago" />
+      <xs:element name="idComprobante" type="xs:int" />
+      <xs:element name="montoIGV" type="xs:double" />
+      <xs:element name="numeroArticulos" type="xs:int" />
+      <xs:element name="subtotal" type="xs:double" />
+      <xs:element name="total" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarComprobanteResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="obtenerComprobante">
+    <xs:sequence>
+      <xs:element name="idComprobante" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerComprobanteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:comprobanteDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerLineasPorIdComprobante">
+    <xs:sequence>
+      <xs:element name="idComprobante" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerLineasPorIdComprobanteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:lineaOrdenDeVenta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="lineaOrdenDeVenta">
+    <xs:sequence>
+      <xs:element name="cantidad" type="xs:int" />
+      <xs:element name="idLineaVenta" type="xs:int" />
+      <xs:element name="idOrdenVenta" type="xs:int" />
+      <xs:element minOccurs="0" name="producto" type="tns:producto" />
+      <xs:element name="subtotal" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="tipoEstado">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DISPONIBLE" />
+      <xs:enumeration value="AGOTADO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formaDePago">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TARJETA_CREDITO" />
+      <xs:enumeration value="TARJETA_DEBITO" />
+      <xs:enumeration value="PLIN" />
+      <xs:enumeration value="YAPE" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

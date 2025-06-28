@@ -16,6 +16,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 
@@ -53,6 +54,10 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
     @Override
     protected String getSelectAllQuery() {
         return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND u.idUsuario = e.idUsuario";
+    }
+    
+    protected String getSelectAllQueryByLocalId() {
+        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND u.idUsuario = e.idUsuario AND e.idLocal = ?";
     }
 
     @Override
@@ -108,8 +113,12 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
         empleado.setUsuarioSistema(rs.getString("usuarioSistema"));
         empleado.setContraSistema(rs.getString("contrasSistema"));
         empleado.setActivo(rs.getBoolean("activo"));
+        //Se asigna la cadena de string al mismo tiempo 
         LocalDate temporal = rs.getDate("fechaContrato").toLocalDate(); 
-        empleado.setFechaContrato(java.util.Date.from(temporal.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        empleado.setFechaContrato(temporal);
+        empleado.setFechatContratoSTRING(temporal.format(formatter));
+        //se termina de asignar
         empleado.setSalario(rs.getDouble("salario"));
         empleado.setTurnoTrabajo(rs.getBoolean("turnoTrabajo"));
         empleado.setTipo(tipo);
@@ -169,11 +178,11 @@ public class EmpleadoMySQL extends BaseDAOImpl<Empleado> implements EmpleadoDAO{
             throw new RuntimeException("Error al agregar entidad", e);
         }
     }
-
+   
     @Override
     public ArrayList<Empleado> listarTodosPorLocal(int idLocal){
         ArrayList<Empleado> empleados = new ArrayList<>();
-        String query = "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, e.nombres, e.apellidoPaterno, e.apellidoMaterno, e.telefono, e.correoElectronico, e.fechaContrato, e.salario, e.turnoTrabajo, e.tipo, e.idLocal FROM Usuario u, Empleado e WHERE u.activo = true AND e.idLocal = ? AND u.idUsuario = e.idUsuario";
+        String query = getSelectAllQueryByLocalId(); 
         try (Connection conn = DBManager.getInstance().getConnection();
             PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idLocal);

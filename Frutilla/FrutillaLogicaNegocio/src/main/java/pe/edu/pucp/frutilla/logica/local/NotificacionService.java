@@ -39,9 +39,14 @@ public class NotificacionService {
         if (fecha == null || fecha.isAfter(LocalDate.now())) {
             throw new Exception("Las fechas no pueden ser nulas");
         }
-        if(idSupervisor <= 0 ){
+        if(idSupervisor <= 0){
             throw new Exception("El idSupervisor no puede ser negativo o 0");
         }
         return notificacionDAO.listarPorFecha(fecha,idSupervisor);
+    }
+    public ArrayList<Notificacion> listarPorCliente(int idCliente)throws Exception{
+        if(idCliente<=0)
+            throw new Exception("El idCliente no puede ser negativo o 0");
+        return notificacionDAO.listarPorCliente(idCliente);
     }
 }

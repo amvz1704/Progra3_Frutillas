@@ -30,12 +30,12 @@ public class ClienteMySQL extends BaseDAOImpl<Cliente> implements ClienteDAO{
 
     @Override
     protected String getSelectByIdQuery() {
-        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, c.nombres, c.apellidoPaterno, c.apellidoMaterno, c.correoElectronico, c.telefono FROM Usuario u, Cliente c WHERE u.idUsuario = ? AND u.activo = true";
+        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, c.nombres, c.apellidoPaterno, c.apellidoMaterno, c.correoElectronico, c.telefono FROM Usuario u, Cliente c WHERE u.idUsuario = ? AND u.activo = true AND u.idUsuario = c.idUsuario";
     }
 
     @Override
     protected String getSelectAllQuery() {
-        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, c.nombres, c.apellidoPaterno, c.apellidoMaterno, c.correoElectronico, c.telefono FROM Usuario u, Cliente c WHERE u.activo = true";
+        return "SELECT u.idUsuario, u.usuarioSistema, u.contrasSistema, u.activo, c.nombres, c.apellidoPaterno, c.apellidoMaterno, c.correoElectronico, c.telefono FROM Usuario u, Cliente c WHERE u.activo = true AND u.idUsuario = c.idUsuario";
     }
 
     @Override
