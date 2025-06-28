@@ -41,7 +41,13 @@ namespace LocalWebService
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
 
-                int idUsuario = int.Parse(partes[1]);
+                int idUsuario = 10; //el id del clientePrueba 
+
+                if (tipoUsuario == "C") {
+                    idUsuario = int.Parse(partes[1]);
+                    
+                }
+
                 cliente cliente = clienteWS.obtenerClientePorId(idUsuario);
 
                 if (cliente != null)
@@ -52,6 +58,8 @@ namespace LocalWebService
                 {
                     Response.Redirect("Login.aspx");
                 }
+
+
             }
             else
             {
@@ -94,6 +102,8 @@ namespace LocalWebService
             lblDireccion.Text = local.direccion;
 
             var carrito = CarritoSesion ?? new List<ComprobanteWS.lineaOrdenDeVenta>();
+
+            //Aca falta actualizar los productos
 
             foreach (var item in carrito)
             {
@@ -202,17 +212,22 @@ namespace LocalWebService
                     }
                 }).ToArray();
 
-                int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);  //EDITAR, funciona en el back pero no en el front
+                /*antes de generar el la orden de venta se deben actualizar los productos y asegurarse que el stock visto por el cliente 
+                    aun aplica, para eso se hara con hilos
+                 */
+
+
+                int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);
+
 
                 if (idGenerado == -1)
                 {
                     Response.Write("Error al generar la orden. Inténtalo más tarde.");
-
-                    Response.Redirect("ClientePago.aspx?id=-1");
                     return;
                 }
 
                 // Redireccionar a la página de confirmación
+
                 // false: NO aborta el hilo, simplemente añade la cabecera de redirección
                 Response.Redirect("ClientePago.aspx?id=" + idGenerado, false);
 
