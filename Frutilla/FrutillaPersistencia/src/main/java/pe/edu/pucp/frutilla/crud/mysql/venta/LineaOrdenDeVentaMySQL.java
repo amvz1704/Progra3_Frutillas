@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.pucp.frutilla.crud.mysql.BaseDAOImpl;
+import pe.edu.pucp.frutilla.crud.mysql.inventario.InventarioMySQL;
 
 public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
 
@@ -155,26 +156,49 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         linea.setIdLineaVenta(rs.getInt("idLineaOrdenVenta"));
         linea.setCantidad(rs.getInt("cantidad"));
         linea.setSubtotal(rs.getDouble("subtotal"));
-
+        
+      
         ProductoMySQL productoDAO = new ProductoMySQL();
         Producto producto = productoDAO.obtener(rs.getInt("idProducto"));
+        
         linea.setProducto(producto);
+        
+
+        return linea;
+    }
+    
+    protected LineaOrdenDeVenta createFromResultSetEditado(ResultSet rs) throws SQLException {
+        LineaOrdenDeVenta linea = new LineaOrdenDeVenta();
+        linea.setIdLineaVenta(rs.getInt("idLineaOrdenVenta"));
+        linea.setCantidad(rs.getInt("cantidad"));
+        linea.setSubtotal(rs.getDouble("subtotal"));
+        
+        
+        ProductoMySQL productoDAO = new ProductoMySQL();
+        Producto producto = productoDAO.obtener(rs.getInt("idProducto"));
+        producto.setStock(rs.getInt("stock"));
+        
+        linea.setProducto(producto);
+        
 
         return linea;
     }
 
-    // Método personalizado para listar por ID de orden
+    // Método personalizado para listar por ID de orden (esto copia de forma integra)
     public List<LineaOrdenDeVenta> listarPorOrden(int idOrdenVenta) throws SQLException {
         List<LineaOrdenDeVenta> lineas = new ArrayList<>();
-        String query = "SELECT * FROM LineaOrdenVenta WHERE idOrdenVenta = ?;"; //Falta implementar este procedimiento
-
+        String query = "SELECT idLineaOrdenVenta, cantidad, subtotal, LineaOrdenVenta.idProducto, stock "
+                + "FROM LineaOrdenVenta JOIN Inventario ON LineaOrdenVenta.idProducto = Inventario.idProducto "
+                + "WHERE idOrdenVenta = ?"; 
+        
         try (Connection con = DBManager.getInstance().getConnection();
-             CallableStatement cs = con.prepareCall(query)) {
+             PreparedStatement cs = con.prepareStatement(query)) {
 
             cs.setInt(1, idOrdenVenta);
             try (ResultSet rs = cs.executeQuery()) {
                 while (rs.next()) {
-                    lineas.add(createFromResultSet(rs));
+                    LineaOrdenDeVenta aux = createFromResultSetEditado(rs);
+                    lineas.add(aux);
                 }
             }
         }

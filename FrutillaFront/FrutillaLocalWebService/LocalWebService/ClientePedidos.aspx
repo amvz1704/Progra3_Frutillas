@@ -11,7 +11,7 @@
         </div>
     </header>
 
-    <div class="container m-4">
+    <div class="container">
         <asp:DropDownList ID="ddlLocales" runat="server" AutoPostBack="true" 
             OnSelectedIndexChanged="ddlLocales_SelectedIndexChanged"
              CssClass="form-control"></asp:DropDownList>

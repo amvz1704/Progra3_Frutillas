@@ -50,19 +50,26 @@ namespace LocalWebService
                 }
 
                 var productos = pedidoWS.obtenerDetallePedidoList(idPedido);
-                gvDetalle.DataSource = productos;
-                gvDetalle.DataBind();
+                if (productos == null)
+                {
+                    lblMensaje.Text = "Pedido no encontrado.";
+                }
+                else
+                {
+                    gvDetalle.DataSource = productos;
+                    gvDetalle.DataBind();
 
-                double subtotal = 0;
-                foreach (var p in productos)
-                    subtotal += p.subtotal;
+                    double subtotal = 0;
+                    foreach (var p in productos)
+                        subtotal += p.subtotal;
 
-                double igv = subtotal * 0.18;
-                double total = subtotal + igv;
+                    double igv = subtotal * 0.18;
+                    double total = subtotal + igv;
 
-                lblSubtotal.Text = $"S/ {subtotal:F2}";
-                lblIGV.Text = $"S/ {igv:F2}";
-                lblTotal.Text = $"S/ {total:F2}";
+                    lblSubtotal.Text = $"S/ {subtotal:F2}";
+                    lblIGV.Text = $"S/ {igv:F2}";
+                    lblTotal.Text = $"S/ {total:F2}";
+                }
             }
             catch (Exception ex)
             {
