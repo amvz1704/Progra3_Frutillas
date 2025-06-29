@@ -7,17 +7,27 @@ package pe.edu.pucp.frutilla.WS;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pe.edu.pucp.frutilla.dto.ComprobanteDTO;
 import pe.edu.pucp.frutilla.dto.OrdenVentaDTO;
+import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
+import pe.edu.pucp.frutilla.logica.inventario.ProductoService;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
+import pe.edu.pucp.frutilla.logica.venta.ComprobantePagoService;
 import pe.edu.pucp.frutilla.logica.venta.LineaOrdenDeVentaService;
 import pe.edu.pucp.frutilla.logica.venta.OrdenVentaService;
+import pe.edu.pucp.frutilla.models.inventario.Producto;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
+import pe.edu.pucp.frutilla.models.venta.ComprobantePago;
+import pe.edu.pucp.frutilla.models.venta.EstadoVenta;
 import pe.edu.pucp.frutilla.models.venta.LineaOrdenDeVenta;
 import pe.edu.pucp.frutilla.models.venta.OrdenVenta;
 
@@ -99,6 +109,87 @@ public class PedidoWS {
             throw new RuntimeException("No se pudo obtener el detalle del pedido.");
         }
     }
+    
+    @WebMethod(operationName = "insertarOrden")
+    public int insertarOrden(
+            @WebParam(name = "idOrden") int idOrden, 
+            @WebParam(name = "comprobante") ComprobanteDTO comprobante) {
+        try {
+            
+            if(!validarOrden(idOrden)){
+                //eliminar orden de Venta 
+                daoOrdenVenta.eliminarOrden(idOrden);
+                return -1; //se elimina la ordenPedido por falta de stock 
+            }
+            
+            //creamos el comprobante y lo subimos a la BD 
+            ComprobantePago comprobanteFinal = comprobante.convertirAComprobante(); 
+            
+            ComprobantePagoService daoComprobante = new ComprobantePagoService(); 
+            daoComprobante.agregar(comprobanteFinal); 
+            //actualizamos con el id
+            OrdenVenta ordenFinal = daoOrdenVenta.obtenerPedido(idOrden); 
+            
+            ordenFinal.setIdComprobante(comprobanteFinal.getIdComprobante());
+            ordenFinal.setEstado(EstadoVenta.POR_ENTREGAR);
+            
+            daoOrdenVenta.actualizarOrden(ordenFinal); //actualizas
+            
+            return 1; 
+            
+            
+        } catch (Exception ex) {
+           System.err.println("Error al actualizar pedido"  + ex.getMessage());
+            throw new RuntimeException("No se pudo obtener el detalle del pedido.");
+            
+        }
+       
+    }
+    
+    @WebMethod(operationName = "obtenerProductoPorId")
+    public Producto obtenerProductoPorId(@WebParam(name = "idProducto") int idProducto) {
+        ProductoService productoService = new ProductoService();
+        try {
+            // Usamos el servicio de Producto para obtener el Producto completo
+            Producto pedido = productoService.obtenerPorId(idProducto); // Asegúrate de tener el método en ProductoService
+            return pedido;
+        } catch (Exception ex) {
+            System.err.println("Error al obtener el producto con ID " + idProducto + ": " + ex.getMessage());
+        }
+        return null;
+    }
+    
+    private boolean validarOrden(int idOrden) throws SQLException{
+        List<LineaOrdenDeVenta> resultado = daoLineaOrdenDeVenta.listarPorOrden(idOrden);
+        OrdenVenta orden = daoOrdenVenta.obtenerPedido(idOrden); 
+        
+        for(LineaOrdenDeVenta lineaProducto: resultado){
+            if(!validarStock(lineaProducto.getProducto(), lineaProducto.getCantidad())){
+                return false; 
+            }
+        }
+        
+        InventarioService daoinventario = new InventarioService(); 
+        
+        //actualizar stock
+        for(LineaOrdenDeVenta lineaProducto: resultado){
+            Producto actual = lineaProducto.getProducto(); 
+            actual.setStock(actual.getStock() - lineaProducto.getCantidad());
+            
+            try {
+                daoinventario.actualizar(actual, orden.getIdLocal());
+            } catch (Exception ex) {
+                Logger.getLogger(PedidoWS.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return true; 
+    }
+    
+    private boolean validarStock(Producto producto, int pedidoCantidad){
+        return pedidoCantidad <= producto.getStock(); //regresar verdad si esta en el rango 
+    }
+    
     
     @WebMethod(operationName = "obtenerPedidoPorId")
     public OrdenVentaDTO obtenerPedidoPorId(@WebParam(name = "idOrdenVenta") int idOrden) {

@@ -14,7 +14,7 @@ public class ComprobantePagoService {
         comprobanteSQL=new ComprobantePagoMySQL();
     }
     
-    public int agregar(ComprobantePago comp) throws Exception{
+    public void agregar(ComprobantePago comp) throws Exception{
         if(comp==null)
             throw new Exception("EL comprobante ha ingresado nulo");
         
@@ -32,8 +32,6 @@ public class ComprobantePagoService {
             throw new Exception("El nombre de la Forma de Pago no puede ser vacio");   
         comprobanteSQL.agregar(comp); //se cambia aqui con fe
         
-        int id = comp.getIdComprobante(); 
-        return id; 
 //        Notificacion noti = comprobanteSQL.crearNotificacionCompra(comp);
 //        NotificacionMySQL notiSQL = new NotificacionMySQL();
 //        notiSQL.agregar(noti);

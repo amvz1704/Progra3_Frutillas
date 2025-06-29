@@ -50,7 +50,10 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         return null;
     }
     
-
+    protected String getDeleteALLQuery() {
+        return "DELETE FROM LineaOrdenVenta WHERE idOrdenVenta=?";
+    }
+    
     @Override
     protected void setInsertParameters(PreparedStatement ps, LineaOrdenDeVenta entity) throws SQLException {
         ps.setInt(1, entity.getIdOrdenVenta());
@@ -127,6 +130,17 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
              PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, idLineaVenta);
             ps.executeUpdate();
+        }
+    }
+    
+    public void eliminarTodasPorIdOrden(Integer id) {
+        try (Connection conn = DBManager.getInstance().getConnection();
+            CallableStatement cs = conn.prepareCall(getDeleteALLQuery())) {
+            
+            cs.setInt(1, id);
+            cs.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar las entidedades", e);
         }
     }
 

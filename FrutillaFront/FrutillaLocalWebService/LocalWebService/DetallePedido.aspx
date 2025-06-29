@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="DetallePedido.aspx.cs" Inherits="LocalWebService.DetallePedido" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container my-4">
         <h2 class="mb-4">Detalle del Pedido</h2>
@@ -6,14 +7,15 @@
         <!-- Información principal -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <h5>Pedido N°: <asp:Label ID="lblPedidoNumero" runat="server" CssClass="fw-bold" /></h5>
+                <h5>Pedido N°:
+                    <asp:Label ID="lblPedidoNumero" runat="server" CssClass="fw-bold" /></h5>
             </div>
             <div class="col-md-6 text-end">
                 <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn btn-success" OnClick="btnGuardar_Click" />
             </div>
         </div>
 
-       <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
+        <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
             <Columns>
                 <asp:BoundField DataField="Producto.nombre" HeaderText="Producto" />
                 <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
@@ -22,14 +24,14 @@
             </Columns>
             <FooterStyle Font-Bold="True" />
         </asp:GridView>
-         <FooterTemplate>
+        <footertemplate>
             <tr>
                 <td colspan="3" class="fw-bold">Total</td>
                 <td>
                     <asp:Label ID="lblTotalPedido" runat="server" Text="" CssClass="fw-bold" />
                 </td>
             </tr>
-        </FooterTemplate>
+        </footertemplate>
         <!-- Formulario para Estado y Empleado Asignado -->
         <div class="row mt-4">
             <div class="col-md-6">
@@ -45,7 +47,9 @@
             </div>
             <div class="col-md-6">
                 <label for="txtEmpleadoAsignado" class="form-label fw-bold">Empleado Asignado</label>
-                <asp:TextBox ID="txtEmpleadoAsignado" runat="server" CssClass="form-control" Placeholder="Ingrese ID o nombre" />
+                <asp:DropDownList ID="ddlEmpleadoAsignado" runat="server" CssClass="form-select">
+                    <asp:ListItem Text="Sin asignar" Value="" />
+                </asp:DropDownList>
             </div>
         </div>
         <!-- Mensaje resultado -->

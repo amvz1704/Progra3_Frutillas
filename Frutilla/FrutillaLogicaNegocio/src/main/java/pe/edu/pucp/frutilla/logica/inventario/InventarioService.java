@@ -21,6 +21,21 @@ public class InventarioService {
         invSQL=new InventarioMySQL();
     }
     
+     public void actualizarStock(Producto producto, int idLocal) throws Exception {
+        if (idLocal <= 0)
+            throw new Exception("El id del local no puede ser negativo");
+        if (producto.getIdProducto() <= 0)
+            throw new Exception("El id de producto no puede ser negativo");
+        if (producto.getStock() < 0)
+            throw new Exception("El stock no puede ser negativo");
+
+        try {
+            invSQL.actualizarStock(producto, idLocal);
+        } catch (SQLException e) {
+            throw new Exception("Error al actualizar el stock en la base de datos: " + e.getMessage(), e);
+        }
+    }
+    
     public void insertar(Producto prod,int idLocal) throws Exception{
         if(idLocal<=0)
             throw new Exception("El id de local no puede ser negativo");
@@ -87,20 +102,5 @@ public class InventarioService {
         if(idProducto<=0)
             throw new Exception("El id de producto no puede ser negativo");
         return invSQL.obtenerTipoProducto(idProducto, idLocal);
-    }
-    
-    public void actualizarStock(Producto producto, int idLocal) throws Exception {
-        if (idLocal <= 0)
-            throw new Exception("El id del local no puede ser negativo");
-        if (producto.getIdProducto() <= 0)
-            throw new Exception("El id de producto no puede ser negativo");
-        if (producto.getStock() < 0)
-            throw new Exception("El stock no puede ser negativo");
-
-        try {
-            invSQL.actualizarStock(producto, idLocal);
-        } catch (SQLException e) {
-            throw new Exception("Error al actualizar el stock en la base de datos: " + e.getMessage(), e);
-        }
     }
 }

@@ -59,20 +59,5 @@ namespace LocalWebService
                 lblMensaje.Text = "Usuario o contraseña incorrectos.";
             }
         }
-
-        protected void btnRegister_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnIrRegistro_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnIrRegistro_Click1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
