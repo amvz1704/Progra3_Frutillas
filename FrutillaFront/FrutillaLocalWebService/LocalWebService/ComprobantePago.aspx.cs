@@ -22,11 +22,7 @@ namespace LocalWebService
         private ClienteWSClient daoCliente;
         private PedidoWSClient daoPedidoOrden;
         private LocalWSClient daoLocal;
-        private int idComprobanteServicio
-        {
-            get => ViewState["idComprobanteServicio"] as int? ?? 0;
-            set => ViewState["idComprobanteServicio"] = value;
-        }
+        private int idComprobanteServicio;
 
         protected void Page_Load(object sender, EventArgs e)
         {

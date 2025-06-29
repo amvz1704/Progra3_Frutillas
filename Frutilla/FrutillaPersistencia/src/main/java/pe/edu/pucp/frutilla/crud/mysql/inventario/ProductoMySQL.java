@@ -82,6 +82,7 @@ public class ProductoMySQL extends BaseDAOImpl<Producto> implements ProductoDAO{
         producto.setCodigoProd(rs.getString("codProd"));
         producto.setPrecioUnitario(rs.getDouble("precioUnitario"));
         producto.setStockMinimo(rs.getInt("stockMinimo"));
+        
         return producto;
     }
 
