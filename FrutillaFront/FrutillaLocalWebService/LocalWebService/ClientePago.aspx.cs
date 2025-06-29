@@ -37,13 +37,13 @@ namespace LocalWebService
                 if (!int.TryParse(sId, out int id))
                 {
                     // Parámetro inválido; podrías redirigir o mostrar error
-                    Response.Redirect("ClienteCarrito.aspx");
+                    Response.Redirect("ClienteHome.aspx");
                     return;
                 }
 
                 // 2) Guardarlo si luego lo vas a reutilizar
                 if (id == -1) {
-                    Response.Redirect("ClienteCarrito.aspx");
+                    Response.Redirect("ClienteHome.aspx");
                     return; 
                 }
 
@@ -53,7 +53,7 @@ namespace LocalWebService
                 // Si no hay carrito o está vacío, volver al carrito    
                 if (Carrito == null || !Carrito.Any())
                 {
-                    Response.Redirect("ClienteCarrito.aspx");
+                    Response.Redirect("ClienteHome.aspx");
                     return;
                 }
 
