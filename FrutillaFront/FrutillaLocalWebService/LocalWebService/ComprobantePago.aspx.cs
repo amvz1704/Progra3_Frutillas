@@ -74,9 +74,9 @@ namespace LocalWebService
             txtLocal.Text =  local.nombre.ToString();
             txtSubtotal.Text = comprobante.subtotal.ToString();
             txtIGV.Text = comprobante.montoIGV.ToString();
-            txtTotal.Text = comprobante.total.ToString();   
+            txtTotal.Text = comprobante.total.ToString();
 
-            gvDetalles.DataSource = daoComprobante.obtenerLineasPorIdComprobante(comprobanteId);
+            gvDetalles.DataSource = daoPedidoOrden.obtenerDetallePedidoList(idComprobanteServicio);
             gvDetalles.DataBind();
         }
 

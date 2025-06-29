@@ -176,7 +176,7 @@ public class LineaOrdenDeVentaMySQL extends BaseDAOImpl<LineaOrdenDeVenta> {
         
         ProductoMySQL productoDAO = new ProductoMySQL();
         Producto producto = productoDAO.obtener(rs.getInt("idProducto"));
-        producto.setStock(rs.getByte("stock"));
+        producto.setStock(rs.getInt("stock"));
         
         linea.setProducto(producto);
         
