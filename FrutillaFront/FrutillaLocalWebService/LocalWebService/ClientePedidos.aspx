@@ -21,7 +21,8 @@
         <asp:GridView ID="gvPedidosCliente" runat="server" AutoGenerateColumns="false"
             AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPedidosCliente_PageIndexChanging"
             CssClass="table table-striped table-responsive table-hover"
-            OnRowCommand="gvPedidosCliente_RowCommand">
+            OnRowCommand="gvPedidosCliente_RowCommand"
+            OnRowDataBound="gvPedidos_RowDataBound" >
             <Columns>
                 <asp:BoundField DataField="idOrdenVenta" HeaderText="Id" />
                 <asp:BoundField DataField="descripcion" HeaderText="Descripcion" />
@@ -30,19 +31,26 @@
                 <asp:BoundField DataField="estado" HeaderText="Estado" />
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnVerComprobante" runat="server"
-                            Text="Ver Comprobante"
-                            CommandName="VerComprobante"
-                            CommandArgument='<%# Eval("idOrdenVenta") %>'
-                            CssClass="btn-frutilla me-2" style="margin-right: 8px;">
-                            <i class="bi bi-file-earmark-text" title="Ver Comprobante"></i>
-                        </asp:LinkButton>
                         <asp:LinkButton ID="btnVerDetalle" runat="server"
-                            Text="Ver Detalle"
                             CommandName="VerDetalle"
                             CommandArgument='<%# Eval("idOrdenVenta") %>'
-                            CssClass="btn-frutilla">
+                            CssClass="btn-frutilla"
+                            Text=""
+                             AccessKey="" 
+                            ToolTip="Ver Detalle">
                              <i class="bi bi-eye" title="Ver Detalle"></i>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton ID="btnVerComprobante" runat="server"
+                            CommandName="VerComprobante"
+                            CommandArgument='<%# Eval("idOrdenVenta") %>'
+                            CssClass="btn-frutilla me-2" style="margin-right: 8px"
+                            Visible='<%# Eval("idComprobante") != DBNull.Value && (int)Eval("idComprobante") > 0 %>'
+                            Text=""
+                             AccessKey="" 
+                            ToolTip="Ver Comprobante">
+
+                            <i class="bi bi-file-earmark-text" title="Ver Comprobante"></i>
                         </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
