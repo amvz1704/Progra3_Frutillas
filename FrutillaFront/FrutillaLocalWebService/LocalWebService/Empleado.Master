@@ -66,7 +66,10 @@
                             <a class="nav-link" href="Notificaciones/ListarNotificaciones.aspx">Notificaciones</a>
                         </li>
                         <li class="nav-item">
-                            <navlink class="nav-link" href="Monitoreo.aspx">Monitoreo</navlink>
+                            <asp:HyperLink ID="hlMonitoreo" runat="server"
+                                CssClass="nav-link active"
+                                NavigateUrl="Monitoreo.aspx"
+                                Text="Monitoreo" />
                         </li>
 
                         <li class="nav-item">

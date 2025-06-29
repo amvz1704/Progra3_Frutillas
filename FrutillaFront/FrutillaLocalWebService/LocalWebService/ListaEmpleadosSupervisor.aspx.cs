@@ -134,7 +134,7 @@ namespace LocalWebService
                 }
                 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "Error al cargar los empleados: " + ex.Message;
             }
@@ -217,7 +217,7 @@ namespace LocalWebService
 
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "Error al obtener detalles los empleados: " + ex.Message;
             }
@@ -264,7 +264,7 @@ namespace LocalWebService
                     lblError.Text = "\"warning\", $\"No se encontró empleado con ID = {idEmp}\"";
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "Error al obtener detalles los empleados: " + ex.Message;
 
@@ -289,7 +289,7 @@ namespace LocalWebService
                     lblError.Text = "Waring al eliminar el cliente";
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "DANGER!! " + ex.Message;
             }
@@ -448,7 +448,7 @@ namespace LocalWebService
                
                 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "ERRROR s: " + ex.Message;
             }

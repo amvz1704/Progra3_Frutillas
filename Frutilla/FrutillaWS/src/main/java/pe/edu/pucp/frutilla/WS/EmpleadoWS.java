@@ -1,21 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/WebServices/WebService.java to edit this template
- */
+
 package pe.edu.pucp.frutilla.WS;
     
 import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import jakarta.xml.ws.WebServiceException;
+import java.io.File;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import pe.edu.pucp.frutilla.config.DBManager;
 import pe.edu.pucp.frutilla.dto.EmpleadoDTO;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 import pe.edu.pucp.frutilla.models.rrhh.Empleado;
@@ -114,5 +123,58 @@ public class EmpleadoWS {
             System.out.println(ex.getMessage()); 
             return false; 
         }
+    }
+    
+    private String getFileResource(String fileName) {
+        // Accede al archivo desde src/main/resources
+        String filePath = getClass().getClassLoader().getResource(fileName).getPath();
+        return filePath.replace("%20", " ");
+    }
+
+    @WebMethod(operationName = "VentasXLocal")
+    public byte[] reporteVentasXLocal(@WebParam(name = "idLocal") int idLocal) {
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("idLocal", idLocal);
+            // Si tienes logo o subreporte, también puedes usar:
+            // params.put("logo", getFileResource("frutilla_logo.png"));
+            
+            return generarBuffer(getFileResource("VentasXLocal.jrxml"), params);
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
+            throw new WebServiceException("Error al generar el reporte: " + ex.getMessage());
+        }
+    }
+    @WebMethod(operationName = "VentasXEmpleado")
+    public byte[] reporteVentasXEmpleado(@WebParam(name = "idEmpleado") int idEmpleado) {
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("idEmpleado", idEmpleado);
+            // Si usas imágenes o subreportes, también puedes agregar:
+            // params.put("logo", getFileResource("frutilla_logo.png"));
+
+            return generarBuffer(getFileResource("VentasXEmpleado.jrxml"), params);
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
+            throw new WebServiceException("Error al generar el reporte de ventas por empleado: " + ex.getMessage());
+        }
+    }
+    private String compileJrxmlToJasper(String jrxmlPath) throws Exception {
+        String jasperPath = jrxmlPath.replace(".jrxml", ".jasper");
+        File jasperFile = new File(jasperPath);
+
+        if (!jasperFile.exists()) {
+            JasperCompileManager.compileReportToFile(jrxmlPath, jasperPath);
+        }
+        return jasperPath;
+    }
+
+    public byte[] generarBuffer(String jrxmlPath, Map<String, Object> params) throws Exception {
+        String jasperPath = compileJrxmlToJasper(jrxmlPath);
+        JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
+        Connection conn = DBManager.getInstance().getConnection();
+        JasperPrint print = JasperFillManager.fillReport(reporte, params, conn);
+        conn.close();
+        return JasperExportManager.exportReportToPdf(print);
     }
 }

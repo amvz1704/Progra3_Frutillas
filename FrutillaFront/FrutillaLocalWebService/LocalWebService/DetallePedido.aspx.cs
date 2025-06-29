@@ -98,7 +98,7 @@ namespace LocalWebService
                     ddlEmpleadoAsignado.SelectedValue = pedido.idEmpleado.ToString();
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblMensaje.Text = "Error al cargar el pedido: " + ex.Message;
             }
@@ -126,7 +126,7 @@ namespace LocalWebService
                     ddlEmpleadoAsignado.Items.Add(new ListItem(nombreCompleto, emp.idUsuario.ToString()));
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblMensaje.Text = "Error al cargar empleados: " + ex.Message;
             }
@@ -185,7 +185,7 @@ namespace LocalWebService
 
                 lblMensaje.Text = "Pedido actualizado correctamente.";
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblMensaje.Text = "Error al guardar: " + ex.Message;
             }
@@ -194,6 +194,11 @@ namespace LocalWebService
                 pedidoClient.Close();
                 empleadoClient.Close();
             }
+        }
+
+        protected void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListaPedidos.aspx");
         }
     }
 }

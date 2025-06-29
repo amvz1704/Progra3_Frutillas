@@ -69,7 +69,7 @@ namespace LocalWebService
                 gvPedidos.DataBind();
                 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "Error al cargar pedidos" + ex;
             }
@@ -81,7 +81,7 @@ namespace LocalWebService
             {
                 gvPedidos.DataSource = pedidoWSClient.obtenerPedidosPorEmpleado(idEmpleado);
                 gvPedidos.DataBind();
-            } catch (Exception ex)
+            } catch (System.Exception ex)
             {
                 lblError.Text = "Error al cargar pedido de empleado " + idEmpleado + ": " + ex;
             }
