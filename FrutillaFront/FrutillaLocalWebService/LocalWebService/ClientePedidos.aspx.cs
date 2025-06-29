@@ -4,6 +4,7 @@ using LocalWebService.LocalWS;
 using LocalWebService.NotificionesWS;
 using LocalWebService.PedidoWS;
 using System;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -101,6 +102,26 @@ namespace LocalWebService
         {
             gvPedidosCliente.PageIndex = e.NewPageIndex;
             CargarPedidos(idLocalSeleccionado);
+        }
+
+        protected void gvPedidos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType != DataControlRowType.DataRow) return;
+
+            // Obtén el valor del idComprobante:
+
+            // Castea al tipo de tu DTO:
+            var dto = (ordenVentaDTO)e.Row.DataItem;
+            int? idComp = dto.idComprobante; // asumiendo que es int?; si es int, checa >0
+
+            // Busca el botón y ajusta Visible:
+            // Busca el botón:
+            var btnVer = (LinkButton)e.Row.FindControl("btnVerComprobante");
+            if (btnVer != null)
+            {
+                // Solo visible si hay comprobante
+                btnVer.Visible = idComp.HasValue && idComp.Value > 0;
+            }
         }
 
         protected void gvPedidosCliente_RowCommand(object sender, GridViewCommandEventArgs e)
