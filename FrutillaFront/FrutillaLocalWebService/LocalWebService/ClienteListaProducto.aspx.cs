@@ -121,7 +121,7 @@ namespace LocalWebService
             {
                 rptProductos.DataSource = null;
                 rptProductos.DataBind();
-                lblError.Text = "Debe seleccionar un local ";
+                lblError.Text = "Debe seleccionar un local "+ex.Message;
             }
         }
 
