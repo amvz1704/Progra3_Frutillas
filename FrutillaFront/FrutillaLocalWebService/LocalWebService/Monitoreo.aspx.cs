@@ -1,14 +1,11 @@
-﻿using LocalWebService.ReporteWS;
-
-using System;
-using System.IO;
+﻿using System;
 using System.Web.UI;
+using LocalWebService.EmpleadoWS; // Asegúrate que este namespace sea correcto
 
 namespace LocalWebService
 {
     public partial class Monitoreo : Page
     {
-        
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
             string tipo = ddlTipoReporte.SelectedValue;
@@ -16,7 +13,8 @@ namespace LocalWebService
 
             try
             {
-                var cliente = new ReporteWSClient.ReporteWS(); // Usa el namespace que elegiste al agregar el servicio
+                // Usa la clase generada por la referencia del servicio
+                var cliente = new EmpleadoWSClient();
 
                 byte[] pdfBytes;
 
@@ -29,7 +27,7 @@ namespace LocalWebService
                     pdfBytes = cliente.VentasXEmpleado(id);
                 }
 
-                // Descargar el PDF
+                // Enviar PDF al navegador
                 string nombreArchivo = $"Reporte_{tipo}_{id}.pdf";
                 Response.Clear();
                 Response.ContentType = "application/pdf";
@@ -37,7 +35,7 @@ namespace LocalWebService
                 Response.BinaryWrite(pdfBytes);
                 Response.End();
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Response.Write($"<h3 style='color:red;'>Error al generar el reporte: {ex.Message}</h3>");
             }

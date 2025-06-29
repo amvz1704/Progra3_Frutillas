@@ -1,28 +1,23 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Monitoreo.aspx.cs" Inherits="FrutillaWeb.Monitoreo" %>
+﻿<%@ Page Title="Monitoreo" Language="C#" MasterPageFile="~/Empleado.Master" AutoEventWireup="true" CodeBehind="Monitoreo.aspx.cs" Inherits="LocalWebService.Monitoreo" %>
 
-<!DOCTYPE html>
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Monitoreo.aspx.cs" Inherits="LocalWebService.Monitoreo" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Aquí podrías poner estilos o scripts si deseas -->
+</asp:Content>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Monitoreo - Reportes</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div style="margin:20px;">
-            <h2>Generar Reporte</h2>
-            <asp:Label runat="server" Text="Tipo de Reporte: " />
-            <asp:DropDownList ID="ddlTipoReporte" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container mt-4">
+        <h2>Generar Reporte</h2>
+        <div class="mb-3">
+            <label for="ddlTipoReporte" class="form-label">Tipo de Reporte:</label>
+            <asp:DropDownList ID="ddlTipoReporte" runat="server" CssClass="form-select">
                 <asp:ListItem Text="Ventas por Local" Value="local" />
                 <asp:ListItem Text="Ventas por Empleado" Value="empleado" />
             </asp:DropDownList>
-            <br /><br />
-            <asp:Label runat="server" Text="ID: " />
-            <asp:TextBox ID="txtId" runat="server" />
-            <br /><br />
-            <asp:Button ID="btnGenerar" runat="server" Text="Generar PDF" OnClick="btnGenerar_Click" />
         </div>
-    </form>
-</body>
-</html>
+        <div class="mb-3">
+            <label for="txtId" class="form-label">ID:</label>
+            <asp:TextBox ID="txtId" runat="server" CssClass="form-control" />
+        </div>
+        <asp:Button ID="btnGenerar" runat="server" Text="Generar PDF" CssClass="btn btn-primary" OnClick="btnGenerar_Click" />
+    </div>
+</asp:Content>

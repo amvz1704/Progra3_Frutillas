@@ -66,7 +66,7 @@ namespace LocalWebService.Notificaciones
                 gvNotificaciones.DataSource = notificacionWSClient.listarPorCliente(idCliente); // Cambiar por id de Session
                 gvNotificaciones.DataBind();
 
-            } catch (Exception e)
+            } catch (System.Exception e)
             {
                 lblError.Text = "Error al cargar las notificaciones: " + e.Message;
                 lblError.Visible = true;

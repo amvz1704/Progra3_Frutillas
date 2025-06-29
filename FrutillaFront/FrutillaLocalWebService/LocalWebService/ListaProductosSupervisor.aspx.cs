@@ -164,7 +164,7 @@ namespace LocalWebService
                     }
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 rptProductos.DataSource = null;
                 rptProductos.DataBind();
@@ -562,7 +562,7 @@ namespace LocalWebService
                     }
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "Error al agregar imagen: " + ex.Message;
             }
