@@ -1,5 +1,4 @@
-﻿using LocalWebService.ComprobanteWS;
-using LocalWebService.InventarioWS;
+﻿using LocalWebService.InventarioWS;
 using LocalWebService.LocalWS;
 using LocalWebService.PedidoWS;
 using LocalWebService.ProductoImagenWS;
@@ -17,26 +16,26 @@ namespace LocalWebService
     {
 
         private InventarioWSClient inventarioWSClient;
-        private ComprobanteWSClient ComprobanteWS;
         private ProductoImagenWSClient ProductoImagenWS;
         private LocalWSClient localWSClient;
+        private PedidoWSClient pedidoWS;
         const int idPedidoOrden = 1;
         char tipoSeleccionado = 'T'; // Por defecto, todos los tipos seleccionados
 
         // Propiedad helper para el carrito en Session
-        private List<ComprobanteWS.lineaOrdenDeVenta> Carrito
+        private List<PedidoWS.lineaOrdenDeVenta> Carrito
         {
             get
             {
                 if (Session["Carrito"] == null)
-                    Session["Carrito"] = new List<ComprobanteWS.lineaOrdenDeVenta>();
-                return (List<ComprobanteWS.lineaOrdenDeVenta>)Session["Carrito"];
+                    Session["Carrito"] = new List<PedidoWS.lineaOrdenDeVenta>();
+                return (List<PedidoWS.lineaOrdenDeVenta>)Session["Carrito"];
             }   
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ComprobanteWS = new ComprobanteWSClient(); 
+            pedidoWS = new PedidoWSClient();
             inventarioWSClient = new InventarioWSClient();
             ProductoImagenWS = new ProductoImagenWSClient();
             if (!IsPostBack)
@@ -147,7 +146,7 @@ namespace LocalWebService
 
 
                 // Si ya existe la línea, puedes aumentar cantidad 
-                ComprobanteWS.lineaOrdenDeVenta existente = Carrito.Find(x => x.producto.idProducto == idProd);
+                PedidoWS.lineaOrdenDeVenta existente = Carrito.Find(x => x.producto.idProducto == idProd);
                 if (existente != null)
                 {
                     existente.cantidad++;
@@ -156,9 +155,9 @@ namespace LocalWebService
                 else
                 {
                     //creas una nueva orden de linea ordenDeVenta para agregar a linea ordenDeVenta
-                    ComprobanteWS.producto copia = ComprobanteWS.obtenerProductoPorId(idProd);
+                    PedidoWS.producto copia = pedidoWS.obtenerProductoPorId(idProd);
 
-                    Carrito.Add(new ComprobanteWS.lineaOrdenDeVenta
+                    Carrito.Add(new PedidoWS.lineaOrdenDeVenta
                     {
                         producto = copia,
                         cantidad = 1,

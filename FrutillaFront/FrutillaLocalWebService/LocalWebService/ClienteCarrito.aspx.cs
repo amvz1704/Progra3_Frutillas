@@ -21,12 +21,13 @@ namespace LocalWebService
 
         public ClienteCarrito()
         {
+            pedidoWS = new PedidoWSClient();
             localWS = new LocalWSClient();
             clienteWS = new ClienteWSClient();
         }
 
-        private List<ComprobanteWS.lineaOrdenDeVenta> CarritoSesion
-            => Session["Carrito"] as List<ComprobanteWS.lineaOrdenDeVenta>;
+        private List<PedidoWS.lineaOrdenDeVenta> CarritoSesion
+            => Session["Carrito"] as List<PedidoWS.lineaOrdenDeVenta>;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -99,7 +100,7 @@ namespace LocalWebService
             lblNombreLocal.Text = local.nombre;
             lblDireccion.Text = local.direccion;
 
-            var carrito = CarritoSesion ?? new List<ComprobanteWS.lineaOrdenDeVenta>();
+            var carrito = CarritoSesion ?? new List<PedidoWS.lineaOrdenDeVenta>();
 
             foreach (var item in carrito)
             {
@@ -165,6 +166,7 @@ namespace LocalWebService
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
+
             var carrito = CarritoSesion;
 
             if (carrito == null || carrito.Count == 0)
@@ -173,8 +175,7 @@ namespace LocalWebService
                 return;
             }
 
-            pedidoWS = new PedidoWSClient();
-
+            
             // Extraer valores de sesión (asegúrate de tenerlos correctamente configurados en login)
             int idLocal = Session["idLocal"] != null ? (int)Session["idLocal"] : 0;
 
@@ -208,22 +209,16 @@ namespace LocalWebService
                     }
                 }).ToArray();
 
-                int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);  //EDITAR, funciona en el back pero no en el front
+                int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);
 
-                if (idGenerado == -1)
-                {
-                    Response.Write("Error al generar la orden. Inténtalo más tarde.");
+                // el false indica: no abortes el hilo inmediatamente
+                Response.Redirect($"ClientePago.aspx?id={idGenerado}", false);
 
-                    Response.Redirect("ClientePago.aspx?id=-1");
-                    return;
-                }
-
-                // Redireccionar a la página de confirmación
-                // false: NO aborta el hilo, simplemente añade la cabecera de redirección
-                Response.Redirect("ClientePago.aspx?id=" + idGenerado, false);
-
-                // Indica a ASP.NET que termine la petición sin abortar el hilo
+                // indica a ASP.NET que complete limpiamente la petición
                 Context.ApplicationInstance.CompleteRequest();
+
+                // sales del método para que no siga procesando nada más
+                return;
             }
             catch (Exception ex)
             {

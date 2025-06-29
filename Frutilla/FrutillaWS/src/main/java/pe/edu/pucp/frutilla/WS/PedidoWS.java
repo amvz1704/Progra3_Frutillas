@@ -14,8 +14,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pe.edu.pucp.frutilla.dto.ComprobanteDTO;
 import pe.edu.pucp.frutilla.dto.OrdenVentaDTO;
+import pe.edu.pucp.frutilla.logica.inventario.InventarioService;
+import pe.edu.pucp.frutilla.logica.inventario.ProductoService;
 import pe.edu.pucp.frutilla.logica.rrhh.EmpleadoService;
 import pe.edu.pucp.frutilla.logica.venta.ComprobantePagoService;
 import pe.edu.pucp.frutilla.logica.venta.LineaOrdenDeVentaService;
@@ -142,12 +146,40 @@ public class PedidoWS {
        
     }
     
+    @WebMethod(operationName = "obtenerProductoPorId")
+    public Producto obtenerProductoPorId(@WebParam(name = "idProducto") int idProducto) {
+        ProductoService productoService = new ProductoService();
+        try {
+            // Usamos el servicio de Producto para obtener el Producto completo
+            Producto pedido = productoService.obtenerPorId(idProducto); // Asegúrate de tener el método en ProductoService
+            return pedido;
+        } catch (Exception ex) {
+            System.err.println("Error al obtener el producto con ID " + idProducto + ": " + ex.getMessage());
+        }
+        return null;
+    }
+    
     private boolean validarOrden(int idOrden) throws SQLException{
         List<LineaOrdenDeVenta> resultado = daoLineaOrdenDeVenta.listarPorOrden(idOrden);
+        OrdenVenta orden = daoOrdenVenta.obtenerPedido(idOrden); 
         
         for(LineaOrdenDeVenta lineaProducto: resultado){
             if(!validarStock(lineaProducto.getProducto(), lineaProducto.getCantidad())){
                 return false; 
+            }
+        }
+        
+        InventarioService daoinventario = new InventarioService(); 
+        
+        //actualizar stock
+        for(LineaOrdenDeVenta lineaProducto: resultado){
+            Producto actual = lineaProducto.getProducto(); 
+            actual.setStock(actual.getStock() - lineaProducto.getCantidad());
+            
+            try {
+                daoinventario.actualizar(actual, orden.getIdLocal());
+            } catch (Exception ex) {
+                Logger.getLogger(PedidoWS.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
