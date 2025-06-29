@@ -160,9 +160,9 @@ public class PedidoWS {
     }
     
     private boolean validarOrden(int idOrden) throws SQLException{
-        List<LineaOrdenDeVenta> resultado = daoLineaOrdenDeVenta.listarPorOrden(idOrden);
-        OrdenVenta orden = daoOrdenVenta.obtenerPedido(idOrden); 
         
+        OrdenVenta orden = daoOrdenVenta.obtenerPedido(idOrden); 
+        List<LineaOrdenDeVenta> resultado = daoLineaOrdenDeVenta.listarPorOrden(idOrden);
         for(LineaOrdenDeVenta lineaProducto: resultado){
             if(!validarStock(lineaProducto.getProducto(), lineaProducto.getCantidad())){
                 return false; 
