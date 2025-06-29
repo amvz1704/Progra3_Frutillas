@@ -83,7 +83,7 @@ namespace LocalWebService
 
                 gvPedidosCliente.DataBind();
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblError.Text = "Error al cargar pedidos: " + ex.Message;
             }

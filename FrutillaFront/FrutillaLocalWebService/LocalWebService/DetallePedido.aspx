@@ -58,5 +58,11 @@
                 <asp:Label ID="lblMensaje" runat="server" CssClass="text-success fw-bold"></asp:Label>
             </div>
         </div>
+        <div class="d-flex justify-content-center mt-4">
+            <asp:Button ID="btnVerPedidos" runat="server"
+                CssClass="btn btn-success"
+                Text="Ver Pedidos"
+                OnClick="btnVerPedidos_Click" />
+        </div>
     </div>
 </asp:Content>

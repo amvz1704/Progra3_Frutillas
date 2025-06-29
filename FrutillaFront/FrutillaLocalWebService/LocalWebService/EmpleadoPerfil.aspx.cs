@@ -169,7 +169,7 @@ namespace LocalWebService
                 }
                 ToggleModoEdicion(false);
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 lblMensaje.CssClass = "text-danger";
                 lblMensaje.Text = "Error: " + ex.Message;
