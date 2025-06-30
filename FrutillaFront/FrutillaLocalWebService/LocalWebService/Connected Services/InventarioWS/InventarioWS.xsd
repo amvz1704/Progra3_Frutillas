@@ -12,8 +12,6 @@
   <xs:element name="insertarBebidaResponse" type="tns:insertarBebidaResponse" />
   <xs:element name="insertarFruta" type="tns:insertarFruta" />
   <xs:element name="insertarFrutaResponse" type="tns:insertarFrutaResponse" />
-  <xs:element name="insertarProducto" type="tns:insertarProducto" />
-  <xs:element name="insertarProductoResponse" type="tns:insertarProductoResponse" />
   <xs:element name="insertarSnack" type="tns:insertarSnack" />
   <xs:element name="insertarSnackResponse" type="tns:insertarSnackResponse" />
   <xs:element name="listarTodos" type="tns:listarTodos" />
@@ -138,15 +136,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:bebida" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarProducto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:producto" />
-      <xs:element name="arg1" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarProductoResponse">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="obtenerProductoPorId">
     <xs:sequence>

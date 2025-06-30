@@ -15,15 +15,6 @@ namespace LocalWebService.ProductoImagenWS {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", ConfigurationName="ProductoImagenWS.ProductoImagenWS")]
     public interface ProductoImagenWS {
         
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.ProductoImagenWS.listarProductoImagenResponse listarProductoImagen(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenResponse")]
-        System.Threading.Tasks.Task<LocalWebService.ProductoImagenWS.listarProductoImagenResponse> listarProductoImagenAsync(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request);
-        
         // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/agregarProductoImagenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/agregarProductoImagenResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -48,6 +39,15 @@ namespace LocalWebService.ProductoImagenWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/actualizarProductoImagenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/actualizarProductoImagenResponse")]
         System.Threading.Tasks.Task<LocalWebService.ProductoImagenWS.actualizarProductoImagenResponse> actualizarProductoImagenAsync(LocalWebService.ProductoImagenWS.actualizarProductoImagenRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.ProductoImagenWS.listarProductoImagenResponse listarProductoImagen(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenResponse")]
+        System.Threading.Tasks.Task<LocalWebService.ProductoImagenWS.listarProductoImagenResponse> listarProductoImagenAsync(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request);
         
         // CODEGEN: El parámetro 'arg0' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenResponse")]
@@ -101,34 +101,6 @@ namespace LocalWebService.ProductoImagenWS {
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductoImagen", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarProductoImagenRequest {
-        
-        public listarProductoImagenRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductoImagenResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarProductoImagenResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.ProductoImagenWS.productoImagen[] @return;
-        
-        public listarProductoImagenResponse() {
-        }
-        
-        public listarProductoImagenResponse(LocalWebService.ProductoImagenWS.productoImagen[] @return) {
-            this.@return = @return;
         }
     }
     
@@ -227,6 +199,34 @@ namespace LocalWebService.ProductoImagenWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductoImagen", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarProductoImagenRequest {
+        
+        public listarProductoImagenRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductoImagenResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarProductoImagenResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.ProductoImagenWS.productoImagen[] @return;
+        
+        public listarProductoImagenResponse() {
+        }
+        
+        public listarProductoImagenResponse(LocalWebService.ProductoImagenWS.productoImagen[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProductoImagen", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class eliminarProductoImagenRequest {
         
@@ -277,27 +277,6 @@ namespace LocalWebService.ProductoImagenWS {
         
         public ProductoImagenWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.ProductoImagenWS.listarProductoImagenResponse LocalWebService.ProductoImagenWS.ProductoImagenWS.listarProductoImagen(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request) {
-            return base.Channel.listarProductoImagen(request);
-        }
-        
-        public LocalWebService.ProductoImagenWS.productoImagen[] listarProductoImagen() {
-            LocalWebService.ProductoImagenWS.listarProductoImagenRequest inValue = new LocalWebService.ProductoImagenWS.listarProductoImagenRequest();
-            LocalWebService.ProductoImagenWS.listarProductoImagenResponse retVal = ((LocalWebService.ProductoImagenWS.ProductoImagenWS)(this)).listarProductoImagen(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.ProductoImagenWS.listarProductoImagenResponse> LocalWebService.ProductoImagenWS.ProductoImagenWS.listarProductoImagenAsync(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request) {
-            return base.Channel.listarProductoImagenAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.ProductoImagenWS.listarProductoImagenResponse> listarProductoImagenAsync() {
-            LocalWebService.ProductoImagenWS.listarProductoImagenRequest inValue = new LocalWebService.ProductoImagenWS.listarProductoImagenRequest();
-            return ((LocalWebService.ProductoImagenWS.ProductoImagenWS)(this)).listarProductoImagenAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -365,6 +344,27 @@ namespace LocalWebService.ProductoImagenWS {
             LocalWebService.ProductoImagenWS.actualizarProductoImagenRequest inValue = new LocalWebService.ProductoImagenWS.actualizarProductoImagenRequest();
             inValue.arg0 = arg0;
             return ((LocalWebService.ProductoImagenWS.ProductoImagenWS)(this)).actualizarProductoImagenAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.ProductoImagenWS.listarProductoImagenResponse LocalWebService.ProductoImagenWS.ProductoImagenWS.listarProductoImagen(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request) {
+            return base.Channel.listarProductoImagen(request);
+        }
+        
+        public LocalWebService.ProductoImagenWS.productoImagen[] listarProductoImagen() {
+            LocalWebService.ProductoImagenWS.listarProductoImagenRequest inValue = new LocalWebService.ProductoImagenWS.listarProductoImagenRequest();
+            LocalWebService.ProductoImagenWS.listarProductoImagenResponse retVal = ((LocalWebService.ProductoImagenWS.ProductoImagenWS)(this)).listarProductoImagen(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.ProductoImagenWS.listarProductoImagenResponse> LocalWebService.ProductoImagenWS.ProductoImagenWS.listarProductoImagenAsync(LocalWebService.ProductoImagenWS.listarProductoImagenRequest request) {
+            return base.Channel.listarProductoImagenAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.ProductoImagenWS.listarProductoImagenResponse> listarProductoImagenAsync() {
+            LocalWebService.ProductoImagenWS.listarProductoImagenRequest inValue = new LocalWebService.ProductoImagenWS.listarProductoImagenRequest();
+            return ((LocalWebService.ProductoImagenWS.ProductoImagenWS)(this)).listarProductoImagenAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
