@@ -14,11 +14,10 @@ namespace LocalWebService
         {
             if (!IsPostBack)
             {
-                CargarEstados(); // ✅ Importante: poblar antes de asignar valor
+                CargarEstados();
                 CargarEmpleados();
 
-                int pedidoId;
-                if (int.TryParse(Request.QueryString["id"], out pedidoId))
+                if (int.TryParse(Request.QueryString["id"], out int pedidoId))
                 {
                     CargarPedido(pedidoId);
                 }
@@ -28,25 +27,12 @@ namespace LocalWebService
                 }
             }
 
-            if (User.Identity.IsAuthenticated)
-            {
-                string datos = FormsAuthentication.Decrypt(
-                    Request.Cookies[FormsAuthentication.FormsCookieName].Value
-                ).UserData;
-
-                string[] partes = datos.Split('|');
-                string tipoUsuario = partes[0];
-                int idUsuario = int.Parse(partes[1]);
-
-                // Puedes usar idUsuario o tipoUsuario si es necesario
-            }
-            else
+            if (!User.Identity.IsAuthenticated)
             {
                 Response.Redirect("Login.aspx");
             }
         }
 
-        // ✅ Método para cargar los valores del enum estadoVenta
         private void CargarEstados()
         {
             ddlEstado.Items.Clear();
@@ -60,6 +46,7 @@ namespace LocalWebService
         {
             PedidoWSClient pedidoClient = new PedidoWSClient();
             EmpleadoWSClient empleadoClient = new EmpleadoWSClient();
+            LocalWSClient localWS = new LocalWSClient();
 
             try
             {
@@ -72,9 +59,16 @@ namespace LocalWebService
                 }
 
                 lblPedidoNumero.Text = pedido.idOrdenVenta.ToString();
+                lblFecha.Text = pedido.fechaStr;
+                lblDescripcion.Text = pedido.descripcion;
+
+                if (pedido.idLocal > 0)
+                {
+                    var local = localWS.obtenerLocal(pedido.idLocal);
+                    lblLocal.Text = (local != null) ? local.nombre : "No disponible";
+                }
 
                 var productos = pedidoClient.obtenerDetallePedidoList(pedidoId);
-
                 if (productos == null || productos.Length == 0)
                 {
                     lblMensaje.Text = "No hay productos asociados al pedido.";
@@ -86,11 +80,16 @@ namespace LocalWebService
                 gvProductos.DataSource = productos;
                 gvProductos.DataBind();
 
-                double totalPedido = 0;
+                double subtotal = 0;
                 foreach (var p in productos)
-                    totalPedido += p.subtotal;
+                    subtotal += p.subtotal;
 
-                lblTotalPedido.Text = totalPedido.ToString("C");
+                double igv = subtotal * 0.18;
+                double total = subtotal + igv;
+
+                lblSubtotal.Text = $"S/ {subtotal:F2}";
+                lblIGV.Text = $"S/ {igv:F2}";
+                lblTotal.Text = $"S/ {total:F2}";
 
                 ddlEstado.SelectedValue = pedido.estado.ToString();
                 if (pedido.idEmpleado > 0)
@@ -106,6 +105,7 @@ namespace LocalWebService
             {
                 pedidoClient.Close();
                 empleadoClient.Close();
+                localWS.Close();
             }
         }
 
@@ -136,7 +136,6 @@ namespace LocalWebService
             }
         }
 
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             PedidoWSClient pedidoClient = new PedidoWSClient();
@@ -153,9 +152,7 @@ namespace LocalWebService
                     return;
                 }
 
-                // ✅ Convertir estado seleccionado (asegúrate que ddlEstado tiene valores del enum exactos)
                 pedido.estado = (estadoVenta)Enum.Parse(typeof(estadoVenta), ddlEstado.SelectedValue);
-
 
                 if (!string.IsNullOrEmpty(ddlEmpleadoAsignado.SelectedValue))
                 {
@@ -175,14 +172,7 @@ namespace LocalWebService
                     pedido.idEmpleado = 0;
                 }
 
-                
-
-                // No toques cliente, local ni fecha si no están disponibles en el modelo
-                // No modifiques lineasOrden si no existe
-
-                // ✅ Guardar cambios
                 pedidoClient.actualizarOrden(pedido);
-
                 lblMensaje.Text = "Pedido actualizado correctamente.";
             }
             catch (System.Exception ex)

@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -353,7 +354,6 @@ namespace LocalWebService
             }
             if (string.IsNullOrEmpty(TxtEditCodigo.Text.Trim()) ||
 !System.Text.RegularExpressions.Regex.IsMatch(TxtEditCodigo.Text.Trim(), @"^[a-zA-Z0-9]{6}$"))
-            {
                 {
                     LblEditCodigo.Text = "Ingrese un codigo de 6 caracteres entre letras y numeros";
                     esValido = false;
@@ -396,7 +396,7 @@ namespace LocalWebService
                     }
                     fruta.idProducto = id;
                     fruta.nombre = TxtEditNombre.Text;
-                    fruta.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    fruta.precioUnitario = Double.Parse(TxtEditPrecio.Text, CultureInfo.InvariantCulture);
                     fruta.descripcion = TxtEditDescripcion.Text;
                     fruta.stock = Int32.Parse(TxtEditStock.Text);
                     fruta.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
@@ -450,7 +450,7 @@ namespace LocalWebService
                     }
                     bebida.idProducto = id;
                     bebida.nombre = TxtEditNombre.Text;
-                    bebida.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    bebida.precioUnitario = Double.Parse(TxtEditPrecio.Text, CultureInfo.InvariantCulture);
                     bebida.descripcion = TxtEditDescripcion.Text;
                     bebida.stock = Int32.Parse(TxtEditStock.Text);
                     bebida.codigoProd = TxtEditCodigo.Text;
@@ -507,7 +507,7 @@ namespace LocalWebService
 
                     snack.idProducto = id;
                     snack.nombre = TxtEditNombre.Text;
-                    snack.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    snack.precioUnitario = Double.Parse(TxtEditPrecio.Text, CultureInfo.InvariantCulture);
                     snack.descripcion = TxtEditDescripcion.Text;
                     snack.stock = Int32.Parse(TxtEditStock.Text);
                     snack.codigoProd = TxtEditCodigo.Text;
@@ -541,12 +541,12 @@ namespace LocalWebService
                     $@"mostrarOpcionesEditar('P');
                        var myModal = new bootstrap.Modal(document.getElementById('modalEditarProducto')); myModal.show();",
                     true
-                );
+                    );
                         return;
                     }
                     producto.idProducto = id;
                     producto.nombre = TxtEditNombre.Text;
-                    producto.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    producto.precioUnitario = Double.Parse(TxtEditPrecio.Text, CultureInfo.InvariantCulture);
                     producto.descripcion = TxtEditDescripcion.Text;
                     producto.stock = Int32.Parse(TxtEditStock.Text);
                     producto.codigoProd = TxtEditCodigo.Text;
@@ -557,7 +557,6 @@ namespace LocalWebService
                 }
                 CargarProductos();
             }
-        }
 
         protected void btnGuardarProducto_Click(object sender, EventArgs e)
         {
@@ -608,7 +607,7 @@ namespace LocalWebService
                         LblCodigo.Text = "Ingrese un codigo de 6 caracteres entre letras y numeros";
                         esValido = false;
                     }
-
+                }
 
                     // Ejemplo de uso
                     switch (tipo)
@@ -635,8 +634,8 @@ namespace LocalWebService
                             // Lógica para Fruta
                             fruta fruta = new fruta();
                             fruta.nombre = txtNombre.Text;
-                            fruta.precioUnitario = Double.Parse(txtPrecio.Text);
-                            fruta.descripcion = txtDescripcion.Text;
+                        fruta.precioUnitario = Double.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
+                        fruta.descripcion = txtDescripcion.Text;
                             fruta.stock = Int32.Parse(txtStock.Text);
                             fruta.stockMinimo = Int32.Parse(txtStockMinimo.Text);
                             fruta.codigoProd = txtCodigo.Text;
@@ -676,8 +675,8 @@ namespace LocalWebService
 
                             bebida bebida = new bebida();
                             bebida.nombre = txtNombre.Text;
-                            bebida.precioUnitario = Double.Parse(txtPrecio.Text);
-                            bebida.descripcion = txtDescripcion.Text;
+                            bebida.precioUnitario = Double.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
+                        bebida.descripcion = txtDescripcion.Text;
                             bebida.stock = Int32.Parse(txtStock.Text);
                             bebida.codigoProd = txtCodigo.Text;
                             bebida.stockMinimo = Int32.Parse(txtStockMinimo.Text);
@@ -721,8 +720,8 @@ namespace LocalWebService
                             }
                             snack snack = new snack();
                             snack.nombre = txtNombre.Text;
-                            snack.precioUnitario = Double.Parse(txtPrecio.Text);
-                            snack.descripcion = txtDescripcion.Text;
+                            snack.precioUnitario = Double.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
+                        snack.descripcion = txtDescripcion.Text;
                             snack.stock = Int32.Parse(txtStock.Text);
                             snack.codigoProd = txtCodigo.Text;
                             snack.stockMinimo = Int32.Parse(txtStockMinimo.Text);
@@ -747,8 +746,8 @@ namespace LocalWebService
                             }
                             InventarioWS.producto producto = new InventarioWS.producto();
                             producto.nombre = txtNombre.Text;
-                            producto.precioUnitario = Double.Parse(txtPrecio.Text);
-                            producto.descripcion = txtDescripcion.Text;
+                            producto.precioUnitario = Double.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
+                        producto.descripcion = txtDescripcion.Text;
                             producto.stock = Int32.Parse(txtStock.Text);
                             producto.codigoProd = txtCodigo.Text;
                             producto.stockMinimo = Int32.Parse(txtStockMinimo.Text);
@@ -762,7 +761,7 @@ namespace LocalWebService
                 {
                     Response.Write("Por favor selecciona una opción.");
                 }
-            }
+            
         }
 
         //esta función obtiene la imagen del producto según su tipo

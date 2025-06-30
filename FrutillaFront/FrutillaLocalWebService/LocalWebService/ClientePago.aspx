@@ -32,7 +32,6 @@
             <label class="form-label">Método de pago</label>
             <div class="payment-methods">
                 <asp:Button ID="btnTarjeta" runat="server" Text="Tarjeta" CssClass="btn btn-success" OnClick="SeleccionarMetodo_Click" CommandArgument="Tarjeta" />
-                <asp:Button ID="btnTransferencia" runat="server" Text="Transferencia" CssClass="btn btn-outline-secondary" OnClick="SeleccionarMetodo_Click" CommandArgument="Transferencia" />
                 <asp:Button ID="btnPlin" runat="server" Text="Plin" CssClass="btn btn-success" OnClick="SeleccionarMetodo_Click" CommandArgument="Plin" />
                 <asp:Button ID="btnYape" runat="server" Text="Yape" CssClass="btn btn-success" OnClick="SeleccionarMetodo_Click" CommandArgument="Yape" />
             </div>

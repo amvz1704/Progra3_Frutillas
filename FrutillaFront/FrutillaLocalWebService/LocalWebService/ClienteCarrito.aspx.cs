@@ -53,7 +53,7 @@ namespace LocalWebService
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
 
-                int idUsuario = 10; //el id del clientePrueba 
+                int idUsuario = 1; //el id del clientePrueba 
 
                 if (tipoUsuario == "C")
                 {
@@ -177,6 +177,7 @@ namespace LocalWebService
             lblIGV.Text = igv.ToString("C");
             lblTotal.Text = total.ToString("C");
             btnPagar.Enabled = true;
+            Session["Carrito"] = carrito;
         }
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)

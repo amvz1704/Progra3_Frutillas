@@ -348,21 +348,27 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-INSERT INTO frutilla.Local (nombre, descripcion, direccion, telefono) 
+INSERT INTO Local (nombre, descripcion, direccion, telefono) 
 VALUES ('Polideportivo', 'Frente a EEGGLL disfruta a la salida de tus clases un delicioso y nutritivo Snack a precio razonable', 'Av. Universitaria 1801, San Miguel 15088', '999234234');
 
-INSERT INTO frutilla.Usuario (usuarioSistema, contrasSistema, activo, tipo) 
+INSERT INTO Usuario (usuarioSistema, contrasSistema, activo, tipo) 
 VALUES ('supervisorL1', 'debecambiarlo', 1, 'E');
 
-INSERT INTO frutilla.Empleado (idUsuario, nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaContrato, salario, turnoTrabajo, tipo, idLocal) 
+INSERT INTO Empleado (idUsuario, nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaContrato, salario, turnoTrabajo, tipo, idLocal) 
 VALUES (1, 'Regina', 'Sanchez', 'Boza', '999999999', 'regina@gmail.com', '2025-01-01', 2500, 1, 'S', 1);
 
-INSERT INTO frutilla.Local (nombre, descripcion, direccion, telefono) 
+INSERT INTO Local (nombre, descripcion, direccion, telefono) 
 VALUES ('Sociales', 'Al lado de la facultad de Sociales disfruta a la salida de tus clases un delicioso y nutritivo Snack', 'Av. Universitaria 123, San Miguel', '987654321');
 
-INSERT INTO frutilla.Usuario (usuarioSistema, contrasSistema, activo, tipo) 
+INSERT INTO Usuario (usuarioSistema, contrasSistema, activo, tipo) 
 VALUES ('supervisorL2', 'debecambiarlo', 1, 'E');
 
-INSERT INTO frutilla.Empleado (idUsuario, nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaContrato, salario, turnoTrabajo, tipo, idLocal) 
+INSERT INTO Empleado (idUsuario, nombres, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaContrato, salario, turnoTrabajo, tipo, idLocal) 
 VALUES (2, 'Nayane', 'Melendez', 'Saire', '999999999', 'nayane@gmail.com', '2025-01-01', 2500, 1, 'S', 2);
+
+INSERT INTO Usuario (usuarioSistema, contrasSistema, activo, tipo) 
+VALUES ('cliente1', 'debecambiarlo', 1, 'C');
+
+INSERT INTO Cliente (idUsuario, nombres, apellidoPaterno, apellidoMaterno, correoElectronico, telefono) 
+VALUES (3, 'Cliente', 'Prueba', 'Supervisor','cliente@gmail.com', '999999999');
 
