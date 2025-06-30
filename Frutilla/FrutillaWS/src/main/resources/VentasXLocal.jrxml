@@ -61,9 +61,6 @@ Where  frutilla.`OrdenVenta`.`idLocal` = $P{LocalBuscar} ]]></query>
 		<element kind="staticText" uuid="04a7c320-c2d6-42c5-8e91-a30e9e1a6cef" x="130" y="20" width="266" height="30" fontSize="16.0" bold="true" hTextAlign="Center">
 			<text><![CDATA[Reportes de Ventas por Local]]></text>
 		</element>
-		<element kind="image" uuid="2731a295-5898-4a15-8c03-b50d955c9219" x="10" y="10" width="80" height="40">
-			<expression><![CDATA["C:/Users/ADMIN/Documents/GitHub/Progra3_Frutillas/image-Jasper/nuevva-marca-frutilla.png"]]></expression>
-		</element>
 	</title>
 	<pageHeader height="48" splitType="Stretch">
 		<element kind="staticText" uuid="cde608dc-3407-40eb-94c7-619278953f73" x="0" y="10" width="150" height="20" fontSize="14.0">
