@@ -11,7 +11,7 @@
                     <asp:Label ID="lblPedidoNumero" runat="server" CssClass="fw-bold" /></h5>
             </div>
             <div class="col-md-6 text-end">
-                <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn btn-success" OnClick="btnGuardar_Click" />
+                <asp:Button ID="btnVerPedidos" runat="server" Text="Ver Pedidos" CssClass="btn btn-success" OnClick="btnVerPedidos_Click" />
             </div>
         </div>
 
@@ -59,10 +59,11 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-4">
-            <asp:Button ID="btnVerPedidos" runat="server"
+            <asp:Button ID="btnGuardar" runat="server"
                 CssClass="btn btn-success"
-                Text="Ver Pedidos"
-                OnClick="btnVerPedidos_Click" />
+                Text="Guardar Cambios"
+                OnClick="btnGuardar_Click" />
         </div>
+        
     </div>
 </asp:Content>
