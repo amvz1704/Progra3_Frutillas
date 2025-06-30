@@ -23,12 +23,6 @@
   <message name="actualizarComprobanteResponse">
     <part name="parameters" element="tns:actualizarComprobanteResponse" />
   </message>
-  <message name="obtenerProductoPorId">
-    <part name="parameters" element="tns:obtenerProductoPorId" />
-  </message>
-  <message name="obtenerProductoPorIdResponse">
-    <part name="parameters" element="tns:obtenerProductoPorIdResponse" />
-  </message>
   <message name="obtenerComprobante">
     <part name="parameters" element="tns:obtenerComprobante" />
   </message>
@@ -47,10 +41,6 @@
     <operation name="actualizarComprobante">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteRequest" message="tns:actualizarComprobante" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/actualizarComprobanteResponse" message="tns:actualizarComprobanteResponse" />
-    </operation>
-    <operation name="obtenerProductoPorId">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdRequest" message="tns:obtenerProductoPorId" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerProductoPorIdResponse" message="tns:obtenerProductoPorIdResponse" />
     </operation>
     <operation name="obtenerComprobante">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ComprobanteWS/obtenerComprobanteRequest" message="tns:obtenerComprobante" />
@@ -78,15 +68,6 @@
       </output>
     </operation>
     <operation name="actualizarComprobante">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="obtenerProductoPorId">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

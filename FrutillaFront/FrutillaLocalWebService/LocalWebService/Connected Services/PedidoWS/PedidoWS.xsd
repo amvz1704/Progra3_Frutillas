@@ -22,6 +22,8 @@
   <xs:element name="obtenerPedidosPorClienteResponse" type="tns:obtenerPedidosPorClienteResponse" />
   <xs:element name="obtenerPedidosPorEmpleado" type="tns:obtenerPedidosPorEmpleado" />
   <xs:element name="obtenerPedidosPorEmpleadoResponse" type="tns:obtenerPedidosPorEmpleadoResponse" />
+  <xs:element name="obtenerProductoPorId" type="tns:obtenerProductoPorId" />
+  <xs:element name="obtenerProductoPorIdResponse" type="tns:obtenerProductoPorIdResponse" />
   <xs:complexType name="agregarOrden">
     <xs:sequence>
       <xs:element minOccurs="0" name="orden" type="tns:ordenVentaDTO" />
@@ -127,6 +129,16 @@
   <xs:complexType name="obtenerPedidosPorEmpleadoResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVentaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerProductoPorId">
+    <xs:sequence>
+      <xs:element name="idProducto" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerProductoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:producto" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerDetallePedidoList">
