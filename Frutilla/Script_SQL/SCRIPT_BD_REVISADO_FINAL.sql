@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `frutilla`.`Producto` (
   `idProducto` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(80) NOT NULL,
   `descripcion` VARCHAR(100) NOT NULL,
-  `codProd` CHAR(3) NOT NULL,
+  `codProd` CHAR(6) NOT NULL,
   `precioUnitario` DOUBLE NOT NULL,
   `stockMinimo` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`idProducto`))

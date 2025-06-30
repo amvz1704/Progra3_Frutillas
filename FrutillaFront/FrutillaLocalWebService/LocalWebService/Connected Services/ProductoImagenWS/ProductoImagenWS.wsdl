@@ -5,12 +5,6 @@
       <xsd:import schemaLocation="http://localhost:8080/FrutillaWS/ProductoImagenWS?xsd=1" namespace="http://WS.frutilla.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarProductoImagen">
-    <part name="parameters" element="tns:listarProductoImagen" />
-  </message>
-  <message name="listarProductoImagenResponse">
-    <part name="parameters" element="tns:listarProductoImagenResponse" />
-  </message>
   <message name="agregarProductoImagen">
     <part name="parameters" element="tns:agregarProductoImagen" />
   </message>
@@ -29,6 +23,12 @@
   <message name="actualizarProductoImagenResponse">
     <part name="parameters" element="tns:actualizarProductoImagenResponse" />
   </message>
+  <message name="listarProductoImagen">
+    <part name="parameters" element="tns:listarProductoImagen" />
+  </message>
+  <message name="listarProductoImagenResponse">
+    <part name="parameters" element="tns:listarProductoImagenResponse" />
+  </message>
   <message name="eliminarProductoImagen">
     <part name="parameters" element="tns:eliminarProductoImagen" />
   </message>
@@ -36,10 +36,6 @@
     <part name="parameters" element="tns:eliminarProductoImagenResponse" />
   </message>
   <portType name="ProductoImagenWS">
-    <operation name="listarProductoImagen">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenRequest" message="tns:listarProductoImagen" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenResponse" message="tns:listarProductoImagenResponse" />
-    </operation>
     <operation name="agregarProductoImagen">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/agregarProductoImagenRequest" message="tns:agregarProductoImagen" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/agregarProductoImagenResponse" message="tns:agregarProductoImagenResponse" />
@@ -52,6 +48,10 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/actualizarProductoImagenRequest" message="tns:actualizarProductoImagen" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/actualizarProductoImagenResponse" message="tns:actualizarProductoImagenResponse" />
     </operation>
+    <operation name="listarProductoImagen">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenRequest" message="tns:listarProductoImagen" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/listarProductoImagenResponse" message="tns:listarProductoImagenResponse" />
+    </operation>
     <operation name="eliminarProductoImagen">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenRequest" message="tns:eliminarProductoImagen" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/ProductoImagenWS/eliminarProductoImagenResponse" message="tns:eliminarProductoImagenResponse" />
@@ -59,15 +59,6 @@
   </portType>
   <binding name="ProductoImagenWSPortBinding" type="tns:ProductoImagenWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="listarProductoImagen">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="agregarProductoImagen">
       <soap:operation soapAction="" />
       <input>
@@ -87,6 +78,15 @@
       </output>
     </operation>
     <operation name="actualizarProductoImagen">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarProductoImagen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
