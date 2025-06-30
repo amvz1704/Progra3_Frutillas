@@ -23,13 +23,13 @@ namespace LocalWebService
         char tipoSeleccionado = 'T'; // Por defecto, todos los tipos seleccionados
 
         // Propiedad helper para el carrito en Session
-        private List<PedidoWS.lineaOrdenDeVenta> Carrito
+        private Dictionary<int, List<lineaOrdenDeVenta>> Carritos
         {
             get
             {
-                if (Session["Carrito"] == null)
-                    Session["Carrito"] = new List<PedidoWS.lineaOrdenDeVenta>();
-                return (List<PedidoWS.lineaOrdenDeVenta>)Session["Carrito"];
+                if (Session["Carritos"] == null)
+                    Session["Carritos"] = new Dictionary<int, List<lineaOrdenDeVenta>>();
+                return (Dictionary<int, List<lineaOrdenDeVenta>>)Session["Carritos"];
             }   
         }
 
@@ -141,11 +141,16 @@ namespace LocalWebService
 
                 //se crea un nuevo Pedido, que se podra editar al ver carrito 
                 int idProd = Convert.ToInt32(e.CommandArgument);
+                int idLocal = int.Parse(ddlLocal.SelectedValue);
 
+                
+                if (!Carritos.ContainsKey(idLocal))
+                    Carritos[idLocal] = new List<PedidoWS.lineaOrdenDeVenta>();
 
+                List<PedidoWS.lineaOrdenDeVenta> carritoActual = Carritos[idLocal];
 
-                // Si ya existe la línea, puedes aumentar cantidad 
-                PedidoWS.lineaOrdenDeVenta existente = Carrito.Find(x => x.producto.idProducto == idProd);
+                lineaOrdenDeVenta existente = carritoActual.Find(x => x.producto.idProducto == idProd);
+
                 if (existente != null)
                 {
                     existente.cantidad++;
@@ -156,7 +161,7 @@ namespace LocalWebService
                     //creas una nueva orden de linea ordenDeVenta para agregar a linea ordenDeVenta
                     PedidoWS.producto copia = pedidoWS.obtenerProductoPorId(idProd);
 
-                    Carrito.Add(new PedidoWS.lineaOrdenDeVenta
+                    carritoActual.Add(new PedidoWS.lineaOrdenDeVenta
                     {
                         producto = copia,
                         cantidad = 1,
