@@ -16,22 +16,21 @@
 
     <div style="background-color: #DFF0D8; border-radius: 5px;">
 
-        <div class="container m-4">
+        <div class="container m-8">
             <!-- Dropdown Local -->
-        <div class="form-group mb-2 mb-md-0 dropdown-saludable">
-            <asp:DropDownList
-                ID="ddlLocal"
-                runat="server"
-                CssClass="form-select select-frutilla w-100"
-                Style="min-width: 200px;"
-                AutoPostBack="true"
-                OnSelectedIndexChanged="ddlLocal_SelectedIndexChanged">
-            </asp:DropDownList>
-        </div>
+            <div class="form-group  dropdown-saludable">
+                <asp:DropDownList
+                    ID="ddlLocal"
+                    runat="server"
+                    CssClass="form-select select-frutilla"
+                    AutoPostBack="true"
+                    OnSelectedIndexChanged="ddlLocal_SelectedIndexChanged">
+                </asp:DropDownList>
+            </div>
 
             
 
-    </div>
+        </div>
     </div>
 
     <asp:Label ID="lblError" runat="server" ForeColor="Red" EnableViewState="false" />

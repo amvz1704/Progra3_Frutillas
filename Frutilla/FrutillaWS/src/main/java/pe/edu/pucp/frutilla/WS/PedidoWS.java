@@ -174,10 +174,11 @@ public class PedidoWS {
         //actualizar stock
         for(LineaOrdenDeVenta lineaProducto: resultado){
             Producto actual = lineaProducto.getProducto(); 
+            
             actual.setStock(actual.getStock() - lineaProducto.getCantidad());
             
             try {
-                daoinventario.actualizar(actual, orden.getIdLocal());
+                daoinventario.actualizarStock(actual, orden.getIdLocal());
             } catch (Exception ex) {
                 Logger.getLogger(PedidoWS.class.getName()).log(Level.SEVERE, null, ex);
             }

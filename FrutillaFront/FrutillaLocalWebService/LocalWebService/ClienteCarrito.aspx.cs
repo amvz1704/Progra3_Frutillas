@@ -26,30 +26,18 @@ namespace LocalWebService
             clienteWS = new ClienteWSClient();
         }
 
-        private Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>> CarritoPorLocal
+        private List<PedidoWS.lineaOrdenDeVenta> CarritoSesion
+            => Session["Carrito"] as List<PedidoWS.lineaOrdenDeVenta>;
+
+        private Dictionary<int, List<lineaOrdenDeVenta>> Carritos
         {
             get
             {
                 if (Session["Carritos"] == null)
-                    Session["Carritos"] = new Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>();
-                return (Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>)Session["Carritos"];
+                    Session["Carritos"] = new Dictionary<int, List<lineaOrdenDeVenta>>();
+                return (Dictionary<int, List<lineaOrdenDeVenta>>)Session["Carritos"];
             }
         }
-
-        private List<PedidoWS.lineaOrdenDeVenta> CarritoDelLocal
-        {
-            get
-            {
-                int idLocal = Session["idLocal"] != null ? (int)Session["idLocal"] : 0;
-                if (CarritoPorLocal.ContainsKey(idLocal))
-                    return CarritoPorLocal[idLocal];
-                else
-                    return new List<PedidoWS.lineaOrdenDeVenta>();
-            }
-        }
-
-        private Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>> Carritos
-            => Session["Carritos"] as Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -88,9 +76,15 @@ namespace LocalWebService
             }
             if (!IsPostBack)
             {
+                
+
                 llenarDropdownLocales();
+
+                BindCarrito((int)Session["idLocal"]);
             }
         }
+
+
 
         private void llenarDropdownLocales()
         {
@@ -116,12 +110,34 @@ namespace LocalWebService
                 BindCarrito(idLocal);
 
             }
+
+            else
+            {
+                // Local “0” o inválido: limpia el grid
+                gvCarrito.DataSource = null;
+                gvCarrito.DataBind();
+            }
+
+        }
+
+        private List<PedidoWS.lineaOrdenDeVenta> GetCart(int idLocal)
+        {
+            // Si no existe, lo creamos y devolvemos la lista vacía
+            if (!Carritos.TryGetValue(idLocal, out var lista))
+            {
+                lista = new List<PedidoWS.lineaOrdenDeVenta>();
+                Carritos[idLocal] = lista;
+            }
+            return lista;
         }
 
         private void BindCarrito(int idLocal)
         {
 
-            var carrito = Carritos[idLocal] ?? new List<PedidoWS.lineaOrdenDeVenta>();
+
+
+            //var carrito = GetCart(idLocal);      // nunca null, ni excepción
+            var carrito = GetCart(idLocal); 
 
             // 2) Obtener el objeto Local completo
             var cliente = new LocalWSClient();
@@ -163,18 +179,17 @@ namespace LocalWebService
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
             int idLocal;
 
             // Guardas en Session
             if (int.TryParse(ddlLocal.SelectedValue, out idLocal))
             {
                 // Llama a tu método para cargar productos filtrados por el local seleccionado
-                
 
-            var carrito = Carritos[idLocal];
+                Session["Carrito"] = GetCart(idLocal);
+                var carrito = GetCart(idLocal);
 
-            if (carrito == null) return;
+                if (carrito == null) return;
 
             int index = Convert.ToInt32(e.CommandArgument);
             if (index < 0 || index >= carrito.Count) return;
@@ -200,6 +215,8 @@ namespace LocalWebService
             }
 
                 Carritos[idLocal] = carrito;
+                Session["Carrito"] = carrito;
+
                 BindCarrito(idLocal);
             }
         }
@@ -211,8 +228,9 @@ namespace LocalWebService
             // Guardas en Session
             if (int.TryParse(ddlLocal.SelectedValue, out idLocal))
             {
+                Session["idLocal"] = idLocal; //guardas para pasar
 
-                var carrito = Carritos[idLocal];
+                var carrito = GetCart(idLocal);
 
                 if (carrito == null || carrito.Count == 0)
                 {
@@ -256,6 +274,7 @@ namespace LocalWebService
 
                     int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);
 
+
                     // el false indica: no abortes el hilo inmediatamente
                     Response.Redirect($"ClientePago.aspx?id={idGenerado}", false);
 
@@ -271,6 +290,10 @@ namespace LocalWebService
 
                     Response.Redirect("ClientePago.aspx?id=-1");
                 }
+            }
+            else { 
+                //por favor seleccione un local
+            
             }
         }
 

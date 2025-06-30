@@ -1,4 +1,5 @@
 ﻿
+using LocalWebService.InventarioWS;
 using LocalWebService.LocalWS;
 using LocalWebService.PedidoWS;
 using System;
@@ -16,6 +17,7 @@ namespace LocalWebService
     {
     
         private PedidoWSClient PedidoWS;
+        private InventarioWSClient InventarioWS;
 
 
         private List<PedidoWS.lineaOrdenDeVenta> Carrito
