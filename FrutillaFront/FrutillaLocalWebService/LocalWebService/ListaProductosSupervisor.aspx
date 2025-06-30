@@ -156,7 +156,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="txtPrecio" class="form-label">Precio (S/.) <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control decimal-input" TextMode="Number"
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control decimal-input"
                                 step="0.01" placeholder="0.00" />
                             <asp:Label ID="lblPrecio" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
