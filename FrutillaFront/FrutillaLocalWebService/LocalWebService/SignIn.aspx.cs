@@ -46,8 +46,26 @@ namespace LocalWebService
             bool esValido = true;
 
             if (string.IsNullOrEmpty(nombre)) { lblNombre.Text = "Ingrese su nombre"; esValido = false; }
+            else if (nombre.Length > 70)
+            {
+                lblCorreo.Text = "El nombre no debe tener más de 70 caracteres.";
+                esValido = false;
+            }
+
             if (string.IsNullOrEmpty(apPaterno)) { lblApPaterno.Text = "Ingrese su apellido paterno"; esValido = false; }
+            else if (apPaterno.Length > 45)
+            {
+                lblCorreo.Text = "El apellido paterno no debe tener más de 45 caracteres.";
+                esValido = false;
+            }
+
             if (string.IsNullOrEmpty(apMaterno)) { lblApMaterno.Text = "Ingrese su apellido materno"; esValido = false; }
+            else if (apMaterno.Length > 45)
+            {
+                lblCorreo.Text = "El apellido materno no debe tener más de 45 caracteres.";
+                esValido = false;
+            }
+
             if (string.IsNullOrEmpty(usuario))
             {
                 lblUsuario.Text = "Ingrese un nombre de usuario";
@@ -56,6 +74,11 @@ namespace LocalWebService
             else if (!System.Text.RegularExpressions.Regex.IsMatch(usuario, @"^[a-zA-Z0-9_]+$"))
             {
                 lblUsuario.Text = "Solo se permite una palabra sin espacios, letras, números o guion bajo.";
+                esValido = false;
+            }
+            else if (usuario.Length > 45)
+            {
+                lblUsuario.Text = "El nombre de usuario no debe tener más de 45 caracteres.";
                 esValido = false;
             }
 
@@ -67,6 +90,11 @@ namespace LocalWebService
             else if (password.Length < 6)
             {
                 lblPassword.Text = "La contraseña debe tener al menos 6 caracteres.";
+                esValido = false;
+            }
+            else if (password.Length > 15)
+            {
+                lblPassword.Text = "La contraseña no debe tener más de 15 caracteres.";
                 esValido = false;
             }
             else if (password.Contains(" "))
@@ -84,6 +112,11 @@ namespace LocalWebService
             if (string.IsNullOrEmpty(correo))
             {
                 lblCorreo.Text = "Ingrese un correo electrónico";
+                esValido = false;
+            }
+            if (correo.Length > 80)
+            {
+                lblCorreo.Text = "El correo no debe tener más de 80 caracteres.";
                 esValido = false;
             }
             else if (!System.Text.RegularExpressions.Regex.IsMatch(correo, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))

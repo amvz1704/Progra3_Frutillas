@@ -49,7 +49,6 @@ namespace LocalWebService
         {
             localWSClient = new LocalWSClient();
             ddlLocal.Items.Clear();
-            ddlLocal.Items.Add(new ListItem("Selecciona un local", "0"));
             foreach (var local in localWSClient.listarLocales()) // Cambiar por locales activos
             {
                 ddlLocal.Items.Add(new ListItem(local.nombre, local.idLocal.ToString()));
