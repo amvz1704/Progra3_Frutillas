@@ -16,6 +16,7 @@ namespace LocalWebService
         private PedidoWSClient pedidoWS;
         private LocalWSClient localWS;
         private ClienteWSClient clienteWS;
+        private InventarioWSClient inventarioWS;
         int idLocalSeleccionado = 0;
         int idClienteGlobal = 0;
 
@@ -24,6 +25,7 @@ namespace LocalWebService
             pedidoWS = new PedidoWSClient();
             localWS = new LocalWSClient();
             clienteWS = new ClienteWSClient();
+            inventarioWS = new InventarioWSClient();
         }
 
         private List<PedidoWS.lineaOrdenDeVenta> CarritoSesion
@@ -197,11 +199,18 @@ namespace LocalWebService
             switch (e.CommandName)
             {
                 case "Aumentar":
-                    carrito[index].cantidad++;
-                    carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
-                    break;
+                        
+                        int stock=inventarioWS.obtenerStockPorId(carrito[index].producto.idProducto, idLocal);
 
-                case "Disminuir":
+                        if (carrito[index].cantidad < stock)
+                        {
+                            carrito[index].cantidad++;
+                            carrito[index].subtotal = carrito[index].cantidad * carrito[index].producto.precioUnitario;
+
+                        }
+                        break;
+
+                    case "Disminuir":
                     if (carrito[index].cantidad > 1)
                     {
                         carrito[index].cantidad--;
