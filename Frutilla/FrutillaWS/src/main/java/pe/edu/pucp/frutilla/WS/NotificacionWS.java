@@ -48,8 +48,6 @@ public class NotificacionWS {
     @WebMethod(operationName = "listarPorFecha")
     public ArrayList<NotificacionDTO> listarPorFecha(String fecha,int idSupervisor) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false); // para evitar fechas inválidas tipo 2024-02-30
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate fechaDate =  LocalDate.parse(fecha, formatter);
             ArrayList<Notificacion> lista = notificacionServ.listarPorFecha(fechaDate,idSupervisor);

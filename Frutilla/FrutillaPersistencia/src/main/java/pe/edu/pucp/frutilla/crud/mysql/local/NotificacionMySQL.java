@@ -115,7 +115,7 @@ public class NotificacionMySQL extends BaseDAOImpl<Notificacion> implements Noti
     }
 
     private String getSelectByFechaQuery() {
-        return "SELECT * FROM Notificacion WHERE DATE(fechaHora) = ? and "
+        return "SELECT * FROM Notificacion WHERE DATE(fecha) = ? and "
                 + "idEmpleado = ?";
     }
 
