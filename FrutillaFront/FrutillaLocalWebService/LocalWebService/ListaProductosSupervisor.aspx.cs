@@ -11,6 +11,7 @@ using LocalWebService.EmpleadoWS;
 using LocalWebService.InventarioWS;
 using LocalWebService.PedidoWS;
 using LocalWebService.ProductoImagenWS;
+using LocalWebService.UsuarioWS;
 
 namespace LocalWebService
 {
@@ -59,17 +60,6 @@ namespace LocalWebService
             if (!IsPostBack)
             {
                 var valores = Enum.GetValues(typeof(FrutasBebida));
-
-                // Limpiar por si acaso
-                ChkFrutas.Items.Clear();
-
-                foreach (var valor in valores)
-                {
-                    string texto = valor.ToString(); // Nombre del enum (ej: "Rojo")
-                    int valorInt = (int)valor;       // Valor numérico (ej: 1)
-
-                    ChkFrutas.Items.Add(new ListItem(texto, valorInt.ToString()));
-                }
                 PaginaActual = 0;
                 CargarProductos();
             }
@@ -180,6 +170,18 @@ namespace LocalWebService
 
                 HiddenTipoProductoEdit.Value = tipoProducto.ToString();
                 HiddenIdProductoEdit.Value = e.CommandArgument.ToString();
+                LblEditNombre.Text = "";
+                LblEditDescripcion.Text = "";
+                LblEditStock.Text = "";
+                LblEditStockMin.Text = "";
+                LblEditPrecio.Text = "";
+                LblEditCodigo.Text = "";
+                LblTipoEnvaseEdit.Text = "";
+                LblTamanioEdit.Text = "";
+                LblTipoBebidaEdit.Text = "";
+                LblTipoEndulzanteEdit.Text = "";
+                LblTipoSnackEdit.Text = "";
+                LblEnvaseSnackEdit.Text = "";
                 // Obtener y asignar datos según el tipo
                 switch (tipoProducto)
                 {
@@ -268,6 +270,7 @@ namespace LocalWebService
                        var myModal = new bootstrap.Modal(document.getElementById('modalEditarProducto')); myModal.show();",
                     true
                 );
+                /*
                 // Mostrar el modal
                 ScriptManager.RegisterStartupScript(
                     this,
@@ -275,7 +278,7 @@ namespace LocalWebService
                     "ShowEditModal",
                     "var myModal = new bootstrap.Modal(document.getElementById('modalEditarProducto')); myModal.show();",
                     true
-                );
+                );*/
                 CargarProductos();
 
             }
@@ -313,130 +316,247 @@ namespace LocalWebService
         {
             string tipo = HiddenTipoProductoEdit.Value;
             int id = int.Parse(HiddenIdProductoEdit.Value);
-            if (tipo == "F")
-            {
-                fruta fruta = new fruta();
-                // Convert the string value to the enum type 'tipoEstado'
-                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
-                {
-                    fruta.tipoEstado = estado;
-                    fruta.tipoEstadoSpecified = true;
-                }
-                else
-                {
-                    lblError.Text = "El estado del producto no es válido.";
-                    return;
-                }
-                fruta.idProducto = id;
-                fruta.nombre = TxtEditNombre.Text;
-                fruta.precioUnitario = Double.Parse(TxtEditPrecio.Text);
-                fruta.descripcion = TxtEditDescripcion.Text;
-                fruta.stock = Int32.Parse(TxtEditStock.Text);
-                fruta.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
-                fruta.codigoProd = TxtEditCodigo.Text;
-                fruta.envase = TxtTipoEnvaseEdit.Text;
-                fruta.estaLimpio = ChkFrutaLimpieza.Checked;
-                fruta.estaLimpioSpecified = true;
-                fruta.estaEnvasado = ChkEnvasadoEdit.Checked;
-                fruta.estaEnvasadoSpecified = true;
-                fruta.requiereEnvase = ChkReqEnvaseEdit.Checked;
-                fruta.requiereEnvaseSpecified = true;
-                fruta.requiereLimpieza = ChkReqLimpiezaEdit.Checked;
-                fruta.requiereLimpiezaSpecified = true;
-                inventarioWSClient.actualizarProducto(fruta, idLocal, 'F');
-                ColocarImagenProducto(id, FileUpload.FileName);
-            }
-            else if (tipo == "B")
-            {
-                bebida bebida = new bebida();
-                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
-                {
-                    bebida.tipoEstado = estado;
-                    bebida.tipoEstadoSpecified = true;
-                }
-                else
-                {
-                    lblError.Text = "El estado del producto no es válido.";
-                    return;
-                }
-                bebida.idProducto = id;
-                bebida.nombre = TxtEditNombre.Text;
-                bebida.precioUnitario = Double.Parse(TxtEditPrecio.Text);
-                bebida.descripcion = TxtEditDescripcion.Text;
-                bebida.stock = Int32.Parse(TxtEditStock.Text);
-                bebida.codigoProd = TxtEditCodigo.Text;
-                bebida.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
-                bebida.tamanioOz = Int32.Parse(TxtTamanioEdit.Text);
-                bebida.tipo = TxtTipoBebidaEdit.Text;
-                bebida.endulzante = TxtTipoEndulzanteEdit.Text;
-                bebida.tieneLeche = (tipoLeche)Int32.Parse(DDTipoLecheEdit.SelectedValue);
-                bebida.tieneLecheSpecified = true;
+            bool esValido = true;
 
-                // Conversión de string a tipoLeche  
-                if (Enum.TryParse(DDTipoLecheEdit.SelectedValue, out tipoLeche tipoLecheSeleccionado))
+            LblEditNombre.Text = "";
+            LblEditDescripcion.Text = "";
+            LblEditStock.Text = "";
+            LblEditStockMin.Text = "";
+            LblEditPrecio.Text = "";
+            LblEditCodigo.Text = "";
+            LblTipoEnvaseEdit.Text = "";
+            LblTamanioEdit.Text = "";
+            LblTipoBebidaEdit.Text = "";
+            LblTipoEndulzanteEdit.Text = "";
+            LblTipoSnackEdit.Text = "";
+            LblEnvaseSnackEdit.Text = "";
+
+
+            if (string.IsNullOrEmpty(TxtEditNombre.Text.Trim())) { LblEditNombre.Text = "Ingrese el nombre"; esValido = false; }
+            if (string.IsNullOrEmpty(TxtEditDescripcion.Text.Trim())) { LblEditDescripcion.Text = "Ingrese la descripcion"; esValido = false; }
+            if (string.IsNullOrEmpty(TxtEditStock.Text.Trim()) ||
+!System.Text.RegularExpressions.Regex.IsMatch(TxtEditStock.Text.Trim(), @"^[1-9][0-9]*$"))
+            {
+                LblEditStock.Text = "Ingrese un valor mayor a 0";
+                esValido = false;
+            }
+            if (string.IsNullOrEmpty(TxtEditStockMin.Text.Trim()) ||
+!System.Text.RegularExpressions.Regex.IsMatch(TxtEditStockMin.Text.Trim(), @"^[1-9][0-9]*$"))
+            {
+                LblEditStockMin.Text = "Ingrese un valor mayor a 0";
+                esValido = false;
+            }
+            if (!decimal.TryParse(TxtEditPrecio.Text.Trim(), out decimal stock) || stock <= 0)
+            {
+                LblEditPrecio.Text = "Ingrese un número real mayor a 0";
+                esValido = false;
+            }
+            if (string.IsNullOrEmpty(TxtEditCodigo.Text.Trim()) ||
+!System.Text.RegularExpressions.Regex.IsMatch(TxtEditCodigo.Text.Trim(), @"^[a-zA-Z0-9]{6}$"))
+            {
                 {
-                    bebida.tieneLeche = tipoLecheSeleccionado;
-                }
-                else
-                {
-                    lblError.Text = "El tipo de leche seleccionado no es válido.";
-                    return;
+                    LblEditCodigo.Text = "Ingrese un codigo de 6 caracteres entre letras y numeros";
+                    esValido = false;
                 }
 
-                inventarioWSClient.actualizarProducto(bebida, idLocal, 'B');
-                ColocarImagenProducto(id, FileUpload.FileName);
-            }
-            else if (tipo == "S")
-            {
-                snack snack = new snack();
-                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
+                if (tipo == "F")
                 {
-                    snack.tipoEstado = estado;
-                    snack.tipoEstadoSpecified = true;
+                    fruta fruta = new fruta();
+                    // Convert the string value to the enum type 'tipoEstado'
+                    if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
+                    {
+                        fruta.tipoEstado = estado;
+                        fruta.tipoEstadoSpecified = true;
+                    }
+                    else
+                    {
+                        //lblError.Text = "El estado del producto no es válido.";
+                        return;
+                    }
+
+
+                    if (string.IsNullOrEmpty(TxtTipoEnvaseEdit.Text.Trim()))
+                    {
+                        LblTipoEnvaseEdit.Text = "Ingrese un envase";
+                        esValido = false;
+                    }
+
+                    if (esValido != true)
+                    {
+                        //Agregar modal de edicion
+                        ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "ShowEditModal",
+                    $@"mostrarOpcionesEditar('F');
+                       var myModal = new bootstrap.Modal(document.getElementById('modalEditarProducto')); myModal.show();",
+                    true
+                );
+                        return;
+                    }
+                    fruta.idProducto = id;
+                    fruta.nombre = TxtEditNombre.Text;
+                    fruta.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    fruta.descripcion = TxtEditDescripcion.Text;
+                    fruta.stock = Int32.Parse(TxtEditStock.Text);
+                    fruta.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
+                    fruta.codigoProd = TxtEditCodigo.Text;
+                    fruta.envase = TxtTipoEnvaseEdit.Text;
+                    fruta.estaLimpio = ChkFrutaLimpieza.Checked;
+                    fruta.estaLimpioSpecified = true;
+                    fruta.estaEnvasado = ChkEnvasadoEdit.Checked;
+                    fruta.estaEnvasadoSpecified = true;
+                    fruta.requiereEnvase = ChkReqEnvaseEdit.Checked;
+                    fruta.requiereEnvaseSpecified = true;
+                    fruta.requiereLimpieza = ChkReqLimpiezaEdit.Checked;
+                    fruta.requiereLimpiezaSpecified = true;
+                    inventarioWSClient.actualizarProducto(fruta, idLocal, 'F');
+                    ColocarImagenProducto(id, FileUpload.FileName);
+                }
+                else if (tipo == "B")
+                {
+                    bebida bebida = new bebida();
+                    if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
+                    {
+                        bebida.tipoEstado = estado;
+                        bebida.tipoEstadoSpecified = true;
+                    }
+                    else
+                    {
+
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(TxtTamanioEdit.Text.Trim()) ||
+            !System.Text.RegularExpressions.Regex.IsMatch(TxtTamanioEdit.Text.Trim(), @"^[1-9][0-9]*$"))
+                    {
+                        LblTamanioEdit.Text = "Ingrese un valor mayor a 0";
+                        esValido = false;
+                    }
+                    if (string.IsNullOrEmpty(TxtTipoBebidaEdit.Text.Trim())) { LblTipoBebidaEdit.Text = "Ingrese el tipo de bebida"; esValido = false; }
+                    if (string.IsNullOrEmpty(TxtTipoEndulzanteEdit.Text.Trim())) { LblTipoEndulzanteEdit.Text = "Ingrese el tipo de endulzante"; esValido = false; }
+
+                    if (esValido != true)
+                    {
+                        ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "ShowEditModal",
+                    $@"mostrarOpcionesEditar('B');
+                       var myModal = new bootstrap.Modal(document.getElementById('modalEditarProducto')); myModal.show();",
+                    true
+                );
+                        return;
+                    }
+                    bebida.idProducto = id;
+                    bebida.nombre = TxtEditNombre.Text;
+                    bebida.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    bebida.descripcion = TxtEditDescripcion.Text;
+                    bebida.stock = Int32.Parse(TxtEditStock.Text);
+                    bebida.codigoProd = TxtEditCodigo.Text;
+                    bebida.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
+                    bebida.tamanioOz = Int32.Parse(TxtTamanioEdit.Text);
+                    bebida.tipo = TxtTipoBebidaEdit.Text;
+                    bebida.endulzante = TxtTipoEndulzanteEdit.Text;
+                    bebida.tieneLeche = (tipoLeche)Int32.Parse(DDTipoLecheEdit.SelectedValue);
+                    bebida.tieneLecheSpecified = true;
+
+                    // Conversión de string a tipoLeche  
+                    if (Enum.TryParse(DDTipoLecheEdit.SelectedValue, out tipoLeche tipoLecheSeleccionado))
+                    {
+                        bebida.tieneLeche = tipoLecheSeleccionado;
+                    }
+                    else
+                    {
+                        lblError.Text = "El tipo de leche seleccionado no es válido.";
+                        return;
+                    }
+
+                    inventarioWSClient.actualizarProducto(bebida, idLocal, 'B');
+                    ColocarImagenProducto(id, FileUpload.FileName);
+                }
+                else if (tipo == "S")
+                {
+                    snack snack = new snack();
+                    if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
+                    {
+                        snack.tipoEstado = estado;
+                        snack.tipoEstadoSpecified = true;
+                    }
+                    else
+                    {
+                        lblError.Text = "El estado del producto no es válido.";
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(TxtTipoSnackEdit.Text.Trim())) { LblTipoSnackEdit.Text = "Ingrese el tipo de snack"; esValido = false; }
+                    if (string.IsNullOrEmpty(TxtEnvaseSnackEdit.Text.Trim())) { LblEnvaseSnackEdit.Text = "Ingrese el tipo de envase"; esValido = false; }
+
+                    if (esValido != true)
+                    {
+                        ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "ShowEditModal",
+                    $@"mostrarOpcionesEditar('S');
+                       var myModal = new bootstrap.Modal(document.getElementById('modalEditarProducto')); myModal.show();",
+                    true
+                );
+                        return;
+                    }
+
+                    snack.idProducto = id;
+                    snack.nombre = TxtEditNombre.Text;
+                    snack.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    snack.descripcion = TxtEditDescripcion.Text;
+                    snack.stock = Int32.Parse(TxtEditStock.Text);
+                    snack.codigoProd = TxtEditCodigo.Text;
+                    snack.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
+                    snack.tipo = TxtTipoSnackEdit.Text;
+                    snack.envase = TxtEnvaseSnackEdit.Text;
+
+                    inventarioWSClient.actualizarProducto(snack, idLocal, 'S');
+                    ColocarImagenProducto(id, FileUpload.FileName);
                 }
                 else
                 {
-                    lblError.Text = "El estado del producto no es válido.";
-                    return;
-                }
-                snack.idProducto = id;
-                snack.nombre = TxtEditNombre.Text;
-                snack.precioUnitario = Double.Parse(TxtEditPrecio.Text);
-                snack.descripcion = TxtEditDescripcion.Text;
-                snack.stock = Int32.Parse(TxtEditStock.Text);
-                snack.codigoProd = TxtEditCodigo.Text;
-                snack.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
-                snack.tipo = TxtTipoSnackEdit.Text;
-                snack.envase = TxtEnvaseSnackEdit.Text;
+                    InventarioWS.producto producto = new InventarioWS.producto();
+                    if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
+                    {
+                        producto.tipoEstado = estado;
+                        producto.tipoEstadoSpecified = true;
+                    }
+                    else
+                    {
+                        lblError.Text = "El estado del producto no es válido.";
+                        return;
+                    }
 
-                inventarioWSClient.actualizarProducto(snack, idLocal, 'S');
-                ColocarImagenProducto(id, FileUpload.FileName);
-            }
-            else
-            {
-                InventarioWS.producto producto = new InventarioWS.producto();
-                if (Enum.TryParse(DdlEditEstado.SelectedValue, out InventarioWS.tipoEstado estado))
-                {
-                    producto.tipoEstado = estado;
-                    producto.tipoEstadoSpecified = true;
-                }
-                else
-                {
-                    lblError.Text = "El estado del producto no es válido.";
-                    return;
-                }
-                producto.idProducto = id;
-                producto.nombre = TxtEditNombre.Text;
-                producto.precioUnitario = Double.Parse(TxtEditPrecio.Text);
-                producto.descripcion = TxtEditDescripcion.Text;
-                producto.stock = Int32.Parse(TxtEditStock.Text);
-                producto.codigoProd = TxtEditCodigo.Text;
-                producto.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
+                    if (esValido != true)
+                    {
+                        ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "ShowEditModal",
+                    $@"mostrarOpcionesEditar('P');
+                       var myModal = new bootstrap.Modal(document.getElementById('modalEditarProducto')); myModal.show();",
+                    true
+                );
+                        return;
+                    }
+                    producto.idProducto = id;
+                    producto.nombre = TxtEditNombre.Text;
+                    producto.precioUnitario = Double.Parse(TxtEditPrecio.Text);
+                    producto.descripcion = TxtEditDescripcion.Text;
+                    producto.stock = Int32.Parse(TxtEditStock.Text);
+                    producto.codigoProd = TxtEditCodigo.Text;
+                    producto.stockMinimo = Int32.Parse(TxtEditStockMin.Text);
 
-                inventarioWSClient.actualizarProducto(producto, idLocal, 'P');
-                ColocarImagenProducto(id, FileUpload.FileName);
+                    inventarioWSClient.actualizarProducto(producto, idLocal, 'P');
+                    ColocarImagenProducto(id, FileUpload.FileName);
+                }
+                CargarProductos();
             }
-            CargarProductos();
         }
 
         protected void btnGuardarProducto_Click(object sender, EventArgs e)
@@ -446,79 +566,202 @@ namespace LocalWebService
             {
                 // Convertir el valor string a char
                 char tipo = TipoProducto.SelectedValue[0]; // ← Aquí está el char
+                bool esValido = true;
 
-                // Ejemplo de uso
-                switch (tipo)
+                lblNombre.Text = "";
+                LblDescripcion.Text = "";
+                LblStock.Text = "";
+                LblStockMinimo.Text = "";
+                lblPrecio.Text = "";
+                LblCodigo.Text = "";
+                LblTipoEnvase.Text = "";
+                LblTamanioOz.Text = "";
+                LblTipoBebida.Text = "";
+                LblBebidaEndulzante.Text = "";
+                LblTipoSnack.Text = "";
+                LblSnackEnvase.Text = "";
+
+
+                if (string.IsNullOrEmpty(txtNombre.Text.Trim())) { lblNombre.Text = "Ingrese el nombre"; esValido = false; }
+                if (string.IsNullOrEmpty(txtDescripcion.Text.Trim())) { LblDescripcion.Text = "Ingrese la descripcion"; esValido = false; }
+                if (string.IsNullOrEmpty(txtStock.Text.Trim()) ||
+    !System.Text.RegularExpressions.Regex.IsMatch(txtStock.Text.Trim(), @"^[1-9][0-9]*$"))
                 {
-                    case 'F':
-                        // Lógica para Fruta
-                        fruta fruta = new fruta();
-                        fruta.nombre = txtNombre.Text;
-                        fruta.precioUnitario = Double.Parse(txtPrecio.Text);
-                        fruta.descripcion = txtDescripcion.Text;
-                        fruta.stock = Int32.Parse(txtStock.Text);
-                        fruta.stockMinimo = Int32.Parse(txtStockMinimo.Text);
-                        fruta.codigoProd = txtCodigo.Text;
-                        fruta.envase = TxtTipoEnvase.Text;
-                        fruta.estaLimpio = ChkFrutaLimpieza.Checked;
-                        fruta.estaLimpioSpecified = true;
-                        fruta.estaEnvasado = ChkFrutaEstaEnvasado.Checked;
-                        fruta.estaEnvasadoSpecified = true;
-                        fruta.requiereEnvase = ChkFrutaRequiereEnvase.Checked;
-                        fruta.requiereEnvaseSpecified = true;
-                        fruta.requiereLimpieza = ChkFrutaLimpieza.Checked;
-                        fruta.requiereLimpiezaSpecified = true;
-                        inventarioWSClient.insertarFruta(fruta, idLocal);
-                        break;
-                    case 'B':
-                        bebida bebida = new bebida();
-                        bebida.nombre = txtNombre.Text;
-                        bebida.precioUnitario = Double.Parse(txtPrecio.Text);
-                        bebida.descripcion = txtDescripcion.Text;
-                        bebida.stock = Int32.Parse(txtStock.Text);
-                        bebida.codigoProd = txtCodigo.Text;
-                        bebida.stockMinimo = Int32.Parse(txtStockMinimo.Text);
-                        bebida.tamanioOz = Int32.Parse(TxtTamanioOz.Text);
-                        bebida.tipo = TxtTipoBebida.Text;
-                        bebida.endulzante = TxtBebidaEndulzante.Text;
-                        bebida.tieneLeche = (tipoLeche)Int32.Parse(DropDownList1.SelectedValue);
-                        bebida.tieneLecheSpecified = true;
-
-
-                        // Conversión de string a tipoLeche
-                        if (Enum.TryParse(DropDownList1.SelectedValue, out tipoLeche tipoLecheSeleccionado))
-                        {
-                            bebida.tieneLeche = tipoLecheSeleccionado;
-                        }
-                        else
-                        {
-                            // Manejar el caso en que el valor no sea válido
-                            lblError.Text = "El tipo de leche seleccionado no es válido.";
-                            return;
-                        }
-
-
-                        inventarioWSClient.insertarBebida(bebida, idLocal);
-                        break;
-                    case 'S':
-                        snack snack = new snack();
-                        snack.nombre = txtNombre.Text;
-                        snack.precioUnitario = Double.Parse(txtPrecio.Text);
-                        snack.descripcion = txtDescripcion.Text;
-                        snack.stock = Int32.Parse(txtStock.Text);
-                        snack.codigoProd = txtCodigo.Text;
-                        snack.stockMinimo = Int32.Parse(txtStockMinimo.Text);
-                        snack.tipo = TxtTipoSnack.Text;
-                        snack.envase = TxtSnackEnvase.Text;
-
-                        inventarioWSClient.insertarSnack(snack, idLocal);
-                        break;
+                    LblStock.Text = "Ingrese un valor mayor a 0";
+                    esValido = false;
                 }
-                CargarProductos();
-            }
-            else
-            {
-                Response.Write("Por favor selecciona una opción.");
+                if (string.IsNullOrEmpty(txtStockMinimo.Text.Trim()) ||
+    !System.Text.RegularExpressions.Regex.IsMatch(txtStockMinimo.Text.Trim(), @"^[1-9][0-9]*$"))
+                {
+                    LblStockMinimo.Text = "Ingrese un valor mayor a 0";
+                    esValido = false;
+                }
+                if (!decimal.TryParse(txtPrecio.Text.Trim(), out decimal stock) || stock <= 0)
+                {
+                    lblPrecio.Text = "Ingrese un número real mayor a 0";
+                    esValido = false;
+                }
+                if (string.IsNullOrEmpty(txtCodigo.Text.Trim()) ||
+    !System.Text.RegularExpressions.Regex.IsMatch(txtCodigo.Text.Trim(), @"^[a-zA-Z0-9]{6}$"))
+                {
+                    {
+                        LblCodigo.Text = "Ingrese un codigo de 6 caracteres entre letras y numeros";
+                        esValido = false;
+                    }
+
+
+                    // Ejemplo de uso
+                    switch (tipo)
+                    {
+                        case 'F':
+
+                            if (string.IsNullOrEmpty(TxtTipoEnvase.Text.Trim()))
+                            {
+                                LblTipoEnvase.Text = "Ingrese un envase";
+                                esValido = false;
+                            }
+
+                            if (esValido != true)
+                            {
+                                ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowModal",
+                "var myModal = new bootstrap.Modal(document.getElementById('modalAgregarProducto')); myModal.show();",
+                true
+                );
+                                return;
+                            }
+                            // Lógica para Fruta
+                            fruta fruta = new fruta();
+                            fruta.nombre = txtNombre.Text;
+                            fruta.precioUnitario = Double.Parse(txtPrecio.Text);
+                            fruta.descripcion = txtDescripcion.Text;
+                            fruta.stock = Int32.Parse(txtStock.Text);
+                            fruta.stockMinimo = Int32.Parse(txtStockMinimo.Text);
+                            fruta.codigoProd = txtCodigo.Text;
+                            fruta.envase = TxtTipoEnvase.Text;
+                            fruta.estaLimpio = ChkFrutaLimpieza.Checked;
+                            fruta.estaLimpioSpecified = true;
+                            fruta.estaEnvasado = ChkFrutaEstaEnvasado.Checked;
+                            fruta.estaEnvasadoSpecified = true;
+                            fruta.requiereEnvase = ChkFrutaRequiereEnvase.Checked;
+                            fruta.requiereEnvaseSpecified = true;
+                            fruta.requiereLimpieza = ChkFrutaLimpieza.Checked;
+                            fruta.requiereLimpiezaSpecified = true;
+
+                            inventarioWSClient.insertarFruta(fruta, idLocal);
+                            break;
+                        case 'B':
+                            if (string.IsNullOrEmpty(TxtTamanioOz.Text.Trim()) ||
+        !System.Text.RegularExpressions.Regex.IsMatch(TxtTamanioOz.Text.Trim(), @"^[1-9][0-9]*$"))
+                            {
+                                LblTamanioOz.Text = "Ingrese un valor mayor a 0";
+                                esValido = false;
+                            }
+                            if (string.IsNullOrEmpty(TxtTipoBebida.Text.Trim())) { LblTipoBebida.Text = "Ingrese el tipo de bebida"; esValido = false; }
+                            if (string.IsNullOrEmpty(TxtBebidaEndulzante.Text.Trim())) { LblBebidaEndulzante.Text = "Ingrese el tipo de endulzante"; esValido = false; }
+
+                            if (esValido != true)
+                            {
+                                ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowModal",
+                "var myModal = new bootstrap.Modal(document.getElementById('modalAgregarProducto')); myModal.show();",
+                true
+                );
+                                return;
+                            }
+
+                            bebida bebida = new bebida();
+                            bebida.nombre = txtNombre.Text;
+                            bebida.precioUnitario = Double.Parse(txtPrecio.Text);
+                            bebida.descripcion = txtDescripcion.Text;
+                            bebida.stock = Int32.Parse(txtStock.Text);
+                            bebida.codigoProd = txtCodigo.Text;
+                            bebida.stockMinimo = Int32.Parse(txtStockMinimo.Text);
+                            bebida.tamanioOz = Int32.Parse(TxtTamanioOz.Text);
+                            bebida.tipo = TxtTipoBebida.Text;
+                            bebida.endulzante = TxtBebidaEndulzante.Text;
+                            bebida.tieneLeche = (tipoLeche)Int32.Parse(DropDownList1.SelectedValue);
+                            bebida.tieneLecheSpecified = true;
+
+
+                            // Conversión de string a tipoLeche
+                            if (Enum.TryParse(DropDownList1.SelectedValue, out tipoLeche tipoLecheSeleccionado))
+                            {
+                                bebida.tieneLeche = tipoLecheSeleccionado;
+                            }
+                            else
+                            {
+                                // Manejar el caso en que el valor no sea válido
+                                lblError.Text = "El tipo de leche seleccionado no es válido.";
+                                return;
+                            }
+
+
+                            inventarioWSClient.insertarBebida(bebida, idLocal);
+                            break;
+                        case 'S':
+
+                            if (string.IsNullOrEmpty(TxtTipoSnack.Text.Trim())) { LblTipoSnack.Text = "Ingrese el tipo de snack"; esValido = false; }
+                            if (string.IsNullOrEmpty(TxtSnackEnvase.Text.Trim())) { LblSnackEnvase.Text = "Ingrese el tipo de envase"; esValido = false; }
+
+                            if (esValido != true)
+                            {
+                                ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowModal",
+                "var myModal = new bootstrap.Modal(document.getElementById('modalAgregarProducto')); myModal.show();",
+                true
+                );
+                                return;
+                            }
+                            snack snack = new snack();
+                            snack.nombre = txtNombre.Text;
+                            snack.precioUnitario = Double.Parse(txtPrecio.Text);
+                            snack.descripcion = txtDescripcion.Text;
+                            snack.stock = Int32.Parse(txtStock.Text);
+                            snack.codigoProd = txtCodigo.Text;
+                            snack.stockMinimo = Int32.Parse(txtStockMinimo.Text);
+                            snack.tipo = TxtTipoSnack.Text;
+                            snack.envase = TxtSnackEnvase.Text;
+
+                            inventarioWSClient.insertarSnack(snack, idLocal);
+                            break;
+
+                        case 'P':
+
+                            if (esValido != true)
+                            {
+                                ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "ShowModal",
+                "var myModal = new bootstrap.Modal(document.getElementById('modalAgregarProducto')); myModal.show();",
+                true
+                );
+                                return;
+                            }
+                            InventarioWS.producto producto = new InventarioWS.producto();
+                            producto.nombre = txtNombre.Text;
+                            producto.precioUnitario = Double.Parse(txtPrecio.Text);
+                            producto.descripcion = txtDescripcion.Text;
+                            producto.stock = Int32.Parse(txtStock.Text);
+                            producto.codigoProd = txtCodigo.Text;
+                            producto.stockMinimo = Int32.Parse(txtStockMinimo.Text);
+
+                            inventarioWSClient.insertarProducto(producto, idLocal);
+                            break;
+                    }
+                    CargarProductos();
+                }
+                else
+                {
+                    Response.Write("Por favor selecciona una opción.");
+                }
             }
         }
 
