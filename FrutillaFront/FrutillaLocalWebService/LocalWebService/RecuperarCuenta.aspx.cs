@@ -70,7 +70,7 @@ namespace LocalWebService
         {
             var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
             {
-                Credentials = new NetworkCredential("04857b7c16b92f", "6fcab4e894ad5c"),
+                Credentials = new NetworkCredential("33079d9358c54f", "6bc4f5f08baad6"),
                 EnableSsl = true
             };
 
