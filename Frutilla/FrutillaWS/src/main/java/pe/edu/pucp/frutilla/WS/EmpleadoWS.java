@@ -6,6 +6,7 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.xml.ws.WebServiceException;
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -125,21 +126,23 @@ public class EmpleadoWS {
         }
     }
     
-    private String getFileResource(String fileName) {
-        // Accede al archivo desde src/main/resources
-        String filePath = getClass().getClassLoader().getResource(fileName).getPath();
-        return filePath.replace("%20", " ");
+    private InputStream getFileResourceAsStream(String fileName) {
+    InputStream stream = getClass().getClassLoader().getResourceAsStream(fileName);
+    if (stream == null) {
+        throw new IllegalArgumentException("No se encontró el recurso: " + fileName);
+    }
+    return stream;
     }
 
     @WebMethod(operationName = "VentasXLocal")
     public byte[] reporteVentasXLocal(@WebParam(name = "idLocal") int idLocal) {
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("idLocal", idLocal);
+            params.put("LocalBuscar", idLocal);
             // Si tienes logo o subreporte, también puedes usar:
             // params.put("logo", getFileResource("frutilla_logo.png"));
             
-            return generarBuffer(getFileResource("VentasXLocal.jrxml"), params);
+            return generarBuffer("VentasXLocal.jasper", params);
         } catch (Exception ex) {
             Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
             throw new WebServiceException("Error al generar el reporte: " + ex.getMessage());
@@ -149,11 +152,11 @@ public class EmpleadoWS {
     public byte[] reporteVentasXEmpleado(@WebParam(name = "idEmpleado") int idEmpleado) {
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("idEmpleado", idEmpleado);
+            params.put("NumEmpleado", idEmpleado);
             // Si usas imágenes o subreportes, también puedes agregar:
             // params.put("logo", getFileResource("frutilla_logo.png"));
 
-            return generarBuffer(getFileResource("VentasXEmpleado.jrxml"), params);
+            return generarBuffer("VentasXEmpleado.jasper", params);
         } catch (Exception ex) {
             Logger.getLogger(EmpleadoWS.class.getName()).log(Level.SEVERE, null, ex);
             throw new WebServiceException("Error al generar el reporte de ventas por empleado: " + ex.getMessage());
@@ -169,12 +172,15 @@ public class EmpleadoWS {
         return jasperPath;
     }
 
-    public byte[] generarBuffer(String jrxmlPath, Map<String, Object> params) throws Exception {
-        String jasperPath = compileJrxmlToJasper(jrxmlPath);
-        JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
-        Connection conn = DBManager.getInstance().getConnection();
-        JasperPrint print = JasperFillManager.fillReport(reporte, params, conn);
-        conn.close();
-        return JasperExportManager.exportReportToPdf(print);
+    public byte[] generarBuffer(String jasperFileName, Map<String, Object> params) throws Exception {
+        JasperReport reporte;
+        try (InputStream jasperStream = getFileResourceAsStream(jasperFileName)) {
+            reporte = (JasperReport) JRLoader.loadObject(jasperStream);
+        }
+
+        try (Connection conn = DBManager.getInstance().getConnection()) {
+            JasperPrint print = JasperFillManager.fillReport(reporte, params, conn);
+            return JasperExportManager.exportReportToPdf(print);
+        }
     }
 }

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using LocalWebService.EmpleadoWS; // Asegúrate que este namespace sea correcto
+using System;
+using System.Web;
 using System.Web.UI;
-using LocalWebService.EmpleadoWS; // Asegúrate que este namespace sea correcto
 
 namespace LocalWebService
 {
@@ -8,8 +9,12 @@ namespace LocalWebService
     {
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
+
             string tipo = ddlTipoReporte.SelectedValue;
             int id = int.Parse(txtId.Text);
+
+            // Redirige al handler
+            //Response.Redirect($"ReporteHandler.ashx?tipo={tipo}&id={id}");
 
             try
             {
@@ -26,13 +31,14 @@ namespace LocalWebService
                 {
                     pdfBytes = cliente.VentasXEmpleado(id);
                 }
-
                 // Enviar PDF al navegador
                 string nombreArchivo = $"Reporte_{tipo}_{id}.pdf";
                 Response.Clear();
+                Response.Buffer = true;
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("Content-Disposition", $"attachment; filename={nombreArchivo}");
+                Response.AddHeader("Content-Disposition", $"attachment; filename=Reporte_{tipo}_{id}.pdf");
                 Response.BinaryWrite(pdfBytes);
+                Response.Flush();
                 Response.End();
             }
             catch (System.Exception ex)
