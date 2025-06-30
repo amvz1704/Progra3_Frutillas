@@ -175,6 +175,7 @@ namespace LocalWebService
             lblIGV.Text = igv.ToString("C");
             lblTotal.Text = total.ToString("C");
             btnPagar.Enabled = true;
+            Session["Carrito"] = carrito;
         }
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
