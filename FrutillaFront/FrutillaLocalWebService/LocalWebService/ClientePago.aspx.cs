@@ -72,11 +72,10 @@ namespace LocalWebService
         {
             // Marcar visualmente el botón seleccionado
             btnTarjeta.CssClass = metodo == "Tarjeta" ? "btn btn-success" : "btn btn-outline-secondary";
-            btnTransferencia.CssClass = metodo == "Transferencia" ? "btn btn-success" : "btn btn-outline-secondary";
             btnPlin.CssClass = metodo == "Plin" ? "btn btn-success" : "btn btn-outline-secondary";
             btnYape.CssClass = metodo == "Yape" ? "btn btn-success" : "btn btn-outline-secondary";
             // Mostrar u ocultar sección de bancos
-            pnlBancos.Visible = metodo == "Transferencia";
+            pnlBancos.Visible = metodo == "Tarjeta";
             qrPlin.Visible = metodo == "Plin";
             qrYape.Visible = metodo == "Yape";
         }
@@ -129,7 +128,6 @@ namespace LocalWebService
             // Aquí iría tu lógica de integración con pasarela de pago
             PedidoWSClient PedidoWS = new PedidoWSClient();
             string metodoSeleccionado = btnTarjeta.CssClass.Contains("btn-success") ? "TARJETA_CREDITO" :
-                                btnTransferencia.CssClass.Contains("btn-success") ? "Transferencia" :
                                 btnPlin.CssClass.Contains("btn-success") ? "PLIN" : "YAPE";
 
             // Convertir el string al enum formaDePago

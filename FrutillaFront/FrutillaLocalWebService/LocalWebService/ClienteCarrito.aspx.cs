@@ -51,7 +51,7 @@ namespace LocalWebService
                 string[] partes = datos.Split('|');
                 string tipoUsuario = partes[0];
 
-                int idUsuario = 10; //el id del clientePrueba 
+                int idUsuario = 1; //el id del clientePrueba 
 
                 if (tipoUsuario == "C")
                 {
