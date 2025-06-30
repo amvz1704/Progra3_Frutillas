@@ -21,9 +21,9 @@ public class InventarioService {
         invSQL=new InventarioMySQL();
     }
     
-     public void actualizarStock(Producto producto, int idLocal) throws Exception {
+    public void actualizarStock(Producto producto, int idLocal) throws Exception {
         if (idLocal <= 0)
-            throw new Exception("El id del local no puede ser negativo");
+            throw new Exception("El id del local es incorrecto");
         if (producto.getIdProducto() <= 0)
             throw new Exception("El id de producto no puede ser negativo");
         if (producto.getStock() < 0)
