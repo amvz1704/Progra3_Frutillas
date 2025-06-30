@@ -26,8 +26,27 @@ namespace LocalWebService
             clienteWS = new ClienteWSClient();
         }
 
-        private List<PedidoWS.lineaOrdenDeVenta> CarritoSesion
-            => Session["Carrito"] as List<PedidoWS.lineaOrdenDeVenta>;
+        private Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>> CarritoPorLocal
+        {
+            get
+            {
+                if (Session["Carritos"] == null)
+                    Session["Carritos"] = new Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>();
+                return (Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>)Session["Carritos"];
+            }
+        }
+
+        private List<PedidoWS.lineaOrdenDeVenta> CarritoDelLocal
+        {
+            get
+            {
+                int idLocal = Session["idLocal"] != null ? (int)Session["idLocal"] : 0;
+                if (CarritoPorLocal.ContainsKey(idLocal))
+                    return CarritoPorLocal[idLocal];
+                else
+                    return new List<PedidoWS.lineaOrdenDeVenta>();
+            }
+        }
 
         private Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>> Carritos
             => Session["Carritos"] as Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>;
@@ -144,6 +163,7 @@ namespace LocalWebService
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+
             int idLocal;
 
             // Guardas en Session
@@ -153,6 +173,7 @@ namespace LocalWebService
                 
 
             var carrito = Carritos[idLocal];
+
             if (carrito == null) return;
 
             int index = Convert.ToInt32(e.CommandArgument);
