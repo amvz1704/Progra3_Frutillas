@@ -112,6 +112,20 @@ public class InventarioWS {
         }
     }
     
+    @WebMethod(operationName = "insertarProducto")
+    public void insertarProducto(Producto producto, int idLocal){
+        try{
+            productoService = new ProductoService();
+            productoService.agregar((Producto)producto);
+            producto.setTipoEstado(TipoEstado.DISPONIBLE);
+                
+            inventarioService.insertar(producto, idLocal);
+        }
+        catch (Exception e){
+            throw new WebServiceException("Error al agregar producto");
+        }
+    }
+    
     @WebMethod(operationName = "actualizarProducto")
     public void actualizarProducto(Producto producto, int idLocal, char tipo){
         try{

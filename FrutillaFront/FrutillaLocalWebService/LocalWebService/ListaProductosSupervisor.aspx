@@ -152,37 +152,42 @@
                         <div class="col-12 col-md-6">
                             <label for="txtNombre" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingrese el nombre" />
+                            <asp:Label ID="lblNombre" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="txtPrecio" class="form-label">Precio (S/.) <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" TextMode="Number" 
-                                step="0.01" placeholder="0.00" />
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control decimal-input" TextMode="Number"
+                                step="0.01" placeholder="0.00" onblur="validarDecimalInline(this);" />
+                            <asp:Label ID="lblPrecio" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12">
                             <label for="txtDescripcion" class="form-label">Descripción <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" 
+                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"
                                 TextMode="MultiLine" Rows="3" placeholder="Ingrese la descripción" />
+                            <asp:Label ID="LblDescripcion" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-4">
                             <label for="txtStock" class="form-label">Stock <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" TextMode="Number" 
+                            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" TextMode="Number"
                                 placeholder="0" />
+                            <asp:Label ID="LblStock" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-4">
                             <label for="txtStockMinimo" class="form-label">Stock Mínimo <span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control" TextMode="Number" 
                                 placeholder="0" />
+                            <asp:Label ID="LblStockMinimo" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-4">
-                            <label for="txtCodigo" class="form-label">Código (3 letras) <span class="text-danger">*</span></label>
+                            <label for="txtCodigo" class="form-label">Código (6 caracteres A-z 0-9) <span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control text-uppercase" 
-                                MaxLength="3" placeholder="ABC" />
+                                MaxLength="6" placeholder="ABC" />
+                            <asp:Label ID="LblCodigo" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12">
                             <label for="TipoProducto" class="form-label">Tipo de Producto <span class="text-danger">*</span></label>
                             <asp:DropDownList ID="TipoProducto" CssClass="form-select" runat="server" 
                                 onchange="mostrarOpciones(this)">
-                                <asp:ListItem Text="Seleccione un tipo" Value=""></asp:ListItem>
                                 <asp:ListItem Text="🍎 Fruta" Value="F"></asp:ListItem>
                                 <asp:ListItem Text="🥤 Bebida" Value="B"></asp:ListItem>
                                 <asp:ListItem Text="🍪 Snack" Value="S"></asp:ListItem>
@@ -197,9 +202,10 @@
                             <h6 class="text-muted mb-3">🍎 Configuración de Fruta</h6>
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <asp:Label ID="LblEnvase" runat="server" Text="Tipo de envase" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoEnvase" class="form-label">Tipo de Envase <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTipoEnvase" runat="server" CssClass="form-control" 
                                         placeholder="Ej: Bandeja, bolsa, etc."></asp:TextBox>
+                                    <asp:Label ID="LblTipoEnvase" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check mb-2">
@@ -225,19 +231,22 @@
                             <h6 class="text-muted mb-3">🥤 Configuración de Bebida</h6>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTamanioOz" runat="server" Text="Tamaño (Oz)" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTamanioOz" class="form-label">Tamaño (Oz) <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTamanioOz" runat="server" CssClass="form-control" 
-                                        TextMode="Number" placeholder="16"></asp:TextBox>
+                                        TextMode="Number" placeholder="16" />
+                                    <asp:Label ID="LblTamanioOz" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTipoBebida" runat="server" Text="Tipo de Bebida" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoBebida" class="form-label">Tipo de Bebida <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTipoBebida" runat="server" CssClass="form-control" 
                                         placeholder="Ej: Jugo, smoothie, etc."></asp:TextBox>
+                                    <asp:Label ID="LblTipoBebida" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblBebidaEndulzante" runat="server" Text="Tipo de Endulzante" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoBebida" class="form-label">Tipo de Endulzante <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtBebidaEndulzante" runat="server" CssClass="form-control" 
                                         placeholder="Ej: Stevia, azúcar, etc."></asp:TextBox>
+                                    <asp:Label ID="LblBebidaEndulzante" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <asp:Label ID="LblTipoLeche" runat="server" Text="Tipo de Leche" CssClass="form-label"></asp:Label>
@@ -245,11 +254,6 @@
                                         <asp:ListItem Text="Sin Lactosa" Value="0"></asp:ListItem>
                                         <asp:ListItem Text="Con Lactosa" Value="1"></asp:ListItem>
                                     </asp:DropDownList>
-                                </div>
-                                <div class="col-12">
-                                    <asp:Label ID="LblFrutasBebida" runat="server" Text="Frutas incluidas" CssClass="form-label"></asp:Label>
-                                    <asp:CheckBoxList ID="ChkFrutas" runat="server" RepeatLayout="Flow" 
-                                        CssClass="d-flex flex-wrap gap-2"></asp:CheckBoxList>
                                 </div>
                             </div>
                         </div>
@@ -261,14 +265,16 @@
                             <h6 class="text-muted mb-3">🍪 Configuración de Snack</h6>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTipoSnack" runat="server" Text="Tipo de snack" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoSnack" class="form-label">Tipo de Snack <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTipoSnack" runat="server" CssClass="form-control" 
                                         placeholder="Ej: Galletas, frutos secos, etc."></asp:TextBox>
+                                    <asp:Label ID="LblTipoSnack" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblSnackEnvase" runat="server" Text="Envase" CssClass="form-label"></asp:Label>
+                                    <label for="TxtSnackEnvase" class="form-label">Envase <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtSnackEnvase" runat="server" CssClass="form-control" 
                                         placeholder="Ej: Bolsa, caja, etc."></asp:TextBox>
+                                    <asp:Label ID="LblSnackEnvase" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -304,10 +310,12 @@
                         <div class="col-12 col-md-6">
                             <label for="TxtEditNombre" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
                             <asp:TextBox ID="TxtEditNombre" runat="server" CssClass="form-control" />
+                            <asp:Label ID="LblEditNombre" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-3">
                             <label for="TxtEditPrecio" class="form-label">Precio (S/.) <span class="text-danger">*</span></label>
                             <asp:TextBox ID="TxtEditPrecio" runat="server" CssClass="form-control" />
+                            <asp:Label ID="LblEditPrecio" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-3">
                             <label for="TxtEditEstado" class="form-label">Estado <span class="text-danger">*</span></label>
@@ -320,18 +328,22 @@
                             <label for="TxtEditDescripcion" class="form-label">Descripción <span class="text-danger">*</span></label>
                             <asp:TextBox ID="TxtEditDescripcion" runat="server" CssClass="form-control"
                                 TextMode="MultiLine" Rows="3" />
+                            <asp:Label ID="LblEditDescripcion" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-4">
                             <label for="TxtEditStock" class="form-label">Stock <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="TxtEditStock" runat="server" CssClass="form-control" TextMode="Number" />
+                            <asp:TextBox ID="TxtEditStock" runat="server" CssClass="form-control" />
+                            <asp:Label ID="LblEditStock" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-4">
                             <label for="TxtEditStockMin" class="form-label">Stock Mínimo <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="TxtEditStockMin" runat="server" CssClass="form-control" TextMode="Number" />
+                            <asp:TextBox ID="TxtEditStockMin" runat="server" CssClass="form-control"  />
+                            <asp:Label ID="LblEditStockMin" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12 col-md-4">
-                            <label for="TxtEditCodigo" class="form-label">Código (3 letras) <span class="text-danger">*</span></label>
-                            <asp:TextBox ID="TxtEditCodigo" runat="server" CssClass="form-control text-uppercase" MaxLength="3" />
+                            <label for="TxtEditCodigo" class="form-label">Código (6 letras) <span class="text-danger">*</span></label>
+                            <asp:TextBox ID="TxtEditCodigo" runat="server" CssClass="form-control text-uppercase" MaxLength="6" />
+                            <asp:Label ID="LblEditCodigo" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                     </div>
 
@@ -341,8 +353,9 @@
                             <h6 class="text-muted mb-3">🍎 Configuración de Fruta</h6>
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <asp:Label ID="LblTipoEnvasoEdit" runat="server" Text="Tipo de envase" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoEnvaseEdit" class="form-label">Tipo de envase <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTipoEnvaseEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="LblTipoEnvaseEdit" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
@@ -368,28 +381,26 @@
                             <h6 class="text-muted mb-3">🥤 Configuración de Bebida</h6>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTamanioEdit" runat="server" Text="Tamaño (Oz)" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTamanioEdit" class="form-label">Tamaño(Oz) <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTamanioEdit" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                    <asp:Label ID="LblTamanioEdit" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTipoBebidaEdit" runat="server" Text="Tipo de Bebida" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoBebidaEdit" class="form-label">Tipo de bebida <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTipoBebidaEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="LblTipoBebidaEdit" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTipoEndulzanteEdit" runat="server" Text="Tipo de Endulzante" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoEndulzanteEdit" class="form-label">Tipo de endulzante <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTipoEndulzanteEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="LblTipoEndulzanteEdit" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTipoLecheEdit" runat="server" Text="Tipo de Leche" CssClass="form-label"></asp:Label>
+                                    <label for="TxtSnackEnvase" class="form-label">Tipo de leche <span class="text-danger">*</span></label>
                                     <asp:DropDownList ID="DDTipoLecheEdit" CssClass="form-select" runat="server">
                                         <asp:ListItem Text="Sin Lactosa" Value="0"></asp:ListItem>
                                         <asp:ListItem Text="Con Lactosa" Value="1"></asp:ListItem>
                                     </asp:DropDownList>
-                                </div>
-                                <div class="col-12">
-                                    <asp:Label ID="LblFrutasBebEdit" runat="server" Text="Frutas incluidas" CssClass="form-label"></asp:Label>
-                                    <asp:CheckBoxList ID="ChkFrutasBebEdit" runat="server" RepeatLayout="Flow" 
-                                        CssClass="d-flex flex-wrap gap-2"></asp:CheckBoxList>
                                 </div>
                             </div>
                         </div>
@@ -401,12 +412,14 @@
                             <h6 class="text-muted mb-3">🍪 Configuración de Snack</h6>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblTipoSnackEdit" runat="server" Text="Tipo de snack" CssClass="form-label"></asp:Label>
+                                    <label for="TxtTipoSnackEdit" class="form-label">Tipo de snack <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtTipoSnackEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="LblTipoSnackEdit" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:Label ID="LblEnvaseSnackEdit" runat="server" Text="Envase" CssClass="form-label"></asp:Label>
+                                    <label for="TxtEnvaseSnackEdit" class="form-label">Envase <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="TxtEnvaseSnackEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="LblEnvaseSnackEdit" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -473,5 +486,14 @@
                 });
             }
         });
+    </script>
+
+    <script>
+  function validarDecimalInline(input) {
+      const regex = /^-?\d+([.,]\d+)?$/;
+      const errorSpan = input.nextElementSibling;
+      const esValido = regex.test(input.value.trim());
+      errorSpan.style.display = esValido ? 'none' : 'inline';
+  }
     </script>
     </asp:Content>
