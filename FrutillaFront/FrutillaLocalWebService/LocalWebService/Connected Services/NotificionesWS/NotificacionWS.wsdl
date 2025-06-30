@@ -11,17 +11,17 @@
   <message name="listarPorSupervisorResponse">
     <part name="parameters" element="tns:listarPorSupervisorResponse" />
   </message>
-  <message name="listarPorFecha">
-    <part name="parameters" element="tns:listarPorFecha" />
-  </message>
-  <message name="listarPorFechaResponse">
-    <part name="parameters" element="tns:listarPorFechaResponse" />
-  </message>
   <message name="listarTodos">
     <part name="parameters" element="tns:listarTodos" />
   </message>
   <message name="listarTodosResponse">
     <part name="parameters" element="tns:listarTodosResponse" />
+  </message>
+  <message name="listarPorFecha">
+    <part name="parameters" element="tns:listarPorFecha" />
+  </message>
+  <message name="listarPorFechaResponse">
+    <part name="parameters" element="tns:listarPorFechaResponse" />
   </message>
   <message name="listarPorCliente">
     <part name="parameters" element="tns:listarPorCliente" />
@@ -34,13 +34,13 @@
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorRequest" message="tns:listarPorSupervisor" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorSupervisorResponse" message="tns:listarPorSupervisorResponse" />
     </operation>
-    <operation name="listarPorFecha">
-      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest" message="tns:listarPorFecha" />
-      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse" message="tns:listarPorFechaResponse" />
-    </operation>
     <operation name="listarTodos">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarTodosRequest" message="tns:listarTodos" />
       <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarTodosResponse" message="tns:listarTodosResponse" />
+    </operation>
+    <operation name="listarPorFecha">
+      <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaRequest" message="tns:listarPorFecha" />
+      <output wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorFechaResponse" message="tns:listarPorFechaResponse" />
     </operation>
     <operation name="listarPorCliente">
       <input wsam:Action="http://WS.frutilla.pucp.edu.pe/NotificacionWS/listarPorClienteRequest" message="tns:listarPorCliente" />
@@ -58,7 +58,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarPorFecha">
+    <operation name="listarTodos">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -67,7 +67,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarTodos">
+    <operation name="listarPorFecha">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

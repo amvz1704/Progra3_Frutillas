@@ -95,12 +95,13 @@ namespace LocalWebService
 
         private void CargarProductos()
         {
+            Session["idLocal"] = int.Parse(ddlLocal.SelectedValue);
             try
             {
                 var productos = inventarioWSClient.filtrarPorTipo(int.Parse(ddlLocal.SelectedValue), tipoSeleccionado); //cambiar por el local seleccionado 
+
                 
-                
-                
+
                 if (productos != null)
                 {
                     var productosSinDuplicados = productos.GroupBy(p => p.idProducto).Select(g => g.First()).ToList();
