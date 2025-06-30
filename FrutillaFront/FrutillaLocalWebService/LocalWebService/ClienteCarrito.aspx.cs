@@ -26,8 +26,27 @@ namespace LocalWebService
             clienteWS = new ClienteWSClient();
         }
 
-        private List<PedidoWS.lineaOrdenDeVenta> CarritoSesion
-            => Session["Carrito"] as List<PedidoWS.lineaOrdenDeVenta>;
+        private Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>> CarritoPorLocal
+        {
+            get
+            {
+                if (Session["Carritos"] == null)
+                    Session["Carritos"] = new Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>();
+                return (Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>)Session["Carritos"];
+            }
+        }
+
+        private List<PedidoWS.lineaOrdenDeVenta> CarritoDelLocal
+        {
+            get
+            {
+                int idLocal = Session["idLocal"] != null ? (int)Session["idLocal"] : 0;
+                if (CarritoPorLocal.ContainsKey(idLocal))
+                    return CarritoPorLocal[idLocal];
+                else
+                    return new List<PedidoWS.lineaOrdenDeVenta>();
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -100,7 +119,7 @@ namespace LocalWebService
             lblNombreLocal.Text = local.nombre;
             lblDireccion.Text = local.direccion;
 
-            var carrito = CarritoSesion ?? new List<PedidoWS.lineaOrdenDeVenta>();
+            var carrito = CarritoDelLocal ?? new List<PedidoWS.lineaOrdenDeVenta>();
 
             foreach (var item in carrito)
             {
@@ -134,7 +153,7 @@ namespace LocalWebService
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            var carrito = CarritoSesion;
+            var carrito = CarritoDelLocal;
             if (carrito == null) return;
 
             int index = Convert.ToInt32(e.CommandArgument);
@@ -167,7 +186,7 @@ namespace LocalWebService
         protected void btnPagar_Click(object sender, EventArgs e)
         {
 
-            var carrito = CarritoSesion;
+            var carrito = CarritoDelLocal;
 
             if (carrito == null || carrito.Count == 0)
             {
