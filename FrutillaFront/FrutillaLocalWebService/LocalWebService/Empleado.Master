@@ -62,15 +62,19 @@
                                 NavigateUrl="ListaPedidos.aspx"
                                 Text="Pedidos" />
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Notificaciones/ListarNotificaciones.aspx">Notificaciones</a>
-                        </li>
+
                         <li class="nav-item">
                             <asp:HyperLink ID="hlMonitoreo" runat="server"
                                 CssClass="nav-link active"
                                 NavigateUrl="Monitoreo.aspx"
                                 Text="Monitoreo" />
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Notificaciones/ListarNotificaciones.aspx"><i class="bi bi-bell-fill"></i></a>
+                        </li>
+
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="/EmpleadoPerfil.aspx"><i class="bi bi-person-circle"></i></a>
@@ -94,11 +98,11 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </main>
 
-    <footer class="mt-auto bg-white text-center py-3 border-top">
-        
+        <footer class="mt-auto bg-white text-center py-3 border-top">
+
             <small>© 2025 Frutilla Soft</small>
-        
-    </footer>
+
+        </footer>
     </form>
     <!-- Footer opcional -->
 

@@ -122,9 +122,36 @@ namespace LocalWebService
 
         protected void btnGuardarLocalModal_Click(object sender, EventArgs e)
         {
+            bool esValido = true;
             if (!int.TryParse(hfLocalId.Value, out var idLocal) || idLocal == 0)
             {
                 lblError.Text = "ID inválido.";
+                return;
+            }
+            if (string.IsNullOrEmpty(txtTelefonoLocal.Text))
+            {
+                lblErrorTelefono.Text = "Ingrese un teléfono";
+                esValido = false;
+            }
+            else if (!txtTelefonoLocal.Text.All(char.IsDigit) || txtTelefonoLocal.Text.Length != 9)
+            {
+                lblErrorTelefono.Text = "Teléfono inválido. Debe contener 9 dígitos numéricos.";
+                esValido = false;
+            }
+
+            if (!esValido)
+            {
+                string showModal = $@"
+          var modal = new bootstrap.Modal(
+            document.getElementById('{pnlModalLocal.ClientID}'));
+          modal.show();";
+
+                ScriptManager.RegisterStartupScript(
+                  this,
+                  this.GetType(),
+                  "ShowEditModal",
+                  showModal,
+                  true);
                 return;
             }
 

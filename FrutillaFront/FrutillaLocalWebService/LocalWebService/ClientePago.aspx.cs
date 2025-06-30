@@ -90,7 +90,7 @@ namespace LocalWebService
             decimal total = subtotal + igv;
 
             //RECIEN SE INSERTA EN LA BD, se crea un pedido y asi --> luego de eso finalmente se confirma con pagar
-            txtPedido.Text = "Por editar"; //Recien aqui se crea el pedido y se sube a la BD porque PAGAR en carrito sirve como "confirmar orden"
+            txtPedido.Text = servicioOrdenId.ToString();
 
            
 
