@@ -157,7 +157,7 @@
                         <div class="col-12 col-md-6">
                             <label for="txtPrecio" class="form-label">Precio (S/.) <span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control decimal-input" TextMode="Number"
-                                step="0.01" placeholder="0.00" onblur="validarDecimalInline(this);" />
+                                step="0.01" placeholder="0.00" />
                             <asp:Label ID="lblPrecio" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12">
@@ -181,7 +181,7 @@
                         <div class="col-12 col-md-4">
                             <label for="txtCodigo" class="form-label">Código (6 caracteres A-z 0-9) <span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control text-uppercase" 
-                                MaxLength="6" placeholder="ABC" />
+                                MaxLength="6" placeholder="ABC123" />
                             <asp:Label ID="LblCodigo" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                         <div class="col-12">
@@ -191,7 +191,7 @@
                                 <asp:ListItem Text="🍎 Fruta" Value="F"></asp:ListItem>
                                 <asp:ListItem Text="🥤 Bebida" Value="B"></asp:ListItem>
                                 <asp:ListItem Text="🍪 Snack" Value="S"></asp:ListItem>
-                                <asp:ListItem Text="Otro" Value="P"></asp:ListItem>
+                                <asp:ListItem Text="Otro" Value="P" Selected="True"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>

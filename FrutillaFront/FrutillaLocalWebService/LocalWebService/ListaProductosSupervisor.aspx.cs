@@ -608,7 +608,7 @@ namespace LocalWebService
                         LblCodigo.Text = "Ingrese un codigo de 6 caracteres entre letras y numeros";
                         esValido = false;
                     }
-
+                }
 
                     // Ejemplo de uso
                     switch (tipo)
@@ -762,7 +762,7 @@ namespace LocalWebService
                 {
                     Response.Write("Por favor selecciona una opción.");
                 }
-            }
+            
         }
 
         //esta función obtiene la imagen del producto según su tipo
