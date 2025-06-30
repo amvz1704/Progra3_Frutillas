@@ -29,6 +29,9 @@ namespace LocalWebService
         private List<PedidoWS.lineaOrdenDeVenta> CarritoSesion
             => Session["Carrito"] as List<PedidoWS.lineaOrdenDeVenta>;
 
+        private Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>> Carritos
+            => Session["Carritos"] as Dictionary<int, List<PedidoWS.lineaOrdenDeVenta>>;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -66,30 +69,40 @@ namespace LocalWebService
             }
             if (!IsPostBack)
             {
-                
-
-                BindCarrito();
+                llenarDropdownLocales();
             }
         }
 
-        //private void llenarDropdownLocales()
-        //{
-        //    ddlLocales.DataSource = localWS.listarLocales();
-        //    ddlLocales.DataTextField = "nombre";
-        //    ddlLocales.DataValueField = "idLocal";
-        //    ddlLocales.DataBind();
-        //    ddlLocales.Items.Insert(0, new ListItem("Seleccione un local", "0"));
-        //}
+        private void llenarDropdownLocales()
+        {
+            LocalWSClient localWSClient = new LocalWSClient();
+            ddlLocal.Items.Clear();
+            foreach (var local in localWSClient.listarLocales()) // Cambiar por locales activos
+            {
+                ddlLocal.Items.Add(new ListItem(local.nombre, local.idLocal.ToString()));
+            }
 
-        private void BindCarrito()
+        }
+
+        protected void ddlLocal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idLocal;
+
+            // Guardas en Session
+            if (int.TryParse(ddlLocal.SelectedValue, out idLocal))
+            {
+                // Llama a tu método para cargar productos filtrados por el local seleccionado
+                Session["idLocal"] = idLocal;
+                
+                BindCarrito(idLocal);
+
+            }
+        }
+
+        private void BindCarrito(int idLocal)
         {
 
-
-            // 1) Recuperar idLocal
-                if (Session["idLocal"] == null)
-                Response.Redirect("ClienteHome.aspx");
-
-            int idLocal = (int)Session["idLocal"];
+            var carrito = Carritos[idLocal] ?? new List<PedidoWS.lineaOrdenDeVenta>();
 
             // 2) Obtener el objeto Local completo
             var cliente = new LocalWSClient();
@@ -97,10 +110,7 @@ namespace LocalWebService
             cliente.Close();
 
             // Guárdalo en un label o en una propiedad si lo necesitas luego
-            lblNombreLocal.Text = local.nombre;
-            lblDireccion.Text = local.direccion;
 
-            var carrito = CarritoSesion ?? new List<PedidoWS.lineaOrdenDeVenta>();
 
             foreach (var item in carrito)
             {
@@ -134,7 +144,15 @@ namespace LocalWebService
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            var carrito = CarritoSesion;
+            int idLocal;
+
+            // Guardas en Session
+            if (int.TryParse(ddlLocal.SelectedValue, out idLocal))
+            {
+                // Llama a tu método para cargar productos filtrados por el local seleccionado
+                
+
+            var carrito = Carritos[idLocal];
             if (carrito == null) return;
 
             int index = Convert.ToInt32(e.CommandArgument);
@@ -160,71 +178,78 @@ namespace LocalWebService
                     break;
             }
 
-            Session["Carrito"] = carrito;
-            BindCarrito();
+                Carritos[idLocal] = carrito;
+                BindCarrito(idLocal);
+            }
         }
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
+            int idLocal;
 
-            var carrito = CarritoSesion;
-
-            if (carrito == null || carrito.Count == 0)
+            // Guardas en Session
+            if (int.TryParse(ddlLocal.SelectedValue, out idLocal))
             {
-                Response.Write("El carrito está vacío.");
-                return;
-            }
 
-            
-            // Extraer valores de sesión (asegúrate de tenerlos correctamente configurados en login)
-            int idLocal = Session["idLocal"] != null ? (int)Session["idLocal"] : 0;
+                var carrito = Carritos[idLocal];
 
-            string fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
-            string horaStr = DateTime.Now.ToString("HH:mm:ss");
-
-            var nuevaOrden = new PedidoWS.ordenVentaDTO
-            {
-                idEmpleado = 0,
-                idLocal = idLocal,
-                idCliente = idClienteGlobal,
-                fechaStr = fechaStr,
-                horaStr = horaStr,
-                estado = PedidoWS.estadoVenta.PROCESO,
-                entregado = false,
-                montoTotal = carrito.Sum(c => c.subtotal),
-                descripcion = "Pedido generado desde ClienteCarrito.aspx"
-            };
-
-            try
-            {
-                var lineas = carrito.Select(c => new PedidoWS.lineaOrdenDeVenta
+                if (carrito == null || carrito.Count == 0)
                 {
-                    cantidad = c.cantidad,
-                    subtotal = c.subtotal,
-                    producto = new PedidoWS.producto
+                    Response.Write("El carrito está vacío.");
+                    return;
+                }
+
+
+                //// Extraer valores de sesión (asegúrate de tenerlos correctamente configurados en login)
+                //int idLocal = Session["idLocal"] != null ? (int)Session["idLocal"] : 0;
+
+                string fechaStr = DateTime.Now.ToString("yyyy-MM-dd");
+                string horaStr = DateTime.Now.ToString("HH:mm:ss");
+
+                var nuevaOrden = new PedidoWS.ordenVentaDTO
+                {
+                    idEmpleado = 0,
+                    idLocal = idLocal,
+                    idCliente = idClienteGlobal,
+                    fechaStr = fechaStr,
+                    horaStr = horaStr,
+                    estado = PedidoWS.estadoVenta.PROCESO,
+                    entregado = false,
+                    montoTotal = carrito.Sum(c => c.subtotal),
+                    descripcion = "Pedido generado desde ClienteCarrito.aspx"
+                };
+
+                try
+                {
+                    var lineas = carrito.Select(c => new PedidoWS.lineaOrdenDeVenta
                     {
-                        idProducto = c.producto.idProducto,
-                        nombre = c.producto.nombre,
-                        precioUnitario = c.producto.precioUnitario
-                    }
-                }).ToArray();
+                        cantidad = c.cantidad,
+                        subtotal = c.subtotal,
+                        producto = new PedidoWS.producto
+                        {
+                            idProducto = c.producto.idProducto,
+                            nombre = c.producto.nombre,
+                            precioUnitario = c.producto.precioUnitario
+                        }
+                    }).ToArray();
 
-                int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);
+                    int idGenerado = pedidoWS.generarOrdenConLineas(nuevaOrden, lineas);
 
-                // el false indica: no abortes el hilo inmediatamente
-                Response.Redirect($"ClientePago.aspx?id={idGenerado}", false);
+                    // el false indica: no abortes el hilo inmediatamente
+                    Response.Redirect($"ClientePago.aspx?id={idGenerado}", false);
 
-                // indica a ASP.NET que complete limpiamente la petición
-                Context.ApplicationInstance.CompleteRequest();
+                    // indica a ASP.NET que complete limpiamente la petición
+                    Context.ApplicationInstance.CompleteRequest();
 
-                // sales del método para que no siga procesando nada más
-                return;
-            }
-            catch (Exception ex)
-            {
-                Response.Write("Error al guardar el pedido: " + ex.Message);
+                    // sales del método para que no siga procesando nada más
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("Error al guardar el pedido: " + ex.Message);
 
-                Response.Redirect("ClientePago.aspx?id=-1");
+                    Response.Redirect("ClientePago.aspx?id=-1");
+                }
             }
         }
 

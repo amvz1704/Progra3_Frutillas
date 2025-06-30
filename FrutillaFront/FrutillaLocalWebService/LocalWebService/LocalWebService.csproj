@@ -122,12 +122,6 @@
     <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerLineasPorIdComprobanteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.obtenerProductoPorIdResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ComprobanteWS\LocalWebService.ComprobanteWS.producto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\EmpleadoWS\configuration91.svcinfo" />
     <None Include="Connected Services\EmpleadoWS\configuration.svcinfo" />
     <None Include="Connected Services\ComprobanteWS\configuration91.svcinfo" />
@@ -352,10 +346,6 @@
     <None Include="Connected Services\ProductoImagenWS\ProductoImagenWS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ReporteWS\ReporteWS.wsdl" />
-    <None Include="Connected Services\ReporteWS\ReporteWS.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\UsuarioWS\configuration91.svcinfo" />
     <None Include="Connected Services\UsuarioWS\configuration.svcinfo" />
     <None Include="Connected Services\PedidoWS\configuration91.svcinfo" />
@@ -367,12 +357,6 @@
     <None Include="Connected Services\ProductoImagenWS\configuration91.svcinfo" />
     <None Include="Connected Services\ProductoImagenWS\configuration.svcinfo" />
     <None Include="Connected Services\ProductoImagenWS\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\ReporteWS\configuration91.svcinfo" />
-    <None Include="Connected Services\ReporteWS\configuration.svcinfo" />
-    <None Include="Connected Services\ReporteWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -593,11 +577,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\ReporteWS\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Connected Services\UsuarioWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -791,7 +770,6 @@
     <WCFMetadataStorage Include="Connected Services\NotificionesWS\" />
     <WCFMetadataStorage Include="Connected Services\PedidoWS\" />
     <WCFMetadataStorage Include="Connected Services\ProductoImagenWS\" />
-    <WCFMetadataStorage Include="Connected Services\ReporteWS\" />
     <WCFMetadataStorage Include="Connected Services\UsuarioWS\" />
   </ItemGroup>
   <PropertyGroup>

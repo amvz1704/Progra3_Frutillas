@@ -14,24 +14,22 @@
         </div>
     </header>
 
-     <div class="container mb-4">
     <div style="background-color: #DFF0D8; border-radius: 5px;">
 
         <div class="container m-4">
-            <p class="card-text mb-1">
-                <strong>Local:</strong>
-                <asp:Label ID="lblNombreLocal" runat="server" Text="—" />
-                
-            </p>
-
-            <p class="card-text mb-1">
-                <strong>Direccion:</strong>
-                <asp:Label ID="lblDireccion" runat="server" Text="—" />
-    
-            </p>
+            <!-- Dropdown Local -->
+        <div class="form-group mb-2 mb-md-0 dropdown-saludable">
+            <asp:DropDownList
+                ID="ddlLocal"
+                runat="server"
+                CssClass="form-select select-frutilla w-100"
+                Style="min-width: 200px;"
+                AutoPostBack="true"
+                OnSelectedIndexChanged="ddlLocal_SelectedIndexChanged">
+            </asp:DropDownList>
+        </div>
 
             
-        </div>
 
     </div>
     </div>

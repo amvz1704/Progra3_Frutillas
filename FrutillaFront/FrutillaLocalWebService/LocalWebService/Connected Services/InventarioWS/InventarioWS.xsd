@@ -118,6 +118,15 @@
   <xs:complexType name="actualizarStockResponse">
     <xs:sequence />
   </xs:complexType>
+  <xs:complexType name="insertarBebida">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:bebida" />
+      <xs:element name="arg1" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarBebidaResponse">
+    <xs:sequence />
+  </xs:complexType>
   <xs:complexType name="obtenerBebidaPorId">
     <xs:sequence>
       <xs:element name="idbebida" type="xs:int" />
@@ -127,15 +136,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:bebida" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarBebida">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:bebida" />
-      <xs:element name="arg1" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarBebidaResponse">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="obtenerProductoPorId">
     <xs:sequence>
