@@ -26,6 +26,18 @@
                 <asp:Button ID="btnAgregarProducto" runat="server" Text="+ Agregar Producto" 
                     OnClick="btnAgregarProducto_Click" CssClass="btn btn-frutilla" />
             </div>
+            <!-- Barra de búsqueda -->
+<div class="form-group mb-2 mb-md-0 d-flex align-items-center flex-grow-1">
+    <asp:TextBox
+        ID="txtBuscar"
+        runat="server"
+        CssClass="input-frutilla me-2 flex-grow-1"
+        Placeholder="Buscar producto..."
+        Style="min-width: 200px;" />
+    <button type="submit" class="btn btn-frutilla flex-shrink-0">
+        <i class="bi bi-search"></i>
+    </button>
+</div>
 
                 <!-- Panel de filtros de productos - Responsive con flex-wrap -->
     <asp:Panel ID="FiltroProductos" runat="server" CssClass="mt-3">

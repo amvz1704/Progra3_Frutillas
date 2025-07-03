@@ -72,7 +72,6 @@ namespace LocalWebService
 
         private void crearUsuarioModal()
         {
-            txtContrasena.Visible = true;
             txtNombre.Text = "";
             txtApellidoPa.Text = "";
             txtApellidoMa.Text = "";
@@ -251,7 +250,6 @@ namespace LocalWebService
                     ddlEstado.SelectedValue = emp.turnoTrabajo.ToString().ToLower();
                     txtUsuario.Text = emp.usuarioSistema.ToString();
                     txtContrasena.Text = emp.contraSistema.ToString();
-                    txtContrasena.Visible = false;
 
 
                     // Mostrar modal

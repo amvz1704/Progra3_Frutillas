@@ -129,7 +129,6 @@
                         <div class="col-md-6 mb-3">
                             <label for="txtTelefonoLocal" class="form-label">Teléfono<span class="text-danger">*</span></label>
                             <asp:TextBox ID="txtTelefonoLocal" runat="server" CssClass="form-control" />
-                            <asp:Label ID="lblErrorTelefono" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
                         </div>
                     </div>
 
@@ -150,7 +149,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="ddlEstadoLocal" class="form-label">Estado<span class="text-danger">*</span></label>
-                            <asp:DropDownList ID="ddlEstadoLocal" runat="server" CssClass="form-select" Enabled ="false">
+                            <asp:DropDownList ID="ddlEstadoLocal" runat="server" CssClass="form-select">
                                 <asp:ListItem Value="true">Activo</asp:ListItem>
                                 <asp:ListItem Value="false">Inactivo</asp:ListItem>
                             </asp:DropDownList>

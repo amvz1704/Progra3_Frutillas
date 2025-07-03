@@ -56,7 +56,17 @@ public class InventarioService {
             throw new Exception("El stock no puede ser negativo");
         if(prod.getTipoEstado().name().trim().isEmpty())
             throw new Exception("El estado no puede ser vacio");
-        invSQL.actualizarInventario(prod, idLocal);
+        int stockActual = obtenerStockPorId(prod.getIdProducto(), idLocal);
+        if(prod.getStock()>stockActual){
+            prod.setTipoEstado(TipoEstado.DISPONIBLE);
+            invSQL.actualizarStock(prod, idLocal);
+        }
+        else if(stockActual==prod.getStock()){
+            prod.setTipoEstado(TipoEstado.AGOTADO);
+            invSQL.actualizarInventario(prod, idLocal);
+        }
+        else
+            throw new Exception("No hay sufieciente stock");
     }
     public void eliminar(int idProducto,int idLocal) throws Exception{
         if(idLocal<=0)

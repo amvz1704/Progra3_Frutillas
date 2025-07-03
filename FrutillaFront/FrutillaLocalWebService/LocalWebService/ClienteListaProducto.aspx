@@ -9,6 +9,18 @@
     <div class="container py-3 form-in-line">
         <!-- Sección de búsqueda y filtros - Completamente responsive -->
         <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-2 gap-md-0">
+            <!-- Barra de búsqueda -->
+            <div class="form-group mb-2 mb-md-0 d-flex align-items-center flex-grow-1">
+                <asp:TextBox
+                    ID="txtBuscar"
+                    runat="server"
+                    CssClass="input-frutilla me-2 flex-grow-1"
+                    Placeholder="Buscar producto..."
+                    Style="min-width: 200px;" />
+                <button type="submit" class="btn btn-frutilla flex-shrink-0">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
 
             <!-- Dropdown Local -->
             <div class="form-group mb-2 mb-md-0 dropdown-saludable">
