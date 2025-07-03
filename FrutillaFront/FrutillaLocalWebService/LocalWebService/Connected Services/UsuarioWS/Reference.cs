@@ -16,6 +16,15 @@ namespace LocalWebService.UsuarioWS {
     public interface UsuarioWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse obtenerIDPorNombreUsuario(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse")]
+        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse> obtenerIDPorNombreUsuarioAsync(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarCodigoRecuperacionRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarCodigoRecuperacionResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -34,15 +43,6 @@ namespace LocalWebService.UsuarioWS {
         System.Threading.Tasks.Task<LocalWebService.UsuarioWS.actualizarContrasenaResponse> actualizarContrasenaAsync(LocalWebService.UsuarioWS.actualizarContrasenaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse obtenerIDPorNombreUsuario(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerIDPorNombreUsuarioResponse")]
-        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse> obtenerIDPorNombreUsuarioAsync(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarCodigoRecuperacionRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarCodigoRecuperacionResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -50,6 +50,15 @@ namespace LocalWebService.UsuarioWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarCodigoRecuperacionRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/generarCodigoRecuperacionResponse")]
         System.Threading.Tasks.Task<LocalWebService.UsuarioWS.generarCodigoRecuperacionResponse> generarCodigoRecuperacionAsync(LocalWebService.UsuarioWS.generarCodigoRecuperacionRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LocalWebService.UsuarioWS.obtenerPorCorreoResponse obtenerPorCorreo(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoResponse")]
+        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerPorCorreoResponse> obtenerPorCorreoAsync(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarUsuarioRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/validarUsuarioResponse")]
@@ -68,15 +77,42 @@ namespace LocalWebService.UsuarioWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/correoExisteRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/correoExisteResponse")]
         System.Threading.Tasks.Task<LocalWebService.UsuarioWS.correoExisteResponse> correoExisteAsync(LocalWebService.UsuarioWS.correoExisteRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerIDPorNombreUsuario", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerIDPorNombreUsuarioRequest {
         
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LocalWebService.UsuarioWS.obtenerPorCorreoResponse obtenerPorCorreo(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request);
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg0;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoRequest", ReplyAction="http://WS.frutilla.pucp.edu.pe/UsuarioWS/obtenerPorCorreoResponse")]
-        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerPorCorreoResponse> obtenerPorCorreoAsync(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request);
+        public obtenerIDPorNombreUsuarioRequest() {
+        }
+        
+        public obtenerIDPorNombreUsuarioRequest(string arg0) {
+            this.arg0 = arg0;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerIDPorNombreUsuarioResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerIDPorNombreUsuarioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public obtenerIDPorNombreUsuarioResponse() {
+        }
+        
+        public obtenerIDPorNombreUsuarioResponse(int @return) {
+            this.@return = @return;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -152,42 +188,6 @@ namespace LocalWebService.UsuarioWS {
         }
         
         public actualizarContrasenaResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerIDPorNombreUsuario", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerIDPorNombreUsuarioRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string arg0;
-        
-        public obtenerIDPorNombreUsuarioRequest() {
-        }
-        
-        public obtenerIDPorNombreUsuarioRequest(string arg0) {
-            this.arg0 = arg0;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerIDPorNombreUsuarioResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerIDPorNombreUsuarioResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public obtenerIDPorNombreUsuarioResponse() {
-        }
-        
-        public obtenerIDPorNombreUsuarioResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -389,6 +389,42 @@ namespace LocalWebService.UsuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorCorreo", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorCorreoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg0;
+        
+        public obtenerPorCorreoRequest() {
+        }
+        
+        public obtenerPorCorreoRequest(string arg0) {
+            this.arg0 = arg0;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorCorreoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorCorreoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LocalWebService.UsuarioWS.persona @return;
+        
+        public obtenerPorCorreoResponse() {
+        }
+        
+        public obtenerPorCorreoResponse(LocalWebService.UsuarioWS.persona @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="validarUsuario", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
     public partial class validarUsuarioRequest {
         
@@ -463,42 +499,6 @@ namespace LocalWebService.UsuarioWS {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorCorreo", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorCorreoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string arg0;
-        
-        public obtenerPorCorreoRequest() {
-        }
-        
-        public obtenerPorCorreoRequest(string arg0) {
-            this.arg0 = arg0;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorCorreoResponse", WrapperNamespace="http://WS.frutilla.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorCorreoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://WS.frutilla.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LocalWebService.UsuarioWS.persona @return;
-        
-        public obtenerPorCorreoResponse() {
-        }
-        
-        public obtenerPorCorreoResponse(LocalWebService.UsuarioWS.persona @return) {
-            this.@return = @return;
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface UsuarioWSChannel : LocalWebService.UsuarioWS.UsuarioWS, System.ServiceModel.IClientChannel {
     }
@@ -524,6 +524,29 @@ namespace LocalWebService.UsuarioWS {
         
         public UsuarioWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse LocalWebService.UsuarioWS.UsuarioWS.obtenerIDPorNombreUsuario(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request) {
+            return base.Channel.obtenerIDPorNombreUsuario(request);
+        }
+        
+        public int obtenerIDPorNombreUsuario(string arg0) {
+            LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest inValue = new LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest();
+            inValue.arg0 = arg0;
+            LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse retVal = ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerIDPorNombreUsuario(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse> LocalWebService.UsuarioWS.UsuarioWS.obtenerIDPorNombreUsuarioAsync(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request) {
+            return base.Channel.obtenerIDPorNombreUsuarioAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse> obtenerIDPorNombreUsuarioAsync(string arg0) {
+            LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest inValue = new LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest();
+            inValue.arg0 = arg0;
+            return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerIDPorNombreUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -575,29 +598,6 @@ namespace LocalWebService.UsuarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse LocalWebService.UsuarioWS.UsuarioWS.obtenerIDPorNombreUsuario(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request) {
-            return base.Channel.obtenerIDPorNombreUsuario(request);
-        }
-        
-        public int obtenerIDPorNombreUsuario(string arg0) {
-            LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest inValue = new LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest();
-            inValue.arg0 = arg0;
-            LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse retVal = ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerIDPorNombreUsuario(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse> LocalWebService.UsuarioWS.UsuarioWS.obtenerIDPorNombreUsuarioAsync(LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest request) {
-            return base.Channel.obtenerIDPorNombreUsuarioAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioResponse> obtenerIDPorNombreUsuarioAsync(string arg0) {
-            LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest inValue = new LocalWebService.UsuarioWS.obtenerIDPorNombreUsuarioRequest();
-            inValue.arg0 = arg0;
-            return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerIDPorNombreUsuarioAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LocalWebService.UsuarioWS.generarCodigoRecuperacionResponse LocalWebService.UsuarioWS.UsuarioWS.generarCodigoRecuperacion(LocalWebService.UsuarioWS.generarCodigoRecuperacionRequest request) {
             return base.Channel.generarCodigoRecuperacion(request);
         }
@@ -618,6 +618,29 @@ namespace LocalWebService.UsuarioWS {
             LocalWebService.UsuarioWS.generarCodigoRecuperacionRequest inValue = new LocalWebService.UsuarioWS.generarCodigoRecuperacionRequest();
             inValue.idUsuario = idUsuario;
             return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).generarCodigoRecuperacionAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LocalWebService.UsuarioWS.obtenerPorCorreoResponse LocalWebService.UsuarioWS.UsuarioWS.obtenerPorCorreo(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request) {
+            return base.Channel.obtenerPorCorreo(request);
+        }
+        
+        public LocalWebService.UsuarioWS.persona obtenerPorCorreo(string arg0) {
+            LocalWebService.UsuarioWS.obtenerPorCorreoRequest inValue = new LocalWebService.UsuarioWS.obtenerPorCorreoRequest();
+            inValue.arg0 = arg0;
+            LocalWebService.UsuarioWS.obtenerPorCorreoResponse retVal = ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerPorCorreo(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerPorCorreoResponse> LocalWebService.UsuarioWS.UsuarioWS.obtenerPorCorreoAsync(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request) {
+            return base.Channel.obtenerPorCorreoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerPorCorreoResponse> obtenerPorCorreoAsync(string arg0) {
+            LocalWebService.UsuarioWS.obtenerPorCorreoRequest inValue = new LocalWebService.UsuarioWS.obtenerPorCorreoRequest();
+            inValue.arg0 = arg0;
+            return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerPorCorreoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -666,29 +689,6 @@ namespace LocalWebService.UsuarioWS {
             LocalWebService.UsuarioWS.correoExisteRequest inValue = new LocalWebService.UsuarioWS.correoExisteRequest();
             inValue.correo = correo;
             return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).correoExisteAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LocalWebService.UsuarioWS.obtenerPorCorreoResponse LocalWebService.UsuarioWS.UsuarioWS.obtenerPorCorreo(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request) {
-            return base.Channel.obtenerPorCorreo(request);
-        }
-        
-        public LocalWebService.UsuarioWS.persona obtenerPorCorreo(string arg0) {
-            LocalWebService.UsuarioWS.obtenerPorCorreoRequest inValue = new LocalWebService.UsuarioWS.obtenerPorCorreoRequest();
-            inValue.arg0 = arg0;
-            LocalWebService.UsuarioWS.obtenerPorCorreoResponse retVal = ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerPorCorreo(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerPorCorreoResponse> LocalWebService.UsuarioWS.UsuarioWS.obtenerPorCorreoAsync(LocalWebService.UsuarioWS.obtenerPorCorreoRequest request) {
-            return base.Channel.obtenerPorCorreoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LocalWebService.UsuarioWS.obtenerPorCorreoResponse> obtenerPorCorreoAsync(string arg0) {
-            LocalWebService.UsuarioWS.obtenerPorCorreoRequest inValue = new LocalWebService.UsuarioWS.obtenerPorCorreoRequest();
-            inValue.arg0 = arg0;
-            return ((LocalWebService.UsuarioWS.UsuarioWS)(this)).obtenerPorCorreoAsync(inValue);
         }
     }
 }
